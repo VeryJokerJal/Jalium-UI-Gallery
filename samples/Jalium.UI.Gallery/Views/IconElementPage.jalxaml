@@ -1,0 +1,6 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Views.IconElementPage"
+      Title="IconElement">
+      <StackPanel x:Name="RootPanel" Orientation="Vertical" Margin="0,0,24,24"/>
+</Page>

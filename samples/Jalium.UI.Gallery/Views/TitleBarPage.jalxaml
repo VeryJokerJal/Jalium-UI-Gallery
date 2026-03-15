@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Views.TitleBarPage">
+    <StackPanel Orientation="Vertical" Margin="24">
+        <TextBlock Text="TitleBar" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
+        <TextBlock Text="A customizable window title bar with standard system caption buttons."
+                   FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
+
+        <Border Background="#2D2D30" CornerRadius="8" Padding="24" Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+
+                <Border Background="#1E1E1E" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="6" Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TitleBar x:Name="DemoTitleBar"
+                                  Title="Jalium.UI Demo Window"
+                                  Height="36" />
+                        <Border Background="#252526" Padding="16">
+                            <TextBlock Text="This area represents window content under a custom title bar."
+                                       Opacity="0.75" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <WrapPanel Margin="0,0,0,12">
+                    <CheckBox x:Name="MinimizeCheckBox" Content="Show Minimize" IsChecked="True" Margin="0,0,16,8" />
+                    <CheckBox x:Name="MaximizeCheckBox" Content="Show Maximize" IsChecked="True" Margin="0,0,16,8" />
+                    <CheckBox x:Name="CloseCheckBox" Content="Show Close" IsChecked="True" Margin="0,0,16,8" />
+                    <CheckBox x:Name="IsMaximizedCheckBox" Content="Is Maximized" Margin="0,0,16,8" />
+                </WrapPanel>
+
+                <TextBlock x:Name="StatusText"
+                           Text="Status: Ready"
+                           Foreground="#A0A0A0" />
+            </StackPanel>
+        </Border>
+
+        <Border Background="#2D2D30" CornerRadius="8" Padding="24" Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Notes" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+                <TextBlock Text="- In a real window, these buttons are usually wired to minimize, maximize, and close actions."
+                           Margin="0,0,0,6" />
+                <TextBlock Text="- Use Window.TitleBarStyle = Custom to let the Window host its built-in TitleBar integration."
+                           Margin="0,0,0,6" />
+                <TextBlock Text="- This gallery page keeps all actions local and only updates demo state."
+                           Margin="0,0,0,6" />
+            </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" CornerRadius="8" Padding="24">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Code Example" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+                <TextBlock FontFamily="Consolas"
+                           FontSize="13"
+                           Foreground="#9CDCFE"
+                           Text="&lt;TitleBar Title=&quot;My App&quot;&#x0A;          ShowMinimizeButton=&quot;True&quot;&#x0A;          ShowMaximizeButton=&quot;True&quot;&#x0A;          ShowCloseButton=&quot;True&quot; /&gt;" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

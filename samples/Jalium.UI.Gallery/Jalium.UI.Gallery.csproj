@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 导入 JALXAML 构建属性（开发模式，从源码导入） -->
+  <Import Project="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.props" />
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWindowsForms>false</UseWindowsForms>
+    <UseWPF>false</UseWPF>
+    <PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
+    <PublishAot Condition="'$(Configuration)' != 'Release'">false</PublishAot>
+    <PublishTrimmed Condition="'$(PublishAot)' != 'true'">false</PublishTrimmed>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <RootNamespace>Jalium.UI.Gallery</RootNamespace>
+    <AssemblyName>Jalium.UI.Gallery</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- 使用 Source Generator 生成代码，禁用 Build Task 的代码生成 -->
+    <EnableJalxamlCodeGeneration>false</EnableJalxamlCodeGeneration>
+    <DefaultItemExcludes>$(DefaultItemExcludes);Razor\**\*;Jalxaml\**\*;obj\**\*;bin\**\*;.tmp-build\**\*;obj_codex\**\*;bin_codex\**\*</DefaultItemExcludes>
+    <!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->
+    <!-- 输出生成的源代码文件到磁盘以便调试 -->
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+    <!-- 开发模式：覆盖 JALXAML 构建路径（指向本地项目输出） -->
+    <_JalxamlTasksPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\bin\$(Configuration)\net10.0\Jalium.UI.Build.dll</_JalxamlTasksPath>
+    <JalxamlCompilerPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\tools\jalxamlc.exe</JalxamlCompilerPath>
+  </PropertyGroup>
+
+  <!-- 引用本地项目 (开发模式，可访问最新代码) -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Core\Jalium.UI.Core.csproj" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Media\Jalium.UI.Media.csproj" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Input\Jalium.UI.Input.csproj" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Interop\Jalium.UI.Interop.csproj" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Controls\Jalium.UI.Controls.csproj" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml\Jalium.UI.Xaml.csproj" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Gpu\Jalium.UI.Gpu.csproj" />
+    <!-- Build 项目：仅构建时依赖（提供 MSBuild 任务 DLL），不作为运行时引用 -->
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj"
+                      ReferenceOutputAssembly="false"
+                      BuildReference="false" />
+    <!-- Source Generator -->
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- 导入 JALXAML 构建目标（开发模式，从源码导入） -->
+  <Import Project="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.targets" />
+
+  <!-- 注意: .juib 文件会被 Jalium.UI.Build 自动嵌入，无需手动添加 EmbeddedResource -->
+</Project>
