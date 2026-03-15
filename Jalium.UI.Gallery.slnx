@@ -1,3 +1,13 @@
 <Solution>
-  <Project Path="Jalium.UI.Gallery/Jalium.UI.Gallery.csproj" />
+  <Folder Name="/samples/">
+    <Project Path="samples/Jalium.UI.Gallery/Jalium.UI.Gallery.csproj" />
+  </Folder>
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Controls/Jalium.UI.Controls.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Core/Jalium.UI.Core.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Gpu/Jalium.UI.Gpu.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Input/Jalium.UI.Input.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Interop/Jalium.UI.Interop.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Media/Jalium.UI.Media.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml.SourceGenerator/Jalium.UI.Xaml.SourceGenerator.csproj" />
+  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml/Jalium.UI.Xaml.csproj" />
 </Solution>
