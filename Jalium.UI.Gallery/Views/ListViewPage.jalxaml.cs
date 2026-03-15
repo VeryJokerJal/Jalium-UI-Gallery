@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Primitives;
 
 namespace Jalium.UI.Gallery.Views;
 
@@ -12,6 +13,9 @@ public partial class ListViewPage : Page
     public ListViewPage()
     {
         InitializeComponent();
+
+        // Set up GridView data
+        SetupGridViewData();
 
         // Set up event handlers
         if (AddItemButton != null)
@@ -28,6 +32,25 @@ public partial class ListViewPage : Page
         {
             InteractiveListView.SelectionChanged += OnSelectionChanged;
         }
+    }
+
+    private void SetupGridViewData()
+    {
+        if (GridListView == null) return;
+
+        var files = new List<FileInfo>
+        {
+            new("Document.docx", "Word Document", "245 KB", "2026-01-15"),
+            new("Budget.xlsx", "Excel Spreadsheet", "128 KB", "2026-02-01"),
+            new("Photo.png", "PNG Image", "1.2 MB", "2026-01-20"),
+            new("Readme.md", "Markdown File", "4 KB", "2026-02-10"),
+            new("App.exe", "Application", "3.8 MB", "2025-12-05"),
+            new("Config.json", "JSON File", "2 KB", "2026-02-14"),
+            new("Notes.txt", "Text File", "12 KB", "2026-01-28"),
+            new("Backup.zip", "ZIP Archive", "56 MB", "2025-11-30")
+        };
+
+        GridListView.ItemsSource = files;
     }
 
     private void OnAddItemClick(object? sender, EventArgs e)
@@ -65,4 +88,6 @@ public partial class ListViewPage : Page
             }
         }
     }
+
+    private record FileInfo(string Name, string Type, string Size, string Modified);
 }

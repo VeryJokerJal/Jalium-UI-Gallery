@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Views.ToolTipPage"
       Title="ToolTip">
@@ -37,11 +37,11 @@
                         CornerRadius="4"
                         Padding="16">
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="Save"
+                        <Button x:Name="SaveButton"
+                                Content="Save"
                                 Width="80"
                                 Height="32"
-                                Margin="0,0,12,0"
-                                ToolTip="Save the current document"/>
+                                Margin="0,0,12,0"/>
                         <Button Content="Open"
                                 Width="80"
                                 Height="32"
@@ -169,29 +169,26 @@
                                 Width="60"
                                 Height="32"
                                 Margin="8"
-                                ToolTip="Tooltip on top"
-                                ToolTipService.Placement="Top"/>
+                                ToolTip="Tooltip on top"/>
                         <Button Content="Right"
                                 Width="60"
                                 Height="32"
                                 Margin="8"
-                                ToolTip="Tooltip on right"
-                                ToolTipService.Placement="Right"/>
+                                ToolTip="Tooltip on right"/>
                         <Button Content="Bottom"
                                 Width="60"
                                 Height="32"
                                 Margin="8"
-                                ToolTip="Tooltip on bottom"
-                                ToolTipService.Placement="Bottom"/>
+                                ToolTip="Tooltip on bottom"/>
                         <Button Content="Left"
                                 Width="60"
                                 Height="32"
                                 Margin="8"
-                                ToolTip="Tooltip on left"
-                                ToolTipService.Placement="Left"/>
+                                ToolTip="Tooltip on left"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
     </StackPanel>
 </Page>
+

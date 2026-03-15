@@ -1,10 +1,19 @@
 using Jalium.UI.Controls;
-using Jalium.UI.Media;
+using Jalium.UI.Media.Effects;
 
 namespace Jalium.UI.Gallery.Views;
 
 public partial class ShaderEffectsPage : Page
 {
+    private BlurEffect _blurEffect = new(10);
+    private DropShadowEffect _dropShadowEffect = new()
+    {
+        BlurRadius = 10,
+        ShadowDepth = 5,
+        Direction = 315,
+        Opacity = 0.8
+    };
+
     public ShaderEffectsPage()
     {
         InitializeComponent();
@@ -14,15 +23,15 @@ public partial class ShaderEffectsPage : Page
 
     private void SetupEffects()
     {
-        // Apply initial blur effect (using backdrop blur effect)
         if (BlurEffectDemo != null)
         {
-            BlurEffectDemo.BackdropEffect = new Jalium.UI.Media.BlurEffect(10f);
+            BlurEffectDemo.Effect = _blurEffect;
         }
 
-        // Apply initial drop shadow effect
-        // Note: DropShadowEffect would need to be applied via Effect property
-        // For now we simulate with BackdropEffect
+        if (DropShadowDemo != null)
+        {
+            DropShadowDemo.Effect = _dropShadowEffect;
+        }
     }
 
     private void SetupSliders()
@@ -34,8 +43,7 @@ public partial class ShaderEffectsPage : Page
                 if (BlurRadiusText != null)
                     BlurRadiusText.Text = ((int)e.NewValue).ToString();
 
-                if (BlurEffectDemo != null)
-                    BlurEffectDemo.BackdropEffect = new Jalium.UI.Media.BlurEffect((float)e.NewValue);
+                _blurEffect.Radius = e.NewValue;
             };
         }
 
@@ -45,6 +53,8 @@ public partial class ShaderEffectsPage : Page
             {
                 if (ShadowDepthText != null)
                     ShadowDepthText.Text = ((int)e.NewValue).ToString();
+
+                _dropShadowEffect.ShadowDepth = e.NewValue;
             };
         }
     }

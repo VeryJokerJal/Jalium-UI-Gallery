@@ -1,13 +1,20 @@
-<Window xmlns="http://schemas.jalium.ui/2024"
+﻿<Window xmlns="http://schemas.jalium.ui/2024"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Jalium.UI.Gallery.GalleryWindow"
         Title="Jalium.UI Gallery"
         Width="1200"
         Height="800"
-        Background="#1A1A1A">
+        TitleBarHeight="50"
+        Background="#801A1A1A">
+
+    <Window.LeftWindowCommands>
+        <TextBox x:Name="TitleBarSearchBox"
+                 Width="280"
+                 Margin="8,0,0,0"
+                 PlaceholderText="Search controls and categories..." />
+    </Window.LeftWindowCommands>
 
     <NavigationView x:Name="NavigationView"
-                    Background="#252525"
                     OpenPaneLength="280"
                     PaneTitle="Jalium.UI">
 
@@ -25,3 +32,4 @@
 
     </NavigationView>
 </Window>
+

@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Views.ListViewPage"
       Title="ListView">
@@ -192,14 +192,15 @@
                         CornerRadius="4"
                         Padding="16">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="• File explorers" Foreground="#CCCCCC" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Email lists" Foreground="#CCCCCC" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Contact lists" Foreground="#CCCCCC" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Task managers" Foreground="#CCCCCC" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Log viewers" Foreground="#CCCCCC"/>
+                        <TextBlock Text="鈥?File explorers" Foreground="#CCCCCC" Margin="0,0,0,8"/>
+                        <TextBlock Text="鈥?Email lists" Foreground="#CCCCCC" Margin="0,0,0,8"/>
+                        <TextBlock Text="鈥?Contact lists" Foreground="#CCCCCC" Margin="0,0,0,8"/>
+                        <TextBlock Text="鈥?Task managers" Foreground="#CCCCCC" Margin="0,0,0,8"/>
+                        <TextBlock Text="鈥?Log viewers" Foreground="#CCCCCC"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
     </StackPanel>
 </Page>
+

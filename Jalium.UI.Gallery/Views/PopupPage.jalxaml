@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Views.PopupPage"
       Title="Popup">
@@ -39,7 +39,6 @@
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ShowPopupButton"
                                 Content="Show Popup"
-                                Width="100"
                                 Height="32"/>
                         <Popup x:Name="BasicPopup"
                                PlacementTarget="{Binding ElementName=ShowPopupButton}"
@@ -160,13 +159,14 @@
                         CornerRadius="4"
                         Padding="40">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button x:Name="TopPopupButton" Content="Top" Width="60" Height="32" Margin="8"/>
-                        <Button x:Name="RightPopupButton" Content="Right" Width="60" Height="32" Margin="8"/>
-                        <Button x:Name="BottomPopupButton" Content="Bottom" Width="60" Height="32" Margin="8"/>
-                        <Button x:Name="LeftPopupButton" Content="Left" Width="60" Height="32" Margin="8"/>
+                        <Button x:Name="TopPopupButton" Content="Top" Height="32" Margin="8"/>
+                        <Button x:Name="RightPopupButton" Content="Right" Height="32" Margin="8"/>
+                        <Button x:Name="BottomPopupButton" Content="Bottom" Height="32" Margin="8"/>
+                        <Button x:Name="LeftPopupButton" Content="Left" Height="32" Margin="8"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
     </StackPanel>
 </Page>
+

@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Views.ToolBarPage"
       Title="ToolBar">
@@ -168,3 +168,4 @@
         </Border>
     </StackPanel>
 </Page>
+

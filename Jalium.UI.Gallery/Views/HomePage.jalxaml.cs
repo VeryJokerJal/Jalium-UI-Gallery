@@ -86,14 +86,14 @@ public partial class HomePage : Page
         // Control category cards - first row (navigate to category overview pages)
         var controlRow1 = new StackPanel { Orientation = Orientation.Horizontal };
         controlRow1.Children.Add(CreateCategoryCard("Basic Input", "Button, CheckBox, RadioButton, Slider, TextBox", "basic", Color.FromRgb(0, 120, 212)));
-        controlRow1.Children.Add(CreateCategoryCard("Text", "TextBlock and text formatting", "text", Color.FromRgb(16, 124, 16)));
+        controlRow1.Children.Add(CreateCategoryCard("Text", "TextBlock, Markdown, and rich text", "text", Color.FromRgb(16, 124, 16)));
         controlRow1.Children.Add(CreateCategoryCard("Layout", "StackPanel, Grid, Canvas, Border", "layout", Color.FromRgb(136, 23, 152)));
         controlRow1.Children.Add(CreateCategoryCard("Navigation", "TabControl", "navigation", Color.FromRgb(202, 80, 16), false));
         mainStack.Children.Add(controlRow1);
 
         // Control category cards - second row (navigate to category overview pages)
         var controlRow2 = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 12, 0, 0) };
-        controlRow2.Children.Add(CreateCategoryCard("Media", "Image display", "media", Color.FromRgb(0, 99, 177)));
+        controlRow2.Children.Add(CreateCategoryCard("Media", "Image, QRCode, WebView, and media", "media", Color.FromRgb(0, 99, 177)));
         controlRow2.Children.Add(CreateCategoryCard("Collections", "ListBox, TreeView", "collections", Color.FromRgb(177, 70, 194)));
         mainStack.Children.Add(controlRow2);
 

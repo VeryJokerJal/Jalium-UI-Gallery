@@ -1,6 +1,5 @@
 using Jalium.UI;
 using Jalium.UI.Controls;
-using Jalium.UI.Gallery;
 
 namespace Jalium.UI.Gallery;
 

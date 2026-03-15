@@ -1,4 +1,4 @@
-using Jalium.UI;
+﻿using Jalium.UI;
 using Jalium.UI.Controls;
 using Jalium.UI.Gallery.Theme;
 using Jalium.UI.Media;
@@ -136,3 +136,4 @@ public partial class ComboBoxPage : Page
         ContentPanel.Children.Add(sectionDesc);
     }
 }
+

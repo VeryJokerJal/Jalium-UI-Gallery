@@ -17,6 +17,14 @@ public partial class CheckBoxPage : Page
             DemoCheckBox.Checked += OnDemoCheckBoxChecked;
             DemoCheckBox.Unchecked += OnDemoCheckBoxUnchecked;
         }
+
+        if (ThreeStateCheckBox != null)
+        {
+            ThreeStateCheckBox.IsChecked = null;
+            ThreeStateCheckBox.Checked += OnThreeStateCheckBoxChecked;
+            ThreeStateCheckBox.Unchecked += OnThreeStateCheckBoxUnchecked;
+            ThreeStateCheckBox.Indeterminate += OnThreeStateCheckBoxIndeterminate;
+        }
     }
 
     private void OnDemoCheckBoxChecked(object sender, RoutedEventArgs e)
@@ -32,6 +40,30 @@ public partial class CheckBoxPage : Page
         if (CheckBoxStatus != null)
         {
             CheckBoxStatus.Text = "Status: Unchecked";
+        }
+    }
+
+    private void OnThreeStateCheckBoxChecked(object sender, RoutedEventArgs e)
+    {
+        if (ThreeStateStatus != null)
+        {
+            ThreeStateStatus.Text = "Status: Checked";
+        }
+    }
+
+    private void OnThreeStateCheckBoxUnchecked(object sender, RoutedEventArgs e)
+    {
+        if (ThreeStateStatus != null)
+        {
+            ThreeStateStatus.Text = "Status: Unchecked";
+        }
+    }
+
+    private void OnThreeStateCheckBoxIndeterminate(object sender, RoutedEventArgs e)
+    {
+        if (ThreeStateStatus != null)
+        {
+            ThreeStateStatus.Text = "Status: Indeterminate";
         }
     }
 }

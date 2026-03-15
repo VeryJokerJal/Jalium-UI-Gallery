@@ -1,17 +1,17 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Views.DialogsPage"
-      Title="Dialogs">
+      Title="File Dialogs">
 
     <StackPanel Orientation="Vertical">
         <!-- Page Title -->
-        <TextBlock Text="Dialogs"
+        <TextBlock Text="File Dialogs"
                    FontSize="32"
                    Foreground="#FFFFFF"
                    Margin="0,0,0,8"/>
 
         <!-- Description -->
-        <TextBlock Text="Common dialog controls for file operations, fonts, and colors."
+        <TextBlock Text="Classic file, folder, font, and message dialog examples."
                    FontSize="14"
                    Foreground="#888888"
                    Margin="0,0,0,24"/>
@@ -162,7 +162,7 @@
                            FontSize="16"
                            Foreground="#FFFFFF"
                            Margin="0,0,0,4"/>
-                <TextBlock Text="Display messages, confirmations, and alerts to users."
+                <TextBlock Text="Launch native message boxes with different icons, button layouts, and default actions."
                            FontSize="12"
                            Foreground="#666666"
                            Margin="0,0,0,16"/>
@@ -171,15 +171,166 @@
                         CornerRadius="4"
                         Padding="16">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <Button x:Name="InfoDialogButton" Content="Info" Width="70" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="WarningDialogButton" Content="Warning" Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="ErrorDialogButton" Content="Error" Width="70" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="ConfirmDialogButton" Content="Confirm" Width="80" Height="28"/>
-                        </StackPanel>
-                        <TextBlock x:Name="DialogResultText"
-                                   Text="Click a button to show a dialog"
-                                   Foreground="#888888"/>
+                        <TextBlock Text="These examples use Jalium.UI.Controls.MessageBox so the sample window stays the owner while you test classic system prompts."
+                                   Foreground="#8C939B"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,16"/>
+
+                        <WrapPanel Margin="0,0,0,16">
+                            <Border Background="#162130"
+                                    BorderBrush="#224260"
+                                    BorderThickness="1"
+                                    CornerRadius="6"
+                                    Padding="14"
+                                    Width="162"
+                                    Margin="0,0,12,12">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="#295D8A"
+                                            CornerRadius="999"
+                                            Padding="10,3"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,10">
+                                        <TextBlock Text="Information"
+                                                   Foreground="#FFFFFF"
+                                                   FontSize="12"/>
+                                    </Border>
+                                    <TextBlock Text="Single-button acknowledgement after a successful sync."
+                                               Foreground="#B7C3CF"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,12"/>
+                                    <Button x:Name="InfoDialogButton"
+                                            Content="Show info"
+                                            Width="108"
+                                            Height="32"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#2A2313"
+                                    BorderBrush="#5A4920"
+                                    BorderThickness="1"
+                                    CornerRadius="6"
+                                    Padding="14"
+                                    Width="162"
+                                    Margin="0,0,12,12">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="#8A6B17"
+                                            CornerRadius="999"
+                                            Padding="10,3"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,10">
+                                        <TextBlock Text="Warning"
+                                                   Foreground="#FFFFFF"
+                                                   FontSize="12"/>
+                                    </Border>
+                                    <TextBlock Text="Retry or cancel a save flow before leaving the current view."
+                                               Foreground="#D7C89A"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,12"/>
+                                    <Button x:Name="WarningDialogButton"
+                                            Content="Retry flow"
+                                            Width="108"
+                                            Height="32"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#311A1A"
+                                    BorderBrush="#6A2B2B"
+                                    BorderThickness="1"
+                                    CornerRadius="6"
+                                    Padding="14"
+                                    Width="162"
+                                    Margin="0,0,12,12">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="#8E3B3B"
+                                            CornerRadius="999"
+                                            Padding="10,3"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,10">
+                                        <TextBlock Text="Error"
+                                                   Foreground="#FFFFFF"
+                                                   FontSize="12"/>
+                                    </Border>
+                                    <TextBlock Text="Blocking import failure with a system error icon and acknowledgement."
+                                               Foreground="#E0B0B0"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,12"/>
+                                    <Button x:Name="ErrorDialogButton"
+                                            Content="Show error"
+                                            Width="108"
+                                            Height="32"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#18261D"
+                                    BorderBrush="#29513A"
+                                    BorderThickness="1"
+                                    CornerRadius="6"
+                                    Padding="14"
+                                    Width="162"
+                                    Margin="0,0,0,12">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="#2F7D57"
+                                            CornerRadius="999"
+                                            Padding="10,3"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,10">
+                                        <TextBlock Text="Confirm"
+                                                   Foreground="#FFFFFF"
+                                                   FontSize="12"/>
+                                    </Border>
+                                    <TextBlock Text="Yes, No, and Cancel with a safer default for destructive choices."
+                                               Foreground="#B5D7C0"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,12"/>
+                                    <Button x:Name="ConfirmDialogButton"
+                                            Content="Confirm action"
+                                            Width="116"
+                                            Height="32"/>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+
+                        <Border Background="#111315"
+                                BorderBrush="#2B3036"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="16">
+                            <StackPanel Orientation="Vertical">
+                                <Border x:Name="DialogResultAccent"
+                                        Background="#4C93FF"
+                                        CornerRadius="999"
+                                        Height="4"
+                                        Margin="0,0,0,12"/>
+                                <TextBlock Text="Last dialog interaction"
+                                           Foreground="#7F8A97"
+                                           FontSize="12"
+                                           Margin="0,0,0,4"/>
+                                <TextBlock x:Name="DialogResultTitleText"
+                                           Text="Native message boxes ready"
+                                           FontSize="18"
+                                           Foreground="#FFFFFF"
+                                           Margin="0,0,0,8"/>
+                                <TextBlock x:Name="DialogScenarioText"
+                                           Text="Run one of the samples above to inspect the icon, buttons, default result, and returned value."
+                                           Foreground="#B5BDC7"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock x:Name="DialogMessageText"
+                                           Text="Message: The preview panel will summarize the exact prompt after you close it."
+                                           Foreground="#8C939B"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock x:Name="DialogDetailsText"
+                                           Text="Buttons: -  |  Icon: -  |  Default: -"
+                                           Foreground="#6F7882"
+                                           FontSize="12"
+                                           Margin="0,0,0,8"/>
+                                <TextBlock x:Name="DialogResultText"
+                                           Text="Result: -"
+                                           Foreground="#4C93FF"
+                                           FontSize="14"/>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </Border>
             </StackPanel>
