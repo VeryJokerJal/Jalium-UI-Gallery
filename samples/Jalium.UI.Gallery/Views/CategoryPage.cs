@@ -191,7 +191,8 @@ public class BasicCategoryPage : CategoryPage
         new ControlInfo("NumberBox", "A control for numeric input with validation", "numberbox"),
         new ControlInfo("RepeatButton", "A button that fires repeatedly while pressed", "repeatbutton"),
         new ControlInfo("HyperlinkButton", "A button styled as a hyperlink", "hyperlinkbutton"),
-        new ControlInfo("SplitButton", "A button with a secondary flyout action", "splitbutton")
+        new ControlInfo("SplitButton", "A button with a secondary flyout action", "splitbutton"),
+        new ControlInfo("Drag & Drop", "DragEnter, DragOver, DragLeave, and Drop events", "dragdrop")
     };
 }
 

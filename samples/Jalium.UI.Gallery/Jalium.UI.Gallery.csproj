@@ -12,7 +12,7 @@
     <UseWPF>false</UseWPF>
     <PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
     <PublishAot Condition="'$(Configuration)' != 'Release'">false</PublishAot>
-    <PublishTrimmed Condition="'$(PublishAot)' != 'true'">false</PublishTrimmed>
+	  <PublishTrimmed>true</PublishTrimmed>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <RootNamespace>Jalium.UI.Gallery</RootNamespace>
     <AssemblyName>Jalium.UI.Gallery</AssemblyName>
@@ -29,6 +29,10 @@
     <JalxamlCompilerPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\tools\jalxamlc.exe</JalxamlCompilerPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!--<PackageReference Include="Jalium.UI" Version="26.9.0" />-->
+  </ItemGroup>
+
   <!-- 引用本地项目 (开发模式，可访问最新代码) -->
   <ItemGroup>
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Core\Jalium.UI.Core.csproj" />
@@ -38,11 +42,9 @@
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Controls\Jalium.UI.Controls.csproj" />
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml\Jalium.UI.Xaml.csproj" />
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Gpu\Jalium.UI.Gpu.csproj" />
-    <!-- Build 项目：仅构建时依赖（提供 MSBuild 任务 DLL），不作为运行时引用 -->
-    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj"
-                      ReferenceOutputAssembly="false"
-                      BuildReference="false" />
-    <!-- Source Generator -->
+     <!--Build 项目：仅构建时依赖（提供 MSBuild 任务 DLL），不作为运行时引用--> 
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
+     <!--Source Generator--> 
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 

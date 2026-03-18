@@ -37,6 +37,13 @@
                         CornerRadius="4"
                         Padding="16">
                     <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Video File:" Foreground="#888888" VerticalAlignment="Center" Width="80"/>
+                            <TextBox x:Name="VideoPathTextBox" Width="320" Height="28" Margin="0,0,8,0"
+                                     PlaceholderText="Enter video file path or URL..."/>
+                            <Button x:Name="VideoBrowseButton" Content="Browse..." Width="80" Height="28" Margin="0,0,8,0"/>
+                            <Button x:Name="VideoLoadButton" Content="Load" Width="60" Height="28"/>
+                        </StackPanel>
                         <Border Background="#000000" Width="480" Height="270" CornerRadius="4" Margin="0,0,0,16">
                             <MediaElement x:Name="VideoPlayer" Width="480" Height="270"/>
                         </Border>
@@ -71,18 +78,26 @@
                         CornerRadius="4"
                         Padding="16">
                     <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Audio File:" Foreground="#888888" VerticalAlignment="Center" Width="80"/>
+                            <TextBox x:Name="AudioPathTextBox" Width="320" Height="28" Margin="0,0,8,0"
+                                     PlaceholderText="Enter audio file path or URL..."/>
+                            <Button x:Name="AudioBrowseButton" Content="Browse..." Width="80" Height="28" Margin="0,0,8,0"/>
+                            <Button x:Name="AudioLoadButton" Content="Load" Width="60" Height="28"/>
+                        </StackPanel>
                         <Border Background="#252525" CornerRadius="8" Padding="24" Margin="0,0,0,16">
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                                 <Ellipse Width="80" Height="80" Fill="#0078D4" Margin="0,0,0,16"/>
-                                <TextBlock Text="Audio Track" Foreground="#FFFFFF" FontSize="16" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Artist Name" Foreground="#888888" FontSize="12" HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="AudioTitleText" Text="Audio Track" Foreground="#FFFFFF" FontSize="16" HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="AudioArtistText" Text="No file loaded" Foreground="#888888" FontSize="12" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
-                        <Slider x:Name="AudioProgressSlider" Minimum="0" Maximum="100" Value="30" Margin="0,0,0,16"/>
+                        <MediaElement x:Name="AudioPlayer" Width="0" Height="0"/>
+                        <Slider x:Name="AudioProgressSlider" Minimum="0" Maximum="100" Value="0" Margin="0,0,0,16"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="⏮" Width="40" Height="28" Margin="0,0,8,0"/>
-                            <Button Content="▶" Width="50" Height="28" Margin="0,0,8,0"/>
-                            <Button Content="⏭" Width="40" Height="28"/>
+                            <Button x:Name="AudioPlayButton" Content="⏮" Width="40" Height="28" Margin="0,0,8,0"/>
+                            <Button x:Name="AudioPlayPauseButton" Content="▶" Width="50" Height="28" Margin="0,0,8,0"/>
+                            <Button x:Name="AudioStopButton" Content="⏭" Width="40" Height="28"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

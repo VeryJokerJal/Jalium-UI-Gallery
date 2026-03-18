@@ -1,0 +1,234 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Views.DragDropPage"
+      Title="Drag &amp; Drop">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="Drag &amp; Drop"
+                   FontSize="32"
+                   Foreground="#FFFFFF"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="Demonstrates DragEnter, DragOver, DragLeave, and Drop events using the AllowDrop property."
+                   FontSize="14"
+                   Foreground="#888888"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic Drag and Drop Demo -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic Drag &amp; Drop"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Drag items from the source list on the left and drop them into the target area on the right."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Drag Source -->
+                        <StackPanel Orientation="Vertical" Width="200" Margin="0,0,16,0">
+                            <TextBlock Text="Drag Source"
+                                       FontSize="13"
+                                       Foreground="#AAAAAA"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="DragItem1"
+                                    Background="#0078D4"
+                                    CornerRadius="4"
+                                    Padding="12,8"
+                                    Margin="0,0,0,6"
+                                    Cursor="Hand">
+                                <TextBlock Text="Item A"
+                                           Foreground="#FFFFFF"
+                                           FontSize="13"/>
+                            </Border>
+                            <Border x:Name="DragItem2"
+                                    Background="#107C10"
+                                    CornerRadius="4"
+                                    Padding="12,8"
+                                    Margin="0,0,0,6"
+                                    Cursor="Hand">
+                                <TextBlock Text="Item B"
+                                           Foreground="#FFFFFF"
+                                           FontSize="13"/>
+                            </Border>
+                            <Border x:Name="DragItem3"
+                                    Background="#D83B01"
+                                    CornerRadius="4"
+                                    Padding="12,8"
+                                    Margin="0,0,0,6"
+                                    Cursor="Hand">
+                                <TextBlock Text="Item C"
+                                           Foreground="#FFFFFF"
+                                           FontSize="13"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Drop Target -->
+                        <Border x:Name="DropTarget"
+                                Background="#252525"
+                                BorderBrush="#3D3D3D"
+                                BorderThickness="2"
+                                CornerRadius="8"
+                                Width="300"
+                                MinHeight="140"
+                                Padding="16"
+                                AllowDrop="True">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Name="DropTargetHint"
+                                           Text="Drop items here"
+                                           FontSize="14"
+                                           Foreground="#555555"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,0,8"/>
+                                <StackPanel x:Name="DroppedItemsPanel"
+                                            Orientation="Vertical"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- DragEnter / DragLeave Visual Feedback Demo -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="DragEnter / DragLeave Feedback"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Drag an item over the zones below to see visual feedback on DragEnter and DragLeave."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <!-- Drag source for this demo -->
+                        <Border x:Name="FeedbackDragSource"
+                                Background="#0078D4"
+                                CornerRadius="4"
+                                Padding="12,8"
+                                Margin="0,0,0,16"
+                                Cursor="Hand"
+                                HorizontalAlignment="Left">
+                            <TextBlock Text="Drag me over the zones"
+                                       Foreground="#FFFFFF"
+                                       FontSize="13"/>
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="FeedbackZone1"
+                                    Background="#252525"
+                                    BorderBrush="#3D3D3D"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Width="150"
+                                    Height="100"
+                                    Margin="0,0,12,0"
+                                    AllowDrop="True">
+                                <TextBlock x:Name="FeedbackZone1Text"
+                                           Text="Zone 1"
+                                           FontSize="14"
+                                           Foreground="#555555"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <Border x:Name="FeedbackZone2"
+                                    Background="#252525"
+                                    BorderBrush="#3D3D3D"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Width="150"
+                                    Height="100"
+                                    Margin="0,0,12,0"
+                                    AllowDrop="True">
+                                <TextBlock x:Name="FeedbackZone2Text"
+                                           Text="Zone 2"
+                                           FontSize="14"
+                                           Foreground="#555555"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <Border x:Name="FeedbackZone3"
+                                    Background="#252525"
+                                    BorderBrush="#3D3D3D"
+                                    BorderThickness="2"
+                                    CornerRadius="8"
+                                    Width="150"
+                                    Height="100"
+                                    AllowDrop="True">
+                                <TextBlock x:Name="FeedbackZone3Text"
+                                           Text="Zone 3"
+                                           FontSize="14"
+                                           Foreground="#555555"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Event Log -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                    <TextBlock Text="Event Log"
+                               FontSize="16"
+                               Foreground="#FFFFFF"/>
+                    <Button x:Name="ClearLogButton"
+                            Content="Clear"
+                            Height="24"
+                            FontSize="11"
+                            Margin="12,0,0,0"
+                            VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock Text="Shows DragEnter, DragOver, DragLeave, and Drop events as they fire."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,12"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="12"
+                        MaxHeight="200">
+                    <ScrollViewer x:Name="LogScrollViewer"
+                                  VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="EventLogText"
+                                   Text="(drag items to see events)"
+                                   FontSize="12"
+                                   Foreground="#888888"
+                                   FontFamily="Consolas"
+                                   TextWrapping="Wrap"/>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>
