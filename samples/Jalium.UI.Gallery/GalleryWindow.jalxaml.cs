@@ -156,7 +156,9 @@ public partial class GalleryWindow : Window
         { "standarduicommand", () => new StandardUICommandPage() },
         { "xamluicommand", () => new XamlUICommandPage() },
         // Icons
-        { "iconelement", () => new IconElementPage() }
+        { "iconelement", () => new IconElementPage() },
+        // Drag & Drop
+        { "dragdrop", () => new DragDropPage() }
     };
 
     public GalleryWindow()
@@ -205,6 +207,7 @@ public partial class GalleryWindow : Window
         AddChildItem(controlsGroup, "RepeatButton", "repeatbutton");
         AddChildItem(controlsGroup, "HyperlinkButton", "hyperlinkbutton");
         AddChildItem(controlsGroup, "SplitButton", "splitbutton");
+        AddChildItem(controlsGroup, "Drag & Drop", "dragdrop");
 
         // Text (expandable group) - clicking group navigates to category overview
         var textGroup = AddGroupItem("Text", "text");
@@ -767,9 +770,12 @@ public partial class GalleryWindow : Window
             {
                 pageContent = factory();
             }
-            catch
+            catch (Exception ex)
             {
-                // Page creation failed - show placeholder
+                // Page creation failed - show error details
+                System.Diagnostics.Debug.WriteLine($"[Gallery] Failed to create page '{pageTag}': {ex}");
+                SetNavigationContent(CreateErrorPage(pageTag, ex));
+                return;
             }
         }
 
@@ -1073,6 +1079,68 @@ public partial class GalleryWindow : Window
                (ch >= '\uFE10' && ch <= '\uFE6F') ||
                (ch >= '\uFF01' && ch <= '\uFF60') ||
                (ch >= '\uFFE0' && ch <= '\uFFE6');
+    }
+
+    private UIElement CreateErrorPage(string pageTag, Exception ex)
+    {
+        var container = new Border
+        {
+            Background = GalleryTheme.BackgroundDarkBrush,
+            Padding = new Thickness(32)
+        };
+
+        var stack = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+
+        var iconBorder = new Border
+        {
+            Width = 80,
+            Height = 80,
+            Background = new SolidColorBrush(Color.FromRgb(180, 40, 40)),
+            CornerRadius = new CornerRadius(40),
+            Margin = new Thickness(0, 0, 0, 24),
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+
+        var iconText = new TextBlock
+        {
+            Text = "!",
+            FontSize = 32,
+            Foreground = Brushes.White,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        iconBorder.Child = iconText;
+        stack.Children.Add(iconBorder);
+
+        var title = new TextBlock
+        {
+            Text = $"Page: {pageTag} — Load Failed",
+            FontSize = GalleryTheme.FontSizeSubtitle,
+            FontWeight = FontWeights.SemiBold,
+            Foreground = GalleryTheme.TextPrimaryBrush,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Margin = new Thickness(0, 0, 0, 8)
+        };
+        stack.Children.Add(title);
+
+        var description = new TextBlock
+        {
+            Text = $"{ex.GetType().Name}: {ex.Message}",
+            FontSize = GalleryTheme.FontSizeNormal,
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            TextWrapping = TextWrapping.Wrap,
+            MaxWidth = 600
+        };
+        stack.Children.Add(description);
+
+        container.Child = stack;
+        return container;
     }
 
     private UIElement CreatePlaceholderPage(string pageTag)
