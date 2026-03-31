@@ -291,6 +291,7 @@ public class CollectionsCategoryPage : CategoryPage
         new ControlInfo("ListView", "A control for displaying items in a list view", "listview"),
         new ControlInfo("TreeView", "A control for displaying hierarchical data", "treeview"),
         new ControlInfo("DataGrid", "A tabular data display control", "datagrid"),
+        new ControlInfo("TreeDataGrid", "A hierarchical data grid with expand/collapse", "treedatagrid"),
         new ControlInfo("Calendar", "A control for date selection", "calendar")
     };
 }
@@ -305,7 +306,9 @@ public class DataCategoryPage : CategoryPage
     protected override Color AccentColor => Color.FromRgb(0, 153, 188);
     protected override IEnumerable<ControlInfo> Controls => new[]
     {
-        new ControlInfo("Binding", "Data binding expressions and converters", "binding")
+        new ControlInfo("Binding", "Data binding expressions and converters", "binding"),
+        new ControlInfo("Razor Syntax", "Razor template syntax for JALXAML", "razor"),
+        new ControlInfo("Section", "Section-based content organization", "section")
     };
 }
 
@@ -436,6 +439,7 @@ public class EffectsCategoryPage : CategoryPage
         new ControlInfo("Backdrop Effects", "Acrylic and Mica backdrop effects", "backdropeffects"),
         new ControlInfo("Liquid Glass", "Liquid glass material effects", "liquidglass"),
         new ControlInfo("Shader Effects", "Custom shader-based visual effects", "shadereffects"),
+        new ControlInfo("Element Effects", "OuterGlow, InnerShadow, Emboss, ColorMatrix, and EffectGroup", "elementeffects"),
         new ControlInfo("Content Transitions", "Animated content transition effects", "transitions")
     };
 }
