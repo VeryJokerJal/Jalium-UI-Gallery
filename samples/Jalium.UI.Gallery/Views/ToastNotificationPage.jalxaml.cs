@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Primitives;
 
 namespace Jalium.UI.Gallery.Views;
 
@@ -11,106 +12,93 @@ public partial class ToastNotificationPage : Page
     {
         InitializeComponent();
 
-        // Set up toast buttons
+        // Basic toast buttons
         if (InfoToastButton != null)
-        {
-            InfoToastButton.Click += (s, e) => ShowToast("Information", "This is an informational message.", "info");
-        }
+            InfoToastButton.Click += (s, e) => ShowToast(ToastSeverity.Information, "Information", "This is an informational message.");
 
         if (SuccessToastButton != null)
-        {
-            SuccessToastButton.Click += (s, e) => ShowToast("Success", "Operation completed successfully.", "success");
-        }
+            SuccessToastButton.Click += (s, e) => ShowToast(ToastSeverity.Success, "Success", "Operation completed successfully.");
 
         if (WarningToastButton != null)
-        {
-            WarningToastButton.Click += (s, e) => ShowToast("Warning", "Please review before proceeding.", "warning");
-        }
+            WarningToastButton.Click += (s, e) => ShowToast(ToastSeverity.Warning, "Warning", "Please review before proceeding.");
 
         if (ErrorToastButton != null)
-        {
-            ErrorToastButton.Click += (s, e) => ShowToast("Error", "An error occurred during the operation.", "error");
-        }
+            ErrorToastButton.Click += (s, e) => ShowToast(ToastSeverity.Error, "Error", "An error occurred during the operation.");
 
+        // Action toast button
         if (ShowActionToastButton != null)
-        {
             ShowActionToastButton.Click += OnShowActionToastClick;
-        }
 
+        // Custom toast button
         if (ShowCustomToastButton != null)
-        {
             ShowCustomToastButton.Click += OnShowCustomToastClick;
-        }
 
-        // Set up duration slider
+        // Dismiss all button
+        if (DismissAllButton != null)
+            DismissAllButton.Click += (s, e) => ToastHost?.DismissAll();
+
+        // Duration slider
         if (DurationSlider != null)
-        {
             DurationSlider.ValueChanged += OnDurationChanged;
-        }
+
+        // Position combobox
+        if (PositionComboBox != null)
+            PositionComboBox.SelectionChanged += OnPositionChanged;
     }
 
-    private void ShowToast(string title, string message, string type)
+    private void ShowToast(ToastSeverity severity, string title, string message)
     {
-        // Create a toast notification using the Windows toast API
-        var xmlContent = $@"
-            <toast>
-                <visual>
-                    <binding template=""ToastText02"">
-                        <text id=""1"">{title}</text>
-                        <text id=""2"">{message}</text>
-                    </binding>
-                </visual>
-            </toast>";
+        if (ToastHost == null) return;
 
-        var notification = new ToastNotification(xmlContent);
-        notification.Tag = type;
-
-        var notifier = ToastNotificationManager.CreateToastNotifier();
-        notifier.Show(notification);
+        var duration = GetConfiguredDuration();
+        var toast = ToastHost.Show(severity, title, message, duration);
+        toast.IsClosable = ShowCloseCheckBox?.IsChecked ?? true;
+        toast.IsAutoDismissEnabled = PauseOnHoverCheckBox?.IsChecked ?? true;
     }
 
     private void OnShowActionToastClick(object? sender, EventArgs e)
     {
-        var xmlContent = @"
-            <toast>
-                <visual>
-                    <binding template=""ToastText02"">
-                        <text id=""1"">Download Complete</text>
-                        <text id=""2"">Your file has been downloaded.</text>
-                    </binding>
-                </visual>
-                <actions>
-                    <action content=""Open"" arguments=""open""/>
-                    <action content=""Dismiss"" arguments=""dismiss""/>
-                </actions>
-            </toast>";
+        if (ToastHost == null) return;
 
-        var notification = new ToastNotification(xmlContent);
-        notification.Tag = "download";
+        var duration = GetConfiguredDuration();
+        var toast = new ToastNotificationItem
+        {
+            Severity = ToastSeverity.Information,
+            Title = "Download Complete",
+            Message = "Your file has been downloaded.",
+            IsClosable = ShowCloseCheckBox?.IsChecked ?? true,
+            IsAutoDismissEnabled = PauseOnHoverCheckBox?.IsChecked ?? true,
+            Duration = duration
+        };
 
-        var notifier = ToastNotificationManager.CreateToastNotifier();
-        notifier.Show(notification);
+        toast.ActionButtonClick += (s, args) =>
+        {
+            // Show a follow-up toast when action is clicked
+            ToastHost.ShowSuccess("File Opened", "The file was opened successfully.");
+        };
+
+        ToastHost.ShowToast(toast);
     }
 
     private void OnShowCustomToastClick(object? sender, EventArgs e)
     {
-        var duration = DurationSlider?.Value ?? 5;
+        if (ToastHost == null) return;
 
-        var xmlContent = $@"
-            <toast duration=""long"">
-                <visual>
-                    <binding template=""ToastText02"">
-                        <text id=""1"">Custom Toast</text>
-                        <text id=""2"">This toast demonstrates custom settings.</text>
-                    </binding>
-                </visual>
-            </toast>";
+        var duration = GetConfiguredDuration();
+        var toast = ToastHost.Show(
+            ToastSeverity.Information,
+            "Custom Toast",
+            $"Duration: {duration.TotalSeconds:F0}s — Position: {ToastHost.Position}",
+            duration);
 
-        var notification = new ToastNotification(xmlContent);
-        notification.ExpirationTime = DateTimeOffset.Now.AddSeconds(duration);
+        toast.IsClosable = ShowCloseCheckBox?.IsChecked ?? true;
+        toast.IsAutoDismissEnabled = PauseOnHoverCheckBox?.IsChecked ?? true;
+    }
 
-        var notifier = ToastNotificationManager.CreateToastNotifier();
-        notifier.Show(notification);
+    private TimeSpan GetConfiguredDuration()
+    {
+        var seconds = DurationSlider?.Value ?? 5;
+        return TimeSpan.FromSeconds(seconds);
     }
 
     private void OnDurationChanged(object? sender, RoutedPropertyChangedEventArgs<double> e)
@@ -119,5 +107,21 @@ public partial class ToastNotificationPage : Page
         {
             DurationText.Text = $"{e.NewValue:F0}s";
         }
+    }
+
+    private void OnPositionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (ToastHost == null || PositionComboBox == null) return;
+
+        ToastHost.Position = PositionComboBox.SelectedIndex switch
+        {
+            0 => ToastPosition.TopRight,
+            1 => ToastPosition.TopLeft,
+            2 => ToastPosition.TopCenter,
+            3 => ToastPosition.BottomRight,
+            4 => ToastPosition.BottomLeft,
+            5 => ToastPosition.BottomCenter,
+            _ => ToastPosition.TopRight
+        };
     }
 }

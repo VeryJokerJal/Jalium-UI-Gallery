@@ -85,6 +85,8 @@ public partial class GalleryWindow : Window
         { "textblock", () => new TextBlockPage() },
         { "markdown", () => new MarkdownPage() },
         { "binding", () => new BindingPage() },
+        { "razor", () => new RazorDemoPage() },
+        { "section", () => new SectionDemoPage() },
         { "stackpanel", () => new StackPanelPage() },
         { "grid", () => new GridPage() },
         { "canvas", () => new CanvasPage() },
@@ -99,6 +101,7 @@ public partial class GalleryWindow : Window
         { "listbox", () => new ListBoxPage() },
         { "backdropeffects", () => new BackdropEffectsPage() },
         { "datagrid", () => new DataGridPage() },
+        { "treedatagrid", () => new TreeDataGridPage() },
         { "autocompletebox", () => new AutoCompleteBoxPage() },
         { "groupbox", () => new GroupBoxPage() },
         { "statusbar", () => new StatusBarPage() },
@@ -114,6 +117,7 @@ public partial class GalleryWindow : Window
         { "infobar", () => new InfoBarPage() },
         // New WPF parity features
         { "shadereffects", () => new ShaderEffectsPage() },
+        { "elementeffects", () => new ElementEffectsPage() },
         { "navigationdemo", () => new NavigationDemoPage() },
         { "printing", () => new PrintingPage() },
         { "shellintegration", () => new ShellIntegrationPage() },
@@ -217,9 +221,11 @@ public partial class GalleryWindow : Window
         AddChildItem(textGroup, "RichTextBox", "richtextbox");
         AddChildItem(textGroup, "EditControl", "editcontrol");
 
-        // Data (expandable group) - data binding features
+        // Data (expandable group) - data binding and Razor features
         var dataGroup = AddGroupItem("Data", "data");
         AddChildItem(dataGroup, "Binding", "binding");
+        AddChildItem(dataGroup, "Razor Syntax", "razor");
+        AddChildItem(dataGroup, "Section", "section");
 
         // Layout (expandable group) - clicking group navigates to category overview
         var layoutGroup = AddGroupItem("Layout", "layout");
@@ -277,6 +283,7 @@ public partial class GalleryWindow : Window
         AddChildItem(collectionsGroup, "ListView", "listview");
         AddChildItem(collectionsGroup, "TreeView", "treeview");
         AddChildItem(collectionsGroup, "DataGrid", "datagrid");
+        AddChildItem(collectionsGroup, "TreeDataGrid", "treedatagrid");
         AddChildItem(collectionsGroup, "Calendar", "calendar");
 
         // Date & Time (expandable group)
@@ -311,6 +318,7 @@ public partial class GalleryWindow : Window
         AddChildItem(effectsGroup, "Backdrop Effects", "backdropeffects");
         AddChildItem(effectsGroup, "Liquid Glass", "liquidglass");
         AddChildItem(effectsGroup, "Shader Effects", "shadereffects");
+        AddChildItem(effectsGroup, "Element Effects", "elementeffects");
         AddChildItem(effectsGroup, "Content Transitions", "transitions");
 
         // System (expandable group) - new WPF parity features

@@ -14,6 +14,7 @@
                  PlaceholderText="Search controls and categories..." />
     </Window.LeftWindowCommands>
 
+
     <NavigationView x:Name="NavigationView"
                     OpenPaneLength="280"
                     PaneTitle="Jalium.UI">
@@ -29,6 +30,10 @@
                            Foreground="#888888"/>
             </StackPanel>
         </NavigationView.PaneHeader>
+
+        <NavigationView.PaneFooter>
+            @RenderSection("PaneFooterSection")
+        </NavigationView.PaneFooter>
 
     </NavigationView>
 </Window>

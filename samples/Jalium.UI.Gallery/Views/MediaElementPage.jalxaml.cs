@@ -11,7 +11,7 @@ public partial class MediaElementPage : Page
     public MediaElementPage()
     {
         InitializeComponent();
-
+        
         // Video controls
         if (PlayButton != null && VideoPlayer != null)
             PlayButton.Click += (s, e) => VideoPlayer.Play();

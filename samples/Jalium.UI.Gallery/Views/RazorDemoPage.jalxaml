@@ -1,0 +1,444 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Views.RazorDemoPage"
+      Title="Razor Syntax">
+
+    <ScrollViewer>
+    <StackPanel Orientation="Vertical" Margin="0,0,24,24">
+
+        <TextBlock Text="Razor Syntax"
+                   FontSize="32"
+                   Foreground="#FFFFFF"
+                   Margin="0,0,0,8"/>
+        <TextBlock Text="Demonstrates all supported Razor directives in JALXAML markup."
+                   FontSize="14"
+                   Foreground="#888888"
+                   Margin="0,0,0,24"/>
+
+        <!-- ======== 1. @identifier - Path Binding ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="1. @@identifier - Path Binding"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Binds to a property on the DataContext or code-behind using @@PropertyName syntax."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <TextBlock x:Name="PathBindingText"
+                               Text="@UserName"
+                               Foreground="#FFFFFF" FontSize="14"/>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <TextBlock Text='&lt;TextBlock Text="@@UserName" /&gt;'
+                               Foreground="#CE9178" FontSize="12" FontFamily="Consolas"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 2. @(expression) - C# Expression ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="2. @@(expression) - C# Expression"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Evaluates a C# expression inline. Supports ternary, arithmetic, method calls."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <TextBlock x:Name="ExpressionText"
+                               Text='@(ItemCount > 0 ? ItemCount + " items" : "Empty")'
+                               Foreground="#FFFFFF" FontSize="14"/>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <TextBlock Text="&lt;TextBlock Text='@@(ItemCount > 0 ? ItemCount + &quot;items&quot; : &quot;Empty&quot;)' /&gt;"
+                               Foreground="#CE9178" FontSize="12" FontFamily="Consolas"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 3. Mixed Text - Path + Literal ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="3. Mixed Text - Path + Literal"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Combine literal text with @@path or @@(expression) in attribute values."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <TextBlock x:Name="MixedText"
+                               Text="Hello, @UserName! You have @ItemCount notifications."
+                               Foreground="#FFFFFF" FontSize="14"/>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <TextBlock Text='&lt;TextBlock Text="Hello, @@UserName! You have @@ItemCount notifications." /&gt;'
+                               Foreground="#CE9178" FontSize="12" FontFamily="Consolas"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 4. for Loop ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="4. @@{ for } - For Loop"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Generates repeated elements using a classic C-style for loop."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal">
+                        @{
+                            for (var i = 1; i <= 5; i++) {
+                                <Border Background="#0078D4"
+                                        CornerRadius="4"
+                                        Padding="8,4"
+                                        Margin="0,0,8,0"
+                                        Width="@(30 + i * 10)">
+                                    <TextBlock Text="@(i.ToString())"
+                                               Foreground="#FFFFFF"
+                                               FontSize="12"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                            }
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ for (var i = 1; i &lt;= 5; i++) {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text='&lt;Border Width="@@(30 + i * 10)"&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@(i.ToString())" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="&lt;/Border&gt;" Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text="} }" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 5. foreach - Collection Iteration ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="5. @@{ foreach } - Collection Iteration"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Iterates over a collection to generate child elements."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel>
+                        @{
+                            var colors = new[] { "#E74C3C", "#F39C12", "#2ECC71", "#3498DB", "#9B59B6" };
+                            foreach (var color in colors) {
+                                <Border Background="@color"
+                                        CornerRadius="4"
+                                        Padding="12,6"
+                                        Margin="0,0,0,4">
+                                    <TextBlock Text="@color"
+                                               Foreground="#FFFFFF"
+                                               FontSize="12"
+                                               FontFamily="Consolas"/>
+                                </Border>
+                            }
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='@@{ var colors = new[] { "#E74C3C", "#F39C12", ... };' Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="foreach (var color in colors) {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='&lt;Border Background="@@color"&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@color" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="84,2,0,0"/>
+                        <TextBlock Text="&lt;/Border&gt;" Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="} }" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 6. switch - Conditional Branching ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="6. @@{ switch } - Conditional Branching"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Renders different elements based on a switch expression."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel>
+                        @{
+                            var status = "success";
+                            switch (status) {
+                                case "success":
+                                    <Border Background="#107C10" CornerRadius="4" Padding="12,6">
+                                        <TextBlock Text="Operation completed successfully" Foreground="#FFFFFF" FontSize="12"/>
+                                    </Border>
+                                    break;
+                                case "warning":
+                                    <Border Background="#FCE100" CornerRadius="4" Padding="12,6">
+                                        <TextBlock Text="Warning: proceed with caution" Foreground="#1A1A1A" FontSize="12"/>
+                                    </Border>
+                                    break;
+                                case "error":
+                                    <Border Background="#C42B1C" CornerRadius="4" Padding="12,6">
+                                        <TextBlock Text="Error occurred" Foreground="#FFFFFF" FontSize="12"/>
+                                    </Border>
+                                    break;
+                            }
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='@@{ var status = "success";' Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="switch (status) {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='case "success":' Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;Border Background="#107C10"&gt;...&lt;/Border&gt; break;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="84,2,0,0"/>
+                        <TextBlock Text='case "error":' Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;Border Background="#C42B1C"&gt;...&lt;/Border&gt; break;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="84,2,0,0"/>
+                        <TextBlock Text="} }" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 7. @{ } Code Block - Variables + Local Functions ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="7. @@{ } Code Block - Variables + Local Functions"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Executes C# code blocks with local functions, variables, and mixed markup output."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel>
+                        @{
+                            var now = DateTime.Now;
+                            string Greeting() => now.Hour < 12 ? "Good Morning" : now.Hour < 18 ? "Good Afternoon" : "Good Evening";
+                            var info = new[] {
+                                ("Time", now.ToString("HH:mm:ss")),
+                                ("Date", now.ToString("yyyy-MM-dd")),
+                                ("Greeting", Greeting())
+                            };
+                            foreach (var kv in info) {
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock Text="@(kv.Item1 + ":")"
+                                               Foreground="#4CC2FF"
+                                               FontSize="12"
+                                               Width="80"/>
+                                    <TextBlock Text="@kv.Item2"
+                                               Foreground="#FFFFFF"
+                                               FontSize="12"/>
+                                </StackPanel>
+                            }
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="var now = DateTime.Now;" Foreground="#9CDCFE" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='string Greeting() => now.Hour &lt; 12 ? "Morning" : "Evening";' Foreground="#9CDCFE" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text="foreach (var kv in info) {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@(kv.Item1)" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 8. @@ Escaping ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="8. @@@@ Escaping"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Use @@@@ for a literal @@ symbol in attribute values."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel>
+                        <TextBlock Text="Email: user@@example.com"
+                                   Foreground="#FFFFFF" FontSize="14"/>
+                        <TextBlock Text="Twitter: @@jaliumui"
+                                   Foreground="#FFFFFF" FontSize="14" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='&lt;TextBlock Text="Email: user@@@@example.com" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text='&lt;TextBlock Text="Twitter: @@@@jaliumui" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 9. try/catch - Error Handling ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="9. @@{ try/catch } - Error Handling"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Wraps markup generation in a try/catch block for safe execution."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel>
+                        @{
+                            try {
+                                var result = (int)Math.Sqrt(144);
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="sqrt(144) = " Foreground="#888888" FontSize="12"/>
+                                    <TextBlock Text="@(result.ToString())" Foreground="#2ECC71" FontSize="12" FontWeight="Bold"/>
+                                </StackPanel>
+                            } catch (Exception ex) {
+                                <TextBlock Text='@("Error: " + ex.Message)' Foreground="#C42B1C" FontSize="12"/>
+                            }
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ try {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="var result = (int)Math.Sqrt(144);" Foreground="#9CDCFE" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@(result.ToString())" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="} catch (Exception ex) {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@(ex.Message)" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 10. Combined Loops + Expressions ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="10. Combined Loops + Expressions"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Combines for loops with ternary expressions to generate styled squares."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal">
+                        @for (var i = 1; i <= 8; i++) {
+                                var bg = i % 2 == 0 ? "#0078D4" : "#383838";
+                                <Border Background="@bg"
+                                        CornerRadius="4"
+                                        Padding="4"
+                                        Margin="0,0,4,0"
+                                        Width="48"
+                                        Height="36">
+                                    <TextBlock Text="@((i * i).ToString())"
+                                               Foreground="#FFFFFF"
+                                               FontSize="13"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                            }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ for (var i = 1; i &lt;= 8; i++) {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text='var bg = i % 2 == 0 ? "#0078D4" : "#383838";' Foreground="#9CDCFE" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;Border Background="@@bg" Width="48" Height="36"&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@((i * i).ToString())" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="84,2,0,0"/>
+                        <TextBlock Text="&lt;/Border&gt;" Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="} }" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 11. do/while Loop ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="11. @@{ do/while } - Do-While Loop"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Generates elements using a do-while loop (always executes at least once)."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal">
+                        @{
+                            var n = 1;
+                            do {
+                                <Border Background="#9B59B6"
+                                        CornerRadius="12"
+                                        Width="@(n * 24)"
+                                        Height="24"
+                                        Margin="0,0,4,0">
+                                    <TextBlock Text="@(n.ToString())"
+                                               Foreground="#FFFFFF"
+                                               FontSize="11"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                                n++;
+                            } while (n <= 5);
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ var n = 1;" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="do {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='&lt;Border Width="@@(n * 24)"&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="@@(n.ToString())" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="84,2,0,0"/>
+                        <TextBlock Text="&lt;/Border&gt; n++;" Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="} while (n &lt;= 5);" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 12. @if (Runtime) - Conditional Visibility ======== -->
+        <Border Background="#2D2D2D" BorderBrush="#3D3D3D" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="12. @@if - Conditional Visibility (Runtime)"
+                           FontSize="16" Foreground="#4CC2FF" Margin="0,0,0,4"/>
+                <TextBlock Text="Runtime @@if binds to DataContext properties and reactively shows/hides elements. Toggle the button to see it in action."
+                           FontSize="12" Foreground="#666666" Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E" CornerRadius="4" Padding="16" Margin="0,0,0,8">
+                    <StackPanel x:Name="IfDemoPanel">
+                        <Button x:Name="ToggleButton"
+                                Content="Toggle Visibility"
+                                Width="160"
+                                Height="32"
+                                Margin="0,0,0,12"/>
+                        @if(IsFeatureEnabled){
+                        <Border x:Name="ConditionalBorder"
+                                Background="#107C10"
+                                CornerRadius="4"
+                                Padding="12,6">
+                            <TextBlock Text="Feature is ENABLED (this element is conditionally visible)"
+                                       Foreground="#FFFFFF" FontSize="12"/>
+                        </Border>
+                        }
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#161616" CornerRadius="4" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@if(IsFeatureEnabled){" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text='&lt;Border Background="#107C10"&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="Feature is ENABLED" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="56,2,0,0"/>
+                        <TextBlock Text="&lt;/Border&gt;" Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="28,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+    </ScrollViewer>
+</Page>
