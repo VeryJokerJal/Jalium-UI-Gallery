@@ -1,5 +1,6 @@
 using Jalium.UI;
 using Jalium.UI.Controls;
+using Jalium.UI.Interop;
 
 namespace Jalium.UI.Gallery;
 
@@ -13,6 +14,9 @@ internal static class Program
     {
         // Create and run the application
         var app = new Application();
+
+        var ctx = RenderContext.GetOrCreateCurrent(RenderBackend.Auto);
+        ctx.DefaultRenderingEngine = RenderingEngine.Impeller;
 
         // Create the main window
         var window = new GalleryWindow();

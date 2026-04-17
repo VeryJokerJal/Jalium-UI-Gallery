@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -22,6 +23,7 @@ public partial class SwipeControlPage : Page
     {
         InitializeComponent();
         BuildSwipeItems();
+        LoadCodeExamples();
     }
 
     private void BuildSwipeItems()
@@ -120,6 +122,75 @@ public partial class SwipeControlPage : Page
 
         rowBorder.Child = rowStack;
         return rowBorder;
+    }
+
+    private const string XamlExample = @"<!-- SwipeControl with left and right swipe actions -->
+<SwipeControl>
+    <SwipeControl.LeftItems>
+        <SwipeItems Mode=""Reveal"">
+            <SwipeItem Text=""Archive""
+                       Background=""#0078D4""
+                       Invoked=""ArchiveItem_Invoked""/>
+        </SwipeItems>
+    </SwipeControl.LeftItems>
+    <SwipeControl.RightItems>
+        <SwipeItems Mode=""Reveal"">
+            <SwipeItem Text=""Delete""
+                       Background=""#C42B1C""
+                       Invoked=""DeleteItem_Invoked""/>
+            <SwipeItem Text=""Flag""
+                       Background=""#C18A00""
+                       Invoked=""FlagItem_Invoked""/>
+        </SwipeItems>
+    </SwipeControl.RightItems>
+    <TextBlock Text=""Swipe me left or right"" Padding=""12""/>
+</SwipeControl>";
+
+    private const string CSharpExample = @"// Build swipe items programmatically
+var items = new List<string>
+{
+    ""Meeting with Design Team"",
+    ""Review pull request #42"",
+    ""Update project documentation""
+};
+
+foreach (var item in items)
+{
+    var row = new Border
+    {
+        Background = new SolidColorBrush(Color.FromRgb(0x25, 0x25, 0x25)),
+        Padding = new Thickness(12, 8, 12, 8)
+    };
+
+    var archiveBtn = new Button
+    {
+        Content = ""Archive"",
+        Background = new SolidColorBrush(Color.FromRgb(0x00, 0x78, 0xD4))
+    };
+    archiveBtn.Click += (s, e) =>
+        Debug.WriteLine($""Archived: {item}"");
+
+    var deleteBtn = new Button
+    {
+        Content = ""Delete"",
+        Background = new SolidColorBrush(Color.FromRgb(0xC4, 0x2B, 0x1C))
+    };
+    deleteBtn.Click += (s, e) =>
+        row.Visibility = Visibility.Collapsed;
+}";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void UpdateStatus(string message)

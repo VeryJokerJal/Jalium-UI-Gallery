@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -28,6 +29,7 @@ public partial class XamlUICommandPage : Page
     {
         InitializeComponent();
         BuildXamlCommands();
+        LoadCodeExamples();
     }
 
     private void BuildXamlCommands()
@@ -218,6 +220,80 @@ public partial class XamlUICommandPage : Page
         }
 
         XamlCommandContainer.Child = mainPanel;
+    }
+
+    private const string XamlExample = @"<!-- Define custom XamlUICommand in resources -->
+<Page.Resources>
+    <XamlUICommand x:Name=""AddToFavoritesCommand""
+                   Label=""Add to Favorites""
+                   Description=""Add the current item to favorites.""
+                   ExecuteRequested=""OnAddToFavorites"">
+        <XamlUICommand.IconSource>
+            <SymbolIconSource Symbol=""Favorite""/>
+        </XamlUICommand.IconSource>
+        <XamlUICommand.KeyboardAccelerators>
+            <KeyboardAccelerator Modifiers=""Control"" Key=""D""/>
+        </XamlUICommand.KeyboardAccelerators>
+    </XamlUICommand>
+</Page.Resources>
+
+<!-- Use the command in a toolbar -->
+<CommandBar>
+    <AppBarButton Command=""{StaticResource AddToFavoritesCommand}""/>
+</CommandBar>";
+
+    private const string CSharpExample = @"// Define custom commands with actions
+var commands = new[]
+{
+    new XamlUICommand
+    {
+        Label = ""Add to Favorites"",
+        Icon = ""\u2605"",
+        Accelerator = ""Ctrl+D"",
+        Description = ""Add item to favorites.""
+    },
+    new XamlUICommand
+    {
+        Label = ""Share via Link"",
+        Icon = ""\u2197"",
+        Accelerator = ""Ctrl+Shift+L"",
+        Description = ""Generate a shareable link.""
+    },
+    new XamlUICommand
+    {
+        Label = ""Export as PDF"",
+        Icon = ""\u2B07"",
+        Accelerator = ""Ctrl+Shift+E"",
+        Description = ""Export as PDF file.""
+    }
+};
+
+// Wire each command to a toolbar button
+foreach (var cmd in commands)
+{
+    cmd.ExecuteAction = () =>
+        Debug.WriteLine($""{cmd.Label} executed."");
+
+    var button = new Button
+    {
+        Content = cmd.Icon,
+        ToolTip = $""{cmd.Label} ({cmd.Accelerator})""
+    };
+    button.Click += (s, e) => cmd.ExecuteAction();
+}";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void ExecuteCommand(XamlUICommand command)

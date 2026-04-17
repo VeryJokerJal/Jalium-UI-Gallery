@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 
 namespace Jalium.UI.Gallery.Views;
 
@@ -12,6 +13,7 @@ public partial class TitleBarPage : Page
         InitializeComponent();
         HookEvents();
         ApplyDemoState();
+        LoadCodeExamples();
     }
 
     private void HookEvents()
@@ -76,4 +78,86 @@ public partial class TitleBarPage : Page
             StatusText.Text = message;
         }
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample =
+@"<!-- Basic TitleBar with all caption buttons -->
+<TitleBar Title=""My Application""
+          Height=""36""
+          ShowMinimizeButton=""True""
+          ShowMaximizeButton=""True""
+          ShowCloseButton=""True""/>
+
+<!-- TitleBar inside a custom window chrome -->
+<Window Title=""Custom Window"">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight=""36""
+                      UseAeroCaptionButtons=""False""/>
+    </WindowChrome.WindowChrome>
+
+    <StackPanel Orientation=""Vertical"">
+        <TitleBar Title=""Custom Chrome Window""
+                  Height=""36""/>
+        <Border Padding=""16"">
+            <!-- Window content -->
+        </Border>
+    </StackPanel>
+</Window>
+
+<!-- TitleBar with minimize-only (tool window style) -->
+<TitleBar Title=""Tool Window""
+          Height=""28""
+          ShowMinimizeButton=""False""
+          ShowMaximizeButton=""False""
+          ShowCloseButton=""True""/>";
+
+    private const string CSharpExample =
+@"// Create and configure a TitleBar programmatically
+var titleBar = new TitleBar
+{
+    Title = ""My Application"",
+    Height = 36,
+    ShowMinimizeButton = true,
+    ShowMaximizeButton = true,
+    ShowCloseButton = true
+};
+
+// Handle caption button events
+titleBar.MinimizeClicked += (sender, e) =>
+{
+    window.WindowState = WindowState.Minimized;
+};
+
+titleBar.MaximizeRestoreClicked += (sender, e) =>
+{
+    window.WindowState = window.WindowState == WindowState.Maximized
+        ? WindowState.Normal
+        : WindowState.Maximized;
+    titleBar.IsMaximized = window.WindowState == WindowState.Maximized;
+};
+
+titleBar.CloseClicked += (sender, e) =>
+{
+    window.Close();
+};
+
+// Toggle button visibility dynamically
+titleBar.ShowMaximizeButton = false; // Hide maximize
+titleBar.IsMaximized = true; // Show restore icon
+
+// Use with Window.TitleBarStyle for built-in integration
+window.TitleBarStyle = TitleBarStyle.Custom;";
 }

@@ -5,7 +5,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
+	  <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWindowsForms>false</UseWindowsForms>
@@ -30,7 +30,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!--<PackageReference Include="Jalium.UI" Version="26.9.0" />-->
+    <PackageReference Include="Jalium.UI.Xaml.SourceGenerator" Version="26.10.0-preview.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <!-- 引用本地项目 (开发模式，可访问最新代码) -->
@@ -44,12 +47,10 @@
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Gpu\Jalium.UI.Gpu.csproj" />
      <!--Build 项目：仅构建时依赖（提供 MSBuild 任务 DLL），不作为运行时引用--> 
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
-     <!--Source Generator--> 
-    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
-
-  <!-- 导入 JALXAML 构建目标（开发模式，从源码导入） -->
-  <Import Project="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.targets" />
-
+	
   <!-- 注意: .juib 文件会被 Jalium.UI.Build 自动嵌入，无需手动添加 EmbeddedResource -->
+
+  <!-- 导入 JALXAML 构建 Targets（开发模式，从源码导入）必须位于项目定义之后 -->
+  <Import Project="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.targets" />
 </Project>

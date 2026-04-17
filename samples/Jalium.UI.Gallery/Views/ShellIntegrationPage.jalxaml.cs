@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Shell;
 using Jalium.UI.Media;
 
@@ -12,6 +13,7 @@ public partial class ShellIntegrationPage : Page
         SetupButtons();
         SetupSliders();
         UpdateSystemParameters();
+        LoadCodeExamples();
     }
 
     private void SetupButtons()
@@ -148,4 +150,81 @@ public partial class ShellIntegrationPage : Page
         }
         return null;
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample =
+@"<!-- Apply custom WindowChrome to a Window -->
+<Window Title=""Custom Chrome Window"">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight=""30""
+                      CornerRadius=""8""
+                      GlassFrameThickness=""-1""
+                      ResizeBorderThickness=""4""
+                      UseAeroCaptionButtons=""False""/>
+    </WindowChrome.WindowChrome>
+
+    <!-- Window content here -->
+</Window>
+
+<!-- TaskbarItemInfo for progress and overlay -->
+<Window.TaskbarItemInfo>
+    <TaskbarItemInfo ProgressState=""Normal""
+                     ProgressValue=""0.5""
+                     Description=""My Application""/>
+</Window.TaskbarItemInfo>";
+
+    private const string CSharpExample =
+@"// Apply custom WindowChrome programmatically
+var chrome = new WindowChrome
+{
+    CaptionHeight = 30,
+    CornerRadius = new CornerRadius(8),
+    GlassFrameThickness = new Thickness(-1),
+    ResizeBorderThickness = new Thickness(4),
+    UseAeroCaptionButtons = false
+};
+WindowChrome.SetWindowChrome(window, chrome);
+
+// Configure JumpList for the taskbar
+var jumpList = new JumpList
+{
+    ShowRecentCategory = true,
+    ShowFrequentCategory = true
+};
+
+jumpList.JumpItems.Add(new JumpTask
+{
+    Title = ""New Document"",
+    Description = ""Create a new document"",
+    ApplicationPath = Environment.ProcessPath,
+    Arguments = ""--new"",
+    CustomCategory = ""Tasks""
+});
+
+JumpList.SetJumpList(Application.Current, jumpList);
+
+// Set taskbar progress indicator
+window.TaskbarItemInfo = new TaskbarItemInfo
+{
+    ProgressState = TaskbarItemProgressState.Normal,
+    ProgressValue = 0.75
+};
+
+// Read system parameters
+bool glassEnabled = SystemParameters2.IsGlassEnabled;
+Color glassColor = SystemParameters2.WindowGlassColor;
+double captionHeight = SystemParameters2.WindowCaptionHeight;";
 }

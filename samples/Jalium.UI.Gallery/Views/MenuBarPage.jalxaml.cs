@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -12,6 +13,7 @@ public partial class MenuBarPage : Page
     {
         InitializeComponent();
         BuildMenuBar();
+        LoadCodeExamples();
     }
 
     private void BuildMenuBar()
@@ -119,6 +121,67 @@ public partial class MenuBarPage : Page
         menuBar.Items.Add(helpMenu);
 
         MenuBarContainer.Child = menuBar;
+    }
+
+    private const string XamlExample = @"<Menu>
+    <MenuItem Header=""File"">
+        <MenuItem Header=""New"" InputGestureText=""Ctrl+N""/>
+        <MenuItem Header=""Open"" InputGestureText=""Ctrl+O""/>
+        <MenuItem Header=""Save"" InputGestureText=""Ctrl+S""/>
+        <Separator/>
+        <MenuItem Header=""Exit"" InputGestureText=""Alt+F4""/>
+    </MenuItem>
+    <MenuItem Header=""Edit"">
+        <MenuItem Header=""Undo"" InputGestureText=""Ctrl+Z""/>
+        <MenuItem Header=""Redo"" InputGestureText=""Ctrl+Y""/>
+        <Separator/>
+        <MenuItem Header=""Cut"" InputGestureText=""Ctrl+X""/>
+        <MenuItem Header=""Copy"" InputGestureText=""Ctrl+C""/>
+        <MenuItem Header=""Paste"" InputGestureText=""Ctrl+V""/>
+    </MenuItem>
+    <MenuItem Header=""View"">
+        <MenuItem Header=""Status Bar"" IsCheckable=""True"" IsChecked=""True""/>
+        <MenuItem Header=""Word Wrap"" IsCheckable=""True""/>
+    </MenuItem>
+    <MenuItem Header=""Help"">
+        <MenuItem Header=""Documentation""/>
+        <MenuItem Header=""About""/>
+    </MenuItem>
+</Menu>";
+
+    private const string CSharpExample = @"// Create a MenuBar programmatically
+var menuBar = new Menu();
+
+// File menu
+var fileMenu = new MenuItem { Header = ""File"" };
+var newItem = new MenuItem { Header = ""New"", InputGestureText = ""Ctrl+N"" };
+newItem.Click += (s, e) => Debug.WriteLine(""New clicked"");
+fileMenu.Items.Add(newItem);
+menuBar.Items.Add(fileMenu);
+
+// Edit menu with checkable items
+var viewMenu = new MenuItem { Header = ""View"" };
+var statusBar = new MenuItem
+{
+    Header = ""Status Bar"",
+    IsCheckable = true,
+    IsChecked = true
+};
+viewMenu.Items.Add(statusBar);
+menuBar.Items.Add(viewMenu);";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void UpdateStatus(string message)

@@ -1,0 +1,347 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Views.UniformGridPage"
+      Title="UniformGrid">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Margin="0,0,0,24">
+            <!-- Page Title -->
+            <TextBlock Text="UniformGrid"
+                       FontSize="32"
+                       Foreground="#FFFFFF"
+                       Margin="0,0,0,8"/>
+
+            <!-- Description -->
+            <TextBlock Text="A panel that arranges children in a grid where all cells are the same size. Rows and Columns can be auto-calculated or explicitly set."
+                       FontSize="14"
+                       Foreground="#888888"
+                       Margin="0,0,0,24"/>
+
+            <!-- Auto Layout Card -->
+            <Border Background="#2D2D2D"
+                    BorderBrush="#3D3D3D"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Auto Layout"
+                               FontSize="16"
+                               Foreground="#FFFFFF"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="When Rows and Columns are both 0, the grid automatically calculates the best layout."
+                               FontSize="12"
+                               Foreground="#666666"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="#1E1E1E"
+                            CornerRadius="4"
+                            Padding="16">
+                        <UniformGrid>
+                            <Border Background="#0078D4" CornerRadius="4" Padding="12" Margin="4">
+                                <TextBlock Text="Item 1" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#107C10" CornerRadius="4" Padding="12" Margin="4">
+                                <TextBlock Text="Item 2" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#D83B01" CornerRadius="4" Padding="12" Margin="4">
+                                <TextBlock Text="Item 3" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#8764B8" CornerRadius="4" Padding="12" Margin="4">
+                                <TextBlock Text="Item 4" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#00B7C3" CornerRadius="4" Padding="12" Margin="4">
+                                <TextBlock Text="Item 5" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#C239B3" CornerRadius="4" Padding="12" Margin="4">
+                                <TextBlock Text="Item 6" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                            </Border>
+                        </UniformGrid>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Explicit Rows/Columns Card -->
+            <Border Background="#2D2D2D"
+                    BorderBrush="#3D3D3D"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Explicit Rows and Columns"
+                               FontSize="16"
+                               Foreground="#FFFFFF"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="Set Rows and Columns explicitly to control the grid dimensions."
+                               FontSize="12"
+                               Foreground="#666666"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="#1E1E1E"
+                            CornerRadius="4"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <!-- 2x4 grid -->
+                            <TextBlock Text="Rows=2, Columns=4" Foreground="#888888" Margin="0,0,0,8"/>
+                            <UniformGrid Rows="2" Columns="4">
+                                <Border Background="#0078D4" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="1" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0078D4" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="2" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0078D4" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="3" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0078D4" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="4" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#005A9E" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="5" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#005A9E" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="6" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#005A9E" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="7" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#005A9E" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="8" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                            </UniformGrid>
+
+                            <!-- 3x3 grid -->
+                            <TextBlock Text="Rows=3, Columns=3" Foreground="#888888" Margin="0,16,0,8"/>
+                            <UniformGrid Rows="3" Columns="3">
+                                <Border Background="#107C10" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="A" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#107C10" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="B" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#107C10" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="C" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0B5E0B" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="D" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0B5E0B" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="E" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0B5E0B" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="F" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#094509" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="G" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#094509" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="H" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#094509" CornerRadius="4" Padding="8" Margin="2">
+                                    <TextBlock Text="I" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Interactive Card -->
+            <Border Background="#2D2D2D"
+                    BorderBrush="#3D3D3D"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Interactive Configuration"
+                               FontSize="16"
+                               Foreground="#FFFFFF"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="Adjust Rows, Columns, and FirstColumn to see how the layout changes dynamically."
+                               FontSize="12"
+                               Foreground="#666666"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="#1E1E1E"
+                            CornerRadius="4"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Rows:" Width="100" Foreground="#888888" VerticalAlignment="Center"/>
+                                <Slider x:Name="RowsSlider" Minimum="0" Maximum="6" Value="0" Width="150" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="RowsText" Text="Auto" Foreground="#888888" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Columns:" Width="100" Foreground="#888888" VerticalAlignment="Center"/>
+                                <Slider x:Name="ColumnsSlider" Minimum="0" Maximum="6" Value="3" Width="150" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="ColumnsText" Text="3" Foreground="#888888" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="FirstColumn:" Width="100" Foreground="#888888" VerticalAlignment="Center"/>
+                                <Slider x:Name="FirstColumnSlider" Minimum="0" Maximum="3" Value="0" Width="150" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="FirstColumnText" Text="0" Foreground="#888888" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <UniformGrid x:Name="InteractiveGrid" Columns="3">
+                                <Border Background="#D83B01" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="1" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#FF8C00" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="2" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#FFB900" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="3" Foreground="#1A1A1A" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#107C10" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="4" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#0078D4" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="5" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#8764B8" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="6" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#E3008C" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="7" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#00B7C3" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="8" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                                <Border Background="#68768A" CornerRadius="4" Padding="12" Margin="3">
+                                    <TextBlock Text="9" Foreground="#FFFFFF" HorizontalAlignment="Center" FontSize="16"/>
+                                </Border>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- FirstColumn Demo Card -->
+            <Border Background="#2D2D2D"
+                    BorderBrush="#3D3D3D"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="FirstColumn Property"
+                               FontSize="16"
+                               Foreground="#FFFFFF"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="FirstColumn offsets items in the first row, leaving initial cells empty. Useful for calendar-like layouts."
+                               FontSize="12"
+                               Foreground="#666666"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="#1E1E1E"
+                            CornerRadius="4"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Columns=7, FirstColumn=3 (calendar-style offset)" Foreground="#888888" Margin="0,0,0,8"/>
+                            <!-- Day headers -->
+                            <UniformGrid Columns="7" Margin="0,0,0,4">
+                                <TextBlock Text="Sun" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                                <TextBlock Text="Mon" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                                <TextBlock Text="Tue" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                                <TextBlock Text="Wed" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                                <TextBlock Text="Thu" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                                <TextBlock Text="Fri" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                                <TextBlock Text="Sat" Foreground="#666666" HorizontalAlignment="Center" FontSize="11"/>
+                            </UniformGrid>
+                            <!-- Calendar days starting on Wednesday -->
+                            <UniformGrid Columns="7" FirstColumn="3">
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="1" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="2" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="3" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="4" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="5" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="6" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="7" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#0078D4" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="8" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="9" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="10" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                                <Border Background="#333333" CornerRadius="4" Padding="6" Margin="2">
+                                    <TextBlock Text="11" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                </Border>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- XAML Code Example -->
+            <Border Background="#2D2D2D"
+                    BorderBrush="#3D3D3D"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="XAML Code Example"
+                               FontSize="16"
+                               Foreground="#FFFFFF"
+                               Margin="0,0,0,16"/>
+                    <Border Background="#1E1E1E"
+                            CornerRadius="4"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="XamlCodeEditor"
+                                     Height="250"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- C# Code Example -->
+            <Border Background="#2D2D2D"
+                    BorderBrush="#3D3D3D"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="C# Code Example"
+                               FontSize="16"
+                               Foreground="#FFFFFF"
+                               Margin="0,0,0,16"/>
+                    <Border Background="#1E1E1E"
+                            CornerRadius="4"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="CSharpCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

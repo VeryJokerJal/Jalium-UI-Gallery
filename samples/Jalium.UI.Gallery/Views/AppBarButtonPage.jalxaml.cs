@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -13,6 +14,7 @@ public partial class AppBarButtonPage : Page
         InitializeComponent();
         SetupIcons();
         SetupEventHandlers();
+        LoadCodeExamples();
     }
 
     private void SetupIcons()
@@ -63,6 +65,47 @@ public partial class AppBarButtonPage : Page
         if (CompactDeleteButton != null)
             CompactDeleteButton.Click += (_, _) => UpdateStatus(CompactStatusText, "Compact Delete clicked.");
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<!-- Basic AppBarButton with icon and label -->
+<AppBarButton Label=""Add""
+              Icon=""Add""
+              Width=""72""
+              Height=""60"" />
+
+<!-- Compact mode (icon only) -->
+<AppBarButton Label=""Edit""
+              Icon=""Edit""
+              IsCompact=""True""
+              Width=""40""
+              Height=""40"" />";
+
+    private const string CSharpExample = @"// Create an AppBarButton with icon
+var button = new AppBarButton();
+button.Label = ""Add"";
+button.Icon = new SymbolIcon(Symbol.Add);
+
+// Compact mode shows icon only
+button.IsCompact = true;
+
+// Handle click
+button.Click += (sender, e) =>
+{
+    Console.WriteLine(""AppBarButton clicked"");
+};";
 
     private static void UpdateStatus(TextBlock? statusText, string message)
     {

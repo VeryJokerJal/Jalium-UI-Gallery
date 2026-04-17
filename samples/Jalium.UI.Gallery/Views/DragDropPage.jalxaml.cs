@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Input;
 using Jalium.UI.Media;
 
@@ -9,6 +10,114 @@ namespace Jalium.UI.Gallery.Views;
 /// </summary>
 public partial class DragDropPage : Page
 {
+    private const string XamlExample = @"<StackPanel Orientation=""Vertical"" Margin=""16"">
+    <!-- Drag Source Items -->
+    <TextBlock Text=""Drag Source"" FontSize=""14"" Margin=""0,0,0,8""/>
+    <StackPanel Orientation=""Horizontal"" Margin=""0,0,0,16"">
+        <Border x:Name=""DragItem1""
+                Background=""#0078D4""
+                CornerRadius=""4""
+                Padding=""12,8""
+                Margin=""0,0,8,0""
+                Cursor=""Hand"">
+            <TextBlock Text=""Item A"" Foreground=""#FFFFFF""/>
+        </Border>
+        <Border x:Name=""DragItem2""
+                Background=""#107C10""
+                CornerRadius=""4""
+                Padding=""12,8""
+                Margin=""0,0,8,0""
+                Cursor=""Hand"">
+            <TextBlock Text=""Item B"" Foreground=""#FFFFFF""/>
+        </Border>
+        <Border x:Name=""DragItem3""
+                Background=""#D83B01""
+                CornerRadius=""4""
+                Padding=""12,8""
+                Cursor=""Hand"">
+            <TextBlock Text=""Item C"" Foreground=""#FFFFFF""/>
+        </Border>
+    </StackPanel>
+
+    <!-- Drop Target Area -->
+    <TextBlock Text=""Drop Target"" FontSize=""14"" Margin=""0,0,0,8""/>
+    <Border x:Name=""DropTarget""
+            Background=""#252525""
+            BorderBrush=""#3D3D3D""
+            BorderThickness=""2""
+            CornerRadius=""8""
+            MinHeight=""120""
+            Padding=""16""
+            AllowDrop=""True"">
+        <TextBlock x:Name=""DropHint""
+                   Text=""Drop items here""
+                   Foreground=""#555555""
+                   HorizontalAlignment=""Center""
+                   VerticalAlignment=""Center""/>
+    </Border>
+</StackPanel>";
+
+    private const string CSharpExample = @"using Jalium.UI.Controls;
+using Jalium.UI.Input;
+using Jalium.UI.Media;
+
+public partial class DragDropSample : Page
+{
+    public DragDropSample()
+    {
+        InitializeComponent();
+        SetupDragDrop();
+    }
+
+    private void SetupDragDrop()
+    {
+        // Setup drag source - initiate drag on mouse down
+        DragItem1.MouseDown += (s, e) =>
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                var data = new DataObject();
+                data.SetData(""Text"", ""Item A"");
+                DragDrop.DoDragDrop(DragItem1, data, DragDropEffects.Copy);
+            }
+        };
+
+        // Setup drop target events
+        DropTarget.DragEnter += (s, e) =>
+        {
+            DropTarget.BorderBrush = new SolidColorBrush(
+                Color.FromRgb(0x00, 0x78, 0xD4));
+            DropTarget.Background = new SolidColorBrush(
+                Color.FromRgb(0x00, 0x2B, 0x4E));
+            DropHint.Text = ""Release to drop"";
+            e.Effects = DragDropEffects.Copy;
+        };
+
+        DropTarget.DragLeave += (s, e) =>
+        {
+            ResetDropTargetVisuals();
+        };
+
+        DropTarget.Drop += (s, e) =>
+        {
+            var itemName = e.Data?.GetData(""Text"") as string;
+            DropHint.Text = $""Dropped: {itemName}"";
+            ResetDropTargetVisuals();
+
+            // Add the dropped item to a collection
+            DroppedItems.Add(itemName ?? ""Unknown"");
+        };
+    }
+
+    private void ResetDropTargetVisuals()
+    {
+        DropTarget.BorderBrush = new SolidColorBrush(
+            Color.FromRgb(0x3D, 0x3D, 0x3D));
+        DropTarget.Background = new SolidColorBrush(
+            Color.FromRgb(0x25, 0x25, 0x25));
+    }
+}";
+
     private int _logLineCount;
     private readonly SolidColorBrush _defaultZoneBorder = new(Color.FromRgb(0x3D, 0x3D, 0x3D));
     private readonly SolidColorBrush _highlightZoneBorder = new(Color.FromRgb(0x00, 0x78, 0xD4));
@@ -22,6 +131,21 @@ public partial class DragDropPage : Page
         SetupDropTargets();
         SetupFeedbackDemo();
         SetupClearButton();
+        LoadCodeExamples();
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void SetupDragSources()

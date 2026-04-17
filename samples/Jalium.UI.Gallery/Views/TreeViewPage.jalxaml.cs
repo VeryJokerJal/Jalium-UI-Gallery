@@ -1,5 +1,6 @@
 using Jalium.UI;
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Gallery.Theme;
 using Jalium.UI.Media;
 
@@ -11,6 +12,7 @@ public partial class TreeViewPage : Page
     {
         InitializeComponent();
         CreateContent();
+        LoadCodeExamples();
     }
 
     private void CreateContent()
@@ -174,6 +176,76 @@ public partial class TreeViewPage : Page
         treeView.Items.Add(root);
 
         return treeView;
+    }
+
+    private const string XamlExample =
+@"<!-- Basic TreeView -->
+<TreeView Width=""300"" Height=""250"">
+    <TreeViewItem Header=""Documents"">
+        <TreeViewItem Header=""Work"">
+            <TreeViewItem Header=""Report.docx""/>
+            <TreeViewItem Header=""Budget.xlsx""/>
+        </TreeViewItem>
+        <TreeViewItem Header=""Personal"">
+            <TreeViewItem Header=""Notes.txt""/>
+        </TreeViewItem>
+    </TreeViewItem>
+    <TreeViewItem Header=""Downloads"">
+        <TreeViewItem Header=""installer.exe""/>
+        <TreeViewItem Header=""archive.zip""/>
+    </TreeViewItem>
+</TreeView>
+
+<!-- Pre-expanded nodes -->
+<TreeViewItem Header=""Project"" IsExpanded=""True"">
+    <TreeViewItem Header=""src"" IsExpanded=""True"">
+        <TreeViewItem Header=""App.cs""/>
+    </TreeViewItem>
+</TreeViewItem>";
+
+    private const string CSharpExample =
+@"// Create a TreeView programmatically
+var treeView = new TreeView();
+
+var documents = new TreeViewItem { Header = ""Documents"" };
+
+var workFolder = new TreeViewItem { Header = ""Work"" };
+workFolder.Items.Add(new TreeViewItem
+    { Header = ""Report.docx"" });
+workFolder.Items.Add(new TreeViewItem
+    { Header = ""Budget.xlsx"" });
+documents.Items.Add(workFolder);
+
+treeView.Items.Add(documents);
+
+// Handle selection changes
+treeView.SelectedItemChanged += (s, e) =>
+{
+    if (e.NewValue is TreeViewItem item)
+    {
+        statusText.Text = $""Selected: {item.Header}"";
+    }
+};
+
+// Pre-expand nodes
+var root = new TreeViewItem
+{
+    Header = ""Project"",
+    IsExpanded = true
+};";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void AddSection(string titleText, string descriptionText)

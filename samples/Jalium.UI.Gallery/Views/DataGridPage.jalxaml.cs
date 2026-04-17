@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 
 namespace Jalium.UI.Gallery.Views;
@@ -14,6 +15,7 @@ public partial class DataGridPage : Page
 
         // Set up demo data
         SetupDemoData();
+        LoadCodeExamples();
     }
 
     private void SetupDemoData()
@@ -49,6 +51,41 @@ public partial class DataGridPage : Page
             SelectedItemText.Text = "(none)";
         }
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<DataGrid x:Name=""DemoDataGrid""
+          Height=""200""
+          AutoGenerateColumns=""True""
+          SelectionMode=""Single""
+          HeadersVisibility=""Column""
+          GridLinesVisibility=""All""
+          ItemsSource=""{Binding Items}"" />";
+
+    private const string CSharpExample = @"// Create and configure a DataGrid
+var dataGrid = new DataGrid();
+dataGrid.AutoGenerateColumns = true;
+dataGrid.ItemsSource = myCollection;
+dataGrid.SelectionMode = DataGridSelectionMode.Single;
+
+// Handle selection changes
+dataGrid.SelectionChanged += (s, e) =>
+{
+    var selected = dataGrid.SelectedItem;
+    Console.WriteLine($""Selected: {selected}"");
+};";
 
     private record PersonData(string FirstName, string LastName, int Age, string Department);
 }

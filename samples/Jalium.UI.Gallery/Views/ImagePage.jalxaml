@@ -161,6 +161,150 @@
             </StackPanel>
         </Border>
 
+        <!-- SVG Image Card -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="SVG Image"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Vector image loaded from a remote SVG URL. SVG is rendered as vector graphics at any resolution without quality loss."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Border x:Name="SvgImageContainer"
+                                Height="400"
+                                CornerRadius="4"
+                                Background="#0D0D0D"
+                                Margin="0,0,0,12"/>
+                        <TextBlock x:Name="SvgStatusText"
+                                   Text="Loading SVG..."
+                                   Foreground="#888888"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- SVG Stretch Modes Card -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="SVG Stretch Modes"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Compare the four stretch modes with an SVG vector image."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Stretch.None -->
+                        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Text="Stretch.None"
+                                       Foreground="#0078D4"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Original size, no scaling"
+                                       Foreground="#666666"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchNoneContainer"
+                                    Height="200"
+                                    Background="#0D0D0D"
+                                    CornerRadius="4"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.Fill -->
+                        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Text="Stretch.Fill"
+                                       Foreground="#0078D4"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fills container, may distort"
+                                       Foreground="#666666"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchFillContainer"
+                                    Height="200"
+                                    Background="#0D0D0D"
+                                    CornerRadius="4"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.Uniform -->
+                        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="Stretch.Uniform"
+                                       Foreground="#0078D4"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fits inside, preserves ratio"
+                                       Foreground="#666666"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchUniformContainer"
+                                    Height="200"
+                                    Background="#0D0D0D"
+                                    CornerRadius="4"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.UniformToFill -->
+                        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="Stretch.UniformToFill"
+                                       Foreground="#0078D4"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fills container, clips overflow"
+                                       Foreground="#666666"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchUniformToFillContainer"
+                                    Height="200"
+                                    Background="#0D0D0D"
+                                    CornerRadius="4"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+
         <!-- Styled Images Card -->
         <Border Background="#2D2D2D"
                 BorderBrush="#3D3D3D"
@@ -245,7 +389,7 @@
                         CornerRadius="4"
                         Padding="16">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Source - The ImageSource to display (BitmapImage)"
+                        <TextBlock Text="Source - The ImageSource to display (BitmapImage or SvgImage)"
                                    Foreground="#D4D4D4"
                                    FontSize="13"
                                    Margin="0,0,0,8"/>
@@ -269,6 +413,57 @@
                                    Foreground="#D4D4D4"
                                    FontSize="13"/>
                     </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,16"/>
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,16"/>
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
                 </Border>
             </StackPanel>
         </Border>

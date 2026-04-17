@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Gallery.Theme;
 using Jalium.UI.Input;
 using Jalium.UI.Media;
@@ -25,10 +26,121 @@ public partial class HomePage : Page
     /// </summary>
     public event EventHandler<NavigationRequestEventArgs>? NavigationRequested;
 
+    private const string XamlExample = @"<!-- Jalium.UI Application Entry Point -->
+<Page xmlns=""http://schemas.jalium.ui/2024""
+      xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+      x:Class=""MyApp.Views.MainPage""
+      Title=""Welcome"">
+
+    <StackPanel Orientation=""Vertical"">
+        <TextBlock Text=""Welcome to My App""
+                   FontSize=""32""
+                   Foreground=""#FFFFFF""
+                   Margin=""0,0,0,8""/>
+
+        <TextBlock Text=""Built with Jalium.UI""
+                   FontSize=""14""
+                   Foreground=""#888888""
+                   Margin=""0,0,0,24""/>
+
+        <!-- Feature Cards -->
+        <StackPanel Orientation=""Horizontal"">
+            <Border Width=""220""
+                    Height=""140""
+                    Background=""#2D2D2D""
+                    BorderBrush=""#3D3D3D""
+                    BorderThickness=""1""
+                    CornerRadius=""8""
+                    Padding=""16"">
+                <StackPanel Orientation=""Vertical"">
+                    <TextBlock Text=""Feature 1""
+                               FontSize=""16""
+                               Foreground=""#FFFFFF""/>
+                    <TextBlock Text=""Description here.""
+                               FontSize=""12""
+                               Foreground=""#888888""/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</Page>";
+
+    private const string CSharpExample = @"using Jalium.UI.Controls;
+using Jalium.UI.Media;
+
+public partial class MainPage : Page
+{
+    public MainPage()
+    {
+        InitializeComponent();
+        BuildContent();
+    }
+
+    private void BuildContent()
+    {
+        var stack = new StackPanel
+        {
+            Orientation = Orientation.Vertical
+        };
+
+        // Page title
+        stack.Children.Add(new TextBlock
+        {
+            Text = ""Welcome"",
+            FontSize = 32,
+            Foreground = new SolidColorBrush(
+                Color.FromRgb(255, 255, 255))
+        });
+
+        // Feature card
+        var card = new Border
+        {
+            Width = 220,
+            Height = 140,
+            Background = new SolidColorBrush(
+                Color.FromRgb(45, 45, 45)),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(16)
+        };
+
+        var cardStack = new StackPanel
+        {
+            Orientation = Orientation.Vertical
+        };
+        cardStack.Children.Add(new TextBlock
+        {
+            Text = ""Feature"",
+            FontSize = 16,
+            Foreground = new SolidColorBrush(
+                Color.FromRgb(255, 255, 255))
+        });
+
+        card.Child = cardStack;
+        stack.Children.Add(card);
+
+        Content = stack;
+    }
+}";
+
     public HomePage()
     {
         InitializeComponent();
         BuildContent();
+        LoadCodeExamples();
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void BuildContent()

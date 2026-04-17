@@ -162,7 +162,44 @@ public partial class GalleryWindow : Window
         // Icons
         { "iconelement", () => new IconElementPage() },
         // Drag & Drop
-        { "dragdrop", () => new DragDropPage() }
+        { "dragdrop", () => new DragDropPage() },
+        // Terminal
+        { "terminal", () => new TerminalPage() },
+        // Data Viewers
+        { "diffviewer", () => new DiffViewerPage() },
+        { "hexeditor", () => new HexEditorPage() },
+        { "jsontreeviewer", () => new JsonTreeViewerPage() },
+        { "propertygrid", () => new PropertyGridPage() },
+        // Charts
+        { "linechart", () => new LineChartPage() },
+        { "barchart", () => new BarChartPage() },
+        { "piechart", () => new PieChartPage() },
+        { "scatterplot", () => new ScatterPlotPage() },
+        { "heatmap", () => new HeatmapPage() },
+        { "sparkline", () => new SparklinePage() },
+        { "gaugechart", () => new GaugeChartPage() },
+        { "treemap", () => new TreeMapPage() },
+        { "candlestickchart", () => new CandlestickChartPage() },
+        { "networkgraph", () => new NetworkGraphPage() },
+        { "ganttchart", () => new GanttChartPage() },
+        { "sankeydiagram", () => new SankeyDiagramPage() },
+        // Maps
+        { "mapview", () => new MapViewPage() },
+        { "minimap", () => new MiniMapPage() },
+        { "geographicheatmap", () => new GeographicHeatmapPage() },
+        // System Notifications
+        { "systemnotification", () => new SystemNotificationPage() },
+        { "notifyicon", () => new NotifyIconPage() },
+        // Ribbon
+        { "ribbon", () => new RibbonPage() },
+        // Document Viewer
+        { "documentviewer", () => new DocumentViewerPage() },
+        // UniformGrid
+        { "uniformgrid", () => new UniformGridPage() },
+        // Category placeholders
+        { "dataviewers", () => null! },
+        { "charts", () => null! },
+        { "maps", () => null! }
     };
 
     public GalleryWindow()
@@ -235,6 +272,7 @@ public partial class GalleryWindow : Window
         AddChildItem(layoutGroup, "Border", "border");
         AddChildItem(layoutGroup, "DockPanel", "dockpanel");
         AddChildItem(layoutGroup, "WrapPanel", "wrappanel");
+        AddChildItem(layoutGroup, "UniformGrid", "uniformgrid");
         AddChildItem(layoutGroup, "ScrollViewer", "scrollviewer");
         AddChildItem(layoutGroup, "Expander", "expander");
         AddChildItem(layoutGroup, "GroupBox", "groupbox");
@@ -260,6 +298,7 @@ public partial class GalleryWindow : Window
         AddChildItem(menusToolbarsGroup, "CommandBarFlyout", "commandbarflyout");
         AddChildItem(menusToolbarsGroup, "MenuBar", "menubar");
         AddChildItem(menusToolbarsGroup, "MenuFlyout", "menuflyout");
+        AddChildItem(menusToolbarsGroup, "Ribbon", "ribbon");
         AddChildItem(menusToolbarsGroup, "SwipeControl", "swipecontrol");
         AddChildItem(menusToolbarsGroup, "StandardUICommand", "standarduicommand");
         AddChildItem(menusToolbarsGroup, "XamlUICommand", "xamluicommand");
@@ -301,6 +340,8 @@ public partial class GalleryWindow : Window
         AddChildItem(overlaysGroup, "Popup", "popup");
         AddChildItem(overlaysGroup, "ToolTip", "tooltip");
         AddChildItem(overlaysGroup, "ToastNotification", "toastnotification");
+        AddChildItem(overlaysGroup, "SystemNotification", "systemnotification");
+        AddChildItem(overlaysGroup, "NotifyIcon", "notifyicon");
 
         // Status & Info (expandable group)
         var statusGroup = AddGroupItem("Status & Info", "statusinfo");
@@ -327,6 +368,36 @@ public partial class GalleryWindow : Window
         AddChildItem(systemGroup, "Printing", "printing");
         AddChildItem(systemGroup, "Shell Integration", "shellintegration");
         AddChildItem(systemGroup, "TitleBar", "titlebar");
+        AddChildItem(systemGroup, "Terminal", "terminal");
+
+        // Data Viewers (expandable group)
+        var dataViewersGroup = AddGroupItem("Data Viewers", "dataviewers");
+        AddChildItem(dataViewersGroup, "DocumentViewer", "documentviewer");
+        AddChildItem(dataViewersGroup, "DiffViewer", "diffviewer");
+        AddChildItem(dataViewersGroup, "HexEditor", "hexeditor");
+        AddChildItem(dataViewersGroup, "JsonTreeViewer", "jsontreeviewer");
+        AddChildItem(dataViewersGroup, "PropertyGrid", "propertygrid");
+
+        // Charts (expandable group)
+        var chartsGroup = AddGroupItem("Charts", "charts");
+        AddChildItem(chartsGroup, "LineChart", "linechart");
+        AddChildItem(chartsGroup, "BarChart", "barchart");
+        AddChildItem(chartsGroup, "PieChart", "piechart");
+        AddChildItem(chartsGroup, "ScatterPlot", "scatterplot");
+        AddChildItem(chartsGroup, "Heatmap", "heatmap");
+        AddChildItem(chartsGroup, "Sparkline", "sparkline");
+        AddChildItem(chartsGroup, "GaugeChart", "gaugechart");
+        AddChildItem(chartsGroup, "TreeMap", "treemap");
+        AddChildItem(chartsGroup, "CandlestickChart", "candlestickchart");
+        AddChildItem(chartsGroup, "NetworkGraph", "networkgraph");
+        AddChildItem(chartsGroup, "GanttChart", "ganttchart");
+        AddChildItem(chartsGroup, "SankeyDiagram", "sankeydiagram");
+
+        // Maps (expandable group)
+        var mapsGroup = AddGroupItem("Maps", "maps");
+        AddChildItem(mapsGroup, "MapView", "mapview");
+        AddChildItem(mapsGroup, "MiniMap", "minimap");
+        AddChildItem(mapsGroup, "GeographicHeatmap", "geographicheatmap");
 
         // Update the visual tree
         NavigationView.UpdateMenuItems();
@@ -769,6 +840,24 @@ public partial class GalleryWindow : Window
         else if (pageTag == "system")
         {
             var categoryPage = new SystemCategoryPage();
+            categoryPage.NavigationRequested += OnPageNavigationRequested;
+            pageContent = categoryPage;
+        }
+        else if (pageTag == "dataviewers")
+        {
+            var categoryPage = new DataViewersCategoryPage();
+            categoryPage.NavigationRequested += OnPageNavigationRequested;
+            pageContent = categoryPage;
+        }
+        else if (pageTag == "charts")
+        {
+            var categoryPage = new ChartsCategoryPage();
+            categoryPage.NavigationRequested += OnPageNavigationRequested;
+            pageContent = categoryPage;
+        }
+        else if (pageTag == "maps")
+        {
+            var categoryPage = new MapsCategoryPage();
             categoryPage.NavigationRequested += OnPageNavigationRequested;
             pageContent = categoryPage;
         }

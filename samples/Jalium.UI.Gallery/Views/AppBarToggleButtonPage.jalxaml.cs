@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 using Jalium.UI.Media;
 
@@ -14,6 +15,7 @@ public partial class AppBarToggleButtonPage : Page
         InitializeComponent();
         SetupIcons();
         SetupEventHandlers();
+        LoadCodeExamples();
     }
 
     private void SetupIcons()
@@ -104,6 +106,54 @@ public partial class AppBarToggleButtonPage : Page
             AirplaneModeToggle.Unchecked += (_, _) => UpdateCheckedStateText();
         }
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<!-- Text formatting toggle buttons -->
+<StackPanel Orientation=""Horizontal"">
+    <AppBarToggleButton x:Name=""BoldToggle""
+                        Label=""Bold""
+                        Width=""72""
+                        Height=""48"" />
+    <AppBarToggleButton x:Name=""ItalicToggle""
+                        Label=""Italic""
+                        Width=""72""
+                        Height=""48"" />
+    <AppBarToggleButton x:Name=""UnderlineToggle""
+                        Label=""Underline""
+                        Width=""84""
+                        Height=""48"" />
+</StackPanel>";
+
+    private const string CSharpExample = @"// Create a toggle button
+var toggle = new AppBarToggleButton();
+toggle.Label = ""Bold"";
+toggle.Icon = new SymbolIcon(Symbol.Bold);
+
+// Handle checked/unchecked events
+toggle.Checked += (s, e) =>
+{
+    Console.WriteLine(""Toggle is ON"");
+};
+toggle.Unchecked += (s, e) =>
+{
+    Console.WriteLine(""Toggle is OFF"");
+};
+
+// Read the toggle state
+bool isOn = toggle.IsChecked == true;";
 
     private void UpdateFormattingPreview()
     {

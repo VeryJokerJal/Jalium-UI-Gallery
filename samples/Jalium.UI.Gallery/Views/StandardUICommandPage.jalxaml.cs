@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -84,6 +85,7 @@ public partial class StandardUICommandPage : Page
     {
         InitializeComponent();
         BuildCommandDisplay();
+        LoadCodeExamples();
     }
 
     private void BuildCommandDisplay()
@@ -218,6 +220,69 @@ public partial class StandardUICommandPage : Page
         }
 
         CommandContainer.Child = mainPanel;
+    }
+
+    private const string XamlExample = @"<!-- StandardUICommand binds predefined commands to UI elements -->
+<CommandBar>
+    <AppBarButton Label=""Cut""
+                  Command=""{x:Static StandardUICommand.Cut}""/>
+    <AppBarButton Label=""Copy""
+                  Command=""{x:Static StandardUICommand.Copy}""/>
+    <AppBarButton Label=""Paste""
+                  Command=""{x:Static StandardUICommand.Paste}""/>
+    <AppBarSeparator/>
+    <AppBarButton Label=""Undo""
+                  Command=""{x:Static StandardUICommand.Undo}""/>
+    <AppBarButton Label=""Redo""
+                  Command=""{x:Static StandardUICommand.Redo}""/>
+</CommandBar>";
+
+    private const string CSharpExample = @"// Define standard commands with predefined properties
+var commands = new[]
+{
+    new StandardUICommand
+    {
+        Label = ""Cut"",
+        Icon = ""\u2702"",
+        KeyboardShortcut = ""Ctrl+X"",
+        Description = ""Remove selected content to clipboard.""
+    },
+    new StandardUICommand
+    {
+        Label = ""Copy"",
+        Icon = ""\u2398"",
+        KeyboardShortcut = ""Ctrl+C"",
+        Description = ""Copy selected content to clipboard.""
+    },
+    new StandardUICommand
+    {
+        Label = ""Paste"",
+        Icon = ""\u2399"",
+        KeyboardShortcut = ""Ctrl+V"",
+        Description = ""Insert clipboard contents.""
+    }
+};
+
+// Wire commands to buttons
+foreach (var cmd in commands)
+{
+    var button = new Button { Content = cmd.Icon };
+    button.Click += (s, e) =>
+        Debug.WriteLine($""Executed: {cmd.Label}"");
+}";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void UpdateStatus(string message)

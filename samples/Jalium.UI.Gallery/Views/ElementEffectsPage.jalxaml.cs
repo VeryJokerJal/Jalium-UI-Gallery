@@ -1,5 +1,6 @@
 using Jalium.UI;
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 using Jalium.UI.Media.Effects;
 
@@ -37,6 +38,7 @@ public partial class ElementEffectsPage : Page
         SetupEffects();
         SetupSliders();
         SetupButtons();
+        LoadCodeExamples();
     }
 
     private void SetupEffects()
@@ -172,4 +174,95 @@ public partial class ElementEffectsPage : Page
                 demo.Effect = null;
         }
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample =
+@"<!-- OuterGlowEffect applied to an element -->
+<Border Background=""#0078D4"" Width=""160"" Height=""60"" CornerRadius=""8"">
+    <Border.Effect>
+        <OuterGlowEffect GlowSize=""10""
+                          GlowColor=""#0078D4""
+                          Intensity=""1.0""
+                          Opacity=""0.9""/>
+    </Border.Effect>
+    <TextBlock Text=""Outer Glow"" Foreground=""#FFFFFF""
+               HorizontalAlignment=""Center"" VerticalAlignment=""Center""/>
+</Border>
+
+<!-- InnerShadowEffect -->
+<Border Background=""#3D3D50"" Width=""220"" Height=""100"" CornerRadius=""12"">
+    <Border.Effect>
+        <InnerShadowEffect BlurRadius=""8""
+                            ShadowDepth=""5""
+                            Color=""#B4000000""
+                            Direction=""315""/>
+    </Border.Effect>
+</Border>
+
+<!-- EffectGroup composing multiple effects -->
+<Border Background=""#CC5500"" Width=""180"" Height=""70"" CornerRadius=""8"">
+    <Border.Effect>
+        <EffectGroup>
+            <OuterGlowEffect GlowColor=""Orange"" GlowSize=""12""/>
+            <DropShadowEffect ShadowDepth=""6"" BlurRadius=""8""/>
+        </EffectGroup>
+    </Border.Effect>
+</Border>";
+
+    private const string CSharpExample =
+@"// Create and apply an OuterGlowEffect
+var glowEffect = new OuterGlowEffect
+{
+    GlowSize = 10,
+    GlowColor = Color.FromArgb(255, 0, 120, 212),
+    Intensity = 1.0,
+    Opacity = 0.9
+};
+element.Effect = glowEffect;
+
+// Create an InnerShadowEffect
+var innerShadow = new InnerShadowEffect
+{
+    BlurRadius = 8,
+    ShadowDepth = 5,
+    Color = Color.FromArgb(180, 0, 0, 0),
+    Direction = 315
+};
+
+// Create an EmbossEffect
+var emboss = new EmbossEffect
+{
+    Amount = 1.5,
+    LightAngle = 45,
+    Relief = 0.44,
+    Width = 1.0
+};
+
+// ColorMatrixEffect presets
+var grayscale = ColorMatrixEffect.CreateGrayscale();
+var sepia = ColorMatrixEffect.CreateSepia();
+var invert = ColorMatrixEffect.CreateInvert();
+var hueRotate = ColorMatrixEffect.CreateHueRotation(90);
+var saturation = ColorMatrixEffect.CreateSaturation(1.5);
+
+// Compose multiple effects with EffectGroup
+var group = new EffectGroup();
+group.Children.Add(new OuterGlowEffect
+    { GlowColor = Colors.Orange, GlowSize = 12 });
+group.Children.Add(new DropShadowEffect
+    { ShadowDepth = 6, BlurRadius = 8 });
+element.Effect = group;";
 }

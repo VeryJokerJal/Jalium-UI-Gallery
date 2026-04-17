@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Ink;
 using Jalium.UI.Media;
 
@@ -9,10 +10,84 @@ namespace Jalium.UI.Gallery.Views;
 /// </summary>
 public partial class InkCanvasPage : Page
 {
+    private const string XamlExample = """
+        <!-- Basic InkCanvas -->
+        <InkCanvas x:Name="MainInkCanvas"
+                   Width="600"
+                   Height="300"
+                   Background="#FFFFFF"
+                   EditingMode="Ink"/>
+
+        <!-- Control buttons -->
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="InkModeButton" Content="Draw"/>
+            <Button x:Name="EraseModeButton" Content="Erase"/>
+            <Button x:Name="ClearButton" Content="Clear All"/>
+        </StackPanel>
+
+        <!-- Color selection buttons -->
+        <StackPanel Orientation="Horizontal">
+            <Button Width="40" Height="40" Background="#000000"/>
+            <Button Width="40" Height="40" Background="#E81123"/>
+            <Button Width="40" Height="40" Background="#0078D4"/>
+        </StackPanel>
+
+        <!-- Stroke width slider -->
+        <Slider x:Name="WidthSlider"
+                Minimum="1" Maximum="20" Value="2"/>
+        """;
+
+    private const string CSharpExample = """
+        using Jalium.UI.Controls;
+        using Jalium.UI.Controls.Ink;
+        using Jalium.UI.Media;
+
+        // Set editing mode
+        inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+        inkCanvas.EditingMode = InkCanvasEditingMode.EraseByStroke;
+
+        // Configure drawing attributes
+        inkCanvas.DefaultDrawingAttributes.Color =
+            Color.FromRgb(0, 120, 212);
+        inkCanvas.DefaultDrawingAttributes.Width = 5;
+        inkCanvas.DefaultDrawingAttributes.Height = 5;
+        inkCanvas.DefaultDrawingAttributes.IsHighlighter = true;
+
+        // Set brush type
+        inkCanvas.DefaultDrawingAttributes.BrushType = BrushType.Calligraphy;
+
+        // Set taper mode
+        inkCanvas.DefaultStrokeTaperMode = StrokeTaperMode.TaperedEnd;
+
+        // Clear all strokes
+        inkCanvas.ClearStrokes();
+
+        // Handle stroke collected event
+        inkCanvas.StrokeCollected += (s, e) =>
+        {
+            Console.WriteLine($"Strokes: {inkCanvas.Strokes.Count}");
+        };
+        """;
+
     public InkCanvasPage()
     {
         InitializeComponent();
         SetupEventHandlers();
+        LoadCodeExamples();
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void SetupEventHandlers()

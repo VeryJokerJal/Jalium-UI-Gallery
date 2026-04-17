@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 
 namespace Jalium.UI.Gallery.Views;
@@ -44,6 +45,77 @@ public partial class ToastNotificationPage : Page
         // Position combobox
         if (PositionComboBox != null)
             PositionComboBox.SelectionChanged += OnPositionChanged;
+
+        LoadCodeExamples();
+    }
+
+    private const string XamlExample = @"<!-- Toast notification host overlay -->
+<Grid>
+    <ScrollViewer>
+        <!-- Page content here -->
+        <StackPanel>
+            <Button x:Name=""InfoToastButton"" Content=""Info""/>
+            <Button x:Name=""SuccessToastButton"" Content=""Success""/>
+            <Button x:Name=""WarningToastButton"" Content=""Warning""/>
+            <Button x:Name=""ErrorToastButton"" Content=""Error""/>
+        </StackPanel>
+    </ScrollViewer>
+
+    <!-- Toast host renders on top of content -->
+    <ToastNotificationHost x:Name=""ToastHost""
+                           Position=""TopRight""
+                           MaxVisibleToasts=""5""
+                           ToastWidth=""380""
+                           Spacing=""8""/>
+</Grid>
+
+<!-- Static toast preview items -->
+<ToastNotificationItem Severity=""Information""
+                       Title=""Information""
+                       Message=""This is an informational message.""
+                       IsAutoDismissEnabled=""False""
+                       IsClosable=""False""/>";
+
+    private const string CSharpExample = @"// Show toast notifications with different severities
+ToastHost.Show(ToastSeverity.Information, ""Info"",
+    ""This is an informational message."",
+    TimeSpan.FromSeconds(5));
+
+ToastHost.ShowSuccess(""Success"",
+    ""Operation completed successfully."");
+
+// Toast with action button
+var toast = new ToastNotificationItem
+{
+    Severity = ToastSeverity.Information,
+    Title = ""Download Complete"",
+    Message = ""Your file has been downloaded."",
+    IsClosable = true,
+    IsAutoDismissEnabled = true,
+    Duration = TimeSpan.FromSeconds(5)
+};
+toast.ActionButtonClick += (s, args) =>
+    ToastHost.ShowSuccess(""Opened"", ""File opened."");
+ToastHost.ShowToast(toast);
+
+// Configure position
+ToastHost.Position = ToastPosition.TopRight;
+
+// Dismiss all toasts
+ToastHost.DismissAll();";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void ShowToast(ToastSeverity severity, string title, string message)
