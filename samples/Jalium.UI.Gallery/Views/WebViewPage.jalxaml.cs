@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Input;
 
 namespace Jalium.UI.Gallery.Views;
@@ -7,12 +8,92 @@ public partial class WebViewPage : Page
 {
     private WebView? _webView;
 
+    private const string XamlExample = """
+        <!-- WebView with address bar -->
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="BackButton" Content="&lt;" Width="32"/>
+            <Button x:Name="ForwardButton" Content="&gt;" Width="32"/>
+            <Button x:Name="RefreshButton" Content="R" Width="32"/>
+            <TextBox x:Name="AddressBar" Width="600"/>
+            <Button x:Name="GoButton" Content="Go" Width="48"/>
+        </StackPanel>
+
+        <!-- WebView container -->
+        <Border x:Name="WebViewContainer"
+                Height="500"
+                Background="#0D0D0D"
+                CornerRadius="4"
+                ClipToBounds="True"/>
+
+        <!-- JavaScript execution -->
+        <TextBox x:Name="ScriptInput" Height="32"/>
+        <Button x:Name="ExecuteScriptButton" Content="Execute"/>
+        <TextBlock x:Name="ScriptResultText" Text="Result: "/>
+        """;
+
+    private const string CSharpExample = """
+        using Jalium.UI.Controls;
+
+        // Create and configure WebView
+        var webView = new WebView
+        {
+            Source = new Uri("https://www.bing.com")
+        };
+        container.Child = webView;
+
+        // Initialize WebView2
+        await webView.EnsureCoreWebView2Async();
+
+        // Navigation
+        webView.Navigate("https://example.com");
+        webView.GoBack();
+        webView.GoForward();
+        webView.Refresh();
+
+        // Handle events
+        webView.NavigationStarting += (s, e) =>
+        {
+            addressBar.Text = e.Uri.AbsoluteUri;
+        };
+        webView.NavigationCompleted += (s, e) =>
+        {
+            status.Text = e.IsSuccess
+                ? $"Loaded (HTTP {e.HttpStatusCode})"
+                : "Navigation failed";
+        };
+        webView.DocumentTitleChanged += (s, e) =>
+        {
+            titleText.Text = e.Title;
+        };
+
+        // Execute JavaScript
+        var result = await webView.ExecuteScriptAsync("document.title");
+
+        // Cleanup
+        webView.Dispose();
+        """;
+
     public WebViewPage()
     {
         InitializeComponent();
         SetupWebView();
         SetupEventHandlers();
+        LoadCodeExamples();
         Unloaded += OnPageUnloaded;
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void SetupWebView()

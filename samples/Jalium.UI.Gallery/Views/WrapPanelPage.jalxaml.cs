@@ -1,5 +1,6 @@
 using Jalium.UI;
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Gallery.Theme;
 using Jalium.UI.Media;
 
@@ -7,10 +8,165 @@ namespace Jalium.UI.Gallery.Views;
 
 public partial class WrapPanelPage : Page
 {
+    private const string XamlExample = @"<Page xmlns=""http://schemas.jalium.ui/2024""
+      xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
+
+    <!-- Horizontal WrapPanel with variable-width items -->
+    <WrapPanel Orientation=""Horizontal""
+               Width=""400"">
+        <Border Background=""#0078D4"" Width=""80"" Height=""40"" Margin=""4"" CornerRadius=""4"">
+            <TextBlock Text=""Item 1"" Foreground=""White"" HorizontalAlignment=""Center"" VerticalAlignment=""Center""/>
+        </Border>
+        <Border Background=""#4CAF50"" Width=""100"" Height=""40"" Margin=""4"" CornerRadius=""4"">
+            <TextBlock Text=""Item 2"" Foreground=""White"" HorizontalAlignment=""Center"" VerticalAlignment=""Center""/>
+        </Border>
+        <Border Background=""#FF9800"" Width=""120"" Height=""40"" Margin=""4"" CornerRadius=""4"">
+            <TextBlock Text=""Item 3"" Foreground=""White"" HorizontalAlignment=""Center"" VerticalAlignment=""Center""/>
+        </Border>
+    </WrapPanel>
+
+    <!-- Vertical WrapPanel -->
+    <WrapPanel Orientation=""Vertical""
+               Height=""150"">
+        <Button Content=""A"" Width=""60"" Height=""30"" Margin=""4""/>
+        <Button Content=""B"" Width=""60"" Height=""40"" Margin=""4""/>
+        <Button Content=""C"" Width=""60"" Height=""50"" Margin=""4""/>
+    </WrapPanel>
+
+    <!-- Fixed Item Size WrapPanel -->
+    <WrapPanel Orientation=""Horizontal""
+               ItemWidth=""80""
+               ItemHeight=""80"">
+        <Border Background=""#0078D4"" CornerRadius=""4"" Margin=""4"">
+            <TextBlock Text=""1"" Foreground=""White"" HorizontalAlignment=""Center"" VerticalAlignment=""Center""/>
+        </Border>
+        <Border Background=""#4CAF50"" CornerRadius=""4"" Margin=""4"">
+            <TextBlock Text=""2"" Foreground=""White"" HorizontalAlignment=""Center"" VerticalAlignment=""Center""/>
+        </Border>
+    </WrapPanel>
+
+    <!-- Tag Cloud using WrapPanel -->
+    <WrapPanel Orientation=""Horizontal"">
+        <Border Background=""#0078D4"" CornerRadius=""12"" Padding=""12,6"" Margin=""4"">
+            <TextBlock Text=""C#"" Foreground=""White"" FontSize=""12""/>
+        </Border>
+        <Border Background=""#0078D4"" CornerRadius=""12"" Padding=""12,6"" Margin=""4"">
+            <TextBlock Text=""XAML"" Foreground=""White"" FontSize=""12""/>
+        </Border>
+        <Border Background=""#0078D4"" CornerRadius=""12"" Padding=""12,6"" Margin=""4"">
+            <TextBlock Text=""UI Framework"" Foreground=""White"" FontSize=""12""/>
+        </Border>
+    </WrapPanel>
+</Page>";
+
+    private const string CSharpExample = @"using Jalium.UI;
+using Jalium.UI.Controls;
+using Jalium.UI.Media;
+
+namespace MyApp;
+
+public partial class WrapPanelDemo : Page
+{
+    public WrapPanelDemo()
+    {
+        InitializeComponent();
+        CreateTagCloud();
+        CreatePhotoGallery();
+    }
+
+    private void CreateTagCloud()
+    {
+        var wrapPanel = new WrapPanel
+        {
+            Orientation = Orientation.Horizontal
+        };
+
+        var tags = new[] { ""C#"", ""WPF"", ""XAML"", ""UI Framework"",
+                           "".NET"", ""Windows"", ""Desktop"", ""Controls"" };
+
+        foreach (var tag in tags)
+        {
+            var tagBorder = new Border
+            {
+                Background = new SolidColorBrush(Color.FromRgb(0, 120, 212)),
+                CornerRadius = new CornerRadius(12),
+                Padding = new Thickness(12, 6, 12, 6),
+                Margin = new Thickness(4)
+            };
+
+            tagBorder.Child = new TextBlock
+            {
+                Text = tag,
+                Foreground = new SolidColorBrush(Color.White),
+                FontSize = 12
+            };
+
+            wrapPanel.Children.Add(tagBorder);
+        }
+
+        ContentPanel.Children.Add(wrapPanel);
+    }
+
+    private void CreatePhotoGallery()
+    {
+        var gallery = new WrapPanel
+        {
+            Orientation = Orientation.Horizontal,
+            ItemWidth = 120,
+            ItemHeight = 120
+        };
+
+        var colors = new[]
+        {
+            Color.FromRgb(0, 120, 212),
+            Color.FromRgb(76, 175, 80),
+            Color.FromRgb(255, 152, 0),
+            Color.FromRgb(156, 39, 176)
+        };
+
+        for (int i = 0; i < 8; i++)
+        {
+            var thumb = new Border
+            {
+                Background = new SolidColorBrush(colors[i % colors.Length]),
+                Margin = new Thickness(4),
+                CornerRadius = new CornerRadius(8)
+            };
+
+            thumb.Child = new TextBlock
+            {
+                Text = $""Photo {i + 1}"",
+                Foreground = new SolidColorBrush(Color.White),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            gallery.Children.Add(thumb);
+        }
+
+        ContentPanel.Children.Add(gallery);
+    }
+}";
+
     public WrapPanelPage()
     {
         InitializeComponent();
         CreateContent();
+        LoadCodeExamples();
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void CreateContent()

@@ -230,6 +230,7 @@ public class LayoutCategoryPage : CategoryPage
         new ControlInfo("Border", "Draws a border around content", "border"),
         new ControlInfo("DockPanel", "Docks children to edges", "dockpanel"),
         new ControlInfo("WrapPanel", "Wraps children to multiple lines", "wrappanel"),
+        new ControlInfo("UniformGrid", "Equal-sized cells in rows and columns", "uniformgrid"),
         new ControlInfo("ScrollViewer", "Enables scrolling of content", "scrollviewer"),
         new ControlInfo("Expander", "A collapsible content container", "expander"),
         new ControlInfo("GroupBox", "Groups related controls with a header", "groupbox"),
@@ -329,6 +330,7 @@ public class MenusToolbarsCategoryPage : CategoryPage
         new ControlInfo("CommandBarFlyout", "A flyout command bar", "commandbarflyout"),
         new ControlInfo("MenuBar", "A menu bar with dropdown menus", "menubar"),
         new ControlInfo("MenuFlyout", "A flyout menu for context actions", "menuflyout"),
+        new ControlInfo("Ribbon", "Office-style ribbon with tabs, groups, and galleries", "ribbon"),
         new ControlInfo("SwipeControl", "A control for swipe-based interactions", "swipecontrol"),
         new ControlInfo("StandardUICommand", "Pre-defined standard UI commands", "standarduicommand"),
         new ControlInfo("XamlUICommand", "Custom XAML-based UI commands", "xamluicommand")
@@ -391,7 +393,9 @@ public class OverlaysCategoryPage : CategoryPage
     {
         new ControlInfo("Popup", "A floating popup overlay", "popup"),
         new ControlInfo("ToolTip", "A tooltip shown on hover", "tooltip"),
-        new ControlInfo("ToastNotification", "A non-blocking notification message", "toastnotification")
+        new ControlInfo("ToastNotification", "A non-blocking notification message", "toastnotification"),
+        new ControlInfo("SystemNotification", "Cross-platform OS-level notifications", "systemnotification"),
+        new ControlInfo("NotifyIcon", "System tray icon with balloon tips", "notifyicon")
     };
 }
 
@@ -458,5 +462,64 @@ public class SystemCategoryPage : CategoryPage
         new ControlInfo("Printing", "Document printing support", "printing"),
         new ControlInfo("Shell Integration", "Taskbar, jump lists, and shell features", "shellintegration"),
         new ControlInfo("TitleBar", "Custom window caption bar and system buttons", "titlebar")
+    };
+}
+
+/// <summary>
+/// Data Viewers category page.
+/// </summary>
+public class DataViewersCategoryPage : CategoryPage
+{
+    protected override string CategoryTitle => "Data Viewers";
+    protected override string CategoryDescription => "Specialized controls for viewing and editing structured data.";
+    protected override Color AccentColor => Color.FromRgb(0, 153, 188);
+    protected override IEnumerable<ControlInfo> Controls => new[]
+    {
+        new ControlInfo("DocumentViewer", "Paginated document viewer with zoom and search", "documentviewer"),
+        new ControlInfo("DiffViewer", "Side-by-side or unified text diff viewer", "diffviewer"),
+        new ControlInfo("HexEditor", "Binary data hex editor with ASCII view", "hexeditor"),
+        new ControlInfo("JsonTreeViewer", "JSON document tree viewer with search", "jsontreeviewer"),
+        new ControlInfo("PropertyGrid", "Object property editor with type-specific editors", "propertygrid")
+    };
+}
+
+/// <summary>
+/// Charts category page.
+/// </summary>
+public class ChartsCategoryPage : CategoryPage
+{
+    protected override string CategoryTitle => "Charts";
+    protected override string CategoryDescription => "Data visualization controls for charts, graphs, and diagrams.";
+    protected override Color AccentColor => Color.FromRgb(0, 120, 212);
+    protected override IEnumerable<ControlInfo> Controls => new[]
+    {
+        new ControlInfo("LineChart", "Line and area charts with multiple series", "linechart"),
+        new ControlInfo("BarChart", "Grouped, stacked, and horizontal bar charts", "barchart"),
+        new ControlInfo("PieChart", "Pie and donut charts with labels", "piechart"),
+        new ControlInfo("ScatterPlot", "Scatter plots with trend lines and bubbles", "scatterplot"),
+        new ControlInfo("Heatmap", "2D color grid for matrix data", "heatmap"),
+        new ControlInfo("Sparkline", "Inline mini charts for dashboards", "sparkline"),
+        new ControlInfo("GaugeChart", "Circular gauge with ranges and needle", "gaugechart"),
+        new ControlInfo("TreeMap", "Space-filling hierarchical rectangles", "treemap"),
+        new ControlInfo("CandlestickChart", "OHLC financial candlestick charts", "candlestickchart"),
+        new ControlInfo("NetworkGraph", "Node-link diagrams with force layout", "networkgraph"),
+        new ControlInfo("GanttChart", "Timeline task bars with dependencies", "ganttchart"),
+        new ControlInfo("SankeyDiagram", "Flow diagrams with weighted links", "sankeydiagram")
+    };
+}
+
+/// <summary>
+/// Maps category page.
+/// </summary>
+public class MapsCategoryPage : CategoryPage
+{
+    protected override string CategoryTitle => "Maps";
+    protected override string CategoryDescription => "Geographic and spatial visualization controls.";
+    protected override Color AccentColor => Color.FromRgb(16, 124, 16);
+    protected override IEnumerable<ControlInfo> Controls => new[]
+    {
+        new ControlInfo("MapView", "Tile-based map viewer with markers and overlays", "mapview"),
+        new ControlInfo("MiniMap", "Miniature overview of a larger content area", "minimap"),
+        new ControlInfo("GeographicHeatmap", "Geographic heatmap overlay with gradient coloring", "geographicheatmap")
     };
 }

@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 
 namespace Jalium.UI.Gallery.Views;
@@ -32,6 +33,8 @@ public partial class ListViewPage : Page
         {
             InteractiveListView.SelectionChanged += OnSelectionChanged;
         }
+
+        LoadCodeExamples();
     }
 
     private void SetupGridViewData()
@@ -90,4 +93,75 @@ public partial class ListViewPage : Page
     }
 
     private record FileInfo(string Name, string Type, string Size, string Modified);
+
+    private const string XamlExample =
+@"<!-- Basic ListView -->
+<ListView x:Name=""BasicListView"" Width=""300"" Height=""200"">
+    <ListViewItem Content=""Item 1""/>
+    <ListViewItem Content=""Item 2""/>
+    <ListViewItem Content=""Item 3""/>
+</ListView>
+
+<!-- ListView with GridView columns -->
+<ListView x:Name=""GridListView"" Width=""500"" Height=""200"">
+    <ListView.View>
+        <GridView>
+            <GridViewColumn Header=""Name"" Width=""150""/>
+            <GridViewColumn Header=""Type"" Width=""100""/>
+            <GridViewColumn Header=""Size"" Width=""80""/>
+            <GridViewColumn Header=""Modified"" Width=""120""/>
+        </GridView>
+    </ListView.View>
+</ListView>
+
+<!-- Selection modes -->
+<ListView SelectionMode=""Single"" />
+<ListView SelectionMode=""Multiple"" />
+<ListView SelectionMode=""Extended"" />";
+
+    private const string CSharpExample =
+@"// Populate ListView with data
+var files = new List<FileInfo>
+{
+    new(""Document.docx"", ""Word"", ""245 KB"", ""2026-01-15""),
+    new(""Budget.xlsx"", ""Excel"", ""128 KB"", ""2026-02-01""),
+    new(""Photo.png"", ""Image"", ""1.2 MB"", ""2026-01-20"")
+};
+GridListView.ItemsSource = files;
+
+// Add items dynamically
+var item = new ListViewItem { Content = ""New Item"" };
+InteractiveListView.Items.Add(item);
+
+// Remove selected item
+if (listView.SelectedItem != null)
+    listView.Items.Remove(listView.SelectedItem);
+
+// Handle selection changes
+listView.SelectionChanged += (s, e) =>
+{
+    if (listView.SelectedItem is ListViewItem selected)
+    {
+        statusText.Text = $""Selected: {selected.Content}"";
+    }
+};
+
+// Record for GridView binding
+private record FileInfo(
+    string Name, string Type,
+    string Size, string Modified);";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
 }

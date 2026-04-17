@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 using Jalium.UI.Media;
 
@@ -19,6 +20,7 @@ public partial class MenuFlyoutPage : Page
         BuildBasicMenuFlyout();
         BuildIconMenuFlyout();
         BuildCheckableMenuFlyout();
+        LoadCodeExamples();
     }
 
     private void BuildBasicMenuFlyout()
@@ -172,6 +174,55 @@ public partial class MenuFlyoutPage : Page
             _checkMenu.Placement = PlacementMode.Bottom;
             _checkMenu.IsOpen = !_checkMenu.IsOpen;
         };
+    }
+
+    private const string XamlExample = @"<!-- Basic MenuFlyout triggered by a button -->
+<Button x:Name=""ShowMenuButton"" Content=""Show Menu""/>
+
+<!-- MenuFlyout with icons and keyboard shortcuts -->
+<Button x:Name=""ShowIconMenuButton"" Content=""Show Icon Menu""/>
+
+<!-- MenuFlyout with checkable items -->
+<Button x:Name=""ShowCheckMenuButton"" Content=""View Options""/>";
+
+    private const string CSharpExample = @"// Create a ContextMenu (MenuFlyout) programmatically
+var menu = new ContextMenu();
+
+var openItem = new MenuItem { Header = ""Open"" };
+openItem.Click += (s, e) => menu.IsOpen = false;
+menu.Items.Add(openItem);
+
+menu.Items.Add(new Separator());
+
+// Checkable menu items
+var toolbar = new MenuItem
+{
+    Header = ""Toolbar"",
+    IsCheckable = true,
+    IsChecked = true
+};
+menu.Items.Add(toolbar);
+
+// Show the menu on button click
+button.Click += (s, e) =>
+{
+    menu.PlacementTarget = button;
+    menu.Placement = PlacementMode.Bottom;
+    menu.IsOpen = !menu.IsOpen;
+};";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void UpdateBasicStatus(string message)

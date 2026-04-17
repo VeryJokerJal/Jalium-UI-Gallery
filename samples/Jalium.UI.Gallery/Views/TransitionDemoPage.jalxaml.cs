@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 using Jalium.UI.Media.Animation;
 using Jalium.UI.Threading;
@@ -54,6 +55,8 @@ public partial class TransitionDemoPage : Page
 
         if (AutoPlayButton != null)
             AutoPlayButton.Click += OnAutoPlayClick;
+
+        LoadCodeExamples();
     }
 
     private void OnTransitionModeChanged(object? sender, EventArgs e)
@@ -260,4 +263,72 @@ public partial class TransitionDemoPage : Page
 
         return panel;
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample =
+@"<!-- TransitioningContentControl with crossfade -->
+<TransitioningContentControl x:Name=""TransitionControl""
+                              TransitionMode=""Crossfade""
+                              HorizontalAlignment=""Stretch""
+                              VerticalAlignment=""Stretch""/>
+
+<!-- Available TransitionMode values include:
+     Crossfade, SlideLeft, SlideRight, SlideUp, SlideDown,
+     ZoomIn, ZoomOut, FlipHorizontal, FlipVertical,
+     RotateClockwise, RotateCounterClockwise, and more -->
+
+<!-- Wrapping in a clipped border for smooth transitions -->
+<Border Background=""#1A1A1A""
+        CornerRadius=""8""
+        Height=""300""
+        ClipToBounds=""True"">
+    <TransitioningContentControl x:Name=""MyTransition""
+                                  TransitionMode=""SlideLeft""/>
+</Border>";
+
+    private const string CSharpExample =
+@"// Set up a TransitioningContentControl
+var transitionControl = new TransitioningContentControl();
+transitionControl.TransitionMode = TransitionMode.Crossfade;
+
+// Switch content to trigger the transition animation
+transitionControl.Content = CreateNewContentPanel();
+
+// Change transition mode dynamically
+transitionControl.TransitionMode = TransitionMode.SlideLeft;
+transitionControl.Content = CreateAnotherPanel();
+
+// Auto-play through all transition modes
+var allModes = Enum.GetValues<TransitionMode>();
+var timer = new DispatcherTimer
+{
+    Interval = TimeSpan.FromMilliseconds(1500)
+};
+
+int index = 0;
+timer.Tick += (s, e) =>
+{
+    if (index >= allModes.Length)
+    {
+        timer.Stop();
+        return;
+    }
+    transitionControl.TransitionMode = allModes[index];
+    transitionControl.Content = contentFactories[index % 3]();
+    index++;
+};
+timer.Start();";
 }

@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 
 namespace Jalium.UI.Gallery.Views;
@@ -13,6 +14,7 @@ public partial class TreeDataGridPage : Page
         InitializeComponent();
         SetupDemoData();
         SetupButtons();
+        LoadCodeExamples();
     }
 
     private void SetupButtons()
@@ -65,19 +67,19 @@ public partial class TreeDataGridPage : Page
         DemoTreeDataGrid.Columns.Add(new DataGridTextColumn
         {
             Header = "Name",
-            Binding = new Jalium.UI.Controls.Binding { Path ="Name" },
+            Binding = new Jalium.UI.Data.Binding("Name"),
             Width = 250
         });
         DemoTreeDataGrid.Columns.Add(new DataGridTextColumn
         {
             Header = "Type",
-            Binding = new Jalium.UI.Controls.Binding { Path ="Type" },
+            Binding = new Jalium.UI.Data.Binding("Type"),
             Width = 120
         });
         DemoTreeDataGrid.Columns.Add(new DataGridTextColumn
         {
             Header = "Size",
-            Binding = new Jalium.UI.Controls.Binding { Path ="SizeDisplay" },
+            Binding = new Jalium.UI.Data.Binding("SizeDisplay"),
             Width = 100
         });
 
@@ -106,6 +108,44 @@ public partial class TreeDataGridPage : Page
     {
         DemoTreeDataGrid?.CollapseAll();
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<TreeDataGrid x:Name=""DemoTreeDataGrid""
+              Height=""280""
+              ChildrenPropertyPath=""Children""
+              SelectionMode=""Single"" />";
+
+    private const string CSharpExample = @"// Configure TreeDataGrid with columns
+var tree = new TreeDataGrid();
+tree.ChildrenPropertyPath = ""Children"";
+
+tree.Columns.Add(new DataGridTextColumn
+{
+    Header = ""Name"",
+    Binding = new Binding(""Name""),
+    Width = 250
+});
+tree.Columns.Add(new DataGridTextColumn
+{
+    Header = ""Size"",
+    Binding = new Binding(""Size"")
+});
+
+tree.ItemsSource = rootItems;
+tree.ExpandAll();";
 
     private class FolderItem
     {

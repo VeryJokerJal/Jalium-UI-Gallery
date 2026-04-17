@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Navigation;
 using Jalium.UI.Media;
 
@@ -14,6 +15,7 @@ public partial class NavigationDemoPage : Page
         _navigationService = new NavigationService();
         SetupButtons();
         SetupNavigationEvents();
+        LoadCodeExamples();
     }
 
     private void SetupButtons()
@@ -131,4 +133,81 @@ public partial class NavigationDemoPage : Page
             NavigationStatus.Text = $"Navigation Status: {message}";
         }
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample =
+@"<!-- NavigationWindow with built-in navigation chrome -->
+<NavigationWindow Title=""My App""
+                   Width=""800"" Height=""600""
+                   ShowsNavigationUI=""True""
+                   Source=""Views/HomePage.jalxaml""/>
+
+<!-- Page with navigation buttons -->
+<Page Title=""Navigation Demo"">
+    <StackPanel Orientation=""Horizontal"">
+        <Button x:Name=""BackButton"" Content=""Go Back"" Width=""100""/>
+        <Button x:Name=""ForwardButton"" Content=""Go Forward"" Width=""100""/>
+        <Button x:Name=""RefreshButton"" Content=""Refresh"" Width=""100""/>
+    </StackPanel>
+</Page>
+
+<!-- Frame for embedding navigation within a page -->
+<Frame x:Name=""ContentFrame""
+       NavigationUIVisibility=""Hidden""
+       Source=""Views/InitialPage.jalxaml""/>";
+
+    private const string CSharpExample =
+@"// Get NavigationService and navigate
+var navService = NavigationService.GetNavigationService(this);
+
+// Navigate to a new page
+navService.Navigate(new Uri(""Views/DetailPage.jalxaml"",
+    UriKind.Relative));
+
+// Navigate with custom content state
+var entry = new JournalEntry(uri, ""Page Title"");
+entry.CustomContentState = new MyContentState();
+navService.AddBackEntry(entry.CustomContentState);
+
+// Handle navigation events
+navService.Navigating += (s, e) =>
+{
+    // e.NavigationMode: New, Back, Forward, Refresh
+    Console.WriteLine($""Navigating: {e.NavigationMode}"");
+};
+
+navService.Navigated += (s, e) =>
+{
+    Console.WriteLine(""Navigation completed"");
+};
+
+// Back/Forward navigation
+if (navService.CanGoBack)
+    navService.GoBack();
+
+if (navService.CanGoForward)
+    navService.GoForward();
+
+// Open a NavigationWindow
+var navWindow = new NavigationWindow
+{
+    Title = ""Demo"",
+    Width = 600, Height = 400,
+    ShowsNavigationUI = true
+};
+navWindow.Navigate(new MyPage());
+navWindow.Show();";
 }

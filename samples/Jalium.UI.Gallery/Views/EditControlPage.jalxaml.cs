@@ -189,11 +189,95 @@ public partial class EditControlPage : Page
         }
         """;
 
+    private const string XamlCodeExample = """
+        <!-- Basic EditControl with syntax highlighting -->
+        <EditControl x:Name="MainEditor"
+                     Height="400"
+                     HorizontalAlignment="Stretch"
+                     FontSize="14"
+                     ShowLineNumbers="True"
+                     HighlightCurrentLine="True"
+                     TabSize="4"
+                     ConvertTabsToSpaces="True"/>
+
+        <!-- Read-only code viewer -->
+        <EditControl x:Name="CodeViewer"
+                     Height="200"
+                     IsReadOnly="True"
+                     ShowLineNumbers="True"
+                     FontSize="13"/>
+
+        <!-- Editor options -->
+        <CheckBox x:Name="LineNumbersCheckBox"
+                  Content="Show Line Numbers" IsChecked="True"/>
+        <CheckBox x:Name="HighlightLineCheckBox"
+                  Content="Highlight Current Line" IsChecked="True"/>
+        <CheckBox x:Name="ReadOnlyCheckBox"
+                  Content="Read Only"/>
+        <Button x:Name="UndoButton" Content="Undo"/>
+        <Button x:Name="RedoButton" Content="Redo"/>
+        """;
+
+    private const string CSharpCodeExample = """
+        using Jalium.UI.Controls;
+        using Jalium.UI.Controls.Editor;
+
+        // Set up C# syntax highlighting
+        editor.SyntaxHighlighter =
+            RegexSyntaxHighlighter.CreateCSharpHighlighter();
+
+        // Set up JALXAML syntax highlighting
+        editor.SyntaxHighlighter =
+            JalxamlSyntaxHighlighter.Create();
+
+        // Load text content
+        editor.LoadText("public class Hello { }");
+
+        // Configure editor options
+        editor.ShowLineNumbers = true;
+        editor.HighlightCurrentLine = true;
+        editor.TabSize = 4;
+        editor.ConvertTabsToSpaces = true;
+        editor.IsReadOnly = false;
+
+        // Undo/Redo
+        editor.Undo();
+        editor.Redo();
+        editor.SelectAll();
+
+        // Track document changes
+        editor.Document.Changed += (s, e) =>
+        {
+            var lineCount = editor.Document.LineCount;
+            var length = editor.Document.TextLength;
+        };
+
+        // Get caret position
+        var line = editor.Document.GetLineByOffset(
+            editor.CaretOffset);
+        int col = editor.CaretOffset - line.Offset;
+        """;
+
     public EditControlPage()
     {
         InitializeComponent();
         SetupEventHandlers();
         LoadSampleCode();
+        LoadCodeExamples();
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlCodeExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpCodeExample);
+        }
     }
 
     private void SetupEventHandlers()

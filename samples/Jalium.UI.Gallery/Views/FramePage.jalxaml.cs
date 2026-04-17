@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 
 namespace Jalium.UI.Gallery.Views;
 
@@ -29,6 +30,8 @@ public partial class FramePage : Page
 
         // Initialize with first page
         NavigateToPage(1);
+
+        LoadCodeExamples();
     }
 
     private void NavigateToPage(int pageNumber)
@@ -79,6 +82,77 @@ public partial class FramePage : Page
         if (NavigationHistoryText != null)
         {
             NavigationHistoryText.Text = $"Current page: {_currentPage}";
+        }
+    }
+
+    private const string XamlExample =
+@"<!-- Basic Frame -->
+<Frame x:Name=""DemoFrame""
+       Width=""400"" Height=""200""/>
+
+<!-- Navigation Buttons -->
+<StackPanel Orientation=""Horizontal"">
+    <Button x:Name=""NavigatePage1Button""
+            Content=""Page 1"" Width=""80"" Height=""28""/>
+    <Button x:Name=""NavigatePage2Button""
+            Content=""Page 2"" Width=""80"" Height=""28""/>
+    <Button x:Name=""NavigatePage3Button""
+            Content=""Page 3"" Width=""80"" Height=""28""/>
+</StackPanel>
+
+<!-- Back/Forward Navigation -->
+<StackPanel Orientation=""Horizontal"">
+    <Button x:Name=""BackButton"" Content=""Back""/>
+    <Button x:Name=""ForwardButton"" Content=""Forward""/>
+</StackPanel>";
+
+    private const string CSharpExample =
+@"// Navigate to a page within a Frame
+var frame = new Frame();
+frame.Content = new MyPage();
+
+// Navigate with content
+private void NavigateToPage(int pageNumber)
+{
+    var content = new Border
+    {
+        Background = new SolidColorBrush(
+            Color.FromArgb(255, 0, 120, 212)),
+        Child = new TextBlock
+        {
+            Text = $""Page {pageNumber}"",
+            FontSize = 24,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        }
+    };
+    DemoFrame.Content = content;
+}
+
+// Back/Forward navigation
+private void GoBack()
+{
+    if (frame.CanGoBack)
+        frame.GoBack();
+}
+
+private void GoForward()
+{
+    if (frame.CanGoForward)
+        frame.GoForward();
+}";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
         }
     }
 }

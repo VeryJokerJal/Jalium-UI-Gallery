@@ -1,0 +1,175 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Views.DiffViewerPage"
+      Title="DiffViewer">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="DiffViewer"
+                   FontSize="32"
+                   Foreground="#FFFFFF"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that displays side-by-side or unified text diffs with line-level and word-level highlighting."
+                   FontSize="14"
+                   Foreground="#888888"
+                   Margin="0,0,0,24"/>
+
+        <!-- Side-by-Side Diff Card -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Side-by-Side Diff"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Compare two text documents with additions and removals highlighted in separate panels."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <DiffViewer x:Name="SideBySideDiff"
+                                ViewMode="SideBySide"
+                                Height="300"
+                                ShowLineNumbers="True"
+                                ShowMinimap="True"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Unified View Card -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Unified View"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Display the diff in a single unified view, similar to git diff output."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <DiffViewer x:Name="UnifiedDiff"
+                                ViewMode="Unified"
+                                Height="300"
+                                ShowLineNumbers="True"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Edit the original and modified text to see the diff update in real time."
+                           FontSize="12"
+                           Foreground="#666666"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <StackPanel Orientation="Vertical" Width="400" Margin="0,0,16,0">
+                                <TextBlock Text="Original Text:" Foreground="#888888" FontSize="12" Margin="0,0,0,4"/>
+                                <TextBox x:Name="OriginalTextInput"
+                                         AcceptsReturn="True"
+                                         Height="120"
+                                         FontFamily="Consolas"
+                                         FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="400">
+                                <TextBlock Text="Modified Text:" Foreground="#888888" FontSize="12" Margin="0,0,0,4"/>
+                                <TextBox x:Name="ModifiedTextInput"
+                                         AcceptsReturn="True"
+                                         Height="120"
+                                         FontFamily="Consolas"
+                                         FontSize="12"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <DiffViewer x:Name="InteractiveDiff"
+                                    ViewMode="SideBySide"
+                                    Height="250"
+                                    ShowLineNumbers="True"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,16"/>
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="#2D2D2D"
+                BorderBrush="#3D3D3D"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,16"/>
+                <Border Background="#1E1E1E"
+                        CornerRadius="4"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

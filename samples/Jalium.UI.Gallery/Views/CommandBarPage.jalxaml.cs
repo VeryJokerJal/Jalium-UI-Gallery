@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -13,6 +14,7 @@ public partial class CommandBarPage : Page
         InitializeComponent();
         BuildBasicCommandBar();
         BuildSecondaryCommandBar();
+        LoadCodeExamples();
     }
 
     private void BuildBasicCommandBar()
@@ -96,6 +98,53 @@ public partial class CommandBarPage : Page
 
         SecondaryCommandBarContainer.Children.Add(commandBar);
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<!-- CommandBar with primary commands -->
+<CommandBar Width=""500"" Height=""48""
+            OverflowButtonVisibility=""Visible"">
+    <CommandBar.PrimaryCommands>
+        <AppBarButton Label=""Add"" Icon=""Add"" />
+        <AppBarButton Label=""Edit"" Icon=""Edit"" />
+        <AppBarButton Label=""Delete"" Icon=""Delete"" />
+    </CommandBar.PrimaryCommands>
+    <CommandBar.SecondaryCommands>
+        <AppBarButton Label=""Settings"" />
+        <AppBarButton Label=""Help"" />
+    </CommandBar.SecondaryCommands>
+</CommandBar>";
+
+    private const string CSharpExample = @"// Build a CommandBar programmatically
+var commandBar = new CommandBar();
+commandBar.OverflowButtonVisibility =
+    CommandBarOverflowButtonVisibility.Visible;
+
+// Add primary commands
+var addBtn = new AppBarButton { Label = ""Add"" };
+addBtn.Icon = new SymbolIcon(Symbol.Add);
+addBtn.Click += (s, e) => { /* handle click */ };
+commandBar.PrimaryCommands.Add(addBtn);
+
+// Add secondary (overflow) commands
+var settingsBtn = new AppBarButton { Label = ""Settings"" };
+commandBar.SecondaryCommands.Add(settingsBtn);
+
+// Listen to open/close events
+commandBar.Opened += (s, e) => { /* overflow opened */ };
+commandBar.Closed += (s, e) => { /* overflow closed */ };";
 
     private static AppBarButton CreateAppBarButton(string iconText, string label)
     {

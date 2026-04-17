@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Input;
 
 namespace Jalium.UI.Gallery.Views;
@@ -8,10 +9,107 @@ namespace Jalium.UI.Gallery.Views;
 /// </summary>
 public partial class MediaElementPage : Page
 {
+    private const string XamlExample = @"<StackPanel Orientation=""Vertical"" Margin=""16"">
+    <!-- Video Player -->
+    <Border Background=""#000000"" Width=""480"" Height=""270""
+            CornerRadius=""4"" Margin=""0,0,0,16"">
+        <MediaElement x:Name=""VideoPlayer""
+                      Width=""480"" Height=""270""/>
+    </Border>
+
+    <!-- Playback Controls -->
+    <StackPanel Orientation=""Horizontal"" HorizontalAlignment=""Center"">
+        <Button x:Name=""PlayButton"" Content=""Play""
+                Width=""70"" Height=""28"" Margin=""0,0,8,0""/>
+        <Button x:Name=""PauseButton"" Content=""Pause""
+                Width=""70"" Height=""28"" Margin=""0,0,8,0""/>
+        <Button x:Name=""StopButton"" Content=""Stop""
+                Width=""70"" Height=""28""/>
+    </StackPanel>
+
+    <!-- Audio Player (hidden MediaElement) -->
+    <MediaElement x:Name=""AudioPlayer"" Width=""0"" Height=""0""/>
+
+    <!-- Volume Control -->
+    <StackPanel Orientation=""Horizontal"" Margin=""0,16,0,0"">
+        <TextBlock Text=""Volume:"" Width=""100""
+                   Foreground=""#888888"" VerticalAlignment=""Center""/>
+        <Slider x:Name=""VolumeSlider""
+                Minimum=""0"" Maximum=""100""
+                Value=""75"" Width=""200""/>
+    </StackPanel>
+
+    <!-- Playback Options -->
+    <StackPanel Orientation=""Horizontal"" Margin=""0,12,0,0"">
+        <CheckBox Content=""Loop"" Margin=""0,0,16,0""/>
+        <CheckBox Content=""Mute"" Margin=""0,0,16,0""/>
+        <CheckBox Content=""Auto-play""/>
+    </StackPanel>
+</StackPanel>";
+
+    private const string CSharpExample = @"using Jalium.UI.Controls;
+
+public partial class MediaElementSample : Page
+{
+    public MediaElementSample()
+    {
+        InitializeComponent();
+
+        // Wire up playback controls
+        PlayButton.Click += (s, e) => VideoPlayer.Play();
+        PauseButton.Click += (s, e) => VideoPlayer.Pause();
+        StopButton.Click += (s, e) => VideoPlayer.Stop();
+
+        // Volume control
+        VolumeSlider.ValueChanged += (s, e) =>
+        {
+            VideoPlayer.Volume = e.NewValue / 100.0;
+            AudioPlayer.Volume = e.NewValue / 100.0;
+        };
+    }
+
+    private void LoadVideo(string path)
+    {
+        // Load from file path or URL
+        if (path.StartsWith(""http""))
+            VideoPlayer.Source = new Uri(path);
+        else
+            VideoPlayer.Source = new Uri(
+                System.IO.Path.GetFullPath(path));
+
+        VideoPlayer.Play();
+    }
+
+    private void LoadAudio(string path)
+    {
+        if (path.StartsWith(""http""))
+            AudioPlayer.Source = new Uri(path);
+        else
+            AudioPlayer.Source = new Uri(
+                System.IO.Path.GetFullPath(path));
+
+        AudioPlayer.Play();
+    }
+
+    // Browse for video file using OpenFileDialog
+    private void OnBrowseClick(object? sender, EventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Filter = ""Video|*.mp4;*.avi;*.wmv;*.mov|All|*.*"",
+            Title = ""Select Video File""
+        };
+
+        if (dialog.ShowDialog() == true)
+            LoadVideo(dialog.FileName);
+    }
+}";
+
     public MediaElementPage()
     {
         InitializeComponent();
-        
+        LoadCodeExamples();
+
         // Video controls
         if (PlayButton != null && VideoPlayer != null)
             PlayButton.Click += (s, e) => VideoPlayer.Play();
@@ -63,6 +161,20 @@ public partial class MediaElementPage : Page
         // Volume slider
         if (VolumeSlider != null)
             VolumeSlider.ValueChanged += OnVolumeChanged;
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void OnVideoLoadClick(object? sender, EventArgs e)

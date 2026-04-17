@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 using Jalium.UI.Media;
 
@@ -17,6 +18,7 @@ public partial class CommandBarFlyoutPage : Page
         InitializeComponent();
         BuildBasicFlyoutDemo();
         BuildMixedFlyoutDemo();
+        LoadCodeExamples();
     }
 
     private void BuildBasicFlyoutDemo()
@@ -117,6 +119,50 @@ public partial class CommandBarFlyoutPage : Page
 
         MixedFlyoutContainer.Children.Add(triggerButton);
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<!-- Button that triggers a CommandBarFlyout -->
+<Button x:Name=""TriggerButton""
+        Content=""Show Commands""
+        Height=""36"" Width=""200"" />
+
+<!-- CommandBarFlyout is created in code-behind
+     and shown via flyout.ShowAt(TriggerButton) -->";
+
+    private const string CSharpExample = @"// Create a CommandBarFlyout
+var flyout = new CommandBarFlyout();
+
+// Add primary commands (shown in the bar)
+var cutBtn = new AppBarButton { Label = ""Cut"" };
+cutBtn.Icon = new SymbolIcon(Symbol.Cut);
+flyout.PrimaryCommands.Add(cutBtn);
+
+var copyBtn = new AppBarButton { Label = ""Copy"" };
+copyBtn.Icon = new SymbolIcon(Symbol.Copy);
+flyout.PrimaryCommands.Add(copyBtn);
+
+// Add secondary commands (overflow)
+var deleteBtn = new AppBarButton { Label = ""Delete"" };
+flyout.SecondaryCommands.Add(deleteBtn);
+
+// Show the flyout attached to a control
+flyout.ShowAt(myButton);
+
+// Handle close
+flyout.Closed += (s, e) => { /* flyout closed */ };";
 
     private static AppBarButton CreateAppBarButton(string iconText, string label)
     {

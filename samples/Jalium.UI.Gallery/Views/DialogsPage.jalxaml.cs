@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -8,6 +9,88 @@ namespace Jalium.UI.Gallery.Views;
 /// </summary>
 public partial class DialogsPage : Page
 {
+    private const string XamlExample =
+@"<!-- Open File Dialog button -->
+<Button x:Name=""OpenFileButton""
+        Content=""Open File...""
+        Width=""100"" Height=""28"" />
+
+<!-- Save File Dialog button -->
+<Button x:Name=""SaveFileButton""
+        Content=""Save As...""
+        Width=""100"" Height=""28"" />
+
+<!-- Folder Browser Dialog button -->
+<Button x:Name=""BrowseFolderButton""
+        Content=""Browse Folder...""
+        Width=""120"" Height=""28"" />
+
+<!-- Font Dialog button -->
+<Button x:Name=""ChooseFontButton""
+        Content=""Choose Font...""
+        Width=""110"" Height=""28"" />
+
+<!-- Message Dialog buttons -->
+<Button x:Name=""InfoDialogButton""
+        Content=""Show info""
+        Width=""108"" Height=""32"" />
+<Button x:Name=""WarningDialogButton""
+        Content=""Retry flow""
+        Width=""108"" Height=""32"" />
+<Button x:Name=""ErrorDialogButton""
+        Content=""Show error""
+        Width=""108"" Height=""32"" />";
+
+    private const string CSharpExample =
+@"using Jalium.UI.Controls;
+
+public partial class DialogsPage : Page
+{
+    private void OnOpenFileClick(object? sender, EventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Title = ""Open File"",
+            Filter = ""Text files (*.txt)|*.txt|All files (*.*)|*.*""
+        };
+
+        if (dialog.ShowDialog() == true)
+            SelectedFileText.Text = $""Selected: {dialog.FileName}"";
+    }
+
+    private void OnSaveFileClick(object? sender, EventArgs e)
+    {
+        var dialog = new SaveFileDialog
+        {
+            Title = ""Save File"",
+            Filter = ""Text files (*.txt)|*.txt|All (*.*)|*.*""
+        };
+
+        if (dialog.ShowDialog() == true)
+            SavePathText.Text = $""Save to: {dialog.FileName}"";
+    }
+
+    private void OnBrowseFolderClick(object? sender, EventArgs e)
+    {
+        var dialog = new FolderBrowserDialog
+        {
+            Title = ""Select Folder""
+        };
+
+        if (dialog.ShowDialog() == true)
+            FolderText.Text = $""Selected: {dialog.SelectedPath}"";
+    }
+
+    private void ShowMessageDialog(string caption, string message,
+        MessageBoxButton buttons, MessageBoxImage icon)
+    {
+        var owner = FindOwnerWindow();
+        var result = MessageBox.Show(owner, message, caption,
+            buttons, icon, MessageBoxResult.OK);
+        ResultText.Text = $""Result: {result}"";
+    }
+}";
+
     private static readonly MessageDialogScenario s_infoScenario = new(
         "Information",
         "Sync complete",
@@ -51,6 +134,7 @@ public partial class DialogsPage : Page
     public DialogsPage()
     {
         InitializeComponent();
+        LoadCodeExamples();
 
         // Set up file dialog buttons
         if (OpenFileButton != null)
@@ -326,6 +410,20 @@ public partial class DialogsPage : Page
             },
             _ => $"The dialog closed with {result}."
         };
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private sealed record MessageDialogScenario(

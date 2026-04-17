@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -13,6 +14,7 @@ public partial class AppBarSeparatorPage : Page
         InitializeComponent();
         SetupIcons();
         SetupEventHandlers();
+        LoadCodeExamples();
     }
 
     private void SetupIcons()
@@ -52,6 +54,57 @@ public partial class AppBarSeparatorPage : Page
         SetupClickHandler(UndoButton, "Last action undone.");
         SetupClickHandler(RedoButton, "Last undo redone.");
     }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
+    }
+
+    private const string XamlExample = @"<!-- Toolbar with separators between groups -->
+<StackPanel Orientation=""Horizontal"">
+    <AppBarButton Label=""New"" IsCompact=""True"" />
+    <AppBarButton Label=""Open"" IsCompact=""True"" />
+    <AppBarButton Label=""Save"" IsCompact=""True"" />
+
+    <AppBarSeparator Margin=""4"" />
+
+    <AppBarButton Label=""Cut"" IsCompact=""True"" />
+    <AppBarButton Label=""Copy"" IsCompact=""True"" />
+    <AppBarButton Label=""Paste"" IsCompact=""True"" />
+
+    <AppBarSeparator Margin=""4"" />
+
+    <AppBarButton Label=""Undo"" IsCompact=""True"" />
+    <AppBarButton Label=""Redo"" IsCompact=""True"" />
+</StackPanel>";
+
+    private const string CSharpExample = @"// Create a toolbar with separators
+var toolbar = new StackPanel { Orientation = Orientation.Horizontal };
+
+// File operations group
+toolbar.Children.Add(new AppBarButton { Label = ""New"" });
+toolbar.Children.Add(new AppBarButton { Label = ""Open"" });
+toolbar.Children.Add(new AppBarButton { Label = ""Save"" });
+
+// Add separator between groups
+toolbar.Children.Add(new AppBarSeparator
+{
+    Margin = new Thickness(4)
+});
+
+// Edit operations group
+toolbar.Children.Add(new AppBarButton { Label = ""Cut"" });
+toolbar.Children.Add(new AppBarButton { Label = ""Copy"" });
+toolbar.Children.Add(new AppBarButton { Label = ""Paste"" });";
 
     private void SetupClickHandler(AppBarButton? button, string message)
     {

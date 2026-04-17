@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -10,6 +11,85 @@ namespace Jalium.UI.Gallery.Views;
 /// </summary>
 public partial class IconElementPage : Page
 {
+    private const string XamlExample = @"<StackPanel Orientation=""Vertical"" Margin=""16"">
+    <!-- SymbolIcon using the Symbol enum -->
+    <SymbolIcon Symbol=""Save""
+                Width=""24"" Height=""24""
+                Foreground=""#FFFFFF""
+                Margin=""0,0,0,16""/>
+
+    <!-- FontIcon with custom glyph code -->
+    <FontIcon Glyph=""&#xE713;""
+              FontSize=""24""
+              Foreground=""#FFFFFF""
+              Margin=""0,0,0,16""/>
+
+    <!-- FontIcon with custom font family and size -->
+    <FontIcon Glyph=""&#xE768;""
+              FontSize=""32""
+              Foreground=""#9ECE6A""
+              Margin=""0,0,0,16""/>
+
+    <!-- AppBarButton with SymbolIcon -->
+    <AppBarButton Label=""Save"" IsCompact=""True"">
+        <AppBarButton.Icon>
+            <SymbolIcon Symbol=""Save""/>
+        </AppBarButton.Icon>
+    </AppBarButton>
+
+    <!-- Multiple icons in a toolbar -->
+    <StackPanel Orientation=""Horizontal"">
+        <AppBarButton Icon=""{SymbolIcon Save}"" Label=""Save""/>
+        <AppBarButton Icon=""{SymbolIcon Undo}"" Label=""Undo""/>
+        <AppBarButton Icon=""{SymbolIcon Redo}"" Label=""Redo""/>
+        <AppBarSeparator Height=""48""/>
+        <AppBarButton Icon=""{SymbolIcon Play}"" Label=""Start""/>
+    </StackPanel>
+</StackPanel>";
+
+    private const string CSharpExample = @"using Jalium.UI.Controls;
+using Jalium.UI.Media;
+
+public partial class IconElementSample : Page
+{
+    public IconElementSample()
+    {
+        InitializeComponent();
+        CreateIconsInCode();
+    }
+
+    private void CreateIconsInCode()
+    {
+        // Create a SymbolIcon from the Symbol enum
+        var saveIcon = new SymbolIcon(Symbol.Save)
+        {
+            Width = 24,
+            Height = 24,
+            Foreground = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF))
+        };
+
+        // Create a FontIcon with a glyph code
+        var settingsIcon = new FontIcon
+        {
+            Glyph = ""\uE713"",
+            FontSize = 24,
+            Foreground = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF))
+        };
+
+        // Use icons in AppBarButton
+        var button = new AppBarButton
+        {
+            Icon = new SymbolIcon(Symbol.Save),
+            Label = ""Save"",
+            IsCompact = true
+        };
+
+        // Change icon color dynamically
+        saveIcon.Foreground = new SolidColorBrush(
+            Color.FromRgb(0x9E, 0xCE, 0x6A));
+    }
+}";
+
     private static readonly SolidColorBrush White = new(Color.FromRgb(0xFF, 0xFF, 0xFF));
     private static readonly SolidColorBrush Gray = new(Color.FromRgb(0x88, 0x88, 0x88));
     private static readonly SolidColorBrush DimGray = new(Color.FromRgb(0x66, 0x66, 0x66));
@@ -21,6 +101,7 @@ public partial class IconElementPage : Page
     public IconElementPage()
     {
         InitializeComponent();
+        LoadCodeExamples();
         if (RootPanel == null) return;
 
         AddHeader();
@@ -28,6 +109,20 @@ public partial class IconElementPage : Page
         AddFontIconSection();
         AddAppBarButtonWithIconSection();
         AddSymbolGallerySection();
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void AddHeader()

@@ -1,5 +1,6 @@
 using Jalium.UI;
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Gallery.Theme;
 using Jalium.UI.Media;
 
@@ -11,6 +12,7 @@ public partial class TabControlPage : Page
     {
         InitializeComponent();
         CreateContent();
+        LoadCodeExamples();
     }
 
     private void CreateContent()
@@ -166,6 +168,75 @@ public partial class TabControlPage : Page
 
         border.Child = stack;
         return border;
+    }
+
+    private const string XamlExample =
+@"<TabControl Width=""400"" Height=""200"">
+    <TabItem Header=""Home"">
+        <TextBlock Text=""Welcome to Home tab""
+                   HorizontalAlignment=""Center""
+                   VerticalAlignment=""Center""/>
+    </TabItem>
+    <TabItem Header=""Profile"">
+        <TextBlock Text=""Profile content""
+                   HorizontalAlignment=""Center""
+                   VerticalAlignment=""Center""/>
+    </TabItem>
+    <TabItem Header=""Settings"">
+        <TextBlock Text=""Settings content""
+                   HorizontalAlignment=""Center""
+                   VerticalAlignment=""Center""/>
+    </TabItem>
+</TabControl>
+
+<!-- Bottom Tab Placement -->
+<TabControl TabStripPlacement=""Bottom""
+            Width=""400"" Height=""200"">
+    <TabItem Header=""Tab 1"" />
+    <TabItem Header=""Tab 2"" />
+</TabControl>";
+
+    private const string CSharpExample =
+@"// Create a TabControl programmatically
+var tabControl = new TabControl
+{
+    Width = 400,
+    Height = 200
+};
+
+// Add tabs
+var tab1 = new TabItem { Header = ""Home"" };
+tab1.Content = new TextBlock { Text = ""Home content"" };
+tabControl.Items.Add(tab1);
+
+var tab2 = new TabItem { Header = ""Profile"" };
+tab2.Content = new TextBlock { Text = ""Profile content"" };
+tabControl.Items.Add(tab2);
+
+// Handle selection changes
+tabControl.SelectionChanged += (s, e) =>
+{
+    if (tabControl.SelectedItem is TabItem selected)
+    {
+        Debug.WriteLine($""Selected: {selected.Header}"");
+    }
+};
+
+// Bottom tab placement
+tabControl.TabStripPlacement = Dock.Bottom;";
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
+        }
     }
 
     private void AddSection(string titleText, string descriptionText)

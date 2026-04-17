@@ -1,4 +1,5 @@
 using Jalium.UI.Controls;
+using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Views;
@@ -8,9 +9,95 @@ namespace Jalium.UI.Gallery.Views;
 /// </summary>
 public partial class ContentDialogPage : Page
 {
+    private const string XamlExample =
+@"<!-- ContentDialog declared in XAML for in-place usage -->
+<Grid x:Name=""DialogHost"" Width=""720"" Height=""320"">
+    <ContentDialog x:Name=""ReviewDialog""
+                   Title=""Apply preset to preview area""
+                   PrimaryButtonText=""Apply""
+                   SecondaryButtonText=""Preview Only""
+                   CloseButtonText=""Cancel""
+                   DefaultButton=""Primary"">
+        <StackPanel Orientation=""Vertical"">
+            <TextBlock Text=""This dialog uses InPlace placement.""
+                       TextWrapping=""Wrap""
+                       Margin=""0,0,0,12"" />
+            <CheckBox Content=""Enable acrylic backdrop""
+                      IsChecked=""True""
+                      Margin=""0,0,0,8"" />
+            <CheckBox Content=""Use compact density""
+                      IsChecked=""True"" />
+        </StackPanel>
+    </ContentDialog>
+</Grid>
+
+<!-- Button to trigger the popup dialog -->
+<Button x:Name=""ShowDialogButton""
+        Content=""Show Dialog""
+        Width=""110"" Height=""32"" />";
+
+    private const string CSharpExample =
+@"using Jalium.UI.Controls;
+
+public partial class ContentDialogPage : Page
+{
+    // Show a popup ContentDialog built in code-behind
+    private async void OnShowDialogClick(object? sender, EventArgs e)
+    {
+        var nameBox = new TextBox { Width = 280, Height = 32 };
+
+        var dialog = new ContentDialog
+        {
+            Title = ""Rename document"",
+            PrimaryButtonText = ""Save"",
+            SecondaryButtonText = ""Don't Save"",
+            CloseButtonText = ""Cancel"",
+            DefaultButton = ContentDialogButton.Primary,
+            Content = new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = ""Enter a new name:"",
+                        Margin = new Thickness(0, 0, 0, 8)
+                    },
+                    nameBox
+                }
+            }
+        };
+
+        var result = await dialog.ShowAsync();
+        StatusText.Text = result switch
+        {
+            ContentDialogResult.Primary =>
+                $""Saved as {nameBox.Text}."",
+            ContentDialogResult.Secondary =>
+                ""Changes discarded."",
+            _ => ""Dialog canceled.""
+        };
+    }
+
+    // Show an in-place ContentDialog
+    private async void OnShowInlineClick(object? sender, EventArgs e)
+    {
+        var result = await ReviewDialog.ShowAsync(
+            ContentDialogPlacement.InPlace);
+
+        InlineStatusText.Text = result switch
+        {
+            ContentDialogResult.Primary => ""Preset applied."",
+            ContentDialogResult.Secondary => ""Preview only."",
+            _ => ""Canceled.""
+        };
+    }
+}";
+
     public ContentDialogPage()
     {
         InitializeComponent();
+        LoadCodeExamples();
 
         if (ShowBasicDialogButton != null)
         {
@@ -30,6 +117,20 @@ public partial class ContentDialogPage : Page
         if (ShowDeferredDialogButton != null)
         {
             ShowDeferredDialogButton.Click += OnShowDeferredDialogClick;
+        }
+    }
+
+    private void LoadCodeExamples()
+    {
+        if (XamlCodeEditor != null)
+        {
+            XamlCodeEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
+            XamlCodeEditor.LoadText(XamlExample);
+        }
+        if (CSharpCodeEditor != null)
+        {
+            CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
+            CSharpCodeEditor.LoadText(CSharpExample);
         }
     }
 
