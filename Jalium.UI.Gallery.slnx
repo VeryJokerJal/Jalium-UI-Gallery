@@ -1,13 +1,27 @@
 <Solution>
-  <Folder Name="/samples/">
-    <Project Path="samples/Jalium.UI.Gallery/Jalium.UI.Gallery.csproj" />
+  <Folder Name="/Modules/">
+    <Project Path="Modules/Jalium.UI.Gallery.Modules.Main/Jalium.UI.Gallery.Modules.Main.csproj" />
   </Folder>
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Controls/Jalium.UI.Controls.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Core/Jalium.UI.Core.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Gpu/Jalium.UI.Gpu.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Input/Jalium.UI.Input.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Interop/Jalium.UI.Interop.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Media/Jalium.UI.Media.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml.SourceGenerator/Jalium.UI.Xaml.SourceGenerator.csproj" />
-  <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml/Jalium.UI.Xaml.csproj" />
+  <Folder Name="/Services/">
+    <Project Path="Services/Jalium.UI.Gallery.Services.Interfaces/Jalium.UI.Gallery.Services.Interfaces.csproj" />
+    <Project Path="Services/Jalium.UI.Gallery.Services/Jalium.UI.Gallery.Services.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Jalium.UI.Gallery.Modules.Main.Tests/Jalium.UI.Gallery.Modules.Main.Tests.csproj" />
+  </Folder>
+  <Project Path="Jalium.UI.Gallery.Android/Jalium.UI.Gallery.Android.csproj" />
+  <Project Path="Jalium.UI.Gallery.Core/Jalium.UI.Gallery.Core.csproj" />
+  <Project Path="Jalium.UI.Gallery.Desktop/Jalium.UI.Gallery.Desktop.csproj" />
+  <Folder Name="/Jalium.UI/">
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Build/Jalium.UI.Build.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Controls/Jalium.UI.Controls.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Core/Jalium.UI.Core.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Gpu/Jalium.UI.Gpu.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Input/Jalium.UI.Input.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Interop/Jalium.UI.Interop.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Media/Jalium.UI.Media.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml/Jalium.UI.Xaml.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml.SourceGenerator/Jalium.UI.Xaml.SourceGenerator.csproj" />
+    <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Android/Jalium.UI.Android.csproj" />
+  </Folder>
 </Solution>
