@@ -1,0 +1,38 @@
+<Application x:Class="Jalium.UI.Gallery.Modules.Main.App"
+             xmlns="http://schemas.jalium.ui/2024"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainWindow.jalxaml">
+
+    <!--
+        Application-level resources for the Gallery main module.
+
+        • Themes/AppTheme.jalxaml is merged so every {DynamicResource AccentPrimary},
+          {DynamicResource AppBackground}, etc. in the page templates resolves to the
+          Aureate Amber brush palette.
+
+        • The SolidColorBrush overrides below seed the framework accent palette
+          (see Jalium.UI.Controls/Themes/Colors.jalxaml) so the default control
+          templates render in the gallery's warm amber / gold instead of the
+          framework's stock blue accent.
+
+        Live dark/light switching and gallery-scoped brushes are registered
+        imperatively by the App code-behind so consumers of GalleryTheme can
+        react to mode changes.
+    -->
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/AppTheme.jalxaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="AccentBrush" Color="#FFD60A" />
+            <SolidColorBrush x:Key="AccentBrushHover" Color="#FFE45C" />
+            <SolidColorBrush x:Key="AccentBrushPressed" Color="#B88A06" />
+            <SolidColorBrush x:Key="AccentBrushDisabled" Color="#66FFD60A" />
+            <SolidColorBrush x:Key="SelectionBackground" Color="#55FFD60A" />
+            <SolidColorBrush x:Key="SelectionBackgroundWeak" Color="#33FFD60A" />
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

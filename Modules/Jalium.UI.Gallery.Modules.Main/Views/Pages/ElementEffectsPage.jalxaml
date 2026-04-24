@@ -1,0 +1,198 @@
+<Page
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ElementEffectsPage"
+    Title="Element Effects">
+    <ScrollViewer>
+    <StackPanel Orientation="Vertical" Margin="0,0,0,32">
+        <!-- Page Header -->
+        <TextBlock Text="Element Effects" FontSize="32" FontWeight="Bold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8"/>
+        <TextBlock Text="Modern element-level visual effects: OuterGlow, InnerShadow, Emboss, ColorMatrix, and EffectGroup." FontSize="14" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,24"/>
+
+        <!-- OuterGlowEffect Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="OuterGlowEffect" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,4"/>
+                <TextBlock Text="Renders a glow around the outer edges of an element. Replaces the deprecated OuterGlowBitmapEffect." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Glow Size: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="GlowSizeSlider" Width="200" Minimum="0" Maximum="40" Value="10" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="GlowSizeText" Text="10" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Intensity: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="GlowIntensitySlider" Width="200" Minimum="0" Maximum="50" Value="10" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="GlowIntensityText" Text="1.0" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Border Background="#1A1A2E" Height="120" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Stretch">
+                    <Border x:Name="OuterGlowDemo" Background="{DynamicResource GalleryAccent}" Width="160" Height="60" CornerRadius="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Outer Glow" Foreground="{DynamicResource GalleryTextPrimary}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    </Border>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- InnerShadowEffect Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="InnerShadowEffect" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,4"/>
+                <TextBlock Text="Renders a shadow inside the element bounds, similar to CSS box-shadow: inset." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Blur Radius: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="InnerShadowBlurSlider" Width="200" Minimum="0" Maximum="30" Value="8" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="InnerShadowBlurText" Text="8" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Shadow Depth: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="InnerShadowDepthSlider" Width="200" Minimum="0" Maximum="20" Value="5" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="InnerShadowDepthText" Text="5" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Border x:Name="InnerShadowDemo" Background="#3D3D50" Width="220" Height="100" CornerRadius="16" Margin="0,8,0,0" HorizontalAlignment="Left">
+                    <TextBlock Text="Inner Shadow" Foreground="{DynamicResource GalleryTextPrimary}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- EmbossEffect Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="EmbossEffect" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,4"/>
+                <TextBlock Text="Creates a raised or sunken appearance by simulating light hitting the surface. Replaces deprecated EmbossBitmapEffect." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Amount: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="EmbossAmountSlider" Width="200" Minimum="0" Maximum="50" Value="15" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="EmbossAmountText" Text="1.5" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Light Angle: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="EmbossAngleSlider" Width="200" Minimum="0" Maximum="360" Value="45" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="EmbossAngleText" Text="45" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Border x:Name="EmbossDemo" Background="#556677" Width="200" Height="80" CornerRadius="10" Margin="0,8,0,0" HorizontalAlignment="Left">
+                    <TextBlock Text="Emboss Demo" Foreground="{DynamicResource GalleryTextPrimary}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ColorMatrixEffect Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="ColorMatrixEffect" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,4"/>
+                <TextBlock Text="Applies 5x4 color matrix transformations with preset factories for grayscale, sepia, brightness, contrast, saturation, hue rotation, and invert." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Button x:Name="GrayscaleBtn" Content="Grayscale" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    <Button x:Name="SepiaBtn" Content="Sepia" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    <Button x:Name="InvertBtn" Content="Invert" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    <Button x:Name="HueRotateBtn" Content="Hue Rotate" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    <Button x:Name="ResetColorBtn" Content="Reset" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Saturation: " Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center"/>
+                    <Slider x:Name="SaturationSlider" Width="200" Minimum="0" Maximum="30" Value="10" Margin="8,0,0,0"/>
+                    <TextBlock x:Name="SaturationText" Text="1.0" Foreground="{DynamicResource GalleryTextSecondary}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Color demo with gradient-like display -->
+                <Border Background="#1A1A2E" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border x:Name="ColorDemo1" Background="#FF4444" Width="50" Height="50" CornerRadius="8" Margin="2"/>
+                        <Border x:Name="ColorDemo2" Background="#FF8800" Width="50" Height="50" CornerRadius="8" Margin="2"/>
+                        <Border x:Name="ColorDemo3" Background="#FFDD00" Width="50" Height="50" CornerRadius="8" Margin="2"/>
+                        <Border x:Name="ColorDemo4" Background="#44CC44" Width="50" Height="50" CornerRadius="8" Margin="2"/>
+                        <Border x:Name="ColorDemo5" Background="#4488FF" Width="50" Height="50" CornerRadius="8" Margin="2"/>
+                        <Border x:Name="ColorDemo6" Background="#8844CC" Width="50" Height="50" CornerRadius="8" Margin="2"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- EffectGroup Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="EffectGroup" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,4"/>
+                <TextBlock Text="Composes multiple effects into a single group. Effects are applied sequentially, with each output feeding the next." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <Border Background="#1A1A2E" Height="120" CornerRadius="8" Margin="0,0,0,12" HorizontalAlignment="Stretch">
+                    <Border x:Name="EffectGroupDemo" Background="#CC5500" Width="180" Height="70" CornerRadius="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Glow + Shadow" Foreground="{DynamicResource GalleryTextPrimary}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    </Border>
+                </Border>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="// Composing multiple effects" FontFamily="Consolas" FontSize="12" Foreground="#608B4E"/>
+                        <TextBlock Text="var group = new EffectGroup();" FontFamily="Consolas" FontSize="12" Foreground="#DCDCAA"/>
+                        <TextBlock Text="group.Children.Add(new OuterGlowEffect" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="    { GlowColor = Colors.Orange, GlowSize = 12 });" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="group.Children.Add(new DropShadowEffect" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="    { ShadowDepth = 6, BlurRadius = 8 });" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="element.Effect = group;" FontFamily="Consolas" FontSize="12" Foreground="#DCDCAA"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+    </ScrollViewer>
+</Page>

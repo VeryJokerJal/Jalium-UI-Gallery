@@ -1,0 +1,260 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToastNotificationPage"
+      Title="ToastNotification">
+
+    <Grid>
+        <!-- Main scrollable content -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="0,0,0,24">
+                <!-- Page Title -->
+                <TextBlock Text="ToastNotification"
+                           FontSize="32"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,8"/>
+
+                <!-- Description -->
+                <TextBlock Text="Displays transient notifications to users."
+                           FontSize="14"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           Margin="0,0,0,24"/>
+
+                <!-- Basic Toast Card -->
+                <Border Background="{DynamicResource GalleryCardBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="14"
+                        Padding="20"
+                        Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Basic Toast Notifications"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Simple toast notifications with different severity levels."
+                                   FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,16"/>
+
+                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                                CornerRadius="8"
+                                Padding="16">
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="InfoToastButton" Content="Info" Width="70" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <Button x:Name="SuccessToastButton" Content="Success" Width="80" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <Button x:Name="WarningToastButton" Content="Warning" Width="80" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <Button x:Name="ErrorToastButton" Content="Error" Width="70" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Toast Preview Card -->
+                <Border Background="{DynamicResource GalleryCardBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="14"
+                        Padding="20"
+                        Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Toast Preview"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Examples of how toasts appear in different styles."
+                                   FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,16"/>
+
+                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                                CornerRadius="8"
+                                Padding="16">
+                            <StackPanel Orientation="Vertical">
+                                <!-- Info Toast Preview -->
+                                <ToastNotificationItem Severity="Information"
+                                                       Title="Information"
+                                                       Message="This is an informational message."
+                                                       IsAutoDismissEnabled="False"
+                                                       IsClosable="False"
+                                                       Margin="0,0,0,8"/>
+
+                                <!-- Success Toast Preview -->
+                                <ToastNotificationItem Severity="Success"
+                                                       Title="Success"
+                                                       Message="Operation completed successfully."
+                                                       IsAutoDismissEnabled="False"
+                                                       IsClosable="False"
+                                                       Margin="0,0,0,8"/>
+
+                                <!-- Warning Toast Preview -->
+                                <ToastNotificationItem Severity="Warning"
+                                                       Title="Warning"
+                                                       Message="Please review before proceeding."
+                                                       IsAutoDismissEnabled="False"
+                                                       IsClosable="False"
+                                                       Margin="0,0,0,8"/>
+
+                                <!-- Error Toast Preview -->
+                                <ToastNotificationItem Severity="Error"
+                                                       Title="Error"
+                                                       Message="An error occurred during the operation."
+                                                       IsAutoDismissEnabled="False"
+                                                       IsClosable="False"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Toast with Actions Card -->
+                <Border Background="{DynamicResource GalleryCardBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="14"
+                        Padding="20"
+                        Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Toast with Actions"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Toasts can include action buttons for user interaction."
+                                   FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,16"/>
+
+                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                                CornerRadius="8"
+                                Padding="16">
+                            <StackPanel Orientation="Vertical">
+                                <!-- Toast with Actions Preview -->
+                                <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8" Padding="12">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                            <TextBlock Text="📥" FontSize="16" Margin="0,0,12,0"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="Download Complete" Foreground="{DynamicResource GalleryTextPrimary}" FontWeight="SemiBold"/>
+                                                <TextBlock Text="Your file has been downloaded." Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button Content="Open" Width="60" Height="24" FontSize="11" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                            <Button Content="Dismiss" Width="70" Height="24" FontSize="11" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+
+                                <Button x:Name="ShowActionToastButton" Content="Show Toast with Actions" Width="180" Height="28" Margin="0,16,0,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Toast Configuration Card -->
+                <Border Background="{DynamicResource GalleryCardBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="14"
+                        Padding="20"
+                        Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Toast Configuration"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Customize toast appearance and behavior."
+                                   FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,16"/>
+
+                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                                CornerRadius="8"
+                                Padding="16">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <TextBlock Text="Position:" Width="100" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="PositionComboBox" Width="150" Height="28">
+                                        <ComboBoxItem Content="Top Right" IsSelected="True"/>
+                                        <ComboBoxItem Content="Top Left"/>
+                                        <ComboBoxItem Content="Top Center"/>
+                                        <ComboBoxItem Content="Bottom Right"/>
+                                        <ComboBoxItem Content="Bottom Left"/>
+                                        <ComboBoxItem Content="Bottom Center"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <TextBlock Text="Duration:" Width="100" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                    <Slider x:Name="DurationSlider" Minimum="1" Maximum="15" Value="5" Width="150" Margin="0,0,8,0"/>
+                                    <TextBlock x:Name="DurationText" Text="5s" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ShowCloseCheckBox" Content="Show close button" IsChecked="True" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <CheckBox x:Name="PauseOnHoverCheckBox" Content="Auto-dismiss (pause on hover)" IsChecked="True" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <Button x:Name="ShowCustomToastButton" Content="Show Custom Toast" Width="150" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                    <Button x:Name="DismissAllButton" Content="Dismiss All" Width="100" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+                <!-- XAML Code Example -->
+                <Border Background="{DynamicResource GalleryCardBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="14"
+                        Padding="20"
+                        Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="XAML Code Example"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   Margin="0,0,0,16"/>
+                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                                CornerRadius="8"
+                                Padding="0"
+                                HorizontalAlignment="Stretch">
+                            <EditControl x:Name="XamlCodeEditor"
+                                         Height="200"
+                                         HorizontalAlignment="Stretch"
+                                         IsReadOnly="True"
+                                         ShowLineNumbers="True"
+                                         FontSize="13"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- C# Code Example -->
+                <Border Background="{DynamicResource GalleryCardBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="14"
+                        Padding="20"
+                        Margin="0,0,0,16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="C# Code Example"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   Margin="0,0,0,16"/>
+                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                                CornerRadius="8"
+                                Padding="0"
+                                HorizontalAlignment="Stretch">
+                            <EditControl x:Name="CSharpCodeEditor"
+                                         Height="200"
+                                         HorizontalAlignment="Stretch"
+                                         IsReadOnly="True"
+                                         ShowLineNumbers="True"
+                                         FontSize="13"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Toast notification overlay host (renders on top of content) -->
+        <ToastNotificationHost x:Name="ToastHost"
+                               Position="TopRight"
+                               MaxVisibleToasts="5"
+                               ToastWidth="380"
+                               Spacing="8"/>
+    </Grid>
+</Page>

@@ -1,0 +1,222 @@
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToolBarPage"
+      Title="ToolBar">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="ToolBar"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A container for a group of commands or controls."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic ToolBar Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic ToolBar"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="A toolbar with buttons."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="8">
+                    <ToolBar Background="Transparent">
+                        <Button Content="New" Width="60" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Button Content="Open" Width="60" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Button Content="Save" Width="60" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Separator/>
+                        <Button Content="Cut" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Button Content="Copy" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Button Content="Paste" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    </ToolBar>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ToolBar with Mixed Controls Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="ToolBar with Mixed Controls"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Toolbars can contain various types of controls."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="8">
+                    <ToolBar Background="Transparent">
+                        <Button Content="File" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Separator/>
+                        <TextBlock Text="Zoom:" VerticalAlignment="Center" Foreground="{DynamicResource GalleryTextTertiary}" Margin="4,0"/>
+                        <ComboBox Width="80" Height="28">
+                            <ComboBoxItem Content="50%"/>
+                            <ComboBoxItem Content="75%"/>
+                            <ComboBoxItem Content="100%" IsSelected="True"/>
+                            <ComboBoxItem Content="150%"/>
+                            <ComboBoxItem Content="200%"/>
+                        </ComboBox>
+                        <Separator/>
+                        <CheckBox Content="Bold" Margin="4,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <CheckBox Content="Italic" Margin="4,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Separator/>
+                        <TextBox Width="150" Height="28" PlaceholderText="Search..."/>
+                    </ToolBar>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Multiple ToolBars Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="ToolBar Tray"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Multiple toolbars can be organized in a tray."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="8">
+                    <StackPanel Orientation="Vertical">
+                        <ToolBar Background="Transparent" Margin="0,0,0,4">
+                            <Button Content="New" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button Content="Open" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button Content="Save" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button Content="Print" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </ToolBar>
+                        <ToolBar Background="Transparent">
+                            <Button Content="Undo" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button Content="Redo" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Separator/>
+                            <Button Content="Find" Width="50" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button Content="Replace" Width="60" Height="26" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </ToolBar>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Click toolbar buttons to see the action."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="8">
+                    <StackPanel Orientation="Vertical">
+                        <ToolBar Background="Transparent" Margin="0,0,0,16">
+                            <Button x:Name="NewButton" Content="New" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="OpenButton" Content="Open" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="SaveButton" Content="Save" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Separator/>
+                            <Button x:Name="UndoButton" Content="Undo" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="RedoButton" Content="Redo" Width="50" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </ToolBar>
+                        <TextBlock x:Name="ActionText"
+                                   Text="No action performed"
+                                   Foreground="{DynamicResource GalleryAccent}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>
+

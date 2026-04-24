@@ -1,0 +1,160 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.AppBarSeparatorPage"
+      Title="AppBarSeparator">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="AppBarSeparator"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A vertical line that visually separates groups of commands in a CommandBar or toolbar."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- AppBarSeparator in Toolbar Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="AppBarSeparator in Toolbar"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Separators divide toolbar buttons into logical groups."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <!-- File operations group -->
+                        <AppBarButton x:Name="NewButton"
+                                      Label="New"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+                        <AppBarButton x:Name="OpenButton"
+                                      Label="Open"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+                        <AppBarButton x:Name="SaveButton"
+                                      Label="Save"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+
+                        <!-- Separator between file and edit groups -->
+                        <AppBarSeparator Margin="4,4,4,4"/>
+
+                        <!-- Edit operations group -->
+                        <AppBarButton x:Name="CutButton"
+                                      Label="Cut"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+                        <AppBarButton x:Name="CopyButton"
+                                      Label="Copy"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+                        <AppBarButton x:Name="PasteButton"
+                                      Label="Paste"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+
+                        <!-- Separator between edit and undo groups -->
+                        <AppBarSeparator Margin="4,4,4,4"/>
+
+                        <!-- Undo/Redo group -->
+                        <AppBarButton x:Name="UndoButton"
+                                      Label="Undo"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,4,0"/>
+                        <AppBarButton x:Name="RedoButton"
+                                      Label="Redo"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"/>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock x:Name="ToolbarStatusText"
+                           Text="Click a toolbar button to see its action."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           Margin="0,12,0,0"/>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

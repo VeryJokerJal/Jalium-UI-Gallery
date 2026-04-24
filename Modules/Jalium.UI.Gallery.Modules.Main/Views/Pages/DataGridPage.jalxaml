@@ -1,0 +1,166 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DataGridPage"
+      Title="DataGrid">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="DataGrid"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that displays data in a customizable grid with rows and columns."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Click rows to select, click column headers to sort."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <DataGrid x:Name="DemoDataGrid"
+                                  Height="200"
+                                  Margin="0,0,0,16"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Selected: "
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="12"/>
+                            <TextBlock x:Name="SelectedItemText"
+                                       Text="(none)"
+                                       Foreground="{DynamicResource GalleryTextPrimary}"
+                                       FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Features Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Features"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="DataGrid supports various features for data display and editing."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="* Auto-generate columns from data source"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Column sorting (click headers)"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Column resizing (drag column edges)"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Single and Extended selection modes"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Row and Column headers visibility"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Alternating row backgrounds"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Grid lines customization"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Keyboard navigation (Up/Down/Home/End)"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

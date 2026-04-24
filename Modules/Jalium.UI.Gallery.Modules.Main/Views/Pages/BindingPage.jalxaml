@@ -1,0 +1,258 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.BindingPage"
+      Title="Data Binding">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="Data Binding"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="Demonstrates various data binding features including ElementName binding."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- ElementName Binding Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="ElementName Binding"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Bind to another element's property using ElementName."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Slider Value (source):"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,8"/>
+                        <Slider x:Name="ValueSlider"
+                                Width="300"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="50"
+                                Margin="0,0,0,16"/>
+
+                        <TextBlock Text="TextBlock bound to Slider.Value:"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock x:Name="ValueDisplay"
+                                   Text="{Binding Value, ElementName=ValueSlider, StringFormat='Value: {0:F0}'}"
+                                   FontSize="24"
+                                   Foreground="{DynamicResource GalleryAccent}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Two-Way Binding Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Two-Way ElementName Binding"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="TextBox text synced between two controls."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Source TextBox:"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,8"/>
+                        <TextBox x:Name="SourceTextBox"
+                                 Width="300"
+                                 Height="32"
+                                 Text="Type here..."
+                                 Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Target TextBox (bound to SourceTextBox.Text):"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,8"/>
+                        <TextBox x:Name="TargetTextBox"
+                                 Width="300"
+                                 Height="32"
+                                 Text="{Binding Text, ElementName=SourceTextBox, Mode=TwoWay}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Code Example Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="JALXAML Syntax"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="How to use ElementName binding in JALXAML."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16"
+                        Margin="0,0,0,12">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&lt;!-- One-way binding to another element --&gt;"
+                                   Foreground="#6A9955"
+                                   FontSize="13"
+                                   FontFamily="Consolas"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="&lt;Slider x:Name=&quot;mySlider&quot; Value=&quot;50&quot;/&gt;"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   FontFamily="Consolas"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="&lt;TextBlock Text=&quot;{Binding Value, ElementName=mySlider}&quot;/&gt;"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   FontFamily="Consolas"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&lt;!-- Two-way binding between controls --&gt;"
+                                   Foreground="#6A9955"
+                                   FontSize="13"
+                                   FontFamily="Consolas"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="&lt;TextBox x:Name=&quot;source&quot;/&gt;"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   FontFamily="Consolas"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="&lt;TextBox Text=&quot;{Binding Text, ElementName=source, Mode=TwoWay}&quot;/&gt;"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   FontFamily="Consolas"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Binding Modes Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Binding Modes"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="OneWay - Source to target only (default)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="TwoWay - Source to target and target to source"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="OneWayToSource - Target to source only"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="OneTime - Source to target once at binding time"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

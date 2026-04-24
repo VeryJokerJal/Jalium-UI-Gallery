@@ -1,0 +1,296 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ViewboxPage"
+      Title="Viewbox">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="Viewbox"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A decorator that scales its child to fit the available space."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Uniform Stretch Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Uniform Stretch"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Content is scaled uniformly to fit while preserving aspect ratio."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="100" Margin="0,0,16,0">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="150" Height="100" Margin="0,0,16,0">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="200" Height="100">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </Viewbox>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Stretch Modes Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Stretch Modes"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Different stretch modes control how content fills the viewbox."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                                <TextBlock Text="None" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                                <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80">
+                                    <Viewbox Stretch="None">
+                                        <Ellipse Width="60" Height="40" Fill="{DynamicResource GalleryAccent}"/>
+                                    </Viewbox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                                <TextBlock Text="Fill" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                                <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80">
+                                    <Viewbox Stretch="Fill">
+                                        <Ellipse Width="60" Height="40" Fill="#00CC6A"/>
+                                    </Viewbox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                                <TextBlock Text="Uniform" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                                <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80">
+                                    <Viewbox Stretch="Uniform">
+                                        <Ellipse Width="60" Height="40" Fill="#F7630C"/>
+                                    </Viewbox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="UniformToFill" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                                <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80" ClipToBounds="True">
+                                    <Viewbox Stretch="UniformToFill">
+                                        <Ellipse Width="60" Height="40" Fill="#E81123"/>
+                                    </Viewbox>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Stretch Direction Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Stretch Direction"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Control whether content scales up, down, or both."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                            <TextBlock Text="UpOnly" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="120" Height="80">
+                                <Viewbox Stretch="Uniform" StretchDirection="UpOnly">
+                                    <TextBlock Text="Small" FontSize="8" Foreground="{DynamicResource GalleryAccent}"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                            <TextBlock Text="DownOnly" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="60" Height="40">
+                                <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+                                    <TextBlock Text="Large" FontSize="24" Foreground="#00CC6A"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Both" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="60">
+                                <Viewbox Stretch="Uniform" StretchDirection="Both">
+                                    <TextBlock Text="Both" FontSize="16" Foreground="#F7630C"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Resize the container to see viewbox scaling in action."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Text="Width:" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <Slider x:Name="WidthSlider" Minimum="50" Maximum="400" Value="200" Width="200"/>
+                            <TextBlock x:Name="WidthText" Text="200" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Text="Height:" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <Slider x:Name="HeightSlider" Minimum="50" Maximum="300" Value="150" Width="200"/>
+                            <TextBlock x:Name="HeightText" Text="150" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <Border x:Name="DemoContainer" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="200" Height="150" HorizontalAlignment="Left">
+                            <Viewbox Stretch="Uniform">
+                                <StackPanel Orientation="Vertical" Width="200">
+                                    <TextBlock Text="Viewbox Demo" FontSize="18" Foreground="{DynamicResource GalleryTextPrimary}" HorizontalAlignment="Center"/>
+                                    <Button Content="Scaled Button" Width="120" Height="30" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Use Cases Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Common Use Cases"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Viewbox is useful for various scenarios."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="• Scaling icons to different sizes" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,8"/>
+                        <TextBlock Text="• Creating responsive layouts" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,8"/>
+                        <TextBlock Text="• Fitting vector graphics" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,8"/>
+                        <TextBlock Text="• Thumbnail previews" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,8"/>
+                        <TextBlock Text="• Zoom functionality" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

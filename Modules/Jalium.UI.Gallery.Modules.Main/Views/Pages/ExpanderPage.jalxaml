@@ -1,0 +1,251 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ExpanderPage"
+      Title="Expander">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="Expander"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that can expand and collapse to show or hide content."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic Expander Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic Expander"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Click the header to expand or collapse."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="Click to expand" Margin="0,0,0,8">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="This content is revealed when the expander is expanded. You can put any content here including text, images, and other controls."
+                                           Foreground="{DynamicResource GalleryTextSecondary}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                        <Expander Header="Initially expanded" IsExpanded="True">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="This expander starts in the expanded state. Click the header to collapse it."
+                                           Foreground="{DynamicResource GalleryTextSecondary}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Expander with Complex Content Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Expander with Complex Content"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Expanders can contain any type of content."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="Settings" Margin="0,0,0,8">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Content="Enable notifications" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                    <CheckBox Content="Auto-save documents" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                    <CheckBox Content="Show line numbers" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Theme:" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <ComboBox Width="120" Height="28">
+                                            <ComboBoxItem Content="Light"/>
+                                            <ComboBoxItem Content="Dark" IsSelected="True"/>
+                                            <ComboBoxItem Content="System"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Expander>
+                        <Expander Header="User Profile">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                        <TextBlock Text="Name:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                                        <TextBox Width="200" Height="28" Text="John Doe"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                        <TextBlock Text="Email:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                                        <TextBox Width="200" Height="28" Text="john@example.com"/>
+                                    </StackPanel>
+                                    <Button Content="Save Changes" Width="120" Height="32" HorizontalAlignment="Left" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                </StackPanel>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Nested Expanders Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Nested Expanders"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Expanders can be nested inside each other."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Expander Header="Category A">
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8" CornerRadius="8">
+                            <StackPanel Orientation="Vertical">
+                                <Expander Header="Subcategory A1" Margin="0,0,0,4">
+                                    <Border Background="#303030" Padding="12" CornerRadius="8">
+                                        <TextBlock Text="Content for Subcategory A1" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                                    </Border>
+                                </Expander>
+                                <Expander Header="Subcategory A2" Margin="0,0,0,4">
+                                    <Border Background="#303030" Padding="12" CornerRadius="8">
+                                        <TextBlock Text="Content for Subcategory A2" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                                    </Border>
+                                </Expander>
+                                <Expander Header="Subcategory A3">
+                                    <Border Background="#303030" Padding="12" CornerRadius="8">
+                                        <TextBlock Text="Content for Subcategory A3" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                                    </Border>
+                                </Expander>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Use buttons to control the expander programmatically."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Button x:Name="ExpandButton" Content="Expand" Width="80" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="CollapseButton" Content="Collapse" Width="80" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="ToggleButton" Content="Toggle" Width="80" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </StackPanel>
+                        <Expander x:Name="ControlledExpander" Header="Controlled Expander">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="This expander can be controlled using the buttons above."
+                                           Foreground="{DynamicResource GalleryTextSecondary}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

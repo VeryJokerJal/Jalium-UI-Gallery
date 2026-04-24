@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.LabelPage">
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Margin="24">
+            <!-- Header -->
+            <TextBlock Text="Label" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
+            <TextBlock Text="A control that displays text and can be associated with a target element for accessibility."
+                       FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
+
+            <!-- Interactive Demo -->
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Label Content="Username:" Width="100" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <TextBox x:Name="UsernameBox" Width="200" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Label Content="Password:" Width="100" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <PasswordBox Width="200" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Email:" Width="100" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <TextBox Width="200" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Features -->
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+                    <TextBlock Text="• Associates label with target control" Margin="0,0,0,4" />
+                    <TextBlock Text="• Click label to focus target" Margin="0,0,0,4" />
+                    <TextBlock Text="• Access key support (Alt+Key)" Margin="0,0,0,4" />
+                    <TextBlock Text="• Improves form accessibility" Margin="0,0,0,4" />
+                </StackPanel>
+            </Border>
+
+            <!-- XAML Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="XAML Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="XamlCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- C# Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="C# Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="CSharpCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
