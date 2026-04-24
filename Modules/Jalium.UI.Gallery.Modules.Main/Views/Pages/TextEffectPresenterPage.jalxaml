@@ -1,0 +1,210 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TextEffectPresenterPage"
+      Title="TextEffectPresenter">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="TextEffectPresenter"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="Per-character animated text surface for lyrics, subtitles, notifications, and playful UI."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,24"/>
+
+        <!-- Card 1: Mutation API — Append / Insert / Remove / Clear -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Mutation API"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Each button triggers a call on the presenter — new graphemes enter, existing ones shift or dissipate."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,16"/>
+
+                <!-- Buttons are placed BEFORE MutationDemoHost on purpose: the
+                     demo host grows with its content (AppendLine etc. add lines),
+                     and a Vertical StackPanel would push anything placed after
+                     it downward every time content grows. That destroys rapid
+                     re-clicking because users (and automation) target a fixed
+                     on-screen position — a second click after the first one
+                     lands in empty space now under the relocated button. Hosting
+                     the buttons above the demo host keeps their position pinned
+                     no matter how tall the presenter gets. -->
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,16">
+                    <Button Content="Append 'lyric '"
+                            Click="OnAppendClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="AppendLine"
+                            Click="OnAppendLineClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Insert @3"
+                            Click="OnInsertClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Remove 2 @3"
+                            Click="OnRemoveClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Clear"
+                            Click="OnClearClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Reset text"
+                            Click="OnResetClick"/>
+                </StackPanel>
+
+                <Border x:Name="MutationDemoHost"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="24"
+                        MinHeight="100"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Card 2: Built-in effects -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Built-in Effects"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Swap the per-cell animation driver. Each button re-enters the text so you see the full enter animation."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,16"/>
+
+                <Border x:Name="EffectSwitchDemoHost"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="24"
+                        MinHeight="80"
+                        Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="RiseSettle (default)"
+                            Click="OnUseRiseSettleClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="FadeIn"
+                            Click="OnUseFadeInClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Typewriter"
+                            Click="OnUseTypewriterClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="WaveBounce"
+                            Click="OnUseWaveBounceClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="PulsingBlur (GPU shader)"
+                            Click="OnUsePulsingBlurClick"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Card 3: Compose with UIElement.Effect (GPU pass) -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Composition with UIElement.Effect"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="The per-cell animation (TextEffect) runs first on CPU, then the whole surface goes through a GPU pixel-shader pass (UIElement.Effect). Toggle a BlurEffect on top to see the two layers compose."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,16"/>
+
+                <Border x:Name="EffectComposeDemoHost"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="24"
+                        MinHeight="80"
+                        Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="No GPU effect"
+                            Click="OnNoGpuEffectClick"
+                            Margin="0,0,8,0"/>
+                    <Button Content="BlurEffect 4px"
+                            Click="OnBlur4Click"
+                            Margin="0,0,8,0"/>
+                    <Button Content="BlurEffect 10px"
+                            Click="OnBlur10Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="220"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="320"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

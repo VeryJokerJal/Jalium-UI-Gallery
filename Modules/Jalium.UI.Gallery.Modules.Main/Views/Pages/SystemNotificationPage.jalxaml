@@ -1,0 +1,243 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SystemNotificationPage"
+      Title="SystemNotification">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Margin="0,0,0,24">
+            <!-- Page Title -->
+            <TextBlock Text="System Notification"
+                       FontSize="32"
+                       Foreground="{DynamicResource GalleryTextPrimary}"
+                       Margin="0,0,0,8"/>
+
+            <!-- Description -->
+            <TextBlock Text="Sends native OS notifications via SystemNotificationManager. Supports titles, body text, actions, priority levels, and activation callbacks."
+                       FontSize="14"
+                       Foreground="{DynamicResource GalleryTextTertiary}"
+                       Margin="0,0,0,24"/>
+
+            <!-- Basic Notification Card -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Basic Notification"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="Send a simple system notification with title and body text."
+                               FontSize="12"
+                               Foreground="{DynamicResource GalleryTextMuted}"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Title:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                <TextBox x:Name="BasicTitleBox" Text="Hello from Jalium.UI" Width="300" Height="28"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Body:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                <TextBox x:Name="BasicBodyBox" Text="This is a system notification demo." Width="300" Height="28"/>
+                            </StackPanel>
+                            <Button x:Name="SendBasicButton" Content="Send Notification" Width="150" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Priority Levels Card -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Priority Levels"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="Notifications can be sent with different priority levels that affect delivery behavior."
+                               FontSize="12"
+                               Foreground="{DynamicResource GalleryTextMuted}"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="16">
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="LowPriorityButton" Content="Low" Width="70" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="NormalPriorityButton" Content="Normal" Width="80" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="HighPriorityButton" Content="High" Width="70" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Notification with Actions Card -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Notification with Actions"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="Add action buttons to notifications. The Activated event fires when the user clicks the notification or an action button."
+                               FontSize="12"
+                               Foreground="{DynamicResource GalleryTextMuted}"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="SendActionButton" Content="Send with Actions" Width="150" Height="28" Margin="0,0,0,12" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <TextBlock x:Name="ActionResultText"
+                                       Text="Click a notification action to see the result here."
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="12"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Advanced Options Card -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Advanced Options"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="Configure notification expiration, silent mode, tag/group for replacement, and manage existing notifications."
+                               FontSize="12"
+                               Foreground="{DynamicResource GalleryTextMuted}"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Tag:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                <TextBox x:Name="TagBox" Text="demo-tag" Width="200" Height="28"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Group:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                <TextBox x:Name="GroupBox" Text="gallery" Width="200" Height="28"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Expiration:" Width="80" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                                <Slider x:Name="ExpirationSlider" Minimum="0" Maximum="30" Value="10" Width="150" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="ExpirationText" Text="10s" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <CheckBox x:Name="SilentCheckBox" Content="Silent (no sound)" Margin="0,0,0,12" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="SendAdvancedButton" Content="Send Tagged" Width="120" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <Button x:Name="RemoveTagButton" Content="Remove by Tag" Width="120" Height="28" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <Button x:Name="ClearAllButton" Content="Clear All" Width="100" Height="28" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Platform Support Card -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Platform Support"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="System notification availability depends on the current platform."
+                               FontSize="12"
+                               Foreground="{DynamicResource GalleryTextMuted}"
+                               Margin="0,0,0,16"/>
+
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="16">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock x:Name="SupportedText"
+                                       Text="Checking..."
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="13"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- XAML Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="XAML Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="XamlCodeEditor"
+                                     Height="150"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- C# Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="C# Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="CSharpCodeEditor"
+                                     Height="350"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

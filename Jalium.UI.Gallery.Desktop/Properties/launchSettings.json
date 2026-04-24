@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Jalium.UI.Gallery": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "JALIUM_ENABLE_GPU_DEBUG": "1",
+        "JALIUM_D3D12_FORCE_FULL_REPLAY": "0",
+        "JALIUM_DEBUG_RENDER": "0"
+      },
+      "nativeDebugging": true
+    }
+  }
+}

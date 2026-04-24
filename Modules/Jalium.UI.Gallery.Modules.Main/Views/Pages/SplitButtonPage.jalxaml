@@ -1,0 +1,170 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SplitButtonPage"
+      Title="SplitButton">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="SplitButton"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control with a primary action and a drop-down button that opens a Flyout."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic SplitButton Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic SplitButton"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Primary click runs the action. Drop-down selects the target."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <SplitButton x:Name="RunSplitButton"
+                                     Content="Run"
+                                     Width="180"
+                                     Height="36"
+                                     Click="OnRunSplitButtonClick" Foreground="{DynamicResource GalleryTextPrimary}">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Jalium.UI.Controls" Click="OnRunTargetClick"/>
+                                    <MenuFlyoutItem Text="Jalium.UI.Core" Click="OnRunTargetClick"/>
+                                    <MenuFlyoutItem Text="Jalium.UI.Xaml" Click="OnRunTargetClick"/>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+
+                        <TextBlock x:Name="RunStatusText"
+                                   Text="Selected target: Jalium.UI.Controls"
+                                   FontSize="13"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   Margin="0,12,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Command and Programmatic Flyout Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Command + Flyout"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Demonstrates Command/CommandParameter and programmatic flyout state."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <SplitButton x:Name="BuildSplitButton"
+                                     Content="Build"
+                                     Width="180"
+                                     Height="36"
+                                     Margin="0,0,0,12" Foreground="{DynamicResource GalleryTextPrimary}">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Build Debug" Click="OnBuildMenuItemClick"/>
+                                    <MenuFlyoutItem Text="Build Release" Click="OnBuildMenuItemClick"/>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <Button Content="Open Flyout"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,8,0"
+                                    Click="OnOpenBuildFlyoutClick" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button Content="Close Flyout"
+                                    Width="110"
+                                    Height="32"
+                                    Click="OnCloseBuildFlyoutClick" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </StackPanel>
+
+                        <TextBlock x:Name="BuildStatusText"
+                                   Text="Ready."
+                                   FontSize="13"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

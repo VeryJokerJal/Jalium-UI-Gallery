@@ -1,0 +1,175 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TreeDataGridPage"
+      Title="TreeDataGrid">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="TreeDataGrid"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that displays hierarchical data in a flat, column-based grid with expand/collapse support."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Click arrows to expand/collapse, click rows to select, click column headers to sort."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <Button x:Name="ExpandAllButton"
+                                    Content="Expand All"
+                                    Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            <Button x:Name="CollapseAllButton"
+                                    Content="Collapse All"
+                                    Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        </StackPanel>
+                        <TreeDataGrid x:Name="DemoTreeDataGrid"
+                                      Height="280"
+                                      Margin="0,0,0,12"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Selected: "
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="12"/>
+                            <TextBlock x:Name="SelectedItemText"
+                                       Text="(none)"
+                                       Foreground="{DynamicResource GalleryTextPrimary}"
+                                       FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Features Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Features"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="TreeDataGrid combines tree hierarchy with column-based data display."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="* Hierarchical expand/collapse with indentation"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Reuses DataGrid column types (Text, CheckBox, Template, etc.)"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Row virtualization for large datasets"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Column sorting (recursive across all levels)"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Column resizing and drag reorder"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Single and Extended selection modes"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* Keyboard navigation (arrows, Left/Right expand/collapse)"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="* ChildrenPropertyPath or ChildrenSelector for data binding"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   FontSize="14"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Code Example Card -->
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

@@ -1,0 +1,178 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SectionDemoPage"
+      Title="Section Demo">
+
+    @section PaneFooterSection {
+        <StackPanel Margin="12,8,12,12">
+            <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="10,6">
+                <TextBlock Text="@@RenderSection" Foreground="{DynamicResource GalleryTextPrimary}" FontSize="11" TextAlignment="Center"/>
+            </Border>
+            <TextBlock Text="From SectionDemoPage" Foreground="{DynamicResource GalleryTextMuted}" FontSize="10" TextAlignment="Center" Margin="0,4,0,0"/>
+        </StackPanel>
+    }
+    @section NavHeader {
+        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="12,8" Margin="0,0,0,4">
+            <TextBlock Text="Jalium.UI" Foreground="{DynamicResource GalleryTextPrimary}" FontSize="16" FontWeight="Bold"/>
+        </Border>
+    }
+    @section NavItems {
+        <StackPanel Margin="0,4,0,4">
+            <TextBlock Text="  Home" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Margin="0,4,0,4"/>
+            <TextBlock Text="  Components" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Margin="0,4,0,4"/>
+            <TextBlock Text="  Settings" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Margin="0,4,0,4"/>
+        </StackPanel>
+    }
+    @section NavFooter {
+        <Border Background="#2D7D2D" CornerRadius="8" Padding="10,6">
+            <TextBlock Text="v1.0 - Section Demo" Foreground="{DynamicResource GalleryTextPrimary}" FontSize="11" TextAlignment="Center"/>
+        </Border>
+    }
+    @section PageTitle {
+        <TextBlock Text="Dashboard" Foreground="{DynamicResource GalleryTextPrimary}" FontSize="24" FontWeight="Bold" Margin="0,0,0,8"/>
+    }
+    @section PageContent {
+        <StackPanel>
+            <TextBlock Text="Welcome to the dashboard. This entire layout is built with @@section and @@RenderSection." Foreground="{DynamicResource GalleryTextTertiary}" FontSize="13" Margin="0,0,0,12"/>
+            <Border Background="#1A3A5C" CornerRadius="8" Padding="16" Margin="0,0,0,8">
+                <TextBlock Text="Card 1 - Rendered from @@RenderSection" Foreground="#88CCFF" FontSize="13"/>
+            </Border>
+            <Border Background="#3A1A5C" CornerRadius="8" Padding="16">
+                <TextBlock Text="Card 2 - Also from a section" Foreground="#CC88FF" FontSize="13"/>
+            </Border>
+        </StackPanel>
+    }
+
+    <ScrollViewer>
+    <StackPanel Orientation="Vertical" Margin="0,0,24,24">
+
+        <TextBlock Text="@@section / @@RenderSection"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+        <TextBlock Text="Define reusable named sections and render them anywhere in the page."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Demo 1: Navigation-style layout using sections -->
+        <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="1. Navigation Layout with Sections"
+                           FontSize="16" Foreground="{DynamicResource GalleryAccentLight}" Margin="0,0,0,4"/>
+                <TextBlock Text="A sidebar + content layout built entirely with @@section and @@RenderSection."
+                           FontSize="12" Foreground="{DynamicResource GalleryTextMuted}" Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="0">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Simulated nav pane -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Width="200" Padding="12">
+                            <StackPanel>
+                                @RenderSection("NavHeader")
+                                @RenderSection("NavItems")
+                                <Border Margin="0,40,0,0">
+                                    @RenderSection("NavFooter")
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <!-- Simulated content area -->
+                        <StackPanel Margin="20,12,20,12" Width="400">
+                            @RenderSection("PageTitle")
+                            @RenderSection("PageContent")
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Demo 2: Reuse sections -->
+        <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="2. Reuse Sections Multiple Times"
+                           FontSize="16" Foreground="{DynamicResource GalleryAccentLight}" Margin="0,0,0,4"/>
+                <TextBlock Text="The same section can be rendered in multiple locations."
+                           FontSize="12" Foreground="{DynamicResource GalleryTextMuted}" Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16">
+                    <StackPanel>
+                        @RenderSection("NavHeader")
+                        <TextBlock Text="--- separator ---" Foreground="#444444" FontSize="11" Margin="0,8,0,8" TextAlignment="Center"/>
+                        @RenderSection("NavHeader")
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Syntax reference -->
+        <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="Syntax Reference"
+                           FontSize="16" Foreground="{DynamicResource GalleryAccentLight}" Margin="0,0,0,12"/>
+                <Border Background="#0B0814" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@section NavHeader {" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text='    &lt;Border Background="{DynamicResource GalleryAccent}"&gt;...&lt;/Border&gt;' Foreground="#CE9178" FontSize="12" FontFamily="Consolas" Margin="8,2,0,0"/>
+                        <TextBlock Text="}" Foreground="#C586C0" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="" FontSize="6"/>
+                        <TextBlock Text="@@RenderSection(&quot;NavHeader&quot;)" Foreground="#DCDCAA" FontSize="12" FontFamily="Consolas"/>
+                        <TextBlock Text="@@RenderSection(&quot;NavFooter&quot;)" Foreground="#DCDCAA" FontSize="12" FontFamily="Consolas"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+    </ScrollViewer>
+</Page>

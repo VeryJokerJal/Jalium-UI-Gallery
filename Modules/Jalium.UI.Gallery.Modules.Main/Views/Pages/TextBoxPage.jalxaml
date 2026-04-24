@@ -1,0 +1,223 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TextBoxPage"
+      Title="TextBox">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="TextBox"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A single-line text input control."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic TextBox Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic TextBox"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Standard text input with placeholder."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBox Width="300"
+                                 Height="32"
+                                 Margin="0,0,0,12"/>
+                        <TextBox Width="300"
+                                 Height="32"
+                                 Text="Pre-filled text"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- TextBox States Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="TextBox States"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Enabled and disabled states."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="200"
+                                 Height="32"
+                                 Text="Editable"
+                                 Margin="0,0,12,0"/>
+                        <TextBox Width="200"
+                                 Height="32"
+                                 Text="Disabled"
+                                 IsEnabled="False"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Clipboard Operations Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Clipboard Operations"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Use Ctrl+C to copy, Ctrl+X to cut, Ctrl+V to paste, Ctrl+A to select all."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Source TextBox (select text and copy):"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,8"/>
+                        <TextBox x:Name="SourceTextBox"
+                                 Width="400"
+                                 Height="32"
+                                 Text="Select this text and press Ctrl+C to copy"
+                                 Margin="0,0,0,16"/>
+                        <TextBlock Text="Target TextBox (paste here with Ctrl+V):"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,8"/>
+                        <TextBox x:Name="TargetTextBox"
+                                 Width="400"
+                                 Height="32"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Keyboard Shortcuts Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Keyboard Shortcuts"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Ctrl+A - Select all text"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Ctrl+C - Copy selected text"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Ctrl+X - Cut selected text"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Ctrl+V - Paste from clipboard"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Ctrl+Z - Undo"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Ctrl+Y - Redo"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

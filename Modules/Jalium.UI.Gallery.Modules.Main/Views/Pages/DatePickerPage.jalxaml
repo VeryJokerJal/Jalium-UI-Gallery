@@ -1,0 +1,234 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DatePickerPage"
+      Title="DatePicker">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="DatePicker"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that lets users select a date from a calendar dropdown."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic DatePicker Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic DatePicker"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Click to open the calendar and select a date."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker Width="200" Margin="0,0,16,0"/>
+                        <DatePicker Width="200" IsEnabled="False"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- DatePicker with Formats Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Date Formats"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="DatePicker supports different date format displays."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Short format:" Width="120" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                            <DatePicker Width="200" SelectedDateFormat="Short"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Long format:" Width="120" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                            <DatePicker Width="250" SelectedDateFormat="Long"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- DatePicker with Constraints Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Date Range Constraints"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="DatePicker can have minimum and maximum date limits."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Start Date:" Width="120" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="StartDatePicker" Width="200"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="End Date:" Width="120" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="EndDatePicker" Width="200"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Select a date and see the formatted result."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Text="Select date:" Width="120" Foreground="{DynamicResource GalleryTextTertiary}" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="DemoDatePicker" Width="200"/>
+                        </StackPanel>
+                        <TextBlock x:Name="SelectedDateText"
+                                   Text="No date selected"
+                                   Foreground="{DynamicResource GalleryAccent}"
+                                   FontSize="14"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Use Cases Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Common Use Cases"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Examples of DatePicker in real scenarios."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Birth Date" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4"/>
+                        <DatePicker Width="200" Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Appointment Date" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4"/>
+                        <DatePicker Width="200" Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Project Deadline" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4"/>
+                        <DatePicker Width="200"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

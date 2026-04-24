@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GroupBoxPage">
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Margin="24">
+            <!-- Header -->
+            <TextBlock Text="GroupBox" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
+            <TextBlock Text="A control that groups related content with a header and border."
+                       FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
+
+            <!-- Interactive Demo -->
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <GroupBox Header="Personal Information" Width="250" Margin="0,0,16,0" Foreground="{DynamicResource GalleryTextPrimary}">
+                            <StackPanel Orientation="Vertical" Margin="8">
+                                <TextBlock Text="Name:" Margin="0,0,0,4" />
+                                <TextBox Margin="0,0,0,8" />
+                                <TextBlock Text="Email:" Margin="0,0,0,4" />
+                                <TextBox />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Preferences" Width="250" Foreground="{DynamicResource GalleryTextPrimary}">
+                            <StackPanel Orientation="Vertical" Margin="8">
+                                <CheckBox Content="Receive updates" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <CheckBox Content="Enable dark mode" Margin="0,0,0,8" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                                <CheckBox Content="Show advanced options" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Features -->
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+                    <TextBlock Text="• Visual grouping of related controls" Margin="0,0,0,4" />
+                    <TextBlock Text="• Customizable header text" Margin="0,0,0,4" />
+                    <TextBlock Text="• Header can contain any content" Margin="0,0,0,4" />
+                    <TextBlock Text="• Styled border around content" Margin="0,0,0,4" />
+                </StackPanel>
+            </Border>
+
+            <!-- XAML Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="XAML Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="XamlCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- C# Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="C# Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="CSharpCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

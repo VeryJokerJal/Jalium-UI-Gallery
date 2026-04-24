@@ -1,0 +1,204 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MenuPage"
+      Title="Menu">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="Menu"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="Displays a list of menu items for commands and options."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Basic Menu Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Basic Menu"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="A standard menu with multiple items."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Menu Background="Transparent">
+                        <MenuItem Header="File">
+                            <MenuItem Header="New"/>
+                            <MenuItem Header="Open"/>
+                            <MenuItem Header="Save"/>
+                            <Separator/>
+                            <MenuItem Header="Exit"/>
+                        </MenuItem>
+                        <MenuItem Header="Edit">
+                            <MenuItem Header="Undo"/>
+                            <MenuItem Header="Redo"/>
+                            <Separator/>
+                            <MenuItem Header="Cut"/>
+                            <MenuItem Header="Copy"/>
+                            <MenuItem Header="Paste"/>
+                        </MenuItem>
+                        <MenuItem Header="View">
+                            <MenuItem Header="Zoom In"/>
+                            <MenuItem Header="Zoom Out"/>
+                            <MenuItem Header="Reset Zoom"/>
+                        </MenuItem>
+                        <MenuItem Header="Help">
+                            <MenuItem Header="About"/>
+                        </MenuItem>
+                    </Menu>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Menu with Icons Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Menu with Keyboard Shortcuts"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Menu items can display keyboard shortcuts."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Menu Background="Transparent">
+                        <MenuItem Header="File">
+                            <MenuItem Header="New" InputGestureText="Ctrl+N"/>
+                            <MenuItem Header="Open" InputGestureText="Ctrl+O"/>
+                            <MenuItem Header="Save" InputGestureText="Ctrl+S"/>
+                            <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S"/>
+                        </MenuItem>
+                        <MenuItem Header="Edit">
+                            <MenuItem Header="Undo" InputGestureText="Ctrl+Z"/>
+                            <MenuItem Header="Redo" InputGestureText="Ctrl+Y"/>
+                            <Separator/>
+                            <MenuItem Header="Cut" InputGestureText="Ctrl+X"/>
+                            <MenuItem Header="Copy" InputGestureText="Ctrl+C"/>
+                            <MenuItem Header="Paste" InputGestureText="Ctrl+V"/>
+                        </MenuItem>
+                    </Menu>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Nested Menu Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Nested Submenus"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Menu items can contain nested submenus."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Menu Background="Transparent">
+                        <MenuItem Header="Settings">
+                            <MenuItem Header="Appearance">
+                                <MenuItem Header="Theme">
+                                    <MenuItem Header="Light"/>
+                                    <MenuItem Header="Dark"/>
+                                    <MenuItem Header="System"/>
+                                </MenuItem>
+                                <MenuItem Header="Font Size">
+                                    <MenuItem Header="Small"/>
+                                    <MenuItem Header="Medium"/>
+                                    <MenuItem Header="Large"/>
+                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="Language">
+                                <MenuItem Header="English"/>
+                                <MenuItem Header="中文"/>
+                                <MenuItem Header="日本語"/>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

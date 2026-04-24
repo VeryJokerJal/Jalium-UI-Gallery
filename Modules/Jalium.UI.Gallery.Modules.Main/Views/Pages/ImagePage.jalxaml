@@ -1,0 +1,471 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ImagePage"
+      Title="Image">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="Image"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that displays an image with ControlTemplate support for borders, corner radius and clipping."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Remote Image"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Image loaded from a remote URL with Stretch.Uniform."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Border x:Name="ImageContainer"
+                                Height="300"
+                                CornerRadius="8"
+                                Background="#0B0814"
+                                Margin="0,0,0,12"/>
+                        <TextBlock x:Name="ImageStatusText"
+                                   Text="Loading image..."
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Stretch Modes Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Stretch Modes"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Compare the four stretch modes side-by-side using the same image."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <!-- 2x2 Grid for Stretch Mode demos -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Stretch.None -->
+                        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Text="Stretch.None"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Original size, no scaling"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="StretchNoneContainer"
+                                    Height="160"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.Fill -->
+                        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Text="Stretch.Fill"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fills container, may distort"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="StretchFillContainer"
+                                    Height="160"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.Uniform -->
+                        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="Stretch.Uniform"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fits inside, preserves ratio"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="StretchUniformContainer"
+                                    Height="160"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.UniformToFill -->
+                        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="Stretch.UniformToFill"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fills container, clips overflow"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="StretchUniformToFillContainer"
+                                    Height="160"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- SVG Image Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="SVG Image"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Vector image loaded from a remote SVG URL. SVG is rendered as vector graphics at any resolution without quality loss."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Border x:Name="SvgImageContainer"
+                                Height="400"
+                                CornerRadius="8"
+                                Background="#0B0814"
+                                Margin="0,0,0,12"/>
+                        <TextBlock x:Name="SvgStatusText"
+                                   Text="Loading SVG..."
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- SVG Stretch Modes Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="SVG Stretch Modes"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Compare the four stretch modes with an SVG vector image."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Stretch.None -->
+                        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Text="Stretch.None"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Original size, no scaling"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchNoneContainer"
+                                    Height="200"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.Fill -->
+                        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Text="Stretch.Fill"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fills container, may distort"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchFillContainer"
+                                    Height="200"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.Uniform -->
+                        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="Stretch.Uniform"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fits inside, preserves ratio"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchUniformContainer"
+                                    Height="200"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+
+                        <!-- Stretch.UniformToFill -->
+                        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="Stretch.UniformToFill"
+                                       Foreground="{DynamicResource GalleryAccent}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Fills container, clips overflow"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       FontSize="11"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="SvgStretchUniformToFillContainer"
+                                    Height="200"
+                                    Background="#0B0814"
+                                    CornerRadius="8"
+                                    ClipToBounds="True"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Styled Images Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Styled Images"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Image control supports CornerRadius, Border and Background via ControlTemplate."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <!-- Rounded corners -->
+                        <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                            <TextBlock Text="Rounded"
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="RoundedImageContainer"
+                                    Width="150"
+                                    Height="150"
+                                    Background="#0B0814"
+                                    CornerRadius="8"/>
+                        </StackPanel>
+
+                        <!-- Circle -->
+                        <StackPanel Orientation="Vertical" Margin="0,0,24,0">
+                            <TextBlock Text="Circle"
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="CircleImageContainer"
+                                    Width="150"
+                                    Height="150"
+                                    Background="#0B0814"
+                                    CornerRadius="8"/>
+                        </StackPanel>
+
+                        <!-- Bordered -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Bordered"
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8"/>
+                            <Border x:Name="BorderedImageContainer"
+                                    Width="150"
+                                    Height="150"
+                                    Background="#0B0814"
+                                    CornerRadius="8"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Properties Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Image Properties"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Source - The ImageSource to display (BitmapImage or SvgImage)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Stretch - How the image fills its area (None, Fill, Uniform, UniformToFill)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="StretchDirection - Limits scaling direction (UpOnly, DownOnly, Both)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Background - Background brush behind the image (via ControlTemplate)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="CornerRadius - Rounded corners with clipping (via ControlTemplate)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="BorderBrush / BorderThickness - Border around the image (via ControlTemplate)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

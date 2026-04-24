@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 导入 JALXAML 构建属性（开发模式，从源码导入） -->
+  <Import Project="..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-android</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>jalium.ui.gallery.android</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+    <RootNamespace>Jalium.UI.Gallery.Android</RootNamespace>
+    <AssemblyName>Jalium.UI.Gallery.Android</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <!-- 使用 Source Generator 生成代码，禁用 Build Task 的代码生成 -->
+    <EnableJalxamlCodeGeneration>false</EnableJalxamlCodeGeneration>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\**\*;bin\**\*;.tmp-build\**\*</DefaultItemExcludes>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+    <_JalxamlTasksPath>$(MSBuildProjectDirectory)\..\..\Jalium.UI\src\managed\Jalium.UI.Build\bin\$(Configuration)\net10.0\Jalium.UI.Build.dll</_JalxamlTasksPath>
+    <JalxamlCompilerPath>$(MSBuildProjectDirectory)\..\..\Jalium.UI\src\managed\Jalium.UI.Build\tools\jalxamlc.exe</JalxamlCompilerPath>
+  </PropertyGroup>
+
+  <!-- 引用本地 Jalium.UI Android 包（开发模式，内部聚合了 net10.0 核心 + .so 原生库） -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Android\Jalium.UI.Android.csproj" />
+    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jalium.UI.Gallery.Core\Jalium.UI.Gallery.Core.csproj" />
+    <ProjectReference Include="..\Modules\Jalium.UI.Gallery.Modules.Main\Jalium.UI.Gallery.Modules.Main.csproj" />
+    <ProjectReference Include="..\Services\Jalium.UI.Gallery.Services.Interfaces\Jalium.UI.Gallery.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\Jalium.UI.Gallery.Services\Jalium.UI.Gallery.Services.csproj" />
+  </ItemGroup>
+
+  <!-- 导入 JALXAML 构建 Targets（开发模式，从源码导入）必须位于项目定义之后 -->
+  <Import Project="..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.targets" />
+</Project>

@@ -426,3 +426,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Jalium IDE workspace metadata
+.jalium/
+
+# Local build/scratch scripts
+.tmp-build/

@@ -1,0 +1,255 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.WebViewPage"
+      Title="WebView">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="WebView"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that hosts web content using Microsoft Edge WebView2."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Browser Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Browser"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Navigate to any URL with back, forward, and refresh controls."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <!-- Address Bar -->
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="8"
+                        Margin="0,0,0,12">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="BackButton"
+                                Content="&lt;"
+                                Width="32"
+                                Height="32"
+                                Margin="0,0,4,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Button x:Name="ForwardButton"
+                                Content="&gt;"
+                                Width="32"
+                                Height="32"
+                                Margin="0,0,4,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <Button x:Name="RefreshButton"
+                                Content="R"
+                                Width="32"
+                                Height="32"
+                                Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <TextBox x:Name="AddressBar"
+                                 Height="32"
+                                 Width="600"
+                                 FontSize="13"
+                                 Margin="0,0,8,0"/>
+                        <Button x:Name="GoButton"
+                                Content="Go"
+                                Width="48"
+                                Height="32" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock x:Name="InlineStatusText"
+                           Text="Status: Initializing WebView..."
+                           Foreground="{DynamicResource GalleryTextSecondary}"
+                           FontSize="12"
+                           Margin="0,0,0,10"/>
+
+                <!-- WebView Container -->
+                <Border x:Name="WebViewContainer"
+                        Height="500"
+                        Background="#0B0814"
+                        CornerRadius="8"
+                        ClipToBounds="True"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Title Display Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Page Info"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Displays the current document title and navigation state."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="TitleText"
+                                   Text="Title: (not loaded)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock x:Name="StatusText"
+                                   Text="Status: Ready"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- JavaScript Execution Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Execute JavaScript"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Run JavaScript code in the web page and see the result."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBox x:Name="ScriptInput"
+                                 Height="32"
+                                 FontSize="13"
+                                 Margin="0,0,0,8"/>
+                        <Button x:Name="ExecuteScriptButton"
+                                Content="Execute"
+                                Height="32"
+                                Width="100"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Left" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                        <TextBlock x:Name="ScriptResultText"
+                                   Text="Result: "
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Properties Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="WebView Properties"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Source - The URI to navigate to (Uri)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="CanGoBack / CanGoForward - Navigation history state (bool, read-only)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="ZoomFactor - Zoom level from 0.25 to 4.0 (double)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="DefaultBackgroundColor - Background color before content loads (Color)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="DocumentTitle - Current page title (string, read-only)"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="CoreWebView2 - Underlying WebView2 instance for advanced usage"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

@@ -1,0 +1,207 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ProgressBarPage"
+      Title="ProgressBar">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Page Title -->
+        <TextBlock Text="ProgressBar"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Description -->
+        <TextBlock Text="A control that indicates the progress of an operation."
+                   FontSize="14"
+                   Foreground="{DynamicResource GalleryTextTertiary}"
+                   Margin="0,0,0,24"/>
+
+        <!-- Interactive Demo Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Interactive Demo"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Use the slider to change the progress value."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <ProgressBar x:Name="DemoProgressBar"
+                                     Value="45"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Value: "
+                                       Foreground="{DynamicResource GalleryTextTertiary}"
+                                       FontSize="12"/>
+                            <TextBlock x:Name="ProgressValue"
+                                       Text="45%"
+                                       Foreground="{DynamicResource GalleryTextPrimary}"
+                                       FontSize="12"/>
+                        </StackPanel>
+                        <Slider x:Name="ProgressSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="45"
+                                Height="24"
+                                Margin="0,16,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Progress Variants Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Progress Variants"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="ProgressBars with different values."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="25%"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <ProgressBar Value="25"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16"/>
+
+                        <TextBlock Text="50%"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <ProgressBar Value="50"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16"/>
+
+                        <TextBlock Text="75%"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <ProgressBar Value="75"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16"/>
+
+                        <TextBlock Text="100%"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <ProgressBar Value="100"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Indeterminate Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Indeterminate Mode"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="A progress bar that shows activity without a specific percentage."
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <ProgressBar IsIndeterminate="True"
+                                 Height="8"/>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

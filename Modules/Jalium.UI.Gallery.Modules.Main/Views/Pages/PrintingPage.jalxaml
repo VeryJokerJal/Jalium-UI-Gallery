@@ -1,0 +1,127 @@
+<Page
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PrintingPage"
+    Title="Printing System">
+    <StackPanel Orientation="Vertical">
+        <!-- Page Header -->
+        <TextBlock Text="Printing System" FontSize="32" FontWeight="Bold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8"/>
+        <TextBlock Text="WPF-compatible printing with PrintDialog, PrintQueue, and DocumentPaginator support." FontSize="14" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,24"/>
+
+        <!-- PrintDialog Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="PrintDialog" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8"/>
+                <TextBlock Text="Standard print dialog for selecting printer and print options." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Button x:Name="ShowPrintDialogButton" Content="Show Print Dialog" Width="150" Margin="0,0,8,0" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    <Button x:Name="PrintVisualButton" Content="Print Visual" Width="120" Foreground="{DynamicResource GalleryTextPrimary}"/>
+                </StackPanel>
+
+                <TextBlock x:Name="PrintStatus" Text="Print Status: Ready" FontSize="12" Foreground="#808080"/>
+            </StackPanel>
+        </Border>
+
+        <!-- PrintQueue Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="PrintQueue" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8"/>
+                <TextBlock Text="Represents a printer and provides print capabilities querying." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <Button x:Name="ListPrintersButton" Content="List Available Printers" Width="180" HorizontalAlignment="Left" Margin="0,0,0,12" Foreground="{DynamicResource GalleryTextPrimary}"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="12" MaxHeight="150">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="PrinterList" Text="Click to list printers..." FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- PrintCapabilities Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="PrintCapabilities" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8"/>
+                <TextBlock Text="Query printer capabilities including paper sizes, colors, and resolution." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <StackPanel>
+                    <TextBlock Text="Supported Features:" FontSize="13" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,8"/>
+                    <TextBlock Text="  - Page Sizes: Letter, Legal, A3, A4, A5, Tabloid, Executive" FontSize="12" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    <TextBlock Text="  - Orientations: Portrait, Landscape, Reverse" FontSize="12" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    <TextBlock Text="  - Colors: Color, Grayscale, Monochrome" FontSize="12" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    <TextBlock Text="  - Duplex: OneSided, TwoSidedShortEdge, TwoSidedLongEdge" FontSize="12" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    <TextBlock Text="  - Quality: Draft, Normal, High, Photographic" FontSize="12" Foreground="{DynamicResource GalleryTextTertiary}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- DocumentPaginator Section -->
+        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="DocumentPaginator" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8"/>
+                <TextBlock Text="Paginate documents for printing with IDocumentPaginatorSource interface." FontSize="13" Foreground="{DynamicResource GalleryTextTertiary}" Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="// Print a document" FontFamily="Consolas" FontSize="12" Foreground="#608B4E"/>
+                        <TextBlock Text="var paginator = document.DocumentPaginator;" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="paginator.PageSize = new Size(816, 1056);" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="printDialog.PrintDocument(paginator, &quot;My Doc&quot;);" FontFamily="Consolas" FontSize="12" Foreground="{DynamicResource GalleryTextSecondary}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- XAML Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="XAML Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# Code Example -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="C# Code Example"
+                           FontSize="16"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,16"/>
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="0"
+                        HorizontalAlignment="Stretch">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

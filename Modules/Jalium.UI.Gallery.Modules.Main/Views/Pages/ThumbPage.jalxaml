@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ThumbPage">
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Margin="24">
+            <!-- Header -->
+            <TextBlock Text="Thumb" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
+            <TextBlock Text="A draggable control used as a building block for Slider and ScrollBar controls."
+                       FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
+
+            <!-- Interactive Demo -->
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+
+                    <TextBlock Text="Drag the thumb within the track:" Margin="0,0,0,8" />
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}" Height="40" CornerRadius="8" Margin="0,0,0,16">
+                        <Canvas>
+                            <Thumb x:Name="DemoThumb" Width="20" Height="36" Background="{DynamicResource GalleryAccent}" />
+                        </Canvas>
+                    </Border>
+
+                    <TextBlock x:Name="ThumbPositionText" Text="Position: 0, 0" Opacity="0.7" />
+                </StackPanel>
+            </Border>
+
+            <!-- Features -->
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+                    <TextBlock Text="• Mouse drag interaction" Margin="0,0,0,4" />
+                    <TextBlock Text="• DragStarted, DragDelta, DragCompleted events" Margin="0,0,0,4" />
+                    <TextBlock Text="• Base for slider thumbs" Margin="0,0,0,4" />
+                    <TextBlock Text="• Customizable appearance" Margin="0,0,0,4" />
+                </StackPanel>
+            </Border>
+
+            <!-- XAML Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="XAML Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="XamlCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- C# Code Example -->
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,0,16">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="C# Code Example"
+                               FontSize="16"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,16"/>
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            CornerRadius="8"
+                            Padding="0"
+                            HorizontalAlignment="Stretch">
+                        <EditControl x:Name="CSharpCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

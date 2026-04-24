@@ -1,0 +1,31 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Themes.AppTheme"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Theme preset: Aureate Amber
+        Warm amber accent on deep indigo. Mirrors the palette in Theme/GalleryTheme.cs
+        so every {DynamicResource ...} reference in the shell / sample pages resolves
+        consistently whether the caller prefers resource lookup or the static brush
+        accessors on GalleryTheme.
+    -->
+
+    <x:String x:Key="ThemeName">Aureate Amber</x:String>
+
+    <SolidColorBrush x:Key="AccentPrimary" Color="#FFD60A" />
+    <SolidColorBrush x:Key="AccentHover" Color="#FFE45C" />
+    <SolidColorBrush x:Key="AccentSubtle" Color="#28FFD60A" />
+    <SolidColorBrush x:Key="AccentForeground" Color="#0B0814" />
+
+    <SolidColorBrush x:Key="AppBackground" Color="#0B0814" />
+    <SolidColorBrush x:Key="AppSurface" Color="#1B182B" />
+    <SolidColorBrush x:Key="AppSurfaceHover" Color="#27223C" />
+    <SolidColorBrush x:Key="AppSurfaceElevated" Color="#332B4E" />
+
+    <SolidColorBrush x:Key="AppBorder" Color="#2B2742" />
+    <SolidColorBrush x:Key="AppBorderStrong" Color="#3B3359" />
+
+    <SolidColorBrush x:Key="AppTextPrimary" Color="#FAFAFA" />
+    <SolidColorBrush x:Key="AppTextSecondary" Color="#A1A1AA" />
+
+</ResourceDictionary>
