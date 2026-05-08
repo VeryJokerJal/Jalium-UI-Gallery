@@ -10,7 +10,7 @@
                    Margin="0,0,0,8"/>
 
         <!-- Description -->
-        <TextBlock Text="Classic file, folder, font, and message dialog examples."
+        <TextBlock Text="Classic file, shell, font, and message dialog examples."
                    FontSize="14"
                    Margin="0,0,0,24"/>
 
@@ -25,7 +25,7 @@
                 <TextBlock Text="Open File Dialog"
                            FontSize="16"
                            Margin="0,0,0,4"/>
-                <TextBlock Text="Allows users to browse and select files to open."
+                <TextBlock Text="Browse files, select multiple files, or reuse OpenFileDialog as a folder picker."
                            FontSize="12"
                            Margin="0,0,0,16"/>
 
@@ -33,12 +33,17 @@
                         CornerRadius="8"
                         Padding="16">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <WrapPanel Margin="0,0,0,12">
                             <Button x:Name="OpenFileButton" Content="Open File..." Width="100" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="OpenMultipleFilesButton" Content="Open Multiple..." Width="110" Height="28"/>
-                        </StackPanel>
+                            <Button x:Name="OpenMultipleFilesButton" Content="Open Multiple..." Width="110" Height="28" Margin="0,0,8,0"/>
+                            <Button x:Name="OpenFolderPickerButton" Content="Pick Folder..." Width="118" Height="28"/>
+                        </WrapPanel>
                         <TextBlock x:Name="SelectedFileText"
                                    Text="No file selected"
+                                   Margin="0,0,0,8"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock x:Name="SelectedFolderViaOpenFileText"
+                                   Text="No folder selected via OpenFileDialog"
                                    TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
@@ -95,6 +100,49 @@
                         <Button x:Name="BrowseFolderButton" Content="Browse Folder..." Width="120" Height="28" Margin="0,0,0,12"/>
                         <TextBlock x:Name="SelectedFolderText"
                                    Text="No folder selected"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Shell Dialog Card -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Shell Dialogs"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Open icon picking, Open With, and file properties sheets backed directly by Win32 shell APIs."
+                           FontSize="12"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Margin="0,0,0,12">
+                            <Button x:Name="PickIconButton" Content="Pick Icon..." Width="100" Height="28" Margin="0,0,8,8"/>
+                            <Button x:Name="OpenWithButton" Content="Open With..." Width="105" Height="28" Margin="0,0,8,8"/>
+                            <Button x:Name="FilePropertiesButton" Content="File Properties..." Width="126" Height="28" Margin="0,0,8,8"/>
+                            <Button x:Name="PrinterPropertiesButton" Content="Printer Properties..." Width="140" Height="28" Margin="0,0,8,8"/>
+                            <Button x:Name="VolumePropertiesButton" Content="Volume Properties..." Width="140" Height="28" Margin="0,0,8,8"/>
+                            <Button x:Name="MultiFilePropertiesButton" Content="Multi-file Properties..." Width="156" Height="28" Margin="0,0,0,8"/>
+                        </WrapPanel>
+                        <TextBlock x:Name="SelectedIconText"
+                                   Text="No icon selected"
+                                   Margin="0,0,0,8"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock x:Name="OpenWithTargetText"
+                                   Text="Open With target not launched"
+                                   Margin="0,0,0,8"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock x:Name="PropertiesTargetText"
+                                   Text="Properties dialog not launched"
                                    TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
