@@ -1,6 +1,8 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
@@ -14,6 +16,10 @@ public partial class DialogsPage : Page
 <Button x:Name=""OpenFileButton""
         Content=""Open File...""
         Width=""100"" Height=""28"" />
+
+<Button x:Name=""OpenFolderPickerButton""
+        Content=""Pick Folder...""
+        Width=""118"" Height=""28"" />
 
 <!-- Save File Dialog button -->
 <Button x:Name=""SaveFileButton""
@@ -29,6 +35,25 @@ public partial class DialogsPage : Page
 <Button x:Name=""ChooseFontButton""
         Content=""Choose Font...""
         Width=""110"" Height=""28"" />
+
+<Button x:Name=""PickIconButton""
+        Content=""Pick Icon...""
+        Width=""100"" Height=""28"" />
+<Button x:Name=""OpenWithButton""
+        Content=""Open With...""
+        Width=""105"" Height=""28"" />
+<Button x:Name=""FilePropertiesButton""
+        Content=""File Properties...""
+        Width=""126"" Height=""28"" />
+<Button x:Name=""PrinterPropertiesButton""
+        Content=""Printer Properties...""
+        Width=""140"" Height=""28"" />
+<Button x:Name=""VolumePropertiesButton""
+        Content=""Volume Properties...""
+        Width=""140"" Height=""28"" />
+<Button x:Name=""MultiFilePropertiesButton""
+        Content=""Multi-file Properties...""
+        Width=""156"" Height=""28"" />
 
 <!-- Message Dialog buttons -->
 <Button x:Name=""InfoDialogButton""
@@ -50,7 +75,6 @@ public partial class DialogsPage : Page
     {
         var dialog = new OpenFileDialog
         {
-            Title = ""Open File"",
             Filter = ""Text files (*.txt)|*.txt|All files (*.*)|*.*""
         };
 
@@ -58,36 +82,33 @@ public partial class DialogsPage : Page
             SelectedFileText.Text = $""Selected: {dialog.FileName}"";
     }
 
-    private void OnSaveFileClick(object? sender, EventArgs e)
+    private void OnOpenFolderPickerClick(object? sender, EventArgs e)
     {
-        var dialog = new SaveFileDialog
+        var dialog = new OpenFileDialog
         {
-            Title = ""Save File"",
-            Filter = ""Text files (*.txt)|*.txt|All (*.*)|*.*""
+            IsFolderPicker = true,
+            InitialDirectory = AppContext.BaseDirectory
         };
 
         if (dialog.ShowDialog() == true)
-            SavePathText.Text = $""Save to: {dialog.FileName}"";
+            SelectedFolderViaOpenFileText.Text = $""Selected: {dialog.FileName}"";
     }
 
-    private void OnBrowseFolderClick(object? sender, EventArgs e)
+    private void OnPickIconClick(object? sender, EventArgs e)
     {
-        var dialog = new FolderBrowserDialog
+        var dialog = new PickIconDialog();
+        if (dialog.ShowDialog())
+            SelectedIconText.Text = $""Icon: {dialog.IconPath} (index {dialog.IconIndex})"";
+    }
+
+    private void OnFilePropertiesClick(object? sender, EventArgs e)
+    {
+        var dialog = new OpenPropertiesDialog
         {
-            Title = ""Select Folder""
+            ObjectName = GetSampleDialogDocumentPaths(1).FirstOrDefault()
         };
 
-        if (dialog.ShowDialog() == true)
-            FolderText.Text = $""Selected: {dialog.SelectedPath}"";
-    }
-
-    private void ShowMessageDialog(string caption, string message,
-        MessageBoxButton buttons, MessageBoxImage icon)
-    {
-        var owner = FindOwnerWindow();
-        var result = MessageBox.Show(owner, message, caption,
-            buttons, icon, MessageBoxResult.OK);
-        ResultText.Text = $""Result: {result}"";
+        dialog.ShowDialog();
     }
 }";
 
@@ -152,6 +173,11 @@ public partial class DialogsPage : Page
             SaveFileButton.Click += OnSaveFileClick;
         }
 
+        if (OpenFolderPickerButton != null)
+        {
+            OpenFolderPickerButton.Click += OnOpenFolderPickerClick;
+        }
+
         if (BrowseFolderButton != null)
         {
             BrowseFolderButton.Click += OnBrowseFolderClick;
@@ -161,6 +187,36 @@ public partial class DialogsPage : Page
         if (ChooseFontButton != null)
         {
             ChooseFontButton.Click += OnChooseFontClick;
+        }
+
+        if (PickIconButton != null)
+        {
+            PickIconButton.Click += OnPickIconClick;
+        }
+
+        if (OpenWithButton != null)
+        {
+            OpenWithButton.Click += OnOpenWithClick;
+        }
+
+        if (FilePropertiesButton != null)
+        {
+            FilePropertiesButton.Click += OnFilePropertiesClick;
+        }
+
+        if (PrinterPropertiesButton != null)
+        {
+            PrinterPropertiesButton.Click += OnPrinterPropertiesClick;
+        }
+
+        if (VolumePropertiesButton != null)
+        {
+            VolumePropertiesButton.Click += OnVolumePropertiesClick;
+        }
+
+        if (MultiFilePropertiesButton != null)
+        {
+            MultiFilePropertiesButton.Click += OnMultiFilePropertiesClick;
         }
 
         // Set up message dialog buttons
@@ -191,7 +247,6 @@ public partial class DialogsPage : Page
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Open File",
             Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
         };
 
@@ -204,11 +259,24 @@ public partial class DialogsPage : Page
         }
     }
 
+    private void OnOpenFolderPickerClick(object? sender, EventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            IsFolderPicker = true,
+            InitialDirectory = AppContext.BaseDirectory
+        };
+
+        if (dialog.ShowDialog() == true && SelectedFolderViaOpenFileText != null)
+        {
+            SelectedFolderViaOpenFileText.Text = $"Selected: {dialog.FileName}";
+        }
+    }
+
     private void OnOpenMultipleFilesClick(object? sender, EventArgs e)
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Open Files",
             Filter = "All files (*.*)|*.*",
             Multiselect = true
         };
@@ -226,7 +294,6 @@ public partial class DialogsPage : Page
     {
         var dialog = new SaveFileDialog
         {
-            Title = "Save File",
             Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
         };
 
@@ -241,10 +308,7 @@ public partial class DialogsPage : Page
 
     private void OnBrowseFolderClick(object? sender, EventArgs e)
     {
-        var dialog = new FolderBrowserDialog
-        {
-            Title = "Select Folder"
-        };
+        var dialog = new FolderBrowserDialog();
 
         if (dialog.ShowDialog() == true)
         {
@@ -271,6 +335,157 @@ public partial class DialogsPage : Page
             {
                 SelectedFontText.Text = $"Current: {dialog.FontFamily.Source}, {dialog.FontSize}pt";
             }
+        }
+    }
+
+    private void OnPickIconClick(object? sender, EventArgs e)
+    {
+        var dialog = new PickIconDialog();
+
+        if (dialog.ShowDialog() && SelectedIconText != null)
+        {
+            SelectedIconText.Text = $"Icon: {dialog.IconPath} (index {dialog.IconIndex})";
+        }
+    }
+
+    private void OnOpenWithClick(object? sender, EventArgs e)
+    {
+        var target = GetSampleDialogDocumentPaths(1).FirstOrDefault();
+        if (string.IsNullOrWhiteSpace(target))
+        {
+            if (OpenWithTargetText != null)
+            {
+                OpenWithTargetText.Text = "No sample document was available for Open With.";
+            }
+
+            return;
+        }
+
+        var dialog = new OpenWithDialog
+        {
+            FileName = target,
+        };
+
+        var result = dialog.ShowDialog();
+        if (OpenWithTargetText != null)
+        {
+            OpenWithTargetText.Text = result
+                ? $"Opened selector for: {target}"
+                : $"Cancelled for: {target}";
+        }
+    }
+
+    private void OnFilePropertiesClick(object? sender, EventArgs e)
+    {
+        var target = GetSampleDialogDocumentPaths(1).FirstOrDefault();
+        if (string.IsNullOrWhiteSpace(target))
+        {
+            if (PropertiesTargetText != null)
+            {
+                PropertiesTargetText.Text = "No sample document was available for the properties dialog.";
+            }
+
+            return;
+        }
+
+        var dialog = new OpenPropertiesDialog
+        {
+            ObjectName = target,
+            PropertyPage = "General"
+        };
+
+        var result = dialog.ShowDialog();
+        if (PropertiesTargetText != null)
+        {
+            PropertiesTargetText.Text = result
+                ? $"Opened properties for: {target}"
+                : $"Cancelled for: {target}";
+        }
+    }
+
+    private void OnMultiFilePropertiesClick(object? sender, EventArgs e)
+    {
+        var targets = GetSampleDialogDocumentPaths(2);
+        if (targets.Length < 2)
+        {
+            if (PropertiesTargetText != null)
+            {
+                PropertiesTargetText.Text = "At least two sample documents are required for the multi-file properties sample.";
+            }
+
+            return;
+        }
+
+        var dialog = new OpenPropertiesDialog
+        {
+            ObjectNames = targets
+        };
+
+        var result = dialog.ShowDialog();
+        if (PropertiesTargetText != null)
+        {
+            PropertiesTargetText.Text = result
+                ? $"Opened multi-file properties for: {string.Join(", ", targets.Select(Path.GetFileName))}"
+                : $"Cancelled for: {string.Join(", ", targets.Select(Path.GetFileName))}";
+        }
+    }
+
+    private void OnPrinterPropertiesClick(object? sender, EventArgs e)
+    {
+        var printerName = GetDefaultPrinterName();
+        if (string.IsNullOrWhiteSpace(printerName))
+        {
+            if (PropertiesTargetText != null)
+            {
+                PropertiesTargetText.Text = "No default printer was available for the printer properties sample.";
+            }
+
+            return;
+        }
+
+        var dialog = new OpenPropertiesDialog
+        {
+            ObjectType = OpenPropertiesObjectType.PrinterName,
+            ObjectName = printerName
+        };
+
+        var result = dialog.ShowDialog();
+        if (PropertiesTargetText != null)
+        {
+            PropertiesTargetText.Text = result
+                ? $"Opened printer properties for: {printerName}"
+                : $"Cancelled for printer: {printerName}";
+        }
+    }
+
+    private void OnVolumePropertiesClick(object? sender, EventArgs e)
+    {
+        var volumePath = GetSampleVolumePath();
+        if (string.IsNullOrWhiteSpace(volumePath))
+        {
+            if (PropertiesTargetText != null)
+            {
+                PropertiesTargetText.Text = "No volume path was available for the volume properties sample.";
+            }
+
+            return;
+        }
+
+        var dialog = new OpenPropertiesDialog
+        {
+            ObjectType = OpenPropertiesObjectType.VolumeGuid,
+            ObjectName = volumePath
+        };
+
+        var result = dialog.ShowDialog();
+
+        Window.GetWindow(this)?.Activate();
+
+        if (PropertiesTargetText != null)
+        {
+            PropertiesTargetText.Text = result
+                ? $"Opened volume properties for: {volumePath}"
+                : $"Cancelled for volume: {volumePath}";
         }
     }
 
@@ -425,6 +640,50 @@ public partial class DialogsPage : Page
             CSharpCodeEditor.LoadText(CSharpExample);
         }
     }
+
+    private static string[] GetSampleDialogDocumentPaths(int count)
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "Jalium.UI.Gallery", "Dialogs");
+        Directory.CreateDirectory(directory);
+
+        var paths = new List<string>(count);
+        for (var index = 1; index <= count; index++)
+        {
+            var path = Path.Combine(directory, $"sample-document-{index}.txt");
+            if (!File.Exists(path))
+            {
+                File.WriteAllText(
+                    path,
+                    $"Jalium.UI dialog sample document {index}{Environment.NewLine}{Environment.NewLine}Created for native shell dialog demos.");
+            }
+
+            paths.Add(path);
+        }
+
+        return paths.ToArray();
+    }
+
+    private static string? GetDefaultPrinterName()
+    {
+        var requiredLength = 0;
+        _ = GetDefaultPrinter(null, ref requiredLength);
+        if (requiredLength <= 0)
+        {
+            return null;
+        }
+
+        var buffer = new StringBuilder(requiredLength);
+        return GetDefaultPrinter(buffer, ref requiredLength) ? buffer.ToString() : null;
+    }
+
+    private static string? GetSampleVolumePath()
+    {
+        return Path.GetPathRoot(Environment.SystemDirectory);
+    }
+
+    [DllImport("winspool.drv", CharSet = CharSet.Unicode, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GetDefaultPrinter(StringBuilder? pszBuffer, ref int pcchBuffer);
 
     private sealed record MessageDialogScenario(
         string Kind,
