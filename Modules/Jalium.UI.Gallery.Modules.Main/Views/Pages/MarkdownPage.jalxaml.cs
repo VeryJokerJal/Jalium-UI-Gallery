@@ -77,6 +77,25 @@ Use Markdown when you want:
 - links to local or remote docs
 """;
 
+    private const string LiveEditorSample = """
+# Live Markdown Editor
+
+Type **Markdown** on the left and watch it render here.
+
+## Try It Out
+
+- Edit any line to update the preview
+- Add *emphasis*, `inline code`, or [links](/controls/markdown)
+- Build tables and lists
+
+| Syntax | Result |
+| --- | --- |
+| `**text**` | bold |
+| `*text*` | italic |
+
+> The rendered output refreshes as you type.
+""";
+
     private const string XamlExample = @"<StackPanel Orientation=""Vertical"" Margin=""16"">
     <!-- Basic Markdown rendering -->
     <Markdown x:Name=""BasicMarkdown""
@@ -112,6 +131,17 @@ Use Markdown when you want:
             <Markdown x:Name=""InteractiveMarkdown"" Height=""360""/>
         </StackPanel>
     </Border>
+
+    <!-- Live editor: type Markdown on the left, render it on the right -->
+    <StackPanel Orientation=""Horizontal"" Margin=""0,16,0,0"">
+        <TextBox x:Name=""MarkdownInput""
+                 AcceptsReturn=""True""
+                 Width=""400"" Height=""360""
+                 FontFamily=""Consolas""
+                 Margin=""0,0,16,0""/>
+        <Markdown x:Name=""LiveMarkdown""
+                  Width=""400"" Height=""360""/>
+    </StackPanel>
 </StackPanel>";
 
     private const string CSharpExample = @"using Jalium.UI.Controls;
@@ -156,11 +186,22 @@ md.Text = ""# Hello"";
         StyledMarkdown.TableHeaderBackground = BrushFromHex(""#1E293B"");
         StyledMarkdown.TableBorderBrush = BrushFromHex(""#334155"");
         StyledMarkdown.Text = ""# Styled Content\n\n> Custom themed markdown."";
+
+        // Live editor: render the input box content into a Markdown control
+        MarkdownInput.Text = ""# Live Editor\n\nType **Markdown** to see it render."";
+        MarkdownInput.TextChanged += OnMarkdownInputChanged;
+        LiveMarkdown.Text = MarkdownInput.Text;
     }
 
     private void OnDocsSampleClick(object sender, RoutedEventArgs e)
     {
         InteractiveMarkdown.Text = ""# Documentation\n\nMarkdown content here..."";
+    }
+
+    private void OnMarkdownInputChanged(object sender, TextChangedEventArgs e)
+    {
+        // Refresh the preview whenever the input box text changes
+        LiveMarkdown.Text = MarkdownInput.Text ?? string.Empty;
     }
 
     private static SolidColorBrush BrushFromHex(string hex)
@@ -207,6 +248,14 @@ accent = cyan
 
         ShowSample("Docs Sample", DocsSample);
         LoadCodeExamples();
+
+        if (MarkdownInput != null)
+        {
+            MarkdownInput.Text = LiveEditorSample;
+            MarkdownInput.TextChanged += OnMarkdownInputChanged;
+        }
+
+        UpdateLivePreview();
     }
 
     private void LoadCodeExamples()
@@ -248,6 +297,19 @@ accent = cyan
         if (PreviewStatusText != null)
         {
             PreviewStatusText.Text = $"Showing: {title}";
+        }
+    }
+
+    private void OnMarkdownInputChanged(object? sender, TextChangedEventArgs e)
+    {
+        UpdateLivePreview();
+    }
+
+    private void UpdateLivePreview()
+    {
+        if (LiveMarkdown != null && MarkdownInput != null)
+        {
+            LiveMarkdown.Text = MarkdownInput.Text ?? string.Empty;
         }
     }
 

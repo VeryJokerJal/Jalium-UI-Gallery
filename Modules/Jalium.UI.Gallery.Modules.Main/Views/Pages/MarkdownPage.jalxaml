@@ -61,6 +61,50 @@
             </StackPanel>
         </Border>
 
+        <!-- Live Editor -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Live Editor"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Type Markdown in the input box on the left and see the rendered output update live on the right."
+                           FontSize="12"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical"
+                                    Width="400"
+                                    Margin="0,0,16,0">
+                            <TextBlock Text="Markdown Input:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4"/>
+                            <TextBox x:Name="MarkdownInput"
+                                     AcceptsReturn="True"
+                                     Height="360"
+                                     FontFamily="Consolas"
+                                     FontSize="13"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Width="400">
+                            <TextBlock Text="Rendered Output:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4"/>
+                            <Markdown x:Name="LiveMarkdown"
+                                      Height="360" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                 BorderThickness="1"
