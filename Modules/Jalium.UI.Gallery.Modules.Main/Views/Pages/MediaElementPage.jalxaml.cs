@@ -1,6 +1,7 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
 using Jalium.UI.Input;
+using Jalium.UI.Threading;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
@@ -9,6 +10,9 @@ namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 /// </summary>
 public partial class MediaElementPage : Page
 {
+    private DispatcherTimer? _audioProgressTimer;
+    private bool _audioSliderDragging;
+
     private const string XamlExample = @"<StackPanel Orientation=""Vertical"" Margin=""16"">
     <!-- Video Player -->
     <Border Background=""#000000"" Width=""480"" Height=""270""
@@ -161,6 +165,49 @@ public partial class MediaElementSample : Page
         // Volume slider
         if (VolumeSlider != null)
             VolumeSlider.ValueChanged += OnVolumeChanged;
+
+        // Audio progress slider: 250ms tick 拉 AudioPlayer.Position 同步 slider 值;
+        // 用户拖动时(_audioSliderDragging)暂停 tick 写入,避免 tick 把拖动覆盖回去。
+        // 拖动结束(MouseUp / Lost capture)调 AudioPlayer.Position 反向 seek。
+        if (AudioProgressSlider != null && AudioPlayer != null)
+        {
+            _audioProgressTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(250),
+            };
+            _audioProgressTimer.Tick += (_, _) => UpdateAudioProgressSlider();
+            _audioProgressTimer.Start();
+
+            AudioProgressSlider.PreviewMouseLeftButtonDown += (_, _) => _audioSliderDragging = true;
+            AudioProgressSlider.PreviewMouseLeftButtonUp   += (_, _) =>
+            {
+                _audioSliderDragging = false;
+                ApplyAudioSliderSeek();
+            };
+        }
+    }
+
+    private void UpdateAudioProgressSlider()
+    {
+        if (AudioPlayer == null || AudioProgressSlider == null || _audioSliderDragging) return;
+        var nd = AudioPlayer.NaturalDuration;
+        if (!nd.HasTimeSpan) return;
+        var duration = nd.TimeSpan;
+        if (duration <= TimeSpan.Zero) return;
+        var position = AudioPlayer.Position;
+        var pct = Math.Clamp(position.TotalSeconds / duration.TotalSeconds * 100.0, 0.0, 100.0);
+        AudioProgressSlider.Value = pct;
+    }
+
+    private void ApplyAudioSliderSeek()
+    {
+        if (AudioPlayer == null || AudioProgressSlider == null) return;
+        var nd = AudioPlayer.NaturalDuration;
+        if (!nd.HasTimeSpan) return;
+        var duration = nd.TimeSpan;
+        if (duration <= TimeSpan.Zero) return;
+        var target = TimeSpan.FromSeconds(duration.TotalSeconds * (AudioProgressSlider.Value / 100.0));
+        AudioPlayer.Position = target;
     }
 
     private void LoadCodeExamples()

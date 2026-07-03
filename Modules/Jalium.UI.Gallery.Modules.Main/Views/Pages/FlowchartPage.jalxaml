@@ -1,20 +1,21 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MapViewPage"
-      Title="MapView">
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.FlowchartPage"
+      Title="Flowchart">
 
     <StackPanel Orientation="Vertical">
         <!-- Page Title -->
-        <TextBlock Text="MapView"
+        <TextBlock Text="Flowchart"
                    FontSize="32"
                    Margin="0,0,0,8"/>
 
         <!-- Description -->
-        <TextBlock Text="A map control that displays slippy-map tiles with support for markers, polylines, panning, and zooming."
+        <TextBlock Text="Lay out directed flowcharts automatically. FlowchartDiagram ranks nodes into layers and draws shapes, arrows, and edge labels; diagrams can be authored concisely as mermaid text."
                    FontSize="14"
+                   TextWrapping="Wrap"
                    Margin="0,0,0,24"/>
 
-        <!-- Basic Map Card -->
+        <!-- Flowchart Card -->
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                 BorderThickness="1"
@@ -22,22 +23,22 @@
                 Padding="20"
                 Margin="0,0,0,16">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Map"
+                <TextBlock Text="Decision Flow"
                            FontSize="16"
                            Margin="0,0,0,4"/>
-                <TextBlock Text="A MapView centered on Beijing with default zoom controls and scale bar."
+                <TextBlock Text="A flowchart with decision nodes, branch labels, and a hierarchical (top-to-bottom) layout."
                            FontSize="12"
                            Margin="0,0,0,16"/>
 
                 <Border Background="{DynamicResource GalleryCardInnerBackground}"
                         CornerRadius="8"
                         Padding="16">
-                    <StackPanel x:Name="BasicMapContainer" Orientation="Vertical"/>
+                    <StackPanel x:Name="FlowchartContainer" Orientation="Vertical"/>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Markers & Overlays Card -->
+        <!-- Node Shapes Card -->
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                 BorderThickness="1"
@@ -45,22 +46,23 @@
                 Padding="20"
                 Margin="0,0,0,16">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Markers &amp; Overlays"
+                <TextBlock Text="Node Shapes &amp; Edge Styles"
                            FontSize="16"
                            Margin="0,0,0,4"/>
-                <TextBlock Text="A MapView with labeled markers at key locations and a polyline connecting them."
+                <TextBlock Text="Rectangle, rounded, stadium, circle, rhombus, hexagon, cylinder and more — with solid, dotted, and thick edges in a left-to-right layout."
                            FontSize="12"
+                           TextWrapping="Wrap"
                            Margin="0,0,0,16"/>
 
                 <Border Background="{DynamicResource GalleryCardInnerBackground}"
                         CornerRadius="8"
                         Padding="16">
-                    <StackPanel x:Name="MarkersMapContainer" Orientation="Vertical"/>
+                    <StackPanel x:Name="ShapesContainer" Orientation="Vertical"/>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Zoom Controls Card -->
+        <!-- Live Editor Card -->
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                 BorderThickness="1"
@@ -68,20 +70,42 @@
                 Padding="20"
                 Margin="0,0,0,16">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Zoom Controls"
+                <TextBlock Text="Live Editor"
                            FontSize="16"
                            Margin="0,0,0,4"/>
-                <TextBlock Text="Interactive zoom and pan demo. Use the buttons to zoom in/out or click the map to pan."
+                <TextBlock Text="Edit the mermaid flowchart source on the left and see the diagram update on the right."
                            FontSize="12"
                            Margin="0,0,0,16"/>
 
                 <Border Background="{DynamicResource GalleryCardInnerBackground}"
                         CornerRadius="8"
                         Padding="16">
-                    <StackPanel x:Name="ZoomMapContainer" Orientation="Vertical"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="380" Margin="0,0,16,0">
+                            <TextBlock Text="Flowchart Source:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4"/>
+                            <TextBox x:Name="MermaidInput"
+                                     AcceptsReturn="True"
+                                     Height="320"
+                                     FontFamily="Consolas"
+                                     FontSize="13"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="380">
+                            <TextBlock Text="Rendered Diagram:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4"/>
+                            <Border x:Name="LiveDiagramHost"
+                                    Background="#FAFBFE"
+                                    CornerRadius="8"
+                                    Padding="8"
+                                    Height="320"/>
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
+
         <!-- XAML Code Example -->
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"

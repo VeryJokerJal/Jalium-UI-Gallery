@@ -1,5 +1,5 @@
-using Microsoft.Extensions.DependencyInjection;
 using Jalium.UI.Gallery.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Jalium.UI.Gallery.Services;
 

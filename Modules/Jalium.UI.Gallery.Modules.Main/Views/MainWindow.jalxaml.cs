@@ -9,7 +9,6 @@ using Jalium.UI.Gallery.Modules.Main.Views.Pages;
 using Jalium.UI.Gallery.Services.Interfaces;
 using Jalium.UI.Input;
 using Jalium.UI.Media;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views;
 
@@ -207,6 +206,7 @@ public partial class MainWindow : Window
         { "networkgraph", () => new NetworkGraphPage() },
         { "ganttchart", () => new GanttChartPage() },
         { "sankeydiagram", () => new SankeyDiagramPage() },
+        { "flowchart", () => new FlowchartPage() },
         // Maps
         { "mapview", () => new MapViewPage() },
         { "minimap", () => new MiniMapPage() },
@@ -933,6 +933,7 @@ public partial class MainWindow : Window
         AddChildItem(chartsGroup, "NetworkGraph", "networkgraph");
         AddChildItem(chartsGroup, "GanttChart", "ganttchart");
         AddChildItem(chartsGroup, "SankeyDiagram", "sankeydiagram");
+        AddChildItem(chartsGroup, "Flowchart", "flowchart");
 
         // Maps (expandable group)
         var mapsGroup = AddGroupItem("Maps", "maps");

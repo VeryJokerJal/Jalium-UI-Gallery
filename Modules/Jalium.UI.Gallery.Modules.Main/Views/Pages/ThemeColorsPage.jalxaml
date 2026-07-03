@@ -3,8 +3,23 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ThemeColorsPage"
       Title="Theme Colors">
-    <ScrollViewer>
-        <StackPanel Orientation="Vertical" Margin="24">
+    <!--
+        The header / toolbar / banner live in an Auto row that stays pinned, and the
+        resource list fills the remaining star row with its OWN internal scroll. The
+        list is a virtualizing ListBox (VirtualizingStackPanel + recycling), so only the
+        rows inside the viewport are realized — the previous design materialized every
+        one of the 500+ rows (each a Grid + SplitButton + MenuFlyout) into a StackPanel.
+        Giving the list a bounded star-row height is what lets the panel virtualize; an
+        outer ScrollViewer would hand it infinite height and force full realization.
+    -->
+    <Grid x:Name="RootGrid" Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Pinned header + toolbar + banner -->
+        <StackPanel Grid.Row="0" Orientation="Vertical">
             <!-- Header -->
             <TextBlock Text="Theme Colors"
                        FontSize="32"
@@ -78,16 +93,35 @@
                            FontSize="13"
                            FontWeight="SemiBold" />
             </Border>
-
-            <!-- List host -->
-            <Border Background="{ThemeResource GalleryCardBackground}"
-                    BorderBrush="{ThemeResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="0">
-                <StackPanel x:Name="ResourceList"
-                            Orientation="Vertical" />
-            </Border>
         </StackPanel>
-    </ScrollViewer>
+
+        <!-- List host: virtualizing ListBox fills the remaining space and scrolls internally -->
+        <Border Grid.Row="1"
+                Background="{ThemeResource GalleryCardBackground}"
+                BorderBrush="{ThemeResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="0">
+            <Grid>
+                <!-- MaxHeight is a first-frame safety bound: the page is hosted inside an
+                     auto-scrolling ScrollViewer that hands its content infinite height, so
+                     before code-behind sizes RootGrid to the viewport the panel would
+                     otherwise realize every row once. The real height comes from the
+                     star row once RootGrid is pinned to the viewport. -->
+                <ListBox x:Name="ResourceList"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="0"
+                         MaxHeight="2200" />
+                <TextBlock x:Name="EmptyText"
+                           Text="No theme color resources found."
+                           FontSize="13"
+                           Opacity="0.6"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20,24,20,24"
+                           Visibility="Collapsed" />
+            </Grid>
+        </Border>
+    </Grid>
 </Page>

@@ -588,7 +588,8 @@ public class ChartsCategoryPage : CategoryPage
         new ControlInfo("CandlestickChart", "OHLC financial candlestick charts.", "candlestickchart"),
         new ControlInfo("NetworkGraph", "Force-directed node-link diagrams.", "networkgraph"),
         new ControlInfo("GanttChart", "Timeline task bars with dependencies.", "ganttchart"),
-        new ControlInfo("SankeyDiagram", "Flow diagrams with weighted links.", "sankeydiagram")
+        new ControlInfo("SankeyDiagram", "Flow diagrams with weighted links.", "sankeydiagram"),
+        new ControlInfo("Flowchart", "Auto-laid-out flowcharts, authored from mermaid text.", "flowchart")
     };
 }
 

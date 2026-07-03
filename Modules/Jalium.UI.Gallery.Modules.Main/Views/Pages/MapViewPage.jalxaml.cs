@@ -13,7 +13,8 @@ public partial class MapViewPage : Page
     private MapView? _zoomMap;
     private TextBlock? _zoomLevelText;
 
-    private const string XamlExample = @"<!-- Basic Map -->
+    private const string XamlExample = @"<!-- TileSource is set in code-behind to AMap (AutoNavi); see GalleryTileSources.Amap -->
+<!-- Basic Map -->
 <MapView x:Name=""BasicMap""
          Height=""300""
          ZoomLevel=""12""
@@ -26,7 +27,7 @@ public partial class MapViewPage : Page
 <!-- Map with Markers -->
 <MapView x:Name=""MarkersMap""
          Height=""350""
-         ZoomLevel=""5""
+         ZoomLevel=""4""
          ShowZoomControls=""True""
          ShowScaleBar=""True""/>";
 
@@ -34,12 +35,24 @@ public partial class MapViewPage : Page
 using Jalium.UI.Controls;
 using Jalium.UI.Media;
 
-// Create a basic map centered on San Francisco
+// AMap (AutoNavi) tiles: standard Web Mercator XYZ, a drop-in replacement for the
+// OpenStreetMap default whose tiles the gallery's requests get blocked from (403).
+// Note: Chinese tile providers only have detailed data inside China.
+var amapTiles = new MapTileSource
+{
+    UrlTemplate = ""https://wprd01.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scl=1&style=7"",
+    Attribution = ""© AutoNavi"",
+    MinZoom = 3,
+    MaxZoom = 18
+};
+
+// Create a basic map centered on Beijing
 var map = new MapView
 {
     Height = 300,
-    Center = new GeoPoint(37.7749, -122.4194),
+    Center = new GeoPoint(39.9042, 116.4074),
     ZoomLevel = 12,
+    TileSource = amapTiles,
     ShowZoomControls = true,
     ShowScaleBar = true,
     IsPanEnabled = true,
@@ -51,16 +64,16 @@ var markers = new MapMarkerCollection
 {
     new MapMarker
     {
-        Location = new GeoPoint(48.8566, 2.3522),
-        Label = ""Paris"",
+        Location = new GeoPoint(39.9042, 116.4074),
+        Label = ""Beijing"",
         Fill = new SolidColorBrush(
             Color.FromRgb(0xE0, 0x3E, 0x3E)),
         MarkerSize = 14
     },
     new MapMarker
     {
-        Location = new GeoPoint(51.5074, -0.1278),
-        Label = ""London"",
+        Location = new GeoPoint(31.2304, 121.4737),
+        Label = ""Shanghai"",
         Fill = new SolidColorBrush(
             Color.FromRgb(0x21, 0x96, 0xF3)),
         MarkerSize = 14
@@ -73,8 +86,8 @@ var polyline = new MapPolyline
 {
     Points = new ObservableCollection<GeoPoint>
     {
-        new GeoPoint(51.5074, -0.1278),
-        new GeoPoint(48.8566, 2.3522)
+        new GeoPoint(39.9042, 116.4074),
+        new GeoPoint(31.2304, 121.4737)
     },
     Stroke = new SolidColorBrush(
         Color.FromRgb(0x41, 0x7E, 0xE0)),
@@ -111,8 +124,9 @@ var polyline = new MapPolyline
         var map = new MapView
         {
             Height = 300,
-            Center = new GeoPoint(37.7749, -122.4194), // San Francisco
+            Center = new GeoPoint(39.9042, 116.4074), // Beijing
             ZoomLevel = 12,
+            TileSource = GalleryTileSources.Amap,
             ShowZoomControls = true,
             ShowScaleBar = true,
             ShowAttribution = true,
@@ -131,36 +145,36 @@ var polyline = new MapPolyline
         {
             new MapMarker
             {
-                Location = new GeoPoint(48.8566, 2.3522),
-                Label = "Paris",
+                Location = new GeoPoint(39.9042, 116.4074),
+                Label = "Beijing",
                 Fill = new SolidColorBrush(Color.FromRgb(0xE0, 0x3E, 0x3E)),
                 MarkerSize = 14
             },
             new MapMarker
             {
-                Location = new GeoPoint(51.5074, -0.1278),
-                Label = "London",
+                Location = new GeoPoint(31.2304, 121.4737),
+                Label = "Shanghai",
                 Fill = new SolidColorBrush(Color.FromRgb(0x21, 0x96, 0xF3)),
                 MarkerSize = 14
             },
             new MapMarker
             {
-                Location = new GeoPoint(52.5200, 13.4050),
-                Label = "Berlin",
+                Location = new GeoPoint(23.1291, 113.2644),
+                Label = "Guangzhou",
                 Fill = new SolidColorBrush(Color.FromRgb(0x4C, 0xAF, 0x50)),
                 MarkerSize = 14
             },
             new MapMarker
             {
-                Location = new GeoPoint(41.9028, 12.4964),
-                Label = "Rome",
+                Location = new GeoPoint(30.5728, 104.0668),
+                Label = "Chengdu",
                 Fill = new SolidColorBrush(Color.FromRgb(0xFF, 0x98, 0x00)),
                 MarkerSize = 14
             },
             new MapMarker
             {
-                Location = new GeoPoint(40.4168, -3.7038),
-                Label = "Madrid",
+                Location = new GeoPoint(34.3416, 108.9398),
+                Label = "Xi'an",
                 Fill = new SolidColorBrush(Color.FromRgb(0x9C, 0x27, 0xB0)),
                 MarkerSize = 14
             }
@@ -168,11 +182,11 @@ var polyline = new MapPolyline
 
         var routePoints = new ObservableCollection<GeoPoint>
         {
-            new GeoPoint(51.5074, -0.1278),  // London
-            new GeoPoint(48.8566, 2.3522),   // Paris
-            new GeoPoint(52.5200, 13.4050),  // Berlin
-            new GeoPoint(41.9028, 12.4964),  // Rome
-            new GeoPoint(40.4168, -3.7038)   // Madrid
+            new GeoPoint(39.9042, 116.4074), // Beijing
+            new GeoPoint(34.3416, 108.9398), // Xi'an
+            new GeoPoint(30.5728, 104.0668), // Chengdu
+            new GeoPoint(23.1291, 113.2644), // Guangzhou
+            new GeoPoint(31.2304, 121.4737)  // Shanghai
         };
 
         var polyline = new MapPolyline
@@ -188,8 +202,9 @@ var polyline = new MapPolyline
         var map = new MapView
         {
             Height = 350,
-            Center = new GeoPoint(48.0, 5.0), // Center of Europe
-            ZoomLevel = 5,
+            Center = new GeoPoint(33.0, 113.0), // Center of China
+            ZoomLevel = 4,
+            TileSource = GalleryTileSources.Amap,
             ShowZoomControls = true,
             ShowScaleBar = true,
             Markers = markers,
@@ -206,8 +221,9 @@ var polyline = new MapPolyline
         _zoomMap = new MapView
         {
             Height = 300,
-            Center = new GeoPoint(35.6762, 139.6503), // Tokyo
+            Center = new GeoPoint(31.2304, 121.4737), // Shanghai
             ZoomLevel = 10,
+            TileSource = GalleryTileSources.Amap,
             ShowZoomControls = true,
             ShowScaleBar = true,
             IsPanEnabled = true,
@@ -259,7 +275,7 @@ var polyline = new MapPolyline
     private void OnResetViewClick(object sender, RoutedEventArgs e)
     {
         if (_zoomMap == null) return;
-        _zoomMap.Center = new GeoPoint(35.6762, 139.6503);
+        _zoomMap.Center = new GeoPoint(31.2304, 121.4737); // Shanghai
         _zoomMap.ZoomLevel = 10;
         UpdateZoomText();
     }

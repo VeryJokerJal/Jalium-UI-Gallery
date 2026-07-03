@@ -116,6 +116,43 @@ public partial class DragDropSample : Page
         DropTarget.Background = new SolidColorBrush(
             Color.FromRgb(0x25, 0x25, 0x25));
     }
+
+    // Shell enhancement 1 — a caller-supplied drag image on the source.
+    private void StartDragWithCustomImage(Border source, ImageSource image)
+    {
+        var data = new DataObject();
+        data.SetData(""Text"", ""Custom Image Item"");
+        // The pointer sits at (16, 24) within the image.
+        DragDrop.DoDragDrop(source, data, DragDropEffects.Copy, image, new Point(16, 24));
+    }
+
+    // Shell enhancement 2 — a Shell drop description on the target. Works for
+    // external OLE drags (e.g. files from Explorer); Windows also renders its
+    // own drag image automatically.
+    private void OnDragOver(object sender, DragEventArgs e)
+    {
+        if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        {
+            e.Effects = DragDropEffects.Copy;
+            // %1 is replaced with the insert text → ""Copy to Gallery demo"".
+            e.SetDropDescription(DropImageType.Copy, ""Copy to %1"", ""Gallery demo"");
+        }
+        else
+        {
+            e.Effects = DragDropEffects.None;
+            e.SetDropDescription(DropImageType.None, ""Only files are accepted"");
+        }
+    }
+
+    // Shell enhancement 3 — drag files OUT to Explorer / other apps with a real
+    // OLE drag source (DoShellDragDrop), showing the Windows system drag image.
+    private void StartDragOut(Border source, string filePath, ImageSource image)
+    {
+        var data = new DataObject();
+        data.SetData(DataFormats.FileDrop, new[] { filePath });
+        var effect = DragDrop.DoShellDragDrop(source, data, DragDropEffects.Copy, image, new Point(16, 24));
+        // effect == Copy when the file was dropped into a folder, None if cancelled.
+    }
 }";
 
     private int _logLineCount;
@@ -130,6 +167,9 @@ public partial class DragDropSample : Page
         SetupDragSources();
         SetupDropTargets();
         SetupFeedbackDemo();
+        SetupCustomImageDemo();
+        SetupShellDropDemo();
+        SetupDragOutDemo();
         SetupClearButton();
         LoadCodeExamples();
     }
@@ -296,6 +336,230 @@ public partial class DragDropSample : Page
             var item = e.Data?.GetData("Text") as string ?? "?";
             LogEvent("Drop", $"{zoneName} (received: {item})");
         };
+    }
+
+    // ---- Custom drag image (drag source Shell enhancement) ----
+
+    private BitmapImage? _dragBadge;
+
+    private void SetupCustomImageDemo()
+    {
+        if (CustomImageDragSource != null)
+        {
+            CustomImageDragSource.MouseDown += (s, e) =>
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    var data = new DataObject();
+                    data.SetData("Text", "Custom Image Item");
+
+                    // Build the drag image once and reuse it. The pointer sits 16px in
+                    // from the badge's top-left corner so the badge trails the cursor.
+                    _dragBadge ??= CreateBadgeBitmap();
+                    DragDrop.DoDragDrop(CustomImageDragSource, data, DragDropEffects.Copy, _dragBadge, new Point(16, 24));
+                }
+            };
+        }
+
+        if (CustomImageDropTarget != null)
+        {
+            CustomImageDropTarget.DragEnter += (s, e) =>
+            {
+                CustomImageDropTarget.BorderBrush = _highlightZoneBorder;
+                CustomImageDropTarget.Background = _highlightZoneBackground;
+                e.Effects = DragDropEffects.Copy;
+            };
+            CustomImageDropTarget.DragOver += (s, e) => e.Effects = DragDropEffects.Copy;
+            CustomImageDropTarget.DragLeave += (s, e) =>
+            {
+                CustomImageDropTarget.BorderBrush = _defaultZoneBorder;
+                CustomImageDropTarget.Background = _defaultZoneBackground;
+            };
+            CustomImageDropTarget.Drop += (s, e) =>
+            {
+                CustomImageDropTarget.BorderBrush = _defaultZoneBorder;
+                CustomImageDropTarget.Background = _defaultZoneBackground;
+                var item = e.Data?.GetData("Text") as string ?? "?";
+                if (CustomImageDropHint != null)
+                    CustomImageDropHint.Text = $"Dropped: {item}";
+                LogEvent("Drop", $"CustomImageDropTarget (received: {item})");
+            };
+        }
+    }
+
+    /// <summary>
+    /// Creates a small blue vertical-gradient badge (with a white border) as a
+    /// straight-BGRA <see cref="BitmapImage"/> to use as a custom drag image.
+    /// </summary>
+    private static BitmapImage CreateBadgeBitmap()
+    {
+        const int w = 168, h = 48, border = 2;
+        var px = new byte[w * h * 4];
+        for (int y = 0; y < h; y++)
+        {
+            double t = (double)y / (h - 1);
+            // #2563EB (top) → #1E3A8A (bottom).
+            byte r = (byte)(0x25 + ((0x1E - 0x25) * t));
+            byte g = (byte)(0x63 + ((0x3A - 0x63) * t));
+            byte b = (byte)(0xEB + ((0x8A - 0xEB) * t));
+            bool edgeRow = y < border || y >= h - border;
+            for (int x = 0; x < w; x++)
+            {
+                bool edge = edgeRow || x < border || x >= w - border;
+                int i = ((y * w) + x) * 4;
+                px[i + 0] = edge ? (byte)0xFF : b; // B
+                px[i + 1] = edge ? (byte)0xFF : g; // G
+                px[i + 2] = edge ? (byte)0xFF : r; // R
+                px[i + 3] = 0xFF;                  // A (opaque)
+            }
+        }
+        return BitmapImage.FromPixels(px, w, h);
+    }
+
+    // ---- Windows Shell drop (external files + drop description) ----
+
+    private void SetupShellDropDemo()
+    {
+        if (ShellDropTarget == null) return;
+
+        ShellDropTarget.DragEnter += OnShellDragEnter;
+        ShellDropTarget.DragOver += OnShellDragOver;
+        ShellDropTarget.DragLeave += OnShellDragLeave;
+        ShellDropTarget.Drop += OnShellDrop;
+    }
+
+    private void OnShellDragEnter(object sender, DragEventArgs e)
+    {
+        if (ShellDropTarget != null)
+        {
+            ShellDropTarget.BorderBrush = _highlightZoneBorder;
+            ShellDropTarget.Background = _highlightZoneBackground;
+        }
+        ApplyShellDropFeedback(e);
+        LogEvent("DragEnter", "ShellDropTarget");
+    }
+
+    private void OnShellDragOver(object sender, DragEventArgs e) => ApplyShellDropFeedback(e);
+
+    /// <summary>
+    /// Sets the effect and Shell drop description based on whether files are being
+    /// dragged. The description only appears for external OLE drags (e.g. from
+    /// Explorer); for a purely in-app drag it is a silent no-op.
+    /// </summary>
+    private static void ApplyShellDropFeedback(DragEventArgs e)
+    {
+        if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        {
+            e.Effects = DragDropEffects.Copy;
+            // The Shell substitutes %1 with the insert text → "Copy to Gallery demo".
+            e.SetDropDescription(DropImageType.Copy, "Copy to %1", "Gallery demo");
+        }
+        else
+        {
+            e.Effects = DragDropEffects.None;
+            e.SetDropDescription(DropImageType.None, "Only files are accepted");
+        }
+    }
+
+    private void OnShellDragLeave(object sender, DragEventArgs e)
+    {
+        if (ShellDropTarget != null)
+        {
+            ShellDropTarget.BorderBrush = _defaultZoneBorder;
+            ShellDropTarget.Background = _defaultZoneBackground;
+        }
+        LogEvent("DragLeave", "ShellDropTarget");
+    }
+
+    private void OnShellDrop(object sender, DragEventArgs e)
+    {
+        if (ShellDropTarget != null)
+        {
+            ShellDropTarget.BorderBrush = _defaultZoneBorder;
+            ShellDropTarget.Background = _defaultZoneBackground;
+        }
+
+        var files = e.Data?.GetData(DataFormats.FileDrop) as string[];
+        if (files is { Length: > 0 })
+        {
+            if (ShellDropHint != null)
+                ShellDropHint.Text = $"Dropped {files.Length} file(s):";
+            if (ShellDroppedFilesPanel != null)
+            {
+                ShellDroppedFilesPanel.Children.Clear();
+                foreach (var file in files)
+                {
+                    ShellDroppedFilesPanel.Children.Add(new TextBlock
+                    {
+                        Text = System.IO.Path.GetFileName(file),
+                        FontSize = 12,
+                        Foreground = new SolidColorBrush(Colors.White),
+                        Margin = new Thickness(0, 2, 0, 0),
+                    });
+                }
+            }
+            LogEvent("Drop", $"ShellDropTarget (received {files.Length} file(s))");
+        }
+        else
+        {
+            var text = e.Data?.GetData("Text") as string;
+            if (ShellDropHint != null)
+                ShellDropHint.Text = text != null ? $"Dropped text: {text}" : "Drag files here from Explorer";
+            LogEvent("Drop", "ShellDropTarget (no files)");
+        }
+    }
+
+    // ---- Cross-process drag out to Explorer (real OLE drag source) ----
+
+    private void SetupDragOutDemo()
+    {
+        if (DragOutSource == null) return;
+
+        DragOutSource.MouseDown += (s, e) =>
+        {
+            if (e.LeftButton != MouseButtonState.Pressed) return;
+
+            string? path = CreateTempDragFile();
+            if (path == null)
+            {
+                if (DragOutStatus != null)
+                    DragOutStatus.Text = "Could not create the temp file.";
+                return;
+            }
+
+            var data = new DataObject();
+            data.SetData(DataFormats.FileDrop, new[] { path });
+            data.SetText(System.IO.Path.GetFileName(path));
+
+            _dragBadge ??= CreateBadgeBitmap();
+
+            // Real OLE drag: the file can be dropped onto Explorer or any other app.
+            var effect = DragDrop.DoShellDragDrop(DragOutSource, data, DragDropEffects.Copy, _dragBadge, new Point(16, 24));
+
+            if (DragOutStatus != null)
+                DragOutStatus.Text = effect == DragDropEffects.None
+                    ? "Drag cancelled (dropped nowhere)."
+                    : $"Dropped out with effect: {effect}.";
+            LogEvent("DoShellDragDrop", $"DragOutSource → {effect}");
+        };
+    }
+
+    /// <summary>
+    /// Writes a small text file into the temp folder to hand to the Shell so the
+    /// cross-process drag has something real to copy. Reused across drags.
+    /// </summary>
+    private static string? CreateTempDragFile()
+    {
+        try
+        {
+            string path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "JaliumGalleryDragDrop.txt");
+            System.IO.File.WriteAllText(path, "Hello from the Jalium.UI Gallery — dragged out via DragDrop.DoShellDragDrop.");
+            return path;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private void SetupClearButton()

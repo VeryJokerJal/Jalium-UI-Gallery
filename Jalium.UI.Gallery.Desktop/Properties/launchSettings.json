@@ -3,10 +3,9 @@
     "Jalium.UI.Gallery": {
       "commandName": "Project",
       "environmentVariables": {
-        "JALIUM_ENABLE_GPU_DEBUG": "1",
-        "JALIUM_D3D12_FORCE_FULL_REPLAY": "0",
-        "JALIUM_DEBUG_RENDER": "0",
-        "JALIUM_DISABLE_STROKE_CACHE": "1"
+        "JALIUM_RESIZE_TRACE": "1",
+        "JALIUM_PACING_TRACE": "1",
+        "JALIUM_TEXT_DEBUG": "1"
       },
       "nativeDebugging": true
     }

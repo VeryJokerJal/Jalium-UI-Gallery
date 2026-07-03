@@ -128,6 +128,30 @@
             </StackPanel>
         </Border>
 
+        <!-- Mermaid Diagrams -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Mermaid Diagrams"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Fenced mermaid code blocks render as diagrams (flowcharts, pie charts) instead of source. See the Charts &gt; Flowchart page for the standalone control."
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Markdown x:Name="MermaidMarkdown" Height="520"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                 BorderThickness="1"
@@ -158,6 +182,57 @@
                 </Border>
             </StackPanel>
         </Border>
+        <!-- Selection & Copy -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Selection &amp; Copy"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Drag to select text (or press Ctrl+A), then copy with Ctrl+C or the right-click menu. The control copies in three formats — plain text, Markdown source, and rich text (HTML + RTF) — and exposes the text for translation and other integrations."
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Markdown x:Name="CopyDemoMarkdown" Height="240"/>
+
+                        <WrapPanel Margin="0,12,0,0">
+                            <Button Content="Copy as Plain Text"
+                                    Height="32"
+                                    Margin="0,0,8,8"
+                                    Click="OnCopyPlainClick"/>
+                            <Button Content="Copy as Markdown"
+                                    Height="32"
+                                    Margin="0,0,8,8"
+                                    Click="OnCopyMarkdownClick"/>
+                            <Button Content="Copy as Rich Text"
+                                    Height="32"
+                                    Margin="0,0,8,8"
+                                    Click="OnCopyRichClick"/>
+                            <Button Content="Select All"
+                                    Height="32"
+                                    Margin="0,0,8,8"
+                                    Click="OnSelectAllClick"/>
+                        </WrapPanel>
+
+                        <TextBlock x:Name="CopyStatusText"
+                                   Text="Select some text above, or use the buttons to copy the whole document."
+                                   FontSize="12"
+                                   TextWrapping="Wrap"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
         <!-- XAML Code Example -->
         <Border Background="{DynamicResource GalleryCardBackground}"
                 BorderBrush="{DynamicResource GalleryBorderDefault}"

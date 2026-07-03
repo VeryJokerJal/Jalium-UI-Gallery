@@ -10,8 +10,9 @@
                    Margin="0,0,0,8"/>
 
         <!-- Description -->
-        <TextBlock Text="Demonstrates DragEnter, DragOver, DragLeave, and Drop events using the AllowDrop property."
+        <TextBlock Text="Demonstrates DragEnter, DragOver, DragLeave, and Drop events, plus the Windows Shell enhancements: a caller-supplied drag image on the source, a Shell drop description on the target, and dragging files out to other applications via DoShellDragDrop."
                    FontSize="14"
+                   TextWrapping="Wrap"
                    Margin="0,0,0,24"/>
 
         <!-- Basic Drag and Drop Demo -->
@@ -170,6 +171,132 @@
                                            VerticalAlignment="Center"/>
                             </Border>
                         </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Custom Drag Image (drag source, Shell enhancement) -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Custom Drag Image (drag source)"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Drag the item below. A caller-supplied image follows the cursor instead of an automatic element clone, using DragDrop.DoDragDrop(source, data, effects, dragImage, offset)."
+                           FontSize="12"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="CustomImageDragSource"
+                                Background="{DynamicResource GalleryAccent}"
+                                CornerRadius="8"
+                                Padding="12,8"
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center"
+                                Cursor="Hand">
+                            <TextBlock Text="Drag me — custom image"
+                                       FontSize="13"/>
+                        </Border>
+
+                        <Border x:Name="CustomImageDropTarget"
+                                Background="{DynamicResource GalleryCardAltBackground}"
+                                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                BorderThickness="2"
+                                CornerRadius="14"
+                                Width="260"
+                                MinHeight="80"
+                                Padding="16"
+                                AllowDrop="True">
+                            <TextBlock x:Name="CustomImageDropHint"
+                                       Text="Drop here"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Windows Shell Drop (external files + drop description) -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Windows Shell Drop (external files)"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Drag one or more files from Windows Explorer onto the area below. Windows renders its own drag image (IDropTargetHelper), and the DragOver handler sets a Shell drop description via e.SetDropDescription(...)."
+                           FontSize="12"
+                           Margin="0,0,0,16"/>
+
+                <Border x:Name="ShellDropTarget"
+                        Background="{DynamicResource GalleryCardAltBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="2"
+                        CornerRadius="14"
+                        MinHeight="140"
+                        Padding="16"
+                        AllowDrop="True">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="ShellDropHint"
+                                   Text="Drag files here from Explorer"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,0,8"/>
+                        <StackPanel x:Name="ShellDroppedFilesPanel"
+                                    Orientation="Vertical"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Drag Out to Explorer (real cross-process OLE drag source) -->
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20"
+                Margin="0,0,0,16">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Drag Out to Explorer (cross-process)"
+                           FontSize="16"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Drag the item below onto a Windows Explorer window or the desktop. Unlike the in-app drag, DragDrop.DoShellDragDrop runs a real OLE drag so the file is copied out to another application, with the Windows system drag image."
+                           TextWrapping="Wrap"
+                           FontSize="12"
+                           Margin="0,0,0,16"/>
+
+                <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Orientation="Vertical">
+                        <Border x:Name="DragOutSource"
+                                Background="#7C3AED"
+                                CornerRadius="8"
+                                Padding="12,8"
+                                Cursor="Hand"
+                                HorizontalAlignment="Left">
+                            <TextBlock Text="Drag me to Explorer (creates a .txt)"
+                                       FontSize="13"/>
+                        </Border>
+                        <TextBlock x:Name="DragOutStatus"
+                                   Text="A temp file is created on drag; drop it into a folder to copy it out."
+                                   FontSize="12"
+                                   TextWrapping="Wrap"
+                                   Margin="0,8,0,0"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
