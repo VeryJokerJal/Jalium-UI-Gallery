@@ -45,7 +45,7 @@ jobs:
         with:
           repository: VeryJokerJal/Jalium.UI
           # Pin the exact framework source used to produce the v1.1.0 assets.
-          ref: 465fa8ee23df0299a032784199dbe31df0f649bc
+          ref: 0ba848baf0d4e51162ba82f4c09ebd6cfa67dcae
           path: Jalium.UI
 
       # Jalium.UI's NuGet configuration declares ./packages as a local source.
@@ -244,7 +244,7 @@ jobs:
         with:
           repository: VeryJokerJal/Jalium.UI
           # Keep musl artifacts on the same framework source as glibc.
-          ref: 465fa8ee23df0299a032784199dbe31df0f649bc
+          ref: 0ba848baf0d4e51162ba82f4c09ebd6cfa67dcae
           path: Jalium.UI
 
       # See the matching glibc setup: restore must see the configured local
