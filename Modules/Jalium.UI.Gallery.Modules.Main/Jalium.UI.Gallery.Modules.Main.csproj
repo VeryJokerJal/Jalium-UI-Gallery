@@ -25,6 +25,9 @@
     <EmbeddedResource Include="Assets\Jalium_IDE_logo.ico">
       <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.Jalium_IDE_logo.ico</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Assets\SaasCardBackgrounds\*.png">
+      <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.SaasCardBackgrounds.%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <!-- 引用本地项目 (开发模式，可访问最新代码) -->

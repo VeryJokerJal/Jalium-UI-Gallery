@@ -619,9 +619,9 @@ public partial class HomePage : Page
             Background = GalleryTheme.BackgroundCardInnerBrush,
             BorderBrush = GalleryTheme.BorderSubtleBrush,
             BorderThickness = new Thickness(0, 0, 0, 1),
-            Padding = new Thickness(14),
+            Padding = new Thickness(0),
             IsHitTestVisible = false,
-            Child = CreateComponentPreview(item, false)
+            Child = SaasCardBackgrounds.CreateImage(item.PageTag)
         };
         layout.Children.Add(previewSurface);
 
