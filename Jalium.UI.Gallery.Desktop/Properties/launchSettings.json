@@ -5,7 +5,7 @@
       "environmentVariables": {
         "JALIUM_RESIZE_TRACE": "1",
         "JALIUM_PACING_TRACE": "1",
-        "JALIUM_TEXT_DEBUG": "1"
+        "JALIUM_HOVER_TRACE": "1"
       },
       "nativeDebugging": true
     }

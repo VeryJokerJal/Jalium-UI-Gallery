@@ -3,128 +3,80 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GaugeChartPage"
       Title="GaugeChart">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="GaugeChart"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="Displays a value on a radial gauge with colored ranges, tick marks, and a needle indicator."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="GaugeChart" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Displays a value on a radial gauge with colored ranges, tick marks, and a needle indicator." />
 
         <!-- Basic Gauge -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Gauge"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A gauge chart with a simple value, minimum, and maximum."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Gauge" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A gauge chart with a simple value, minimum, and maximum." />
                 <Border x:Name="BasicGaugeContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+                        Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Colored Ranges -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Colored Ranges"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A gauge with green, yellow, and red range segments."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Colored Ranges" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A gauge with green, yellow, and red range segments." />
                 <Border x:Name="ColoredRangesContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+                        Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Multiple Gauges -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Multiple Gauges"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A row of three small gauges showing CPU, Memory, and Disk usage."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multiple Gauges" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A row of three small gauges showing CPU, Memory, and Disk usage." />
                 <Border x:Name="MultiGaugeContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+                        Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the gauges above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building and configuring gauges in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

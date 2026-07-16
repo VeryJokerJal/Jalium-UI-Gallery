@@ -2,6 +2,7 @@ using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
 using Jalium.UI.Input;
 using Jalium.UI.Media;
+using Jalium.UI.Media.Imaging;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 

@@ -3,74 +3,63 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.QRCodePage"
       Title="QRCode">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="QRCode"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="Generate QR codes for links, contact payloads, Wi-Fi setup strings, or any other compact text payload."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="QRCode" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Generate QR codes for links, contact payloads, Wi-Fi setup strings, or any other compact text payload." />
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Generator"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Change the payload and error correction level, then regenerate the QR code."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Interactive generator -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Generator" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Change the payload and error correction level, then regenerate the QR code." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBox x:Name="PayloadTextBox"
                                  Height="32"
-                                 Width="640"
+                                 HorizontalAlignment="Stretch"
                                  Margin="0,0,0,12"
-                                 PlaceholderText="Enter a URL or other payload..." />
+                                 ToolTip="Enter a URL or other payload..." />
 
                         <WrapPanel Margin="0,0,0,12">
                             <Button Content="Generate"
                                     Width="96"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnGenerateClick"/>
                             <Button Content="ECC L"
                                     Tag="L"
                                     Width="72"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnErrorCorrectionClick"/>
                             <Button Content="ECC M"
                                     Tag="M"
                                     Width="72"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnErrorCorrectionClick"/>
                             <Button Content="ECC Q"
                                     Tag="Q"
                                     Width="72"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnErrorCorrectionClick"/>
                             <Button Content="ECC H"
                                     Tag="H"
                                     Width="72"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnErrorCorrectionClick"/>
                         </WrapPanel>
 
                         <TextBlock x:Name="GeneratorStatusText"
+                                   Style="{StaticResource GalleryValueLabel}"
                                    Text="ECC: Q"
-                                   FontSize="13"
                                    Margin="0,0,0,12"/>
 
                         <Border Background="#101010"
@@ -83,53 +72,38 @@
                         </Border>
 
                         <TextBlock x:Name="PayloadSummaryText"
+                                   Style="{StaticResource GalleryCaptionText}"
                                    Text="Payload: https://jalium.dev"
-                                   FontSize="13"
                                    Margin="0,12,0,0"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Common Payloads"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A few practical formats that work well with QRCode."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
+        <!-- Common payloads -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Payloads" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A few practical formats that work well with QRCode." />
                 <WrapPanel>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16"
-                            Margin="0,0,12,12">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,10,10">
                         <StackPanel Orientation="Vertical">
                             <QRCode Text="https://jalium.dev/docs"
                                     Width="140"
                                     Height="140"
                                     QuietZoneModules="2"
                                     Margin="0,0,0,12"/>
-                            <TextBlock Text="Documentation URL"
-                                       FontSize="13"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                       Text="Documentation URL"
                                        Margin="0,0,0,4"/>
-                            <TextBlock Text="Great for mobile-friendly links."
-                                       FontSize="12"
-                                       Width="140"
-                                       TextWrapping="Wrap"/>
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Great for mobile-friendly links."
+                                       Width="140"/>
                         </StackPanel>
                     </Border>
 
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16"
-                            Margin="0,0,12,12">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,10,10">
                         <StackPanel Orientation="Vertical">
                             <QRCode Text="WIFI:T:WPA;S:JaliumGuest;P:guest12345;;"
                                     Width="140"
@@ -137,84 +111,65 @@
                                     QuietZoneModules="2"
                                     ErrorCorrectionLevel="H"
                                     Margin="0,0,0,12"/>
-                            <TextBlock Text="Wi-Fi Onboarding"
-                                       FontSize="13"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                       Text="Wi-Fi Onboarding"
                                        Margin="0,0,0,4"/>
-                            <TextBlock Text="Encode setup info for quick scanning."
-                                       FontSize="12"
-                                       Width="140"
-                                       TextWrapping="Wrap"/>
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Encode setup info for quick scanning."
+                                       Width="140"/>
                         </StackPanel>
                     </Border>
 
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16"
-                            Margin="0,0,0,12">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,10,10">
                         <StackPanel Orientation="Vertical">
                             <QRCode Text="BEGIN:VCARD;FN:Jalium Team;EMAIL:hello@jalium.dev;END:VCARD;"
                                     Width="140"
                                     Height="140"
                                     QuietZoneModules="2"
                                     Margin="0,0,0,12"/>
-                            <TextBlock Text="Contact Card"
-                                       FontSize="13"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                       Text="Contact Card"
                                        Margin="0,0,0,4"/>
-                            <TextBlock Text="Share compact contact payloads."
-                                       FontSize="12"
-                                       Width="140"
-                                       TextWrapping="Wrap"/>
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Share compact contact payloads."
+                                       Width="140"/>
                         </StackPanel>
                     </Border>
                 </WrapPanel>
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="QRCode Properties"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Properties -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="QRCode Properties" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="The key properties you set to control encoding and presentation." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Text - The payload encoded into the QR matrix"
-                                   FontSize="13"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Text - The payload encoded into the QR matrix"
                                    Margin="0,0,0,8"/>
-                        <TextBlock Text="ErrorCorrectionLevel - Choose L, M, Q, or H based on resilience needs"
-                                   FontSize="13"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="ErrorCorrectionLevel - Choose L, M, Q, or H based on resilience needs"
                                    Margin="0,0,0,8"/>
-                        <TextBlock Text="QuietZoneModules - Control the blank border around the encoded matrix"
-                                   FontSize="13"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="QuietZoneModules - Control the blank border around the encoded matrix"
                                    Margin="0,0,0,8"/>
-                        <TextBlock Text="Foreground / Background / Padding / CornerRadius - Style the presentation surface"
-                                   FontSize="13"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Foreground / Background / Padding / CornerRadius - Style the presentation surface"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the QR codes above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -225,21 +180,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Generating and updating a QRCode from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -249,5 +196,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

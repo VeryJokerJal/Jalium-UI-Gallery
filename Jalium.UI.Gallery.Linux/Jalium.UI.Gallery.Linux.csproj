@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.props" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Publishing is always RID-explicit through eng/linux/publish.sh. Keeping
+         this as descriptive metadata avoids downloading all four runtime packs
+         during an ordinary portable build or IDE design-time restore. -->
+    <JaliumSupportedRuntimeIdentifiers>linux-x64;linux-arm64;linux-musl-x64;linux-musl-arm64</JaliumSupportedRuntimeIdentifiers>
+    <RootNamespace>Jalium.UI.Gallery.Linux</RootNamespace>
+    <AssemblyName>Jalium.UI.Gallery</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Establish the portable baseline first. Trimming and NativeAOT are
+         separate release gates once the dynamic Linux runtime is proven. -->
+    <PublishAot>false</PublishAot>
+    <PublishTrimmed>false</PublishTrimmed>
+    <InvariantGlobalization>false</InvariantGlobalization>
+
+    <EnableJalxamlCodeGeneration>false</EnableJalxamlCodeGeneration>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\**\*;bin\**\*;.tmp-build\**\*</DefaultItemExcludes>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Linux\Jalium.UI.Linux.csproj"
+                      ExcludeAssets="build;buildTransitive" />
+    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false"
+                      UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
+    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj"
+                      ReferenceOutputAssembly="false"
+                      BuildReference="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jalium.UI.Gallery.Core\Jalium.UI.Gallery.Core.csproj" />
+    <ProjectReference Include="..\Modules\Jalium.UI.Gallery.Modules.Main\Jalium.UI.Gallery.Modules.Main.csproj" />
+    <ProjectReference Include="..\Services\Jalium.UI.Gallery.Services.Interfaces\Jalium.UI.Gallery.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\Jalium.UI.Gallery.Services\Jalium.UI.Gallery.Services.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\..\Jalium.UI\src\managed\Jalium.UI.Build\build\Jalium.UI.Build.targets" />
+
+</Project>

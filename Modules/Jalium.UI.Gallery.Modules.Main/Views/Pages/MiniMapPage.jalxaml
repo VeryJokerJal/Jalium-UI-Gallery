@@ -3,133 +3,83 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MiniMapPage"
       Title="MiniMap">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="MiniMap"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A mini-map control that shows a scaled-down overview of a target element with a draggable viewport rectangle."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MAPS &amp; GEO" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="MiniMap" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A mini-map control that shows a scaled-down overview of a target element with a draggable viewport rectangle." />
 
-        <!-- Basic MiniMap Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic MiniMap"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A ScrollViewer with large content and a MiniMap that tracks the visible area. Click the mini-map to navigate."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="BasicMiniMapContainer" Orientation="Vertical"/>
+        <!-- Basic MiniMap -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic MiniMap" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A ScrollViewer with large content and a MiniMap that tracks the visible area. Click the mini-map to navigate." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="BasicMiniMapContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Map Integration Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Map Integration"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A MiniMap targeting a MapView to provide a geographic overview with viewport indicator."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="MapMiniMapContainer" Orientation="Vertical"/>
+        <!-- Map Integration -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Map Integration" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A MiniMap targeting a MapView to provide a geographic overview with viewport indicator." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="MapMiniMapContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Render Modes Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Render Modes"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Multiple MiniMaps showing the None, Outline, and Simplified render modes side by side."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="RenderModesMiniMapContainer" Orientation="Vertical"/>
+        <!-- Render Modes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Render Modes" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Multiple MiniMaps showing the None, Outline, and Simplified render modes side by side." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="RenderModesMiniMapContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for wiring a MiniMap to a ScrollViewer or MapView target." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building mini-maps, setting render modes and highlight markers in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

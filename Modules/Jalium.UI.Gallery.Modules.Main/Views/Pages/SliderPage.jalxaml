@@ -3,200 +3,134 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SliderPage"
       Title="Slider">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Slider"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A control that lets the user select from a range of values by moving a thumb."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Slider" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A control that lets people pick a value from a range by dragging a thumb along a track, with optional tick marks and snapping." />
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Drag the slider thumb to change the value."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Drag the thumb to change the value and watch the readout update live." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
                         <Slider x:Name="DemoSlider"
                                 Minimum="0"
                                 Maximum="100"
                                 Value="50"
                                 Height="24"
-                                Margin="0,0,0,16"/>
+                                Margin="0,0,0,16" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Value: "
-                                       FontSize="12"/>
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
                             <TextBlock x:Name="SliderValue"
-                                       Text="50"
-                                       FontSize="12"/>
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="50" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Slider with Ticks Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Slider with Ticks"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A slider with tick marks at regular intervals."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <Slider Minimum="0"
-                                Maximum="100"
-                                Value="50"
-                                TickFrequency="10"
-                                Height="24"/>
-                    </StackPanel>
+        <!-- Slider with ticks -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Slider with ticks" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Tick marks placed at a regular TickFrequency hint at the available stops along the track." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Slider Minimum="0"
+                            Maximum="100"
+                            Value="50"
+                            TickFrequency="10"
+                            Height="24" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Snap to Ticks Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Snap to Ticks"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A slider that snaps to tick mark positions."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <Slider Minimum="0"
-                                Maximum="100"
-                                Value="50"
-                                TickFrequency="25"
-                                IsSnapToTickEnabled="True"
-                                Height="24"/>
-                    </StackPanel>
+        <!-- Snap to ticks -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Snap to ticks" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="With IsSnapToTickEnabled the thumb locks onto the nearest tick position as you drag." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Slider Minimum="0"
+                            Maximum="100"
+                            Value="50"
+                            TickFrequency="25"
+                            IsSnapToTickEnabled="True"
+                            Height="24" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Slider Range Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Custom Range"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Sliders with different minimum and maximum values."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Volume (0-100)"
-                                   FontSize="12"
-                                   Margin="0,0,0,4"/>
+        <!-- Custom range -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom range" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Set any Minimum and Maximum — including negative ranges — to match the data you are bound to." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="Volume (0-100)"
+                                   Margin="0,0,0,6" />
                         <Slider Minimum="0"
                                 Maximum="100"
                                 Value="75"
                                 Height="24"
-                                Margin="0,0,0,16"/>
+                                Margin="0,0,0,16" />
 
-                        <TextBlock Text="Temperature (-10 to 40)"
-                                   FontSize="12"
-                                   Margin="0,0,0,4"/>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="Temperature (-10 to 40)"
+                                   Margin="0,0,0,6" />
                         <Slider Minimum="-10"
                                 Maximum="40"
                                 Value="22"
-                                Height="24"/>
+                                Height="24" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the sliders above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Handling ValueChanged and building sliders in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

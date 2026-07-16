@@ -1,6 +1,7 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Shell;
+using Jalium.UI.Shell;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
@@ -48,7 +49,8 @@ public partial class ShellIntegrationPage : Page
                 });
 
                 // Apply the jump list
-                JumpList.SetJumpList(Application.Current, jumpList);
+                if (Application.Current is { } application)
+                    JumpList.SetJumpList(application, jumpList);
             };
         }
 
@@ -187,7 +189,10 @@ public partial class ShellIntegrationPage : Page
 </Window.TaskbarItemInfo>";
 
     private const string CSharpExample =
-@"// Apply custom WindowChrome programmatically
+@"using Jalium.UI.Controls.Shell;
+using Jalium.UI.Shell;
+
+// Apply custom WindowChrome programmatically
 var chrome = new WindowChrome
 {
     CaptionHeight = 30,

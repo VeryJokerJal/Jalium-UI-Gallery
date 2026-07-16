@@ -3,133 +3,83 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.LineChartPage"
       Title="LineChart">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="LineChart"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Displays data as connected line segments with optional smoothing, area fill, and data point markers."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="LineChart" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Displays data as connected line segments with optional smoothing, area fill, and data point markers." />
 
-        <!-- Basic Line Chart Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Line Chart"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A single data series rendered as a line chart with data point markers."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="BasicChartContainer" Orientation="Vertical"/>
+        <!-- Basic line chart -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Line Chart" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A single data series rendered as a line chart with data point markers." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="BasicChartContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Multiple Series Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Multiple Series"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Overlay multiple data series on the same chart with a legend."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="MultiSeriesContainer" Orientation="Vertical"/>
+        <!-- Multiple series -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multiple Series" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Overlay multiple data series on the same chart with a legend." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="MultiSeriesContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Smoothed Line & Area Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Smoothed Line &amp; Area"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Catmull-Rom spline smoothing with a filled area beneath the line."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="SmoothedChartContainer" Orientation="Vertical"/>
+        <!-- Smoothed line & area -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Smoothed Line &amp; Area" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Catmull-Rom spline smoothing with a filled area beneath the line." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="SmoothedChartContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for a line chart with a single series." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building a multi-series line chart with smoothing and area fill in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -1,90 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CalendarPage">
-    <ScrollViewer>
-        <StackPanel Orientation="Vertical" Margin="24">
-            <!-- Header -->
-            <TextBlock Text="Calendar" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
-            <TextBlock Text="A control that displays a calendar for date selection."
-                       FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
 
-            <!-- Interactive Demo -->
-            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-                    <StackPanel Orientation="Horizontal">
-                        <Calendar x:Name="DemoCalendar" />
-                        <StackPanel Orientation="Vertical" Margin="24,0,0,0">
-                            <TextBlock Text="Selected Date:" FontWeight="SemiBold" Margin="0,0,0,8" />
-                            <TextBlock x:Name="SelectedDateText" Text="None" />
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="COLLECTIONS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Calendar" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A control that displays a monthly calendar for browsing and selecting dates, with month, year and decade views." />
+
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Pick a day on the calendar and the selected date updates below." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Calendar x:Name="DemoCalendar" Margin="0,0,10,10" />
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Selected date"
+                                       Margin="0,0,0,4" />
+                            <TextBlock x:Name="SelectedDateText"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="None" />
                         </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- Features -->
-            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
-                    <TextBlock Text="• Month/Year/Decade views" Margin="0,0,0,4" />
-                    <TextBlock Text="• Single or range date selection" Margin="0,0,0,4" />
-                    <TextBlock Text="• Blackout dates" Margin="0,0,0,4" />
-                    <TextBlock Text="• Display date range constraints" Margin="0,0,0,4" />
-                    <TextBlock Text="• First day of week customization" Margin="0,0,0,4" />
-                </StackPanel>
-            </Border>
+        <!-- Features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="The Calendar control supports the following out of the box." />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Month / year / decade views" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Single or range date selection" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Blackout dates" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Display date range constraints" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• First day of week customization" />
+            </StackPanel>
+        </Border>
 
-            <!-- XAML Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="XAML Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="XamlCodeEditor"
-                                     Height="200"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the Calendar shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13" />
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- C# Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="C# Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="CSharpCodeEditor"
-                                     Height="200"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating a Calendar and handling date selection in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
 </Page>

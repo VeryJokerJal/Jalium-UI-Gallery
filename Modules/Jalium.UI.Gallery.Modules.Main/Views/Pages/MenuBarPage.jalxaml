@@ -3,113 +3,73 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MenuBarPage"
       Title="MenuBar">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="MenuBar"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A horizontal bar that organizes application commands into top-level menus with flyout submenus."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="MenuBar" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A horizontal bar that organizes application commands into top-level menus with flyout submenus." />
 
-        <!-- Basic MenuBar Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic MenuBar"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A standard menu bar with File, Edit, View, and Help menus."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
+        <!-- Basic MenuBar -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic MenuBar" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A standard menu bar with File, Edit, View, and Help menus, each with keyboard-gesture hints." />
                 <Border x:Name="MenuBarContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        MinHeight="28"/>
+                        Style="{StaticResource GalleryDemoSurfaceFlush}"
+                        MinHeight="28" />
             </StackPanel>
         </Border>
 
-        <!-- MenuBar Status Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Menu Action Log"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click menu items to see which action was triggered."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Menu action log -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Menu Action Log" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Click menu items to see which action was triggered." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <TextBlock x:Name="MenuStatusText"
-                               Text="No menu action yet."
-                               FontSize="13"
-                               TextWrapping="Wrap"/>
+                               Style="{StaticResource GalleryBodyText}"
+                               Text="No menu action yet." />
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the menu shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building the menu and wiring click handlers in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -1,0 +1,71 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.NavigationStatePage">
+
+    <Grid>
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MaxWidth="640">
+            <StackPanel HorizontalAlignment="Center">
+                <Grid Width="72"
+                      Height="72"
+                      Margin="0,0,0,20"
+                      HorizontalAlignment="Center">
+                    <Border x:Name="ErrorIconContainer"
+                            Background="#33EF4444"
+                            CornerRadius="12"
+                            Visibility="Collapsed">
+                        <Path Width="28"
+                              Height="28"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Stretch="Uniform"
+                              Fill="#FFEF4444"
+                              Data="M11,2 H13 L12.6,15 H11.4 Z M12,18 A2,2,0,1,1,12,22 A2,2,0,1,1,12,18 Z" />
+                    </Border>
+
+                    <Border x:Name="PlaceholderIconContainer"
+                            Background="{DynamicResource GalleryAccentSoft}"
+                            CornerRadius="12">
+                        <Grid Width="32" Height="32">
+                            <Path Width="25"
+                                  Height="25"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Stretch="Uniform"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Data="M12,1 L14.7,9.3 L23,12 L14.7,14.7 L12,23 L9.3,14.7 L1,12 L9.3,9.3 Z" />
+                            <Path Width="7"
+                                  Height="7"
+                                  Margin="23,0,0,23"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Stretch="Uniform"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Data="M4,0 L5,3 L8,4 L5,5 L4,8 L3,5 L0,4 L3,3 Z" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <TextBlock x:Name="StateTitleText"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8" />
+
+                <TextBlock x:Name="StateDetailText"
+                           FontSize="14"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
+                           MaxWidth="560" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

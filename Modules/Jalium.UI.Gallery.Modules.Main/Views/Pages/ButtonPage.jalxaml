@@ -3,221 +3,141 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ButtonPage"
       Title="Button">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Button"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <!--
+        Reference layout for every gallery page. Structure:
+          header (eyebrow + title + subtitle)  →  a stack of GalleryCard sections.
+        Each card = title + caption + a GalleryDemoSurface holding the live demo.
+        Control rows sit in a WrapPanel so they reflow on narrow / mobile widths.
+        All visual tokens come from GalleryStyles.jalxaml — no inline style soup.
+    -->
 
-        <!-- Description -->
-        <TextBlock Text="A button control that responds to user clicks."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click the button to increment the counter."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Button" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A clickable command surface that triggers an action. Buttons carry text or custom content, come in multiple sizes and states, and repaint automatically with the accent theme." />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Tap the button to increment the counter." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Button x:Name="CounterButton"
                                 Content="Click Me"
-                                Width="100"
-                                Height="32"
-                                Margin="0,0,16,0"/>
-                        <TextBlock x:Name="CounterText"
-                                   Text="Count: 0"
-                                   FontSize="14"
-                                   VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Border>
-
-        <!-- Basic Button Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Button"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Standard button with default styling."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Click Me"
-                                Width="100"
-                                Height="32"
-                                Margin="0,0,12,0"/>
-                        <Button Content="Disabled"
-                                Width="100"
-                                Height="32"
-                                IsEnabled="False"/>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Border>
-
-        <!-- Button Variants Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Button Variants"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Different button sizes and styles."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Small"
-                                Width="80"
-                                Height="28"
-                                FontSize="12"
-                                Margin="0,0,12,0"/>
-                        <Button Content="Medium"
-                                Width="100"
-                                Height="32"
-                                FontSize="14"
-                                Margin="0,0,12,0"/>
-                        <Button Content="Large"
-                                Width="120"
                                 Height="40"
-                                FontSize="16"/>
+                                Padding="20,0" />
+                        <TextBlock x:Name="CounterText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="Count: 0"
+                                   Margin="18,0,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- ThemeResource AccentBrush Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ThemeResource AccentBrush"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Buttons bound to AccentBrush via {ThemeResource} — repaint automatically when the theme or accent color switches."
-                           FontSize="12"
-                           Margin="0,0,0,16"
-                           TextWrapping="Wrap"/>
+        <!-- Basic button -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Standard button with default styling, plus a disabled state." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Button Content="Click Me" Height="40" Padding="20,0" Margin="0,0,10,10" />
+                        <Button Content="Disabled" Height="40" Padding="20,0" Margin="0,0,10,10" IsEnabled="False" />
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Sizes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Sizes" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Small, medium and large presets scale font and padding together." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Button Content="Small"  Height="30" Padding="14,0" FontSize="12" Margin="0,0,10,10" />
+                        <Button Content="Medium" Height="38" Padding="18,0" FontSize="14" Margin="0,0,10,10" />
+                        <Button Content="Large"  Height="46" Padding="24,0" FontSize="16" Margin="0,0,10,10" />
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Accent theming -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Accent theming" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Buttons bound to the accent brushes via {ThemeResource} repaint automatically when the theme or accent color switches." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <Button Content="Accent"
                                 Background="{ThemeResource AccentBrush}"
                                 BorderBrush="{ThemeResource AccentBrush}"
                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
-                                Width="100"
-                                Height="32"
-                                Margin="0,0,12,0"/>
+                                Height="40" Padding="20,0" Margin="0,0,10,10" />
                         <Button Content="Hover"
                                 Background="{ThemeResource AccentBrushHover}"
                                 BorderBrush="{ThemeResource AccentBrushHover}"
                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
-                                Width="100"
-                                Height="32"
-                                Margin="0,0,12,0"/>
+                                Height="40" Padding="20,0" Margin="0,0,10,10" />
                         <Button Content="Pressed"
                                 Background="{ThemeResource AccentBrushPressed}"
                                 BorderBrush="{ThemeResource AccentBrushPressed}"
                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
-                                Width="100"
-                                Height="32"
-                                Margin="0,0,12,0"/>
+                                Height="40" Padding="20,0" Margin="0,0,10,10" />
                         <Button Content="Outlined"
                                 Background="Transparent"
                                 BorderBrush="{ThemeResource AccentBrush}"
-                                BorderThickness="2"
+                                BorderThickness="1.5"
                                 Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                                Width="110"
-                                Height="32"/>
-                    </StackPanel>
+                                Height="40" Padding="20,0" Margin="0,0,10,10" />
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the buttons above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Wiring click handlers and creating buttons in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

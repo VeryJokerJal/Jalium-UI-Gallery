@@ -3,155 +3,105 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TextBlockPage"
       Title="TextBlock">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="TextBlock"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A lightweight control for displaying text."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="TEXT &amp; TYPOGRAPHY" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TextBlock" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A lightweight, read-only control for displaying text, with control over font size, weight, wrapping and trimming." />
 
-        <!-- Basic TextBlock Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic TextBlock"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Simple text display with default styling."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic TextBlock -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic TextBlock" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Simple text display with default styling." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="This is a basic TextBlock"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="TextBlock displays read-only text content"/>
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="TextBlock displays read-only text content" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Font Sizes Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Font Sizes"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Different font size variations."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Font Sizes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Font Sizes" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Different font size variations from caption to display." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Caption (12px)"
                                    FontSize="12"
-                                   Margin="0,0,0,8"/>
+                                   Margin="0,0,0,8" />
                         <TextBlock Text="Body (14px)"
                                    FontSize="14"
-                                   Margin="0,0,0,8"/>
+                                   Margin="0,0,0,8" />
                         <TextBlock Text="Subtitle (18px)"
                                    FontSize="18"
-                                   Margin="0,0,0,8"/>
+                                   Margin="0,0,0,8" />
                         <TextBlock Text="Title (24px)"
                                    FontSize="24"
-                                   Margin="0,0,0,8"/>
+                                   Margin="0,0,0,8" />
                         <TextBlock Text="Display (32px)"
-                                   FontSize="32"/>
+                                   FontSize="32" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Text Wrapping Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Text Wrapping"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Long text with wrapping enabled."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Text Wrapping -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Text Wrapping" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Long text automatically wraps to the next line when it exceeds the available width." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <TextBlock Text="This is a longer piece of text that demonstrates how TextBlock handles text wrapping. When the text exceeds the available width, it automatically wraps to the next line, ensuring all content remains visible and readable."
                                FontSize="14"
                                TextWrapping="Wrap"
-                               Width="400"/>
+                               Width="400" />
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the text samples above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating and updating TextBlocks in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

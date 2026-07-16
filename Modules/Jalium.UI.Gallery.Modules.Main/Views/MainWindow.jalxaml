@@ -1,21 +1,291 @@
 <Window xmlns="http://schemas.jalium.ui/2024"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Jalium.UI.Gallery.Modules.Main.Views.MainWindow"
-        Title="Jalium.UI Gallery"
-        Width="1360"
-        Height="860"
-        TitleBarHeight="56">
+        Title="Jalium UI Gallery"
+        Width="1500"
+        Height="920"
+        MinWidth="900"
+        MinHeight="640"
+        TitleBarHeight="64"
+        Background="{DynamicResource GalleryShellBackground}"
+        Foreground="{DynamicResource GalleryTextPrimary}">
 
-    <!--
-        Root is a Grid so the Overview landing layer can be stacked on top of
-        the NavigationView shell at startup. MainWindow.jalxaml.cs adds the
-        OverviewPage as a second child, drives the startup fade-in, and
-        cross-fades into the NavigationView when the user clicks "Enter Gallery".
-    -->
+    <Window.Resources>
+        <ControlTemplate x:Key="GalleryChromeButtonTemplate" TargetType="Button">
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+        </ControlTemplate>
+
+        <Style x:Key="GalleryUtilityLinkButton" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundHover}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderStrong}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GalleryFooterButton" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundHover}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Window.LeftWindowCommands>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="18,0,0,0">
+            <Border x:Name="SectionBadge"
+                    Background="{DynamicResource GalleryAccentSoft}"
+                    BorderBrush="{DynamicResource GalleryAccent}"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="10,5"
+                    Margin="0,0,12,0"
+                    VerticalAlignment="Center"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="8"
+                            Height="8"
+                            Background="{DynamicResource GallerySuccess}"
+                            CornerRadius="4"
+                            Margin="0,0,8,0"
+                            VerticalAlignment="Center" />
+                    <TextBlock Text="Section"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryAccentDark}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+
+            <Grid Width="440" Height="40">
+                <TextBox x:Name="TitleBarSearchBox"
+                         Padding="36,0,58,0"
+                         ToolTip="Search all components..."
+                         VerticalAlignment="Center"
+                         TextChanged="OnTitleBarSearchTextChanged"
+                         KeyDown="OnTitleBarSearchKeyDown" />
+                <TextBlock x:Name="TitleBarSearchPlaceholder"
+                           Text="Search all components..."
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="36,0,58,0"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False" />
+                <Path Data="M10.5,3 A7.5,7.5,0,1,0,10.5,18 A7.5,7.5,0,1,0,10.5,3 Z M16,16 L22,22"
+                      Stroke="{DynamicResource GalleryTextTertiary}"
+                      StrokeThickness="1.5"
+                      Fill="Transparent"
+                      Width="17"
+                      Height="17"
+                      Stretch="Uniform"
+                      Margin="12,0,0,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      IsHitTestVisible="False" />
+                <Border Background="{DynamicResource GalleryCardAltBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="7,3"
+                        Margin="0,0,8,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        IsHitTestVisible="False">
+                    <TextBlock Text="Ctrl K"
+                               FontSize="10"
+                               Foreground="{DynamicResource GalleryTextMuted}" />
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Window.LeftWindowCommands>
+
+    <Window.RightWindowCommands>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="0,0,16,0">
+            <Button Content="Docs"
+                    Tag="https://jaliumui.top"
+                    Style="{StaticResource GalleryUtilityLinkButton}"
+                    ToolTip="Open Docs"
+                    Click="OnUtilityLinkClick" />
+            <Button Content="GitHub"
+                    Tag="https://github.com/VeryJokerJal/Jalium.UI"
+                    Style="{StaticResource GalleryUtilityLinkButton}"
+                    ToolTip="Open GitHub"
+                    Margin="4,0,0,0"
+                    Click="OnUtilityLinkClick" />
+        </StackPanel>
+    </Window.RightWindowCommands>
+
     <Grid x:Name="RootShellGrid">
         <NavigationView x:Name="NavigationView"
-                        OpenPaneLength="280"
-                        PaneTitle="JALIUM.UI"/>
+                        OpenPaneLength="248"
+                        PaneTitle="Components"
+                        PaneBackground="{DynamicResource GalleryPaneBackground}"
+                        ContentBackground="Transparent"
+                        SelectionChanged="OnSelectionChanged">
+            <NavigationView.PaneHeader>
+                <Border Margin="16,18,12,14"
+                        Padding="6,8"
+                        Background="Transparent"
+                        BorderThickness="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image x:Name="PaneLogoImage"
+                               Stretch="Uniform"
+                               Width="32"
+                               Height="32"
+                               Margin="0,0,10,0"
+                               VerticalAlignment="Center" />
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <TextBlock Text="Jalium UI Gallery"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource GalleryTextPrimary}"
+                                       Margin="0,0,0,1" />
+                            <TextBlock Text="COMPONENT LIBRARY"
+                                       FontSize="9"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource GalleryTextMuted}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </NavigationView.PaneHeader>
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Components"
+                                    Tag="home"
+                                    Foreground="{DynamicResource GalleryTextPrimary}" />
+                <NavigationViewItem Content="Design Tokens"
+                                    Tag="design-tokens"
+                                    Foreground="{DynamicResource GalleryTextPrimary}" />
+                <NavigationViewItem Content="Theme Studio"
+                                    Tag="theme-studio"
+                                    Foreground="{DynamicResource GalleryTextPrimary}" />
+            </NavigationView.MenuItems>
+
+            <NavigationView.PaneFooter>
+                <Border Margin="14,12,14,16"
+                        Padding="0,12,0,0"
+                        Background="Transparent"
+                        BorderThickness="0">
+                    <StackPanel Orientation="Vertical">
+                        <Button Style="{StaticResource GalleryFooterButton}"
+                                ToolTip="Switch color theme"
+                                Click="OnThemeToggleClick">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Border Width="28"
+                                        Height="28"
+                                        Background="{DynamicResource GalleryAccentSoft}"
+                                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Margin="0,0,10,0"
+                                        VerticalAlignment="Center">
+                                    <Grid Width="16" Height="16">
+                                        <Path x:Name="ThemeMoonIcon"
+                                              Data="M12.3,22 C6.6,22,2,17.4,2,11.7 C2,7.1,5,3.2,9.2,1.8 C9.7,1.6,10.1,2.2,9.8,2.6 C8.8,4,8.2,5.8,8.2,7.7 C8.2,12.2,11.8,15.8,16.3,15.8 C18.2,15.8,20,15.2,21.4,14.2 C21.8,13.9,22.4,14.3,22.2,14.8 C20.8,19,16.9,22,12.3,22 Z"
+                                              Fill="{DynamicResource GalleryAccent}"
+                                              Stretch="Uniform"
+                                              IsHitTestVisible="False" />
+                                        <Path x:Name="ThemeSunIcon"
+                                              Data="F1 M12,6 A6,6,0,1,0,12,18 A6,6,0,1,0,12,6 Z M11,1 H13 V4 H11 Z M11,20 H13 V23 H11 Z M20,11 H23 V13 H20 Z M1,11 H4 V13 H1 Z M18.36,4.22 L19.78,5.64 L17.66,7.76 L16.24,6.34 Z M4.22,18.36 L5.64,19.78 L7.76,17.66 L6.34,16.24 Z M18.36,19.78 L19.78,18.36 L17.66,16.24 L16.24,17.66 Z M4.22,5.64 L5.64,4.22 L7.76,6.34 L6.34,7.76 Z"
+                                              Fill="{DynamicResource GalleryAccent}"
+                                              Stretch="Uniform"
+                                              Visibility="Collapsed"
+                                              IsHitTestVisible="False" />
+                                    </Grid>
+                                </Border>
+                                <TextBlock x:Name="ThemeToggleLabel"
+                                           Text="Light theme"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource GalleryTextPrimary}"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+
+                        <Border Background="Transparent"
+                                CornerRadius="6"
+                                Padding="10,8"
+                                Margin="0,4,0,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Border Width="28"
+                                        Height="28"
+                                        Background="{DynamicResource GalleryBackgroundHover}"
+                                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Margin="0,0,10,0">
+                                    <Grid Width="16"
+                                          Height="16"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          IsHitTestVisible="False">
+                                        <Path Data="F1 M1,11 H8 V13.5 C8,16.35,9.35,18,11.75,18 C14.15,18,15.5,16.35,15.5,13.5 V7 C15.5,4.65,16.45,3.25,18.4,2.35 L23,0 V13.75 C23,20.1,18.45,24,11.75,24 C5.25,24,1,20.15,1,13.5 Z"
+                                              Fill="{DynamicResource GalleryTextPrimary}"
+                                              Stretch="Uniform" />
+                                        <Path Data="F1 M3.8,1 A2.2,2.2,0,1,0,3.8,5.4 A2.2,2.2,0,1,0,3.8,1 Z M8.4,5.4 A2.4,2.4,0,1,0,8.4,10.2 A2.4,2.4,0,1,0,8.4,5.4 Z"
+                                              Fill="{DynamicResource GalleryAccent}"
+                                              Stretch="Uniform" />
+                                    </Grid>
+                                </Border>
+                                <TextBlock Text="Jalium Team"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource GalleryTextSecondary}"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </NavigationView.PaneFooter>
+
+            <ScrollViewer x:Name="ContentHost"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          Padding="24,22,24,28"
+                          Background="{DynamicResource GalleryShellBackground}"
+                          ClipToBounds="True" />
+        </NavigationView>
     </Grid>
 
 </Window>

@@ -3,36 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CanvasPage"
       Title="Canvas">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Canvas"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A panel that positions children using absolute coordinates."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Canvas" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A layout panel that positions its children at absolute coordinates set through Canvas.Left, Canvas.Top, Canvas.Right and Canvas.Bottom, with Panel.ZIndex controlling how overlapping elements stack." />
 
-        <!-- Canvas Overview Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Canvas Overview"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Elements positioned with Canvas.Left and Canvas.Top."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"
-                        Height="200">
+        <!-- Canvas overview -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Canvas Overview" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Elements positioned with Canvas.Left and Canvas.Top." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="200">
                     <!-- Visual representation of Canvas positioning -->
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Canvas allows absolute positioning of elements." FontSize="12" Margin="0,0,0,16"/>
@@ -55,24 +40,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Canvas Features Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Canvas Features"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Key capabilities of the Canvas control."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Canvas features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Canvas Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Key capabilities of the Canvas control." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <Border Width="8" Height="8" Background="{DynamicResource GalleryAccent}" CornerRadius="8" Margin="0,0,8,0"
@@ -104,21 +78,13 @@
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup that positions borders on a Canvas." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -129,21 +95,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating and positioning canvas children in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -153,5 +111,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -3,128 +3,77 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ScatterPlotPage"
       Title="ScatterPlot">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="ScatterPlot"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="Displays data as a scatter plot with multiple point shapes, optional bubble sizing, and trend lines."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ScatterPlot" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Displays data as a scatter plot with multiple point shapes, optional bubble sizing, and trend lines." />
 
         <!-- Basic Scatter Plot -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Scatter Plot"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A scatter plot with random data points using circle markers."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="BasicScatterContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Scatter Plot" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A scatter plot with random data points using circle markers." />
+                <Border x:Name="BasicScatterContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Bubble Chart -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Bubble Chart"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A scatter plot with varying point sizes to represent a third data dimension."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="BubbleChartContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Bubble Chart" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A scatter plot with varying point sizes to represent a third data dimension." />
+                <Border x:Name="BubbleChartContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Trend Line -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Trend Line"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A scatter plot with a linear trend line overlay showing data correlation."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="TrendLineContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Trend Line" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A scatter plot with a linear trend line overlay showing data correlation." />
+                <Border x:Name="TrendLineContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for a scatter plot with series, bubble sizing and a trend line." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building a scatter plot and its series in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

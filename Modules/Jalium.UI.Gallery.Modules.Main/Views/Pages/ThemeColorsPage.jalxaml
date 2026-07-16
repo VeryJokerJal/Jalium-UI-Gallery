@@ -21,21 +21,16 @@
         <!-- Pinned header + toolbar + banner -->
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <!-- Header -->
-            <TextBlock Text="Theme Colors"
-                       FontSize="32"
-                       FontWeight="Bold"
-                       Margin="0,0,0,8" />
-            <TextBlock Text="Browse every color/brush key registered in the theme. The Preview drop-down only swaps which ThemeDictionary slice this list reads from — it does not switch the application theme. Click a row (or the Copy SplitButton) to copy the key; open the flyout for {ThemeResource}, {StaticResource}, or raw value variants."
-                       FontSize="14"
-                       Opacity="0.7"
-                       TextWrapping="Wrap"
-                       Margin="0,0,0,20" />
+            <TextBlock Style="{StaticResource GalleryEyebrow}" Text="SYSTEM" />
+            <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Theme Colors" />
+            <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                       Text="Browse every color/brush key registered in the theme. The Preview drop-down only swaps which ThemeDictionary slice this list reads from — it does not switch the application theme. Click a row (or the Copy SplitButton) to copy the key; open the flyout for {ThemeResource}, {StaticResource}, or raw value variants." />
 
             <!-- Toolbar: theme switcher + search + count -->
             <Border Background="{ThemeResource GalleryCardBackground}"
                     BorderBrush="{ThemeResource GalleryBorderDefault}"
                     BorderThickness="1"
-                    CornerRadius="14"
+                    CornerRadius="16"
                     Padding="16"
                     Margin="0,0,0,12">
                 <StackPanel Orientation="Vertical">
@@ -56,7 +51,7 @@
                         <TextBox x:Name="FilterBox"
                                  Width="280"
                                  Height="32"
-                                 PlaceholderText="search by key (e.g. Accent, Brush, Color)"
+                                 ToolTip="Search by key (e.g. Accent, Brush, Color)"
                                  Margin="0,0,16,0" />
                         <TextBlock x:Name="CountText"
                                    FontSize="12"
@@ -100,7 +95,7 @@
                 Background="{ThemeResource GalleryCardBackground}"
                 BorderBrush="{ThemeResource GalleryBorderDefault}"
                 BorderThickness="1"
-                CornerRadius="14"
+                CornerRadius="16"
                 Padding="0">
             <Grid>
                 <!-- MaxHeight is a first-frame safety bound: the page is hosted inside an

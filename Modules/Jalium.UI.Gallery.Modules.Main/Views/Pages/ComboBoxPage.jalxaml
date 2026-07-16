@@ -2,54 +2,53 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ComboBoxPage"
       Title="ComboBox">
-    <StackPanel x:Name="ContentPanel" Orientation="Vertical">
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+    <!--
+        Hybrid page: the header and the two code-example cards live in markup;
+        the interactive demo cards are built imperatively into DemoHost by
+        CreateContent() using the GalleryUi factory (the C# mirror of the shared
+        styles), so both halves render the identical card scaffold.
+    -->
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ComboBox" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A dropdown that presents a list of options for single selection — with placeholder text, pre-selection, and selection-changed events." />
+
+        <!-- Interactive demos are inserted here by CreateContent(). -->
+        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the ComboBoxes above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Populating items and handling selection in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>

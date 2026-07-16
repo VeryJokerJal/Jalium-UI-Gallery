@@ -16,8 +16,6 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
     <!-- 开发模式：覆盖 JALXAML 构建路径（指向本地项目输出） -->
-    <_JalxamlTasksPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\bin\$(Configuration)\net10.0\Jalium.UI.Build.dll</_JalxamlTasksPath>
-    <JalxamlCompilerPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\tools\jalxamlc.exe</JalxamlCompilerPath>
   </PropertyGroup>
 
   <ItemGroup>

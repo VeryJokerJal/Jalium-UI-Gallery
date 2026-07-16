@@ -3,36 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.EditControlPage"
       Title="EditControl">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="EditControl"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A code editor control with syntax highlighting, line numbers, code folding, and more."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="TEXT &amp; TYPOGRAPHY" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="EditControl" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A code editor control with syntax highlighting, line numbers, code folding, keyboard navigation, and full undo/redo." />
 
-        <!-- Basic Editor Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Code Editor with C# Syntax Highlighting"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Full keyboard navigation, selection, clipboard, undo/redo, and auto-indent."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- Basic editor -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Code Editor with C# Syntax Highlighting" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Full keyboard navigation, selection, clipboard, undo/redo, and auto-indent." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="MainEditor"
                                  Height="400"
                                  HorizontalAlignment="Stretch"
@@ -40,161 +25,129 @@
                                  ShowLineNumbers="True"
                                  HighlightCurrentLine="True"
                                  TabSize="4"
-                                 ConvertTabsToSpaces="True"/>
+                                 ConvertTabsToSpaces="True" />
                 </Border>
 
-                <!-- Status Bar -->
-                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                <!-- Live status readout -->
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                     <TextBlock x:Name="StatusText"
+                               Style="{StaticResource GalleryCaptionText}"
                                Text="Ready"
-                               FontSize="12"
-                               Margin="0,0,16,0"/>
+                               Margin="0,0,16,0" />
                     <TextBlock x:Name="CursorPositionText"
-                               Text="Ln 1, Col 0"
-                               FontSize="12"/>
+                               Style="{StaticResource GalleryCaptionText}"
+                               Text="Ln 1, Col 0" />
                 </StackPanel>
             </StackPanel>
         </Border>
 
-        <!-- Options Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Options"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <CheckBox x:Name="LineNumbersCheckBox"
-                              Content="Show Line Numbers"
-                              IsChecked="True"
-                              Margin="0,0,16,0"/>
-                    <CheckBox x:Name="HighlightLineCheckBox"
-                              Content="Highlight Current Line"
-                              IsChecked="True"
-                              Margin="0,0,16,0"/>
-                    <CheckBox x:Name="ReadOnlyCheckBox"
-                              Content="Read Only"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <Button x:Name="UndoButton" Content="Undo" Margin="0,0,8,0"/>
-                    <Button x:Name="RedoButton" Content="Redo" Margin="0,0,8,0"/>
-                    <Button x:Name="SelectAllButton" Content="Select All" Margin="0,0,8,0"/>
-                    <Button x:Name="ClearButton" Content="Clear" Margin="0,0,8,0"/>
-                    <Button x:Name="LoadSampleButton" Content="Load C# Sample" Margin="0,0,8,0"/>
-                    <Button x:Name="LoadJalxamlSampleButton" Content="Load JALXAML Sample" Margin="0,0,8,0"/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-
-        <!-- Keyboard Shortcuts Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Keyboard Shortcuts"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Ctrl+C / Ctrl+X / Ctrl+V - Copy / Cut / Paste" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Ctrl+Z / Ctrl+Y - Undo / Redo" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Ctrl+A - Select All" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Home - Smart Home (first non-whitespace / line start)" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Ctrl+Left/Right - Word Navigation" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Ctrl+Home/End - Document Start / End" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Shift+Arrows - Extend Selection" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Tab / Shift+Tab - Indent / Unindent" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Enter - New line with auto-indent" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Double-click - Select word / Triple-click - Select line" FontSize="13"/>
+        <!-- Options -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Options" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Toggle editor features, then run document commands and load sample code." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <CheckBox x:Name="LineNumbersCheckBox"
+                                      Content="Show Line Numbers"
+                                      IsChecked="True"
+                                      Margin="0,0,10,10" />
+                            <CheckBox x:Name="HighlightLineCheckBox"
+                                      Content="Highlight Current Line"
+                                      IsChecked="True"
+                                      Margin="0,0,10,10" />
+                            <CheckBox x:Name="ReadOnlyCheckBox"
+                                      Content="Read Only"
+                                      Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button x:Name="UndoButton" Content="Undo" Margin="0,0,10,10" />
+                            <Button x:Name="RedoButton" Content="Redo" Margin="0,0,10,10" />
+                            <Button x:Name="SelectAllButton" Content="Select All" Margin="0,0,10,10" />
+                            <Button x:Name="ClearButton" Content="Clear" Margin="0,0,10,10" />
+                            <Button x:Name="LoadSampleButton" Content="Load C# Sample" Margin="0,0,10,10" />
+                            <Button x:Name="LoadJalxamlSampleButton" Content="Load JALXAML Sample" Margin="0,0,10,10" />
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Architecture Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Architecture"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Document Layer: Rope-based buffer (O(log n) insert/delete), DocumentLineTree, UndoStack" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="View Layer: Direct DrawingContext rendering with span-based syntax highlighting" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Syntax: ISyntaxHighlighter interface, RegexSyntaxHighlighter with multi-line span support" FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Features: Code folding, bracket matching, find/replace, minimap" FontSize="13"/>
+        <!-- Keyboard shortcuts -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Keyboard Shortcuts" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Editing gestures the control recognizes out of the box." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Ctrl+C / Ctrl+X / Ctrl+V - Copy / Cut / Paste" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Ctrl+Z / Ctrl+Y - Undo / Redo" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Ctrl+A - Select All" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Home - Smart Home (first non-whitespace / line start)" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Ctrl+Left/Right - Word Navigation" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Ctrl+Home/End - Document Start / End" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Shift+Arrows - Extend Selection" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Tab / Shift+Tab - Indent / Unindent" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Enter - New line with auto-indent" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Double-click - Select word / Triple-click - Select line" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- Architecture -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Architecture" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="How the editor is built under the hood." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Document Layer: Rope-based buffer (O(log n) insert/delete), DocumentLineTree, UndoStack" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="View Layer: Direct DrawingContext rendering with span-based syntax highlighting" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Syntax: ISyntaxHighlighter interface, RegexSyntaxHighlighter with multi-line span support" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Features: Code folding, bracket matching, find/replace, minimap" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup that configures the editor and its options." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Setting up highlighting and driving the editor from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

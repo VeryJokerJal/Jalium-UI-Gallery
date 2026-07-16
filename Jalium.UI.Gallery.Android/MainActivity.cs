@@ -17,6 +17,7 @@ namespace Jalium.UI.Gallery.Android;
     Label = "Jalium.UI.Gallery.Android",
     MainLauncher = true,
     Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
+    ScreenOrientation = global::Android.Content.PM.ScreenOrientation.SensorLandscape,
     ConfigurationChanges = global::Android.Content.PM.ConfigChanges.Orientation
         | global::Android.Content.PM.ConfigChanges.ScreenSize
         | global::Android.Content.PM.ConfigChanges.KeyboardHidden)]

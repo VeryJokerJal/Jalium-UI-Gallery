@@ -1,6 +1,6 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
-using Jalium.UI.Controls.Ink;
+using Jalium.UI.Ink;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
@@ -39,7 +39,7 @@ public partial class InkCanvasPage : Page
 
     private const string CSharpExample = """
         using Jalium.UI.Controls;
-        using Jalium.UI.Controls.Ink;
+        using Jalium.UI.Ink;
         using Jalium.UI.Media;
 
         // Set editing mode

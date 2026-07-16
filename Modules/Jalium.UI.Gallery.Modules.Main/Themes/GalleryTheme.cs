@@ -27,7 +27,7 @@ public static class GalleryTheme
     /// </summary>
     public static event EventHandler? ModeChanged;
 
-    private static GalleryThemeMode _currentMode = GalleryThemeMode.Dark;
+    private static GalleryThemeMode _currentMode = GalleryThemeMode.Light;
 
     /// <summary>
     /// Currently active visual mode. Assigning a new value fires
@@ -52,102 +52,102 @@ public static class GalleryTheme
 
     /// <summary>App-level background (deepest).</summary>
     public static Color BackgroundDark => Pick(
-        Color.FromRgb(0x10, 0x1A, 0x14),   // deep forest black-green
-        Color.FromRgb(0xF4, 0xF8, 0xF5));  // soft mint-white
+        Color.FromRgb(0x12, 0x17, 0x19),
+        Color.FromRgb(0xF5, 0xF7, 0xF8));
 
     /// <summary>Shell / navigation pane background.</summary>
     public static Color BackgroundMedium => Pick(
-        Color.FromRgb(0x10, 0x1A, 0x14),
-        Color.FromRgb(0xFF, 0xFF, 0xFF));
+        Color.FromRgb(0x17, 0x1D, 0x1F),
+        Color.FromRgb(0xFB, 0xFC, 0xFC));
 
     /// <summary>Scroll host background below the cards.</summary>
     public static Color BackgroundLight => Pick(
-        Color.FromRgb(0x14, 0x20, 0x1A),
-        Color.FromRgb(0xF8, 0xFB, 0xF9));
+        Color.FromRgb(0x15, 0x1B, 0x1D),
+        Color.FromRgb(0xF7, 0xF9, 0xFA));
 
     /// <summary>Primary card surface (raised).</summary>
     public static Color BackgroundCard => Pick(
-        Color.FromRgb(0x14, 0x20, 0x1A),
+        Color.FromRgb(0x1C, 0x23, 0x26),
         Color.FromRgb(0xFF, 0xFF, 0xFF));
 
     /// <summary>Nested card / inner example container.</summary>
     public static Color BackgroundCardInner => Pick(
-        Color.FromRgb(0x0E, 0x17, 0x11),
-        Color.FromRgb(0xEF, 0xF5, 0xF1));
+        Color.FromRgb(0x12, 0x17, 0x19),
+        Color.FromRgb(0xF6, 0xF8, 0xF9));
 
     /// <summary>Hover surface.</summary>
     public static Color BackgroundHover => Pick(
-        Color.FromRgb(0x1C, 0x2C, 0x23),
-        Color.FromRgb(0xE8, 0xF1, 0xEB));
+        Color.FromRgb(0x24, 0x2D, 0x30),
+        Color.FromRgb(0xED, 0xF7, 0xF5));
 
     /// <summary>Pressed / selected surface.</summary>
     public static Color BackgroundPressed => Pick(
-        Color.FromRgb(0x24, 0x38, 0x2D),
-        Color.FromRgb(0xD3, 0xE5, 0xD8));
+        Color.FromRgb(0x2B, 0x36, 0x39),
+        Color.FromRgb(0xD9, 0xEF, 0xEC));
 
     #endregion
 
     #region Accent palette (forest emerald — matches the #207245 -> #1C8043 gradient)
 
-    public static Color AccentPrimary => Color.FromRgb(0x20, 0x72, 0x45);    // gradient start
-    public static Color AccentSecondary => Color.FromRgb(0x1C, 0x80, 0x43);  // gradient end
-    public static Color AccentLight => Color.FromRgb(0x27, 0x8A, 0x52);      // hover start
-    public static Color AccentDark => Color.FromRgb(0x18, 0x5A, 0x37);       // pressed start
+    public static Color AccentPrimary => Color.FromRgb(0x08, 0x94, 0x8A);
+    public static Color AccentSecondary => Color.FromRgb(0x0B, 0x7F, 0x78);
+    public static Color AccentLight => Color.FromRgb(0x12, 0xA8, 0x9B);
+    public static Color AccentDark => Color.FromRgb(0x06, 0x6F, 0x69);
 
     /// <summary>Soft tint used behind highlighted content.</summary>
     public static Color AccentSoft => IsDark
-        ? Color.FromArgb(0x28, 0x1E, 0x79, 0x3F)   // ~16% emerald on dark
-        : Color.FromArgb(0x3B, 0x1E, 0x79, 0x3F);  // ~23% emerald on light
+        ? Color.FromArgb(0x40, 0x08, 0x94, 0x8A)
+        : Color.FromArgb(0x34, 0x08, 0x94, 0x8A);
 
     /// <summary>Deep-emerald halo for hero headers / gradients.</summary>
     public static Color HaloPurple => Pick(
-        Color.FromRgb(0x14, 0x5A, 0x33),
-        Color.FromRgb(0x4A, 0xB0, 0x73));
+        Color.FromRgb(0x62, 0x5C, 0xD6),
+        Color.FromRgb(0x4F, 0x46, 0xE5));
 
     /// <summary>Teal halo used in gradients.</summary>
     public static Color HaloBlue => Pick(
-        Color.FromRgb(0x0E, 0x4A, 0x3E),
-        Color.FromRgb(0x5E, 0xC1, 0x9D));
+        Color.FromRgb(0x0E, 0x74, 0x8A),
+        Color.FromRgb(0x0E, 0xA5, 0xE9));
 
     #endregion
 
     #region Text palette
 
     public static Color TextPrimary => Pick(
-        Color.FromRgb(0xFA, 0xFA, 0xFA),
-        Color.FromRgb(0x14, 0x1A, 0x16));
+        Color.FromRgb(0xF4, 0xF7, 0xF7),
+        Color.FromRgb(0x10, 0x18, 0x27));
 
     public static Color TextSecondary => Pick(
-        Color.FromRgb(0xD4, 0xDA, 0xD6),
-        Color.FromRgb(0x3A, 0x44, 0x3D));
+        Color.FromRgb(0xCF, 0xD7, 0xD9),
+        Color.FromRgb(0x35, 0x40, 0x52));
 
     public static Color TextTertiary => Pick(
-        Color.FromRgb(0xA8, 0xB3, 0xAD),
-        Color.FromRgb(0x4E, 0x59, 0x52));
+        Color.FromRgb(0x9E, 0xAA, 0xAE),
+        Color.FromRgb(0x64, 0x70, 0x85));
 
     public static Color TextMuted => Pick(
-        Color.FromRgb(0x78, 0x83, 0x7C),
-        Color.FromRgb(0x6D, 0x78, 0x71));
+        Color.FromRgb(0x78, 0x85, 0x89),
+        Color.FromRgb(0x87, 0x92, 0xA5));
 
     public static Color TextDisabled => Pick(
-        Color.FromRgb(0x52, 0x5B, 0x55),
-        Color.FromRgb(0xA1, 0xAA, 0xA4));
+        Color.FromRgb(0x58, 0x64, 0x68),
+        Color.FromRgb(0xA7, 0xB0, 0xBC));
 
     #endregion
 
     #region Borders
 
     public static Color BorderDefault => Pick(
-        Color.FromRgb(0x22, 0x36, 0x2B),
-        Color.FromRgb(0xDE, 0xE7, 0xE1));
+        Color.FromRgb(0x32, 0x3C, 0x40),
+        Color.FromRgb(0xDE, 0xE4, 0xE8));
 
     public static Color BorderSubtle => Pick(
-        Color.FromRgb(0x1A, 0x2C, 0x22),
-        Color.FromRgb(0xEA, 0xF1, 0xEC));
+        Color.FromRgb(0x28, 0x32, 0x35),
+        Color.FromRgb(0xE9, 0xED, 0xF0));
 
     public static Color BorderStrong => Pick(
-        Color.FromRgb(0x2E, 0x4A, 0x3B),
-        Color.FromRgb(0xC6, 0xD5, 0xCB));
+        Color.FromRgb(0x45, 0x52, 0x56),
+        Color.FromRgb(0xC8, 0xD2, 0xD9));
 
     public static Color BorderFocused => AccentPrimary;
 
@@ -212,6 +212,9 @@ public static class GalleryTheme
     public const string KeyCardInnerBackground = "GalleryCardInnerBackground";
     public const string KeyCardAltBackground = "GalleryCardAltBackground";
     public const string KeyShellBackground = "GalleryShellBackground";
+    public const string KeyPaneBackground = "GalleryPaneBackground";
+    public const string KeyBackgroundHover = "GalleryBackgroundHover";
+    public const string KeyBackgroundPressed = "GalleryBackgroundPressed";
 
     public const string KeyBorderDefault = "GalleryBorderDefault";
     public const string KeyBorderSubtle = "GalleryBorderSubtle";
@@ -225,6 +228,9 @@ public static class GalleryTheme
     public const string KeyAccentPrimary = "GalleryAccent";
     public const string KeyAccentLight = "GalleryAccentLight";
     public const string KeyAccentSecondary = "GalleryAccentSecondary";
+    public const string KeyAccentSoft = "GalleryAccentSoft";
+    public const string KeyAccentDark = "GalleryAccentDark";
+    public const string KeySuccess = "GallerySuccess";
 
     /// <summary>
     /// Writes every gallery-scoped brush into the supplied dictionary using
@@ -240,6 +246,9 @@ public static class GalleryTheme
         resources[KeyCardInnerBackground] = BackgroundCardInnerBrush;
         resources[KeyCardAltBackground] = BackgroundLightBrush;
         resources[KeyShellBackground] = BackgroundDarkBrush;
+        resources[KeyPaneBackground] = BackgroundMediumBrush;
+        resources[KeyBackgroundHover] = BackgroundHoverBrush;
+        resources[KeyBackgroundPressed] = BackgroundPressedBrush;
 
         resources[KeyBorderDefault] = BorderDefaultBrush;
         resources[KeyBorderSubtle] = BorderSubtleBrush;
@@ -253,6 +262,9 @@ public static class GalleryTheme
         resources[KeyAccentPrimary] = AccentPrimaryBrush;
         resources[KeyAccentLight] = AccentLightBrush;
         resources[KeyAccentSecondary] = AccentSecondaryBrush;
+        resources[KeyAccentSoft] = AccentSoftBrush;
+        resources[KeyAccentDark] = AccentDarkBrush;
+        resources[KeySuccess] = SuccessBrush;
     }
 
     /// <summary>Ambient gradient used for the scroll host / shell background.</summary>
@@ -268,15 +280,13 @@ public static class GalleryTheme
 
             if (IsDark)
             {
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x14, 0x22, 0x1A), 0.0));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x10, 0x1A, 0x14), 0.55));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x0C, 0x14, 0x0F), 1.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x17, 0x1D, 0x1F), 0.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x12, 0x17, 0x19), 1.0));
             }
             else
             {
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xFB, 0xFF, 0xFC), 0.0));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xF2, 0xF8, 0xF4), 0.55));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xEB, 0xF3, 0xEE), 1.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xFA, 0xFB, 0xFC), 0.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xF4, 0xF7, 0xF8), 1.0));
             }
 
             return brush;
@@ -296,15 +306,13 @@ public static class GalleryTheme
 
             if (IsDark)
             {
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x16, 0x40, 0x2A), 0.0));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x17, 0x2A, 0x1F), 0.55));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x12, 0x22, 0x18), 1.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x1C, 0x2D, 0x2F), 0.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0x1C, 0x23, 0x26), 1.0));
             }
             else
             {
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xD7, 0xEF, 0xDE), 0.0));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xE8, 0xF4, 0xEC), 0.55));
-                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xDF, 0xEE, 0xE5), 1.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xE7, 0xF5, 0xF3), 0.0));
+                brush.GradientStops.Add(new GradientStop(Color.FromRgb(0xF6, 0xF8, 0xF9), 1.0));
             }
 
             return brush;
@@ -315,10 +323,10 @@ public static class GalleryTheme
 
     #region Dimensions
 
-    public static double CornerRadiusSmall => 8;
-    public static double CornerRadiusMedium => 12;
-    public static double CornerRadiusLarge => 16;
-    public static double CornerRadiusXLarge => 22;
+    public static double CornerRadiusSmall => 4;
+    public static double CornerRadiusMedium => 6;
+    public static double CornerRadiusLarge => 8;
+    public static double CornerRadiusXLarge => 8;
 
     public static double SpacingTiny => 4;
     public static double SpacingSmall => 8;
@@ -327,11 +335,11 @@ public static class GalleryTheme
     public static double SpacingXLarge => 24;
     public static double SpacingHuge => 32;
 
-    public static double NavigationWidth => 280;
+    public static double NavigationWidth => 248;
     public static double NavigationCollapsedWidth => 56;
 
-    public static double CardPadding => 20;
-    public static double ContentPadding => 28;
+    public static double CardPadding => 18;
+    public static double ContentPadding => 24;
 
     #endregion
 

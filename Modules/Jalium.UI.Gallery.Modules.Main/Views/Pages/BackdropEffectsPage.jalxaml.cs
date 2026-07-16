@@ -52,7 +52,7 @@ public partial class BackdropEffectsPage : Page
     private void SetupBackdropEffects()
     {
         // Simple Gaussian blur
-        BlurOverlay.BackdropEffect = new BlurEffect(20f);
+        BlurOverlay.BackdropEffect = new BackdropBlurEffect(20f);
 
         // Acrylic material with tint color and opacity
         AcrylicOverlay.BackdropEffect = new AcrylicEffect(
@@ -116,7 +116,7 @@ public partial class BackdropEffectsPage : Page
         // Use generated fields directly (x:Name generates fields in partial class)
         // Material effects
         if (BlurEffectDemo != null)
-            BlurEffectDemo.BackdropEffect = new BlurEffect(20f);
+            BlurEffectDemo.BackdropEffect = new BackdropBlurEffect(20f);
 
         if (AcrylicEffectDemo != null)
             AcrylicEffectDemo.BackdropEffect = new AcrylicEffect(

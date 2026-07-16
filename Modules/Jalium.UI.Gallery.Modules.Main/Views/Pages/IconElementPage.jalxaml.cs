@@ -1,5 +1,6 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
+using Jalium.UI.Gallery.Modules.Main.Themes;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
@@ -91,20 +92,21 @@ public partial class IconElementSample : Page
 }";
 
     private static readonly SolidColorBrush White = new(Color.FromRgb(0xFF, 0xFF, 0xFF));
-    private static readonly SolidColorBrush Gray = new(Color.FromRgb(0x88, 0x88, 0x88));
     private static readonly SolidColorBrush DimGray = new(Color.FromRgb(0x66, 0x66, 0x66));
-    private static readonly SolidColorBrush CardBg = new(Color.FromRgb(0x2D, 0x2D, 0x2D));
-    private static readonly SolidColorBrush CardBorder = new(Color.FromRgb(0x3D, 0x3D, 0x3D));
     private static readonly SolidColorBrush DarkBg = new(Color.FromRgb(0x1E, 0x1E, 0x1E));
     private static readonly SolidColorBrush Accent = new(Color.FromRgb(0x7A, 0xA2, 0xF7));
 
     public IconElementPage()
     {
         InitializeComponent();
+        CreateContent();
         LoadCodeExamples();
-        if (RootPanel == null) return;
+    }
 
-        AddHeader();
+    private void CreateContent()
+    {
+        if (DemoHost == null) return;
+
         AddSymbolIconSection();
         AddFontIconSection();
         AddAppBarButtonWithIconSection();
@@ -125,31 +127,10 @@ public partial class IconElementSample : Page
         }
     }
 
-    private void AddHeader()
-    {
-        RootPanel.Children.Add(new TextBlock
-        {
-            Text = "IconElement",
-            FontSize = 32,
-            Foreground = White,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-        RootPanel.Children.Add(new TextBlock
-        {
-            Text = "WinUI-style icon system: SymbolIcon, FontIcon, and PathIcon. 600+ icons from Segoe Fluent Icons, organized by category.",
-            FontSize = 14,
-            Foreground = Gray,
-            Margin = new Thickness(0, 0, 0, 24)
-        });
-    }
-
     // ==================== Section 1: SymbolIcon ====================
 
     private void AddSymbolIconSection()
     {
-        var card = CreateCard("SymbolIcon",
-            "Use the Symbol enum to display common icons from Segoe Fluent Icons. Default size: 20x20.");
-
         var grid = new WrapPanel();
 
         Symbol[] showcase =
@@ -174,8 +155,10 @@ public partial class IconElementSample : Page
             Child = grid
         };
 
-        ((StackPanel)card.Child!).Children.Add(container);
-        RootPanel.Children.Add(card);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "SymbolIcon",
+            "Use the Symbol enum to display common icons from Segoe Fluent Icons. Default size: 20x20.",
+            container));
     }
 
     private static Border CreateSymbolTile(Symbol symbol)
@@ -222,9 +205,6 @@ public partial class IconElementSample : Page
 
     private void AddFontIconSection()
     {
-        var card = CreateCard("FontIcon",
-            "Use any glyph from any font. Defaults to Segoe Fluent Icons. Supports custom FontFamily and FontSize.");
-
         var grid = new WrapPanel();
 
         (string glyph, string label, double size, SolidColorBrush color)[] fontIcons =
@@ -249,8 +229,10 @@ public partial class IconElementSample : Page
             Child = grid
         };
 
-        ((StackPanel)card.Child!).Children.Add(container);
-        RootPanel.Children.Add(card);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "FontIcon",
+            "Use any glyph from any font. Defaults to Segoe Fluent Icons. Supports custom FontFamily and FontSize.",
+            container));
     }
 
     private static Border CreateFontIconTile(string glyph, string label, double size, SolidColorBrush color)
@@ -296,9 +278,6 @@ public partial class IconElementSample : Page
 
     private void AddAppBarButtonWithIconSection()
     {
-        var card = CreateCard("AppBarButton with SymbolIcon",
-            "AppBarButton.Icon accepts IconElement (SymbolIcon, FontIcon, PathIcon) instead of raw strings.");
-
         var panel = new StackPanel { Orientation = Orientation.Horizontal };
 
         panel.Children.Add(CreateDemoAppBarButton(Symbol.Save, "Save"));
@@ -319,9 +298,9 @@ public partial class IconElementSample : Page
             Child = panel
         };
 
-        ((StackPanel)card.Child!).Children.Add(container);
-
-        ((StackPanel)card.Child!).Children.Add(new TextBlock
+        var demo = new StackPanel { Orientation = Orientation.Vertical };
+        demo.Children.Add(container);
+        demo.Children.Add(new TextBlock
         {
             Text = "new AppBarButton { Icon = new SymbolIcon(Symbol.Save), Label = \"Save\" }",
             FontSize = 12,
@@ -329,7 +308,10 @@ public partial class IconElementSample : Page
             Margin = new Thickness(0, 12, 0, 0)
         });
 
-        RootPanel.Children.Add(card);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "AppBarButton with SymbolIcon",
+            "AppBarButton.Icon accepts IconElement (SymbolIcon, FontIcon, PathIcon) instead of raw strings.",
+            demo));
     }
 
     private static AppBarButton CreateDemoAppBarButton(Symbol symbol, string label, SolidColorBrush? foreground = null)
@@ -351,9 +333,6 @@ public partial class IconElementSample : Page
 
     private void AddSymbolGallerySection()
     {
-        var card = CreateCard("Symbol Enum Gallery — 600+ Icons",
-            "All available Symbol values organized by category. Each maps to a Segoe Fluent Icons glyph code point.");
-
         var categories = new (string Name, Symbol[] Symbols)[]
         {
             ("Navigation", [
@@ -612,11 +591,11 @@ public partial class IconElementSample : Page
             ]),
         };
 
-        var cardStack = (StackPanel)card.Child!;
+        var gallery = new StackPanel { Orientation = Orientation.Vertical };
 
         foreach (var (name, symbols) in categories)
         {
-            cardStack.Children.Add(new TextBlock
+            gallery.Children.Add(new TextBlock
             {
                 Text = $"{name} ({symbols.Length})",
                 FontSize = 14,
@@ -636,41 +615,12 @@ public partial class IconElementSample : Page
                 Margin = new Thickness(0, 0, 0, 4),
                 Child = wrap
             };
-            cardStack.Children.Add(container);
+            gallery.Children.Add(container);
         }
 
-        RootPanel.Children.Add(card);
-    }
-
-    // ==================== Helpers ====================
-
-    private Border CreateCard(string title, string description)
-    {
-        var stack = new StackPanel { Orientation = Orientation.Vertical };
-        stack.Children.Add(new TextBlock
-        {
-            Text = title,
-            FontSize = 16,
-            Foreground = White,
-            Margin = new Thickness(0, 0, 0, 4)
-        });
-        stack.Children.Add(new TextBlock
-        {
-            Text = description,
-            FontSize = 12,
-            Foreground = DimGray,
-            Margin = new Thickness(0, 0, 0, 16)
-        });
-
-        return new Border
-        {
-            Background = CardBg,
-            BorderBrush = CardBorder,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(8),
-            Padding = new Thickness(20),
-            Margin = new Thickness(0, 0, 0, 16),
-            Child = stack
-        };
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Symbol Enum Gallery — 600+ Icons",
+            "All available Symbol values organized by category. Each maps to a Segoe Fluent Icons glyph code point.",
+            gallery));
     }
 }

@@ -3,117 +3,119 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.NavigationDemoPage"
     Title="Navigation Framework">
-    <StackPanel Orientation="Vertical">
-        <!-- Page Header -->
-        <TextBlock Text="Navigation Framework" FontSize="32" FontWeight="Bold" Margin="0,0,0,8"/>
-        <TextBlock Text="WPF-compatible navigation with NavigationService, JournalEntry, and NavigationWindow." FontSize="14" Margin="0,0,0,24"/>
 
-        <!-- NavigationService Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="SYSTEM" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Navigation" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="WPF-compatible navigation with NavigationService, JournalEntry, and NavigationWindow." />
+
+        <!-- NavigationService -->
+        <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Text="NavigationService" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="Provides navigation methods and maintains back/forward history." FontSize="13" Margin="0,0,0,16"/>
-
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                    <Button x:Name="BackButton" Content="Go Back" Width="100" Margin="0,0,8,0"/>
-                    <Button x:Name="ForwardButton" Content="Go Forward" Width="100" Margin="0,0,8,0"/>
-                    <Button x:Name="RefreshButton" Content="Refresh" Width="100"/>
-                </StackPanel>
-
-                <TextBlock x:Name="NavigationStatus" Text="Navigation Status: Ready" FontSize="12"/>
-            </StackPanel>
-        </Border>
-
-        <!-- JournalEntry Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
-            <StackPanel>
-                <TextBlock Text="JournalEntry" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="Represents entries in navigation history with custom state support." FontSize="13" Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="12">
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="NavigationService" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Provides navigation methods and maintains back / forward history." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Text="// Create journal entry with custom state" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="var entry = new JournalEntry(uri, &quot;Page Title&quot;);" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="entry.CustomContentState = new MyContentState();" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="navigationService.AddBackEntry(entry.CustomContentState);" FontFamily="Consolas" FontSize="12"/>
+                        <WrapPanel>
+                            <Button x:Name="BackButton" Content="Go Back" Width="100" Margin="0,0,10,10" />
+                            <Button x:Name="ForwardButton" Content="Go Forward" Width="100" Margin="0,0,10,10" />
+                            <Button x:Name="RefreshButton" Content="Refresh" Width="100" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="NavigationStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="Navigation Status: Ready" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- NavigationWindow Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+        <!-- JournalEntry -->
+        <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Text="NavigationWindow" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="A Window with built-in navigation chrome including back/forward buttons." FontSize="13" Margin="0,0,0,16"/>
-
-                <Button x:Name="OpenNavigationWindowButton" Content="Open NavigationWindow Demo" Width="220" HorizontalAlignment="Left"/>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="JournalEntry" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Represents entries in navigation history with custom state support." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Text="// Create journal entry with custom state" FontFamily="Consolas" FontSize="12" />
+                        <TextBlock Text="var entry = new JournalEntry(uri, &quot;Page Title&quot;);" FontFamily="Consolas" FontSize="12" />
+                        <TextBlock Text="entry.CustomContentState = new MyContentState();" FontFamily="Consolas" FontSize="12" />
+                        <TextBlock Text="navigationService.AddBackEntry(entry.CustomContentState);" FontFamily="Consolas" FontSize="12" />
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
-        <!-- CustomContentState Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+        <!-- NavigationWindow -->
+        <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Text="CustomContentState" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="Save and restore page state during navigation. Includes DictionaryContentState and ScrollContentState." FontSize="13" Margin="0,0,0,16"/>
-
-                <StackPanel>
-                    <TextBlock Text="Available State Types:" FontSize="13" Margin="0,0,0,8"/>
-                    <TextBlock Text="  - DictionaryContentState: Key-value pair storage" FontSize="12"/>
-                    <TextBlock Text="  - ScrollContentState: Preserve scroll position" FontSize="12"/>
-                    <TextBlock Text="  - DataContextContentState: Preserve DataContext" FontSize="12"/>
-                    <TextBlock Text="  - CompositeContentState: Combine multiple states" FontSize="12"/>
-                </StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="NavigationWindow" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A Window with built-in navigation chrome including back / forward buttons." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Button x:Name="OpenNavigationWindowButton"
+                            Content="Open NavigationWindow Demo"
+                            Width="220"
+                            HorizontalAlignment="Left" />
+                </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- CustomContentState -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="CustomContentState" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Save and restore page state during navigation. Includes DictionaryContentState and ScrollContentState." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Available state types:" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - DictionaryContentState: Key-value pair storage" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - ScrollContentState: Preserve scroll position" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - DataContextContentState: Preserve DataContext" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - CompositeContentState: Combine multiple states" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for a NavigationWindow, navigation buttons, and an embedded Frame." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Navigating, handling navigation events, and opening a NavigationWindow in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

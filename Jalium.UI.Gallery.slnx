@@ -21,8 +21,10 @@
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml/Jalium.UI.Xaml.csproj" />
     <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Android/Jalium.UI.Android.csproj" />
     <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Desktop/Jalium.UI.Desktop.csproj" />
+    <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Linux/Jalium.UI.Linux.csproj" />
   </Folder>
   <Project Path="Jalium.UI.Gallery.Android/Jalium.UI.Gallery.Android.csproj" />
   <Project Path="Jalium.UI.Gallery.Core/Jalium.UI.Gallery.Core.csproj" />
   <Project Path="Jalium.UI.Gallery.Desktop/Jalium.UI.Gallery.Desktop.csproj" />
+  <Project Path="Jalium.UI.Gallery.Linux/Jalium.UI.Gallery.Linux.csproj" />
 </Solution>

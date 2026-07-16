@@ -1,6 +1,7 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
+using Jalium.UI.Media.Imaging;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
@@ -42,6 +43,7 @@ public partial class ImagePage : Page
 
     private const string CSharpExample = @"using Jalium.UI.Controls;
 using Jalium.UI.Media;
+using Jalium.UI.Media.Imaging;
 
 public partial class ImageSample : Page
 {
@@ -282,11 +284,11 @@ public partial class ImageSample : Page
         // Rounded corners (CornerRadius=16)
         if (RoundedImageContainer != null)
         {
+            RoundedImageContainer.CornerRadius = new CornerRadius(16);
             RoundedImageContainer.Child = new Image
             {
                 Source = source,
                 Stretch = Stretch.UniformToFill,
-                CornerRadius = new CornerRadius(16),
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch
             };
@@ -295,11 +297,11 @@ public partial class ImageSample : Page
         // Circle (CornerRadius=75 on 150x150 container)
         if (CircleImageContainer != null)
         {
+            CircleImageContainer.CornerRadius = new CornerRadius(75);
             CircleImageContainer.Child = new Image
             {
                 Source = source,
                 Stretch = Stretch.UniformToFill,
-                CornerRadius = new CornerRadius(75),
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch
             };
@@ -308,13 +310,13 @@ public partial class ImageSample : Page
         // Bordered
         if (BorderedImageContainer != null)
         {
+            BorderedImageContainer.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 0, 120, 212));
+            BorderedImageContainer.BorderThickness = new Thickness(3);
+            BorderedImageContainer.CornerRadius = new CornerRadius(8);
             BorderedImageContainer.Child = new Image
             {
                 Source = source,
                 Stretch = Stretch.UniformToFill,
-                BorderBrush = new SolidColorBrush(Color.FromArgb(255, 0, 120, 212)),
-                BorderThickness = new Thickness(3),
-                CornerRadius = new CornerRadius(8),
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch
             };

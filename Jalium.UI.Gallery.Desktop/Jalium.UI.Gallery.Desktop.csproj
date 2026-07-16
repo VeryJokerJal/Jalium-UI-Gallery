@@ -45,12 +45,25 @@
          Edge WebView2 Runtime is still required at runtime — that's an OS-level
          component, not a managed/native dependency we control. -->
     <JaliumIncludeBrowserAot Condition="'$(PublishAot)' == 'true'">true</JaliumIncludeBrowserAot>
-    <!-- Drop the third-party ffmpeg / opencv / miniaudio native DLLs that
-         Jalium.UI.Media transitively brings in. Gallery wires them at runtime
-         only when the user opens the matching media demos, so they're not
-         required for the cold-launch path. Set to false if you ship a build
-         where the user can hit the video / audio sample pages. -->
-    <JaliumStripThirdPartyMediaNatives Condition="'$(PublishAot)' == 'true'">true</JaliumStripThirdPartyMediaNatives>
+    <!-- Keep the third-party ffmpeg / opencv / miniaudio native DLLs that
+         Jalium.UI.Media transitively brings in. This is a full Gallery release,
+         so the video and audio sample pages must remain usable even though the
+         managed application itself is NativeAOT. -->
+    <JaliumStripThirdPartyMediaNatives Condition="'$(PublishAot)' == 'true'">false</JaliumStripThirdPartyMediaNatives>
+
+    <!-- Link the Vulkan rendering backend into the AOT image alongside D3D12.
+         Without this, ConfigureJaliumNativeAot defaults JaliumIncludeVulkanAot=false:
+         the Vulkan static archive + vulkan-1.lib are NOT linked, yet
+         jalium.native.vulkan.dll is stripped from the publish folder. The result
+         is that jalium_vulkan_init() fails at runtime (DllNotFound, swallowed by
+         NativeMethods.TryInitializeBackend), so IsBackendAvailable(Vulkan)==0 and
+         an explicit Vulkan selection silently falls back to the Windows default
+         D3D12. Enabling this statically links jalium.native.vulkan.static.lib so
+         RenderBackend.Vulkan stays available under AOT, matching the non-AOT
+         Release build. Requires jalium.native.vulkan.static.lib (built by
+         samples\build-native-static.ps1) and vulkan-1.lib on the linker's lib
+         search path (installed with the LunarG Vulkan SDK / VS Vulkan workload). -->
+    <JaliumIncludeVulkanAot Condition="'$(PublishAot)' == 'true'">true</JaliumIncludeVulkanAot>
 
     <!-- Framework-internal reflective surfaces that the demo can't statically
          prove safe (XAML runtime parser, Razor expression compiler, PropertyGrid,

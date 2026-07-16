@@ -171,47 +171,7 @@ public partial class WrapPanelDemo : Page
 
     private void CreateContent()
     {
-        if (ContentPanel == null) return;
-
-        // Title
-        var title = new TextBlock
-        {
-            Text = "WrapPanel",
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
-        ContentPanel.Children.Add(title);
-
-        // Description
-        var description = new TextBlock
-        {
-            Text = "A panel that positions child elements sequentially, wrapping to the next line when reaching the edge.",
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 24),
-            TextWrapping = TextWrapping.Wrap
-        };
-        ContentPanel.Children.Add(description);
-
-        // Horizontal WrapPanel
-        AddSection("Horizontal WrapPanel", "Items flow from left to right, wrapping to the next row.");
-
-        var horizontalContainer = new Border
-        {
-            Width = 400,
-            Background = GalleryTheme.BackgroundDarkBrush,
-            BorderBrush = GalleryTheme.BorderDefaultBrush,
-            BorderThickness = new Thickness(1),
-            Padding = new Thickness(8),
-            Margin = new Thickness(0, 0, 0, 24)
-        };
-
-        var horizontalWrapPanel = new WrapPanel
-        {
-            Orientation = Orientation.Horizontal
-        };
+        if (DemoHost == null) return;
 
         var colors = new[]
         {
@@ -225,93 +185,57 @@ public partial class WrapPanelDemo : Page
             Color.FromRgb(255, 87, 34)
         };
 
+        // Horizontal WrapPanel — items flow left to right and wrap to the next row.
+        var horizontalWrapPanel = new WrapPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Width = 400
+        };
         for (int i = 0; i < 12; i++)
         {
             var color = colors[i % colors.Length];
-            var item = CreateWrapItem($"Item {i + 1}", color, 80 + (i % 3) * 20, 40);
-            horizontalWrapPanel.Children.Add(item);
+            horizontalWrapPanel.Children.Add(CreateWrapItem($"Item {i + 1}", color, 80 + (i % 3) * 20, 40));
         }
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Horizontal WrapPanel", "Items flow from left to right, wrapping to the next row.", horizontalWrapPanel));
 
-        horizontalContainer.Child = horizontalWrapPanel;
-        ContentPanel.Children.Add(horizontalContainer);
-
-        // Vertical WrapPanel
-        AddSection("Vertical WrapPanel", "Items flow from top to bottom, wrapping to the next column.");
-
-        var verticalContainer = new Border
-        {
-            Width = 400,
-            Height = 150,
-            Background = GalleryTheme.BackgroundDarkBrush,
-            BorderBrush = GalleryTheme.BorderDefaultBrush,
-            BorderThickness = new Thickness(1),
-            Padding = new Thickness(8),
-            Margin = new Thickness(0, 0, 0, 24)
-        };
-
+        // Vertical WrapPanel — items flow top to bottom and wrap to the next column.
         var verticalWrapPanel = new WrapPanel
         {
-            Orientation = Orientation.Vertical
+            Orientation = Orientation.Vertical,
+            Width = 400,
+            Height = 150
         };
-
         for (int i = 0; i < 10; i++)
         {
             var color = colors[i % colors.Length];
-            var item = CreateWrapItem($"V{i + 1}", color, 60, 30 + (i % 3) * 10);
-            verticalWrapPanel.Children.Add(item);
+            verticalWrapPanel.Children.Add(CreateWrapItem($"V{i + 1}", color, 60, 30 + (i % 3) * 10));
         }
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Vertical WrapPanel", "Items flow from top to bottom, wrapping to the next column.", verticalWrapPanel));
 
-        verticalContainer.Child = verticalWrapPanel;
-        ContentPanel.Children.Add(verticalContainer);
-
-        // Fixed Item Size
-        AddSection("Fixed Item Size", "Using ItemWidth and ItemHeight for uniform sizing.");
-
-        var fixedContainer = new Border
-        {
-            Width = 400,
-            Background = GalleryTheme.BackgroundDarkBrush,
-            BorderBrush = GalleryTheme.BorderDefaultBrush,
-            BorderThickness = new Thickness(1),
-            Padding = new Thickness(8),
-            Margin = new Thickness(0, 0, 0, 24)
-        };
-
+        // Fixed item size — ItemWidth/ItemHeight give every child a uniform cell.
         var fixedWrapPanel = new WrapPanel
         {
             Orientation = Orientation.Horizontal,
             ItemWidth = 80,
-            ItemHeight = 80
+            ItemHeight = 80,
+            Width = 400
         };
-
         for (int i = 0; i < 8; i++)
         {
             var color = colors[i % colors.Length];
-            var item = CreateWrapItem($"{i + 1}", color, 60, 60);
-            fixedWrapPanel.Children.Add(item);
+            fixedWrapPanel.Children.Add(CreateWrapItem($"{i + 1}", color, 60, 60));
         }
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Fixed Item Size", "Using ItemWidth and ItemHeight for uniform sizing.", fixedWrapPanel));
 
-        fixedContainer.Child = fixedWrapPanel;
-        ContentPanel.Children.Add(fixedContainer);
-
-        // Tag Cloud Example
-        AddSection("Tag Cloud Example", "A practical use case for WrapPanel.");
-
-        var tagContainer = new Border
-        {
-            Width = 400,
-            Background = GalleryTheme.BackgroundLightBrush,
-            BorderBrush = GalleryTheme.BorderDefaultBrush,
-            BorderThickness = new Thickness(1),
-            Padding = new Thickness(12),
-            CornerRadius = new CornerRadius(8)
-        };
-
+        // Tag cloud — a practical WrapPanel use case.
         var tagWrapPanel = new WrapPanel
         {
-            Orientation = Orientation.Horizontal
+            Orientation = Orientation.Horizontal,
+            Width = 400
         };
-
         var tags = new[] { "C#", "WPF", "XAML", "UI Framework", ".NET", "Windows", "Desktop", "Controls", "Layout", "Styling" };
         foreach (var tag in tags)
         {
@@ -333,9 +257,8 @@ public partial class WrapPanelDemo : Page
             tagBorder.Child = tagText;
             tagWrapPanel.Children.Add(tagBorder);
         }
-
-        tagContainer.Child = tagWrapPanel;
-        ContentPanel.Children.Add(tagContainer);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Tag Cloud Example", "A practical use case for WrapPanel.", tagWrapPanel));
     }
 
     private Border CreateWrapItem(string text, Color color, double width, double height)
@@ -361,29 +284,5 @@ public partial class WrapPanelDemo : Page
 
         border.Child = textBlock;
         return border;
-    }
-
-    private void AddSection(string titleText, string descriptionText)
-    {
-        if (ContentPanel == null) return;
-
-        var sectionTitle = new TextBlock
-        {
-            Text = titleText,
-            FontSize = GalleryTheme.FontSizeSubtitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 16, 0, 4)
-        };
-        ContentPanel.Children.Add(sectionTitle);
-
-        var sectionDesc = new TextBlock
-        {
-            Text = descriptionText,
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 12)
-        };
-        ContentPanel.Children.Add(sectionDesc);
     }
 }

@@ -3,70 +3,50 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ContentDialogPage"
       Title="ContentDialog">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="ContentDialog"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="Modal dialogs for confirmations, inline review flows, and async validation without requiring XamlRoot."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DIALOGS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ContentDialog" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Modal dialogs for confirmations, inline review flows, and async validation without requiring XamlRoot." />
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Popup ContentDialog"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Shows a classic modal dialog over the current window. Enter triggers the default button and Escape closes."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+        <!-- Popup dialog -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Popup ContentDialog" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Shows a classic modal dialog over the current window. Enter triggers the default button and Escape closes." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
                             <Button x:Name="ShowBasicDialogButton"
                                     Content="Show Dialog"
                                     Width="110"
                                     Height="32"
-                                    Margin="0,0,8,0"/>
+                                    Margin="0,0,10,10" />
                             <Button x:Name="ShowFullSizeDialogButton"
                                     Content="Full Size"
                                     Width="100"
-                                    Height="32"/>
-                        </StackPanel>
+                                    Height="32"
+                                    Margin="0,0,10,10" />
+                        </WrapPanel>
                         <TextBlock x:Name="PopupDialogResultText"
-                                   Text="Open a dialog to see the result here."
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Open a dialog to see the result here." />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="In-Place ContentDialog"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="This example keeps the dialog inside a host region to preview embedded review flows."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
+        <!-- In-place dialog -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="In-Place ContentDialog" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="This example keeps the dialog inside a host region to preview embedded review flows." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <Button x:Name="ShowInlineDialogButton"
                                     Content="Review Changes"
@@ -122,60 +102,42 @@
                         </Grid>
 
                         <TextBlock x:Name="InlineDialogResultText"
+                                   Style="{StaticResource GalleryBodyText}"
                                    Text="The inline host is idle."
-                                   Margin="0,12,0,0"
-                                   TextWrapping="Wrap"/>
+                                   Margin="0,12,0,0"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Deferred Validation"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Primary button deferrals can run async work before the dialog is allowed to close."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
+        <!-- Deferred validation -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Deferred Validation" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Primary button deferrals can run async work before the dialog is allowed to close." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
                         <Button x:Name="ShowDeferredDialogButton"
                                 Content="Validate Name"
                                 Width="120"
                                 Height="32"
                                 Margin="0,0,0,12"/>
                         <TextBlock x:Name="DeferredDialogStatusText"
-                                   Text="Try confirming with an empty field to keep the dialog open."
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Try confirming with an empty field to keep the dialog open."/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declaring an in-place ContentDialog directly in markup." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -186,21 +148,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building and showing popup and in-place dialogs from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -210,5 +164,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -3,120 +3,79 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.XamlUICommandPage"
       Title="XamlUICommand">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="XamlUICommand"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Custom commands defined with user-specified labels, icons, and keyboard accelerators for application-specific actions."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="XamlUICommand" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Custom commands defined with user-specified labels, icons, and keyboard accelerators for application-specific actions." />
 
-        <!-- Custom XamlUICommand Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Custom XamlUICommand"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Application-specific commands with custom labels, icons, and wired to toolbar buttons."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
+        <!-- Custom XamlUICommand -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom XamlUICommand" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Application-specific commands with custom labels, icons, and accelerators, wired to toolbar buttons." />
                 <Border x:Name="XamlCommandContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"
-                        MinHeight="200"/>
+                        Style="{StaticResource GalleryDemoSurface}"
+                        MinHeight="200" />
             </StackPanel>
         </Border>
 
-        <!-- Command Output Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Command Output"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click the command buttons to trigger actions. Output is displayed below."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Command output -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Command output" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Click the command buttons to trigger actions. The most recent result and history appear below." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock x:Name="CommandOutputText"
+                                   Style="{StaticResource GalleryBodyText}"
                                    Text="No command executed yet."
-                                   FontSize="13"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,8"/>
+                                   Margin="0,0,0,8" />
                         <TextBlock x:Name="CommandHistoryText"
-                                   Text=""
-                                   FontSize="11"
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup that defines a XamlUICommand and binds it to a command bar button." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building the commands in code and wiring each to a toolbar button's Click handler." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -2,6 +2,7 @@ using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
 using Jalium.UI.Input;
 using Jalium.UI.Threading;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
@@ -52,6 +53,7 @@ public partial class MediaElementPage : Page
 </StackPanel>";
 
     private const string CSharpExample = @"using Jalium.UI.Controls;
+using Microsoft.Win32;
 
 public partial class MediaElementSample : Page
 {
@@ -240,7 +242,7 @@ public partial class MediaElementSample : Page
         if (dialog.ShowDialog() == true)
         {
             if (VideoPathTextBox != null)
-                VideoPathTextBox.Text = dialog.FileName;
+                VideoPathTextBox.Text = dialog.FileName ?? string.Empty;
             LoadVideoFromPath();
         }
     }
@@ -283,7 +285,7 @@ public partial class MediaElementSample : Page
         if (dialog.ShowDialog() == true)
         {
             if (AudioPathTextBox != null)
-                AudioPathTextBox.Text = dialog.FileName;
+                AudioPathTextBox.Text = dialog.FileName ?? string.Empty;
             LoadAudioFromPath();
         }
     }

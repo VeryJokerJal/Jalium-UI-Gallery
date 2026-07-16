@@ -3,35 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GridPage"
       Title="Grid">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Grid"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A flexible layout panel that arranges children in rows and columns."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Grid" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A flexible layout panel that arranges its children into rows and columns, with fixed, auto and star sizing plus row and column spanning." />
 
-        <!-- Basic Grid Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Grid Layout"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A 3x3 grid with colored cells."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic grid layout -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Grid Layout" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A 3x3 grid with colored cells labelled by their row and column index." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <!-- Real 3x3 Grid demo -->
                     <Grid HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
@@ -88,24 +74,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Grid Features Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Grid Features"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Key capabilities of the Grid control."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Grid features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Grid Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Key capabilities of the Grid control: mixed sizing, row spanning and column spanning." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <!-- Real Grid demo showing spans and mixed sizing -->
                         <Grid Height="190">
@@ -173,29 +148,21 @@
                             </Border>
                         </Grid>
 
-                        <TextBlock Text="This section now uses real RowDefinitions, ColumnDefinitions, RowSpan, and ColumnSpan."
-                                   FontSize="12"
-                                   Margin="0,12,0,0"/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="This section now uses real RowDefinitions, ColumnDefinitions, RowSpan, and ColumnSpan."
+                                   Margin="0,12,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for an application-style grid layout." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -206,21 +173,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building the same grid layout dynamically in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -230,5 +189,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -3,61 +3,36 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TimePickerPage"
       Title="TimePicker">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="TimePicker"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A control that lets users select a time value."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATE &amp; TIME" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TimePicker" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A control that lets users pick a time of day, with support for 12- or 24-hour clocks and configurable minute increments." />
 
-        <!-- Basic TimePicker Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic TimePicker"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click to open the time picker and select a time."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <TimePicker Width="150" Margin="0,0,16,0"/>
-                        <TimePicker Width="150" IsEnabled="False"/>
-                    </StackPanel>
+        <!-- Basic TimePicker -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic TimePicker" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Click to open the flyout and choose a time; the second picker shows the disabled state." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <TimePicker Width="150" Margin="0,0,10,10" />
+                        <TimePicker Width="150" IsEnabled="False" Margin="0,0,10,10" />
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- 12-Hour vs 24-Hour Format Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Time Formats"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="TimePicker supports 12-hour and 24-hour formats."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Time formats -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Time Formats" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Switch between 12-hour and 24-hour clocks with the ClockIdentifier property." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="12-hour format:" Width="140" VerticalAlignment="Center"/>
@@ -72,24 +47,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Minute Increment Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Minute Increment"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="TimePicker can have different minute increments."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Minute increment -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Minute Increment" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Constrain selectable minutes to fixed steps using the MinuteIncrement property." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="1 minute steps:" Width="140" VerticalAlignment="Center"/>
@@ -112,55 +76,33 @@
             </StackPanel>
         </Border>
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Select a time and see the formatted result."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Pick a time and see the formatted result update live." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                             <TextBlock Text="Select time:" Width="120" VerticalAlignment="Center"/>
                             <TimePicker x:Name="DemoTimePicker" Width="150"/>
                         </StackPanel>
                         <TextBlock x:Name="SelectedTimeText"
-                                   Text="No time selected"
-                                   FontSize="14"/>
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="No time selected" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Use Cases Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Common Use Cases"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Examples of TimePicker in real scenarios."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Common use cases -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Typical scheduling scenarios such as alarms, meetings and reminders." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Alarm Time" FontSize="12" Margin="0,0,0,4"/>
                         <TimePicker Width="150" Margin="0,0,0,16"/>
@@ -174,21 +116,14 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the pickers shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -199,21 +134,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating and configuring a TimePicker in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -223,5 +150,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

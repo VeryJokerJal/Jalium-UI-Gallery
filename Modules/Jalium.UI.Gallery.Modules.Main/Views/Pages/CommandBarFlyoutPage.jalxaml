@@ -3,120 +3,79 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CommandBarFlyoutPage"
       Title="CommandBarFlyout">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="CommandBarFlyout"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A flyout that displays a CommandBar with primary and secondary commands in a lightweight popup."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="CommandBarFlyout" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A flyout that displays a CommandBar with primary and secondary commands in a lightweight popup." />
 
-        <!-- Basic CommandBarFlyout Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic CommandBarFlyout"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click the button below to open a CommandBarFlyout with editing commands."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="BasicFlyoutContainer" Orientation="Vertical"/>
+        <!-- Basic CommandBarFlyout -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic CommandBarFlyout" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Click the button below to open a CommandBarFlyout with editing commands." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="BasicFlyoutContainer" Orientation="Vertical" />
                 </Border>
-
                 <TextBlock x:Name="BasicFlyoutStatus"
+                           Style="{StaticResource GalleryCaptionText}"
                            Text="Click the button to open the CommandBarFlyout."
-                           FontSize="12"
-                           Margin="0,12,0,0"/>
+                           Margin="0,12,0,0" />
             </StackPanel>
         </Border>
 
-        <!-- CommandBarFlyout with Secondary Commands Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="CommandBarFlyout with Mixed Commands"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A CommandBarFlyout with both primary and secondary commands. The secondary commands appear in the overflow."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="MixedFlyoutContainer" Orientation="Vertical"/>
+        <!-- CommandBarFlyout with mixed commands -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="CommandBarFlyout with Mixed Commands" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A CommandBarFlyout with both primary and secondary commands. The secondary commands appear in the overflow." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="MixedFlyoutContainer" Orientation="Vertical" />
                 </Border>
-
                 <TextBlock x:Name="MixedFlyoutStatus"
+                           Style="{StaticResource GalleryCaptionText}"
                            Text="Click the button to open the flyout with mixed commands."
-                           FontSize="12"
-                           Margin="0,12,0,0"/>
+                           Margin="0,12,0,0" />
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the trigger button that shows the flyout." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building the CommandBarFlyout and wiring its commands in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

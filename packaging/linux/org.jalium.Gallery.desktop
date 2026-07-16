@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Jalium.UI Gallery
+Comment=Explore Jalium.UI controls and platform features
+Exec=Jalium.UI.Gallery
+Icon=org.jalium.Gallery
+Terminal=false
+Categories=Development;
+Keywords=Jalium;UI;XAML;Gallery;
+StartupNotify=true
+StartupWMClass=Jalium.UI.Gallery

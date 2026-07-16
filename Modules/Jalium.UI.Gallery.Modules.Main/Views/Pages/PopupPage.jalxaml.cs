@@ -67,7 +67,7 @@ public partial class PopupPage : Page
        StaysOpen=""True"">
     <Border Padding=""20"" Width=""250"">
         <StackPanel>
-            <TextBox PlaceholderText=""Enter name""/>
+            <TextBox ToolTip=""Enter name""/>
             <Button Content=""Save""/>
         </StackPanel>
     </Border>

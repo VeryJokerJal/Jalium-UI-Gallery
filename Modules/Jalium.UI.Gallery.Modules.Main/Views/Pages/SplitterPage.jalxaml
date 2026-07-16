@@ -3,36 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SplitterPage"
       Title="Splitter">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Splitter"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A control for resizing adjacent panels."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Splitter" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Drag a GridSplitter between grid cells to resize adjacent panels — the building block for resizable columns, rows and full IDE-style layouts." />
 
-        <!-- Horizontal Splitter Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Horizontal Splitter"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Drag the splitter to resize panels horizontally."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        Height="200">
+        <!-- Horizontal splitter -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Horizontal Splitter" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Drag the vertical bar to resize the left and right panels." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="200">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MinWidth="100"/>
@@ -46,7 +31,7 @@
 
                         <GridSplitter Grid.Column="1" Width="6" ResizeBehavior="PreviousAndNext"/>
 
-                        <Border Grid.Column="2" Background="#303030" Padding="16">
+                        <Border Grid.Column="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
                             <TextBlock Text="Right Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Grid>
@@ -54,25 +39,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Vertical Splitter Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Vertical Splitter"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Drag the splitter to resize panels vertically."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        Height="250">
+        <!-- Vertical splitter -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Vertical Splitter" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Drag the horizontal bar to resize the top and bottom panels." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="250">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" MinHeight="50"/>
@@ -86,7 +59,7 @@
 
                         <GridSplitter Grid.Row="1" Height="6" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
 
-                        <Border Grid.Row="2" Background="#303030" Padding="16">
+                        <Border Grid.Row="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
                             <TextBlock Text="Bottom Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Grid>
@@ -94,25 +67,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Multi-Panel Layout Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Multi-Panel Layout"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Combine multiple splitters for complex layouts."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        Height="300">
+        <!-- Multi-panel layout -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multi-Panel Layout" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Combine several splitters — a sidebar plus a stacked content and console — for an IDE-style workspace." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="300">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150" MinWidth="100"/>
@@ -121,7 +82,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Left sidebar -->
-                        <Border Grid.Column="0" Background="#101F15" Padding="12">
+                        <Border Grid.Column="0" Background="{DynamicResource GalleryAccentSoft}" Padding="12">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Sidebar" FontWeight="SemiBold" Margin="0,0,0,12"/>
                                 <TextBlock Text="• Item 1" Margin="0,0,0,4"/>
@@ -147,7 +108,7 @@
 
                             <GridSplitter Grid.Row="1" Height="6" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
 
-                            <Border Grid.Row="2" Background="#303030" Padding="16">
+                            <Border Grid.Row="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
                                 <TextBlock Text="Output / Console" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
@@ -156,24 +117,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Use Cases Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Common Use Cases"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Splitters are useful for creating resizable layouts."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Common use cases -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Splitters power the resizable layouts found across everyday desktop apps." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="• IDE layouts (code editor + output)" Margin="0,0,0,8"/>
                         <TextBlock Text="• File explorers (tree + details)" Margin="0,0,0,8"/>
@@ -184,21 +134,14 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the splitter layouts above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -209,21 +152,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building a resizable IDE-style layout with GridSplitters in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -233,5 +168,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

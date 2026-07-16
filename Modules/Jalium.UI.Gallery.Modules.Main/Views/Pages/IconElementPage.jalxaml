@@ -2,55 +2,55 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.IconElementPage"
       Title="IconElement">
-      <StackPanel x:Name="RootPanel" Orientation="Vertical" Margin="0,0,24,24">
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+    <!--
+        Hybrid page: the header and the two code-example cards live in markup;
+        the interactive demo cards are built imperatively into DemoHost by
+        CreateContent() using the GalleryUi factory (the C# mirror of the shared
+        styles), so both halves render the identical card scaffold.
+    -->
+    <StackPanel x:Name="RootPanel" Style="{StaticResource GalleryPageStack}">
+
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="ICONOGRAPHY" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="IconElement" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A family of scalable vector icons — SymbolIcon, FontIcon, and PathIcon — drawing 600+ glyphs from Segoe Fluent Icons for buttons, toolbars, and app bars." />
+
+        <!-- Interactive demos are inserted here by CreateContent(). -->
+        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for SymbolIcon, FontIcon, and AppBarButton icons." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Constructing SymbolIcon and FontIcon instances in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
-      </StackPanel>
+    </StackPanel>
 </Page>

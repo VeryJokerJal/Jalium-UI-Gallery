@@ -3,33 +3,22 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.LiquidGlassPage"
       Title="Liquid Glass">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Liquid Glass"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Apple-style liquid glass effect with SDF-based refraction, chromatic aberration, edge highlights, and inner shadow. Set LiquidGlass=True on any Border control."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Liquid Glass" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Apple-style liquid glass effect with SDF-based refraction, chromatic aberration, edge highlights, and inner shadow. Set LiquidGlass=True on any Border control." />
 
         <!-- Default Liquid Glass -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Default Liquid Glass"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Background refraction with edge highlights and inner shadow. BlurRadius=8, RefractionAmount=60."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Default Liquid Glass" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Background refraction with edge highlights and inner shadow. BlurRadius=8, RefractionAmount=60." />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="200">
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="200">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -94,21 +83,13 @@
         </Border>
 
         <!-- Chromatic Aberration Demo -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Chromatic Aberration"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Add rainbow-edge dispersion effect. ChromaticAberration controls the amount of color separation."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Chromatic Aberration" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Add rainbow-edge dispersion effect. ChromaticAberration controls the amount of color separation." />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="200">
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="200">
                     <Grid>
                         <!-- Colorful background -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -174,23 +155,15 @@
         </Border>
 
         <!-- Different Corner Radii -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Corner Radius Variants"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Liquid glass adapts the SDF shape to different corner radii."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Corner Radius Variants" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Liquid glass adapts the SDF shape to different corner radii." />
 
-                <StackPanel Orientation="Horizontal">
+                <WrapPanel>
                     <!-- Sharp corners -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -235,7 +208,7 @@
                     </Border>
 
                     <!-- Small radius -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -280,7 +253,7 @@
                     </Border>
 
                     <!-- Large radius -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -325,7 +298,7 @@
                     </Border>
 
                     <!-- Circle (pill) -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -368,28 +341,20 @@
                             </Border>
                         </Grid>
                     </Border>
-                </StackPanel>
+                </WrapPanel>
             </StackPanel>
         </Border>
 
         <!-- Tinted Glass -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Tinted Liquid Glass"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Set Background on the Border to apply a colored tint over the glass effect."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Tinted Liquid Glass" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Set Background on the Border to apply a colored tint over the glass effect." />
 
-                <StackPanel Orientation="Horizontal">
+                <WrapPanel>
                     <!-- Blue tint -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="200" Height="140" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Height="140" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -422,7 +387,7 @@
                     </Border>
 
                     <!-- Green tint -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="200" Height="140" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Height="140" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -455,7 +420,7 @@
                     </Border>
 
                     <!-- Purple tint -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="200" Height="140">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Height="140" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -486,24 +451,16 @@
                             </Border>
                         </Grid>
                     </Border>
-                </StackPanel>
+                </WrapPanel>
             </StackPanel>
         </Border>
 
         <!-- Interactive Parameters -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Parameters"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Adjust blur radius, refraction amount, and chromatic aberration in real-time."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Parameters" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Adjust blur radius, refraction amount, and chromatic aberration in real-time." />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -512,7 +469,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Preview area -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="240" Margin="0,0,16,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Height="240" Margin="0,0,16,0">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -584,21 +541,13 @@
         </Border>
 
         <!-- Fusion Demo -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Liquid Glass Fusion"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Adjacent liquid glass panels fuse together with smooth metaball-like blending via SDF smooth minimum (smin). Panels must be siblings in the same parent Panel."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Liquid Glass Fusion" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Adjacent liquid glass panels fuse together with smooth metaball-like blending via SDF smooth minimum (smin). Panels must be siblings in the same parent Panel." />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="280">
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="280">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -677,23 +626,15 @@
         </Border>
 
         <!-- SuperEllipse Shape -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="SuperEllipse Shape"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Set Shape=SuperEllipse for iOS-style squircle borders. SuperEllipseN controls the exponent (2=circle, 4=iOS, higher=more rectangular)."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="SuperEllipse Shape" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Set Shape=SuperEllipse for iOS-style squircle borders. SuperEllipseN controls the exponent (2=circle, 4=iOS, higher=more rectangular)." />
 
-                <StackPanel Orientation="Horizontal">
+                <WrapPanel>
                     <!-- N=2 (Ellipse) -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -738,7 +679,7 @@
                     </Border>
 
                     <!-- N=4 (iOS Squircle) -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -783,7 +724,7 @@
                     </Border>
 
                     <!-- N=6 -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160" Margin="0,0,12,0">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -828,7 +769,7 @@
                     </Border>
 
                     <!-- N=10 (Near Rectangle) -->
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="8" Width="160" Height="160">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="160" Height="160" Margin="0,0,10,10">
                         <Grid>
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -871,62 +812,55 @@
                             </Border>
                         </Grid>
                     </Border>
-                </StackPanel>
+                </WrapPanel>
 
                 <!-- Non-glass superellipse demo -->
-                <TextBlock Text="Without Liquid Glass (solid fill)"
-                           FontSize="12"
-                           Margin="0,16,0,8"/>
-                <StackPanel Orientation="Horizontal">
-                    <Border Width="100" Height="100"
-                            Shape="SuperEllipse" SuperEllipseN="4"
-                            Background="#400078D4" BorderBrush="{DynamicResource GalleryAccent}" BorderThickness="2"
-                            Margin="0,0,12,0">
-                        <TextBlock Text="N=4" FontSize="11"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Width="100" Height="100"
-                            Shape="SuperEllipse" SuperEllipseN="4"
-                            Background="#4000C853" BorderBrush="#00C853" BorderThickness="2"
-                            Margin="0,0,12,0">
-                        <TextBlock Text="N=4" FontSize="11"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Width="100" Height="100"
-                            Shape="SuperEllipse" SuperEllipseN="4"
-                            Background="#4027B055" BorderBrush="#27B055" BorderThickness="2"
-                            Margin="0,0,12,0">
-                        <TextBlock Text="N=4" FontSize="11"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Width="150" Height="100"
-                            Shape="SuperEllipse" SuperEllipseN="4"
-                            Background="#40FF5722" BorderBrush="#FF5722" BorderThickness="2">
-                        <TextBlock Text="N=4 (rect)" FontSize="11"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Without Liquid Glass (solid fill)"
+                           Margin="0,4,0,12" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Border Width="100" Height="100"
+                                Shape="SuperEllipse" SuperEllipseN="4"
+                                Background="#400078D4" BorderBrush="{DynamicResource GalleryAccent}" BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="N=4" FontSize="11"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="100" Height="100"
+                                Shape="SuperEllipse" SuperEllipseN="4"
+                                Background="#4000C853" BorderBrush="#00C853" BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="N=4" FontSize="11"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="100" Height="100"
+                                Shape="SuperEllipse" SuperEllipseN="4"
+                                Background="#4027B055" BorderBrush="#27B055" BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="N=4" FontSize="11"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="150" Height="100"
+                                Shape="SuperEllipse" SuperEllipseN="4"
+                                Background="#40FF5722" BorderBrush="#FF5722" BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="N=4 (rect)" FontSize="11"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </WrapPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Usage Code -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Usage"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Set LiquidGlass properties on Border:"
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Usage" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Set LiquidGlass properties on Border:" />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="&lt;!-- JALXAML --&gt;" FontSize="12"/>
                         <TextBlock Text="&lt;Border LiquidGlass=&quot;True&quot;" FontSize="12" Margin="0,4,0,0"/>
@@ -947,19 +881,12 @@
         </Border>
 
         <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for applying the liquid glass effect to a Border." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}"
                         HorizontalAlignment="Stretch">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
@@ -972,19 +899,12 @@
         </Border>
 
         <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Wiring the interactive sliders and setting glass properties in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}"
                         HorizontalAlignment="Stretch">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
@@ -995,5 +915,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

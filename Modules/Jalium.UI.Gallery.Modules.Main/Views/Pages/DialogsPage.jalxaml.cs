@@ -3,6 +3,9 @@ using Jalium.UI.Controls.Editor;
 using Jalium.UI.Media;
 using System.Runtime.InteropServices;
 using System.Text;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using OpenFolderDialog = Microsoft.Win32.OpenFolderDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
@@ -68,6 +71,7 @@ public partial class DialogsPage : Page
 
     private const string CSharpExample =
 @"using Jalium.UI.Controls;
+using Microsoft.Win32;
 
 public partial class DialogsPage : Page
 {
@@ -84,14 +88,13 @@ public partial class DialogsPage : Page
 
     private void OnOpenFolderPickerClick(object? sender, EventArgs e)
     {
-        var dialog = new OpenFileDialog
+        var dialog = new OpenFolderDialog
         {
-            IsFolderPicker = true,
             InitialDirectory = AppContext.BaseDirectory
         };
 
         if (dialog.ShowDialog() == true)
-            SelectedFolderViaOpenFileText.Text = $""Selected: {dialog.FileName}"";
+            SelectedFolderViaOpenFileText.Text = $""Selected: {dialog.FolderName}"";
     }
 
     private void OnPickIconClick(object? sender, EventArgs e)
@@ -125,11 +128,11 @@ public partial class DialogsPage : Page
     private static readonly MessageDialogScenario s_warningScenario = new(
         "Warning",
         "Unsaved changes",
-        "The preview still has staged edits.\n\nRetry saving before you leave this page?",
-        "A recovery-oriented warning that prefers Retry while still allowing the user to cancel safely.",
-        MessageBoxButton.RetryCancel,
+        "The preview still has staged edits.\n\nTry saving again before you leave this page?",
+        "A recovery-oriented warning that offers OK to retry while still allowing the user to cancel safely.",
+        MessageBoxButton.OKCancel,
         MessageBoxImage.Warning,
-        MessageBoxResult.Retry,
+        MessageBoxResult.OK,
         Color.FromRgb(0xD6, 0xA4, 0x1F));
 
     private static readonly MessageDialogScenario s_errorScenario = new(
@@ -261,15 +264,14 @@ public partial class DialogsPage : Page
 
     private void OnOpenFolderPickerClick(object? sender, EventArgs e)
     {
-        var dialog = new OpenFileDialog
+        var dialog = new OpenFolderDialog
         {
-            IsFolderPicker = true,
             InitialDirectory = AppContext.BaseDirectory
         };
 
         if (dialog.ShowDialog() == true && SelectedFolderViaOpenFileText != null)
         {
-            SelectedFolderViaOpenFileText.Text = $"Selected: {dialog.FileName}";
+            SelectedFolderViaOpenFileText.Text = $"Selected: {dialog.FolderName}";
         }
     }
 
@@ -308,13 +310,13 @@ public partial class DialogsPage : Page
 
     private void OnBrowseFolderClick(object? sender, EventArgs e)
     {
-        var dialog = new FolderBrowserDialog();
+        var dialog = new OpenFolderDialog();
 
         if (dialog.ShowDialog() == true)
         {
             if (SelectedFolderText != null)
             {
-                SelectedFolderText.Text = $"Selected: {dialog.SelectedPath}";
+                SelectedFolderText.Text = $"Selected: {dialog.FolderName}";
             }
         }
     }
@@ -586,11 +588,8 @@ public partial class DialogsPage : Page
         {
             MessageBoxButton.OK => "OK",
             MessageBoxButton.OKCancel => "OK / Cancel",
-            MessageBoxButton.AbortRetryIgnore => "Abort / Retry / Ignore",
             MessageBoxButton.YesNoCancel => "Yes / No / Cancel",
             MessageBoxButton.YesNo => "Yes / No",
-            MessageBoxButton.RetryCancel => "Retry / Cancel",
-            MessageBoxButton.CancelTryContinue => "Cancel / Try Again / Continue",
             _ => buttons.ToString()
         };
     }
@@ -613,7 +612,7 @@ public partial class DialogsPage : Page
         return scenario.Kind switch
         {
             "Information" => "The user acknowledged the success message and returned to the sample.",
-            "Warning" => result == MessageBoxResult.Retry
+            "Warning" => result == MessageBoxResult.OK
                 ? "The user chose to retry the save flow before leaving the current page."
                 : "The user canceled the retry flow and kept the page unchanged.",
             "Error" => "The user dismissed the blocking error after reviewing the import failure details.",

@@ -3,91 +3,55 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ShapesPage"
       Title="Shapes">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Shapes"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Basic geometric shapes for drawing graphics."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Shapes" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Vector primitives — rectangles, ellipses, lines, polygons, polylines and paths — for drawing crisp, resolution-independent graphics." />
 
-        <!-- Rectangle Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Rectangle"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A basic rectangular shape with optional rounded corners."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Width="100" Height="60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,16,0"/>
-                        <Rectangle Width="100" Height="60" Fill="#00CC6A" Stroke="#FFFFFF" StrokeThickness="2" Margin="0,0,16,0"/>
-                        <Rectangle Width="100" Height="60" Fill="#F7630C" RadiusX="10" RadiusY="10" Margin="0,0,16,0"/>
-                        <Rectangle Width="60" Height="60" Fill="Transparent" Stroke="#E81123" StrokeThickness="3"/>
-                    </StackPanel>
+        <!-- Rectangle -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Rectangle" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A basic rectangular shape with optional rounded corners and strokes." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Rectangle Width="100" Height="60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,10,10"/>
+                        <Rectangle Width="100" Height="60" Fill="#00CC6A" Stroke="#FFFFFF" StrokeThickness="2" Margin="0,0,10,10"/>
+                        <Rectangle Width="100" Height="60" Fill="#F7630C" RadiusX="10" RadiusY="10" Margin="0,0,10,10"/>
+                        <Rectangle Width="60" Height="60" Fill="Transparent" Stroke="#E81123" StrokeThickness="3" Margin="0,0,10,10"/>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Ellipse Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Ellipse"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="An elliptical shape that can be a circle when width equals height."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <Ellipse Width="60" Height="60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,16,0"/>
-                        <Ellipse Width="100" Height="60" Fill="#00CC6A" Margin="0,0,16,0"/>
-                        <Ellipse Width="60" Height="60" Fill="Transparent" Stroke="#F7630C" StrokeThickness="3" Margin="0,0,16,0"/>
-                        <Ellipse Width="80" Height="80" Fill="#6CE494" Stroke="#FFFFFF" StrokeThickness="2"/>
-                    </StackPanel>
+        <!-- Ellipse -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Ellipse" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="An elliptical shape that becomes a circle when width equals height." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Ellipse Width="60" Height="60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,10,10"/>
+                        <Ellipse Width="100" Height="60" Fill="#00CC6A" Margin="0,0,10,10"/>
+                        <Ellipse Width="60" Height="60" Fill="Transparent" Stroke="#F7630C" StrokeThickness="3" Margin="0,0,10,10"/>
+                        <Ellipse Width="80" Height="80" Fill="#6CE494" Stroke="#FFFFFF" StrokeThickness="2" Margin="0,0,10,10"/>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Line Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Line"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A straight line between two points."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Line -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Line" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A straight line between two points, with optional dash patterns." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Canvas Width="400" Height="100">
                         <Line X1="0" Y1="10" X2="150" Y2="10" Stroke="{DynamicResource GalleryAccent}" StrokeThickness="2"/>
                         <Line X1="0" Y1="30" X2="150" Y2="80" Stroke="#00CC6A" StrokeThickness="3"/>
@@ -98,58 +62,36 @@
             </StackPanel>
         </Border>
 
-        <!-- Polygon Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Polygon"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A closed shape consisting of a series of connected lines."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Polygon -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Polygon" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A closed shape built from a series of connected points." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <!-- Triangle -->
-                        <Polygon Points="30,0 60,60 0,60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,24,0"/>
+                        <Polygon Points="30,0 60,60 0,60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,10,10"/>
                         <!-- Pentagon -->
-                        <Polygon Points="30,0 60,22 48,60 12,60 0,22" Fill="#00CC6A" Margin="0,0,24,0"/>
+                        <Polygon Points="30,0 60,22 48,60 12,60 0,22" Fill="#00CC6A" Margin="0,0,10,10"/>
                         <!-- Star -->
                         <Polygon Points="30,0 36,20 60,20 42,32 50,55 30,42 10,55 18,32 0,20 24,20"
-                                 Fill="#FFB900" Margin="0,0,24,0"/>
+                                 Fill="#FFB900" Margin="0,0,10,10"/>
                         <!-- Hexagon with stroke -->
                         <Polygon Points="20,0 50,0 65,30 50,60 20,60 5,30"
-                                 Fill="Transparent" Stroke="#E81123" StrokeThickness="2"/>
-                    </StackPanel>
+                                 Fill="Transparent" Stroke="#E81123" StrokeThickness="2" Margin="0,0,10,10"/>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Polyline Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Polyline"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A series of connected line segments (not closed)."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Polyline -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Polyline" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A series of connected line segments that stays open (not closed)." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Canvas Width="400" Height="80">
                         <Polyline Points="0,40 50,10 100,60 150,20 200,50 250,30 300,70 350,40"
                                   Stroke="{DynamicResource GalleryAccent}" StrokeThickness="3" Fill="Transparent"/>
@@ -161,58 +103,36 @@
             </StackPanel>
         </Border>
 
-        <!-- Path Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Path"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Complex shapes using path geometry data."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Path -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Path" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Complex shapes described with path geometry data." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <!-- Heart shape -->
                         <Path Data="M 50,30 C 50,0 0,0 0,30 C 0,60 50,80 50,80 C 50,80 100,60 100,30 C 100,0 50,0 50,30"
-                              Fill="#E81123" Width="50" Height="50" Stretch="Uniform" Margin="0,0,24,0"/>
+                              Fill="#E81123" Width="50" Height="50" Stretch="Uniform" Margin="0,0,10,10"/>
                         <!-- Arrow -->
                         <Path Data="M 0,20 L 30,20 L 30,10 L 50,25 L 30,40 L 30,30 L 0,30 Z"
-                              Fill="{DynamicResource GalleryAccent}" Width="50" Height="40" Stretch="Uniform" Margin="0,0,24,0"/>
+                              Fill="{DynamicResource GalleryAccent}" Width="50" Height="40" Stretch="Uniform" Margin="0,0,10,10"/>
                         <!-- Check mark -->
                         <Path Data="M 10,25 L 20,35 L 40,10"
                               Stroke="#00CC6A" StrokeThickness="4" Fill="Transparent"
-                              Width="50" Height="45" Stretch="Uniform"/>
-                    </StackPanel>
+                              Width="50" Height="45" Stretch="Uniform" Margin="0,0,10,10"/>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Combined Shapes Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Combined Shapes Example"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Shapes can be combined to create complex graphics."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Combined shapes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Combined shapes example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Shapes can be layered on a canvas to compose richer graphics." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Canvas Width="300" Height="150">
                         <!-- Simple house -->
                         <Rectangle Canvas.Left="50" Canvas.Top="70" Width="100" Height="70" Fill="#8B4513"/>
@@ -229,21 +149,14 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the shapes shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -254,21 +167,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating and configuring shapes programmatically in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -278,5 +183,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

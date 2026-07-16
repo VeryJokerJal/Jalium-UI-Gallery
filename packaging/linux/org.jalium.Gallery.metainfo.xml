@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.jalium.Gallery</id>
+  <name>Jalium.UI Gallery</name>
+  <summary>Explore Jalium.UI controls and platform features</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="org.jalium">
+    <name>Jalium</name>
+  </developer>
+  <description>
+    <p>
+      Jalium.UI Gallery is the reference application for Jalium.UI. It
+      demonstrates controls, layout, input, rendering, media, and desktop
+      integration on X11 and Wayland.
+    </p>
+  </description>
+  <launchable type="desktop-id">org.jalium.Gallery.desktop</launchable>
+  <provides>
+    <binary>Jalium.UI.Gallery</binary>
+  </provides>
+  <categories>
+    <category>Development</category>
+  </categories>
+  <content_rating type="oars-1.1" />
+  <url type="homepage">https://github.com/VeryJokerJal/Jalium-UI-Gallery</url>
+</component>

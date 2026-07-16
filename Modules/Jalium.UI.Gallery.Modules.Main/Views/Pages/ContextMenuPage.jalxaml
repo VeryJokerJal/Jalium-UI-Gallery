@@ -3,187 +3,142 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ContextMenuPage"
       Title="ContextMenu">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="ContextMenu"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A popup menu that appears when right-clicking on an element."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ContextMenu" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A popup menu of commands that opens where the user right-clicks, attached to any element through the ContextMenuService." />
 
-        <!-- Basic ContextMenu Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic ContextMenu"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Right-click on the area below to open the context menu."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="40"
+        <!-- Basic ContextMenu -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic ContextMenu" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Right-click on the area below to open the context menu." />
+                <Border Style="{StaticResource GalleryDemoSurface}"
+                        MinHeight="120"
                         x:Name="ContextMenuArea">
                     <TextBlock Text="Right-click here"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" />
                     <ContextMenuService.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Cut" InputGestureText="Ctrl+X"/>
-                            <MenuItem Header="Copy" InputGestureText="Ctrl+C"/>
-                            <MenuItem Header="Paste" InputGestureText="Ctrl+V"/>
-                            <Separator/>
-                            <MenuItem Header="Select All" InputGestureText="Ctrl+A"/>
+                            <MenuItem Header="Cut" InputGestureText="Ctrl+X" />
+                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" />
+                            <MenuItem Header="Paste" InputGestureText="Ctrl+V" />
+                            <Separator />
+                            <MenuItem Header="Select All" InputGestureText="Ctrl+A" />
                         </ContextMenu>
                     </ContextMenuService.ContextMenu>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- ContextMenu with Submenus Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ContextMenu with Submenus"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Context menus can contain nested submenus."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="40">
+        <!-- ContextMenu with submenus -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ContextMenu with Submenus" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Context menus can contain nested submenus." />
+                <Border Style="{StaticResource GalleryDemoSurface}"
+                        MinHeight="120">
                     <TextBlock Text="Right-click here for nested menu"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" />
                     <ContextMenuService.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="New">
-                                <MenuItem Header="File"/>
-                                <MenuItem Header="Folder"/>
-                                <MenuItem Header="Project"/>
+                                <MenuItem Header="File" />
+                                <MenuItem Header="Folder" />
+                                <MenuItem Header="Project" />
                             </MenuItem>
-                            <MenuItem Header="Open"/>
-                            <Separator/>
+                            <MenuItem Header="Open" />
+                            <Separator />
                             <MenuItem Header="Sort By">
-                                <MenuItem Header="Name"/>
-                                <MenuItem Header="Date"/>
-                                <MenuItem Header="Size"/>
-                                <MenuItem Header="Type"/>
+                                <MenuItem Header="Name" />
+                                <MenuItem Header="Date" />
+                                <MenuItem Header="Size" />
+                                <MenuItem Header="Type" />
                             </MenuItem>
                             <MenuItem Header="View">
-                                <MenuItem Header="Large Icons"/>
-                                <MenuItem Header="Small Icons"/>
-                                <MenuItem Header="List"/>
-                                <MenuItem Header="Details"/>
+                                <MenuItem Header="Large Icons" />
+                                <MenuItem Header="Small Icons" />
+                                <MenuItem Header="List" />
+                                <MenuItem Header="Details" />
                             </MenuItem>
-                            <Separator/>
-                            <MenuItem Header="Properties"/>
+                            <Separator />
+                            <MenuItem Header="Properties" />
                         </ContextMenu>
                     </ContextMenuService.ContextMenu>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Right-click to select an action. The selected action will be displayed."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="40"
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Right-click to select an action. The selected action will be displayed." />
+                <Border Style="{StaticResource GalleryDemoSurface}"
+                        MinHeight="120"
                         x:Name="InteractiveArea">
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
                         <TextBlock Text="Right-click here"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" />
                         <TextBlock x:Name="SelectedActionText"
                                    Text="No action selected"
                                    HorizontalAlignment="Center"
-                                   Margin="0,8,0,0"/>
+                                   Margin="0,8,0,0" />
                     </StackPanel>
                     <ContextMenuService.ContextMenu>
                         <ContextMenu x:Name="InteractiveContextMenu">
-                            <MenuItem Header="Action 1" x:Name="Action1"/>
-                            <MenuItem Header="Action 2" x:Name="Action2"/>
-                            <MenuItem Header="Action 3" x:Name="Action3"/>
+                            <MenuItem Header="Action 1" x:Name="Action1" />
+                            <MenuItem Header="Action 2" x:Name="Action2" />
+                            <MenuItem Header="Action 3" x:Name="Action3" />
                         </ContextMenu>
                     </ContextMenuService.ContextMenu>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup that attaches a ContextMenu to an element via ContextMenuService." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building a ContextMenu in code and wiring MenuItem click handlers." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

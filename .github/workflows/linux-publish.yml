@@ -1,0 +1,285 @@
+name: Linux publish
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gallery-linux-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_NOLOGO: "1"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  NUGET_XMLDOC_MODE: skip
+
+jobs:
+  glibc:
+    name: glibc ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            rid: linux-x64
+            platform: linux/amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            rid: linux-arm64
+            platform: linux/arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: Jalium.UI.Gallery
+
+      - uses: actions/checkout@v7
+        with:
+          repository: VeryJokerJal/Jalium.UI
+          # Pin the exact framework source used to produce the v1.1.0 assets.
+          ref: 465fa8ee23df0299a032784199dbe31df0f649bc
+          path: Jalium.UI
+
+      # Jalium.UI's NuGet configuration declares ./packages as a local source.
+      # A clean Actions checkout does not contain that ignored directory, but
+      # restoring the Gallery project graph still validates every configured
+      # source. An empty source is sufficient because this build uses project
+      # references and nuget.org for actual packages.
+      - name: Initialize framework local package source
+        run: mkdir -p Jalium.UI/packages
+
+      - name: Install desktop dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config \
+            libx11-dev libxext-dev libxrandr-dev xvfb xclip \
+            libwayland-dev wayland-protocols libxkbcommon-dev wl-clipboard weston \
+            libvulkan-dev mesa-vulkan-drivers vulkan-tools \
+            libfontconfig1-dev \
+            libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+            gstreamer1.0-tools gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+          cache: true
+          cache-dependency-path: |
+            Jalium.UI/**/*.csproj
+            Jalium.UI.Gallery/**/*.csproj
+
+      - name: Build Ubuntu 20.04 release image
+        run: |
+          docker build --pull \
+            --platform "${{ matrix.platform }}" \
+            --build-arg JALIUM_INSTALL_DOTNET=1 \
+            --build-arg JALIUM_DOTNET_SDK_VERSION=10.0.301 \
+            --file Jalium.UI/eng/linux/ubuntu20.04-glibc.Dockerfile \
+            --tag "jalium-gallery-glibc-baseline:${{ matrix.arch }}" \
+            Jalium.UI/eng/linux
+
+      - name: Build and test native payload on glibc 2.31
+        run: |
+          docker run --rm \
+            --platform "${{ matrix.platform }}" \
+            --volume "$GITHUB_WORKSPACE:/work" \
+            --workdir /work/Jalium.UI \
+            "jalium-gallery-glibc-baseline:${{ matrix.arch }}" \
+            bash eng/linux/build-glibc-baseline.sh "${{ matrix.rid }}" Release
+
+      - name: Publish self-contained Gallery
+        working-directory: Jalium.UI.Gallery
+        env:
+          JALIUM_UI_ROOT: ${{ github.workspace }}/Jalium.UI
+          JALIUM_BUILD_ROOT: ${{ runner.temp }}/jalium-gallery-self-contained
+          JALIUM_ARTIFACTS_ROOT: ${{ runner.temp }}/gallery-artifacts
+          JALIUM_SKIP_NATIVE_BUILD: "1"
+        run: bash eng/linux/publish.sh "${{ matrix.rid }}" Release
+
+      - name: Publish NativeAOT Gallery on glibc 2.31
+        run: |
+          docker run --rm \
+            --platform "${{ matrix.platform }}" \
+            --env JALIUM_UI_ROOT=/work/Jalium.UI \
+            --env JALIUM_BUILD_ROOT=/tmp/jalium-gallery-nativeaot \
+            --env JALIUM_ARTIFACTS_ROOT=/artifacts \
+            --env JALIUM_SKIP_NATIVE_BUILD=1 \
+            --volume "$GITHUB_WORKSPACE:/work" \
+            --volume "$RUNNER_TEMP/gallery-artifacts:/artifacts" \
+            --workdir /work/Jalium.UI.Gallery \
+            "jalium-gallery-glibc-baseline:${{ matrix.arch }}" \
+            bash eng/linux/publish.sh "${{ matrix.rid }}" Release --aot
+
+      - name: Enforce glibc and libstdc++ release baseline
+        run: |
+          for flavor in self-contained nativeaot; do
+            bash Jalium.UI/eng/linux/check-symbol-versions.sh \
+              "$RUNNER_TEMP/gallery-artifacts/${{ matrix.rid }}/$flavor" \
+              2.31 3.4.28
+          done
+
+      - name: Run both release flavors on Ubuntu 20.04
+        run: |
+          docker run --rm \
+            --platform "${{ matrix.platform }}" \
+            --volume "$RUNNER_TEMP/gallery-artifacts:/artifacts:ro" \
+            "jalium-gallery-glibc-baseline:${{ matrix.arch }}" \
+            bash -euxc '
+              /artifacts/${{ matrix.rid }}/self-contained/Jalium.UI.Gallery --diagnostics-only
+              /artifacts/${{ matrix.rid }}/nativeaot/Jalium.UI.Gallery --diagnostics-only
+            '
+
+      - name: X11 Software smoke
+        shell: bash
+        run: |
+          app="${{ runner.temp }}/gallery-artifacts/${{ matrix.rid }}/self-contained/Jalium.UI.Gallery"
+          set +e
+          xvfb-run -a env \
+            JALIUM_WINDOW_SYSTEM=x11 \
+            JALIUM_RENDER_BACKEND=software \
+            timeout --kill-after=2s 15s "$app" --diagnostics
+          code=$?
+          set -e
+          test "$code" -eq 124 || test "$code" -eq 137
+
+      - name: X11 Vulkan smoke
+        shell: bash
+        run: |
+          app="${{ runner.temp }}/gallery-artifacts/${{ matrix.rid }}/self-contained/Jalium.UI.Gallery"
+          set +e
+          xvfb-run -a env \
+            JALIUM_WINDOW_SYSTEM=x11 \
+            JALIUM_RENDER_BACKEND=vulkan \
+            LIBGL_ALWAYS_SOFTWARE=1 \
+            timeout --kill-after=2s 15s "$app" --diagnostics
+          code=$?
+          set -e
+          test "$code" -eq 124 || test "$code" -eq 137
+
+      - name: Wayland Software and Vulkan smoke
+        shell: bash
+        run: |
+          runtime="${{ runner.temp }}/weston-runtime"
+          mkdir -p "$runtime"
+          chmod 700 "$runtime"
+          XDG_RUNTIME_DIR="$runtime" weston \
+            --backend=headless-backend.so \
+            --socket=wayland-ci \
+            --idle-time=0 \
+            --log="${{ runner.temp }}/weston.log" &
+          weston_pid=$!
+          trap 'kill "$weston_pid" 2>/dev/null || true' EXIT
+          for _ in {1..50}; do
+            test -S "$runtime/wayland-ci" && break
+            sleep 0.1
+          done
+          test -S "$runtime/wayland-ci"
+
+          for flavor in self-contained nativeaot; do
+            app="${{ runner.temp }}/gallery-artifacts/${{ matrix.rid }}/$flavor/Jalium.UI.Gallery"
+            for backend in software vulkan; do
+              set +e
+              env \
+                XDG_RUNTIME_DIR="$runtime" \
+                WAYLAND_DISPLAY=wayland-ci \
+                JALIUM_WINDOW_SYSTEM=wayland \
+                JALIUM_RENDER_BACKEND="$backend" \
+                LIBGL_ALWAYS_SOFTWARE=1 \
+                timeout --kill-after=2s 15s "$app" --diagnostics
+              code=$?
+              set -e
+              test "$code" -eq 124 || test "$code" -eq 137
+            done
+          done
+
+      - name: X11 NativeAOT smoke
+        shell: bash
+        run: |
+          app="${{ runner.temp }}/gallery-artifacts/${{ matrix.rid }}/nativeaot/Jalium.UI.Gallery"
+          set +e
+          xvfb-run -a env \
+            JALIUM_WINDOW_SYSTEM=x11 \
+            JALIUM_RENDER_BACKEND=software \
+            timeout --kill-after=2s 15s "$app" --diagnostics
+          code=$?
+          set -e
+          test "$code" -eq 124 || test "$code" -eq 137
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Jalium.UI.Gallery-${{ matrix.rid }}
+          path: ${{ runner.temp }}/gallery-artifacts/Jalium.UI.Gallery-${{ matrix.rid }}-*.tar.gz*
+          if-no-files-found: error
+
+  musl:
+    name: musl ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            rid: linux-musl-x64
+            platform: linux/amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            rid: linux-musl-arm64
+            platform: linux/arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: Jalium.UI.Gallery
+
+      - uses: actions/checkout@v7
+        with:
+          repository: VeryJokerJal/Jalium.UI
+          # Keep musl artifacts on the same framework source as glibc.
+          ref: 465fa8ee23df0299a032784199dbe31df0f649bc
+          path: Jalium.UI
+
+      # See the matching glibc setup: restore must see the configured local
+      # source even though all framework projects are built from this checkout.
+      - name: Initialize framework local package source
+        run: mkdir -p Jalium.UI/packages
+
+      - name: Publish in Alpine
+        run: |
+          mkdir -p "$RUNNER_TEMP/gallery-artifacts"
+          docker run --rm \
+            --platform "${{ matrix.platform }}" \
+            -e JALIUM_UI_ROOT=/work/Jalium.UI \
+            -e JALIUM_ARTIFACTS_ROOT=/artifacts \
+            -e JALIUM_NATIVE_BUILD_TESTS=1 \
+            -v "$GITHUB_WORKSPACE:/work" \
+            -v "$RUNNER_TEMP/gallery-artifacts:/artifacts" \
+            -w /work/Jalium.UI.Gallery \
+            mcr.microsoft.com/dotnet/sdk:10.0-alpine3.24 \
+            sh -euxc '
+              apk add --no-cache \
+                bash build-base clang cmake ninja pkgconf linux-headers binutils zlib-dev icu-libs icu-data-full \
+                libx11-dev libxext-dev libxrandr-dev \
+                wayland-dev wayland-protocols xkeyboard-config-dev libxkbcommon-dev \
+                vulkan-loader-dev mesa-vulkan-swrast fontconfig-dev \
+                gstreamer-dev gst-plugins-base-dev gst-plugins-good
+              JALIUM_BUILD_ROOT=/tmp/jalium-gallery-self-contained \
+                bash eng/linux/publish.sh "${{ matrix.rid }}" Release
+              JALIUM_BUILD_ROOT=/tmp/jalium-gallery-nativeaot \
+                JALIUM_SKIP_NATIVE_BUILD=1 \
+                bash eng/linux/publish.sh "${{ matrix.rid }}" Release --aot
+            '
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Jalium.UI.Gallery-${{ matrix.rid }}
+          path: ${{ runner.temp }}/gallery-artifacts/Jalium.UI.Gallery-${{ matrix.rid }}-*.tar.gz*
+          if-no-files-found: error

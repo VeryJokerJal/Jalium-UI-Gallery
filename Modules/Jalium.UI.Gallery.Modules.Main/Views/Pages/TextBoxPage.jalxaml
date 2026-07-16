@@ -3,202 +3,145 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TextBoxPage"
       Title="TextBox">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="TextBox"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A single-line text input control."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TextBox" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A single-line text input control for capturing and editing plain text, with pre-filled and disabled states, clipboard operations and the standard editing shortcuts." />
 
-        <!-- Basic TextBox Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic TextBox"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Standard text input with placeholder."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic TextBox -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic TextBox" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Standard text input, empty or with pre-filled text." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBox Width="300"
                                  Height="32"
-                                 Margin="0,0,0,12"/>
+                                 Margin="0,0,0,12" />
                         <TextBox Width="300"
                                  Height="32"
-                                 Text="Pre-filled text"/>
+                                 Text="Pre-filled text" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- TextBox States Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="TextBox States"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Enabled and disabled states."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- TextBox States -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="TextBox States" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Enabled and disabled states." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <TextBox Width="200"
                                  Height="32"
                                  Text="Editable"
-                                 Margin="0,0,12,0"/>
+                                 Margin="0,0,10,10" />
                         <TextBox Width="200"
                                  Height="32"
                                  Text="Disabled"
-                                 IsEnabled="False"/>
-                    </StackPanel>
+                                 IsEnabled="False"
+                                 Margin="0,0,10,10" />
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Clipboard Operations Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Clipboard Operations"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Use Ctrl+C to copy, Ctrl+X to cut, Ctrl+V to paste, Ctrl+A to select all."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Clipboard Operations -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Clipboard Operations" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Use Ctrl+C to copy, Ctrl+X to cut, Ctrl+V to paste, Ctrl+A to select all." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Source TextBox (select text and copy):"
-                                   FontSize="12"
-                                   Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="Source TextBox (select text and copy):"
+                                   Margin="0,0,0,8" />
                         <TextBox x:Name="SourceTextBox"
                                  Width="400"
                                  Height="32"
                                  Text="Select this text and press Ctrl+C to copy"
-                                 Margin="0,0,0,16"/>
-                        <TextBlock Text="Target TextBox (paste here with Ctrl+V):"
-                                   FontSize="12"
-                                   Margin="0,0,0,8"/>
+                                 Margin="0,0,0,16" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="Target TextBox (paste here with Ctrl+V):"
+                                   Margin="0,0,0,8" />
                         <TextBox x:Name="TargetTextBox"
                                  Width="400"
-                                 Height="32"/>
+                                 Height="32" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Keyboard Shortcuts Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Keyboard Shortcuts"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Keyboard Shortcuts -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Keyboard Shortcuts" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Standard editing shortcuts the TextBox responds to." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Ctrl+A - Select all text"
-                                   FontSize="13"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="Ctrl+C - Copy selected text"
-                                   FontSize="13"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="Ctrl+X - Cut selected text"
-                                   FontSize="13"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="Ctrl+V - Paste from clipboard"
-                                   FontSize="13"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="Ctrl+Z - Undo"
-                                   FontSize="13"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="Ctrl+Y - Redo"
-                                   FontSize="13"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Ctrl+A - Select all text"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Ctrl+C - Copy selected text"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Ctrl+X - Cut selected text"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Ctrl+V - Paste from clipboard"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Ctrl+Z - Undo"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Ctrl+Y - Redo" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the text inputs above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Handling text changes and driving inputs from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>
