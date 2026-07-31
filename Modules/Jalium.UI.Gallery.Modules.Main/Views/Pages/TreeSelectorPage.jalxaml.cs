@@ -22,53 +22,39 @@ public partial class TreeSelectorPage : Page
 
     private void CreateContent()
     {
-        if (ContentPanel == null) return;
-
-        ContentPanel.Children.Add(new TextBlock
-        {
-            Text = "TreeSelector",
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-
-        ContentPanel.Children.Add(new TextBlock
-        {
-            Text = "A drop-down hierarchical selector. The trigger shows the current selection (single-select renders an ancestor path; multi-select shows removable chips), and the popup hosts a checkable tree with optional cascade and live search.",
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 24),
-            TextWrapping = TextWrapping.Wrap
-        });
+        if (DemoHost == null) return;
 
         // ----- Single-select with path display -----
-        AddSection("单选模式", "SelectionMode = Single. The trigger displays the full ancestor path; selecting a leaf auto-closes the popup.");
-        BuildSingleSelectionDemo();
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "单选模式",
+            "SelectionMode = Single. The trigger displays the full ancestor path; selecting a leaf auto-closes the popup.",
+            BuildSingleSelectionDemo()));
 
         // ----- Multi-select with chips -----
-        AddSection("多选模式", "SelectionMode = Multiple + ShowCheckBoxes = True. Each selected item appears as a removable chip in the trigger.");
-        BuildMultiSelectionDemo();
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "多选模式",
+            "SelectionMode = Multiple + ShowCheckBoxes = True. Each selected item appears as a removable chip in the trigger.",
+            BuildMultiSelectionDemo()));
 
         // ----- Searchable -----
-        AddSection("可搜索", "IsSearchEnabled = True. Typing filters the tree to entries that match (along with their ancestors).");
-        BuildSearchableDemo();
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "可搜索",
+            "IsSearchEnabled = True. Typing filters the tree to entries that match (along with their ancestors).",
+            BuildSearchableDemo()));
 
         // ----- Cascade with tri-state -----
-        AddSection("父子级联", "CheckCascadeMode = Cascade — checking a parent flips every descendant; mixed children render the parent in the indeterminate state.");
-        BuildCascadeDemo();
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "父子级联",
+            "CheckCascadeMode = Cascade — checking a parent flips every descendant; mixed children render the parent in the indeterminate state.",
+            BuildCascadeDemo()));
     }
 
-    private void BuildSingleSelectionDemo()
+    private StackPanel BuildSingleSelectionDemo()
     {
-        var stack = new StackPanel { Orientation = Orientation.Vertical, Margin = new Thickness(0, 0, 0, 16) };
+        var stack = new StackPanel { Orientation = Orientation.Vertical };
 
-        var statusText = new TextBlock
-        {
-            Text = "未选择",
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
+        var statusText = GalleryUi.ValueLabel("未选择");
+        statusText.Margin = new Thickness(0, 0, 0, 8);
         stack.Children.Add(statusText);
 
         var selector = new TreeSelector
@@ -87,19 +73,15 @@ public partial class TreeSelectorPage : Page
         };
 
         stack.Children.Add(selector);
-        ContentPanel!.Children.Add(stack);
+        return stack;
     }
 
-    private void BuildMultiSelectionDemo()
+    private StackPanel BuildMultiSelectionDemo()
     {
-        var stack = new StackPanel { Orientation = Orientation.Vertical, Margin = new Thickness(0, 0, 0, 16) };
+        var stack = new StackPanel { Orientation = Orientation.Vertical };
 
-        var statusText = new TextBlock
-        {
-            Text = "已选 0 项",
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
+        var statusText = GalleryUi.ValueLabel("已选 0 项");
+        statusText.Margin = new Thickness(0, 0, 0, 8);
         stack.Children.Add(statusText);
 
         var selector = new TreeSelector
@@ -117,22 +99,16 @@ public partial class TreeSelectorPage : Page
         };
 
         stack.Children.Add(selector);
-        ContentPanel!.Children.Add(stack);
+        return stack;
     }
 
-    private void BuildSearchableDemo()
+    private StackPanel BuildSearchableDemo()
     {
-        var stack = new StackPanel { Orientation = Orientation.Vertical, Margin = new Thickness(0, 0, 0, 16) };
+        var stack = new StackPanel { Orientation = Orientation.Vertical };
 
-        var statusText = new TextBlock
-        {
-            Text = "在触发器中输入文字过滤树,例如 “浦” 或 “杭”。",
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            FontSize = GalleryTheme.FontSizeCaption,
-            Margin = new Thickness(0, 0, 0, 8),
-            TextWrapping = TextWrapping.Wrap
-        };
-        stack.Children.Add(statusText);
+        var hintText = GalleryUi.CaptionText("在触发器中输入文字过滤树,例如 “浦” 或 “杭”。");
+        hintText.Margin = new Thickness(0, 0, 0, 8);
+        stack.Children.Add(hintText);
 
         var selector = new TreeSelector
         {
@@ -145,22 +121,16 @@ public partial class TreeSelectorPage : Page
         PopulateRegionTree(selector);
 
         stack.Children.Add(selector);
-        ContentPanel!.Children.Add(stack);
+        return stack;
     }
 
-    private void BuildCascadeDemo()
+    private StackPanel BuildCascadeDemo()
     {
-        var stack = new StackPanel { Orientation = Orientation.Vertical, Margin = new Thickness(0, 0, 0, 16) };
+        var stack = new StackPanel { Orientation = Orientation.Vertical };
 
-        var statusText = new TextBlock
-        {
-            Text = "勾选 “华东地区” 会一次性勾选所有子节点;再单独取消一个,父节点变成半选状态。",
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            FontSize = GalleryTheme.FontSizeCaption,
-            Margin = new Thickness(0, 0, 0, 8),
-            TextWrapping = TextWrapping.Wrap
-        };
-        stack.Children.Add(statusText);
+        var hintText = GalleryUi.CaptionText("勾选 “华东地区” 会一次性勾选所有子节点;再单独取消一个,父节点变成半选状态。");
+        hintText.Margin = new Thickness(0, 0, 0, 8);
+        stack.Children.Add(hintText);
 
         var selector = new TreeSelector
         {
@@ -174,7 +144,7 @@ public partial class TreeSelectorPage : Page
         PopulateRegionTree(selector);
 
         stack.Children.Add(selector);
-        ContentPanel!.Children.Add(stack);
+        return stack;
     }
 
     private static void PopulateRegionTree(TreeSelector selector)
@@ -203,29 +173,6 @@ public partial class TreeSelectorPage : Page
         south.Items.Add(new TreeSelectorItem { Header = "广州" });
         south.Items.Add(new TreeSelectorItem { Header = "深圳" });
         selector.Items.Add(south);
-    }
-
-    private void AddSection(string titleText, string descriptionText)
-    {
-        if (ContentPanel == null) return;
-
-        ContentPanel.Children.Add(new TextBlock
-        {
-            Text = titleText,
-            FontSize = GalleryTheme.FontSizeSubtitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 16, 0, 4)
-        });
-
-        ContentPanel.Children.Add(new TextBlock
-        {
-            Text = descriptionText,
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 12),
-            TextWrapping = TextWrapping.Wrap
-        });
     }
 
     private const string XamlExample =

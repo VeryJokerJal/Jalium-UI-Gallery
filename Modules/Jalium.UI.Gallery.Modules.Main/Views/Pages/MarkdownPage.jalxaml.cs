@@ -77,6 +77,42 @@ Use Markdown when you want:
 - links to local or remote docs
 """;
 
+    private const string CopyDemoSample = """
+# Selection & Copy
+
+Select any of this text with the mouse, then press **Ctrl+C** or right-click for the copy menu. You can also copy the whole document with the buttons below.
+
+- Plain text drops every Markdown marker
+- Markdown keeps the `**markers**`
+- Rich text pastes formatted into Word, mail, and other apps
+
+> Use `GetPlainText()` to feed content to a translation service.
+""";
+
+    private const string MermaidMarkdownSample = """
+# Diagrams in Markdown
+
+Fenced **mermaid** code blocks render as diagrams automatically — no extra wiring.
+
+```mermaid
+flowchart LR
+    A[Write doc] --> B{Has mermaid?}
+    B -->|yes| C[Render diagram]
+    B -->|no| D[Render code]
+```
+
+Pie charts work the same way:
+
+```mermaid
+pie title Build time
+    "Compile" : 55
+    "Link" : 25
+    "Test" : 20
+```
+
+Everything else keeps rendering as normal Markdown.
+""";
+
     private const string LiveEditorSample = """
 # Live Markdown Editor
 
@@ -247,6 +283,17 @@ accent = cyan
         }
 
         ShowSample("Docs Sample", DocsSample);
+
+        if (CopyDemoMarkdown != null)
+        {
+            CopyDemoMarkdown.Text = CopyDemoSample;
+        }
+
+        if (MermaidMarkdown != null)
+        {
+            MermaidMarkdown.Text = MermaidMarkdownSample;
+        }
+
         LoadCodeExamples();
 
         if (MarkdownInput != null)
@@ -311,6 +358,52 @@ accent = cyan
         {
             LiveMarkdown.Text = MarkdownInput.Text ?? string.Empty;
         }
+    }
+
+    private void OnCopyPlainClick(object sender, RoutedEventArgs e)
+    {
+        CopyDemoMarkdown?.CopyAsPlainText();
+        SetCopyStatus("Copied plain text", CopyDemoMarkdown?.SelectedText, CopyDemoMarkdown?.GetPlainText());
+    }
+
+    private void OnCopyMarkdownClick(object sender, RoutedEventArgs e)
+    {
+        CopyDemoMarkdown?.CopyAsMarkdownText();
+        SetCopyStatus("Copied Markdown source", CopyDemoMarkdown?.SelectedText, CopyDemoMarkdown?.GetMarkdownText());
+    }
+
+    private void OnCopyRichClick(object sender, RoutedEventArgs e)
+    {
+        CopyDemoMarkdown?.CopyAsRichText();
+        SetCopyStatus("Copied rich text (HTML + RTF)", CopyDemoMarkdown?.SelectedText, CopyDemoMarkdown?.GetPlainText());
+    }
+
+    private void OnSelectAllClick(object sender, RoutedEventArgs e)
+    {
+        CopyDemoMarkdown?.SelectAll();
+        if (CopyStatusText != null)
+        {
+            CopyStatusText.Text = "Selected the whole document — press Ctrl+C or right-click to copy.";
+        }
+    }
+
+    private void SetCopyStatus(string action, string? selected, string? whole)
+    {
+        if (CopyStatusText == null)
+        {
+            return;
+        }
+
+        var hasSelection = !string.IsNullOrEmpty(selected);
+        var preview = (hasSelection ? selected : whole) ?? string.Empty;
+        preview = preview.Replace("\r", " ").Replace("\n", " ").Trim();
+        if (preview.Length > 90)
+        {
+            preview = preview.Substring(0, 90) + "…";
+        }
+
+        var scope = hasSelection ? "selection" : "whole document";
+        CopyStatusText.Text = $"{action} ({scope}).  Preview: {preview}";
     }
 
     private static SolidColorBrush BrushFromHex(string hex)

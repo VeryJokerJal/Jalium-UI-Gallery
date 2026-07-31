@@ -1,0 +1,171 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Themes.GalleryStyles"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Gallery shared design system
+        ============================
+        One source of truth for the page scaffold every sample page repeats:
+        page header, section cards, demo surfaces, typography ramp, chips and
+        dividers. Pages reference these by key (Style="{StaticResource ...}")
+        instead of copy-pasting Border/TextBlock attribute soup, so the whole
+        gallery reads as one mature, consistent product.
+
+        • Keyed (not implicit) on purpose — a keyless TargetType style would
+          restyle every TextBlock/Border *inside* a control demo and corrupt it.
+          Pages opt in element-by-element.
+        • Colors come from the theme-reactive {DynamicResource Gallery*} brushes
+          registered by GalleryTheme.RegisterResources, so a live Dark/Light
+          flip re-skins these styles automatically.
+        • Numeric tokens mirror GalleryTheme (radius 16/12/8, spacing 4..32,
+          type ramp 12/13/14/16/20/28).
+
+        Reminder (Jalium styling): a *local* attribute on an element beats a
+        Setter here — when a page adopts one of these styles, delete the inline
+        Background/FontSize/etc. it used to carry or the style has no effect.
+    -->
+
+    <!-- ============================================================= -->
+    <!-- Page scaffold                                                 -->
+    <!-- ============================================================= -->
+
+    <!-- Root vertical stack for a page's content column. -->
+    <Style x:Key="GalleryPageStack" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Vertical" />
+    </Style>
+
+    <!-- Small accent label sitting above the page title ("eyebrow"). -->
+    <Style x:Key="GalleryEyebrow" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentLight}" />
+        <Setter Property="Margin" Value="0,0,0,6" />
+    </Style>
+
+    <!-- Page H1. -->
+    <Style x:Key="GalleryPageTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="Margin" Value="0,0,0,6" />
+    </Style>
+
+    <!-- Page lead / description under the title. -->
+    <Style x:Key="GalleryPageSubtitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,0,0,24" />
+    </Style>
+
+    <!-- ============================================================= -->
+    <!-- Section cards                                                 -->
+    <!-- ============================================================= -->
+
+    <!-- Primary raised card wrapping one section / demo. -->
+    <Style x:Key="GalleryCard" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="18" />
+        <Setter Property="Margin" Value="0,0,0,16" />
+    </Style>
+
+    <!-- Accent-tinted hero header card for a page intro. -->
+    <Style x:Key="GalleryHeroCard" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderStrong}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Margin" Value="0,0,0,20" />
+    </Style>
+
+    <!-- Inner surface that actually holds the live control demo. -->
+    <Style x:Key="GalleryDemoSurface" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GalleryCardInnerBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderSubtle}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <!-- Full-bleed inner surface (no padding) for editors / media / lists. -->
+    <Style x:Key="GalleryDemoSurfaceFlush" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GalleryCardInnerBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderSubtle}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- ============================================================= -->
+    <!-- Typography ramp (in-card)                                     -->
+    <!-- ============================================================= -->
+
+    <!-- Card / section heading. -->
+    <Style x:Key="GalleryCardTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="Margin" Value="0,0,0,4" />
+    </Style>
+
+    <!-- Card sub-heading / explanatory caption above a demo. -->
+    <Style x:Key="GalleryCardCaption" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextTertiary}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,0,0,16" />
+    </Style>
+
+    <!-- Standard body copy. -->
+    <Style x:Key="GalleryBodyText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- Muted caption / helper / metadata. -->
+    <Style x:Key="GalleryCaptionText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextMuted}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- Label describing a demo control (e.g. a swatch / value readout). -->
+    <Style x:Key="GalleryValueLabel" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- ============================================================= -->
+    <!-- Small parts: chips, dividers                                  -->
+    <!-- ============================================================= -->
+
+    <!-- Rounded accent pill for tags / status. Pair with a TextBlock. -->
+    <Style x:Key="GalleryChip" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="10,4" />
+    </Style>
+
+    <Style x:Key="GalleryChipText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentLight}" />
+    </Style>
+
+    <!-- 1px hairline separator between rows inside a card. -->
+    <Style x:Key="GalleryDivider" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GalleryBorderSubtle}" />
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Margin" Value="0,14" />
+    </Style>
+
+</ResourceDictionary>

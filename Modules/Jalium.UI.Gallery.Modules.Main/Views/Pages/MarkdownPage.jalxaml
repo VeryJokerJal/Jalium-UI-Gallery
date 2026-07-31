@@ -3,55 +3,44 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MarkdownPage"
       Title="Markdown">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="Markdown"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="Render rich Markdown documents with headings, lists, tables, code fences, and relative links."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="TEXT &amp; TYPOGRAPHY" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Markdown" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Render rich Markdown documents with headings, lists, tables, code fences, and relative links." />
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Preview"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Switch between a few representative Markdown documents and see the rendered output update live."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Interactive preview -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Preview" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Switch between a few representative Markdown documents and see the rendered output update live." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel>
                             <Button Content="Docs Sample"
                                     Width="110"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnDocsSampleClick"/>
                             <Button Content="Release Notes"
                                     Width="110"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnReleaseNotesClick"/>
                             <Button Content="Checklist"
                                     Width="110"
                                     Height="32"
-                                    Margin="0,0,8,8"
+                                    Margin="0,0,10,10"
                                     Click="OnChecklistClick"/>
                         </WrapPanel>
 
                         <TextBlock x:Name="PreviewStatusText"
+                                   Style="{StaticResource GalleryValueLabel}"
                                    Text="Showing: Docs Sample"
-                                   FontSize="13"
-                                   Margin="0,4,0,12"/>
+                                   Margin="0,2,0,14"/>
 
                         <Markdown x:Name="InteractiveMarkdown"
                                   Height="360"
@@ -61,31 +50,20 @@
             </StackPanel>
         </Border>
 
-        <!-- Live Editor -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Live Editor"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Type Markdown in the input box on the left and see the rendered output update live on the right."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Live editor -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Live Editor" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Type Markdown in the input box on the left and see the rendered output update live on the right." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <StackPanel Orientation="Vertical"
                                     Width="400"
-                                    Margin="0,0,16,0">
-                            <TextBlock Text="Markdown Input:"
-                                       FontSize="12"
-                                       Margin="0,0,0,4"/>
+                                    Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Markdown Input:"
+                                       Margin="0,0,0,6"/>
                             <TextBox x:Name="MarkdownInput"
                                      AcceptsReturn="True"
                                      Height="360"
@@ -93,86 +71,113 @@
                                      FontSize="13"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical"
-                                    Width="400">
-                            <TextBlock Text="Rendered Output:"
-                                       FontSize="12"
-                                       Margin="0,0,0,4"/>
+                                    Width="400"
+                                    Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Rendered Output:"
+                                       Margin="0,0,0,6"/>
                             <Markdown x:Name="LiveMarkdown"
                                       Height="360" />
                         </StackPanel>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Custom Styling"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="The control can inherit the surrounding theme or use native styling properties for article-like layouts."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Custom styling -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom Styling" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="The control can inherit the surrounding theme or use native styling properties for article-like layouts." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Markdown x:Name="StyledMarkdown"
                               Height="280" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Markdown Properties"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
+        <!-- Mermaid diagrams -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Mermaid Diagrams" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Fenced mermaid code blocks render as diagrams (flowcharts, pie charts) instead of source. See the Charts &gt; Flowchart page for the standalone control." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Markdown x:Name="MermaidMarkdown" Height="520"/>
+                </Border>
+            </StackPanel>
+        </Border>
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Markdown properties -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Markdown Properties" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Key properties for setting the source, resolving relative links, and shaping the native renderer." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Text - Markdown source string rendered by the control"
-                                   FontSize="13"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Text - Markdown source string rendered by the control"
                                    Margin="0,0,0,8"/>
-                        <TextBlock Text="BaseUri - Resolves relative links and images in the generated HTML"
-                                   FontSize="13"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="BaseUri - Resolves relative links and images in the generated HTML"
                                    Margin="0,0,0,8"/>
-                        <TextBlock Text="LinkForeground / CodeBackground / QuoteBorderBrush - Native styling hooks for rich content"
-                                   FontSize="13"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="LinkForeground / CodeBackground / QuoteBorderBrush - Native styling hooks for rich content"
                                    Margin="0,0,0,8"/>
-                        <TextBlock Text="Background / Foreground / FontFamily / FontSize - Shape the native renderer typography"
-                                   FontSize="13"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="Background / Foreground / FontFamily / FontSize - Shape the native renderer typography"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- Selection and copy -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Selection &amp; Copy" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Drag to select text (or press Ctrl+A), then copy with Ctrl+C or the right-click menu. The control copies in three formats — plain text, Markdown source, and rich text (HTML + RTF) — and exposes the text for translation and other integrations." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <Markdown x:Name="CopyDemoMarkdown" Height="240"/>
+
+                        <WrapPanel Margin="0,12,0,0">
+                            <Button Content="Copy as Plain Text"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Click="OnCopyPlainClick"/>
+                            <Button Content="Copy as Markdown"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Click="OnCopyMarkdownClick"/>
+                            <Button Content="Copy as Rich Text"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Click="OnCopyRichClick"/>
+                            <Button Content="Select All"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Click="OnSelectAllClick"/>
+                        </WrapPanel>
+
+                        <TextBlock x:Name="CopyStatusText"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="Select some text above, or use the buttons to copy the whole document."
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the Markdown controls above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -183,21 +188,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Setting text, applying styling hooks, and wiring the live editor in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -207,5 +204,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

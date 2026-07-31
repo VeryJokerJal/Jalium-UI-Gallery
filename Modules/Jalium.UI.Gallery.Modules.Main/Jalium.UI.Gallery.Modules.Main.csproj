@@ -16,8 +16,6 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
     <!-- 开发模式：覆盖 JALXAML 构建路径（指向本地项目输出） -->
-    <_JalxamlTasksPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\bin\$(Configuration)\net10.0\Jalium.UI.Build.dll</_JalxamlTasksPath>
-    <JalxamlCompilerPath>$(MSBuildProjectDirectory)\..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\tools\jalxamlc.exe</JalxamlCompilerPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +24,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Jalium_IDE_logo.ico">
       <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.Jalium_IDE_logo.ico</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\SaasCardBackgrounds\*.png">
+      <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.SaasCardBackgrounds.%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 

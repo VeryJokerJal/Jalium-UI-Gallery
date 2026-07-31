@@ -1,7 +1,7 @@
 using System.Text;
+using System.Printing;
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
-using Jalium.UI.Controls.Printing;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
@@ -29,7 +29,7 @@ public partial class PrintingPage : Page
                 };
 
                 var result = printDialog.ShowDialog();
-                UpdateStatus(result ? "Print dialog accepted" : "Print dialog cancelled");
+                UpdateStatus(result == true ? "Print dialog accepted" : "Print dialog cancelled");
             };
         }
 
@@ -48,7 +48,8 @@ public partial class PrintingPage : Page
         {
             ListPrintersButton.Click += (s, e) =>
             {
-                var printers = PrintQueue.GetPrintQueues();
+                using var printServer = new PrintServer();
+                var printers = printServer.GetPrintQueues();
                 var sb = new StringBuilder();
                 sb.AppendLine("Available Printers:");
                 sb.AppendLine("------------------");
@@ -67,8 +68,7 @@ public partial class PrintingPage : Page
                 {
                     foreach (var printer in printerList)
                     {
-                        var defaultMark = printer.IsDefault ? " [Default]" : "";
-                        sb.AppendLine($"  - {printer.Name}{defaultMark}");
+                        sb.AppendLine($"  - {printer.Name}");
                         if (!string.IsNullOrEmpty(printer.Description))
                         {
                             sb.AppendLine($"    Description: {printer.Description}");
@@ -128,7 +128,10 @@ public partial class PrintingPage : Page
 </Border>";
 
     private const string CSharpExample =
-@"// Show a print dialog
+@"using System.Printing;
+using Jalium.UI.Controls;
+
+// Show a print dialog
 var printDialog = new PrintDialog
 {
     MinPage = 1,
@@ -151,12 +154,11 @@ paginator.PageSize = new Size(816, 1056); // Letter size
 printDialog.PrintDocument(paginator, ""My Document"");
 
 // List available printers
-var printers = PrintQueue.GetPrintQueues();
+using var printServer = new PrintServer();
+var printers = printServer.GetPrintQueues();
 foreach (var printer in printers)
 {
     Console.WriteLine($""{printer.Name}"");
-    if (printer.IsDefault)
-        Console.WriteLine(""  [Default Printer]"");
 
     // Query printer capabilities
     var caps = printer.GetPrintCapabilities();

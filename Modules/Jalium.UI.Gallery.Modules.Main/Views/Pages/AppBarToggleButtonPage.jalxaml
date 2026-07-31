@@ -3,154 +3,117 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.AppBarToggleButtonPage"
       Title="AppBarToggleButton">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="AppBarToggleButton"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A toggle button designed for use in a CommandBar, supporting checked/unchecked states."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="AppBarToggleButton" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A toggle button designed for use in a CommandBar, holding a persistent checked or unchecked state to switch a setting on and off." />
 
-        <!-- Text Formatting Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Text Formatting"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Toggle buttons for text formatting options like Bold, Italic, and Underline."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Text formatting -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Text Formatting" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Toggle buttons for text formatting options like Bold, Italic, and Underline." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <WrapPanel>
                             <AppBarToggleButton x:Name="BoldToggle"
                                                 Label="Bold"
                                                 Width="72"
                                                 Height="48"
-                                                Margin="0,0,8,0"/>
+                                                Margin="0,0,10,10" />
                             <AppBarToggleButton x:Name="ItalicToggle"
                                                 Label="Italic"
                                                 Width="72"
                                                 Height="48"
-                                                Margin="0,0,8,0"/>
+                                                Margin="0,0,10,10" />
                             <AppBarToggleButton x:Name="UnderlineToggle"
                                                 Label="Underline"
                                                 Width="84"
-                                                Height="48"/>
-                        </StackPanel>
+                                                Height="48"
+                                                Margin="0,0,10,10" />
+                        </WrapPanel>
 
                         <TextBlock x:Name="FormattingPreviewText"
                                    Text="Sample text with formatting"
                                    FontSize="16"
-                                   Margin="0,4,0,0"/>
+                                   Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Checked State Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Checked State"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Toggle buttons that display their IsChecked state."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Checked state -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Checked State" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Toggle buttons that display their IsChecked state." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <WrapPanel>
                             <AppBarToggleButton x:Name="WifiToggle"
                                                 Label="Wi-Fi"
                                                 Width="72"
                                                 Height="48"
-                                                Margin="0,0,8,0"/>
+                                                Margin="0,0,10,10" />
                             <AppBarToggleButton x:Name="BluetoothToggle"
                                                 Label="Bluetooth"
                                                 Width="84"
                                                 Height="48"
-                                                Margin="0,0,8,0"/>
+                                                Margin="0,0,10,10" />
                             <AppBarToggleButton x:Name="AirplaneModeToggle"
                                                 Label="Airplane"
                                                 Width="80"
-                                                Height="48"/>
-                        </StackPanel>
+                                                Height="48"
+                                                Margin="0,0,10,10" />
+                        </WrapPanel>
 
                         <TextBlock x:Name="CheckedStateText"
                                    Text="Wi-Fi: Off | Bluetooth: Off | Airplane Mode: Off"
                                    FontSize="12"
-                                   Margin="0,4,0,0"/>
+                                   Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the toggle buttons above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Wiring checked and unchecked handlers in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

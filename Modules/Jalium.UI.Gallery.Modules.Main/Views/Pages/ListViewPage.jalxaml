@@ -1,37 +1,23 @@
-﻿<Page xmlns="http://schemas.jalium.ui/2024"
+<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ListViewPage"
       Title="ListView">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="ListView"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A control that displays items in a list with optional columns and details."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="COLLECTIONS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ListView" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A scrollable collection control that presents items as a plain list or as multi-column rows, with single, multiple, or extended selection." />
 
-        <!-- Basic ListView Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic ListView"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A simple list view displaying items."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic ListView -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic ListView" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A vertical list of selectable items." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <ListView x:Name="BasicListView" Width="300" Height="200">
                         <ListViewItem Content="Item 1"/>
                         <ListViewItem Content="Item 2"/>
@@ -43,24 +29,13 @@
             </StackPanel>
         </Border>
 
-        <!-- ListView with GridView Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ListView with Columns"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="ListView can display data in columns using GridView."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- ListView with columns -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ListView with columns" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Switch to a GridView to lay items out across labelled columns." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <ListView x:Name="GridListView" Width="500" Height="200">
                         <ListView.View>
                             <GridView>
@@ -75,134 +50,105 @@
             </StackPanel>
         </Border>
 
-        <!-- Selection Modes Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Selection Modes"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="ListView supports single, multiple, and extended selection."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Margin="0,0,24,0">
-                            <TextBlock Text="Single Selection" FontSize="12" Margin="0,0,0,4"/>
+        <!-- Selection modes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Selection modes" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Single, multiple, and extended selection each behave differently on click and drag." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Single Selection" Margin="0,0,0,8" />
                             <ListView Width="150" Height="120" SelectionMode="Single">
                                 <ListViewItem Content="Apple"/>
                                 <ListViewItem Content="Banana"/>
                                 <ListViewItem Content="Cherry"/>
                             </ListView>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Margin="0,0,24,0">
-                            <TextBlock Text="Multiple Selection" FontSize="12" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Multiple Selection" Margin="0,0,0,8" />
                             <ListView Width="150" Height="120" SelectionMode="Multiple">
                                 <ListViewItem Content="Red"/>
                                 <ListViewItem Content="Green"/>
                                 <ListViewItem Content="Blue"/>
                             </ListView>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Extended Selection" FontSize="12" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Extended Selection" Margin="0,0,0,8" />
                             <ListView Width="150" Height="120" SelectionMode="Extended">
                                 <ListViewItem Content="One"/>
                                 <ListViewItem Content="Two"/>
                                 <ListViewItem Content="Three"/>
                             </ListView>
                         </StackPanel>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Add, remove, and select items dynamically."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Add and remove items, and watch the selection readout update." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                            <TextBox x:Name="NewItemTextBox" Width="200" Height="28" PlaceholderText="Enter item text" Margin="0,0,8,0"/>
-                            <Button x:Name="AddItemButton" Content="Add" Width="60" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="RemoveItemButton" Content="Remove" Width="70" Height="28"/>
-                        </StackPanel>
+                        <WrapPanel Margin="0,0,0,6">
+                            <TextBox x:Name="NewItemTextBox" Width="200" Height="28" ToolTip="Enter item text" Margin="0,0,10,10"/>
+                            <Button x:Name="AddItemButton" Content="Add" Width="60" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="RemoveItemButton" Content="Remove" Width="70" Height="28" Margin="0,0,10,10"/>
+                        </WrapPanel>
                         <ListView x:Name="InteractiveListView" Width="350" Height="150">
                             <ListViewItem Content="Sample Item 1"/>
                             <ListViewItem Content="Sample Item 2"/>
                             <ListViewItem Content="Sample Item 3"/>
                         </ListView>
                         <TextBlock x:Name="SelectionText"
+                                   Style="{StaticResource GalleryValueLabel}"
                                    Text="No item selected"
-                                   Margin="0,8,0,0"/>
+                                   Margin="0,10,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Use Cases Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Common Use Cases"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="ListView is useful for displaying tabular data."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="鈥?File explorers" Margin="0,0,0,8"/>
-                        <TextBlock Text="鈥?Email lists" Margin="0,0,0,8"/>
-                        <TextBlock Text="鈥?Contact lists" Margin="0,0,0,8"/>
-                        <TextBlock Text="鈥?Task managers" Margin="0,0,0,8"/>
-                        <TextBlock Text="鈥?Log viewers"/>
-                    </StackPanel>
+        <!-- Common use cases -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common use cases" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Patterns where a list-based layout fits naturally." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="File explorers" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="Email lists" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="Contact lists" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="Task managers" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="Log viewers" />
+                        </Border>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the lists above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -213,21 +159,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Populating, editing, and observing selection in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -237,6 +175,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>
-

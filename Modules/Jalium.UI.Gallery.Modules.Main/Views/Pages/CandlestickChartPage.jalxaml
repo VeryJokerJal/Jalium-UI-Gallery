@@ -3,128 +3,77 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CandlestickChartPage"
       Title="CandlestickChart">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="CandlestickChart"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="Displays financial OHLC data as candlesticks with optional volume bars and moving average overlays."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="CandlestickChart" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Displays financial OHLC data as candlesticks with optional volume bars and moving average overlays." />
 
         <!-- Basic Candlestick -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Candlestick"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A candlestick chart with simulated OHLC price data."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="BasicCandlestickContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Candlestick" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A candlestick chart with simulated OHLC price data." />
+                <Border x:Name="BasicCandlestickContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- With Volume -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="With Volume"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A candlestick chart with a volume sub-chart below the price data."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="VolumeContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="With Volume" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A candlestick chart with a volume sub-chart below the price data." />
+                <Border x:Name="VolumeContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Moving Averages -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Moving Averages"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A candlestick chart with SMA and EMA overlay lines."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="MovingAverageContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Moving Averages" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A candlestick chart with SMA and EMA overlay lines." />
+                <Border x:Name="MovingAverageContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the candlestick charts above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Generating OHLC data and configuring the charts in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

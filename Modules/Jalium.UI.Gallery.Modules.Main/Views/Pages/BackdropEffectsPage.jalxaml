@@ -3,33 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.BackdropEffectsPage"
       Title="Backdrop Effects">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Backdrop Effects"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Apply blur and material effects to the background. Use built-in effects or implement IBackdropEffect for custom effects."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Backdrop Effects" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Apply blur and material effects to the background, using the built-in effects or your own IBackdropEffect implementation." />
 
-        <!-- Blur Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="BlurEffect"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Simple Gaussian blur effect. Adjust blur radius to control intensity."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="164">
+        <!-- Blur Effect -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="BackdropBlurEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Simple Gaussian blur effect. Adjust blur radius to control intensity." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="164">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -66,11 +54,11 @@
                         </StackPanel>
                         <!-- Blur effect overlay -->
                         <Border x:Name="BlurEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
-                            <TextBlock Text="BlurEffect (20px)"
+                            <TextBlock Text="BackdropBlurEffect (20px)"
                                        FontSize="14"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
@@ -80,22 +68,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Acrylic Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="AcrylicEffect"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Windows Acrylic material with blur, tint color, and noise texture."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="164">
+        <!-- Acrylic Effect -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="AcrylicEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Windows Acrylic material with blur, tint color, and noise texture." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="164">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -132,7 +111,7 @@
                         </StackPanel>
                         <!-- Acrylic effect overlay -->
                         <Border x:Name="AcrylicEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -146,22 +125,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Mica Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="MicaEffect"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Windows 11 Mica material with enhanced saturation and luminosity."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="164">
+        <!-- Mica Effect -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="MicaEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Windows 11 Mica material with enhanced saturation and luminosity." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="164">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -198,7 +168,7 @@
                         </StackPanel>
                         <!-- Mica effect overlay -->
                         <Border x:Name="MicaEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -212,22 +182,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Frosted Glass Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="FrostedGlassEffect"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Frosted glass effect with noise texture for a realistic glass appearance."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="164">
+        <!-- Frosted Glass Effect -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="FrostedGlassEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Frosted glass effect with noise texture for a realistic glass appearance." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="164">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -264,7 +225,7 @@
                         </StackPanel>
                         <!-- Frosted glass effect overlay -->
                         <Border x:Name="FrostedGlassEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -278,22 +239,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Grayscale Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ColorAdjustmentEffect - Grayscale"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Convert colors to grayscale. Useful for disabled states or artistic effects."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="120">
+        <!-- Grayscale (Color Adjustment) -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ColorAdjustmentEffect - Grayscale" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Convert colors to grayscale. Useful for disabled states or artistic effects." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="120">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -320,7 +272,7 @@
                         </StackPanel>
                         <!-- Grayscale effect overlay -->
                         <Border x:Name="GrayscaleEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -334,22 +286,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Sepia Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ColorAdjustmentEffect - Sepia"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Apply vintage sepia tone effect for a warm, nostalgic look."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="120">
+        <!-- Sepia (Color Adjustment) -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ColorAdjustmentEffect - Sepia" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Apply vintage sepia tone effect for a warm, nostalgic look." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="120">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -376,7 +319,7 @@
                         </StackPanel>
                         <!-- Sepia effect overlay -->
                         <Border x:Name="SepiaEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -390,22 +333,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Invert Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ColorAdjustmentEffect - Invert"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Invert all colors. Red becomes cyan, white becomes black, etc."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="120">
+        <!-- Invert (Color Adjustment) -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ColorAdjustmentEffect - Invert" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Invert all colors. Red becomes cyan, white becomes black, etc." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="120">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -432,7 +366,7 @@
                         </StackPanel>
                         <!-- Invert effect overlay -->
                         <Border x:Name="InvertEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -446,22 +380,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Hue Rotate Effect Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ColorAdjustmentEffect - Hue Rotate"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Rotate the hue of all colors. 90° turns red to green, green to blue, etc."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="16" Height="120">
+        <!-- Hue Rotate (Color Adjustment) -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ColorAdjustmentEffect - Hue Rotate" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Rotate the hue of all colors. 90° turns red to green, green to blue, etc." />
+                <Border Style="{StaticResource GalleryDemoSurface}" Height="120">
                     <Grid>
                         <!-- Colorful background pattern -->
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -488,7 +413,7 @@
                         </StackPanel>
                         <!-- Hue rotate effect overlay -->
                         <Border x:Name="HueRotateEffectDemo"
-								Margin="20"
+                                Margin="20"
                                 CornerRadius="14"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
@@ -502,94 +427,67 @@
             </StackPanel>
         </Border>
 
-        <!-- Window System Backdrop Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Window System Backdrop"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Apply system-level backdrop effects that blur content behind the window (desktop, other apps). Requires Windows 11 22H2+."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <!-- Window System Backdrop -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Window System Backdrop" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Apply system-level backdrop effects that blur content behind the window (desktop, other apps). Requires Windows 11 22H2+." />
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                    <Button x:Name="BackdropNoneButton" Content="None" Margin="0,0,8,0" Padding="16,8"/>
-                    <Button x:Name="BackdropMicaButton" Content="Mica" Margin="0,0,8,0" Padding="16,8"/>
-                    <Button x:Name="BackdropMicaAltButton" Content="Mica Alt" Margin="0,0,8,0" Padding="16,8"/>
-                    <Button x:Name="BackdropAcrylicButton" Content="Acrylic" Margin="0,0,8,0" Padding="16,8"/>
-                </StackPanel>
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="BackdropNoneButton" Content="None" Padding="16,8" Margin="0,0,10,10"/>
+                            <Button x:Name="BackdropMicaButton" Content="Mica" Padding="16,8" Margin="0,0,10,10"/>
+                            <Button x:Name="BackdropMicaAltButton" Content="Mica Alt" Padding="16,8" Margin="0,0,10,10"/>
+                            <Button x:Name="BackdropAcrylicButton" Content="Acrylic" Padding="16,8" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                        <TextBlock x:Name="SystemBackdropStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="Current: None" />
+                    </StackPanel>
+                </Border>
 
-                <TextBlock x:Name="SystemBackdropStatus"
-                           Text="Current: None"
-                           FontSize="12"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"
-                        Margin="0,16,0,0">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="// Set window system backdrop" FontSize="12"/>
-                        <TextBlock Text="window.SystemBackdrop = WindowBackdropType.Mica;" FontSize="12" Margin="0,4,0,0"/>
+                <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,16,0,0">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="// Set window system backdrop" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="window.SystemBackdrop = WindowBackdropType.Mica;" Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Usage Code Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Usage"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Set the BackdropEffect property on any UIElement:"
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <!-- Usage -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Usage" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Set the BackdropEffect property on any UIElement:" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="// Simple blur effect" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="border.BackdropEffect = new BackdropBlurEffect(20f);" Margin="0,4,0,12" />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="// Simple blur effect" FontSize="12"/>
-                        <TextBlock Text="border.BackdropEffect = new BlurEffect(20f);" FontSize="12" Margin="0,4,0,12"/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="// Acrylic material" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="border.BackdropEffect = new AcrylicEffect(Color.FromArgb(200, 30, 30, 40), 0.6f, 30f);" Margin="0,4,0,12" />
 
-                        <TextBlock Text="// Acrylic material" FontSize="12"/>
-                        <TextBlock Text="border.BackdropEffect = new AcrylicEffect(Color.FromArgb(200, 30, 30, 40), 0.6f, 30f);" FontSize="12" Margin="0,4,0,12"/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="// Color adjustment" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="border.BackdropEffect = ColorAdjustmentEffect.CreateGrayscale();" Margin="0,4,0,12" />
 
-                        <TextBlock Text="// Color adjustment" FontSize="12"/>
-                        <TextBlock Text="border.BackdropEffect = ColorAdjustmentEffect.CreateGrayscale();" FontSize="12" Margin="0,4,0,12"/>
-
-                        <TextBlock Text="// Custom IBackdropEffect implementation" FontSize="12"/>
-                        <TextBlock Text="border.BackdropEffect = new MyCustomEffect();" FontSize="12"/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="// Custom IBackdropEffect implementation" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="border.BackdropEffect = new MyCustomEffect();" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the backdrop overlays and system-backdrop buttons above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -600,21 +498,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Assigning each BackdropEffect and the window SystemBackdrop from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -624,5 +514,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

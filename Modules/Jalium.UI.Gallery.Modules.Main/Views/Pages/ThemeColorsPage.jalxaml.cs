@@ -2,6 +2,7 @@ using System.Globalization;
 using Jalium.UI;
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Themes;
+using Jalium.UI.Input;
 using Jalium.UI.Media;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
@@ -12,6 +13,15 @@ namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 /// lets the user copy either the raw key, a ready-to-paste <c>{ThemeResource Key}</c>
 /// /<c>{StaticResource Key}</c> expression, or the literal value via a per-row
 /// <see cref="SplitButton"/> (primary click = copy key, flyout = alternates).
+///
+/// The list is a <em>virtualizing</em> <see cref="ListBox"/>: the previewed theme can
+/// expose 500+ keys, so instead of materializing one row (Grid + SplitButton +
+/// MenuFlyout) per key into a StackPanel, the rows are driven by an
+/// <see cref="ItemsControl.ItemsSource"/> of lightweight <see cref="ResourceRow"/>
+/// models and an <see cref="ItemsControl.ItemTemplate"/> that builds a row's visuals
+/// only when the container is realized. With recycling, scrolling re-points an existing
+/// container's <c>DataContext</c> at a new row, so <see cref="PopulateRow"/> rebuilds in
+/// place rather than allocating a fresh container.
 /// </summary>
 public partial class ThemeColorsPage : Page
 {
@@ -31,6 +41,17 @@ public partial class ThemeColorsPage : Page
         public required Brush Preview { get; init; }
     }
 
+    /// <summary>
+    /// View model for one realized list row. Carries the row's position in the
+    /// <em>currently filtered</em> list so alternating-row striping stays correct under
+    /// virtualization/recycling (the data item itself has no inherent index).
+    /// </summary>
+    private sealed class ResourceRow
+    {
+        public required ResourceEntry Entry { get; init; }
+        public required int RowIndex { get; init; }
+    }
+
     private enum ResourceKind
     {
         Color,
@@ -38,7 +59,40 @@ public partial class ThemeColorsPage : Page
         GradientBrush
     }
 
+    /// <summary>
+    /// Shared, fully transparent brush used as the even-row background. A non-null
+    /// (transparent) brush is required so the whole row stays hit-testable for the
+    /// click-to-copy gesture — a null background would let clicks fall through.
+    /// </summary>
+    private static readonly SolidColorBrush s_rowHitBrush = new(Color.FromArgb(0x00, 0, 0, 0));
+
+    /// <summary>
+    /// Solid accent fill + caption color for the per-row Copy button. A <em>solid</em> brush
+    /// is deliberate: a <see cref="GradientBrush"/> <c>Background</c> (e.g. the theme
+    /// <c>AccentBrush</c>) suppresses Button/SplitButton primary-content rendering in this
+    /// framework, which is what made the "Copy" caption invisible.
+    /// </summary>
+    private static readonly SolidColorBrush s_copyAccentBrush = new(Color.FromArgb(0xFF, 0xF2, 0xB8, 0x00));
+    private static readonly SolidColorBrush s_copyAccentTextBrush = new(Color.FromArgb(0xFF, 0x1A, 0x14, 0x05));
+
     private readonly List<ResourceEntry> _allEntries = new();
+
+    /// <summary>
+    /// The per-row <see cref="DataTemplate"/>, built once and reused for every container.
+    /// Reusing a single template instance is also what arms the ContentPresenter's
+    /// recycling fast path (rebind DataContext instead of rebuilding the subtree).
+    /// </summary>
+    private DataTemplate? _rowTemplate;
+
+    /// <summary>
+    /// The gallery hosts every page inside an auto-scrolling <see cref="ScrollViewer"/>,
+    /// which hands the page infinite height. A virtualizing list needs a bounded viewport,
+    /// so the list lives in a star row whose host <see cref="RootGrid"/> is pinned to this
+    /// host's visible viewport height (see <see cref="UpdateListViewportHeight"/>). Cached
+    /// once the page is loaded so the page fills the viewport and scrolls internally
+    /// instead of inflating the outer scroller with 500+ realized rows.
+    /// </summary>
+    private ScrollViewer? _hostScrollViewer;
 
     /// <summary>
     /// The theme dictionary key this page is *previewing*.
@@ -54,7 +108,123 @@ public partial class ThemeColorsPage : Page
         InitializeComponent();
         SetupThemeSelector();
         WireFilterEvents();
+        ConfigureList();
         ReloadAll();
+
+        // Pin the list to the host viewport once we're in the live tree, and keep it in
+        // sync as the window/pane resizes.
+        Loaded += OnPageLoaded;
+        Unloaded += OnPageUnloaded;
+    }
+
+    private void OnPageLoaded(object? sender, RoutedEventArgs e)
+    {
+        if (_hostScrollViewer == null)
+        {
+            _hostScrollViewer = FindAncestorScrollViewer(this);
+            if (_hostScrollViewer != null)
+            {
+                _hostScrollViewer.SizeChanged += OnHostSizeChanged;
+            }
+        }
+
+        UpdateListViewportHeight();
+    }
+
+    private void OnPageUnloaded(object? sender, RoutedEventArgs e)
+    {
+        if (_hostScrollViewer != null)
+        {
+            _hostScrollViewer.SizeChanged -= OnHostSizeChanged;
+            _hostScrollViewer = null;
+        }
+    }
+
+    private void OnHostSizeChanged(object? sender, SizeChangedEventArgs e) => UpdateListViewportHeight();
+
+    /// <summary>
+    /// Sizes <see cref="RootGrid"/> to the host scroll viewer's visible viewport so the
+    /// page fills the available area exactly (no outer scroll) and the list's star row
+    /// gets a bounded height to virtualize against. Idempotent and loop-safe: pinning the
+    /// page to the viewport height does not change the viewport, so the host doesn't
+    /// re-fire size changes.
+    /// </summary>
+    private void UpdateListViewportHeight()
+    {
+        if (_hostScrollViewer == null || RootGrid == null)
+            return;
+
+        var viewport = _hostScrollViewer.ViewportHeight;
+        if (viewport <= 0 || double.IsNaN(viewport) || double.IsInfinity(viewport))
+        {
+            // Viewport not measured yet (or unavailable) — fall back to the host's
+            // arranged height minus its padding.
+            viewport = _hostScrollViewer.ActualHeight
+                       - _hostScrollViewer.Padding.Top
+                       - _hostScrollViewer.Padding.Bottom;
+        }
+
+        if (viewport <= 0 || double.IsNaN(viewport) || double.IsInfinity(viewport))
+            return;
+
+        var target = viewport - RootGrid.Margin.Top - RootGrid.Margin.Bottom;
+        if (target < 240)
+            target = 240;
+
+        if (double.IsNaN(RootGrid.Height) || Math.Abs(RootGrid.Height - target) > 0.5)
+            RootGrid.Height = target;
+    }
+
+    /// <summary>
+    /// Walks up the visual tree to the nearest ancestor <see cref="ScrollViewer"/> — the
+    /// gallery's per-page content host.
+    /// </summary>
+    private static ScrollViewer? FindAncestorScrollViewer(Visual start)
+    {
+        Visual? current = start.VisualParent;
+        while (current != null)
+        {
+            if (current is ScrollViewer scrollViewer)
+                return scrollViewer;
+            current = current.VisualParent;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Walks up the visual tree to the generated <see cref="ListBoxItem"/> container that
+    /// hosts a realized row, so its content alignment can be corrected.
+    /// </summary>
+    private static ListBoxItem? FindAncestorListBoxItem(Visual start)
+    {
+        Visual? current = start.VisualParent;
+        while (current != null)
+        {
+            if (current is ListBoxItem item)
+                return item;
+            current = current.VisualParent;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Makes a realized row fill the list width. The row host's parent is the container's
+    /// <see cref="ContentPresenter"/>, whose <see cref="FrameworkElement.HorizontalAlignment"/>
+    /// is template-bound to the <see cref="ListBoxItem"/>'s <c>HorizontalContentAlignment</c>
+    /// (default <see cref="HorizontalAlignment.Left"/>). Left alignment arranges the host at
+    /// its shrink-wrapped width, collapsing the row's star column. Setting both the presenter's
+    /// alignment (authoritative for arrange) and the container's content alignment stretches
+    /// the row to the full width.
+    /// </summary>
+    private static void StretchRowContainer(Border host)
+    {
+        if (host.VisualParent is FrameworkElement presenter)
+            presenter.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+        if (FindAncestorListBoxItem(host) is { } container)
+            container.HorizontalContentAlignment = HorizontalAlignment.Stretch;
     }
 
     private void SetupThemeSelector()
@@ -90,6 +260,24 @@ public partial class ThemeColorsPage : Page
         }
     }
 
+    /// <summary>
+    /// Wires the virtualizing list: installs the row template and neutralizes the
+    /// ListBox hover/selection chrome. This page copies on click and never uses list
+    /// selection, so overriding <c>SelectionBackground</c>/<c>HighlightBackground</c>
+    /// (scoped to the list) keeps the realized rows looking exactly like the old flat,
+    /// striped rows instead of painting an accent highlight on the clicked row.
+    /// </summary>
+    private void ConfigureList()
+    {
+        if (ResourceList == null) return;
+
+        _rowTemplate ??= BuildRowTemplate();
+        ResourceList.ItemTemplate = _rowTemplate;
+
+        ResourceList.Resources["SelectionBackground"] = s_rowHitBrush;
+        ResourceList.Resources["HighlightBackground"] = s_rowHitBrush;
+    }
+
     private void OnThemeSelectorChanged(object? sender, EventArgs e)
     {
         if (ThemeSelector?.SelectedItem is not string variantName)
@@ -99,12 +287,11 @@ public partial class ThemeColorsPage : Page
         // next time, and rebuild rows. Do NOT call ThemeManager.ApplyTheme.
         //
         // Why: ApplyTheme reparses Generic.jalxaml + every control style
-        // dictionary AND sweeps every DynamicResource subscription. With
-        // 500+ live SplitButton/MenuFlyout rows on this page, those two
-        // things racing each other corrupted the parser/refresh state in
-        // a way that left the ComboBox unresponsive after the first switch.
-        // Reading values straight out of ThemeDictionaries[<key>] gives the
-        // user the exact same data without any global side-effect.
+        // dictionary AND sweeps every DynamicResource subscription. Reading values
+        // straight out of ThemeDictionaries[<key>] gives the user the exact same
+        // data without any global side-effect. (Virtualization further shrinks the
+        // blast radius here: only the rows in view are live SplitButton/MenuFlyout
+        // controls, not all 500+.)
         _previewThemeKey = variantName;
         ReloadAll();
     }
@@ -269,21 +456,21 @@ public partial class ThemeColorsPage : Page
     }
 
     /// <summary>
-    /// Rebuilds the visible row list based on the search/filter state.
+    /// Rebuilds the visible row list based on the search/filter state and hands it to
+    /// the virtualizing <see cref="ListBox"/> as a fresh <see cref="ItemsControl.ItemsSource"/>.
+    /// Only the rows scrolled into view are realized; this method never touches visuals.
     /// </summary>
     private void RenderRows()
     {
         if (ResourceList == null)
             return;
 
-        ResourceList.Children.Clear();
-
         var filter = (FilterBox?.Text ?? string.Empty).Trim();
         var showColors = ShowColorsCheck?.IsChecked ?? true;
         var showBrushes = ShowBrushesCheck?.IsChecked ?? true;
         var showGradients = ShowGradientsCheck?.IsChecked ?? true;
 
-        var visible = 0;
+        var rows = new List<ResourceRow>();
         foreach (var entry in _allEntries)
         {
             if (!PassesKindFilter(entry, showColors, showBrushes, showGradients))
@@ -291,21 +478,22 @@ public partial class ThemeColorsPage : Page
             if (filter.Length > 0 && entry.Key.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0)
                 continue;
 
-            ResourceList.Children.Add(BuildRow(entry, visible));
-            visible++;
+            rows.Add(new ResourceRow { Entry = entry, RowIndex = rows.Count });
         }
 
-        if (visible == 0)
+        // Assigning a fresh list resets the ItemsSource → the panel re-virtualizes
+        // against the new item set and only re-realizes what fits the viewport.
+        ResourceList.ItemsSource = rows;
+
+        var visible = rows.Count;
+        ResourceList.Visibility = visible == 0 ? Visibility.Collapsed : Visibility.Visible;
+
+        if (EmptyText != null)
         {
-            ResourceList.Children.Add(new TextBlock
-            {
-                Text = _allEntries.Count == 0
-                    ? "No theme color resources found."
-                    : "No matching keys.",
-                Margin = new Thickness(20, 24, 20, 24),
-                Opacity = 0.6,
-                FontSize = 13
-            });
+            EmptyText.Text = _allEntries.Count == 0
+                ? "No theme color resources found."
+                : "No matching keys.";
+            EmptyText.Visibility = visible == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         if (CountText != null)
@@ -332,14 +520,69 @@ public partial class ThemeColorsPage : Page
     }
 
     /// <summary>
-    /// Builds one row: [swatch] [key + value] [Copy SplitButton].
-    /// SplitButton primary action copies the key; the flyout exposes
-    /// "{ThemeResource …}" expression and the literal hex/value string.
-    /// Alternating row backgrounds use SubtleFillColorTertiaryBrush for striping
-    /// without hardcoding a non-themed color.
+    /// Builds the per-row <see cref="DataTemplate"/>. The factory creates the row's
+    /// outer host <see cref="Border"/> and attaches the row-level handlers exactly once
+    /// (the host is reused as containers recycle); <see cref="PopulateRow"/> then fills
+    /// the host from whatever <see cref="ResourceRow"/> is the current DataContext, and
+    /// re-runs whenever recycling re-points that DataContext.
     /// </summary>
-    private FrameworkElement BuildRow(ResourceEntry entry, int rowIndex)
+    private DataTemplate BuildRowTemplate()
     {
+        var template = new DataTemplate();
+        template.SetVisualTree(() =>
+        {
+            var host = new Border
+            {
+                Padding = new Thickness(0),
+                Cursor = Cursors.Hand
+            };
+
+            // Whole-row click copies the key. Attached once on the reused host and
+            // reads the CURRENT DataContext, so recycling can never bind this to a
+            // stale entry.
+            host.MouseLeftButtonUp += (_, _) =>
+            {
+                if (host.DataContext is ResourceRow row)
+                    CopyToClipboard(row.Entry.Key, $"Copied key: {row.Entry.Key}");
+            };
+
+            // First realization sets DataContext right after LoadContent(); recycling
+            // re-points it to a new row. Either way, (re)build the row contents.
+            host.DataContextChanged += (_, _) => PopulateRow(host);
+
+            // The generated ListBoxItem container defaults HorizontalContentAlignment to
+            // Left, and its template's ContentPresenter is bound to that — so without this
+            // the ContentPresenter shrink-wraps + left-aligns the row (collapsing the star
+            // column, squashing the Copy button) instead of filling the list width. Once
+            // we're in the tree, stretch the content host so each row spans the full width.
+            // Done on Loaded (container present) and persists across recycling (the same
+            // host/container/presenter are reused, only DataContext changes).
+            host.Loaded += (_, _) => StretchRowContainer(host);
+
+            return host;
+        });
+        template.Seal();
+        return template;
+    }
+
+    /// <summary>
+    /// Fills (or clears) a realized row host from its current <see cref="ResourceRow"/>
+    /// DataContext: [swatch] [key + value] [Copy SplitButton], with alternating-row
+    /// striping. The per-row child controls (SplitButton/MenuFlyout) are rebuilt fresh
+    /// here; the old subtree is dropped with the previous <see cref="Border.Child"/>, so
+    /// recycling never accumulates stale handlers.
+    /// </summary>
+    private void PopulateRow(Border host)
+    {
+        if (host.DataContext is not ResourceRow rowModel)
+        {
+            host.Child = null;
+            host.Background = s_rowHitBrush;
+            return;
+        }
+
+        var entry = rowModel.Entry;
+
         var grid = new Grid
         {
             Margin = new Thickness(0)
@@ -394,20 +637,15 @@ public partial class ThemeColorsPage : Page
         Grid.SetColumn(copySplit, 2);
         grid.Children.Add(copySplit);
 
-        // Whole-row click also copies the key for convenience.
-        var rowBackground = (rowIndex & 1) == 1
+        // Alternating row background uses SubtleFillColorTertiaryBrush for striping
+        // without hardcoding a non-themed color; even rows get a transparent (but
+        // hit-testable) background so the whole row still responds to clicks.
+        var rowBackground = (rowModel.RowIndex & 1) == 1
             ? TryFindResource("SubtleFillColorTertiaryBrush") as Brush
             : null;
 
-        var rowBorder = new Border
-        {
-            Background = rowBackground ?? new SolidColorBrush(Color.FromArgb(0x00, 0, 0, 0)),
-            Padding = new Thickness(0),
-            Cursor = Cursors.Hand,
-            Child = grid
-        };
-        rowBorder.MouseLeftButtonUp += (_, _) => CopyToClipboard(entry.Key, $"Copied key: {entry.Key}");
-        return rowBorder;
+        host.Background = rowBackground ?? s_rowHitBrush;
+        host.Child = grid;
     }
 
     /// <summary>
@@ -441,16 +679,21 @@ public partial class ThemeColorsPage : Page
         copyKeyItem.Click += (_, _) => CopyToClipboard(entry.Key, $"Copied key: {entry.Key}");
         flyout.Items.Add(copyKeyItem);
 
+        // NOTE: the row background uses a solid accent brush, NOT the {AccentBrush}
+        // GradientBrush. A gradient Background on a Button/SplitButton suppresses the
+        // primary button's content rendering in this framework (the "Copy" caption goes
+        // invisible), so this control is given a solid accent fill instead. A fixed Width
+        // is used because the SplitButton sits in an Auto grid column (which measures with
+        // infinite width); without it the template's star-sized primary column collapses.
         var splitButton = new SplitButton
         {
             Content = "Copy",
-            MinWidth = 96,
-            Height = 30,
+            Width = 104,
             Margin = new Thickness(0, 8, 12, 8),
             FontSize = 12,
-            Background = TryFindResource("AccentBrush") as Brush,
-            BorderBrush = TryFindResource("AccentBrush") as Brush,
-            Foreground = TryFindResource("TextOnAccentFillColorSelectedTextBrush") as Brush,
+            Background = s_copyAccentBrush,
+            BorderBrush = s_copyAccentBrush,
+            Foreground = s_copyAccentTextBrush,
             Flyout = flyout
         };
 

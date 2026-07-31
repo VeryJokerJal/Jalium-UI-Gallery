@@ -3,35 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MenuPage"
       Title="Menu">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Menu"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Displays a list of menu items for commands and options."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Menu" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A horizontal command bar whose items open drop-down lists of commands, keyboard shortcuts and nested submenus." />
 
-        <!-- Basic Menu Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Menu"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A standard menu with multiple items."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic menu -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Menu" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A standard menu with multiple items." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Menu>
                         <MenuItem Header="File">
                             <MenuItem Header="New"/>
@@ -61,24 +47,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Menu with Icons Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Menu with Keyboard Shortcuts"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Menu items can display keyboard shortcuts."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Menu with keyboard shortcuts -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Menu with Keyboard Shortcuts" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Menu items can display keyboard shortcuts." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Menu>
                         <MenuItem Header="File">
                             <MenuItem Header="New" InputGestureText="Ctrl+N"/>
@@ -99,24 +74,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Nested Menu Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Nested Submenus"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Menu items can contain nested submenus."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Nested submenus -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Nested Submenus" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Menu items can contain nested submenus." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <Menu>
                         <MenuItem Header="Settings">
                             <MenuItem Header="Appearance">
@@ -141,21 +105,14 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the menus above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -166,21 +123,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building a menu and wiring item click handlers in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -190,5 +139,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

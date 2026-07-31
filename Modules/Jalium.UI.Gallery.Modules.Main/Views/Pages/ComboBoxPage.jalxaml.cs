@@ -149,124 +149,48 @@ public partial class OrderPage : Page
 
     private void CreateContent()
     {
-        if (ContentPanel == null) return;
+        if (DemoHost == null) return;
 
-        // Title
-        var title = new TextBlock
-        {
-            Text = "ComboBox",
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
-        ContentPanel.Children.Add(title);
+        // Basic ComboBox — string items.
+        var basicComboBox = new ComboBox { PlaceholderText = "Select a fruit", Width = 220 };
+        foreach (var fruit in new[] { "Apple", "Banana", "Cherry", "Orange", "Grape" })
+            basicComboBox.Items.Add(fruit);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Basic", "A simple dropdown populated with string items.", basicComboBox));
 
-        // Description
-        var description = new TextBlock
-        {
-            Text = "A dropdown control that presents a list of options for selection.",
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 24),
-            TextWrapping = TextWrapping.Wrap
-        };
-        ContentPanel.Children.Add(description);
-
-        // Basic ComboBox
-        AddSection("Basic ComboBox", "A simple ComboBox with string items.");
-
-        var basicComboBox = new ComboBox
-        {
-            PlaceholderText = "Select a fruit",
-            Width = 200,
-            Margin = new Thickness(0, 0, 0, 16)
-        };
-        basicComboBox.Items.Add("Apple");
-        basicComboBox.Items.Add("Banana");
-        basicComboBox.Items.Add("Cherry");
-        basicComboBox.Items.Add("Orange");
-        basicComboBox.Items.Add("Grape");
-        ContentPanel.Children.Add(basicComboBox);
-
-        // ComboBox with pre-selected item
-        AddSection("Pre-selected Item", "A ComboBox with an item already selected.");
-
-        var selectedComboBox = new ComboBox
-        {
-            PlaceholderText = "Select a color",
-            Width = 200,
-            Margin = new Thickness(0, 0, 0, 16)
-        };
-        selectedComboBox.Items.Add("Red");
-        selectedComboBox.Items.Add("Green");
-        selectedComboBox.Items.Add("Blue");
-        selectedComboBox.Items.Add("Yellow");
+        // Pre-selected item.
+        var selectedComboBox = new ComboBox { PlaceholderText = "Select a color", Width = 220 };
+        foreach (var color in new[] { "Red", "Green", "Blue", "Yellow" })
+            selectedComboBox.Items.Add(color);
         selectedComboBox.SelectedIndex = 2; // Blue
-        ContentPanel.Children.Add(selectedComboBox);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Pre-selected item", "Opens with an item already chosen via SelectedIndex.", selectedComboBox));
 
-        // ComboBox with selection event
-        AddSection("Selection Changed Event", "Displays the selected item in a TextBlock.");
-
-        var eventStack = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            Margin = new Thickness(0, 0, 0, 16)
-        };
-
+        // Selection-changed event.
         var eventComboBox = new ComboBox
         {
             PlaceholderText = "Select a day",
-            Width = 200,
+            Width = 220,
             Margin = new Thickness(0, 0, 16, 0)
         };
-        eventComboBox.Items.Add("Monday");
-        eventComboBox.Items.Add("Tuesday");
-        eventComboBox.Items.Add("Wednesday");
-        eventComboBox.Items.Add("Thursday");
-        eventComboBox.Items.Add("Friday");
-        eventComboBox.Items.Add("Saturday");
-        eventComboBox.Items.Add("Sunday");
+        foreach (var day in new[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" })
+            eventComboBox.Items.Add(day);
 
-        var resultText = new TextBlock
-        {
-            Text = "Selected: (none)",
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            VerticalAlignment = VerticalAlignment.Center
-        };
-
+        var resultText = GalleryUi.ValueLabel("Selected: (none)");
         eventComboBox.SelectionChanged += (s, e) =>
         {
             var selected = eventComboBox.SelectedItem?.ToString() ?? "(none)";
             resultText.Text = $"Selected: {selected}";
         };
 
+        var eventStack = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            VerticalAlignment = VerticalAlignment.Center
+        };
         eventStack.Children.Add(eventComboBox);
         eventStack.Children.Add(resultText);
-        ContentPanel.Children.Add(eventStack);
-    }
-
-    private void AddSection(string titleText, string descriptionText)
-    {
-        if (ContentPanel == null) return;
-
-        var sectionTitle = new TextBlock
-        {
-            Text = titleText,
-            FontSize = GalleryTheme.FontSizeSubtitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 16, 0, 4)
-        };
-        ContentPanel.Children.Add(sectionTitle);
-
-        var sectionDesc = new TextBlock
-        {
-            Text = descriptionText,
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 12)
-        };
-        ContentPanel.Children.Add(sectionDesc);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Selection changed", "Handle SelectionChanged to react to the chosen item.", eventStack));
     }
 }

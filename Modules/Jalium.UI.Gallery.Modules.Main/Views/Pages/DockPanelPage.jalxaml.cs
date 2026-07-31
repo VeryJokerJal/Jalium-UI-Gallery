@@ -178,39 +178,14 @@ public partial class DockPanelDemo : Page
 
     private void CreateContent()
     {
-        if (ContentPanel == null) return;
+        if (DemoHost == null) return;
 
-        // Title
-        var title = new TextBlock
-        {
-            Text = "DockPanel",
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
-        ContentPanel.Children.Add(title);
-
-        // Description
-        var description = new TextBlock
-        {
-            Text = "A panel that positions child elements to the edges (top, bottom, left, right) or fills the remaining space.",
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 24),
-            TextWrapping = TextWrapping.Wrap
-        };
-        ContentPanel.Children.Add(description);
-
-        // Basic DockPanel
-        AddSection("Basic DockPanel", "Elements docked to different edges with the last child filling the center.");
-
+        // Basic DockPanel — elements docked to each edge, last child fills the center.
         var basicContainer = new Border
         {
             Width = 400,
             Height = 250,
-            Background = GalleryTheme.BackgroundDarkBrush,
-            Margin = new Thickness(0, 0, 0, 24)
+            Background = GalleryTheme.BackgroundDarkBrush
         };
 
         var basicDockPanel = new DockPanel();
@@ -240,17 +215,15 @@ public partial class DockPanelDemo : Page
         basicDockPanel.Children.Add(centerBorder);
 
         basicContainer.Child = basicDockPanel;
-        ContentPanel.Children.Add(basicContainer);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Basic DockPanel", "Elements docked to different edges with the last child filling the center.", basicContainer));
 
         // LastChildFill = false
-        AddSection("LastChildFill = false", "When disabled, the last child does not fill the remaining space.");
-
         var noFillContainer = new Border
         {
             Width = 400,
             Height = 150,
-            Background = GalleryTheme.BackgroundDarkBrush,
-            Margin = new Thickness(0, 0, 0, 24)
+            Background = GalleryTheme.BackgroundDarkBrush
         };
 
         var noFillDockPanel = new DockPanel
@@ -271,11 +244,10 @@ public partial class DockPanelDemo : Page
         noFillDockPanel.Children.Add(noFillRight);
 
         noFillContainer.Child = noFillDockPanel;
-        ContentPanel.Children.Add(noFillContainer);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "LastChildFill = false", "When disabled, the last child does not fill the remaining space.", noFillContainer));
 
-        // App Layout Example
-        AddSection("Application Layout", "A typical application layout with header, sidebar, and content area.");
-
+        // Application Layout
         var appContainer = new Border
         {
             Width = 400,
@@ -331,7 +303,8 @@ public partial class DockPanelDemo : Page
         appDockPanel.Children.Add(content);
 
         appContainer.Child = appDockPanel;
-        ContentPanel.Children.Add(appContainer);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Application Layout", "A typical application layout with header, sidebar, and content area.", appContainer));
     }
 
     private Border CreateColoredBorder(string text, Color color, double? size = null)
@@ -356,29 +329,5 @@ public partial class DockPanelDemo : Page
         }
 
         return border;
-    }
-
-    private void AddSection(string titleText, string descriptionText)
-    {
-        if (ContentPanel == null) return;
-
-        var sectionTitle = new TextBlock
-        {
-            Text = titleText,
-            FontSize = GalleryTheme.FontSizeSubtitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 16, 0, 4)
-        };
-        ContentPanel.Children.Add(sectionTitle);
-
-        var sectionDesc = new TextBlock
-        {
-            Text = descriptionText,
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 12)
-        };
-        ContentPanel.Children.Add(sectionDesc);
     }
 }

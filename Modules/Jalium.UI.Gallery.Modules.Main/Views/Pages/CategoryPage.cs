@@ -75,6 +75,28 @@ public abstract class CategoryPage : Page
 
         mainStack.Children.Add(grid);
 
+        // Responsive column count so the card grid stays comfortable from a
+        // phone-width viewport up to desktop: one column when narrow, two on a
+        // tablet, three when there is room. Keeps the category pages usable on
+        // the Android head without a separate layout.
+        void UpdateColumns()
+        {
+            var available = ActualWidth;
+            if (available <= 0)
+            {
+                return;
+            }
+
+            var columns = available < 640 ? 1 : available < 1000 ? 2 : 3;
+            if (grid.Columns != columns)
+            {
+                grid.Columns = columns;
+            }
+        }
+
+        SizeChanged += (_, _) => UpdateColumns();
+        Loaded += (_, _) => UpdateColumns();
+
         Content = mainStack;
     }
 
@@ -588,7 +610,8 @@ public class ChartsCategoryPage : CategoryPage
         new ControlInfo("CandlestickChart", "OHLC financial candlestick charts.", "candlestickchart"),
         new ControlInfo("NetworkGraph", "Force-directed node-link diagrams.", "networkgraph"),
         new ControlInfo("GanttChart", "Timeline task bars with dependencies.", "ganttchart"),
-        new ControlInfo("SankeyDiagram", "Flow diagrams with weighted links.", "sankeydiagram")
+        new ControlInfo("SankeyDiagram", "Flow diagrams with weighted links.", "sankeydiagram"),
+        new ControlInfo("Flowchart", "Auto-laid-out flowcharts, authored from mermaid text.", "flowchart")
     };
 }
 

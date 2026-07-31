@@ -35,7 +35,7 @@ public partial class QRCodePage : Page
     <!-- Interactive Generator -->
     <StackPanel>
         <TextBox x:Name=""PayloadTextBox""
-                 PlaceholderText=""Enter payload...""/>
+                 ToolTip=""Enter payload...""/>
         <Button Content=""Generate""
                 Click=""OnGenerateClick""/>
         <QRCode x:Name=""DemoQRCode""

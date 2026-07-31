@@ -17,7 +17,7 @@ public partial class JsonTreeViewerPage : Page
 
         <!-- Search & Filter -->
         <TextBox x:Name="SearchInput"
-                 PlaceholderText="Search keys or values..."/>
+                 ToolTip="Search keys or values..."/>
         <JsonTreeViewer x:Name="SearchJsonTree"
                         Height="300"
                         ExpandDepth="3"/>

@@ -24,6 +24,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/AppTheme.jalxaml" />
+                <ResourceDictionary Source="Themes/GalleryStyles.jalxaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Gallery-only extra key not shipped by the framework. -->

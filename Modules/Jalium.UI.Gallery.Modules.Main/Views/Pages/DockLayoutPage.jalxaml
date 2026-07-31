@@ -2,19 +2,22 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DockLayoutPage"
       Title="DockLayout">
-    <StackPanel Orientation="Vertical">
-        <!-- Title -->
-        <TextBlock Text="DockLayout" FontSize="32" Margin="0,0,0,8"/>
-        <TextBlock Text="A VS-style docking layout with resizable split panels and tab groups."
-                   FontSize="14" Margin="0,0,0,24"/>
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DockLayout" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A VS-style docking layout with resizable split panels and tab groups for composing IDE-like workspaces." />
 
         <!-- Example 1: IDE Layout -->
-        <Border Background="{DynamicResource GalleryCardBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="IDE Layout" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                <TextBlock Text="Left sidebar + center editor + bottom panel, with resizable splitters."
-                           FontSize="12" Margin="0,0,0,12"/>
-                <Border Height="400" CornerRadius="8">
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="IDE Layout" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Left sidebar + center editor + bottom panel, with resizable splitters." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="400">
                     <DockLayout>
                         <DockSplitPanel Orientation="Horizontal">
                             <!-- Left Sidebar -->
@@ -95,12 +98,12 @@
         </Border>
 
         <!-- Example 2: Three Column Layout -->
-        <Border Background="{DynamicResource GalleryCardBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Three Column Layout" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                <TextBlock Text="Equal and proportional splitting with star sizing."
-                           FontSize="12" Margin="0,0,0,12"/>
-                <Border Height="250" CornerRadius="8">
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Three Column Layout" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Equal and proportional splitting with star sizing." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="250">
                     <DockLayout>
                         <DockSplitPanel Orientation="Horizontal">
                             <DockTabPanel DockSplitPanel.Size="*">
@@ -136,21 +139,14 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the docking layouts shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -161,21 +157,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building a DockLayout with split panels and dockable tab items in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -185,5 +173,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

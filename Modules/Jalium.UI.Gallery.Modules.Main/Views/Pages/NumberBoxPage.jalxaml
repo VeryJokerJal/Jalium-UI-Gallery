@@ -1,19 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.NumberBoxPage">
-    <ScrollViewer>
-        <StackPanel Orientation="Vertical" Margin="24">
-            <!-- Header -->
-            <TextBlock Text="NumberBox" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
-            <TextBlock Text="A text box control optimized for entering numeric values with validation."
-                       FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
 
-            <!-- Interactive Demo -->
-            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="NumberBox" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A text box optimized for entering numeric values, with spin buttons, range limits and validation built in." />
+
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Four variants — a basic field, inline spin buttons, min / max bounds and a custom step size." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Basic NumberBox:" Margin="0,0,0,4" />
                         <NumberBox x:Name="BasicNumberBox" Value="42" Width="200" Margin="0,0,0,16" HorizontalAlignment="Left" />
@@ -27,70 +30,61 @@
                         <TextBlock Text="With Step (5):" Margin="0,0,0,4" />
                         <NumberBox Value="25" SmallChange="5" LargeChange="20" Width="200" HorizontalAlignment="Left" />
                     </StackPanel>
-                </StackPanel>
-            </Border>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- Features -->
-            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
-                    <TextBlock Text="• Numeric input validation" Margin="0,0,0,4" />
-                    <TextBlock Text="• Spin buttons for increment/decrement" Margin="0,0,0,4" />
-                    <TextBlock Text="• Min/Max value constraints" Margin="0,0,0,4" />
-                    <TextBlock Text="• Configurable step size" Margin="0,0,0,4" />
-                    <TextBlock Text="• Expression evaluation support" Margin="0,0,0,4" />
-                </StackPanel>
-            </Border>
+        <!-- Features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="What the NumberBox gives you out of the box." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Numeric input validation" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Spin buttons for increment / decrement" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Min / Max value constraints" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Configurable step size" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Expression evaluation support" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- XAML Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="XAML Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="XamlCodeEditor"
-                                     Height="200"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the NumberBox variants above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- C# Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="C# Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="CSharpCodeEditor"
-                                     Height="200"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating a NumberBox in code, handling ValueChanged and configuring range and step." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
 </Page>

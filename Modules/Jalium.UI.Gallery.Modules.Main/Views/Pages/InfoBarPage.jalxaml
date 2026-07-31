@@ -2,89 +2,82 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.InfoBarPage">
-	<StackPanel Orientation="Vertical" Margin="24">
-		<!-- Header -->
-		<TextBlock Text="InfoBar" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
-		<TextBlock Text="A notification bar for displaying important, non-blocking messages."
-				   FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
 
-		<!-- Interactive Demo -->
-		<Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-			<StackPanel Orientation="Vertical">
-				<TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-				<InfoBar Title="Informational" Message="This is an informational message." Severity="Informational" IsOpen="True" Margin="0,0,0,8" />
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="STATUS &amp; INFO" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="InfoBar" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A notification bar for surfacing important, non-blocking status messages inline, without interrupting the user." />
 
-				<InfoBar Title="Success" Message="Operation completed successfully!" Severity="Success" IsOpen="True" Margin="0,0,0,8" />
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Each severity paints its own accent, icon and tint; the last bar can be dismissed with its close button." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <InfoBar Title="Informational" Message="This is an informational message." Severity="Informational" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Success" Message="Operation completed successfully!" Severity="Success" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Warning" Message="Please review your settings before continuing." Severity="Warning" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Error" Message="An error occurred while processing your request." Severity="Error" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Closable InfoBar" Message="Click the close button to dismiss this message." IsClosable="True" IsOpen="True" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-				<InfoBar Title="Warning" Message="Please review your settings before continuing." Severity="Warning" IsOpen="True" Margin="0,0,0,8" />
+        <!-- Features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="What the InfoBar control supports out of the box." />
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Four severity levels (Info, Success, Warning, Error)" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Title and message content" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Optional close button" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Action button support" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Custom content area" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
 
-				<InfoBar Title="Error" Message="An error occurred while processing your request." Severity="Error" IsOpen="True" Margin="0,0,0,8" />
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the InfoBars above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13" />
+                </Border>
+            </StackPanel>
+        </Border>
 
-				<InfoBar Title="Closable InfoBar" Message="Click the close button to dismiss this message." IsClosable="True" IsOpen="True" />
-			</StackPanel>
-		</Border>
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating, showing and dismissing notifications from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13" />
+                </Border>
+            </StackPanel>
+        </Border>
 
-		<!-- Features -->
-		<Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-			<StackPanel Orientation="Vertical">
-				<TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
-				<TextBlock Text="• Four severity levels (Info, Success, Warning, Error)" Margin="0,0,0,4" />
-				<TextBlock Text="• Title and message content" Margin="0,0,0,4" />
-				<TextBlock Text="• Optional close button" Margin="0,0,0,4" />
-				<TextBlock Text="• Action button support" Margin="0,0,0,4" />
-				<TextBlock Text="• Custom content area" Margin="0,0,0,4" />
-			</StackPanel>
-		</Border>
-
-		<!-- XAML Code Example -->
-		<Border Background="{DynamicResource GalleryCardBackground}"
-				BorderBrush="{DynamicResource GalleryBorderDefault}"
-				BorderThickness="1"
-				CornerRadius="14"
-				Padding="20"
-				Margin="0,0,0,16">
-			<StackPanel Orientation="Vertical">
-				<TextBlock Text="XAML Code Example"
-						   FontSize="16"
-						   Margin="0,0,0,16"/>
-				<Border Background="{DynamicResource GalleryCardInnerBackground}"
-						CornerRadius="8"
-						Padding="0"
-						HorizontalAlignment="Stretch">
-					<EditControl x:Name="XamlCodeEditor"
-								 Height="200"
-								 HorizontalAlignment="Stretch"
-								 IsReadOnly="True"
-								 ShowLineNumbers="True"
-								 FontSize="13"/>
-				</Border>
-			</StackPanel>
-		</Border>
-
-		<!-- C# Code Example -->
-		<Border Background="{DynamicResource GalleryCardBackground}"
-				BorderBrush="{DynamicResource GalleryBorderDefault}"
-				BorderThickness="1"
-				CornerRadius="14"
-				Padding="20"
-				Margin="0,0,0,16">
-			<StackPanel Orientation="Vertical">
-				<TextBlock Text="C# Code Example"
-						   FontSize="16"
-						   Margin="0,0,0,16"/>
-				<Border Background="{DynamicResource GalleryCardInnerBackground}"
-						CornerRadius="8"
-						Padding="0"
-						HorizontalAlignment="Stretch">
-					<EditControl x:Name="CSharpCodeEditor"
-								 Height="200"
-								 HorizontalAlignment="Stretch"
-								 IsReadOnly="True"
-								 ShowLineNumbers="True"
-								 FontSize="13"/>
-				</Border>
-			</StackPanel>
-		</Border>
-	</StackPanel>
+    </StackPanel>
 </Page>

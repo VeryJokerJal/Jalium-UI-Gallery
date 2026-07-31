@@ -180,22 +180,22 @@ var outlineMap = new MiniMap
         {
             new MapMarker
             {
-                Location = new GeoPoint(40.7128, -74.0060),
-                Label = "New York",
+                Location = new GeoPoint(39.9042, 116.4074),
+                Label = "Beijing",
                 Fill = new SolidColorBrush(Color.FromRgb(0xE0, 0x3E, 0x3E)),
                 MarkerSize = 12
             },
             new MapMarker
             {
-                Location = new GeoPoint(34.0522, -118.2437),
-                Label = "Los Angeles",
+                Location = new GeoPoint(31.2304, 121.4737),
+                Label = "Shanghai",
                 Fill = new SolidColorBrush(Color.FromRgb(0x21, 0x96, 0xF3)),
                 MarkerSize = 12
             },
             new MapMarker
             {
-                Location = new GeoPoint(41.8781, -87.6298),
-                Label = "Chicago",
+                Location = new GeoPoint(23.1291, 113.2644),
+                Label = "Guangzhou",
                 Fill = new SolidColorBrush(Color.FromRgb(0x4C, 0xAF, 0x50)),
                 MarkerSize = 12
             }
@@ -204,8 +204,9 @@ var outlineMap = new MiniMap
         var mapView = new MapView
         {
             Height = 300,
-            Center = new GeoPoint(39.8283, -98.5795), // Center of US
+            Center = new GeoPoint(33.0, 113.0), // Center of China
             ZoomLevel = 4,
+            TileSource = GalleryTileSources.Amap,
             ShowZoomControls = true,
             Markers = markers
         };

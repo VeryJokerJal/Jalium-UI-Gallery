@@ -3,225 +3,150 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SystemNotificationPage"
       Title="SystemNotification">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Vertical" Margin="0,0,0,24">
-            <!-- Page Title -->
-            <TextBlock Text="System Notification"
-                       FontSize="32"
-                       Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-            <!-- Description -->
-            <TextBlock Text="Sends native OS notifications via SystemNotificationManager. Supports titles, body text, actions, priority levels, and activation callbacks."
-                       FontSize="14"
-                       Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="SystemNotification" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Sends native OS notifications through SystemNotificationManager, with titles, body text, action buttons, priority levels, and activation callbacks." />
 
-            <!-- Basic Notification Card -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Basic Notification"
-                               FontSize="16"
-                               Margin="0,0,0,4"/>
-                    <TextBlock Text="Send a simple system notification with title and body text."
-                               FontSize="12"
-                               Margin="0,0,0,16"/>
-
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                <TextBlock Text="Title:" Width="80" VerticalAlignment="Center"/>
-                                <TextBox x:Name="BasicTitleBox" Text="Hello from Jalium.UI" Width="300" Height="28"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                <TextBlock Text="Body:" Width="80" VerticalAlignment="Center"/>
-                                <TextBox x:Name="BasicBodyBox" Text="This is a system notification demo." Width="300" Height="28"/>
-                            </StackPanel>
-                            <Button x:Name="SendBasicButton" Content="Send Notification" Width="150" Height="28"/>
+        <!-- Basic notification -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Notification" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Send a simple system notification with title and body text." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Title:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox x:Name="BasicTitleBox" Text="Hello from Jalium.UI" Width="300" Height="28"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
-
-            <!-- Priority Levels Card -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Priority Levels"
-                               FontSize="16"
-                               Margin="0,0,0,4"/>
-                    <TextBlock Text="Notifications can be sent with different priority levels that affect delivery behavior."
-                               FontSize="12"
-                               Margin="0,0,0,16"/>
-
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16">
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="LowPriorityButton" Content="Low" Width="70" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="NormalPriorityButton" Content="Normal" Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="HighPriorityButton" Content="High" Width="70" Height="28"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Body:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox x:Name="BasicBodyBox" Text="This is a system notification demo." Width="300" Height="28"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
+                        <Button x:Name="SendBasicButton" Content="Send Notification" Width="150" Height="28"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- Notification with Actions Card -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Notification with Actions"
-                               FontSize="16"
-                               Margin="0,0,0,4"/>
-                    <TextBlock Text="Add action buttons to notifications. The Activated event fires when the user clicks the notification or an action button."
-                               FontSize="12"
-                               Margin="0,0,0,16"/>
+        <!-- Priority levels -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Priority Levels" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Notifications can be sent with different priority levels that affect delivery behavior." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Button x:Name="LowPriorityButton" Content="Low" Width="70" Height="28" Margin="0,0,10,10"/>
+                        <Button x:Name="NormalPriorityButton" Content="Normal" Width="80" Height="28" Margin="0,0,10,10"/>
+                        <Button x:Name="HighPriorityButton" Content="High" Width="70" Height="28" Margin="0,0,10,10"/>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16">
-                        <StackPanel Orientation="Vertical">
-                            <Button x:Name="SendActionButton" Content="Send with Actions" Width="150" Height="28" Margin="0,0,0,12"/>
-                            <TextBlock x:Name="ActionResultText"
-                                       Text="Click a notification action to see the result here."
-                                       FontSize="12"/>
+        <!-- Notification with actions -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Notification with Actions" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Add action buttons to notifications. The Activated event fires when the user clicks the notification or an action button." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="SendActionButton" Content="Send with Actions" Width="150" Height="28" Margin="0,0,0,12"/>
+                        <TextBlock x:Name="ActionResultText"
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Click a notification action to see the result here."/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Advanced options -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Advanced Options" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Configure notification expiration, silent mode, tag/group for replacement, and manage existing notifications." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Tag:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox x:Name="TagBox" Text="demo-tag" Width="200" Height="28"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
-
-            <!-- Advanced Options Card -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Advanced Options"
-                               FontSize="16"
-                               Margin="0,0,0,4"/>
-                    <TextBlock Text="Configure notification expiration, silent mode, tag/group for replacement, and manage existing notifications."
-                               FontSize="12"
-                               Margin="0,0,0,16"/>
-
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                <TextBlock Text="Tag:" Width="80" VerticalAlignment="Center"/>
-                                <TextBox x:Name="TagBox" Text="demo-tag" Width="200" Height="28"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                <TextBlock Text="Group:" Width="80" VerticalAlignment="Center"/>
-                                <TextBox x:Name="GroupBox" Text="gallery" Width="200" Height="28"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                <TextBlock Text="Expiration:" Width="80" VerticalAlignment="Center"/>
-                                <Slider x:Name="ExpirationSlider" Minimum="0" Maximum="30" Value="10" Width="150" Margin="0,0,8,0"/>
-                                <TextBlock x:Name="ExpirationText" Text="10s" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <CheckBox x:Name="SilentCheckBox" Content="Silent (no sound)" Margin="0,0,0,12"/>
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="SendAdvancedButton" Content="Send Tagged" Width="120" Height="28" Margin="0,0,8,0"/>
-                                <Button x:Name="RemoveTagButton" Content="Remove by Tag" Width="120" Height="28" Margin="0,0,8,0"/>
-                                <Button x:Name="ClearAllButton" Content="Clear All" Width="100" Height="28"/>
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Group:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox x:Name="GroupBox" Text="gallery" Width="200" Height="28"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
-
-            <!-- Platform Support Card -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Platform Support"
-                               FontSize="16"
-                               Margin="0,0,0,4"/>
-                    <TextBlock Text="System notification availability depends on the current platform."
-                               FontSize="12"
-                               Margin="0,0,0,16"/>
-
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="16">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock x:Name="SupportedText"
-                                       Text="Checking..."
-                                       FontSize="13"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Expiration:" Width="80" VerticalAlignment="Center"/>
+                            <Slider x:Name="ExpirationSlider" Minimum="0" Maximum="30" Value="10" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock x:Name="ExpirationText" Text="10s" VerticalAlignment="Center"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
+                        <CheckBox x:Name="SilentCheckBox" Content="Silent (no sound)" Margin="0,0,0,12"/>
+                        <WrapPanel>
+                            <Button x:Name="SendAdvancedButton" Content="Send Tagged" Width="120" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="RemoveTagButton" Content="Remove by Tag" Width="120" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="ClearAllButton" Content="Clear All" Width="100" Height="28" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- XAML Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="XAML Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="XamlCodeEditor"
-                                     Height="150"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
+        <!-- Platform support -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Platform Support" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="System notification availability depends on the current platform." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="SupportedText"
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Checking..."/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- C# Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="C# Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="CSharpCodeEditor"
-                                     Height="350"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Notifications are code-only — declare the trigger buttons in markup and drive the manager from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="150"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Initialize the manager, compose a NotificationContent, send it, and handle activation and dismissal." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="350"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
 </Page>

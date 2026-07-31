@@ -4,622 +4,329 @@
       Title="Jalium.UI Gallery Overview">
 
     <!--
-        Landing overlay. Layout is a five-region Grid:
-          • Top strip    — 6 input cards
-          • Bottom strip — 6 feedback / presentation cards
-          • Left column  — 3 content-oriented cards
-          • Right column — 4 effect / shape cards
-          • Center       — Hero CTA
-        Every showcase uses the framework-native control (Button, CheckBox,
-        RadioButton, Slider, ProgressBar, TextBox, PasswordBox, ComboBox,
-        AutoCompleteBox, NumberBox, ToggleSwitch, SplitButton, Markdown,
-        TextEffectPresenter, plus Shape="SuperEllipse" and LiquidGlass="True"
-        on Border, and live Razor @{ for } markup). Code-behind only forwards
-        the "Enter Gallery" click to MainWindow.
+        "ISSUE Nº 1 — THE GREEN PRESS"  ·  editorial / magazine-cover landing.
+
+        DIRECTION: luxury editorial restraint. One oversized masthead is the
+        hero; a single amber accent cuts the deep-forest field. A 1px vertical
+        rule splits the cover asymmetrically into a masthead column plus a
+        numbered "specimen rail" (a type-sample book), so the breadth of the
+        library is implied without a card wall. A running head and a colophon
+        frame it like a real journal.
+
+        Layout: a 4-column / 3-row editorial grid
+          cols  88 margin | masthead * | 1 rule | 326 specimen rail
+          rows  104 running head | body * | 132 colophon
+        wrapped in an atmosphere Canvas (off-canvas halo blooms + a ghost "J"
+        watermark) that sits behind the type.
+
+        Every gradient / glow / shadow / staggered fade lives in
+        OverviewPage.jalxaml.cs. This markup is pure structure plus
+        {DynamicResource} tokens, so it re-skins live across the forest-dark
+        and mint-light palettes. Named regions let code-behind paint and
+        animate them; animated children start at Opacity 0 and the FadeAnimator
+        tweens every one of them back to 1. The only contract back to the shell
+        is the central "Enter the Gallery" button, wired to OnEnterButtonClick.
     -->
-    <Grid>
+    <Border x:Name="PosterRoot">
+        <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="145"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="145"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="230"/>
-        </Grid.ColumnDefinitions>
+            <!-- ============================================================ -->
+            <!--  ATMOSPHERE  ·  off-canvas halo blooms + ghost glyph          -->
+            <!--  (painted and glowed in code-behind; sits behind the type)    -->
+            <!-- ============================================================ -->
+            <Canvas x:Name="AuraLayer">
+                <Border x:Name="HaloEmerald"
+                        Canvas.Left="-150" Canvas.Top="380"
+                        Width="560" Height="560" CornerRadius="280"
+                        Opacity="0"/>
+                <Border x:Name="HaloAmber"
+                        Canvas.Left="1080" Canvas.Top="-160"
+                        Width="420" Height="420" CornerRadius="210"
+                        Opacity="0"/>
+                <TextBlock x:Name="GhostGlyph"
+                           Canvas.Left="690" Canvas.Top="120"
+                           Text="J"
+                           FontFamily="Segoe UI Variable Display, Segoe UI"
+                           FontSize="640" FontWeight="Bold"
+                           Opacity="0"
+                           Foreground="{DynamicResource GalleryAccent}"/>
+            </Canvas>
 
-        <!-- ============================================================== -->
-        <!--                        TOP STRIP (6 cards)                     -->
-        <!-- ============================================================== -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="0,12,0,0">
+            <!-- ============================================================ -->
+            <!--  EDITORIAL GRID                                               -->
+            <!-- ============================================================ -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="104"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="132"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="88"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="326"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Buttons -->
-            <Border Width="170" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Buttons"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Click Me" Height="28" MinWidth="72"
-                                Margin="0,0,6,0"/>
-                        <Button Content="Disabled" Height="28" MinWidth="72"
-                                IsEnabled="False"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-
-            <!-- Checkboxes -->
-            <Border Width="180" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Checkboxes"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,6"/>
-                    <CheckBox Margin="0,0,0,2">
-                        <TextBlock Text="Option 1" FontSize="11"/>
-                    </CheckBox>
-                    <CheckBox IsChecked="True" Margin="0,0,0,2">
-                        <TextBlock Text="Option 2 (checked)" FontSize="11"/>
-                    </CheckBox>
-                    <CheckBox IsEnabled="False">
-                        <TextBlock Text="Disabled option" FontSize="11"/>
-                    </CheckBox>
-                </StackPanel>
-            </Border>
-
-            <!-- Text Inputs -->
-            <Border Width="210" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Text Inputs"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,8"/>
-                    <TextBox Text="Pre-filled text" Height="28"
-                             Margin="0,0,0,6"/>
-                    <PasswordBox Password="secret123" Height="28"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Number Box -->
-            <Border Width="170" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Number Box"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <NumberBox Value="42"
-                               SpinButtonPlacementMode="Inline"
-                               HorizontalAlignment="Stretch"/>
-                </StackPanel>
-            </Border>
-
-            <!-- ComboBox -->
-            <Border Width="170" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="ComboBox"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <ComboBox Height="28" SelectedIndex="2"
-                              HorizontalAlignment="Stretch">
-                        <ComboBoxItem Content="Apple"/>
-                        <ComboBoxItem Content="Banana"/>
-                        <ComboBoxItem Content="Cherry"/>
-                        <ComboBoxItem Content="Orange"/>
-                        <ComboBoxItem Content="Grape"/>
-                    </ComboBox>
-                </StackPanel>
-            </Border>
-
-            <!-- Auto Complete -->
-            <Border Width="190" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12">
-                <StackPanel>
-                    <TextBlock Text="Auto Complete"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <AutoCompleteBox Watermark="Type to search..."
-                                     HorizontalAlignment="Stretch"/>
-                </StackPanel>
-            </Border>
-
-        </StackPanel>
-
-        <!-- ============================================================== -->
-        <!--                    LEFT COLUMN (3 cards)                       -->
-        <!-- ============================================================== -->
-        <StackPanel Grid.Row="1" Grid.Column="0"
-                    Orientation="Vertical"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-
-            <!-- Radio Buttons -->
-            <Border Width="210" Height="160"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,0,12">
-                <StackPanel>
-                    <TextBlock Text="Radio Buttons"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,8"/>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Margin="0,0,12,0">
-                            <TextBlock Text="Size" FontSize="10"
-                                       Margin="0,0,0,4"/>
-                            <RadioButton GroupName="OverviewSize" IsChecked="True">
-                                <TextBlock Text="Small" FontSize="11"/>
-                            </RadioButton>
-                            <RadioButton GroupName="OverviewSize">
-                                <TextBlock Text="Medium" FontSize="11"/>
-                            </RadioButton>
-                            <RadioButton GroupName="OverviewSize">
-                                <TextBlock Text="Large" FontSize="11"/>
-                            </RadioButton>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock Text="Speed" FontSize="10"
-                                       Margin="0,0,0,4"/>
-                            <RadioButton GroupName="OverviewSpeed" IsChecked="True">
-                                <TextBlock Text="Slow" FontSize="11"/>
-                            </RadioButton>
-                            <RadioButton GroupName="OverviewSpeed">
-                                <TextBlock Text="Normal" FontSize="11"/>
-                            </RadioButton>
-                            <RadioButton GroupName="OverviewSpeed">
-                                <TextBlock Text="Fast" FontSize="11"/>
-                            </RadioButton>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-
-            <!-- Markdown Preview -->
-            <Border Width="210" Height="170"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,0,12">
-                <StackPanel>
-                    <TextBlock Text="Markdown Preview"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,6"/>
-                    <Markdown Height="130"
-                              Text="# Jalium.UI&#10;Render rich docs directly.&#10;- Native parsing&#10;- Live inline editor&#10;- Tables, task lists"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Razor Syntax (live @{ for } loop) -->
-            <Border Width="210" Height="140"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12">
-                <StackPanel>
-                    <TextBlock Text="Razor Syntax"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,6"/>
-                    <TextBlock Text="@@{ for } generates these:"
-                               FontSize="10"
-                               FontFamily="Consolas"
-                               Margin="0,0,0,8"/>
-                    <WrapPanel>
-                        @{
-                            for (var i = 1; i <= 5; i++) {
-                                <Border Background="{DynamicResource GalleryAccent}"
-                                        CornerRadius="6"
-                                        Padding="8,3"
-                                        Margin="0,0,4,4">
-                                    <TextBlock Text="@(i.ToString())"
-                                               FontSize="11"
-                                               FontWeight="Bold"/>
-                                </Border>
-                            }
-                        }
-                    </WrapPanel>
-                </StackPanel>
-            </Border>
-
-        </StackPanel>
-
-        <!-- ============================================================== -->
-        <!--                       CENTER HERO                              -->
-        <!-- ============================================================== -->
-        <Border Grid.Row="1" Grid.Column="1"
-                Width="540" Height="430"
-                Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryAccent}"
-                BorderThickness="1.5"
-                CornerRadius="22"
-                Padding="44,34,44,34"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                <!-- Logo disc -->
-                <Border Width="72" Height="72"
-                        CornerRadius="36"
-                        Background="{DynamicResource GalleryAccent}"
-                        BorderBrush="{DynamicResource GalleryAccentLight}"
-                        BorderThickness="2"
-                        HorizontalAlignment="Center">
-                    <TextBlock Text="J"
-                               FontSize="42" FontWeight="Bold"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
-                </Border>
-
-                <TextBlock Text="Jalium UI"
-                           FontSize="46" FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           Margin="0,14,0,4"/>
-
-                <TextBlock Text="Modern  •  Fast  •  Beautiful  •  Cross-Platform"
-                           FontSize="13" FontWeight="SemiBold"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,18"/>
-
-                <TextBlock Text="A control library with WPF-style ergonomics, a GPU-accelerated renderer, and a live showcase of every component."
-                           FontSize="12"
-                           TextWrapping="Wrap"
-                           TextAlignment="Center"
-                           MaxWidth="400"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,24"/>
-
-                <Button x:Name="EnterButton"
-                        Content="Enter Gallery  →"
-                        Height="48" MinWidth="220"
-                        FontSize="15" FontWeight="Bold"
-                        Padding="28,0,28,0"
-                        HorizontalAlignment="Center"
-                        Click="OnEnterButtonClick"/>
-            </StackPanel>
-        </Border>
-
-        <!-- ============================================================== -->
-        <!--                    RIGHT COLUMN (4 cards)                      -->
-        <!-- ============================================================== -->
-        <StackPanel Grid.Row="1" Grid.Column="2"
-                    Orientation="Vertical"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-
-            <!-- Drag & Drop -->
-            <Border Width="210" Height="115"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,0,10">
-                <StackPanel>
-                    <TextBlock Text="Drag &amp; Drop"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,8"/>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Border Background="{DynamicResource GalleryAccent}"
-                                    CornerRadius="6" Padding="8,3" Margin="0,0,0,3">
-                                <TextBlock Text="Item A" FontSize="10"/>
-                            </Border>
-                            <Border Background="#38BDF8"
-                                    CornerRadius="6" Padding="8,3" Margin="0,0,0,3">
-                                <TextBlock Text="Item B" FontSize="10"/>
-                            </Border>
-                            <Border Background="#EF4444"
-                                    CornerRadius="6" Padding="8,3">
-                                <TextBlock Text="Item C" FontSize="10"/>
-                            </Border>
-                        </StackPanel>
-                        <Border Width="80" Height="70"
-                                Background="{DynamicResource GalleryCardInnerBackground}"
-                                BorderBrush="{DynamicResource GalleryBorderStrong}"
-                                BorderThickness="1.5"
-                                CornerRadius="8"
-                                AllowDrop="True"
-                                Margin="10,0,0,0">
-                            <TextBlock Text="Drop here"
-                                       FontSize="10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-
-            <!-- Sections & Layout -->
-            <Border Width="210" Height="115"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,0,10">
-                <StackPanel>
-                    <TextBlock Text="Sections &amp; Layout"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,6"/>
-                    <TextBlock Text="Reusable sections anywhere"
-                               FontSize="10"
-                               Margin="0,0,0,6"/>
-                    <Border Background="{DynamicResource GalleryAccent}"
-                            CornerRadius="6" Padding="8,3" Margin="0,0,0,3">
-                        <TextBlock Text="Jalium.UI" FontSize="10" FontWeight="SemiBold"/>
-                    </Border>
-                    <StackPanel Orientation="Horizontal">
-                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                                CornerRadius="6" Padding="6,2" Margin="0,0,4,0">
-                            <TextBlock Text="Home" FontSize="10"/>
-                        </Border>
-                        <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                                CornerRadius="6" Padding="6,2">
-                            <TextBlock Text="Settings" FontSize="10"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-
-            <!-- SuperEllipse Shape -->
-            <Border Width="210" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,0,10">
-                <StackPanel>
-                    <TextBlock Text="SuperEllipse Shape"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,8"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Border Width="44" Height="44"
-                                Shape="SuperEllipse" SuperEllipseN="2"
-                                Background="{DynamicResource GalleryAccent}"
-                                Margin="0,0,6,0"/>
-                        <Border Width="44" Height="44"
+                <!-- ===== RUNNING HEAD ===== -->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+                      x:Name="RunningHead" Opacity="0" Margin="0,30,40,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Width="30" Height="30"
                                 Shape="SuperEllipse" SuperEllipseN="4"
-                                Background="#38BDF8"
-                                Margin="0,0,6,0"/>
-                        <Border Width="44" Height="44"
-                                Shape="SuperEllipse" SuperEllipseN="6"
-                                Background="#8BFAB0"/>
-                    </StackPanel>
-                    <TextBlock Text="N=2 · N=4 (iOS) · N=6"
-                               FontSize="9"
-                               HorizontalAlignment="Center"
-                               Margin="0,4,0,0"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Liquid Glass -->
-            <Border Width="210" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12">
-                <StackPanel>
-                    <TextBlock Text="Liquid Glass"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,6"/>
-                    <Grid Height="68">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="22" Height="22" Background="#FF6B6B"/>
-                                <Border Width="22" Height="22" Background="#4ECDC4"/>
-                                <Border Width="22" Height="22" Background="#FFEAA7"/>
-                                <Border Width="22" Height="22" Background="#8BFAB0"/>
-                                <Border Width="22" Height="22" Background="#38BDF8"/>
-                                <Border Width="22" Height="22" Background="#22C55E"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="22" Height="22" Background="#F59E0B"/>
-                                <Border Width="22" Height="22" Background="#EF4444"/>
-                                <Border Width="22" Height="22" Background="#5CF68F"/>
-                                <Border Width="22" Height="22" Background="#06B6D4"/>
-                                <Border Width="22" Height="22" Background="#84CC16"/>
-                                <Border Width="22" Height="22" Background="#48EC7F"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="22" Height="22" Background="#14B8A6"/>
-                                <Border Width="22" Height="22" Background="#F97316"/>
-                                <Border Width="22" Height="22" Background="#6366F1"/>
-                                <Border Width="22" Height="22" Background="#EAB308"/>
-                                <Border Width="22" Height="22" Background="#10B981"/>
-                                <Border Width="22" Height="22" Background="#46EF7E"/>
-                            </StackPanel>
-                        </StackPanel>
-                        <Border Margin="18,8,18,8"
-                                CornerRadius="12"
-                                LiquidGlass="True"
-                                LiquidGlassInteractive="True"
-                                Background="#200078D4">
-                            <TextBlock Text="Liquid Glass"
-                                       FontSize="11"
+                                Background="{DynamicResource GalleryAccent}"
+                                VerticalAlignment="Center" Margin="0,0,14,0">
+                            <TextBlock Text="J"
+                                       FontFamily="Segoe UI Variable Display, Segoe UI"
+                                       FontSize="17" FontWeight="Bold"
+                                       Foreground="#06140C"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
                         </Border>
-                    </Grid>
+                        <TextBlock Text="JALIUM.UI"
+                                   FontFamily="Segoe UI Variable Display, Segoe UI"
+                                   FontSize="15" FontWeight="Bold"
+                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="  /  THE CONTROL GALLERY"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Border x:Name="LiveDot" Width="8" Height="8" CornerRadius="4"
+                                Background="{DynamicResource GalleryAccentLight}"
+                                VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="ISSUE Nº 1"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+
+                <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+                        x:Name="HeadRule" Height="2" CornerRadius="1"
+                        VerticalAlignment="Bottom" Margin="2,0,40,0" Opacity="0"
+                        Background="{DynamicResource GalleryBorderSubtle}"/>
+
+                <!-- ===== HERO MASTHEAD (LEFT) ===== -->
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            VerticalAlignment="Center" Margin="0,0,48,0">
+
+                    <StackPanel x:Name="Kicker" Orientation="Horizontal"
+                                Opacity="0" Margin="2,0,0,22">
+                        <Border x:Name="KickerTick" Width="34" Height="6" CornerRadius="3"
+                                VerticalAlignment="Center" Margin="0,0,14,0"
+                                Background="{DynamicResource GalleryAccent}"/>
+                        <TextBlock Text="A NATIVE .NET 10 UI PLATFORM"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="13" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock x:Name="TitleLine1" Text="Compose"
+                               FontFamily="Segoe UI Variable Display, Segoe UI"
+                               FontSize="84" FontWeight="Bold"
+                               Opacity="0"
+                               Foreground="{DynamicResource GalleryTextPrimary}"/>
+                    <TextBlock x:Name="TitleLine2" Text="interfaces"
+                               FontFamily="Segoe UI Variable Display, Segoe UI"
+                               FontSize="84" FontWeight="Light"
+                               Opacity="0"
+                               Foreground="{DynamicResource GalleryTextSecondary}"/>
+                    <TextBlock x:Name="TitleLine3" Text="that ship."
+                               FontFamily="Segoe UI Variable Display, Segoe UI"
+                               FontSize="84" FontWeight="Bold"
+                               HorizontalAlignment="Left"
+                               Opacity="0" Foreground="#F59E0B"/>
+
+                    <TextBlock x:Name="Deck"
+                               Text="WPF-grade ergonomics, a GPU-accelerated renderer, one XAML dialect across desktop, mobile and web — with every control proven live in this gallery."
+                               FontFamily="Segoe UI" FontSize="16"
+                               MaxWidth="520" Opacity="0" TextWrapping="Wrap"
+                               HorizontalAlignment="Left" Margin="4,28,0,0"
+                               Foreground="{DynamicResource GalleryTextTertiary}"/>
+
+                    <StackPanel x:Name="CtaRow" Orientation="Horizontal"
+                                Opacity="0" Margin="4,38,0,0" VerticalAlignment="Center">
+                        <Button x:Name="EnterButton"
+                                Content="Enter the Gallery  →"
+                                Click="OnEnterButtonClick"
+                                Height="56" MinWidth="248"
+                                FontSize="16" FontWeight="Bold"
+                                Padding="32,0,32,0"/>
+                        <StackPanel Margin="22,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="press [ enter ] to load the gallery"
+                                       FontFamily="Cascadia Code, Consolas" FontSize="12"
+                                       Foreground="{DynamicResource GalleryTextSecondary}"/>
+                            <TextBlock Text="120+ controls · live · gpu · native-aot"
+                                       FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                       Margin="0,3,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-            </Border>
 
-        </StackPanel>
+                <!-- ===== VERTICAL RULE ===== -->
+                <Border Grid.Row="1" Grid.Column="2"
+                        x:Name="SpineRule" Width="1" Opacity="0"
+                        VerticalAlignment="Stretch" Margin="0,24,0,24"
+                        Background="{DynamicResource GalleryBorderSubtle}"/>
 
-        <!-- ============================================================== -->
-        <!--                      BOTTOM STRIP (6 cards)                    -->
-        <!-- ============================================================== -->
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="0,0,0,12">
+                <!-- ===== SPECIMEN RAIL (RIGHT) ===== -->
+                <StackPanel Grid.Row="1" Grid.Column="3"
+                            VerticalAlignment="Center" Margin="34,0,40,0">
 
-            <!-- Split Button -->
-            <Border Width="180" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Split Button"
+                    <TextBlock x:Name="RailHead" Text="SPECIMENS"
+                               FontFamily="Cascadia Code, Consolas"
                                FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <SplitButton Content="Run" Height="32"
-                                 HorizontalAlignment="Stretch">
-                        <SplitButton.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="Jalium.UI.Controls"/>
-                                <MenuFlyoutItem Text="Jalium.UI.Core"/>
-                                <MenuFlyoutItem Text="Jalium.UI.Xaml"/>
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
+                               Opacity="0" Margin="0,0,0,6"
+                               Foreground="{DynamicResource GalleryTextTertiary}"/>
+                    <TextBlock x:Name="RailSub"
+                               Text="A few live, hand-set from the collection"
+                               FontFamily="Segoe UI" FontSize="12" Opacity="0"
+                               TextWrapping="Wrap" Margin="0,0,0,20"
+                               Foreground="{DynamicResource GalleryTextMuted}"/>
+
+                    <StackPanel x:Name="Specimen1" Opacity="0" Margin="0,0,0,16">
+                        <TextBlock Text="01 — ToggleSwitch / CheckBox"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,8"/>
+                        <ToggleSwitch Header="GPU compositing"
+                                      IsOn="True" OnContent="On" OffContent="Off"/>
+                        <CheckBox IsChecked="True" Margin="0,4,0,0">
+                            <TextBlock Text="Hardware acceleration" FontSize="11"
+                                       Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        </CheckBox>
+                    </StackPanel>
+
+                    <Border x:Name="RailDiv1" Height="1" Opacity="0" Margin="0,0,0,16"
+                            Background="{DynamicResource GalleryBorderSubtle}"/>
+
+                    <StackPanel x:Name="Specimen2" Opacity="0" Margin="0,0,0,16">
+                        <TextBlock Text="02 — Slider / ProgressBar"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,10"/>
+                        <Slider Minimum="0" Maximum="100" Value="72"
+                                Height="22" Margin="0,0,0,10"/>
+                        <ProgressBar Value="72" Minimum="0" Maximum="100" Height="6"/>
+                    </StackPanel>
+
+                    <Border x:Name="RailDiv2" Height="1" Opacity="0" Margin="0,0,0,16"
+                            Background="{DynamicResource GalleryBorderSubtle}"/>
+
+                    <StackPanel x:Name="Specimen3" Opacity="0" Margin="0,0,0,16">
+                        <TextBlock Text="03 — SplitButton / ComboBox"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,10"/>
+                        <SplitButton Content="dotnet run" Height="34"
+                                     HorizontalAlignment="Stretch" Margin="0,0,0,8">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Desktop"/>
+                                    <MenuFlyoutItem Text="Android"/>
+                                    <MenuFlyoutItem Text="Web (WASM)"/>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+                        <ComboBox Height="30" SelectedIndex="0"
+                                  HorizontalAlignment="Stretch">
+                            <ComboBoxItem Content="Forest Emerald"/>
+                            <ComboBoxItem Content="Midnight Slate"/>
+                            <ComboBoxItem Content="Amber Dusk"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Border x:Name="RailDiv3" Height="1" Opacity="0" Margin="0,0,0,16"
+                            Background="{DynamicResource GalleryBorderSubtle}"/>
+
+                    <StackPanel x:Name="Specimen4" Opacity="0" Margin="0,0,0,16">
+                        <TextBlock Text="04 — Razor @@{ for } · SuperEllipse"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,10"/>
+                        <WrapPanel>
+                            @{
+                                for (var i = 1; i <= 6; i++) {
+                                    <Border Width="34" Height="34"
+                                            Shape="SuperEllipse" SuperEllipseN="4"
+                                            Background="{DynamicResource GalleryAccent}"
+                                            Margin="0,0,7,7">
+                                        <TextBlock Text="@(i.ToString())"
+                                                   FontFamily="Cascadia Code, Consolas"
+                                                   FontSize="13" FontWeight="Bold"
+                                                   Foreground="#06140C"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Border>
+                                }
+                            }
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <Border x:Name="RailDiv4" Height="1" Opacity="0" Margin="0,0,0,16"
+                            Background="{DynamicResource GalleryBorderSubtle}"/>
+
+                    <StackPanel x:Name="Specimen5" Opacity="0">
+                        <TextBlock Text="05 — LiquidGlass · refractive"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,0,0,10"/>
+                        <Border Height="46" CornerRadius="12"
+                                LiquidGlass="True" LiquidGlassInteractive="True"
+                                Background="#2238BDF8">
+                            <TextBlock Text="frosted · refractive glass"
+                                       FontFamily="Cascadia Code, Consolas" FontSize="11"
+                                       Foreground="{DynamicResource GalleryTextPrimary}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
                 </StackPanel>
-            </Border>
 
-            <!-- Switches -->
-            <Border Width="180" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Switches"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,6"/>
-                    <ToggleSwitch Header="Wi-Fi" IsOn="True"
-                                  OnContent="On" OffContent="Off"/>
-                    <ToggleSwitch Header="Dark Mode"
-                                  OnContent="On" OffContent="Off"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Sliders -->
-            <Border Width="180" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Sliders"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <Slider Minimum="0" Maximum="100" Value="60" Height="20"/>
-                    <Slider Minimum="0" Maximum="100" Value="35" Height="20"/>
-                    <Slider Minimum="0" Maximum="100" Value="80" Height="20"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Progress -->
-            <Border Width="180" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Progress"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,10"/>
-                    <ProgressBar Value="28" Minimum="0" Maximum="100" Height="6"
-                                 Margin="0,0,0,8"/>
-                    <ProgressBar Value="52" Minimum="0" Maximum="100" Height="6"
-                                 Margin="0,0,0,8"/>
-                    <ProgressBar Value="75" Minimum="0" Maximum="100" Height="6"
-                                 Margin="0,0,0,8"/>
-                    <ProgressBar Value="100" Minimum="0" Maximum="100" Height="6"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Indeterminate -->
-            <Border Width="180" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Indeterminate"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,12"/>
-                    <ProgressBar IsIndeterminate="True" Height="6"
-                                 Margin="0,0,0,12"/>
-                    <TextBlock Text="Streaming data..."
-                               FontSize="10"/>
-                </StackPanel>
-            </Border>
-
-            <!-- TextEffectPresenter -->
-            <Border Width="200" Height="120"
-                    Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderSubtle}"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="12">
-                <StackPanel>
-                    <TextBlock Text="TextEffectPresenter"
-                               FontSize="12" FontWeight="SemiBold"
-                               Margin="0,0,0,4"/>
-                    <TextBlock Text="Per-character animated text"
-                               FontSize="10"
-                               Margin="0,0,0,8"/>
-                    <TextEffectPresenter Text="Type a lyric..."
-                                         FontSize="18"
-                                         FontWeight="Bold"/>
-                </StackPanel>
-            </Border>
-
-        </StackPanel>
-
-    </Grid>
+                <!-- ===== FOOTER / COLOPHON ===== -->
+                <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+                      x:Name="Colophon" Opacity="0" Margin="2,0,40,34"
+                      VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Grid.ColumnSpan="2"
+                            Height="1" VerticalAlignment="Top" Margin="0,0,0,18"
+                            Background="{DynamicResource GalleryBorderSubtle}"/>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal"
+                                VerticalAlignment="Center" Margin="0,18,0,0">
+                        <TextBlock Text="DESKTOP" FontFamily="Cascadia Code, Consolas"
+                                   FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="  ·  " FontFamily="Cascadia Code, Consolas" FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"/>
+                        <TextBlock Text="ANDROID" FontFamily="Cascadia Code, Consolas"
+                                   FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="  ·  " FontFamily="Cascadia Code, Consolas" FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"/>
+                        <TextBlock Text="WEB" FontFamily="Cascadia Code, Consolas"
+                                   FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextSecondary}"/>
+                        <TextBlock Text="   —   gpu-rendered · native-aot · 16.6 ms/frame"
+                                   FontFamily="Cascadia Code, Consolas" FontSize="12"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Grid.Column="1" Text="jaliumui.top"
+                               FontFamily="Cascadia Code, Consolas" FontSize="12"
+                               FontWeight="SemiBold" VerticalAlignment="Center"
+                               Margin="0,18,0,0" Foreground="#F59E0B"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
 </Page>

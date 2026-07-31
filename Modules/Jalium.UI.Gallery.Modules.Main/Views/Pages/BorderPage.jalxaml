@@ -3,39 +3,25 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.BorderPage"
       Title="Border">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Border"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A decorator that draws a border, background, or both around its child."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Border" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A decorator that draws a border, background, or both around its child." />
 
-        <!-- Basic Border Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Border"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Border with background and border brush."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Basic border -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Border" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Fill only, stroke only, or both combined on a single decorator." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <Border Width="100" Height="80"
                                 Background="{DynamicResource GalleryAccent}"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="Background"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="12"/>
@@ -43,7 +29,7 @@
                         <Border Width="100" Height="80"
                                 BorderBrush="{DynamicResource GalleryAccent}"
                                 BorderThickness="2"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="Border Only"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="12"/>
@@ -51,91 +37,71 @@
                         <Border Width="100" Height="80"
                                 Background="#1E3A5F"
                                 BorderBrush="{DynamicResource GalleryAccent}"
-                                BorderThickness="2">
+                                BorderThickness="2"
+                                Margin="0,0,10,10">
                             <TextBlock Text="Both"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="12"/>
                         </Border>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Corner Radius Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Corner Radius"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Different corner radius values."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Corner radius -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Corner Radius" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Rounding the corners from square to fully pill-shaped." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <Border Width="80" Height="80"
                                 Background="#22C55E"
                                 CornerRadius="0"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="0"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Width="80" Height="80"
                                 Background="#22C55E"
                                 CornerRadius="14"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="8"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Width="80" Height="80"
                                 Background="#22C55E"
                                 CornerRadius="16"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="16"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Width="80" Height="80"
                                 Background="#22C55E"
-                                CornerRadius="40">
+                                CornerRadius="40"
+                                Margin="0,0,10,10">
                             <TextBlock Text="40"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Border Thickness Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Border Thickness"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Different border thickness values."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Border thickness -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Border Thickness" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Stroke weight from a hairline to a heavy outline." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <Border Width="80" Height="80"
                                 BorderBrush="#179842"
                                 BorderThickness="1"
                                 CornerRadius="8"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="1px"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
@@ -143,7 +109,7 @@
                                 BorderBrush="#179842"
                                 BorderThickness="2"
                                 CornerRadius="8"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="2px"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
@@ -151,47 +117,37 @@
                                 BorderBrush="#179842"
                                 BorderThickness="4"
                                 CornerRadius="8"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="4px"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Width="80" Height="80"
                                 BorderBrush="#179842"
                                 BorderThickness="8"
-                                CornerRadius="8">
+                                CornerRadius="8"
+                                Margin="0,0,10,10">
                             <TextBlock Text="8px"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Padding Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Padding"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Different padding values for content spacing."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
+        <!-- Padding -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Padding" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Inner spacing between the border and its content grows with each value." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <Border Background="#CA5010"
                                 BorderBrush="#FFFFFF"
                                 BorderThickness="1"
                                 CornerRadius="8"
                                 Padding="4"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="4px" FontSize="12"/>
                         </Border>
                         <Border Background="#CA5010"
@@ -199,7 +155,7 @@
                                 BorderThickness="1"
                                 CornerRadius="8"
                                 Padding="8"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="8px" FontSize="12"/>
                         </Border>
                         <Border Background="#CA5010"
@@ -207,35 +163,29 @@
                                 BorderThickness="1"
                                 CornerRadius="8"
                                 Padding="16"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,10">
                             <TextBlock Text="16px" FontSize="12"/>
                         </Border>
                         <Border Background="#CA5010"
                                 BorderBrush="#FFFFFF"
                                 BorderThickness="1"
                                 CornerRadius="8"
-                                Padding="24">
+                                Padding="24"
+                                Margin="0,0,10,10">
                             <TextBlock Text="24px" FontSize="12"/>
                         </Border>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the borders above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -246,21 +196,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building borders and cards in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -270,5 +212,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

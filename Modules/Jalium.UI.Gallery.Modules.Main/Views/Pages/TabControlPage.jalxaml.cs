@@ -17,38 +17,13 @@ public partial class TabControlPage : Page
 
     private void CreateContent()
     {
-        if (ContentPanel == null) return;
+        if (DemoHost == null) return;
 
-        // Title
-        var title = new TextBlock
-        {
-            Text = "TabControl",
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
-        ContentPanel.Children.Add(title);
-
-        // Description
-        var description = new TextBlock
-        {
-            Text = "A control that contains multiple items sharing the same space with a tab strip for navigation.",
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 24),
-            TextWrapping = TextWrapping.Wrap
-        };
-        ContentPanel.Children.Add(description);
-
-        // Basic TabControl
-        AddSection("Basic TabControl", "A simple TabControl with multiple tabs.");
-
+        // Basic TabControl.
         var basicTabControl = new TabControl
         {
             Width = 400,
-            Height = 200,
-            Margin = new Thickness(0, 0, 0, 24)
+            Height = 200
         };
 
         var tab1 = new TabItem { Header = "Home" };
@@ -63,17 +38,15 @@ public partial class TabControlPage : Page
         tab3.Content = CreateTabContent("Application settings and preferences.", new SolidColorBrush(Color.FromRgb(255, 152, 0)));
         basicTabControl.Items.Add(tab3);
 
-        ContentPanel.Children.Add(basicTabControl);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Basic TabControl", "A simple TabControl with multiple tabs.", basicTabControl));
 
-        // TabControl with Bottom placement
-        AddSection("Bottom Tab Placement", "Tabs positioned at the bottom of the control.");
-
+        // TabControl with Bottom placement.
         var bottomTabControl = new TabControl
         {
             Width = 400,
             Height = 200,
-            TabStripPlacement = Dock.Bottom,
-            Margin = new Thickness(0, 0, 0, 24)
+            TabStripPlacement = Dock.Bottom
         };
 
         var bottomTab1 = new TabItem { Header = "Tab 1" };
@@ -84,24 +57,12 @@ public partial class TabControlPage : Page
         bottomTab2.Content = CreateTabContent("Content for Tab 2", new SolidColorBrush(Color.FromRgb(156, 39, 176)));
         bottomTabControl.Items.Add(bottomTab2);
 
-        ContentPanel.Children.Add(bottomTabControl);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Bottom Tab Placement", "Tabs positioned at the bottom of the control.", bottomTabControl));
 
-        // Selection changed event
-        AddSection("Selection Changed Event", "Responds to tab selection changes.");
-
-        var eventStack = new StackPanel
-        {
-            Orientation = Orientation.Vertical,
-            Margin = new Thickness(0, 0, 0, 16)
-        };
-
-        var resultText = new TextBlock
-        {
-            Text = "Selected tab: Home",
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
-        eventStack.Children.Add(resultText);
+        // Selection changed event.
+        var resultText = GalleryUi.ValueLabel("Selected tab: Home");
+        resultText.Margin = new Thickness(0, 0, 0, 8);
 
         var eventTabControl = new TabControl
         {
@@ -129,8 +90,15 @@ public partial class TabControlPage : Page
             }
         };
 
+        var eventStack = new StackPanel
+        {
+            Orientation = Orientation.Vertical
+        };
+        eventStack.Children.Add(resultText);
         eventStack.Children.Add(eventTabControl);
-        ContentPanel.Children.Add(eventStack);
+
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Selection Changed Event", "Responds to tab selection changes.", eventStack));
     }
 
     private Border CreateTabContent(string text, Brush accentColor)
@@ -237,29 +205,5 @@ tabControl.TabStripPlacement = Dock.Bottom;";
             CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
             CSharpCodeEditor.LoadText(CSharpExample);
         }
-    }
-
-    private void AddSection(string titleText, string descriptionText)
-    {
-        if (ContentPanel == null) return;
-
-        var sectionTitle = new TextBlock
-        {
-            Text = titleText,
-            FontSize = GalleryTheme.FontSizeSubtitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 16, 0, 4)
-        };
-        ContentPanel.Children.Add(sectionTitle);
-
-        var sectionDesc = new TextBlock
-        {
-            Text = descriptionText,
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 12)
-        };
-        ContentPanel.Children.Add(sectionDesc);
     }
 }

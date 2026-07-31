@@ -1,4 +1,5 @@
 using Jalium.UI;
+using Jalium.UI.Controls.Themes;
 using Jalium.UI.Gallery.Modules.Main.Themes;
 
 namespace Jalium.UI.Gallery.Modules.Main;
@@ -20,6 +21,13 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+
+        // The gallery is a component workbench first, so start with the crisp
+        // light canvas used by the reference design. Users can still switch to
+        // the dark palette from the navigation footer.
+        ThemeManager.ApplyTheme(ThemeVariant.Light);
+        ThemeManager.ApplyAccent(GalleryTheme.AccentPrimary);
+        GalleryTheme.CurrentMode = GalleryThemeMode.Light;
 
         // Seed the gallery-scoped palette so every {DynamicResource Gallery...}
         // reference in the pages resolves before the first window renders. The

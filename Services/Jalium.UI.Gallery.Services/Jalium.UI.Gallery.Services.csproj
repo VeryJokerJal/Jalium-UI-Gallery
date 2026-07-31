@@ -9,12 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Controls\Jalium.UI.Controls.csproj" />
     <ProjectReference Include="..\Jalium.UI.Gallery.Services.Interfaces\Jalium.UI.Gallery.Services.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- IServiceCollection + AddSingleton extensions used by ServiceCollectionExtensions.AddAppServices(). -->
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
   </ItemGroup>
 
 </Project>

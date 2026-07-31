@@ -3,133 +3,83 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.BarChartPage"
       Title="BarChart">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="BarChart"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Displays data as grouped, stacked, or horizontal bars with optional value labels."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="BarChart" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Renders numeric series as grouped, stacked, or horizontal bars with optional value labels, gridlines, and a legend." />
 
-        <!-- Grouped Bars Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Grouped Bars"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Multiple series displayed as grouped bars side by side for easy comparison."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="GroupedBarContainer" Orientation="Vertical"/>
+        <!-- Grouped Bars -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Grouped Bars" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Multiple series displayed as grouped bars side by side for easy comparison." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="GroupedBarContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Stacked Bars Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Stacked Bars"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Series stacked on top of each other to show total and composition."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="StackedBarContainer" Orientation="Vertical"/>
+        <!-- Stacked Bars -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stacked Bars" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Series stacked on top of each other to show total and composition." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="StackedBarContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Horizontal Bars Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Horizontal Bars"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Bars rendered horizontally, useful for category comparisons with long labels."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel x:Name="HorizontalBarContainer" Orientation="Vertical"/>
+        <!-- Horizontal Bars -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Horizontal Bars" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Bars rendered horizontally, useful for category comparisons with long labels." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="HorizontalBarContainer" Orientation="Vertical" />
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for a grouped bar chart with two series." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building and configuring a BarChart with series and data points in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

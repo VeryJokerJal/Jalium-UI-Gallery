@@ -3,188 +3,127 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.FramePage"
       Title="Frame">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Frame"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A container that supports navigation between pages."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Frame" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A container that hosts page content and navigates between pages, keeping a back and forward history along the way." />
 
-        <!-- Basic Frame Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Frame"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A frame can host and navigate between pages."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                            <Button x:Name="NavigatePage1Button" Content="Page 1" Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="NavigatePage2Button" Content="Page 2" Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="NavigatePage3Button" Content="Page 3" Width="80" Height="28"/>
-                        </StackPanel>
+        <!-- Basic Frame -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Frame" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A frame can host and navigate between pages." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="NavigatePage1Button" Content="Page 1" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="NavigatePage2Button" Content="Page 2" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="NavigatePage3Button" Content="Page 3" Width="80" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
                         <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8">
-                            <Frame x:Name="DemoFrame" Width="400" Height="200"/>
+                            <Frame x:Name="DemoFrame" Width="400" Height="200" />
                         </Border>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Navigation Controls Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Navigation Controls"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Frame supports back and forward navigation."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                            <Button x:Name="BackButton" Content="← Back" Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="ForwardButton" Content="Forward →" Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="RefreshButton" Content="Refresh" Width="80" Height="28"/>
-                        </StackPanel>
+        <!-- Navigation Controls -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Navigation Controls" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Frame supports back and forward navigation." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="BackButton" Content="← Back" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="ForwardButton" Content="Forward →" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="RefreshButton" Content="Refresh" Width="80" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
                         <TextBlock x:Name="NavigationHistoryText"
-                                   Text="Navigation history: Empty"
-                                   FontSize="12"/>
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="Navigation history: Empty" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Frame Properties Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Frame Properties"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Common frame configuration options."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <CheckBox Content="Show navigation UI" Margin="0,0,0,8"/>
-                        <CheckBox Content="Enable journal (history)" Margin="0,0,0,8" IsChecked="True"/>
-                        <CheckBox Content="Sandboxed navigation" Margin="0,0,0,8"/>
+        <!-- Frame Properties -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Frame Properties" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Common frame configuration options." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <CheckBox Content="Show navigation UI" Margin="0,0,0,8" />
+                        <CheckBox Content="Enable journal (history)" Margin="0,0,0,8" IsChecked="True" />
+                        <CheckBox Content="Sandboxed navigation" Margin="0,0,0,8" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Cache size:" Width="100" VerticalAlignment="Center"/>
-                            <NumberBox Width="100" Height="28" Value="10" Minimum="0" Maximum="100"/>
+                            <TextBlock Text="Cache size:" Width="100" VerticalAlignment="Center" />
+                            <NumberBox Width="100" Height="28" Value="10" Minimum="0" Maximum="100" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Use Cases Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Common Use Cases"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Frame is useful for various navigation scenarios."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="• Wizard-style interfaces" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Multi-step forms" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Browser-like navigation" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Embedded page content" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Help system navigation"/>
+        <!-- Common Use Cases -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Frame is useful for various navigation scenarios." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Text="• Wizard-style interfaces" Margin="0,0,0,8" />
+                        <TextBlock Text="• Multi-step forms" Margin="0,0,0,8" />
+                        <TextBlock Text="• Browser-like navigation" Margin="0,0,0,8" />
+                        <TextBlock Text="• Embedded page content" Margin="0,0,0,8" />
+                        <TextBlock Text="• Help system navigation" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the frame and its navigation buttons." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Swapping frame content and handling back and forward navigation in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

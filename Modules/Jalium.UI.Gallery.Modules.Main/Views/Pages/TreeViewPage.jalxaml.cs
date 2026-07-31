@@ -17,54 +17,23 @@ public partial class TreeViewPage : Page
 
     private void CreateContent()
     {
-        if (ContentPanel == null) return;
+        if (DemoHost == null) return;
 
-        // Title
-        var title = new TextBlock
-        {
-            Text = "TreeView",
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
-        ContentPanel.Children.Add(title);
-
-        // Description
-        var description = new TextBlock
-        {
-            Text = "A hierarchical control that displays data in a tree structure with expandable and collapsible nodes.",
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 24),
-            TextWrapping = TextWrapping.Wrap
-        };
-        ContentPanel.Children.Add(description);
-
-        // Basic TreeView
-        AddSection("Basic TreeView", "A simple TreeView with hierarchical items.");
-
+        // Basic TreeView — hierarchical items.
         var basicTreeView = CreateFileSystemTreeView();
         basicTreeView.Width = 300;
         basicTreeView.Height = 250;
-        basicTreeView.Margin = new Thickness(0, 0, 0, 24);
-        ContentPanel.Children.Add(basicTreeView);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Basic TreeView", "A simple TreeView with hierarchical items.", basicTreeView));
 
-        // TreeView with selection
-        AddSection("Selection Event", "Displays the selected item when a node is clicked.");
-
+        // TreeView with selection.
         var eventStack = new StackPanel
         {
-            Orientation = Orientation.Vertical,
-            Margin = new Thickness(0, 0, 0, 16)
+            Orientation = Orientation.Vertical
         };
 
-        var resultText = new TextBlock
-        {
-            Text = "Selected: (none)",
-            Foreground = GalleryTheme.TextSecondaryBrush,
-            Margin = new Thickness(0, 0, 0, 8)
-        };
+        var resultText = GalleryUi.ValueLabel("Selected: (none)");
+        resultText.Margin = new Thickness(0, 0, 0, 8);
         eventStack.Children.Add(resultText);
 
         var eventTreeView = CreateCategoryTreeView();
@@ -80,15 +49,15 @@ public partial class TreeViewPage : Page
         };
 
         eventStack.Children.Add(eventTreeView);
-        ContentPanel.Children.Add(eventStack);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Selection Event", "Displays the selected item when a node is clicked.", eventStack));
 
-        // Pre-expanded TreeView
-        AddSection("Pre-expanded Nodes", "A TreeView with some nodes already expanded.");
-
+        // Pre-expanded TreeView.
         var expandedTreeView = CreateExpandedTreeView();
         expandedTreeView.Width = 300;
         expandedTreeView.Height = 200;
-        ContentPanel.Children.Add(expandedTreeView);
+        DemoHost.Children.Add(GalleryUi.SectionCard(
+            "Pre-expanded Nodes", "A TreeView with some nodes already expanded.", expandedTreeView));
     }
 
     private TreeView CreateFileSystemTreeView()
@@ -246,29 +215,5 @@ var root = new TreeViewItem
             CSharpCodeEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
             CSharpCodeEditor.LoadText(CSharpExample);
         }
-    }
-
-    private void AddSection(string titleText, string descriptionText)
-    {
-        if (ContentPanel == null) return;
-
-        var sectionTitle = new TextBlock
-        {
-            Text = titleText,
-            FontSize = GalleryTheme.FontSizeSubtitle,
-            FontWeight = FontWeights.SemiBold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 16, 0, 4)
-        };
-        ContentPanel.Children.Add(sectionTitle);
-
-        var sectionDesc = new TextBlock
-        {
-            Text = descriptionText,
-            FontSize = GalleryTheme.FontSizeBody,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 12)
-        };
-        ContentPanel.Children.Add(sectionDesc);
     }
 }

@@ -3,54 +3,66 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ShaderEffectsPage"
     Title="Shader Effects">
-    <StackPanel Orientation="Vertical">
-        <!-- Page Header -->
-        <TextBlock Text="Shader Effects" FontSize="32" FontWeight="Bold" Margin="0,0,0,8"/>
-        <TextBlock Text="WPF-compatible shader effect system with BlurEffect, DropShadowEffect, and custom ShaderEffect support." FontSize="14" Margin="0,0,0,24"/>
 
-        <!-- BlurEffect Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Shader Effects" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A WPF-compatible shader effect system with BlurEffect, DropShadowEffect, and custom ShaderEffect support." />
+
+        <!-- BlurEffect -->
+        <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Text="BlurEffect" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="Applies a Gaussian blur effect. Supports KernelType and RenderingBias settings." FontSize="13" Margin="0,0,0,16"/>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="BlurEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Applies a Gaussian blur effect. Supports KernelType and RenderingBias settings." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Blur Radius: " VerticalAlignment="Center"/>
+                            <Slider x:Name="BlurRadiusSlider" Width="200" Minimum="0" Maximum="50" Value="10" Margin="8,0,0,0"/>
+                            <TextBlock x:Name="BlurRadiusText" Text="10" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <TextBlock Text="Blur Radius: " VerticalAlignment="Center"/>
-                    <Slider x:Name="BlurRadiusSlider" Width="200" Minimum="0" Maximum="50" Value="10" Margin="8,0,0,0"/>
-                    <TextBlock x:Name="BlurRadiusText" Text="10" Margin="8,0,0,0" VerticalAlignment="Center"/>
-                </StackPanel>
-
-                <Border x:Name="BlurEffectDemo" Background="#2B2742" Width="200" Height="100" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Left">
-                    <TextBlock Text="Blur Demo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border x:Name="BlurEffectDemo" Background="#2B2742" Width="200" Height="100" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Left">
+                            <TextBlock Text="Blur Demo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- DropShadowEffect Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+        <!-- DropShadowEffect -->
+        <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Text="DropShadowEffect" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="Adds a drop shadow behind elements. Configurable color, blur radius, direction, and depth." FontSize="13" Margin="0,0,0,16"/>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="DropShadowEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Adds a drop shadow behind elements. Configurable color, blur radius, direction, and depth." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Shadow Depth: " VerticalAlignment="Center"/>
+                            <Slider x:Name="ShadowDepthSlider" Width="200" Minimum="0" Maximum="30" Value="5" Margin="8,0,0,0"/>
+                            <TextBlock x:Name="ShadowDepthText" Text="5" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <TextBlock Text="Shadow Depth: " VerticalAlignment="Center"/>
-                    <Slider x:Name="ShadowDepthSlider" Width="200" Minimum="0" Maximum="30" Value="5" Margin="8,0,0,0"/>
-                    <TextBlock x:Name="ShadowDepthText" Text="5" Margin="8,0,0,0" VerticalAlignment="Center"/>
-                </StackPanel>
-
-                <Border x:Name="DropShadowDemo" Background="{DynamicResource GalleryAccent}" Width="150" Height="80" CornerRadius="14" Margin="20,16,0,0" HorizontalAlignment="Left">
-                    <TextBlock Text="Shadow Demo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border x:Name="DropShadowDemo" Background="{DynamicResource GalleryAccent}" Width="150" Height="80" CornerRadius="14" Margin="20,16,0,0" HorizontalAlignment="Left">
+                            <TextBlock Text="Shadow Demo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- ShaderEffect Section -->
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="20" Margin="0,0,0,16">
+        <!-- Custom ShaderEffect -->
+        <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Text="Custom ShaderEffect" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                <TextBlock Text="Create custom pixel shader effects using HLSL. Load compiled shader bytecode and register shader constant/sampler properties." FontSize="13" Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="8" Padding="12">
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom ShaderEffect" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Create custom pixel shader effects using HLSL. Load compiled shader bytecode and register shader constant/sampler properties." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <TextBlock Text="// Example custom shader effect" FontFamily="Consolas" FontSize="12"/>
                         <TextBlock Text="public class MyShaderEffect : ShaderEffect" FontFamily="Consolas" FontSize="12"/>
@@ -66,21 +78,13 @@
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the effect demos above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -91,21 +95,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Applying the effects and wiring the sliders in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -115,5 +111,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

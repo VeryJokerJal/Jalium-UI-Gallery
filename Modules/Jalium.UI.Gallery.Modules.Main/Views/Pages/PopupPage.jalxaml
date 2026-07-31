@@ -1,56 +1,42 @@
-﻿<Page xmlns="http://schemas.jalium.ui/2024"
+<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PopupPage"
       Title="Popup">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="Popup"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A popup window that displays content over other content."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Popup" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A lightweight overlay surface that floats contextual content above the page, anchored to a target element and shown or dismissed on demand." />
 
-        <!-- Basic Popup Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Popup"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click the button to show/hide a popup."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic popup -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic popup" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Toggle a small popup that opens directly below its trigger button." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ShowPopupButton"
                                 Content="Show Popup"
-                                Height="32"/>
+                                Height="32" />
                         <Popup x:Name="BasicPopup"
                                PlacementTarget="{Binding ElementName=ShowPopupButton}"
                                Placement="Bottom">
-                            <Border Background="#2B2742"
-                                    BorderBrush="#5D5D5D"
+                            <Border Background="{DynamicResource GalleryCardBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
                                     BorderThickness="1"
                                     CornerRadius="8"
                                     Padding="16">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="This is a popup!"
-                                               Margin="0,0,0,8"/>
+                                               Margin="0,0,0,8" />
                                     <Button x:Name="ClosePopupButton"
                                             Content="Close"
                                             Width="80"
-                                            Height="28"/>
+                                            Height="28" />
                                 </StackPanel>
                             </Border>
                         </Popup>
@@ -59,35 +45,24 @@
             </StackPanel>
         </Border>
 
-        <!-- Popup with Form Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Popup with Form"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Popups can contain complex content like forms."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Popup with form -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Popup with form" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Popups can host richer content such as a multi-field form." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ShowFormPopupButton"
                                 Content="Quick Add"
                                 Width="100"
-                                Height="32"/>
+                                Height="32" />
                         <Popup x:Name="FormPopup"
                                PlacementTarget="{Binding ElementName=ShowFormPopupButton}"
                                Placement="Bottom"
                                StaysOpen="True">
                             <Border Background="{DynamicResource GalleryCardBackground}"
-                                    BorderBrush="#5D5D5D"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
                                     BorderThickness="1"
                                     CornerRadius="14"
                                     Padding="20"
@@ -96,29 +71,29 @@
                                     <TextBlock Text="Quick Add Item"
                                                FontSize="14"
                                                FontWeight="SemiBold"
-                                               Margin="0,0,0,16"/>
+                                               Margin="0,0,0,16" />
                                     <TextBlock Text="Name"
                                                FontSize="12"
-                                               Margin="0,0,0,4"/>
-                                    <TextBox PlaceholderText="Enter name"
+                                               Margin="0,0,0,4" />
+                                    <TextBox ToolTip="Enter name"
                                              Height="32"
-                                             Margin="0,0,0,12"/>
+                                             Margin="0,0,0,12" />
                                     <TextBlock Text="Description"
                                                FontSize="12"
-                                               Margin="0,0,0,4"/>
-                                    <TextBox PlaceholderText="Enter description"
+                                               Margin="0,0,0,4" />
+                                    <TextBox ToolTip="Enter description"
                                              Height="32"
-                                             Margin="0,0,0,16"/>
+                                             Margin="0,0,0,16" />
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Button x:Name="CancelFormButton"
                                                 Content="Cancel"
                                                 Width="70"
                                                 Height="28"
-                                                Margin="0,0,8,0"/>
+                                                Margin="0,0,8,0" />
                                         <Button x:Name="SaveFormButton"
                                                 Content="Save"
                                                 Width="70"
-                                                Height="28"/>
+                                                Height="28" />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -128,82 +103,56 @@
             </StackPanel>
         </Border>
 
-        <!-- Popup Placement Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Popup Placement"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Popups can be positioned at different locations relative to the target."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="40">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button x:Name="TopPopupButton" Content="Top" Height="32" Margin="8"/>
-                        <Button x:Name="RightPopupButton" Content="Right" Height="32" Margin="8"/>
-                        <Button x:Name="BottomPopupButton" Content="Bottom" Height="32" Margin="8"/>
-                        <Button x:Name="LeftPopupButton" Content="Left" Height="32" Margin="8"/>
-                    </StackPanel>
+        <!-- Popup placement -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Popup placement" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Anchor a popup to the top, right, bottom or left edge of its target." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Button x:Name="TopPopupButton" Content="Top" Height="32" Margin="0,0,10,10" />
+                        <Button x:Name="RightPopupButton" Content="Right" Height="32" Margin="0,0,10,10" />
+                        <Button x:Name="BottomPopupButton" Content="Bottom" Height="32" Margin="0,0,10,10" />
+                        <Button x:Name="LeftPopupButton" Content="Left" Height="32" Margin="0,0,10,10" />
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the popups above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Toggle each popup's IsOpen property to show or dismiss it from code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>
-

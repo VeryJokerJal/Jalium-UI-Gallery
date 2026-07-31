@@ -2,99 +2,95 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TitleBarPage">
-    <StackPanel Orientation="Vertical" Margin="24">
-        <TextBlock Text="TitleBar" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
-        <TextBlock Text="A customizable window title bar with standard system caption buttons."
-                   FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
 
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="10" Margin="0,0,0,16">
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="SYSTEM" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TitleBar" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A customizable window title bar with standard minimize, maximize, and close caption buttons you can wire to real window actions." />
+
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Toggle which caption buttons appear, flip the maximized state, then click the title bar controls to update the status line." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <StackPanel Orientation="Vertical">
                         <TitleBar x:Name="DemoTitleBar"
                                   Title="Jalium.UI Demo Window"
                                   Height="36" />
-                        <Border Background="#252526" Padding="16">
-                            <TextBlock Text="This area represents window content under a custom title bar."
-                                       Opacity="0.75" />
+                        <Border Background="{DynamicResource GalleryCardBackground}" Padding="16">
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="This area represents window content under a custom title bar." />
                         </Border>
                     </StackPanel>
                 </Border>
-
-                <WrapPanel Margin="0,0,0,12">
-                    <CheckBox x:Name="MinimizeCheckBox" Content="Show Minimize" IsChecked="True" Margin="0,0,16,8"/>
-                    <CheckBox x:Name="MaximizeCheckBox" Content="Show Maximize" IsChecked="True" Margin="0,0,16,8"/>
-                    <CheckBox x:Name="CloseCheckBox" Content="Show Close" IsChecked="True" Margin="0,0,16,8"/>
-                    <CheckBox x:Name="IsMaximizedCheckBox" Content="Is Maximized" Margin="0,0,16,8"/>
+                <WrapPanel Margin="0,16,0,0">
+                    <CheckBox x:Name="MinimizeCheckBox" Content="Show Minimize" IsChecked="True" Margin="0,0,10,10" />
+                    <CheckBox x:Name="MaximizeCheckBox" Content="Show Maximize" IsChecked="True" Margin="0,0,10,10" />
+                    <CheckBox x:Name="CloseCheckBox" Content="Show Close" IsChecked="True" Margin="0,0,10,10" />
+                    <CheckBox x:Name="IsMaximizedCheckBox" Content="Is Maximized" Margin="0,0,10,10" />
                 </WrapPanel>
-
                 <TextBlock x:Name="StatusText"
-                           Text="Status: Ready" />
+                           Style="{StaticResource GalleryValueLabel}"
+                           Text="Status: Ready"
+                           Margin="0,6,0,0" />
             </StackPanel>
         </Border>
 
-        <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Notes" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
-                <TextBlock Text="- In a real window, these buttons are usually wired to minimize, maximize, and close actions."
+        <!-- Notes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Notes" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="How this demo maps onto a real application window." />
+                <TextBlock Style="{StaticResource GalleryBodyText}"
+                           Text="In a real window, these buttons are usually wired to minimize, maximize, and close actions."
                            Margin="0,0,0,6" />
-                <TextBlock Text="- Use Window.TitleBarStyle = Custom to let the Window host its built-in TitleBar integration."
+                <TextBlock Style="{StaticResource GalleryBodyText}"
+                           Text="Use Window.TitleBarStyle = Custom to let the Window host its built-in TitleBar integration."
                            Margin="0,0,0,6" />
-                <TextBlock Text="- This gallery page keeps all actions local and only updates demo state."
-                           Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}"
+                           Text="This gallery page keeps all actions local and only updates demo state." />
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for a TitleBar and its caption buttons." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating a TitleBar and wiring its caption events in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

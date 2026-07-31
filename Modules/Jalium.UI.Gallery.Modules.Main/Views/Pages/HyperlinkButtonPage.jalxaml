@@ -2,95 +2,90 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.HyperlinkButtonPage">
-    <ScrollViewer>
-        <StackPanel Orientation="Vertical" Margin="24">
-            <!-- Header -->
-            <TextBlock Text="HyperlinkButton" FontSize="32" FontWeight="Bold" Margin="0,0,0,8" />
-            <TextBlock Text="A button that displays as a hyperlink and can navigate to a URI."
-                       FontSize="14" Opacity="0.7" Margin="0,0,0,24" />
 
-            <!-- Interactive Demo -->
-            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Interactive Demo" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="HyperlinkButton" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A button styled as a hyperlink that navigates to a URI or runs a click handler, with automatic hover, pressed and underline states." />
+
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Standalone links navigate to a URI; links can also flow inline inside a sentence." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <HyperlinkButton Content="Visit Microsoft" NavigateUri="https://www.microsoft.com" Margin="0,0,0,8"/>
-                        <HyperlinkButton Content="Open GitHub" NavigateUri="https://www.github.com" Margin="0,0,0,8"/>
-                        <HyperlinkButton Content="Learn More" IsUnderlined="False" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Vertical">
+                            <HyperlinkButton Content="Visit Microsoft" NavigateUri="https://www.microsoft.com" Margin="0,0,0,8"/>
+                            <HyperlinkButton Content="Open GitHub" NavigateUri="https://www.github.com" Margin="0,0,0,8"/>
+                            <HyperlinkButton Content="Learn More" IsUnderlined="False" Margin="0,0,0,8"/>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="In paragraph context:" Margin="0,16,0,8" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="For more information, " VerticalAlignment="Center" />
+                            <HyperlinkButton Content="click here" VerticalAlignment="Center"/>
+                            <TextBlock Text=" or visit our " VerticalAlignment="Center" />
+                            <HyperlinkButton Content="documentation" VerticalAlignment="Center"/>
+                            <TextBlock Text="." VerticalAlignment="Center" />
+                        </StackPanel>
                     </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
-                    <TextBlock Text="In paragraph context:" Margin="0,16,0,8" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="For more information, " VerticalAlignment="Center" />
-                        <HyperlinkButton Content="click here" VerticalAlignment="Center"/>
-                        <TextBlock Text=" or visit our " VerticalAlignment="Center" />
-                        <HyperlinkButton Content="documentation" VerticalAlignment="Center"/>
-                        <TextBlock Text="." VerticalAlignment="Center" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-
-            <!-- Features -->
-            <Border Background="{DynamicResource GalleryCardInnerBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+        <!-- Features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Key capabilities provided by the control out of the box." />
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Features" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16" />
-                    <TextBlock Text="• Navigate to external URLs" Margin="0,0,0,4" />
-                    <TextBlock Text="• Hyperlink styling (underline, color)" Margin="0,0,0,4" />
-                    <TextBlock Text="• Hover and pressed states" Margin="0,0,0,4" />
-                    <TextBlock Text="• Opens in default browser" Margin="0,0,0,4" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Navigate to external URLs" Margin="0,0,0,4" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Hyperlink styling (underline, color)" Margin="0,0,0,4" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Hover and pressed states" Margin="0,0,0,4" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Opens in default browser" Margin="0,0,0,4" />
                 </StackPanel>
-            </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- XAML Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="XAML Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="XamlCodeEditor"
-                                     Height="200"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the links above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
 
-            <!-- C# Code Example -->
-            <Border Background="{DynamicResource GalleryCardBackground}"
-                    BorderBrush="{DynamicResource GalleryBorderDefault}"
-                    BorderThickness="1"
-                    CornerRadius="14"
-                    Padding="20"
-                    Margin="0,0,0,16">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="C# Code Example"
-                               FontSize="16"
-                               Margin="0,0,0,16"/>
-                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                            CornerRadius="8"
-                            Padding="0"
-                            HorizontalAlignment="Stretch">
-                        <EditControl x:Name="CSharpCodeEditor"
-                                     Height="200"
-                                     HorizontalAlignment="Stretch"
-                                     IsReadOnly="True"
-                                     ShowLineNumbers="True"
-                                     FontSize="13"/>
-                    </Border>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating and wiring links in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
 </Page>

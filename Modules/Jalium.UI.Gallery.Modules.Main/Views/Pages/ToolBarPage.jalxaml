@@ -1,37 +1,22 @@
-﻿<Page xmlns="http://schemas.jalium.ui/2024"
+<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToolBarPage"
       Title="ToolBar">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="ToolBar"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A container for a group of commands or controls."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ToolBar" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A container that groups related commands and controls into a single band, using separators to cluster them into logical groups." />
 
-        <!-- Basic ToolBar Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic ToolBar"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A toolbar with buttons."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="8">
+        <!-- Basic ToolBar -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic ToolBar" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="A toolbar with buttons." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <ToolBar>
                         <Button Content="New" Width="60" Height="28"/>
                         <Button Content="Open" Width="60" Height="28"/>
@@ -45,24 +30,12 @@
             </StackPanel>
         </Border>
 
-        <!-- ToolBar with Mixed Controls Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ToolBar with Mixed Controls"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Toolbars can contain various types of controls."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="8">
+        <!-- ToolBar with Mixed Controls -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ToolBar with Mixed Controls" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Toolbars can contain various types of controls." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <ToolBar>
                         <Button Content="File" Width="50" Height="28"/>
                         <Separator/>
@@ -78,30 +51,18 @@
                         <CheckBox Content="Bold" Margin="4,0"/>
                         <CheckBox Content="Italic" Margin="4,0"/>
                         <Separator/>
-                        <TextBox Width="150" Height="28" PlaceholderText="Search..."/>
+                        <TextBox Width="150" Height="28" ToolTip="Search..."/>
                     </ToolBar>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Multiple ToolBars Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="ToolBar Tray"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Multiple toolbars can be organized in a tray."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="8">
+        <!-- ToolBar Tray -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ToolBar Tray" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Multiple toolbars can be organized in a tray." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ToolBar Margin="0,0,0,4">
                             <Button Content="New" Width="50" Height="26"/>
@@ -121,24 +82,12 @@
             </StackPanel>
         </Border>
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Click toolbar buttons to see the action."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="8">
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Click toolbar buttons to see the action." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ToolBar Margin="0,0,0,16">
                             <Button x:Name="NewButton" Content="New" Width="50" Height="28"/>
@@ -155,21 +104,13 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Declarative markup for the toolbars above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -180,21 +121,12 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Creating a toolbar and wiring button clicks in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -204,6 +136,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>
-

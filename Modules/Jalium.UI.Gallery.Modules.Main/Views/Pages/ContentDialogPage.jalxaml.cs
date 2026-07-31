@@ -286,7 +286,7 @@ public partial class ContentDialogPage : Page
             var deferral = args.GetDeferral();
             DeferredDialogStatusText!.Text = "Validating name...";
 
-            Dispatcher.BeginInvokeCritical(async () =>
+            Dispatcher.InvokeAsync(async () =>
             {
                 try
                 {

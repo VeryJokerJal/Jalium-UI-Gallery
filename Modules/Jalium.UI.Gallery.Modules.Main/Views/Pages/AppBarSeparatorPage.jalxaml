@@ -3,58 +3,44 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.AppBarSeparatorPage"
       Title="AppBarSeparator">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="AppBarSeparator"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A vertical line that visually separates groups of commands in a CommandBar or toolbar."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="AppBarSeparator" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A thin vertical rule that visually separates groups of related commands inside a CommandBar or toolbar." />
 
-        <!-- AppBarSeparator in Toolbar Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="AppBarSeparator in Toolbar"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Separators divide toolbar buttons into logical groups."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+        <!-- Separator in a toolbar -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="AppBarSeparator in toolbar" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Separators divide toolbar buttons into logical groups. On narrow widths the strip reflows onto multiple lines." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
                         <!-- File operations group -->
                         <AppBarButton x:Name="NewButton"
                                       Label="New"
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
                         <AppBarButton x:Name="OpenButton"
                                       Label="Open"
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
                         <AppBarButton x:Name="SaveButton"
                                       Label="Save"
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
 
                         <!-- Separator between file and edit groups -->
-                        <AppBarSeparator Margin="4,4,4,4"/>
+                        <AppBarSeparator Height="40" Margin="0,0,10,10" />
 
                         <!-- Edit operations group -->
                         <AppBarButton x:Name="CutButton"
@@ -62,22 +48,22 @@
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
                         <AppBarButton x:Name="CopyButton"
                                       Label="Copy"
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
                         <AppBarButton x:Name="PasteButton"
                                       Label="Paste"
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
 
                         <!-- Separator between edit and undo groups -->
-                        <AppBarSeparator Margin="4,4,4,4"/>
+                        <AppBarSeparator Height="40" Margin="0,0,10,10" />
 
                         <!-- Undo/Redo group -->
                         <AppBarButton x:Name="UndoButton"
@@ -85,69 +71,55 @@
                                       IsCompact="True"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,4,0"/>
+                                      Margin="0,0,10,10" />
                         <AppBarButton x:Name="RedoButton"
                                       Label="Redo"
                                       IsCompact="True"
                                       Width="40"
-                                      Height="40"/>
-                    </StackPanel>
+                                      Height="40"
+                                      Margin="0,0,10,10" />
+                    </WrapPanel>
                 </Border>
-
                 <TextBlock x:Name="ToolbarStatusText"
+                           Style="{StaticResource GalleryCaptionText}"
                            Text="Click a toolbar button to see its action."
-                           FontSize="12"
-                           Margin="0,12,0,0"/>
+                           Margin="0,12,0,0" />
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the toolbar and its separators above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Building the toolbar and wiring button click handlers in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

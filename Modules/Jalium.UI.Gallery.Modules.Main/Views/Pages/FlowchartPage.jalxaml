@@ -1,0 +1,106 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.FlowchartPage"
+      Title="Flowchart">
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Flowchart" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Render directed flowcharts that automatically rank nodes into layers and draw shapes, arrows, and edge labels — authored concisely as mermaid text." />
+
+        <!-- Decision flow -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Decision Flow" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A flowchart with decision nodes, branch labels, and a hierarchical (top-to-bottom) layout." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="FlowchartContainer" Orientation="Vertical" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Node shapes & edge styles -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Node Shapes &amp; Edge Styles" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Rectangle, rounded, stadium, circle, rhombus, hexagon, cylinder and more — with solid, dotted, and thick edges in a left-to-right layout." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="ShapesContainer" Orientation="Vertical" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Live editor -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Live Editor" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Edit the mermaid flowchart source on the left and see the diagram update on the right." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Width="380" Margin="0,0,10,10">
+                            <TextBlock Text="Flowchart Source:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4" />
+                            <TextBox x:Name="MermaidInput"
+                                     AcceptsReturn="True"
+                                     Height="320"
+                                     FontFamily="Consolas"
+                                     FontSize="13" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="380" Margin="0,0,10,10">
+                            <TextBlock Text="Rendered Diagram:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4" />
+                            <Border x:Name="LiveDiagramHost"
+                                    Background="#FAFBFE"
+                                    CornerRadius="8"
+                                    Padding="8"
+                                    Height="320" />
+                        </StackPanel>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Author the flowchart declaratively as mermaid text." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Render a flowchart from code with MermaidDiagram or FlowchartDiagram." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+</Page>

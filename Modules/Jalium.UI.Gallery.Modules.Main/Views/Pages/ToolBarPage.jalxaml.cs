@@ -56,7 +56,7 @@ public partial class ToolBarPage : Page
     <CheckBox Content=""Italic""/>
     <Separator/>
     <TextBox Width=""150"" Height=""28""
-             PlaceholderText=""Search...""/>
+             ToolTip=""Search...""/>
 </ToolBar>";
 
     private const string CSharpExample =

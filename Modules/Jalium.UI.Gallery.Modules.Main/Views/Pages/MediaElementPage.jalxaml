@@ -3,233 +3,172 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MediaElementPage"
       Title="MediaElement">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="MediaElement"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A control for playing audio and video media."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="MediaElement" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A control that plays audio and video media, with transport controls, volume and playback-speed options." />
 
-        <!-- Video Player Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Video Player"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="MediaElement can play video files with playback controls."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="Video File:" VerticalAlignment="Center" Width="80"/>
-                            <TextBox x:Name="VideoPathTextBox" Width="320" Height="28" Margin="0,0,8,0"
-                                     PlaceholderText="Enter video file path or URL..."/>
-                            <Button x:Name="VideoBrowseButton" Content="Browse..." Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="VideoLoadButton" Content="Load" Width="60" Height="28"/>
-                        </StackPanel>
+        <!-- Video player -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Video player" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="MediaElement plays video files from a local path or URL, with play, pause and stop controls." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,4">
+                            <TextBlock Text="Video File:" VerticalAlignment="Center" Width="80" Margin="0,0,10,10" />
+                            <TextBox x:Name="VideoPathTextBox" Width="320" Height="28" Margin="0,0,10,10"
+                                     ToolTip="Enter video file path or URL..." />
+                            <Button x:Name="VideoBrowseButton" Content="Browse..." Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="VideoLoadButton" Content="Load" Width="60" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
                         <Border Background="#000000" Width="480" Height="270" CornerRadius="8" Margin="0,0,0,16">
-                            <MediaElement x:Name="VideoPlayer" Width="480" Height="270"/>
+                            <MediaElement x:Name="VideoPlayer" Width="480" Height="270" />
                         </Border>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button x:Name="PlayButton" Content="▶ Play" Width="70" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="PauseButton" Content="⏸ Pause" Width="70" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="StopButton" Content="⏹ Stop" Width="70" Height="28"/>
-                        </StackPanel>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button x:Name="PlayButton" Content="▶ Play" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="PauseButton" Content="⏸ Pause" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="StopButton" Content="⏹ Stop" Width="70" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Audio Player Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Audio Player"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="MediaElement can also play audio files."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="Audio File:" VerticalAlignment="Center" Width="80"/>
-                            <TextBox x:Name="AudioPathTextBox" Width="320" Height="28" Margin="0,0,8,0"
-                                     PlaceholderText="Enter audio file path or URL..."/>
-                            <Button x:Name="AudioBrowseButton" Content="Browse..." Width="80" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="AudioLoadButton" Content="Load" Width="60" Height="28"/>
-                        </StackPanel>
+        <!-- Audio player -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Audio player" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="The same MediaElement plays audio files, here paired with a now-playing panel and a seek slider." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,4">
+                            <TextBlock Text="Audio File:" VerticalAlignment="Center" Width="80" Margin="0,0,10,10" />
+                            <TextBox x:Name="AudioPathTextBox" Width="320" Height="28" Margin="0,0,10,10"
+                                     ToolTip="Enter audio file path or URL..." />
+                            <Button x:Name="AudioBrowseButton" Content="Browse..." Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="AudioLoadButton" Content="Load" Width="60" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
                         <Border Background="{DynamicResource GalleryCardAltBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                <Ellipse Width="80" Height="80" Fill="{DynamicResource GalleryAccent}" Margin="0,0,0,16"/>
-                                <TextBlock x:Name="AudioTitleText" Text="Audio Track" FontSize="16" HorizontalAlignment="Center"/>
-                                <TextBlock x:Name="AudioArtistText" Text="No file loaded" FontSize="12" HorizontalAlignment="Center"/>
+                            <StackPanel HorizontalAlignment="Center">
+                                <Ellipse Width="80" Height="80" Fill="{DynamicResource GalleryAccent}" Margin="0,0,0,16" />
+                                <TextBlock x:Name="AudioTitleText" Text="Audio Track" FontSize="16" HorizontalAlignment="Center" />
+                                <TextBlock x:Name="AudioArtistText" Text="No file loaded" FontSize="12" HorizontalAlignment="Center" />
                             </StackPanel>
                         </Border>
-                        <MediaElement x:Name="AudioPlayer" Width="0" Height="0"/>
-                        <Slider x:Name="AudioProgressSlider" Minimum="0" Maximum="100" Value="0" Margin="0,0,0,16"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button x:Name="AudioPlayButton" Content="⏮" Width="40" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="AudioPlayPauseButton" Content="▶" Width="50" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="AudioStopButton" Content="⏭" Width="40" Height="28"/>
-                        </StackPanel>
+                        <MediaElement x:Name="AudioPlayer" Width="0" Height="0" />
+                        <Slider x:Name="AudioProgressSlider" Minimum="0" Maximum="100" Value="0" Margin="0,0,0,16" />
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button x:Name="AudioPlayButton" Content="⏮" Width="40" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="AudioPlayPauseButton" Content="▶" Width="50" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="AudioStopButton" Content="⏭" Width="40" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Playback Controls Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Playback Controls"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Control volume, speed, and other playback options."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
+        <!-- Playback controls -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Playback controls" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Adjust volume and playback speed, and toggle loop, mute and auto-play." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="Volume:" Width="100" VerticalAlignment="Center"/>
-                            <Slider x:Name="VolumeSlider" Minimum="0" Maximum="100" Value="75" Width="200" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="VolumeText" Text="75%" VerticalAlignment="Center"/>
+                            <TextBlock Text="Volume:" Width="100" VerticalAlignment="Center" />
+                            <Slider x:Name="VolumeSlider" Minimum="0" Maximum="100" Value="75" Width="200" Margin="0,0,8,0" />
+                            <TextBlock x:Name="VolumeText" Style="{StaticResource GalleryValueLabel}" Text="75%" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="Speed:" Width="100" VerticalAlignment="Center"/>
+                            <TextBlock Text="Speed:" Width="100" VerticalAlignment="Center" />
                             <ComboBox Width="120" Height="28">
-                                <ComboBoxItem Content="0.5x"/>
-                                <ComboBoxItem Content="0.75x"/>
-                                <ComboBoxItem Content="1.0x" IsSelected="True"/>
-                                <ComboBoxItem Content="1.25x"/>
-                                <ComboBoxItem Content="1.5x"/>
-                                <ComboBoxItem Content="2.0x"/>
+                                <ComboBoxItem Content="0.5x" />
+                                <ComboBoxItem Content="0.75x" />
+                                <ComboBoxItem Content="1.0x" IsSelected="True" />
+                                <ComboBoxItem Content="1.25x" />
+                                <ComboBoxItem Content="1.5x" />
+                                <ComboBoxItem Content="2.0x" />
                             </ComboBox>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Loop" Margin="0,0,16,0"/>
-                            <CheckBox Content="Mute" Margin="0,0,16,0"/>
-                            <CheckBox Content="Auto-play"/>
-                        </StackPanel>
+                        <WrapPanel>
+                            <CheckBox Content="Loop" Margin="0,0,10,10" />
+                            <CheckBox Content="Mute" Margin="0,0,10,10" />
+                            <CheckBox Content="Auto-play" Margin="0,0,10,10" />
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Supported Formats Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Supported Formats"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="MediaElement supports various audio and video formats."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Margin="0,0,48,0">
-                            <TextBlock Text="Video Formats:" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                            <TextBlock Text="• MP4 (H.264)" Margin="0,0,0,4"/>
-                            <TextBlock Text="• WebM (VP8/VP9)" Margin="0,0,0,4"/>
-                            <TextBlock Text="• AVI" Margin="0,0,0,4"/>
-                            <TextBlock Text="• WMV" Margin="0,0,0,4"/>
-                            <TextBlock Text="• MOV"/>
+        <!-- Supported formats -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Supported formats" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="MediaElement handles a range of common video and audio container and codec formats." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <StackPanel Margin="0,0,48,12">
+                            <TextBlock Text="Video Formats:" FontWeight="SemiBold" Margin="0,0,0,8" />
+                            <TextBlock Text="• MP4 (H.264)" Margin="0,0,0,4" />
+                            <TextBlock Text="• WebM (VP8/VP9)" Margin="0,0,0,4" />
+                            <TextBlock Text="• AVI" Margin="0,0,0,4" />
+                            <TextBlock Text="• WMV" Margin="0,0,0,4" />
+                            <TextBlock Text="• MOV" />
                         </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Audio Formats:" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                            <TextBlock Text="• MP3" Margin="0,0,0,4"/>
-                            <TextBlock Text="• WAV" Margin="0,0,0,4"/>
-                            <TextBlock Text="• AAC" Margin="0,0,0,4"/>
-                            <TextBlock Text="• OGG" Margin="0,0,0,4"/>
-                            <TextBlock Text="• FLAC"/>
+                        <StackPanel>
+                            <TextBlock Text="Audio Formats:" FontWeight="SemiBold" Margin="0,0,0,8" />
+                            <TextBlock Text="• MP3" Margin="0,0,0,4" />
+                            <TextBlock Text="• WAV" Margin="0,0,0,4" />
+                            <TextBlock Text="• AAC" Margin="0,0,0,4" />
+                            <TextBlock Text="• OGG" Margin="0,0,0,4" />
+                            <TextBlock Text="• FLAC" />
                         </StackPanel>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for a video player with transport and volume controls." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Wiring the transport buttons, volume slider and file loading in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

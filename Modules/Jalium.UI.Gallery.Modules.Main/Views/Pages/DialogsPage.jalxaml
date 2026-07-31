@@ -3,442 +3,289 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DialogsPage"
       Title="File Dialogs">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="File Dialogs"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Classic file, shell, font, and message dialog examples."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DIALOGS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="File Dialogs" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Invoke the native file, save, folder, shell, font, and message dialogs, then read back exactly what each one returns." />
 
-        <!-- Open File Dialog Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Open File Dialog"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Browse files, select multiple files, or reuse OpenFileDialog as a folder picker."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <WrapPanel Margin="0,0,0,12">
-                            <Button x:Name="OpenFileButton" Content="Open File..." Width="100" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="OpenMultipleFilesButton" Content="Open Multiple..." Width="110" Height="28" Margin="0,0,8,0"/>
-                            <Button x:Name="OpenFolderPickerButton" Content="Pick Folder..." Width="118" Height="28"/>
+        <!-- Open File Dialog -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Open File Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Browse files, select multiple files, or use the WPF OpenFolderDialog." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="OpenFileButton" Content="Open File..." Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="OpenMultipleFilesButton" Content="Open Multiple..." Width="110" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="OpenFolderPickerButton" Content="Pick Folder..." Width="118" Height="28" Margin="0,0,10,10" />
                         </WrapPanel>
                         <TextBlock x:Name="SelectedFileText"
+                                   Style="{StaticResource GalleryBodyText}"
                                    Text="No file selected"
-                                   Margin="0,0,0,8"
-                                   TextWrapping="Wrap"/>
+                                   Margin="0,0,0,6" />
                         <TextBlock x:Name="SelectedFolderViaOpenFileText"
-                                   Text="No folder selected via OpenFileDialog"
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="No folder selected via OpenFolderDialog" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Save File Dialog Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Save File Dialog"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Allows users to specify a file name and location for saving."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <Button x:Name="SaveFileButton" Content="Save As..." Width="100" Height="28" Margin="0,0,0,12"/>
+        <!-- Save File Dialog -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Save File Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Allows users to specify a file name and location for saving." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Button x:Name="SaveFileButton" Content="Save As..." Width="100" Height="28" Margin="0,0,0,12" />
                         <TextBlock x:Name="SaveFilePathText"
-                                   Text="No save location selected"
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="No save location selected" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Folder Browser Dialog Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Folder Browser Dialog"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Allows users to browse and select a folder."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <Button x:Name="BrowseFolderButton" Content="Browse Folder..." Width="120" Height="28" Margin="0,0,0,12"/>
+        <!-- Folder Browser Dialog -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Folder Browser Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Allows users to browse and select a folder." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Button x:Name="BrowseFolderButton" Content="Browse Folder..." Width="120" Height="28" Margin="0,0,0,12" />
                         <TextBlock x:Name="SelectedFolderText"
-                                   Text="No folder selected"
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="No folder selected" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Shell Dialog Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Shell Dialogs"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Open icon picking, Open With, and file properties sheets backed directly by Win32 shell APIs."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <WrapPanel Margin="0,0,0,12">
-                            <Button x:Name="PickIconButton" Content="Pick Icon..." Width="100" Height="28" Margin="0,0,8,8"/>
-                            <Button x:Name="OpenWithButton" Content="Open With..." Width="105" Height="28" Margin="0,0,8,8"/>
-                            <Button x:Name="FilePropertiesButton" Content="File Properties..." Width="126" Height="28" Margin="0,0,8,8"/>
-                            <Button x:Name="PrinterPropertiesButton" Content="Printer Properties..." Width="140" Height="28" Margin="0,0,8,8"/>
-                            <Button x:Name="VolumePropertiesButton" Content="Volume Properties..." Width="140" Height="28" Margin="0,0,8,8"/>
-                            <Button x:Name="MultiFilePropertiesButton" Content="Multi-file Properties..." Width="156" Height="28" Margin="0,0,0,8"/>
+        <!-- Shell Dialogs -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Shell Dialogs" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Open icon picking, Open With, and file properties sheets backed directly by Win32 shell APIs." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="PickIconButton" Content="Pick Icon..." Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="OpenWithButton" Content="Open With..." Width="105" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="FilePropertiesButton" Content="File Properties..." Width="126" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="PrinterPropertiesButton" Content="Printer Properties..." Width="140" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="VolumePropertiesButton" Content="Volume Properties..." Width="140" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="MultiFilePropertiesButton" Content="Multi-file Properties..." Width="156" Height="28" Margin="0,0,10,10" />
                         </WrapPanel>
                         <TextBlock x:Name="SelectedIconText"
+                                   Style="{StaticResource GalleryBodyText}"
                                    Text="No icon selected"
-                                   Margin="0,0,0,8"
-                                   TextWrapping="Wrap"/>
+                                   Margin="0,0,0,6" />
                         <TextBlock x:Name="OpenWithTargetText"
+                                   Style="{StaticResource GalleryBodyText}"
                                    Text="Open With target not launched"
-                                   Margin="0,0,0,8"
-                                   TextWrapping="Wrap"/>
+                                   Margin="0,0,0,6" />
                         <TextBlock x:Name="PropertiesTargetText"
-                                   Text="Properties dialog not launched"
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Properties dialog not launched" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Font Dialog Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Font Dialog"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Allows users to select a font family, style, and size."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <Button x:Name="ChooseFontButton" Content="Choose Font..." Width="110" Height="28"/>
-                        </StackPanel>
+        <!-- Font Dialog -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Font Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Allows users to select a font family, style, and size." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Button x:Name="ChooseFontButton" Content="Choose Font..." Width="110" Height="28" Margin="0,0,0,12" />
                         <TextBlock x:Name="FontPreviewText"
-                                   Text="The quick brown fox jumps over the lazy dog"
-                                   FontSize="14"
-                                   TextWrapping="Wrap"/>
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="The quick brown fox jumps over the lazy dog" />
                         <TextBlock x:Name="SelectedFontText"
+                                   Style="{StaticResource GalleryCaptionText}"
                                    Text="Current: Segoe UI, 14pt"
-                                   Margin="0,8,0,0"/>
+                                   Margin="0,8,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Message Dialog Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Message Dialogs"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Launch native message boxes with different icons, button layouts, and default actions."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
+        <!-- Message Dialogs -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Message Dialogs" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Launch native message boxes with different icons, button layouts, and default actions." />
+                <TextBlock Style="{StaticResource GalleryBodyText}"
+                           Text="These examples use Jalium.UI.Controls.MessageBox so the sample window stays the owner while you test classic system prompts."
+                           Margin="0,0,0,16" />
 
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="These examples use Jalium.UI.Controls.MessageBox so the sample window stays the owner while you test classic system prompts."
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,16"/>
-
-                        <WrapPanel Margin="0,0,0,16">
-                            <Border Background="#162130"
-                                    BorderBrush="#224260"
-                                    BorderThickness="1"
-                                    CornerRadius="10"
-                                    Padding="14"
-                                    Width="162"
-                                    Margin="0,0,12,12">
-                                <StackPanel Orientation="Vertical">
-                                    <Border Background="#295D8A"
-                                            CornerRadius="999"
-                                            Padding="10,3"
-                                            HorizontalAlignment="Left"
-                                            Margin="0,0,0,10">
-                                        <TextBlock Text="Information"
-                                                   FontSize="12"/>
-                                    </Border>
-                                    <TextBlock Text="Single-button acknowledgement after a successful sync."
-                                               TextWrapping="Wrap"
-                                               Margin="0,0,0,12"/>
-                                    <Button x:Name="InfoDialogButton"
-                                            Content="Show info"
-                                            Width="108"
-                                            Height="32"/>
-                                </StackPanel>
+                <WrapPanel Margin="0,0,0,6">
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Information" />
                             </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="Single-button acknowledgement after a successful sync."
+                                       Margin="0,0,0,12" />
+                            <Button x:Name="InfoDialogButton"
+                                    Content="Show info"
+                                    Width="108"
+                                    Height="32" />
+                        </StackPanel>
+                    </Border>
 
-                            <Border Background="#2A2313"
-                                    BorderBrush="#5A4920"
-                                    BorderThickness="1"
-                                    CornerRadius="10"
-                                    Padding="14"
-                                    Width="162"
-                                    Margin="0,0,12,12">
-                                <StackPanel Orientation="Vertical">
-                                    <Border Background="#8A6B17"
-                                            CornerRadius="999"
-                                            Padding="10,3"
-                                            HorizontalAlignment="Left"
-                                            Margin="0,0,0,10">
-                                        <TextBlock Text="Warning"
-                                                   FontSize="12"/>
-                                    </Border>
-                                    <TextBlock Text="Retry or cancel a save flow before leaving the current view."
-                                               TextWrapping="Wrap"
-                                               Margin="0,0,0,12"/>
-                                    <Button x:Name="WarningDialogButton"
-                                            Content="Retry flow"
-                                            Width="108"
-                                            Height="32"/>
-                                </StackPanel>
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Warning" />
                             </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="Retry or cancel a save flow before leaving the current view."
+                                       Margin="0,0,0,12" />
+                            <Button x:Name="WarningDialogButton"
+                                    Content="Retry flow"
+                                    Width="108"
+                                    Height="32" />
+                        </StackPanel>
+                    </Border>
 
-                            <Border Background="#311A1A"
-                                    BorderBrush="#6A2B2B"
-                                    BorderThickness="1"
-                                    CornerRadius="10"
-                                    Padding="14"
-                                    Width="162"
-                                    Margin="0,0,12,12">
-                                <StackPanel Orientation="Vertical">
-                                    <Border Background="#8E3B3B"
-                                            CornerRadius="999"
-                                            Padding="10,3"
-                                            HorizontalAlignment="Left"
-                                            Margin="0,0,0,10">
-                                        <TextBlock Text="Error"
-                                                   FontSize="12"/>
-                                    </Border>
-                                    <TextBlock Text="Blocking import failure with a system error icon and acknowledgement."
-                                               TextWrapping="Wrap"
-                                               Margin="0,0,0,12"/>
-                                    <Button x:Name="ErrorDialogButton"
-                                            Content="Show error"
-                                            Width="108"
-                                            Height="32"/>
-                                </StackPanel>
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Error" />
                             </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="Blocking import failure with a system error icon and acknowledgement."
+                                       Margin="0,0,0,12" />
+                            <Button x:Name="ErrorDialogButton"
+                                    Content="Show error"
+                                    Width="108"
+                                    Height="32" />
+                        </StackPanel>
+                    </Border>
 
-                            <Border Background="#18261D"
-                                    BorderBrush="#29513A"
-                                    BorderThickness="1"
-                                    CornerRadius="10"
-                                    Padding="14"
-                                    Width="162"
-                                    Margin="0,0,0,12">
-                                <StackPanel Orientation="Vertical">
-                                    <Border Background="#2F7D57"
-                                            CornerRadius="999"
-                                            Padding="10,3"
-                                            HorizontalAlignment="Left"
-                                            Margin="0,0,0,10">
-                                        <TextBlock Text="Confirm"
-                                                   FontSize="12"/>
-                                    </Border>
-                                    <TextBlock Text="Yes, No, and Cancel with a safer default for destructive choices."
-                                               TextWrapping="Wrap"
-                                               Margin="0,0,0,12"/>
-                                    <Button x:Name="ConfirmDialogButton"
-                                            Content="Confirm action"
-                                            Width="116"
-                                            Height="32"/>
-                                </StackPanel>
+                    <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Confirm" />
                             </Border>
-                        </WrapPanel>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="Yes, No, and Cancel with a safer default for destructive choices."
+                                       Margin="0,0,0,12" />
+                            <Button x:Name="ConfirmDialogButton"
+                                    Content="Confirm action"
+                                    Width="116"
+                                    Height="32" />
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
 
-                        <Border Background="#111315"
-                                BorderBrush="#2B3036"
-                                BorderThickness="1"
-                                CornerRadius="10"
-                                Padding="16">
-                            <StackPanel Orientation="Vertical">
-                                <Border x:Name="DialogResultAccent"
-                                        Background="#4C93FF"
-                                        CornerRadius="999"
-                                        Height="4"
-                                        Margin="0,0,0,12"/>
-                                <TextBlock Text="Last dialog interaction"
-                                           FontSize="12"
-                                           Margin="0,0,0,4"/>
-                                <TextBlock x:Name="DialogResultTitleText"
-                                           Text="Native message boxes ready"
-                                           FontSize="18"
-                                           Margin="0,0,0,8"/>
-                                <TextBlock x:Name="DialogScenarioText"
-                                           Text="Run one of the samples above to inspect the icon, buttons, default result, and returned value."
-                                           TextWrapping="Wrap"
-                                           Margin="0,0,0,10"/>
-                                <TextBlock x:Name="DialogMessageText"
-                                           Text="Message: The preview panel will summarize the exact prompt after you close it."
-                                           TextWrapping="Wrap"
-                                           Margin="0,0,0,10"/>
-                                <TextBlock x:Name="DialogDetailsText"
-                                           Text="Buttons: -  |  Icon: -  |  Default: -"
-                                           FontSize="12"
-                                           Margin="0,0,0,8"/>
-                                <TextBlock x:Name="DialogResultText"
-                                           Text="Result: -"
-                                           FontSize="14"/>
-                            </StackPanel>
-                        </Border>
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Border x:Name="DialogResultAccent"
+                                Background="#4C93FF"
+                                CornerRadius="999"
+                                Height="4"
+                                Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="Last dialog interaction"
+                                   Margin="0,0,0,4" />
+                        <TextBlock x:Name="DialogResultTitleText"
+                                   Style="{StaticResource GalleryCardTitle}"
+                                   Text="Native message boxes ready"
+                                   Margin="0,0,0,8" />
+                        <TextBlock x:Name="DialogScenarioText"
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Run one of the samples above to inspect the icon, buttons, default result, and returned value."
+                                   Margin="0,0,0,10" />
+                        <TextBlock x:Name="DialogMessageText"
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Text="Message: The preview panel will summarize the exact prompt after you close it."
+                                   Margin="0,0,0,10" />
+                        <TextBlock x:Name="DialogDetailsText"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="Buttons: -  |  Icon: -  |  Default: -"
+                                   Margin="0,0,0,8" />
+                        <TextBlock x:Name="DialogResultText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="Result: -" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Dialog Options Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Dialog Options"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Common configuration options for file dialogs."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Filter:" FontSize="12" Margin="0,0,0,4"/>
+        <!-- Dialog Options -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Dialog Options" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Common configuration options for file dialogs." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Filter:" Margin="0,0,0,4" />
                         <TextBox Text="Text files (*.txt)|*.txt|All files (*.*)|*.*"
-                                 Width="400"
                                  Height="28"
-                                 HorizontalAlignment="Left"
-                                 Margin="0,0,0,12"/>
-                        <TextBlock Text="Initial Directory:" FontSize="12" Margin="0,0,0,4"/>
+                                 Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Initial Directory:" Margin="0,0,0,4" />
                         <TextBox Text="C:\Users\Documents"
-                                 Width="400"
                                  Height="28"
-                                 HorizontalAlignment="Left"
-                                 Margin="0,0,0,12"/>
-                        <CheckBox Content="Check if file exists" Margin="0,0,0,8"/>
-                        <CheckBox Content="Add to recent files" Margin="0,0,0,8" IsChecked="True"/>
-                        <CheckBox Content="Show hidden files"/>
+                                 Margin="0,0,0,12" />
+                        <CheckBox Content="Check if file exists" Margin="0,0,0,8" />
+                        <CheckBox Content="Add to recent files" Margin="0,0,0,8" IsChecked="True" />
+                        <CheckBox Content="Show hidden files" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the dialog buttons above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Creating and showing each dialog from the code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

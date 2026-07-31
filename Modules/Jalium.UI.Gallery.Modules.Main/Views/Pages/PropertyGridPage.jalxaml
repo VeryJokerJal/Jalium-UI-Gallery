@@ -3,35 +3,21 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PropertyGridPage"
       Title="PropertyGrid">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="PropertyGrid"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="Displays the properties of an object for viewing and editing, with categorized and alphabetical modes."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VIEWERS" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="PropertyGrid" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="Displays the properties of an object for viewing and editing, with categorized and alphabetical sort modes, live search and descriptions." />
 
-        <!-- Basic Property Grid Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Basic Property Grid"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Inspect and edit the properties of a sample object with categorized view."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Basic property grid -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Property Grid" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Inspect and edit the properties of a sample object with the categorized view." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <PropertyGrid x:Name="BasicPropertyGrid"
                                   Height="350"
                                   SortMode="Categorized"
@@ -41,64 +27,42 @@
             </StackPanel>
         </Border>
 
-        <!-- Categorized vs Alphabetical Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Categorized vs Alphabetical"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Compare the two sort modes side by side on the same object."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Width="400" Margin="0,0,16,0">
-                            <TextBlock Text="Categorized:" FontSize="12" Margin="0,0,0,4"/>
+        <!-- Categorized vs Alphabetical -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Categorized vs Alphabetical" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Compare the two sort modes side by side on the same object." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Width="400" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Categorized:" Margin="0,0,0,6"/>
                             <PropertyGrid x:Name="CategorizedGrid"
                                           Height="300"
                                           SortMode="Categorized"
                                           ShowSearchBox="False"
                                           ShowDescription="False"/>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Width="400">
-                            <TextBlock Text="Alphabetical:" FontSize="12" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Vertical" Width="400" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Alphabetical:" Margin="0,0,0,6"/>
                             <PropertyGrid x:Name="AlphabeticalGrid"
                                           Height="300"
                                           SortMode="Alphabetical"
                                           ShowSearchBox="False"
                                           ShowDescription="False"/>
                         </StackPanel>
-                    </StackPanel>
+                    </WrapPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Custom Object Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Custom Object"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="A richer sample object with various property types including enums, collections, and nested objects."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Custom object -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom Object" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="A richer sample object with various property types including enums, collections and nested objects." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <PropertyGrid x:Name="CustomObjectGrid"
                                   Height="400"
                                   SortMode="Categorized"
@@ -108,21 +72,14 @@
                 </Border>
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the PropertyGrids shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -133,21 +90,13 @@
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Binding a sample object and configuring sort modes in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
@@ -157,5 +106,6 @@
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

@@ -3,128 +3,77 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SparklinePage"
       Title="Sparkline">
 
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="Sparkline"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Text="A lightweight inline chart control for compact visualizations without axes or legends."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Sparkline" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A lightweight inline chart that condenses a data series into a compact, word-sized graphic — rendered without axes, gridlines, or legends." />
 
         <!-- Line Sparklines -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Line Sparklines"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Multiple sparklines using the Line type with high/low point markers."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="LineSparklineContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Line Sparklines" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Multiple sparklines using the Line type with high/low point markers." />
+                <Border x:Name="LineSparklineContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Bar & Area -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Bar &amp; Area"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Sparklines rendered as bar charts and area fills."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="BarAreaContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Bar &amp; Area" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Sparklines rendered as bar charts and area fills." />
+                <Border x:Name="BarAreaContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
 
         <!-- Win/Loss -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Win/Loss"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Win/Loss sparklines showing positive and negative outcomes."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border x:Name="WinLossContainer"
-                        Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16"/>
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Win/Loss" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Win/Loss sparklines showing positive and negative outcomes." />
+                <Border x:Name="WinLossContainer" Style="{StaticResource GalleryDemoSurface}" />
             </StackPanel>
         </Border>
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the sparkline variants shown above." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Generating random-walk data and building sparklines in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

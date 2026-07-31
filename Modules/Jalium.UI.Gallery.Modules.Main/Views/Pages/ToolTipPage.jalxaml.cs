@@ -26,8 +26,7 @@ public partial class ToolTipPage : Page
         ToolTip=""Open an existing document""/>
 
 <!-- ToolTip on various controls -->
-<TextBox PlaceholderText=""Enter username""
-         ToolTip=""Enter your username (3-20 characters)""/>
+<TextBox ToolTip=""Enter your username (3-20 characters)""/>
 
 <Slider Minimum=""0"" Maximum=""100""
         ToolTip=""Adjust the volume level""/>

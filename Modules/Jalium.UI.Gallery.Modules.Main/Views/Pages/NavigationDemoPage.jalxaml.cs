@@ -1,7 +1,7 @@
 using Jalium.UI.Controls;
 using Jalium.UI.Controls.Editor;
-using Jalium.UI.Controls.Navigation;
 using Jalium.UI.Media;
+using Jalium.UI.Navigation;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
@@ -117,7 +117,7 @@ public partial class NavigationDemoPage : Page
 
         _navigationService.Navigated += (s, e) =>
         {
-            UpdateStatus($"Navigation completed (Mode: {e.NavigationMode})");
+            UpdateStatus($"Navigation completed ({e.Uri?.ToString() ?? "content"})");
         };
 
         _navigationService.NavigationFailed += (s, e) =>
@@ -170,7 +170,9 @@ public partial class NavigationDemoPage : Page
        Source=""Views/InitialPage.jalxaml""/>";
 
     private const string CSharpExample =
-@"// Get NavigationService and navigate
+@"using Jalium.UI.Navigation;
+
+// Get NavigationService and navigate
 var navService = NavigationService.GetNavigationService(this);
 
 // Navigate to a new page

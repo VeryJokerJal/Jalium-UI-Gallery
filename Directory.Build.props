@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <VersionPrefix>1.1.0</VersionPrefix>
+    <Version>$(VersionPrefix)</Version>
+  </PropertyGroup>
+
+  <!-- Keep WSL/CI restore and build state away from a concurrently active
+       Windows checkout. The referenced Jalium.UI projects honor the same
+       global property through their own Directory.Build.props. -->
+  <PropertyGroup Condition="'$(JaliumBuildRoot)' != ''">
+    <JaliumBuildRoot>$([System.IO.Path]::GetFullPath('$(JaliumBuildRoot)'))</JaliumBuildRoot>
+    <!-- The publish script already gives each RID its own JaliumBuildRoot.
+         Keeping one extensions path for the complete project graph is
+         important because tool/analyzer ProjectReferences intentionally clear
+         RuntimeIdentifier between restore and build. -->
+    <BaseIntermediateOutputPath>$(JaliumBuildRoot)/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)</MSBuildProjectExtensionsPath>
+    <BaseOutputPath>$(JaliumBuildRoot)/bin/$(MSBuildProjectName)/</BaseOutputPath>
+  </PropertyGroup>
+
+  <!-- When BaseIntermediateOutputPath moves outside the project, the SDK no
+       longer adds the legacy project-local obj/bin paths to DefaultItemExcludes.
+       Keep old Windows artifacts from being globbed as Gallery source files. -->
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);**/obj/**/*;**/bin/**/*</DefaultItemExcludes>
+  </PropertyGroup>
+</Project>

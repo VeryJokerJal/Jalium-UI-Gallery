@@ -339,7 +339,7 @@ public partial class EditControlPage : Page
         // Track caret position changes
         if (MainEditor != null)
         {
-            MainEditor.Document.Changed += OnDocumentChanged;
+            MainEditor.Document.Changed += (_, _) => UpdateStatus();
         }
     }
 
@@ -362,11 +362,6 @@ public partial class EditControlPage : Page
 
         MainEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
         MainEditor.LoadText(JalxamlSample);
-        UpdateStatus();
-    }
-
-    private void OnDocumentChanged(object? sender, TextChangeEventArgs e)
-    {
         UpdateStatus();
     }
 

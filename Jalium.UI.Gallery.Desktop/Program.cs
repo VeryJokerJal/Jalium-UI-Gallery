@@ -49,6 +49,8 @@ internal static class Program
         // DevTools. See AppBuilderExtensions in the Main module to customize.
         app.UseShared();
         app.UseIdleResourceReclamation();
+        app.UseRenderingMode(RenderingMode.Performance);
+        app.UsePathAntiAliasing(PathAntiAliasing.Msaa4x);
 
         return app.Run();
     }

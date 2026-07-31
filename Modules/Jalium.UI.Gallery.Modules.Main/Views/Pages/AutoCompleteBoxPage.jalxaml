@@ -3,180 +3,130 @@
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.AutoCompleteBoxPage"
       Title="AutoCompleteBox">
 
-    <StackPanel Orientation="Vertical">
-        <!-- Page Title -->
-        <TextBlock Text="AutoCompleteBox"
-                   FontSize="32"
-                   Margin="0,0,0,8"/>
+    <StackPanel Style="{StaticResource GalleryPageStack}">
 
-        <!-- Description -->
-        <TextBlock Text="A text input control that provides auto-completion suggestions as you type."
-                   FontSize="14"
-                   Margin="0,0,0,24"/>
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="AutoCompleteBox" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="A text input control that suggests matching items from a source list as you type, with keyboard navigation and configurable filter modes." />
 
-        <!-- Interactive Demo Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Interactive Demo"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Start typing to see suggestions. Use arrow keys to navigate."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Interactive demo -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Start typing to see suggestions. Use the arrow keys to navigate." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Search for a programming language:"
-                                   FontSize="12"
-                                   Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="Search for a programming language:"
+                                   Margin="0,0,0,8" />
                         <AutoCompleteBox x:Name="DemoAutoComplete"
                                          Width="300"
                                          Watermark="Type to search..."
                                          Margin="0,0,0,16"
-                                         HorizontalAlignment="Left"/>
+                                         HorizontalAlignment="Left" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Selected: "
-                                       FontSize="12"/>
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="Selected: "
+                                       VerticalAlignment="Center" />
                             <TextBlock x:Name="SelectedItemText"
-                                       Text="(none)"
-                                       FontSize="12"/>
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="(none)" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Filter Modes Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Filter Modes"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="Different filtering modes for suggestions."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Filter modes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Filter modes" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Choose how typed text is matched against the suggestion list." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="* StartsWith - items beginning with typed text"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Contains - items containing typed text"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Equals - exact match only"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Custom - use your own filter predicate"
-                                   FontSize="14"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* StartsWith - items beginning with typed text"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Contains - items containing typed text"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Equals - exact match only"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Custom - use your own filter predicate" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- Features Card -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Features"
-                           FontSize="16"
-                           Margin="0,0,0,4"/>
-                <TextBlock Text="AutoCompleteBox provides rich auto-completion functionality."
-                           FontSize="12"
-                           Margin="0,0,0,16"/>
-
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="16">
+        <!-- Features -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="AutoCompleteBox provides rich auto-completion functionality." />
+                <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="* Watermark placeholder text"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Minimum prefix length before suggestions"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Keyboard navigation (Up/Down/Enter/Escape)"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Text completion on Tab key"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* Customizable max drop-down height"
-                                   FontSize="14"
-                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="* TextMemberPath for complex objects"
-                                   FontSize="14"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Watermark placeholder text"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Minimum prefix length before suggestions"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Keyboard navigation (Up/Down/Enter/Escape)"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Text completion on Tab key"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* Customizable max drop-down height"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="* TextMemberPath for complex objects" />
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- XAML Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="XAML Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Declarative markup for the AutoCompleteBox examples." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# Code Example -->
-        <Border Background="{DynamicResource GalleryCardBackground}"
-                BorderBrush="{DynamicResource GalleryBorderDefault}"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="20"
-                Margin="0,0,0,16">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="C# Code Example"
-                           FontSize="16"
-                           Margin="0,0,0,16"/>
-                <Border Background="{DynamicResource GalleryCardInnerBackground}"
-                        CornerRadius="8"
-                        Padding="0"
-                        HorizontalAlignment="Stretch">
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Wiring the items source, filter mode and selection handler in code-behind." />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13" />
                 </Border>
             </StackPanel>
         </Border>
+
     </StackPanel>
 </Page>

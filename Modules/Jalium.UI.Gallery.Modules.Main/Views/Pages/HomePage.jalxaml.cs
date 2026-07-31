@@ -1,757 +1,1312 @@
+using Jalium.UI;
 using Jalium.UI.Controls;
-using Jalium.UI.Controls.Editor;
 using Jalium.UI.Controls.Primitives;
 using Jalium.UI.Gallery.Modules.Main.Themes;
 using Jalium.UI.Input;
 using Jalium.UI.Media;
-using Path = Jalium.UI.Controls.Shapes.Path;
 
 namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
 
-/// <summary>
-/// Event args for navigation requests from HomePage.
-/// </summary>
 public class NavigationRequestEventArgs : EventArgs
 {
-    public string PageTag { get; }
-
     public NavigationRequestEventArgs(string pageTag)
     {
         PageTag = pageTag;
     }
+
+    public string PageTag { get; }
 }
 
+/// <summary>
+/// Component workbench shown when the Gallery opens. It mirrors the generated
+/// reference with a filterable component grid, a live preview inspector, code,
+/// and design-token swatches while preserving the existing page routes.
+/// </summary>
 public partial class HomePage : Page
 {
-    /// <summary>
-    /// Occurs when a category card is clicked and navigation is requested.
-    /// </summary>
-    public event EventHandler<NavigationRequestEventArgs>? NavigationRequested;
-
-    private const string XamlExample = @"<!-- Jalium.UI Application Entry Point -->
-<Page xmlns=""http://schemas.jalium.ui/2024""
-      xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
-      x:Class=""MyApp.Views.MainPage""
-      Title=""Welcome"">
-
-    <StackPanel Orientation=""Vertical"">
-        <TextBlock Text=""Welcome to My App""
-                   FontSize=""32""
-                   Foreground=""#FAFAFA""
-                   Margin=""0,0,0,8""/>
-
-        <TextBlock Text=""Built with Jalium.UI""
-                   FontSize=""14""
-                   Foreground=""#A1A1AA""
-                   Margin=""0,0,0,24""/>
-
-        <Border Background=""#1B182B""
-                BorderBrush=""#2B2742""
-                BorderThickness=""1""
-                CornerRadius=""14""
-                Padding=""20"">
-            <StackPanel Orientation=""Vertical"">
-                <TextBlock Text=""Feature""
-                           FontSize=""16""
-                           Foreground=""#FAFAFA""/>
-                <TextBlock Text=""Description here.""
-                           FontSize=""12""
-                           Foreground=""#A1A1AA""/>
-            </StackPanel>
-        </Border>
-    </StackPanel>
-</Page>";
-
-    private const string CSharpExample = @"using Jalium.UI.Controls;
-using Jalium.UI.Media;
-
-public partial class MainPage : Page
-{
-    public MainPage()
+    private sealed class ShowcaseItem
     {
-        InitializeComponent();
-        BuildContent();
-    }
-
-    private void BuildContent()
-    {
-        var stack = new StackPanel { Orientation = Orientation.Vertical };
-        stack.Children.Add(new TextBlock
+        public ShowcaseItem(
+            string key,
+            string title,
+            string category,
+            string pageTag,
+            string description,
+            string snippet,
+            string previewKind)
         {
-            Text = ""Welcome"",
-            FontSize = 32,
-            Foreground = new SolidColorBrush(Color.FromRgb(0xFA, 0xFA, 0xFA))
-        });
+            Key = key;
+            Title = title;
+            Category = category;
+            PageTag = pageTag;
+            Description = description;
+            Snippet = snippet;
+            PreviewKind = previewKind;
+        }
 
-        Content = stack;
+        public string Key { get; }
+        public string Title { get; }
+        public string Category { get; }
+        public string PageTag { get; }
+        public string Description { get; }
+        public string Snippet { get; }
+        public string PreviewKind { get; }
     }
-}";
 
-    private EditControl? _xamlEditor;
-    private EditControl? _csharpEditor;
+    private sealed class CardVisual
+    {
+        public CardVisual(Border container, Border selectedBadge)
+        {
+            Container = container;
+            SelectedBadge = selectedBadge;
+        }
+
+        public Border Container { get; }
+        public Border SelectedBadge { get; }
+    }
+
+    private static readonly IReadOnlyList<ShowcaseItem> ShowcaseItems =
+        GalleryComponentCatalog.Items
+            .Select(item => new ShowcaseItem(
+                item.PageTag,
+                item.Title,
+                item.Category,
+                item.PageTag,
+                item.Description,
+                item.ExampleMarkup,
+                item.PreviewKind))
+            .ToList();
+
+    private readonly Dictionary<string, CardVisual> _cardVisuals = new();
+    private readonly Dictionary<string, Button> _filterButtons = new();
+    private readonly Dictionary<string, Button> _deviceButtons = new();
+    private readonly List<ShowcaseItem> _visibleItems = new();
+
+    private ShowcaseItem _selectedItem = ShowcaseItems[0];
+    private string _activeFilter = "All";
+    private string _activeDevice = "Desktop";
+    private string _searchQuery = string.Empty;
+    private bool _hasVisibleItems = true;
+
+    private Grid? _workspaceGrid;
+    private StackPanel? _catalogPanel;
+    private ColumnDefinition? _detailColumn;
+    private Border? _detailPanel;
+    private UniformGrid? _componentGrid;
+    private TextBlock? _resultCount;
+    private TextBlock? _detailTitle;
+    private TextBlock? _detailCategory;
+    private TextBlock? _detailDescription;
+    private StackPanel? _detailPreviewHost;
+    private Border? _detailPreviewFrame;
+    private TextBlock? _codeText;
+    private Button? _openDemoButton;
+
+    public event EventHandler<NavigationRequestEventArgs>? NavigationRequested;
 
     public HomePage()
     {
         InitializeComponent();
         BuildContent();
-        LoadCodeExamples();
-    }
-
-    private void LoadCodeExamples()
-    {
-        if (_xamlEditor != null)
-        {
-            _xamlEditor.SyntaxHighlighter = JalxamlSyntaxHighlighter.Create();
-            _xamlEditor.LoadText(XamlExample);
-        }
-        if (_csharpEditor != null)
-        {
-            _csharpEditor.SyntaxHighlighter = RegexSyntaxHighlighter.CreateCSharpHighlighter();
-            _csharpEditor.LoadText(CSharpExample);
-        }
     }
 
     private void BuildContent()
     {
-        var root = new StackPanel { Orientation = Orientation.Vertical };
-
-        root.Children.Add(CreateHero());
-
-        // Section: Framework Features
-        root.Children.Add(CreateSectionHeader("Framework features", "Built for modern Windows apps"));
-
-        var featureGrid = new UniformGrid
+        var root = new Grid
         {
-            Columns = 4,
-            Margin = new Thickness(0, 0, 0, 32)
+            Background = GalleryTheme.TransparentBrush
         };
-        featureGrid.Children.Add(CreateFeatureCard(
-            BuildApiIcon(GalleryTheme.AccentPrimary),
-            "WPF-like API",
-            "Familiar DependencyProperties, routed events, and XAML authoring.",
-            GalleryTheme.AccentPrimary));
-        featureGrid.Children.Add(CreateFeatureCard(
-            BuildRenderingIcon(GalleryTheme.Info),
-            "D3D12 rendering",
-            "Native GPU acceleration for smooth 60+ FPS interfaces.",
-            GalleryTheme.Info));
-        featureGrid.Children.Add(CreateFeatureCard(
-            BuildBindingIcon(GalleryTheme.HaloPurple),
-            "Rich data binding",
-            "Full MVVM with {Binding}, converters, and INotifyPropertyChanged.",
-            GalleryTheme.HaloPurple));
-        featureGrid.Children.Add(CreateFeatureCard(
-            BuildFocusIcon(GalleryTheme.Warning),
-            "Complete focus",
-            "Tab traversal, focus scopes, and access keys out of the box.",
-            GalleryTheme.Warning));
-        root.Children.Add(featureGrid);
+        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        var detailColumn = new ColumnDefinition { Width = new GridLength(0) };
+        root.ColumnDefinitions.Add(detailColumn);
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        // Section: Explore Controls
-        root.Children.Add(CreateSectionHeader("Explore controls", "Jump into a category to see the components live"));
+        _workspaceGrid = root;
+        _detailColumn = detailColumn;
 
-        var categories = new UniformGrid
+        var catalog = new StackPanel
         {
-            Columns = 3,
-            Margin = new Thickness(0, 0, 0, 32)
+            Orientation = Orientation.Vertical,
+            Margin = new Thickness(0)
         };
-        categories.Children.Add(CreateCategoryCard("Basic input", "Button, CheckBox, Slider, TextBox", "basic", GalleryTheme.AccentPrimary));
-        categories.Children.Add(CreateCategoryCard("Text", "TextBlock, Markdown, RichTextBox", "text", GalleryTheme.Info));
-        categories.Children.Add(CreateCategoryCard("Layout", "Grid, StackPanel, Dock, Wrap", "layout", GalleryTheme.HaloPurple));
-        categories.Children.Add(CreateCategoryCard("Navigation", "TabControl, Menu, ToolBar", "navigation", GalleryTheme.Warning));
-        categories.Children.Add(CreateCategoryCard("Media", "Image, WebView, MediaElement", "media", GalleryTheme.Success));
-        categories.Children.Add(CreateCategoryCard("Collections", "ListBox, TreeView, DataGrid", "collections", GalleryTheme.Error));
-        categories.Children.Add(CreateCategoryCard("Charts", "Line, Bar, Pie, Sankey, Gantt", "charts", GalleryTheme.AccentSecondary));
-        categories.Children.Add(CreateCategoryCard("Maps", "MapView, MiniMap, Heatmap", "maps", GalleryTheme.Info));
-        categories.Children.Add(CreateCategoryCard("Effects", "Backdrop, shader, transitions", "effects", GalleryTheme.HaloPurple));
-        root.Children.Add(categories);
+        _catalogPanel = catalog;
+        catalog.Children.Add(CreateCatalogHeader());
+        catalog.Children.Add(CreateFilterBar());
 
-        // Section: Code examples
-        root.Children.Add(CreateSectionHeader("Copy & paste", "Real snippets to kick-start your first page"));
-
-        _xamlEditor = new EditControl
+        _componentGrid = new UniformGrid
         {
-            Height = 240,
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            IsReadOnly = true,
-            ShowLineNumbers = true,
-            FontSize = 13
+            Columns = 1,
+            RowSpacing = 12,
+            ColumnSpacing = 12
         };
-        _csharpEditor = new EditControl
-        {
-            Height = 240,
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            IsReadOnly = true,
-            ShowLineNumbers = true,
-            FontSize = 13
-        };
+        catalog.Children.Add(_componentGrid);
 
-        root.Children.Add(CreateCodeCard("JALXAML markup", "Declarative page in ~25 lines", _xamlEditor, true));
-        root.Children.Add(CreateCodeCard("C# code-behind", "Fully equivalent imperative API", _csharpEditor, false));
+        Grid.SetColumn(catalog, 0);
+        Grid.SetRow(catalog, 0);
+        root.Children.Add(catalog);
+
+        _detailPanel = CreateDetailPanel();
+        _detailPanel.Visibility = Visibility.Collapsed;
+        Grid.SetColumn(_detailPanel, 1);
+        Grid.SetRow(_detailPanel, 0);
+        root.Children.Add(_detailPanel);
 
         Content = root;
+
+        RenderCards();
+        UpdateDetailPanel();
+        SetDeviceMode("Desktop");
+
+        SizeChanged += (_, _) => UpdateResponsiveLayout();
+        Loaded += (_, _) => UpdateResponsiveLayout();
     }
 
-    private Border CreateHero()
+    private UIElement CreateCatalogHeader()
     {
-        var hero = new Border
+        var header = new Grid
         {
-            Background = GalleryTheme.HeroGradientBrush,
+            Margin = new Thickness(0, 0, 0, 16)
+        };
+        header.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        var copy = new StackPanel { Orientation = Orientation.Vertical };
+        copy.Children.Add(new TextBlock
+        {
+            Text = "Components",
+            FontSize = 28,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.TextPrimaryBrush,
+            Margin = new Thickness(0, 0, 0, 4)
+        });
+        copy.Children.Add(new TextBlock
+        {
+            Text = "Browse every Gallery component, inspect it, then open the full demo.",
+            FontSize = 13,
+            Foreground = GalleryTheme.TextTertiaryBrush,
+            TextWrapping = TextWrapping.Wrap
+        });
+        header.Children.Add(copy);
+
+        _resultCount = new TextBlock
+        {
+            Text = $"{ShowcaseItems.Count} components",
+            FontSize = 11,
+            FontWeight = FontWeights.SemiBold,
+            Foreground = GalleryTheme.AccentDarkBrush,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        var countBadge = new Border
+        {
+            Background = GalleryTheme.AccentSoftBrush,
             BorderBrush = GalleryTheme.BorderDefaultBrush,
             BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusXLarge),
-            Padding = new Thickness(36, 32, 36, 32),
-            Margin = new Thickness(0, 0, 0, 28)
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(10, 6, 10, 6),
+            VerticalAlignment = VerticalAlignment.Top,
+            Child = _resultCount
+        };
+        Grid.SetColumn(countBadge, 1);
+        header.Children.Add(countBadge);
+
+        return header;
+    }
+
+    private UIElement CreateFilterBar()
+    {
+        var row = new WrapPanel
+        {
+            HorizontalAlignment = HorizontalAlignment.Left,
+            Margin = new Thickness(0, 0, 0, 18)
         };
 
-        var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(280) });
+        foreach (var filter in new[]
+                 {
+                     "All", "Controls", "Text", "Layout", "Navigation",
+                     "Data", "Media", "Visuals", "System"
+                 })
+        {
+            var button = new Button
+            {
+                Content = filter,
+                Height = 34,
+                Padding = new Thickness(14, 0, 14, 0),
+                Margin = new Thickness(0, 0, 8, 8),
+                FontSize = 12,
+                FontWeight = FontWeights.SemiBold
+            };
+            button.Click += (_, _) => SetFilter(filter);
+            _filterButtons[filter] = button;
+            row.Children.Add(button);
+        }
 
-        // Left column: copy + CTA
+        UpdateFilterButtons();
+        return row;
+    }
+
+    private Border CreateDetailPanel()
+    {
+        var panel = new Border
+        {
+            Background = GalleryTheme.BackgroundCardBrush,
+            BorderBrush = GalleryTheme.BorderDefaultBrush,
+            BorderThickness = new Thickness(1, 0, 0, 0),
+            Padding = new Thickness(22, 2, 0, 0),
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Stretch
+        };
+
+        var stack = new StackPanel { Orientation = Orientation.Vertical };
+
+        var titleRow = new Grid { Margin = new Thickness(0, 0, 0, 6) };
+        titleRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        titleRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        _detailTitle = new TextBlock
+        {
+            FontSize = 20,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.TextPrimaryBrush,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        titleRow.Children.Add(_detailTitle);
+
+        _detailCategory = new TextBlock
+        {
+            FontSize = 10,
+            FontWeight = FontWeights.SemiBold,
+            Foreground = GalleryTheme.AccentDarkBrush,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        var categoryBadge = new Border
+        {
+            Background = GalleryTheme.AccentSoftBrush,
+            CornerRadius = new CornerRadius(4),
+            Padding = new Thickness(8, 4, 8, 4),
+            Child = _detailCategory
+        };
+        Grid.SetColumn(categoryBadge, 1);
+        titleRow.Children.Add(categoryBadge);
+        stack.Children.Add(titleRow);
+
+        _detailDescription = new TextBlock
+        {
+            FontSize = 12,
+            Foreground = GalleryTheme.TextTertiaryBrush,
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(0, 0, 0, 16)
+        };
+        stack.Children.Add(_detailDescription);
+
+        stack.Children.Add(CreateDeviceSelector());
+
+        _detailPreviewHost = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        _detailPreviewFrame = new Border
+        {
+            Width = 310,
+            MinHeight = 220,
+            Background = GalleryTheme.BackgroundCardInnerBrush,
+            BorderBrush = GalleryTheme.BorderDefaultBrush,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(18),
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Child = _detailPreviewHost
+        };
+        stack.Children.Add(_detailPreviewFrame);
+
+        _openDemoButton = new Button
+        {
+            Height = 38,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            Margin = new Thickness(0, 12, 0, 20),
+            Background = GalleryTheme.AccentPrimaryBrush,
+            BorderBrush = GalleryTheme.AccentPrimaryBrush,
+            Foreground = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF)),
+            FontSize = 12,
+            FontWeight = FontWeights.Bold
+        };
+        _openDemoButton.Click += (_, _) =>
+            NavigationRequested?.Invoke(this, new NavigationRequestEventArgs(_selectedItem.PageTag));
+        stack.Children.Add(_openDemoButton);
+
+        stack.Children.Add(new TextBlock
+        {
+            Text = "JALXAML",
+            FontSize = 11,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.AccentPrimaryBrush,
+            Margin = new Thickness(2, 0, 0, 8)
+        });
+
+        _codeText = new TextBlock
+        {
+            FontFamily = new FontFamily("Cascadia Code"),
+            FontSize = 11,
+            Foreground = new SolidColorBrush(Color.FromRgb(0xD7, 0xE0, 0xE5)),
+            TextWrapping = TextWrapping.Wrap
+        };
+        stack.Children.Add(new Border
+        {
+            Background = new SolidColorBrush(Color.FromRgb(0x18, 0x1E, 0x24)),
+            BorderBrush = new SolidColorBrush(Color.FromRgb(0x2D, 0x36, 0x40)),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(14),
+            Margin = new Thickness(0, 0, 0, 20),
+            Child = _codeText
+        });
+
+        stack.Children.Add(new TextBlock
+        {
+            Text = "Design tokens",
+            FontSize = 14,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.TextPrimaryBrush,
+            Margin = new Thickness(0, 0, 0, 10)
+        });
+        stack.Children.Add(CreateTokenSwatches());
+
+        panel.Child = stack;
+        return panel;
+    }
+
+    private UIElement CreateDeviceSelector()
+    {
+        var row = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Margin = new Thickness(0, 0, 0, 10)
+        };
+
+        foreach (var mode in new[] { "Desktop", "Tablet", "Mobile" })
+        {
+            var button = new Button
+            {
+                Content = mode,
+                Height = 30,
+                Padding = new Thickness(9, 0, 9, 0),
+                Margin = new Thickness(4, 0, 0, 0),
+                FontSize = 10,
+                FontWeight = FontWeights.SemiBold,
+                ToolTip = $"Preview at {mode.ToLowerInvariant()} width"
+            };
+            button.Click += (_, _) => SetDeviceMode(mode);
+            _deviceButtons[mode] = button;
+            row.Children.Add(button);
+        }
+
+        return row;
+    }
+
+    private UIElement CreateTokenSwatches()
+    {
+        var grid = new UniformGrid
+        {
+            Columns = 6,
+            ColumnSpacing = 7
+        };
+
+        grid.Children.Add(CreateTokenSwatch("Teal", Color.FromRgb(0x08, 0x94, 0x8A)));
+        grid.Children.Add(CreateTokenSwatch("Indigo", Color.FromRgb(0x4F, 0x46, 0xE5)));
+        grid.Children.Add(CreateTokenSwatch("Sky", Color.FromRgb(0x0E, 0xA5, 0xE9)));
+        grid.Children.Add(CreateTokenSwatch("Green", Color.FromRgb(0x10, 0xB9, 0x81)));
+        grid.Children.Add(CreateTokenSwatch("Amber", Color.FromRgb(0xF5, 0x9E, 0x0B)));
+        grid.Children.Add(CreateTokenSwatch("Rose", Color.FromRgb(0xF4, 0x3F, 0x5E)));
+
+        return grid;
+    }
+
+    private static UIElement CreateTokenSwatch(string name, Color color)
+    {
+        var stack = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+        stack.Children.Add(new Border
+        {
+            Width = 34,
+            Height = 34,
+            Background = new SolidColorBrush(color),
+            BorderBrush = GalleryTheme.BorderDefaultBrush,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Margin = new Thickness(0, 0, 0, 5)
+        });
+        stack.Children.Add(new TextBlock
+        {
+            Text = name,
+            FontSize = 8,
+            Foreground = GalleryTheme.TextMutedBrush,
+            HorizontalAlignment = HorizontalAlignment.Center
+        });
+        return stack;
+    }
+
+    private void SetFilter(string filter)
+    {
+        if (_activeFilter == filter)
+        {
+            return;
+        }
+
+        _activeFilter = filter;
+        UpdateFilterButtons();
+        RenderCards();
+    }
+
+    public void SetSearchQuery(string query)
+    {
+        var normalized = query?.Trim() ?? string.Empty;
+        if (string.Equals(_searchQuery, normalized, StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        _searchQuery = normalized;
+        RenderCards();
+    }
+
+    public bool TryOpenBestMatch()
+    {
+        if (_visibleItems.Count == 0)
+        {
+            return false;
+        }
+
+        SelectComponent(_visibleItems[0]);
+        NavigationRequested?.Invoke(
+            this,
+            new NavigationRequestEventArgs(_visibleItems[0].PageTag));
+        return true;
+    }
+
+    private void UpdateFilterButtons()
+    {
+        foreach (var pair in _filterButtons)
+        {
+            var selected = pair.Key == _activeFilter;
+            pair.Value.Background = selected
+                ? GalleryTheme.AccentPrimaryBrush
+                : GalleryTheme.BackgroundCardBrush;
+            pair.Value.BorderBrush = selected
+                ? GalleryTheme.AccentPrimaryBrush
+                : GalleryTheme.BorderDefaultBrush;
+            pair.Value.Foreground = selected
+                ? new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF))
+                : GalleryTheme.TextSecondaryBrush;
+        }
+    }
+
+    private void RenderCards()
+    {
+        if (_componentGrid == null)
+        {
+            return;
+        }
+
+        var visibleItems = ShowcaseItems
+            .Where(item => _activeFilter == "All" || item.Category == _activeFilter)
+            .Where(item =>
+                string.IsNullOrEmpty(_searchQuery) ||
+                item.Title.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                item.Category.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                item.PageTag.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        _visibleItems.Clear();
+        _visibleItems.AddRange(visibleItems);
+        _hasVisibleItems = visibleItems.Count > 0;
+
+        if (!visibleItems.Contains(_selectedItem) && visibleItems.Count > 0)
+        {
+            _selectedItem = visibleItems[0];
+        }
+
+        ClearPanelChildren(_componentGrid);
+        _cardVisuals.Clear();
+
+        foreach (var item in visibleItems)
+        {
+            _componentGrid.Children.Add(CreateComponentCard(item));
+        }
+
+        if (visibleItems.Count == 0)
+        {
+            _componentGrid.Children.Add(CreateEmptyState());
+        }
+
+        if (_resultCount != null)
+        {
+            _resultCount.Text = $"{visibleItems.Count} component{(visibleItems.Count == 1 ? string.Empty : "s")}";
+        }
+
+        UpdateCardSelection();
+        if (_hasVisibleItems)
+        {
+            UpdateDetailPanel();
+        }
+
+        UpdateResponsiveLayout();
+    }
+
+    private static UIElement CreateEmptyState()
+    {
+        return new Border
+        {
+            Height = 150,
+            Background = GalleryTheme.BackgroundCardBrush,
+            BorderBrush = GalleryTheme.BorderDefaultBrush,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Child = new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = "No components found",
+                        FontSize = 14,
+                        FontWeight = FontWeights.Bold,
+                        Foreground = GalleryTheme.TextPrimaryBrush,
+                        HorizontalAlignment = HorizontalAlignment.Center
+                    },
+                    new TextBlock
+                    {
+                        Text = "Try another name or category.",
+                        FontSize = 11,
+                        Foreground = GalleryTheme.TextTertiaryBrush,
+                        Margin = new Thickness(0, 5, 0, 0),
+                        HorizontalAlignment = HorizontalAlignment.Center
+                    }
+                }
+            }
+        };
+    }
+
+    private UIElement CreateComponentCard(ShowcaseItem item)
+    {
+        var card = new Border
+        {
+            Height = 198,
+            Background = GalleryTheme.BackgroundCardBrush,
+            BorderBrush = GalleryTheme.BorderDefaultBrush,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Cursor = Cursors.Hand,
+            ClipToBounds = true
+        };
+
+        var layout = new Grid();
+        layout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(148) });
+        layout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+
+        var previewSurface = new Border
+        {
+            Background = GalleryTheme.BackgroundCardInnerBrush,
+            BorderBrush = GalleryTheme.BorderSubtleBrush,
+            BorderThickness = new Thickness(0, 0, 0, 1),
+            Padding = new Thickness(0),
+            IsHitTestVisible = false,
+            Child = SaasCardBackgrounds.CreateImage(item.PageTag)
+        };
+        layout.Children.Add(previewSurface);
+
+        var selectedBadge = new Border
+        {
+            Width = 22,
+            Height = 22,
+            Background = GalleryTheme.AccentPrimaryBrush,
+            CornerRadius = new CornerRadius(6),
+            Margin = new Thickness(0, 9, 9, 0),
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Top,
+            Visibility = Visibility.Collapsed,
+            IsHitTestVisible = false,
+            Child = new TextBlock
+            {
+                Text = "✓",
+                FontSize = 12,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF)),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            }
+        };
+        layout.Children.Add(selectedBadge);
+
+        var footer = new Grid
+        {
+            Background = GalleryTheme.BackgroundCardBrush,
+            Margin = new Thickness(12, 0, 12, 0)
+        };
+        footer.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        var footerCopy = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        footerCopy.Children.Add(new TextBlock
+        {
+            Text = item.Title,
+            FontSize = 12,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.TextPrimaryBrush
+        });
+        footerCopy.Children.Add(new TextBlock
+        {
+            Text = item.Category,
+            FontSize = 9,
+            Foreground = GalleryTheme.TextMutedBrush
+        });
+        footer.Children.Add(footerCopy);
+
+        var arrow = new TextBlock
+        {
+            Text = ">",
+            FontSize = 16,
+            Foreground = GalleryTheme.TextTertiaryBrush,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        Grid.SetColumn(arrow, 1);
+        footer.Children.Add(arrow);
+        Grid.SetRow(footer, 1);
+        layout.Children.Add(footer);
+
+        card.Child = layout;
+        card.MouseEnter += (_, _) =>
+        {
+            if (_selectedItem.Key != item.Key)
+            {
+                card.BorderBrush = GalleryTheme.AccentLightBrush;
+            }
+        };
+        card.MouseLeave += (_, _) =>
+        {
+            if (_selectedItem.Key != item.Key)
+            {
+                card.BorderBrush = GalleryTheme.BorderDefaultBrush;
+            }
+        };
+        card.MouseDown += (_, e) =>
+        {
+            if (e is MouseButtonEventArgs mouse && mouse.ChangedButton == MouseButton.Left)
+            {
+                SelectComponent(item);
+            }
+        };
+
+        _cardVisuals[item.Key] = new CardVisual(card, selectedBadge);
+        return card;
+    }
+
+    private void SelectComponent(ShowcaseItem item)
+    {
+        _selectedItem = item;
+        UpdateCardSelection();
+        UpdateDetailPanel();
+    }
+
+    private void UpdateCardSelection()
+    {
+        foreach (var pair in _cardVisuals)
+        {
+            var selected = pair.Key == _selectedItem.Key;
+            pair.Value.Container.BorderBrush = selected
+                ? GalleryTheme.AccentPrimaryBrush
+                : GalleryTheme.BorderDefaultBrush;
+            pair.Value.Container.BorderThickness = new Thickness(selected ? 2 : 1);
+            pair.Value.SelectedBadge.Visibility = selected
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+    }
+
+    private void UpdateDetailPanel()
+    {
+        if (_detailTitle == null ||
+            _detailCategory == null ||
+            _detailDescription == null ||
+            _detailPreviewHost == null ||
+            _codeText == null ||
+            _openDemoButton == null)
+        {
+            return;
+        }
+
+        _detailTitle.Text = _selectedItem.Title;
+        _detailCategory.Text = _selectedItem.Category.ToUpperInvariant();
+        _detailDescription.Text = _selectedItem.Description;
+        _codeText.Text = _selectedItem.Snippet;
+        _openDemoButton.Content = $"Open {_selectedItem.Title} demo  >";
+
+        ClearPanelChildren(_detailPreviewHost);
+        _detailPreviewHost.Children.Add(CreateComponentPreview(_selectedItem, true));
+    }
+
+    private static void ClearPanelChildren(Panel panel)
+    {
+        for (var index = 0; index < panel.Children.Count; index++)
+        {
+            panel.Children[index].Visibility = Visibility.Collapsed;
+        }
+
+        panel.Children.Clear();
+    }
+
+    private void SetDeviceMode(string mode)
+    {
+        _activeDevice = mode;
+
+        if (_detailPreviewFrame != null)
+        {
+            _detailPreviewFrame.Width = mode switch
+            {
+                "Mobile" => 210,
+                "Tablet" => 260,
+                _ => 310
+            };
+        }
+
+        foreach (var pair in _deviceButtons)
+        {
+            var selected = pair.Key == _activeDevice;
+            pair.Value.Background = selected
+                ? GalleryTheme.AccentSoftBrush
+                : GalleryTheme.TransparentBrush;
+            pair.Value.BorderBrush = selected
+                ? GalleryTheme.AccentPrimaryBrush
+                : GalleryTheme.BorderDefaultBrush;
+            pair.Value.Foreground = selected
+                ? GalleryTheme.AccentDarkBrush
+                : GalleryTheme.TextTertiaryBrush;
+        }
+    }
+
+    private void UpdateResponsiveLayout()
+    {
+        if (_workspaceGrid == null ||
+            _catalogPanel == null ||
+            _detailColumn == null ||
+            _detailPanel == null ||
+            _componentGrid == null)
+        {
+            return;
+        }
+
+        var width = ActualWidth;
+        if (width <= 0)
+        {
+            return;
+        }
+
+        var splitView = width >= 1040;
+        _detailPanel.Visibility = _hasVisibleItems ? Visibility.Visible : Visibility.Collapsed;
+        if (splitView)
+        {
+            _detailColumn.Width = new GridLength(_hasVisibleItems ? 360 : 0);
+            Grid.SetColumn(_detailPanel, 1);
+            Grid.SetRow(_detailPanel, 0);
+            _detailPanel.Margin = new Thickness(0);
+            _detailPanel.BorderThickness = new Thickness(1, 0, 0, 0);
+            _detailPanel.Padding = new Thickness(22, 2, 0, 0);
+            _catalogPanel.Margin = new Thickness(0, 0, _hasVisibleItems ? 20 : 0, 0);
+            _componentGrid.Columns = _hasVisibleItems
+                ? width >= 1180 ? 3 : 2
+                : 1;
+        }
+        else
+        {
+            _detailColumn.Width = new GridLength(0);
+            Grid.SetColumn(_detailPanel, 0);
+            Grid.SetRow(_detailPanel, 1);
+            _detailPanel.Margin = new Thickness(0, 24, 0, 0);
+            _detailPanel.BorderThickness = new Thickness(0, 1, 0, 0);
+            _detailPanel.Padding = new Thickness(0, 22, 0, 0);
+            _catalogPanel.Margin = new Thickness(0);
+            _componentGrid.Columns = _hasVisibleItems && width >= 680 ? 2 : 1;
+        }
+    }
+
+    private static UIElement CreateComponentPreview(ShowcaseItem item, bool detailed)
+    {
+        return item.PreviewKind switch
+        {
+            "buttons" => CreateButtonsPreview(detailed),
+            "inputs" => CreateInputsPreview(detailed),
+            "cards" => CreateCardPreview(),
+            "checkboxes" => CreateCheckboxPreview(detailed),
+            "switches" => CreateSwitchPreview(detailed),
+            "badges" => CreateBadgePreview(),
+            "select" => CreateSelectPreview(),
+            "progress" => CreateProgressPreview(),
+            "alerts" => CreateAlertPreview(),
+            _ => CreateGenericPreview(item, detailed)
+        };
+    }
+
+    private static UIElement CreateGenericPreview(ShowcaseItem item, bool detailed)
+    {
+        var accent = GetCategoryColor(item.Category);
+        var layout = new Grid
+        {
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        layout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(54) });
+        layout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+        layout.Children.Add(new Border
+        {
+            Width = 44,
+            Height = 44,
+            Background = new SolidColorBrush(Color.FromArgb(0x2F, accent.R, accent.G, accent.B)),
+            BorderBrush = new SolidColorBrush(Color.FromArgb(0x66, accent.R, accent.G, accent.B)),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(7),
+            Child = new TextBlock
+            {
+                Text = GetInitials(item.Title),
+                FontSize = 13,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(accent),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            }
+        });
+
         var copy = new StackPanel
         {
             Orientation = Orientation.Vertical,
             VerticalAlignment = VerticalAlignment.Center
         };
-
-        copy.Children.Add(new Border
-        {
-            Background = GalleryTheme.AccentSoftBrush,
-            BorderBrush = new SolidColorBrush(Color.FromArgb(0x55, 0xFF, 0xD6, 0x0A)),
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(999),
-            Padding = new Thickness(12, 6, 12, 6),
-            HorizontalAlignment = HorizontalAlignment.Left,
-            Margin = new Thickness(0, 0, 0, 16),
-            Child = new TextBlock
-            {
-                Text = "\u2728  Jalium.UI Gallery",
-                FontSize = 12,
-                FontWeight = FontWeights.SemiBold,
-                Foreground = GalleryTheme.AccentPrimaryBrush
-            }
-        });
-
         copy.Children.Add(new TextBlock
         {
-            Text = "Build native Windows experiences",
-            FontSize = GalleryTheme.FontSizeHero,
+            Text = item.Title,
+            FontSize = 11,
             FontWeight = FontWeights.Bold,
             Foreground = GalleryTheme.TextPrimaryBrush,
             TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 0, 0, 10)
+            Margin = new Thickness(0, 0, 0, 3)
         });
-
         copy.Children.Add(new TextBlock
         {
-            Text = "A modern control library with WPF-like ergonomics, a GPU-accelerated renderer, and a gallery full of live, copy-pasteable demos.",
-            FontSize = 15,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            TextWrapping = TextWrapping.Wrap,
-            MaxWidth = 560,
-            Margin = new Thickness(0, 0, 0, 24)
-        });
-
-        var ctaRow = new StackPanel { Orientation = Orientation.Horizontal };
-
-        var primaryCta = new Button
-        {
-            Content = "Get started  \u2192",
-            Background = GalleryTheme.AccentPrimaryBrush,
-            Foreground = new SolidColorBrush(Color.FromRgb(0x0B, 0x08, 0x14)),
-            BorderThickness = new Thickness(0),
-            FontWeight = FontWeights.Bold,
-            FontSize = 14,
-            Height = 44,
-            Padding = new Thickness(20, 0, 20, 0),
-            Margin = new Thickness(0, 0, 12, 0)
-        };
-        primaryCta.Click += (_, _) => NavigationRequested?.Invoke(this, new NavigationRequestEventArgs("getting-started"));
-        ctaRow.Children.Add(primaryCta);
-
-        var ghostCta = new Button
-        {
-            Content = "Browse controls",
-            Background = GalleryTheme.TransparentBrush,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            BorderBrush = GalleryTheme.BorderStrongBrush,
-            BorderThickness = new Thickness(1),
+            Text = item.Category,
+            FontSize = 9,
             FontWeight = FontWeights.SemiBold,
-            FontSize = 14,
-            Height = 44,
-            Padding = new Thickness(20, 0, 20, 0)
-        };
-        ghostCta.Click += (_, _) => NavigationRequested?.Invoke(this, new NavigationRequestEventArgs("basic"));
-        ctaRow.Children.Add(ghostCta);
+            Foreground = new SolidColorBrush(accent)
+        });
+        if (detailed)
+        {
+            copy.Children.Add(new TextBlock
+            {
+                Text = item.Description,
+                FontSize = 9,
+                Foreground = GalleryTheme.TextTertiaryBrush,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(0, 7, 0, 0)
+            });
+        }
 
-        copy.Children.Add(ctaRow);
-
-        Grid.SetColumn(copy, 0);
-        grid.Children.Add(copy);
-
-        // Right column: decorative preview
-        var preview = BuildHeroPreview();
-        Grid.SetColumn(preview, 1);
-        grid.Children.Add(preview);
-
-        hero.Child = grid;
-        return hero;
+        Grid.SetColumn(copy, 1);
+        layout.Children.Add(copy);
+        return layout;
     }
 
-    private static Border BuildHeroPreview()
+    private static string GetInitials(string title)
     {
-        var outer = new Border
+        var initials = new string(title.Where(char.IsUpper).Take(2).ToArray());
+        if (!string.IsNullOrEmpty(initials))
         {
-            Width = 250,
-            Height = 260,
-            Background = new SolidColorBrush(Color.FromArgb(0x88, 0x1B, 0x18, 0x2B)),
-            BorderBrush = GalleryTheme.BorderStrongBrush,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusLarge),
-            Padding = new Thickness(18),
-            HorizontalAlignment = HorizontalAlignment.Right,
+            return initials;
+        }
+
+        return title.Length == 0 ? "UI" : title[..1].ToUpperInvariant();
+    }
+
+    private static Color GetCategoryColor(string category)
+    {
+        return category switch
+        {
+            "Controls" => GalleryTheme.AccentPrimary,
+            "Text" => Color.FromRgb(0x4F, 0x46, 0xE5),
+            "Layout" => Color.FromRgb(0x0E, 0xA5, 0xE9),
+            "Navigation" => Color.FromRgb(0x10, 0xB9, 0x81),
+            "Data" => Color.FromRgb(0xF5, 0x9E, 0x0B),
+            "Media" => Color.FromRgb(0xF4, 0x3F, 0x5E),
+            "Visuals" => Color.FromRgb(0x8B, 0x5C, 0xF6),
+            _ => Color.FromRgb(0x64, 0x70, 0x85)
+        };
+    }
+
+    private static UIElement CreateButtonsPreview(bool detailed)
+    {
+        var row = new WrapPanel
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center
         };
+        row.Children.Add(CreatePreviewButton("Primary", true));
+        row.Children.Add(CreatePreviewButton("Secondary", false));
+        row.Children.Add(CreateGhostButton());
 
-        var stack = new StackPanel { Orientation = Orientation.Vertical };
-
-        // Mock window titlebar
-        var dotsRow = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 14) };
-        dotsRow.Children.Add(MakeDot(Color.FromRgb(0xEF, 0x44, 0x44)));
-        dotsRow.Children.Add(MakeDot(Color.FromRgb(0xF5, 0x9E, 0x0B)));
-        dotsRow.Children.Add(MakeDot(Color.FromRgb(0x22, 0xC5, 0x5E)));
-        stack.Children.Add(dotsRow);
-
-        // Mock content blocks
-        stack.Children.Add(MakeBar(160, GalleryTheme.BackgroundHover));
-        stack.Children.Add(MakeBar(210, GalleryTheme.BorderDefault, 6));
-        stack.Children.Add(MakeBar(190, GalleryTheme.BorderDefault, 6));
-
-        var chartRow = new StackPanel
+        if (detailed)
         {
-            Orientation = Orientation.Horizontal,
-            Margin = new Thickness(0, 14, 0, 0)
-        };
-        chartRow.Children.Add(MakeChartBar(24, GalleryTheme.BorderStrong));
-        chartRow.Children.Add(MakeChartBar(42, GalleryTheme.HaloPurple));
-        chartRow.Children.Add(MakeChartBar(70, GalleryTheme.AccentPrimary));
-        chartRow.Children.Add(MakeChartBar(58, GalleryTheme.AccentSecondary));
-        chartRow.Children.Add(MakeChartBar(36, GalleryTheme.BorderStrong));
-        stack.Children.Add(chartRow);
-
-        // Bottom label
-        stack.Children.Add(new Border
-        {
-            Background = GalleryTheme.AccentPrimaryBrush,
-            CornerRadius = new CornerRadius(10),
-            Padding = new Thickness(10, 6, 10, 6),
-            HorizontalAlignment = HorizontalAlignment.Left,
-            Margin = new Thickness(0, 16, 0, 0),
-            Child = new TextBlock
+            row.Children.Add(new Button
             {
-                Text = "Live",
-                FontSize = 11,
-                FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Color.FromRgb(0x0B, 0x08, 0x14))
-            }
-        });
+                Content = "Disabled",
+                IsEnabled = false,
+                Height = 36,
+                Padding = new Thickness(12, 0, 12, 0),
+                Margin = new Thickness(4)
+            });
+        }
 
-        outer.Child = stack;
-        return outer;
+        return row;
     }
 
-    private static Border MakeDot(Color color)
+    private static Button CreatePreviewButton(string label, bool primary)
     {
-        return new Border
+        return new Button
         {
-            Width = 10,
-            Height = 10,
-            Background = new SolidColorBrush(color),
-            CornerRadius = new CornerRadius(5),
-            Margin = new Thickness(0, 0, 6, 0)
+            Content = label,
+            Height = 36,
+            Padding = new Thickness(12, 0, 12, 0),
+            Margin = new Thickness(4),
+            Background = primary ? GalleryTheme.AccentPrimaryBrush : GalleryTheme.BackgroundCardBrush,
+            BorderBrush = primary ? GalleryTheme.AccentPrimaryBrush : GalleryTheme.BorderStrongBrush,
+            Foreground = primary
+                ? new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF))
+                : GalleryTheme.TextSecondaryBrush,
+            FontSize = 11,
+            FontWeight = FontWeights.SemiBold
         };
     }
 
-    private static Border MakeBar(double width, Color color, double topMargin = 0)
+    private static Button CreateGhostButton()
     {
-        return new Border
+        return new Button
         {
-            Width = width,
-            Height = 10,
-            Background = new SolidColorBrush(color),
-            CornerRadius = new CornerRadius(5),
-            HorizontalAlignment = HorizontalAlignment.Left,
-            Margin = new Thickness(0, topMargin, 0, 0)
+            Content = "Ghost",
+            Height = 36,
+            Padding = new Thickness(10, 0, 10, 0),
+            Margin = new Thickness(4),
+            Background = GalleryTheme.TransparentBrush,
+            BorderThickness = new Thickness(0),
+            Foreground = GalleryTheme.AccentPrimaryBrush,
+            FontSize = 11,
+            FontWeight = FontWeights.SemiBold
         };
     }
 
-    private static Border MakeChartBar(double height, Color color)
-    {
-        return new Border
-        {
-            Width = 24,
-            Height = height,
-            Background = new SolidColorBrush(color),
-            CornerRadius = new CornerRadius(6),
-            VerticalAlignment = VerticalAlignment.Bottom,
-            Margin = new Thickness(0, 0, 8, 0)
-        };
-    }
-
-    private StackPanel CreateSectionHeader(string title, string subtitle)
+    private static UIElement CreateInputsPreview(bool detailed)
     {
         var stack = new StackPanel
         {
             Orientation = Orientation.Vertical,
-            Margin = new Thickness(4, 0, 0, 16)
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center
         };
-
-        stack.Children.Add(new TextBlock
+        stack.Children.Add(new TextBox
         {
-            Text = title,
-            FontSize = GalleryTheme.FontSizeTitle,
-            FontWeight = FontWeights.Bold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 4)
+            Height = 34,
+            Text = "Placeholder",
+            Foreground = GalleryTheme.TextMutedBrush,
+            Margin = new Thickness(0, 0, 0, 7)
         });
-
-        stack.Children.Add(new TextBlock
+        stack.Children.Add(new TextBox
         {
-            Text = subtitle,
-            FontSize = 13,
-            Foreground = GalleryTheme.TextTertiaryBrush
+            Height = 34,
+            Text = "Focused input",
+            Margin = new Thickness(0, 0, 0, detailed ? 7 : 0)
         });
-
+        if (detailed)
+        {
+            stack.Children.Add(new TextBox
+            {
+                Height = 34,
+                Text = "Disabled input",
+                IsEnabled = false
+            });
+        }
         return stack;
     }
 
-    #region Feature icons (SVG paths)
-
-    // Viewbox 1024×1024 — two chevron-arrow paths (upper + lower) representing an exchange / API.
-    private const string ApiIconPath =
-        "M310.345143 292.571429H877.714286a73.142857 73.142857 0 0 1 0 146.285714" +
-        "H146.285714a73.142857 73.142857 0 0 1-72.850285-79.433143 72.996571 72.996571 0 0 1 21.138285-58.002286" +
-        "L301.348571 94.573714a73.142857 73.142857 0 0 1 103.497143 103.424L310.345143 292.571429z" +
-        "M713.654857 731.428571H146.285714a73.142857 73.142857 0 0 1 0-146.285714h731.428572" +
-        "a73.142857 73.142857 0 0 1 72.850285 79.433143 72.996571 72.996571 0 0 1-21.138285 58.002286" +
-        "L722.651429 929.426286a73.142857 73.142857 0 0 1-103.497143-103.424L713.654857 731.428571z";
-
-    // Viewbox 1287×1024 — interlocked panels representing data binding.
-    private const string BindingIconPath =
-        "M300.44123 597.333333H85.641953v-513.080168h686.678722v513.080168h-129.118746" +
-        "a43.322483 43.322483 0 1 0 0 86.60639h129.118746a85.487643 85.487643 0 0 0 85.641953-85.333334" +
-        "v-513.080168A85.487643 85.487643 0 0 0 772.320675 0.192887H85.641953" +
-        "A85.487643 85.487643 0 0 0 0 85.526221v513.080168a85.487643 85.487643 0 0 0 85.641953 85.333334" +
-        "h214.799277a43.013864 43.013864 0 0 0 43.476793-43.283906 43.862568 43.862568 0 0 0-43.476793-43.322484z" +
-        "m901.362266-257.273056h-214.799277a43.322483 43.322483 0 1 0 0 86.60639h214.799277v513.080168" +
-        "h-686.678722v-513.080168H644.24352a43.322483 43.322483 0 1 0 0-86.60639h-129.118746" +
-        "a85.487643 85.487643 0 0 0-85.641953 85.333334v513.080168a85.487643 85.487643 0 0 0 85.641953 85.333334" +
-        "h686.678722a85.487643 85.487643 0 0 0 85.680531-85.333334v-513.080168" +
-        "a85.487643 85.487643 0 0 0-85.680531-85.333334z";
-
-    // Viewbox 1024×1024 — four L-shaped brackets (top-left, top-right, bottom-left,
-    // bottom-right) suggesting a focus reticle. Each bracket is an EvenOdd ring
-    // (outer contour + inner contour) painted as a single closed figure.
-    //
-    // NOTE on F1 (left-top bracket): the original iconfont data for this figure
-    // was malformed — a `v-101.04` followed by an out-of-range `C` produced a
-    // cubic that overshot to y≈30 and dragged the overall geometry bounds
-    // into a 236×316 non-square rectangle. Uniform stretch then compressed all
-    // four brackets off-grid. The replacement below is the Y-axis mirror of
-    // F2 (the left-bottom bracket, reflected about y=512), which is
-    // guaranteed consistent with F0/F2/F3 in curvature, arm length and
-    // ring thickness.
-    private const string FocusIconPath =
-        // F0 — right-bottom bracket (original, correct)
-        "M849.07153297 646.81872559c9.30432153 0 17.26391602 3.30249 23.82934617 9.88769507" +
-        " 6.60992408 6.59509253 9.88769508 14.52502465 9.88769508 23.79473901v101.14617896" +
-        " c0 27.90801978-9.87780761 51.70275879-29.61364722 71.47814965-19.75067115 19.77539086-43.56518578 29.66308594-71.48803711 29.66308594" +
-        " h-101.1165166c-9.32409644 0-17.25402856-3.29754663-23.83428954-9.9865725" +
-        "-6.59509253-6.49127173-9.90252662-14.52502465-9.90252662-23.7947383 0-9.26971435 3.30743408-17.20458984 9.90252662-23.79473901" +
-        " 6.58026099-6.59014916 14.51019311-9.88769508 23.83428954-9.88769507h101.1165166" +
-        " c9.29937744 0 17.26391602-3.29754663 23.82440137-9.88769579 6.61486816-6.59014916 9.88769508-14.52008057 9.88769579-23.89361573" +
-        " v-101.04235815c0-9.36859107 3.28765845-17.30346656 9.89758254-23.78979493" +
-        " 6.57531762-6.69396997 14.52502465-9.99151587 23.83923363-9.99151587l-0.06427025 0.09887671z" +
-        // F1 — left-top bracket (repaired: Y-mirror of F2 about y=512)
-        "M174.9877932 377.18127441c9.30432153 0 17.24414039-3.30249 23.81451393-9.88769507" +
-        " 6.62475562-6.59509253 9.90252662-14.52502465 9.90252662-23.79473901v-101.14617896" +
-        "c0-9.26971435 3.27282691-17.19964576 9.89758324-23.78979492 6.57531762-6.59014916 14.51513648-9.88769508 23.81451393-9.88769579" +
-        "h101.12640404c9.29937744 0 17.25402856-3.29754663 23.82934547-9.88769507 6.60992408-6.59014916 9.88769508-14.52502465 9.88769579-23.89361572" +
-        " 0-9.26971435-3.27777099-17.20458984-9.88769579-23.79473901-6.57531762-6.59014916-14.52996803-9.88769508-23.82934547-9.88769508" +
-        "H242.41693092c-27.91296386 0-51.71264625 9.88769508-71.47814895 29.66308594-19.75561523 19.67651344-29.62353539 43.57012915-29.62353539 71.47814965" +
-        "v101.04235816c0 9.26971435 3.27282691 17.30346656 9.88769507 23.89361573 6.58026099 6.59509253 14.52502465 9.88769508 23.81451464 9.88769507z" +
-        // F2 — left-bottom bracket (original, correct)
-        "M174.9877932 646.81872559c9.30432153 0 17.24414039 3.30249 23.81451393 9.88769507 6.62475562 6.59509253 9.90252662 14.52502465 9.90252662 23.79473901" +
-        "v101.14617896c0 9.26971435 3.27282691 17.19964576 9.89758324 23.78979492 6.57531762 6.59014916 14.51513648 9.88769508 23.81451393 9.88769579" +
-        "h101.12640404c9.29937744 0 17.25402856 3.29754663 23.82934547 9.88769507 6.60992408 6.59014916 9.88769508 14.52502465 9.88769579 23.89361572" +
-        " 0 9.26971435-3.27777099 17.20458984-9.88769579 23.79473901-6.57531762 6.59014916-14.52996803 9.88769508-23.82934547 9.88769508" +
-        "H242.41693092c-27.91296386 0-51.71264625-9.88769508-71.47814895-29.66308594-19.75561523-19.67651344-29.62353539-43.57012915-29.62353539-71.47814965" +
-        "v-101.04235816c0-9.26971435 3.27282691-17.30346656 9.88769507-23.89361573 6.58026099-6.59509253 14.52502465-9.88769508 23.81451464-9.88769507z" +
-        // F3 — right-top bracket (original, correct)
-        "M680.57037329 141.3103025h101.1165166c27.92285133 0 51.73736596 9.88769508 71.48803711 29.56420922 19.73583961 19.77539086 29.61364722 43.57012915 29.61364722 71.47814965" +
-        "v101.14617896c0 9.26971435-3.27777099 17.30346656-9.88769508 23.78979493-6.56542945 6.69396997-14.52502465 9.88769508-23.82934617 9.88769506" +
-        "-9.29937744 0-17.26391602-3.19372583-23.82440139-9.88769506-6.61486816-6.48632836-9.88769508-14.52008057-9.88769579-23.78979493" +
-        "V242.35266137c0-9.26971435-3.28765845-17.19964576-9.90252661-23.78979492-6.57037354-6.59509253-14.52008057-9.88769508-23.83428955-9.88769579" +
-        "h-101.10168433c-9.31420898 0-17.2688601-3.29754663-23.82934618-9.88769507-6.60992408-6.59509253-9.89758325-14.52502465-9.89758254-23.79473902" +
-        " 0-9.37353516 3.28765845-17.30346656 9.89758254-23.89361571 6.56048608-6.59014916 14.51513648-9.88769508 23.82934618-9.88769508z";
-
-    // Rendering icon uses several sub-paths composed in a Viewbox (viewBox 128×128).
-    private const string RenderingHexagonPath = "M64 34L86 47V73L64 86L42 73V47L64 34Z";
-    private const string RenderingOrbitPath1 = "M36 52C42 34 58 26 74 28C90 30 102 42 102 58C102 74 92 88 76 94";
-    private const string RenderingOrbitPath2 = "M92 76C86 94 70 102 54 100C38 98 26 86 26 70C26 54 36 40 52 34";
-    private const string RenderingMeshPath =
-        "M42 47L64 60L86 47 M42 73L64 60L86 73 M64 34V60V86 M42 47L42 73 M86 47V73";
-
-    private static UIElement BuildApiIcon(Color accentColor) =>
-        BuildSinglePathIcon(ApiIconPath, accentColor);
-
-    private static UIElement BuildBindingIcon(Color accentColor) =>
-        BuildSinglePathIcon(BindingIconPath, accentColor);
-
-    private static UIElement BuildFocusIcon(Color accentColor) =>
-        BuildSinglePathIcon(FocusIconPath, accentColor);
-
-    private static UIElement BuildRenderingIcon(Color accentColor)
+    private static UIElement CreateCardPreview()
     {
-        var accentBrush = new SolidColorBrush(accentColor);
-        var fadedBrush = new SolidColorBrush(
-            Color.FromArgb(0xB0, accentColor.R, accentColor.G, accentColor.B));
-
-        var grid = new Grid { Width = 128, Height = 128 };
-
-        // Outer orbit arcs
-        grid.Children.Add(new Path
+        var content = new Grid();
+        content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(42) });
+        content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        content.Children.Add(new Border
         {
-            Data = RenderingOrbitPath1,
-            Stroke = fadedBrush,
-            StrokeThickness = 6,
-            StrokeStartLineCap = PenLineCap.Round,
-            StrokeEndLineCap = PenLineCap.Round,
-            Stretch = Stretch.None
-        });
-        grid.Children.Add(new Path
-        {
-            Data = RenderingOrbitPath2,
-            Stroke = fadedBrush,
-            StrokeThickness = 6,
-            StrokeStartLineCap = PenLineCap.Round,
-            StrokeEndLineCap = PenLineCap.Round,
-            Stretch = Stretch.None
-        });
-
-        // Hexagon outline
-        grid.Children.Add(new Path
-        {
-            Data = RenderingHexagonPath,
-            Stroke = accentBrush,
-            StrokeThickness = 6,
-            StrokeLineJoin = PenLineJoin.Round,
-            Stretch = Stretch.None
-        });
-
-        // Internal mesh hinting at a rendering pipeline
-        grid.Children.Add(new Path
-        {
-            Data = RenderingMeshPath,
-            Stroke = accentBrush,
-            StrokeThickness = 4,
-            StrokeStartLineCap = PenLineCap.Round,
-            StrokeEndLineCap = PenLineCap.Round,
-            StrokeLineJoin = PenLineJoin.Round,
-            Stretch = Stretch.None
-        });
-
-        return new Viewbox
-        {
-            Width = 28,
-            Height = 28,
-            Stretch = Stretch.Uniform,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Child = grid
-        };
-    }
-
-    private static UIElement BuildSinglePathIcon(string data, Color accentColor)
-    {
-        return new Path
-        {
-            Data = data,
-            Fill = new SolidColorBrush(accentColor),
-            Stretch = Stretch.Uniform,
-            Width = 22,
-            Height = 22,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center
-        };
-    }
-
-    #endregion
-
-    private Border CreateFeatureCard(UIElement icon, string title, string description, Color accentColor)
-    {
-        var card = new Border
-        {
-            Background = GalleryTheme.BackgroundCardBrush,
-            BorderBrush = GalleryTheme.BorderDefaultBrush,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusLarge),
-            Padding = new Thickness(20),
-            Margin = new Thickness(6)
-        };
-
-        var stack = new StackPanel { Orientation = Orientation.Vertical };
-
-        stack.Children.Add(new Border
-        {
-            Width = 44,
-            Height = 44,
-            Background = new SolidColorBrush(Color.FromArgb(0x33, accentColor.R, accentColor.G, accentColor.B)),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusMedium),
-            HorizontalAlignment = HorizontalAlignment.Left,
-            Margin = new Thickness(0, 0, 0, 14),
-            Child = icon
-        });
-
-        stack.Children.Add(new TextBlock
-        {
-            Text = title,
-            FontSize = 15,
-            FontWeight = FontWeights.Bold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            Margin = new Thickness(0, 0, 0, 6)
-        });
-
-        stack.Children.Add(new TextBlock
-        {
-            Text = description,
-            FontSize = 12,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            TextWrapping = TextWrapping.Wrap
-        });
-
-        card.Child = stack;
-        return card;
-    }
-
-    private Border CreateCategoryCard(string title, string description, string pageTag, Color accentColor)
-    {
-        var card = new Border
-        {
-            Background = GalleryTheme.BackgroundCardBrush,
-            BorderBrush = GalleryTheme.BorderSubtleBrush,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusLarge),
-            Padding = new Thickness(18, 16, 18, 16),
-            Margin = new Thickness(6)
-        };
-
-        var stack = new StackPanel { Orientation = Orientation.Vertical };
-
-        // Row: colored indicator + title
-        var titleRow = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 6) };
-        titleRow.Children.Add(new Border
-        {
-            Width = 10,
-            Height = 10,
-            Background = new SolidColorBrush(accentColor),
-            CornerRadius = new CornerRadius(5),
-            Margin = new Thickness(0, 0, 10, 0),
-            VerticalAlignment = VerticalAlignment.Center
-        });
-        titleRow.Children.Add(new TextBlock
-        {
-            Text = title,
-            FontSize = 15,
-            FontWeight = FontWeights.Bold,
-            Foreground = GalleryTheme.TextPrimaryBrush,
-            VerticalAlignment = VerticalAlignment.Center
-        });
-        stack.Children.Add(titleRow);
-
-        stack.Children.Add(new TextBlock
-        {
-            Text = description,
-            FontSize = 12,
-            Foreground = GalleryTheme.TextTertiaryBrush,
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 0, 0, 10)
-        });
-
-        stack.Children.Add(new TextBlock
-        {
-            Text = "Explore  \u2192",
-            FontSize = 12,
-            FontWeight = FontWeights.Bold,
-            Foreground = GalleryTheme.AccentPrimaryBrush
-        });
-
-        card.Child = stack;
-
-        card.MouseEnter += (_, _) =>
-        {
-            card.Background = GalleryTheme.BackgroundHoverBrush;
-            card.BorderBrush = new SolidColorBrush(Color.FromArgb(0x88, accentColor.R, accentColor.G, accentColor.B));
-        };
-        card.MouseLeave += (_, _) =>
-        {
-            card.Background = GalleryTheme.BackgroundCardBrush;
-            card.BorderBrush = GalleryTheme.BorderSubtleBrush;
-        };
-        card.MouseDown += (_, e) =>
-        {
-            if (e is MouseButtonEventArgs mouseArgs && mouseArgs.ChangedButton == MouseButton.Left)
+            Width = 34,
+            Height = 34,
+            Background = GalleryTheme.AccentSoftBrush,
+            CornerRadius = new CornerRadius(6),
+            Child = new TextBlock
             {
-                NavigationRequested?.Invoke(this, new NavigationRequestEventArgs(pageTag));
+                Text = "▣",
+                FontSize = 15,
+                Foreground = GalleryTheme.AccentPrimaryBrush,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
             }
-        };
+        });
 
-        return card;
-    }
-
-    private static Border CreateCodeCard(string title, string subtitle, EditControl editor, bool withBottomMargin)
-    {
-        var card = new Border
+        var copy = new StackPanel
         {
-            Background = GalleryTheme.BackgroundCardBrush,
-            BorderBrush = GalleryTheme.BorderDefaultBrush,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusLarge),
-            Padding = new Thickness(22),
-            Margin = new Thickness(0, 0, 0, withBottomMargin ? 16 : 0)
+            Orientation = Orientation.Vertical,
+            VerticalAlignment = VerticalAlignment.Center
         };
-
-        var stack = new StackPanel { Orientation = Orientation.Vertical };
-
-        stack.Children.Add(new TextBlock
+        copy.Children.Add(new TextBlock
         {
-            Text = title,
-            FontSize = GalleryTheme.FontSizeSubtitle,
+            Text = "Card title",
+            FontSize = 12,
             FontWeight = FontWeights.Bold,
             Foreground = GalleryTheme.TextPrimaryBrush,
             Margin = new Thickness(0, 0, 0, 4)
         });
-
-        stack.Children.Add(new TextBlock
+        copy.Children.Add(new TextBlock
         {
-            Text = subtitle,
-            FontSize = 12,
+            Text = "Supporting content for this component.",
+            FontSize = 10,
             Foreground = GalleryTheme.TextTertiaryBrush,
-            Margin = new Thickness(0, 0, 0, 16)
+            TextWrapping = TextWrapping.Wrap
         });
+        Grid.SetColumn(copy, 1);
+        content.Children.Add(copy);
 
-        stack.Children.Add(new Border
+        return new Border
         {
-            Background = GalleryTheme.BackgroundCardInnerBrush,
-            BorderBrush = GalleryTheme.BorderSubtleBrush,
+            Background = GalleryTheme.BackgroundCardBrush,
+            BorderBrush = GalleryTheme.BorderDefaultBrush,
             BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(GalleryTheme.CornerRadiusMedium),
-            Padding = new Thickness(4),
-            Child = editor
-        });
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(12),
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center,
+            Child = content
+        };
+    }
 
-        card.Child = stack;
-        return card;
+    private static UIElement CreateCheckboxPreview(bool detailed)
+    {
+        var stack = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        stack.Children.Add(new CheckBox
+        {
+            Content = "Checked",
+            IsChecked = true,
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            Margin = new Thickness(0, 0, 0, 6)
+        });
+        stack.Children.Add(new CheckBox
+        {
+            Content = "Unchecked",
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            Margin = new Thickness(0, 0, 0, detailed ? 6 : 0)
+        });
+        if (detailed)
+        {
+            stack.Children.Add(new CheckBox
+            {
+                Content = "Disabled",
+                IsChecked = true,
+                Foreground = GalleryTheme.TextDisabledBrush,
+                IsEnabled = false
+            });
+        }
+        return stack;
+    }
+
+    private static UIElement CreateSwitchPreview(bool detailed)
+    {
+        var stack = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        stack.Children.Add(new ToggleSwitch
+        {
+            Header = "Notifications",
+            IsOn = true,
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            OnBackground = GalleryTheme.AccentPrimaryBrush,
+            Margin = new Thickness(0, 0, 0, 8)
+        });
+        stack.Children.Add(new ToggleSwitch
+        {
+            Header = "Auto update",
+            IsOn = false,
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            OnBackground = GalleryTheme.AccentPrimaryBrush,
+            Margin = new Thickness(0, 0, 0, detailed ? 8 : 0)
+        });
+        if (detailed)
+        {
+            stack.Children.Add(new ToggleSwitch
+            {
+                Header = "Unavailable",
+                Foreground = GalleryTheme.TextDisabledBrush,
+                IsEnabled = false
+            });
+        }
+        return stack;
+    }
+
+    private static UIElement CreateBadgePreview()
+    {
+        var row = new WrapPanel
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        row.Children.Add(CreateBadge("Default", GalleryTheme.TextTertiary));
+        row.Children.Add(CreateBadge("Success", GalleryTheme.Success));
+        row.Children.Add(CreateBadge("Info", GalleryTheme.Info));
+        row.Children.Add(CreateBadge("Warning", GalleryTheme.Warning));
+        row.Children.Add(CreateBadge("Error", GalleryTheme.Error));
+        return row;
+    }
+
+    private static UIElement CreateBadge(string label, Color color)
+    {
+        return new Border
+        {
+            Background = new SolidColorBrush(Color.FromArgb(0x2F, color.R, color.G, color.B)),
+            BorderBrush = new SolidColorBrush(Color.FromArgb(0x66, color.R, color.G, color.B)),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(5),
+            Padding = new Thickness(7, 4, 7, 4),
+            Margin = new Thickness(3),
+            Child = new TextBlock
+            {
+                Text = label,
+                FontSize = 9,
+                FontWeight = FontWeights.SemiBold,
+                Foreground = new SolidColorBrush(color)
+            }
+        };
+    }
+
+    private static UIElement CreateSelectPreview()
+    {
+        var comboBox = new ComboBox
+        {
+            Width = 220,
+            Height = 38,
+            PlaceholderText = "Select an option",
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        comboBox.Items.Add("Option one");
+        comboBox.Items.Add("Option two");
+        comboBox.Items.Add("Option three");
+        return comboBox;
+    }
+
+    private static UIElement CreateProgressPreview()
+    {
+        var stack = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        var valueRow = new Grid { Margin = new Thickness(0, 0, 0, 7) };
+        valueRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        valueRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        valueRow.Children.Add(new TextBlock
+        {
+            Text = "Uploading",
+            FontSize = 10,
+            FontWeight = FontWeights.SemiBold,
+            Foreground = GalleryTheme.TextSecondaryBrush
+        });
+        var value = new TextBlock
+        {
+            Text = "60%",
+            FontSize = 10,
+            Foreground = GalleryTheme.TextTertiaryBrush
+        };
+        Grid.SetColumn(value, 1);
+        valueRow.Children.Add(value);
+        stack.Children.Add(valueRow);
+        stack.Children.Add(new ProgressBar
+        {
+            Value = 60,
+            Height = 8,
+            ProgressBrush = GalleryTheme.AccentPrimaryBrush
+        });
+        return stack;
+    }
+
+    private static UIElement CreateAlertPreview()
+    {
+        var content = new Grid();
+        content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(28) });
+        content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        content.Children.Add(new TextBlock
+        {
+            Text = "i",
+            Width = 20,
+            Height = 20,
+            FontSize = 11,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.InfoBrush,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        });
+        var copy = new StackPanel { Orientation = Orientation.Vertical };
+        copy.Children.Add(new TextBlock
+        {
+            Text = "Update available",
+            FontSize = 11,
+            FontWeight = FontWeights.Bold,
+            Foreground = GalleryTheme.TextPrimaryBrush,
+            Margin = new Thickness(0, 0, 0, 2)
+        });
+        copy.Children.Add(new TextBlock
+        {
+            Text = "A new version is ready to install.",
+            FontSize = 9,
+            Foreground = GalleryTheme.TextTertiaryBrush,
+            TextWrapping = TextWrapping.Wrap
+        });
+        Grid.SetColumn(copy, 1);
+        content.Children.Add(copy);
+
+        return new Border
+        {
+            Background = new SolidColorBrush(Color.FromArgb(0x22, 0x38, 0xBD, 0xF8)),
+            BorderBrush = new SolidColorBrush(Color.FromArgb(0x77, 0x38, 0xBD, 0xF8)),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(10),
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center,
+            Child = content
+        };
     }
 }
