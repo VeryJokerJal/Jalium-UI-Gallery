@@ -1,0 +1,2 @@
+@font-face { font-family: GalleryAhem; src: url('Ahem.woff2') format('woff2'), url('Ahem.ttf') format('truetype'); font-display: swap; }
+.downloaded-font { font-family: GalleryAhem, Arial; font-size: 36px; }

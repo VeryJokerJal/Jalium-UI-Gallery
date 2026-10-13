@@ -1,28 +1,31 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.QRCodePage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="QRCode">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="QRCode" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Media}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.QRCode.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Generate QR codes for links, contact payloads, Wi-Fi setup strings, or any other compact text payload." />
+                   Text="{DynamicResource Loc.P.QRCode.Sub1}" />
 
         <!-- Interactive generator -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Generator" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.QRCode.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Change the payload and error correction level, then regenerate the QR code." />
+                           Text="{DynamicResource Loc.P.QRCode.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBox x:Name="PayloadTextBox"
                                  Height="32"
                                  HorizontalAlignment="Stretch"
                                  Margin="0,0,0,12"
+                                 Text="{Binding PayloadInput, Mode=TwoWay}"
                                  ToolTip="Enter a URL or other payload..." />
 
                         <WrapPanel Margin="0,0,0,12">
@@ -30,36 +33,40 @@
                                     Width="96"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnGenerateClick"/>
+                                    Command="{Binding GenerateCommand}"/>
                             <Button Content="ECC L"
                                     Tag="L"
                                     Width="72"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnErrorCorrectionClick"/>
+                                    Command="{Binding SetErrorCorrectionCommand}"
+                                    CommandParameter="L"/>
                             <Button Content="ECC M"
                                     Tag="M"
                                     Width="72"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnErrorCorrectionClick"/>
+                                    Command="{Binding SetErrorCorrectionCommand}"
+                                    CommandParameter="M"/>
                             <Button Content="ECC Q"
                                     Tag="Q"
                                     Width="72"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnErrorCorrectionClick"/>
+                                    Command="{Binding SetErrorCorrectionCommand}"
+                                    CommandParameter="Q"/>
                             <Button Content="ECC H"
                                     Tag="H"
                                     Width="72"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnErrorCorrectionClick"/>
+                                    Command="{Binding SetErrorCorrectionCommand}"
+                                    CommandParameter="H"/>
                         </WrapPanel>
 
                         <TextBlock x:Name="GeneratorStatusText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="ECC: Q"
+                                   Text="{Binding GeneratorStatusText}"
                                    Margin="0,0,0,12"/>
 
                         <Border Background="#101010"
@@ -68,12 +75,14 @@
                                 HorizontalAlignment="Left">
                             <QRCode x:Name="DemoQRCode"
                                     Width="220"
-                                    Height="220" />
+                                    Height="220"
+                                    Text="{Binding Payload}"
+                                    ErrorCorrectionLevel="{Binding ErrorCorrectionLevel}" />
                         </Border>
 
                         <TextBlock x:Name="PayloadSummaryText"
                                    Style="{StaticResource GalleryCaptionText}"
-                                   Text="Payload: https://jalium.dev"
+                                   Text="{Binding PayloadSummaryText}"
                                    Margin="0,12,0,0"/>
                     </StackPanel>
                 </Border>
@@ -83,9 +92,9 @@
         <!-- Common payloads -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Payloads" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.QRCode.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A few practical formats that work well with QRCode." />
+                           Text="{DynamicResource Loc.P.QRCode.CC2}" />
                 <WrapPanel>
                     <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,10,10">
                         <StackPanel Orientation="Vertical">
@@ -95,10 +104,10 @@
                                     QuietZoneModules="2"
                                     Margin="0,0,0,12"/>
                             <TextBlock Style="{StaticResource GalleryValueLabel}"
-                                       Text="Documentation URL"
+                                       Text="{DynamicResource Loc.P.QRCode.Val1}"
                                        Margin="0,0,0,4"/>
                             <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                       Text="Great for mobile-friendly links."
+                                       Text="{DynamicResource Loc.P.QRCode.Cap1}"
                                        Width="140"/>
                         </StackPanel>
                     </Border>
@@ -112,10 +121,10 @@
                                     ErrorCorrectionLevel="H"
                                     Margin="0,0,0,12"/>
                             <TextBlock Style="{StaticResource GalleryValueLabel}"
-                                       Text="Wi-Fi Onboarding"
+                                       Text="{DynamicResource Loc.P.QRCode.Val2}"
                                        Margin="0,0,0,4"/>
                             <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                       Text="Encode setup info for quick scanning."
+                                       Text="{DynamicResource Loc.P.QRCode.Cap2}"
                                        Width="140"/>
                         </StackPanel>
                     </Border>
@@ -128,10 +137,10 @@
                                     QuietZoneModules="2"
                                     Margin="0,0,0,12"/>
                             <TextBlock Style="{StaticResource GalleryValueLabel}"
-                                       Text="Contact Card"
+                                       Text="{DynamicResource Loc.P.QRCode.Val3}"
                                        Margin="0,0,0,4"/>
                             <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                       Text="Share compact contact payloads."
+                                       Text="{DynamicResource Loc.P.QRCode.Cap3}"
                                        Width="140"/>
                         </StackPanel>
                     </Border>
@@ -142,22 +151,22 @@
         <!-- Properties -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="QRCode Properties" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.QRCode.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The key properties you set to control encoding and presentation." />
+                           Text="{DynamicResource Loc.P.QRCode.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Text - The payload encoded into the QR matrix"
+                                   Text="{DynamicResource Loc.P.QRCode.Body1}"
                                    Margin="0,0,0,8"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="ErrorCorrectionLevel - Choose L, M, Q, or H based on resilience needs"
+                                   Text="{DynamicResource Loc.P.QRCode.Body2}"
                                    Margin="0,0,0,8"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="QuietZoneModules - Control the blank border around the encoded matrix"
+                                   Text="{DynamicResource Loc.P.QRCode.Body3}"
                                    Margin="0,0,0,8"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Foreground / Background / Padding / CornerRadius - Style the presentation surface"/>
+                                   Text="{DynamicResource Loc.P.QRCode.Body4}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -166,15 +175,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the QR codes above." />
+                           Text="{DynamicResource Loc.P.QRCode.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13"/>
                 </Border>
             </StackPanel>
@@ -183,15 +194,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Generating and updating a QRCode from code-behind." />
+                           Text="{DynamicResource Loc.P.QRCode.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13"/>
                 </Border>
             </StackPanel>

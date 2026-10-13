@@ -1,25 +1,28 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PropertyGridPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="PropertyGrid">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VIEWERS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="PropertyGrid" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataViewers}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.PropertyGrid.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays the properties of an object for viewing and editing, with categorized and alphabetical sort modes, live search and descriptions." />
+                   Text="{DynamicResource Loc.P.PropertyGrid.Sub1}" />
 
         <!-- Basic property grid -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Property Grid" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.PropertyGrid.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Inspect and edit the properties of a sample object with the categorized view." />
+                           Text="{DynamicResource Loc.P.PropertyGrid.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <PropertyGrid x:Name="BasicPropertyGrid"
                                   Height="350"
+                                  SelectedObject="{Binding BasicSample}"
                                   SortMode="Categorized"
                                   ShowSearchBox="True"
                                   ShowDescription="True"/>
@@ -30,23 +33,25 @@
         <!-- Categorized vs Alphabetical -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Categorized vs Alphabetical" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.PropertyGrid.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Compare the two sort modes side by side on the same object." />
+                           Text="{DynamicResource Loc.P.PropertyGrid.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <StackPanel Orientation="Vertical" Width="400" Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Categorized:" Margin="0,0,0,6"/>
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.PropertyGrid.Cap1}" Margin="0,0,0,6"/>
                             <PropertyGrid x:Name="CategorizedGrid"
                                           Height="300"
+                                          SelectedObject="{Binding BasicSample}"
                                           SortMode="Categorized"
                                           ShowSearchBox="False"
                                           ShowDescription="False"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Width="400" Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Alphabetical:" Margin="0,0,0,6"/>
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.PropertyGrid.Cap2}" Margin="0,0,0,6"/>
                             <PropertyGrid x:Name="AlphabeticalGrid"
                                           Height="300"
+                                          SelectedObject="{Binding BasicSample}"
                                           SortMode="Alphabetical"
                                           ShowSearchBox="False"
                                           ShowDescription="False"/>
@@ -59,12 +64,13 @@
         <!-- Custom object -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom Object" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.PropertyGrid.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A richer sample object with various property types including enums, collections and nested objects." />
+                           Text="{DynamicResource Loc.P.PropertyGrid.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <PropertyGrid x:Name="CustomObjectGrid"
                                   Height="400"
+                                  SelectedObject="{Binding WindowSample}"
                                   SortMode="Categorized"
                                   ShowSearchBox="True"
                                   ShowDescription="True"
@@ -76,16 +82,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the PropertyGrids shown above." />
+                           Text="{DynamicResource Loc.P.PropertyGrid.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -93,16 +101,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Binding a sample object and configuring sort modes in code-behind." />
+                           Text="{DynamicResource Loc.P.PropertyGrid.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DatePickerPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="DatePicker">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATE &amp; TIME" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DatePicker" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DateAndTime}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DatePicker.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that lets users pick a date from a drop-down calendar, with configurable display formats and optional range constraints." />
+                   Text="{DynamicResource Loc.P.DatePicker.Sub1}" />
 
         <!-- Basic DatePicker -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic DatePicker" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DatePicker.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click to open the calendar and select a date, plus a disabled state." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <DatePicker Width="200" Margin="0,0,10,10" />
@@ -29,17 +31,17 @@
         <!-- Date formats -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Date Formats" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DatePicker.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="DatePicker supports different date format displays." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Short format:" Width="120" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.DatePicker.Val1}" Width="120" />
                             <DatePicker Width="200" SelectedDateFormat="Short" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Long format:" Width="120" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.DatePicker.Val2}" Width="120" />
                             <DatePicker Width="250" SelectedDateFormat="Long" />
                         </StackPanel>
                     </StackPanel>
@@ -50,17 +52,17 @@
         <!-- Date range constraints -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Date Range Constraints" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DatePicker.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="DatePicker can have minimum and maximum date limits." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Start Date:" Width="120" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.DatePicker.Val3}" Width="120" />
                             <DatePicker x:Name="StartDatePicker" Width="200" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="End Date:" Width="120" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.DatePicker.Val4}" Width="120" />
                             <DatePicker x:Name="EndDatePicker" Width="200" />
                         </StackPanel>
                     </StackPanel>
@@ -71,18 +73,20 @@
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Select a date and see the formatted result." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Select date:" Width="120" />
-                            <DatePicker x:Name="DemoDatePicker" Width="200" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.DatePicker.Val5}" Width="120" />
+                            <DatePicker x:Name="DemoDatePicker"
+                                        Width="200"
+                                        SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
                         </StackPanel>
                         <TextBlock x:Name="SelectedDateText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="No date selected" />
+                                   Text="{Binding SelectedDateText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -91,18 +95,18 @@
         <!-- Common use cases -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CommonUseCases}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Examples of DatePicker in real scenarios." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Birth Date" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.DatePicker.Cap1}" Margin="0,0,0,4" />
                         <DatePicker Width="200" Margin="0,0,0,16" />
 
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Appointment Date" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.DatePicker.Cap2}" Margin="0,0,0,4" />
                         <DatePicker Width="200" Margin="0,0,0,16" />
 
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Project Deadline" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.DatePicker.Cap3}" Margin="0,0,0,4" />
                         <DatePicker Width="200" />
                     </StackPanel>
                 </Border>
@@ -112,16 +116,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the date pickers above." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -129,16 +135,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating date pickers and handling selection changes in code-behind." />
+                           Text="{DynamicResource Loc.P.DatePicker.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

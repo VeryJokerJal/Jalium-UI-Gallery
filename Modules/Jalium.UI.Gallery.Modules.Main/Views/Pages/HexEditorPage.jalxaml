@@ -1,25 +1,28 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.HexEditorPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="HexEditor">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VIEWERS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="HexEditor" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataViewers}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.HexEditor.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A hex editor control that displays and edits binary data in hexadecimal format with offset, hex, and ASCII columns." />
+                   Text="{DynamicResource Loc.P.HexEditor.Sub1}" />
 
         <!-- Basic hex editor -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Hex Editor" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.HexEditor.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Display and edit binary data with offset, hex, and ASCII columns." />
+                           Text="{DynamicResource Loc.P.HexEditor.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <HexEditor x:Name="BasicHexEditor"
                                Height="300"
+                               Data="{Binding SampleData}"
                                BytesPerRow="16"
                                ShowOffsetColumn="True"
                                ShowAsciiColumn="True"/>
@@ -30,23 +33,23 @@
         <!-- Configuration options -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Configuration Options" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.HexEditor.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Toggle columns and adjust bytes per row using the controls below." />
+                           Text="{DynamicResource Loc.P.HexEditor.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
                             <CheckBox x:Name="ShowAsciiCheckBox"
                                       Content="Show ASCII Column"
-                                      IsChecked="True"
+                                      IsChecked="{Binding ShowAsciiColumn, Mode=TwoWay}"
                                       Margin="0,0,10,10"/>
                             <CheckBox x:Name="ShowOffsetCheckBox"
                                       Content="Show Offset Column"
-                                      IsChecked="True"
+                                      IsChecked="{Binding ShowOffsetColumn, Mode=TwoWay}"
                                       Margin="0,0,10,10"/>
                             <CheckBox x:Name="ShowDataInterpretCheckBox"
                                       Content="Show Data Interpretation"
-                                      IsChecked="False"
+                                      IsChecked="{Binding ShowDataInterpretation, Mode=TwoWay}"
                                       Margin="0,0,10,10"/>
                         </WrapPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
@@ -56,19 +59,21 @@
                             <Slider x:Name="BytesPerRowSlider"
                                     Minimum="8"
                                     Maximum="32"
-                                    Value="16"
+                                    Value="{Binding BytesPerRow, Mode=TwoWay}"
                                     Width="200"
                                     VerticalAlignment="Center"/>
                             <TextBlock x:Name="BytesPerRowLabel"
-                                       Text="16"
+                                       Text="{Binding BytesPerRow, StringFormat='{}{0:F0}'}"
                                        Margin="8,0,0,0"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
                         <HexEditor x:Name="ConfigHexEditor"
                                    Height="250"
-                                   BytesPerRow="16"
-                                   ShowOffsetColumn="True"
-                                   ShowAsciiColumn="True"/>
+                                   Data="{Binding SampleData}"
+                                   BytesPerRow="{Binding BytesPerRow}"
+                                   ShowOffsetColumn="{Binding ShowOffsetColumn}"
+                                   ShowAsciiColumn="{Binding ShowAsciiColumn}"
+                                   ShowDataInterpretation="{Binding ShowDataInterpretation}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -77,12 +82,13 @@
         <!-- Read-only mode -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Read-Only Mode" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.ReadOnlyMode}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A read-only hex viewer for inspecting binary data without modification." />
+                           Text="{DynamicResource Loc.P.HexEditor.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <HexEditor x:Name="ReadOnlyHexEditor"
                                Height="200"
+                               Data="{Binding ReadOnlyData}"
                                IsReadOnly="True"
                                BytesPerRow="16"
                                ShowOffsetColumn="True"
@@ -94,16 +100,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the hex editors above." />
+                           Text="{DynamicResource Loc.P.HexEditor.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -111,16 +119,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Loading binary data and reacting to configuration changes in code-behind." />
+                           Text="{DynamicResource Loc.P.HexEditor.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

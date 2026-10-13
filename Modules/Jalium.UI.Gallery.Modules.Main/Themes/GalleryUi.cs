@@ -35,8 +35,8 @@ public static class GalleryUi
     public static TextBlock PageTitle(string text) => new()
     {
         Text = text,
-        FontSize = 28,
-        FontWeight = FontWeights.Bold,
+        FontSize = 30,
+        FontWeight = FontWeights.SemiBold,
         Foreground = GalleryTheme.TextPrimaryBrush,
         Margin = new Thickness(0, 0, 0, 6),
     };
@@ -57,7 +57,7 @@ public static class GalleryUi
     public static TextBlock CardTitle(string text) => new()
     {
         Text = text,
-        FontSize = 16,
+        FontSize = 17,
         FontWeight = FontWeights.SemiBold,
         Foreground = GalleryTheme.TextPrimaryBrush,
         Margin = new Thickness(0, 0, 0, 4),
@@ -111,7 +111,7 @@ public static class GalleryUi
         BorderThickness = new Thickness(1),
         CornerRadius = new CornerRadius(16),
         Padding = new Thickness(20),
-        Margin = new Thickness(0, 0, 0, 16),
+        Margin = new Thickness(0, 0, 0, 18),
     };
 
     /// <summary>Inner surface holding a live demo (caller sets <c>Child</c>).</summary>

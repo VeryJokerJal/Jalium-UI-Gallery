@@ -1,31 +1,33 @@
 <Page
     xmlns="http://schemas.jalium.com/jalxaml"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
     x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ShellIntegrationPage"
+    hosting:ViewModelLocator.AutoWireViewModel="True"
     Title="Shell Integration">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="SYSTEM" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Shell Integration" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.System}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ShellIntegration.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Windows Shell integration with WindowChrome, JumpList, and Taskbar features." />
+                   Text="{DynamicResource Loc.P.ShellIntegration.Sub1}" />
 
         <!-- WindowChrome -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="WindowChrome" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShellIntegration.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Customize window frame appearance with DWM composition support." />
+                           Text="{DynamicResource Loc.P.ShellIntegration.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Properties" Margin="0,0,0,10" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="CaptionHeight: Height of the title bar" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="ResizeBorderThickness: Size of resize grips" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="GlassFrameThickness: DWM glass frame extent" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="CornerRadius: Window corner rounding" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="UseAeroCaptionButtons: Use system buttons" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.Shared.Properties}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body1}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body2}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body3}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body4}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body5}" />
                         <Border Style="{StaticResource GalleryDivider}" />
                         <TextBlock Text="// Apply custom window chrome" FontFamily="Consolas" FontSize="12" />
                         <TextBlock Text="var chrome = new WindowChrome" FontFamily="Consolas" FontSize="12" />
@@ -43,16 +45,20 @@
         <!-- JumpList -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="JumpList" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShellIntegration.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Windows 7+ taskbar Jump Lists with tasks and recent items." />
+                           Text="{DynamicResource Loc.P.ShellIntegration.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Button x:Name="ApplyJumpListButton" Content="Apply Sample JumpList" Width="180" HorizontalAlignment="Left" Margin="0,0,0,12" />
-                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="JumpList items" Margin="0,0,0,10" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="JumpTask: Launch application with arguments" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="JumpPath: Open a specific file" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Custom Categories: Group items together" />
+                        <Button Content="Apply Sample JumpList"
+                                Command="{Binding ApplyJumpListCommand}"
+                                Width="180"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ShellIntegration.Val1}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body6}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body7}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body8}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -61,26 +67,34 @@
         <!-- TaskbarItemInfo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="TaskbarItemInfo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShellIntegration.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Control taskbar thumbnail, progress indicator, and overlay icons." />
+                           Text="{DynamicResource Loc.P.ShellIntegration.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Progress" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ShellIntegration.Val2}" Margin="0,0,0,10" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Slider x:Name="TaskbarProgressSlider" Width="200" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" />
-                            <TextBlock x:Name="TaskbarProgressText" Style="{StaticResource GalleryValueLabel}" Text="50%" Margin="12,0,0,0" />
+                            <Slider Width="200"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    Value="{Binding TaskbarProgress, Mode=TwoWay}"
+                                    VerticalAlignment="Center" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding TaskbarProgressText}"
+                                       Margin="12,0,0,0" />
                         </StackPanel>
 
-                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Progress state" Margin="0,18,0,10" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ShellIntegration.Val3}" Margin="0,18,0,10" />
                         <WrapPanel>
-                            <Button x:Name="ProgressNoneButton" Content="None" Width="70" Margin="0,0,10,10" />
-                            <Button x:Name="ProgressNormalButton" Content="Normal" Width="70" Margin="0,0,10,10" />
-                            <Button x:Name="ProgressPausedButton" Content="Paused" Width="70" Margin="0,0,10,10" />
-                            <Button x:Name="ProgressErrorButton" Content="Error" Width="70" Margin="0,0,10,10" />
+                            <Button Content="None" Command="{Binding SetProgressNoneCommand}" Width="70" Margin="0,0,10,10" />
+                            <Button Content="Normal" Command="{Binding SetProgressNormalCommand}" Width="70" Margin="0,0,10,10" />
+                            <Button Content="Paused" Command="{Binding SetProgressPausedCommand}" Width="70" Margin="0,0,10,10" />
+                            <Button Content="Error" Command="{Binding SetProgressErrorCommand}" Width="70" Margin="0,0,10,10" />
                         </WrapPanel>
 
-                        <TextBlock x:Name="TaskbarStatus" Style="{StaticResource GalleryCaptionText}" Text="Taskbar State: None" Margin="0,4,0,0" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding TaskbarStatus}"
+                                   Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -89,15 +103,15 @@
         <!-- SystemParameters2 -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="SystemParameters2" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShellIntegration.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Access system metrics and DWM state information." />
+                           Text="{DynamicResource Loc.P.ShellIntegration.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock x:Name="GlassEnabledText" Style="{StaticResource GalleryBodyText}" Text="DWM Glass Enabled: True" Margin="0,0,0,6" />
-                        <TextBlock x:Name="GlassColorText" Style="{StaticResource GalleryBodyText}" Text="Glass Color: #6495ED" Margin="0,0,0,6" />
-                        <TextBlock x:Name="CaptionHeightText" Style="{StaticResource GalleryBodyText}" Text="Caption Height: 30" Margin="0,0,0,6" />
-                        <TextBlock x:Name="ResizeBorderText" Style="{StaticResource GalleryBodyText}" Text="Resize Border: 4,4,4,4" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding GlassEnabledText}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding GlassColorText}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding CaptionHeightText}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding ResizeBorderText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -106,16 +120,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup applying WindowChrome and TaskbarItemInfo to a Window." />
+                           Text="{DynamicResource Loc.P.ShellIntegration.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -123,16 +139,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Configuring window chrome, jump lists, taskbar progress, and reading system parameters in code-behind." />
+                           Text="{DynamicResource Loc.P.ShellIntegration.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

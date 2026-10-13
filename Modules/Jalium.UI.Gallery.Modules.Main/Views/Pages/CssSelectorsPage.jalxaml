@@ -1,0 +1,296 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:qualified="clr-namespace:Jalium.UI.Controls;assembly=Jalium.UI.Controls"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CssSelectorsPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      Title="CSS Selectors">
+
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Styling}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.CssSelectors.Title1}" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="{DynamicResource Loc.P.CssSelectors.Sub1}" />
+
+        <!-- Selector kinds -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            * { margin: 0 0 8px 0 }
+                            Border { background-color: #334155; border-radius: 6px; padding: 10px 14px }
+                            TextBlock { color: #e2e8f0; font-size: 13px }
+                            .tinted { background-color: #4338ca }
+                            #named { background-color: #0f766e; border: 2px solid #5eead4 }">
+                        <Border><TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile1}" /></Border>
+                        <Border Css.Class="tinted"><TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile2}" /></Border>
+                        <Border x:Name="named"><TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile3}" /></Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.CssSelectors.Note1}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Combinators -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            .outer TextBlock { color: #fbbf24 }
+                            .outer > TextBlock { color: #34d399; font-weight: 600 }
+                            Border { border-radius: 6px; padding: 12px; margin: 0 0 8px 0; border: 1px solid #475569 }">
+                        <Border Css.Class="outer">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile4}" FontSize="13" />
+                                <Border Margin="0,8,0,0">
+                                    <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile5}" FontSize="13" />
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.CssSelectors.Cap1}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Pseudo-classes -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            Button { background-color: #1e293b; color: #e2e8f0; border-radius: 8px;
+                                     padding: 10px 18px; border: 1px solid #475569;
+                                     transition: background-color 0.15s ease-out }
+                            Button:hover { background-color: #2563eb; border-color: #60a5fa }
+                            Button:active { background-color: #1d4ed8 }
+                            Button:focus-visible { outline: 2px solid #f472b6; outline-offset: 3px }
+                            Button:disabled { background-color: #1e293b; color: #64748b; border-color: #334155 }
+                            CheckBox:checked { color: #34d399; font-weight: 600 }
+                            CheckBox { color: #cbd5e1 }">
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.CssSelectors.Tile6}" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.CssSelectors.Tile7}" Margin="0,0,10,10" />
+                            <Button Content="Disabled" IsEnabled="False" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <CheckBox Content="{DynamicResource Loc.P.CssSelectors.Tile8}" Margin="0,6,0,0" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,12,0,0"
+                                   Text="{DynamicResource Loc.P.CssSelectors.Cap2}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.ScopeTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssSelectors.ScopeCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <CheckBox x:Name="CssScopeEnabledToggle" IsChecked="True" Margin="0,0,0,12"
+                                  Content="{DynamicResource Loc.P.CssSelectors.ScopeToggle}" />
+                        <StackPanel x:Name="CssScopeDemo" Css.Class="scope-demo" Width="420" HorizontalAlignment="Left"
+                                    Css.StyleSheet="
+                                        .scope-tile {height:36px; background-color:#475569; margin-bottom:8px; border-radius:6px}
+                                        .scope-demo {
+                                            @scope (&amp;) to (:disabled) {
+                                                .scope-tile {background-color:#2563eb}
+                                            }
+                                        }">
+                            <Border x:Name="CssScopeAlwaysTile" Css.Class="scope-tile">
+                                <TextBlock Text="{DynamicResource Loc.P.CssSelectors.ScopeInside}" Foreground="White" Margin="12,0" VerticalAlignment="Center" />
+                            </Border>
+                            <StackPanel x:Name="CssScopeBoundary" IsEnabled="{Binding IsChecked, ElementName=CssScopeEnabledToggle}">
+                                <Border x:Name="CssScopeConditionalTile" Css.Class="scope-tile">
+                                    <TextBlock Text="{DynamicResource Loc.P.CssSelectors.ScopeConditional}" Foreground="White" Margin="12,0" VerticalAlignment="Center" />
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.NamespaceTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssSelectors.NamespaceCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                        @namespace ui 'http://schemas.jalium.ui/2024';
+                        @namespace controls 'clr-namespace:Jalium.UI.Controls;assembly=Jalium.UI.Controls';
+                        .namespace-tile {height:40px; margin-bottom:10px; border-radius:6px}
+                        ui|Border.namespace-tile {background-color:#2563eb}
+                        controls|Border.namespace-tile {background-color:#0f766e}
+                        [controls|Tag=highlight] {outline:2px solid #fbbf24; outline-offset:2px}">
+                        <TextBox x:Name="CssNamespaceValueInput" Text="highlight" Margin="0,0,0,12" />
+                        <Border x:Name="CssNamespaceDefaultTile" Css.Class="namespace-tile">
+                            <TextBlock Text="ui|Border" Foreground="White" Margin="12,0" VerticalAlignment="Center" />
+                        </Border>
+                        <qualified:Border x:Name="CssNamespaceQualifiedTile" Css.Class="namespace-tile"
+                                          qualified:Tag="{Binding Text, ElementName=CssNamespaceValueInput}">
+                            <TextBlock Text="controls|Border · [controls|Tag]" Foreground="White" Margin="12,0" VerticalAlignment="Center" />
+                        </qualified:Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Specificity -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT4}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC4}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            Border { background-color: #475569; border-radius: 6px; padding: 10px 14px; margin: 0 0 8px 0 }
+                            .card { background-color: #b45309 }
+                            .card.important { background-color: #15803d }
+                            #winner { background-color: #6d28d9 }
+                            TextBlock { color: #f8fafc; font-size: 13px }">
+                        <Border><TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile9}" /></Border>
+                        <Border Css.Class="card"><TextBlock Text="Border + .card  →  0,1,0 beats 0,0,1  →  amber" /></Border>
+                        <Border Css.Class="card important"><TextBlock Text="+ .card.important  →  0,2,0 beats 0,1,0  →  green" /></Border>
+                        <Border x:Name="winner" Css.Class="card important"><TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile10}" /></Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- !important -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT5}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC5}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            Border { background-color: #be123c !important; border-radius: 6px; padding: 10px 14px }
+                            #louder { background-color: #334155 }
+                            TextBlock { color: #ffe4e6; font-size: 13px }">
+                        <Border x:Name="louder">
+                            <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile11}" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Layering against the property system -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT6}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC6}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            Border { background-color: #0369a1; border-radius: 6px; padding: 10px 14px; margin: 0 0 8px 0 }
+                            TextBlock { color: #f0f9ff; font-size: 13px }">
+                        <Border>
+                            <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile12}" />
+                        </Border>
+                        <Border Background="#7c2d12">
+                            <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile13}" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,6,0,0"
+                                   Text="{DynamicResource Loc.P.CssSelectors.Cap3}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Transitions -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT7}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC7}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal"
+                                Css.StyleSheet="
+                            .instant { background-color: #1e293b; border-radius: 8px; padding: 20px; width: 200px }
+                            .instant:hover { background-color: #db2777 }
+                            .eased { background-color: #1e293b; border-radius: 8px; padding: 20px; width: 200px;
+                                     transition: background-color 0.35s ease-in-out }
+                            .eased:hover { background-color: #db2777 }
+                            TextBlock { color: #e2e8f0; font-size: 13px }">
+                        <Border Css.Class="instant" Margin="0,0,12,0">
+                            <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile14}" />
+                        </Border>
+                        <Border Css.Class="eased">
+                            <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile15}" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+                <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,10,0,0"
+                           Text="{DynamicResource Loc.P.CssSelectors.Cap4}" />
+            </StackPanel>
+        </Border>
+
+        <!-- Template boundary -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssSelectors.CT8}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssSelectors.CC8}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            Button > TextBlock { color: #fbbf24; font-weight: 600 }">
+                        <Button Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CssSelectors.Tile16}" />
+                        </Button>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.CssSelectors.Cap5}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssSelectors.CC9}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="240"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssSelectors.CC10}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="240"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

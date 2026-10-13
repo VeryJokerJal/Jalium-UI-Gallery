@@ -1,0 +1,2326 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Localization.PagesZhCN"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        示例页文案，简体中文 (zh-CN)。
+
+        键集合与 Pages.en-US.jalxaml 对应；此处缺失的键自动回退到英文，
+        因此本文件可以逐页补齐而不会让界面出现空白。
+
+        Loc.Shared.*   多个页面共用的文案（分类眉标、"交互演示"、XAML / C# 等）。
+        Loc.P.<页>.*   单页专有文案，后缀是它在设计系统中的角色：
+                       Eyebrow / Title / Sub 为页头，CT / CC 为卡片标题与说明，
+                       其余为 Body / Cap / Chip / Val。
+    -->
+
+    <!-- ============================== 共用 ================================ -->
+
+    <x:String x:Key="Loc.Shared.Basic">基础</x:String>
+    <x:String x:Key="Loc.Shared.BasicHeatmap">基础热力图</x:String>
+    <x:String x:Key="Loc.Shared.BasicInput">基础输入</x:String>
+    <x:String x:Key="Loc.Shared.BoundSelection">绑定选中项</x:String>
+    <x:String x:Key="Loc.Shared.CSharp">C#</x:String>
+    <x:String x:Key="Loc.Shared.CSharpCodeExample">C# 代码示例</x:String>
+    <x:String x:Key="Loc.Shared.Collections">集合</x:String>
+    <x:String x:Key="Loc.Shared.CommonUseCases">常见用法</x:String>
+    <x:String x:Key="Loc.Shared.CommonUseCases2">常见用法</x:String>
+    <x:String x:Key="Loc.Shared.CustomizableAppearance">• 外观可自定义</x:String>
+    <x:String x:Key="Loc.Shared.DataAndBinding">数据与绑定</x:String>
+    <x:String x:Key="Loc.Shared.DataViewers">数据查看器</x:String>
+    <x:String x:Key="Loc.Shared.DataVisualization">数据可视化</x:String>
+    <x:String x:Key="Loc.Shared.DateAndTime">日期与时间</x:String>
+    <x:String x:Key="Loc.Shared.Dialogs">对话框</x:String>
+    <x:String x:Key="Loc.Shared.Effects">特效</x:String>
+    <x:String x:Key="Loc.Shared.EnabledAndDisabledStates">可用与禁用状态。</x:String>
+    <x:String x:Key="Loc.Shared.Features">功能特性</x:String>
+    <x:String x:Key="Loc.Shared.InteractiveDemo">交互演示</x:String>
+    <x:String x:Key="Loc.Shared.InteractiveDemo2">交互演示</x:String>
+    <x:String x:Key="Loc.Shared.KeyboardShortcuts">键盘快捷键</x:String>
+    <x:String x:Key="Loc.Shared.Layout">布局</x:String>
+    <x:String x:Key="Loc.Shared.LiveEditor">实时编辑器</x:String>
+    <x:String x:Key="Loc.Shared.MapsAndGeo">地图与地理</x:String>
+    <x:String x:Key="Loc.Shared.Media">媒体</x:String>
+    <x:String x:Key="Loc.Shared.MenusAndToolbars">菜单与工具栏</x:String>
+    <x:String x:Key="Loc.Shared.Navigation">导航</x:String>
+    <x:String x:Key="Loc.Shared.Options">选项</x:String>
+    <x:String x:Key="Loc.Shared.Overlays">浮层</x:String>
+    <x:String x:Key="Loc.Shared.Properties">属性</x:String>
+    <x:String x:Key="Loc.Shared.ReadOnlyMode">只读模式</x:String>
+    <x:String x:Key="Loc.Shared.SegmentedTrack">分段轨道</x:String>
+    <x:String x:Key="Loc.Shared.SnapToTicks">吸附到刻度</x:String>
+    <x:String x:Key="Loc.Shared.StatusAndInfo">状态与信息</x:String>
+    <x:String x:Key="Loc.Shared.Styling">样式</x:String>
+    <x:String x:Key="Loc.Shared.System">系统</x:String>
+    <x:String x:Key="Loc.Shared.TextAndTypography">文本与排版</x:String>
+    <x:String x:Key="Loc.Shared.Usage">用法</x:String>
+    <x:String x:Key="Loc.Shared.Xaml">XAML</x:String>
+    <x:String x:Key="Loc.Shared.XamlCodeExample">XAML 代码示例</x:String>
+
+    <!-- AppBarButton -->
+    <x:String x:Key="Loc.P.AppBarButton.Title1">AppBarButton</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.Sub1">专为 CommandBar 设计的按钮，把图标与文字标签组合在一起，在工具栏上呈现常用命令。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CT1">基础 AppBarButton</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC1">AppBarButton 用图标加标签的形式承载常用操作。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CT2">紧凑模式</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC2">紧凑模式下的 AppBarButton 只显示图标，不显示标签。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC3">上述 AppBarButton 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC4">在代码隐藏中创建 AppBarButton 并接入点击处理。</x:String>
+
+    <!-- AppBarSeparator -->
+    <x:String x:Key="Loc.P.AppBarSeparator.Title1">AppBarSeparator</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.Sub1">一条细竖线，用于在 CommandBar 或工具栏中把相关命令分组隔开。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CT1">工具栏中的 AppBarSeparator</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC1">分隔符把工具栏按钮划分为逻辑分组。宽度较窄时，整条按钮带会自动换行。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC2">上述工具栏及其分隔符的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC3">在代码隐藏中构建工具栏并接入按钮点击处理。</x:String>
+
+    <!-- AppBarToggleButton -->
+    <x:String x:Key="Loc.P.AppBarToggleButton.Title1">AppBarToggleButton</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.Sub1">专为 CommandBar 设计的切换按钮，保留选中/未选中状态，用于开关某项设置。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CT1">文字格式</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC1">用于加粗、倾斜、下划线等文字格式选项的切换按钮。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CT2">选中状态</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC2">会显示自身 IsChecked 状态的切换按钮。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC3">上述切换按钮的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC4">在代码隐藏中接入 Checked 与 Unchecked 处理。</x:String>
+
+    <!-- AutoCompleteBox -->
+    <x:String x:Key="Loc.P.AutoCompleteBox.Title1">AutoCompleteBox</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Sub1">随输入实时从数据源中给出匹配建议的文本框，支持键盘导航与多种过滤模式。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC1">开始输入即可看到建议，用方向键在其中移动。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CT1">过滤模式</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC2">选择输入文本与建议列表的匹配方式。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC3">AutoCompleteBox 提供完整的自动补全能力。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC4">上述 AutoCompleteBox 示例的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC5">在代码隐藏中设置数据源、过滤模式与选中处理。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body1">* StartsWith —— 以输入文本开头的项</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body2">* Contains —— 包含输入文本的项</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body3">* Equals —— 仅完全匹配</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body4">* Custom —— 使用自定义过滤谓词</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body5">* 水印占位文本</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body6">* 触发建议所需的最小输入长度</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body7">* 键盘导航（上/下/回车/Esc）</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body8">* 按 Tab 键补全文本</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body9">* 下拉列表最大高度可自定义</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body10">* 通过 TextMemberPath 支持复杂对象</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Cap1">搜索编程语言：</x:String>
+
+    <!-- BackdropEffects -->
+    <x:String x:Key="Loc.P.BackdropEffects.Title1">背景特效</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.Sub1">为背景应用模糊与材质特效，可使用内置特效，也可实现自己的 IBackdropEffect。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT1">BackdropBlurEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC1">简单的高斯模糊，调整模糊半径即可控制强度。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT2">AcrylicEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC2">Windows 亚克力材质，包含模糊、色调与噪点纹理。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT3">MicaEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC3">Windows 11 云母材质，饱和度与明度经过增强。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT4">FrostedGlassEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC4">带噪点纹理的磨砂玻璃效果，观感更接近真实玻璃。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT5">ColorAdjustmentEffect —— 灰度</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC5">把颜色转换为灰度，适合禁用态或艺术化处理。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT6">ColorAdjustmentEffect —— 棕褐色</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC6">应用复古棕褐色调，营造温暖怀旧的观感。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT7">ColorAdjustmentEffect —— 反色</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC7">反转所有颜色：红变青、白变黑，依此类推。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT8">ColorAdjustmentEffect —— 色相旋转</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC8">旋转所有颜色的色相：旋转 90° 时红变绿、绿变蓝，依此类推。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT9">窗口系统背景</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC9">应用系统级背景特效，模糊窗口之后的内容（桌面、其他应用）。需要 Windows 11 22H2 及以上。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC10">在任意 UIElement 上设置 BackdropEffect 属性：</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC11">上述背景浮层与系统背景按钮的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC12">在代码隐藏中为元素赋予各种 BackdropEffect，并设置窗口 SystemBackdrop。</x:String>
+
+    <!-- BarChart -->
+    <x:String x:Key="Loc.P.BarChart.Title1">BarChart</x:String>
+    <x:String x:Key="Loc.P.BarChart.Sub1">把数值序列渲染为分组、堆叠或横向柱状图，可选数值标签、网格线与图例。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CT1">分组柱状图</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC1">多个序列并排显示为分组柱，便于逐项比较。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CT2">堆叠柱状图</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC2">序列相互堆叠，同时展示总量与构成。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CT3">横向柱状图</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC3">横向绘制柱条，适合标签较长的类别对比。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC4">含两个序列的分组柱状图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC5">序列在 XAML 中声明，并绑定到 ViewModel 持有的类别/数值集合。</x:String>
+
+    <!-- Binding -->
+    <x:String x:Key="Loc.P.Binding.Title1">Binding</x:String>
+    <x:String x:Key="Loc.P.Binding.Sub1">把一个元素的属性连到另一个元素或数据源，让两者的值自动保持同步，无需胶水代码。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT1">ElementName 绑定</x:String>
+    <x:String x:Key="Loc.P.Binding.CC1">用 ElementName 把一个控件直接绑到另一个元素的属性上。拖动滑块，读数会实时更新。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT2">双向 ElementName 绑定</x:String>
+    <x:String x:Key="Loc.P.Binding.CC2">设为 Mode=TwoWay 后数据双向流动——改动任意一个输入框，另一个立即跟随。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT3">JALXAML 语法</x:String>
+    <x:String x:Key="Loc.P.Binding.CC3">ElementName 绑定在 JALXAML 标记中的写法。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT4">绑定模式</x:String>
+    <x:String x:Key="Loc.P.Binding.CC4">数据在绑定源与目标之间的流动方向。</x:String>
+    <x:String x:Key="Loc.P.Binding.CC5">上述各种绑定的完整标记。</x:String>
+    <x:String x:Key="Loc.P.Binding.CC6">在代码隐藏中创建并应用同样的绑定。</x:String>
+    <x:String x:Key="Loc.P.Binding.Body1">OneWay —— 仅从源到目标（默认）</x:String>
+    <x:String x:Key="Loc.P.Binding.Body2">TwoWay —— 源到目标，目标也回写源</x:String>
+    <x:String x:Key="Loc.P.Binding.Body3">OneWayToSource —— 仅从目标到源</x:String>
+    <x:String x:Key="Loc.P.Binding.Body4">OneTime —— 绑定时从源到目标一次</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap1">滑块值（源）：</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap2">绑定到 Slider.Value 的 TextBlock：</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap3">源 TextBox：</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap4">目标 TextBox（绑定到 SourceTextBox.Text）：</x:String>
+
+    <!-- Border -->
+    <x:String x:Key="Loc.P.Border.Title1">Border</x:String>
+    <x:String x:Key="Loc.P.Border.Sub1">一个装饰器，为其子元素绘制边框、背景，或两者兼有。</x:String>
+    <x:String x:Key="Loc.P.Border.CT1">基础 Border</x:String>
+    <x:String x:Key="Loc.P.Border.CC1">在同一个装饰器上分别使用纯填充、纯描边，或两者叠加。</x:String>
+    <x:String x:Key="Loc.P.Border.CT2">圆角半径</x:String>
+    <x:String x:Key="Loc.P.Border.CC2">从直角一路圆到胶囊形。</x:String>
+    <x:String x:Key="Loc.P.Border.CT3">边框粗细</x:String>
+    <x:String x:Key="Loc.P.Border.CC3">描边粗细可从发丝线到重描边。</x:String>
+    <x:String x:Key="Loc.P.Border.CT4">内边距</x:String>
+    <x:String x:Key="Loc.P.Border.CC4">边框与内容之间的内部留白，随取值逐级增大。</x:String>
+    <x:String x:Key="Loc.P.Border.CC5">上述各种边框的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Border.CC6">在代码隐藏中构建边框与卡片。</x:String>
+
+    <!-- Button -->
+    <x:String x:Key="Loc.P.Button.Title1">Button</x:String>
+    <x:String x:Key="Loc.P.Button.Sub1">可点击的命令控件，用于触发一个操作。按钮可承载文本或自定义内容，提供多种尺寸与状态，并随主题强调色自动重绘。</x:String>
+    <x:String x:Key="Loc.P.Button.CC1">点击按钮即可让计数器加一。</x:String>
+    <x:String x:Key="Loc.P.Button.CT1">尺寸</x:String>
+    <x:String x:Key="Loc.P.Button.CC2">默认样式的标准按钮，以及禁用状态。</x:String>
+    <x:String x:Key="Loc.P.Button.CT2">强调色主题</x:String>
+    <x:String x:Key="Loc.P.Button.CC3">小、中、大三档预设会同时缩放字号与内边距。</x:String>
+    <x:String x:Key="Loc.P.Button.CC4">通过 {ThemeResource} 绑定到强调色画刷的按钮，会在主题或强调色切换时自动重绘。</x:String>
+    <x:String x:Key="Loc.P.Button.CC5">上述按钮的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Button.CC6">把按钮状态与操作放在可绑定的 ViewModel 中。</x:String>
+
+    <!-- Calendar -->
+    <x:String x:Key="Loc.P.Calendar.Title1">Calendar</x:String>
+    <x:String x:Key="Loc.P.Calendar.Sub1">以月历形式浏览并选择日期的控件，支持月、年、十年三种视图。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC1">在日历上选一天，下方的所选日期随即更新。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC2">Calendar 控件开箱即支持以下能力。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC3">上述 Calendar 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC4">在代码隐藏中创建 Calendar 并处理日期选择。</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body1">• 月 / 年 / 十年视图</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body2">• 单日或日期区间选择</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body3">• 不可选日期</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body4">• 显示日期范围限制</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body5">• 自定义每周起始日</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap1">所选日期</x:String>
+
+    <!-- CandlestickChart -->
+    <x:String x:Key="Loc.P.CandlestickChart.Title1">CandlestickChart</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.Sub1">把金融 OHLC 数据绘制成蜡烛图，可选叠加成交量柱与均线。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CT1">基础蜡烛图</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC1">使用模拟 OHLC 价格数据的蜡烛图。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CT2">带成交量</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC2">在价格数据下方附带成交量子图的蜡烛图。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CT3">移动平均线</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC3">叠加 SMA 与 EMA 均线的蜡烛图。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC4">上述蜡烛图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC5">ViewModel 生成确定性的 OHLC 数据集合，图表配置则保持在 XAML 中声明。</x:String>
+
+    <!-- Canvas -->
+    <x:String x:Key="Loc.P.Canvas.Title1">Canvas</x:String>
+    <x:String x:Key="Loc.P.Canvas.Sub1">按绝对坐标摆放子元素的布局面板，坐标由 Canvas.Left、Canvas.Top、Canvas.Right、Canvas.Bottom 指定，重叠顺序由 Panel.ZIndex 控制。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CT1">Canvas 概览</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC1">用 Canvas.Left 与 Canvas.Top 定位的元素。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CT2">Canvas 功能</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC2">Canvas 控件的核心能力。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC3">在 Canvas 上定位 Border 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC4">在代码隐藏中创建并定位 Canvas 的子元素。</x:String>
+
+    <!-- CheckBox -->
+    <x:String x:Key="Loc.P.CheckBox.Title1">CheckBox</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Sub1">用户可勾选与取消勾选的控件，还可选支持第三种不确定状态。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC1">点击复选框即可切换其状态。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CT1">基础复选框</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC2">未选中、已选中与禁用三种状态的标准复选框。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CT2">三态复选框</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC3">在选中与未选中之外再增加一个不确定状态的复选框。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC4">上述复选框的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC5">在代码隐藏中接入 Checked、Unchecked 与 Indeterminate 处理。</x:String>
+
+    <!-- ColorPicker -->
+    <x:String x:Key="Loc.P.ColorPicker.Eyebrow1">选取器</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Title1">ColorPicker</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Sub1">让用户从色谱与滑块中挑选颜色的控件，可选启用 Alpha 通道，并提供适合狭小空间的紧凑布局。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CT1">基础 ColorPicker</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC1">含色谱与滑块的完整颜色选取器。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CT2">紧凑 ColorPicker</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC2">适合空间受限场景的精简版本。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CT3">ColorPicker 选项</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC3">配置显示哪些组成部分，例如 Alpha 通道。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC4">选择颜色后，实时预览色块会同步显示。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC5">ColorPicker 与色块、触发按钮搭配使用的示例。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC6">上述颜色选取器的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC7">在代码隐藏中处理 ColorChanged 并读取所选颜色。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Cap1">含 Alpha 通道：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Cap2">不含 Alpha 通道：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Cap3">预览：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Val1">文字颜色：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Val2">背景：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Val3">边框颜色：</x:String>
+
+    <!-- ComboBox -->
+    <x:String x:Key="Loc.P.ComboBox.Title1">ComboBox</x:String>
+    <x:String x:Key="Loc.P.ComboBox.Sub1">以下拉形式给出一组选项供单选，支持占位文本、预选项与选中变化事件。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC1">由字符串项填充的简单下拉框。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CT1">预选中项</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC2">通过 ViewModel 属性在打开时就已选中某一项。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CT2">选中项变化</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC3">双向绑定让选中项的变化无需视图事件处理即可生效。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC4">上述 ComboBox 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC5">通过专用 ViewModel 暴露选项与选中项。</x:String>
+
+    <!-- CommandBar -->
+    <x:String x:Key="Loc.P.CommandBar.Title1">CommandBar</x:String>
+    <x:String x:Key="Loc.P.CommandBar.Sub1">用于排布 AppBarButton 等命令元素的工具栏，主命令直接显示，其余进入溢出区。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CT1">基础 CommandBar</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC1">只含主命令的 CommandBar。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CT2">带次要命令的 CommandBar</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC2">同时包含主命令与次要（溢出）命令的 CommandBar。点击溢出按钮可查看更多。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC3">含主命令与次要命令的 CommandBar 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC4">把 CommandBar 的操作以 ICommand 属性形式暴露在 ViewModel 上。</x:String>
+
+    <!-- CommandBarFlyout -->
+    <x:String x:Key="Loc.P.CommandBarFlyout.Title1">CommandBarFlyout</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.Sub1">在轻量弹出层中显示 CommandBar 的浮出控件，同时容纳主命令与次要命令。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CT1">基础 CommandBarFlyout</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC1">点击下方按钮，弹出带编辑命令的 CommandBarFlyout。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CT2">主次命令混合的 CommandBarFlyout</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC2">主命令始终可见，次要命令则收纳在溢出区中。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC3">命令绑定式浮出控件的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC4">命令与状态均由 ViewModel 实现。</x:String>
+
+    <!-- ContentDialog -->
+    <x:String x:Key="Loc.P.ContentDialog.Title1">ContentDialog</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Sub1">用于确认、内嵌审阅流程与异步校验的模态对话框，无需 XamlRoot。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CT1">弹出式 ContentDialog</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC1">在当前窗口之上显示经典模态对话框。回车触发默认按钮，Esc 关闭。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CT2">就地 ContentDialog</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC2">本示例把对话框保留在宿主区域内，用来预览内嵌式的审阅流程。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CT3">延迟校验</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC3">主按钮的 Deferral 可在允许关闭之前先执行异步工作。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC4">直接在标记中声明就地 ContentDialog。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC5">对话框命令位于 ViewModel 中，弹窗的创建则隔离在对话框服务背后。</x:String>
+
+    <!-- ContextMenu -->
+    <x:String x:Key="Loc.P.ContextMenu.Title1">ContextMenu</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Sub1">在右键位置弹出的命令菜单，可通过 ContextMenuService 附加到任意元素。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CT1">基础 ContextMenu</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC1">在下方区域点击右键即可打开上下文菜单。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CT2">带子菜单的 ContextMenu</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC2">上下文菜单可以包含多级子菜单。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC3">右键选择一项操作，所选操作会显示在下方。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC4">通过 ContextMenuService 把 ContextMenu 附加到元素的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC5">在代码中构建 ContextMenu 并接入 MenuItem 点击处理。</x:String>
+
+    <!-- CssLayout -->
+    <x:String x:Key="Loc.P.CssLayout.Title1">CSS 布局</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Sub1">百分比、aspect-ratio、box-sizing 与 position: absolute 全部由框架自身的布局过程处理——所有面板都参与其中，自定义面板只需三行代码即可接入。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT1">百分比是解析出来的，不是固化的</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC1">水平百分比按包含块的宽度解析，垂直百分比按其高度解析——也就是说该轴必须是确定的。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT2">百分比宽度与高度</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC2">四条边都接受百分比。按 CSS 规范，每一条边——包括上下两边——都以包含块的宽度为基准解析。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT3">百分比外边距与内边距</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC3">min-width、max-width、min-height、max-height 同样支持百分比，并在首选尺寸解析完成后进行钳制。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT4">百分比的最小与最大边界</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC4">只给出一个轴，比例会推导出另一个。下面每个方块都只设置了宽度。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT5">aspect-ratio</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC5">两个方块都要求 width: 200px，并带 20px 内边距和 4px 边框。border-box（框架默认）把这些装饰算在内，content-box 则加在外面，所以第二个方块确实更宽。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT6">box-sizing</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC6">绝对定位的元素完全脱离所在面板的流：它既不占据流的空间，也不影响面板的期望尺寸，位置由 inset 属性决定。下面的宿主就是一个普通 StackPanel——流中的项会直接忽略被钉住的元素。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT7">position: absolute</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC7">两条横条都在同一个 420 宽的块内，都要求 width: 50%。第二条同时在标记里设置了 Width，那是本地值——本地值优先于所有 CSS 层。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT8">显式尺寸依然胜出</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC8">上述所有布局特性的标记写法。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC9">让自定义面板接入绝对定位协议。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Body1">百分比不可能在解析的那一刻就变成固定的 Width——包含块只有在 measure 期间才可知。因此百分比长度会作为布局状态保留，并在每一趟布局中按父级传下来的约束重新解析。这正是它能在窗口缩放后依然正确的原因，也是为什么你在代码里设置的本地 Width 仍然优先于 CSS 百分比。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Cap1">StackPanel 会沿堆叠轴给子元素传下无限约束，因此该方向的百分比没有可解析的基准，会退化为 auto，而不是塌缩成零。Canvas 同理，横向堆叠面板内的水平百分比也是如此。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Cap2">StackPanel、WrapPanel、DockPanel、Grid 与 Canvas 都已参与其中。自定义面板只需在循环里跳过绝对定位子元素（if (IsCssAbsolute(child)) continue;），再调用 MeasureCssAbsoluteChildren 与 ArrangeCssAbsoluteChildren 两个辅助方法即可。若不使用 position: absolute，像素单位的 left/top 仍保持原有的 Canvas 附加属性映射。</x:String>
+
+    <!-- CssMappings -->
+    <x:String x:Key="Loc.P.CssMappings.Title1">自定义属性</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Sub1">映射表的两端都是开放的：你可以注册自己的属性名、自己的值转换器，或把某个名字重定向到已有属性。本页的每一条声明用的都是 CSS 中并不存在的自定义属性。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT1">扩展映射表的四种方式</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC1">brand-corner 注册为 border-radius 的别名，各方面表现都与该长写属性一致，在层叠中的竞争方式也相同。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT2">为设计变量取一个别名</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC2">gallery-elevation 接受 0 到 5 的层级，并据此构建对应的投影。它在 CSS 与框架中都不存在——只是三十行注册代码。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT3">带自定义转换器的自定义属性</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC3">gallery-tint 接受任意 CSS 颜色，并以 35% 透明度绘回——透明度来自注册时的转换器参数——同时按元素的实际类型解析 Background。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT4">按名称解析目标属性</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC4">参数属于注册本身，而非某条声明。gallery-tint 与 gallery-tint-strong 是同一个转换器实例注册了两次，只有注册时传入的透明度不同。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT5">一个转换器，两次注册</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC5">多属性转换器能看到元素本身，并返回一组赋值。gallery-square 用一个长度同时写入 Width 与 Height。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT6">一条声明，多个属性</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC6">CSS 没有对应关键字的名字，会退回到元素自身的属性，由 kebab-case 转换而来。无需注册：horizontal-content-alignment 找到 HorizontalContentAlignment，is-tab-stop 找到 IsTabStop。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT7">kebab-case 通道——所有依赖属性，开箱即用</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC7">面板可以重写 TryApplyCssPropertyCore，把某个 CSS 概念据为己用并映射到自身属性。StackPanel 对 flex-direction 就是这么做的，于是一个堆栈面板能响应它本来毫无概念的 flexbox 关键字。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT8">面板可以自行拦截属性</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC8">自定义属性的读法与内置属性完全一致。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC9">本页背后的注册代码，原样呈现。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Body1">CssMappings.RegisterAlias 把一个名字指向另一个名字。RegisterProperty 可以把名字绑定到固定的依赖属性，或按名称针对每个元素的类型解析目标，或把整件事交给能一次赋多个属性的多属性转换器。值转换是接口形式的——ICssValueConverter 参照 IValueConverter 设计，但为 CSS 做了收窄：输入永远是声明文本，转换是单向的，区域性永远是固定不变的。后注册者胜出——包括覆盖内置条目与不支持占位项——而且已经解析过的样式表会自动采用新的注册。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap1">转换器返回 null 会丢弃该条声明，同时让块内其余声明继续生效——这是 CSS 的错误模型，而不是抛异常。默认情况下，同一段声明文本只转换一次，结果在所有命中元素间共享，因此请返回已冻结的对象；若传入 cacheByValue: false，则每次应用都会重新转换。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap2">CssValueParsing 把引擎自身的颜色与长度解析开放给自定义转换器，因此手写属性理解的语法与内置属性完全一致——带尾随 alpha 的十六进制、CSS 具名颜色，以及新旧两种写法的 rgb()/hsl()。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap3">转换器还会拿到目标属性的类型，以及一个永远固定不变的区域性——样式表文本是与区域性无关的源代码，缓存后的转换结果在整个进程内共享，因此绝不能依赖恰好编译它的那个线程。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap4">值会走 XAML 使用的同一套转换器栈，因此枚举、布尔值以及任何带类型转换器的类型都能工作。框架无法支持的真实 CSS 属性，则被显式注册为不支持条目，这样它们永远不会误入该通道去命中同名属性。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap5">重写方法通过传入的 setter 写值，因此值会落入 CSS 层，并在规则不再命中时自动清除。同一个钩子也是所有未注册属性名的最后兜底，让自定义面板可以消费自己定义的任意键。</x:String>
+
+    <!-- CssOutline -->
+    <x:String x:Key="Loc.P.CssOutline.Title1">描边环 Outline</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Sub1">绘制在元素边界之外、不占布局空间的环。它是框架的一等公民——四个依赖属性，XAML 与代码都能用——CSS 的 outline 系列属性可直接映射到它。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT1">为什么不直接用 border？</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC1">outline-style 支持 none、solid、dashed、dotted。简写形式的三个部分可以任意顺序书写。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT2">宽度、颜色与样式</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC2">正值把环推离元素，负值把环拉进元素内部。二者都不会改变元素的尺寸。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT3">outline-offset</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC3">圆角元素得到的也是圆角描边环，并按偏移量整体外扩，让曲线保持同心。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT4">环会跟随圆角半径</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC4">两行各有三个完全相同的方块。上排给中间的方块加 outline，下排加同样宽度的 border——注意整行的位移。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT5">outline 不占布局，border 会占</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC5">先点一个按钮，再按 Tab。:focus-visible 只匹配键盘焦点，于是环只为键盘出现，用鼠标时不打扰——整套做法只有两行 CSS。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT6">它天生就是为焦点环准备的</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC6">这四个属性定义在 FrameworkElement 上，所以它们可以绑定、可以动画，也能像其他属性一样参与样式与触发器。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT7">完全不用 CSS 也行</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC7">两条通道：CSS 简写形式，以及直接使用属性。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC8">由代码驱动的校验光环。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Body1">border 是盒子的一部分：把它加粗，周围一切都会重新排版。outline 则是在元素渲染之后、边界之外绘制的，从不参与 measure 或 arrange。正因如此，它才是焦点环、校验光环或选中标记的正确工具——状态一出现，布局不会跟着跳动。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Cap1">由于环绘制在元素自身特效之后、边界之外，它不会被父级圆角裁掉，也不会被元素上的特效模糊掉。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Cap2">OutlineStyle 默认为 Solid，因此只要设置画刷与粗细就能看到环。而在 CSS 中，简写形式总会重置全部三个部分，也就是说 outline: 2px red 在指定样式之前是不可见的——浏览器就是这么规定的——outline: none 则清除一切。</x:String>
+
+    <!-- CssSelectors -->
+    <x:String x:Key="Loc.P.CssSelectors.Title1">选择器与层叠</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.ScopeTitle">嵌套规则与作用域边界</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.NamespaceTitle">在 CSS 中区分 XAML 命名空间</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.NamespaceCaption">相同的 Border 控件使用两个 XAML 命名空间名称，CSS 分别选择对应的完整名称。修改文本可取消带命名空间的 Tag 高亮，原生绑定始终保留。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.ScopeCaption">嵌套规则为 @scope 内的卡片着色。禁用下方分组后，它成为作用域边界，卡片恢复灰色。IsEnabled 始终通过原生 XAML 绑定连接。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.ScopeToggle">启用下方分组</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.ScopeInside">始终位于作用域内</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.ScopeConditional">作用域在禁用分组处结束</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Sub1">类型、类、id 与通配选择器，配合后代与子代组合器、动态伪类，以及决定哪条声明胜出的层叠规则。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT1">选择器种类</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC1">类型选择器同样匹配派生类型，因此 Control 会命中每一个 Button。id 选择器匹配的是 x:Name。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT2">后代与子代组合器</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC2">A B 匹配 A 之下任意深度的 B；A &gt; B 只匹配直接子级。两者都沿逻辑树遍历。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT3">动态伪类</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC3">把鼠标悬停到下方控件上、按下它们、用 Tab 走一遍——这里所有视觉变化都来自伪类规则，而不是触发器。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT4">优先级与文档顺序</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC4">下面每个 Border 都同时被多条规则命中。胜者遵循标准 CSS 层叠：先看作用域，再看优先级，最后看文档顺序。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT5">!important</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC5">带 important 的声明不会被更具体的普通声明压过，与 Web 上完全一致。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT6">CSS 在属性系统中的位置</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC6">CSS 值存放在两个专用层中。它们会覆盖样式 Setter——主题样式、隐式样式与显式样式——但永远不会覆盖你自己设置的本地值。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT7">伪类切换时的过渡</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC7">声明 transition 后，每次状态变化都会带动画。把鼠标悬停到两个面板上对比看看。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT8">模板内部对页面 CSS 不可见</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC8">由控件模板生成的元素永远不会匹配页面级选择器，祖先轴也会跳过它们——因此 Button &gt; TextBlock 能够触及按钮的内容，尽管视觉上模板元素夹在两者之间。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC9">上述选择器示例的标记写法。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC10">样式表、类，以及回读层叠的最终结果。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap1">兄弟组合器（~ 与 +）、属性选择器、伪元素以及 :not() 之类的函数式伪类均不支持；使用它们的规则会被丢弃并给出诊断信息，而不是悄悄地错误匹配。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap3">本地值  &gt;  模板触发器  &gt;  CSS :state 胜出项  &gt;  样式触发器  &gt;  模板触发器  &gt;  CSS 普通胜出项  &gt;  样式 Setter  &gt;  默认值</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap4">每个元素只有一套共享的时长与缓动曲线；按属性设置的延迟会被忽略并给出诊断。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap5">若没有这条规则，按钮自身的模板装饰就会成为可被样式化的目标，页面一旦写下类型选择器，任何主题都会立刻被破坏。你自己编写的内容——包括 DataTemplate 产出的元素——仍然完全可以被匹配。</x:String>
+
+    <!-- CssStyling -->
+    <x:String x:Key="Loc.P.CssStyling.Title1">CSS 样式</x:String>
+    <x:String x:Key="Loc.P.CssStyling.PropertyTitle">具有类型的自定义属性</x:String>
+    <x:String x:Key="Loc.P.CssStyling.MathTitle">数学函数与原生绑定</x:String>
+    <x:String x:Key="Loc.P.CssStyling.FontFaceCaption">Ahem 从内嵌字体资源加载，用规则方块显示字符。编辑文本即可观察变化；原始 Text 绑定和原生设置的 20px 字号保持有效。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.RelativeUnitTitle">字体与视口单位</x:String>
+    <x:String x:Key="Loc.P.CssStyling.RelativeUnitCaption">上方的字号滑块也会改变这张 12ch × 2lh 卡片的尺寸。下方滑块改变嵌入宿主的动态视口，小视口和大视口保持固定。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.MathCaption">滑块通过原生绑定控制 FontSize。CSS 将宽度取整到 40px 的倍数，并根据当前字号计算透明度。改变字号后，两项计算都会更新。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.ImportTitle">按条件导入样式表</x:String>
+    <x:String x:Key="Loc.P.CssStyling.ImportCaption">内嵌 CSS 文件通过 @import 加载到基础层和响应式层。响应式导入要求支持 Grid 且视口达到 600px，其中的容器查询会随卡片宽度切换列数。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.PropertyCaption">编辑宽度和颜色声明。无效值会回到注册的 160px 初始宽度和蓝色初始颜色，声明文本始终通过原生 XAML 绑定连接。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Sub1">用真正的 CSS 为任意元素设置样式。属性关键字 100% 是原生 CSS；CSS 没有对应关键字的部分，则通过自动的 kebab-case 名称直达控件的依赖属性。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT1">两条通道，同一个引擎</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC1">Css.Style 接受一段声明块，写法与 Web 上 style 特性中的内容完全一致。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT2">内联声明</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC2">Css.StyleSheet 承载作用域限定在该元素子树内的规则——相当于标记版的 &lt;style&gt; 块。下面每个 Border 在标记里都没有样式，全部由样式表完成。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT3">标记中的样式表</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC3">px（数字不带单位时的默认值）、pt、in、cm、mm、q、pc，以及与字体相关的 em 与 rem。下面每根条形都用不同写法请求了同样的视觉宽度。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT4">长度单位</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC4">带 CSS 尾随 alpha 语义的十六进制、全部 CSS 具名颜色、新旧两种语法的 rgb()/rgba()/hsl()/hsla()，以及 transparent。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT5">颜色语法</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC5">当 CSS 与框架的说法不一致时，引擎会做转换，而不是自造关键字。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT6">CSS 名称如何抵达属性系统</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC6">CSS 从不抛异常。格式错误的声明会被丢弃，块内其余声明照常生效——与浏览器采用的错误模型一致。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT7">当某个属性无法应用时</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC7">两条通道在标记中的写法。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC8">同一个引擎的代码用法，包括应用级样式表。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Body1">Css.Style 在单个元素上承载一段声明块。Css.StyleSheet（代码中为 Css.StyleSheets）承载作用域限定在子树内的选择器规则，Application.StyleSheets 则把它们扩展到整个应用。两条通道汇入同一套层叠，并落在高于样式 Setter、低于你自设本地值的专用值层中。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Cap1">em 相对元素自身的 font-size 解析，唯独在 font-size 自身上例外——按 CSS 规范，那里相对继承来的字号解析。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Cap2">按 CSS 规范，#RRGGBBAA 把 alpha 放在最后——与 XAML 的 #AARRGGBB 正好相反，因此 CSS 通道自行解析颜色，而不借用 XAML 的转换器。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Cap3">框架无力实现的真实 CSS 属性——letter-spacing、text-shadow、animation、backdrop-filter 等——被显式注册为不支持条目。它们绝不会悄悄落入 kebab-case 通道，并且每个都会给出一次性诊断，指明最接近的替代方案。设置 CssDiagnostics.LogUnresolvedProperties = false 可以静默它们。</x:String>
+
+    <!-- DataGrid -->
+    <x:String x:Key="Loc.P.DataGrid.Title1">DataGrid</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Sub1">以可自定义的行列网格呈现数据集合的控件，支持排序、调整列宽、选择与自动生成列。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC1">点击一行即可选中，点击列头即可排序。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC2">快速浏览网格开箱即用的能力。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC3">上述网格的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC4">在代码隐藏中填充网格并处理选中。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body1">•  从数据源自动生成列</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body2">•  列排序（点击列头）</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body3">•  调整列宽（拖动列边界）</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body4">•  单选与扩展选择模式</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body5">•  行头与列头的显示控制</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body6">•  交替行背景</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body7">•  网格线自定义</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body8">•  键盘导航（上 / 下 / Home / End）</x:String>
+
+    <!-- DatePicker -->
+    <x:String x:Key="Loc.P.DatePicker.Title1">DatePicker</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Sub1">让用户从下拉日历中挑选日期的控件，显示格式可配置，也可设置日期范围限制。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CT1">基础 DatePicker</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC1">点击打开日历并选择日期，另附禁用状态。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CT2">日期格式</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC2">DatePicker 支持多种日期显示格式。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CT3">日期范围限制</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC3">DatePicker 可以设置最早与最晚日期。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC4">选择日期后即可看到格式化结果。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC5">DatePicker 在真实场景中的用法示例。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC6">上述日期选取器的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC7">在代码隐藏中创建日期选取器并处理选择变化。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Cap1">出生日期</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Cap2">预约日期</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Cap3">项目截止日期</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val1">短格式：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val2">长格式：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val3">开始日期：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val4">结束日期：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val5">选择日期：</x:String>
+
+    <!-- DesignTokens -->
+    <x:String x:Key="Loc.P.DesignTokens.Eyebrow1">基础规范</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Eyebrow2">间距 / 距离</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Eyebrow3">圆角 / 轮廓</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Title1">设计变量</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Sub1">贯穿整个 Gallery 的颜色、字体、间距、形状与动效共用决策。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT1">颜色角色</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CC1">语义化角色让控件在各主题下保持一致。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT2">字体排版</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CC2">两组变量都基于同一套 4px 栅格：间距衡量距离，圆角改变轮廓。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT3">间距与圆角</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT4">动效</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT5">资源导出</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Cap1">预览展示的是两个元素之间的实际间隙。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Cap2">每个示例都把该变量应用到同一块 60 × 36 px 的表面上。</x:String>
+
+    <!-- Dialogs -->
+    <x:String x:Key="Loc.P.Dialogs.Title1">文件对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Sub1">调用系统原生的文件、保存、文件夹、Shell、字体与消息对话框，并原样读回各自的返回结果。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT1">打开文件对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC1">浏览文件、多选文件，或使用 WPF 的 OpenFolderDialog。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT2">保存文件对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC2">让用户指定保存的文件名与位置。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT3">文件夹浏览对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC3">让用户浏览并选择一个文件夹。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT4">Shell 对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC4">直接基于 Win32 Shell API 打开图标选择、打开方式与文件属性面板。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT5">字体对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC5">让用户选择字体族、字形与字号。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT6">消息对话框</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC6">以不同图标、按钮组合与默认操作弹出原生消息框。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT7">对话框选项</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC7">文件对话框的常用配置项。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC8">上述对话框按钮的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC9">ViewModel 的命令调用注入进来的对话框服务，代码隐藏保持为空。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body1">敏捷的棕色狐狸跃过懒狗</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body2">这些示例使用 Jalium.UI.Controls.MessageBox，因此在测试经典系统提示时，示例窗口始终是它们的所有者。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body3">同步成功后的单按钮确认提示。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body4">离开当前视图前，对保存流程进行重试或取消。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body5">带系统错误图标与确认按钮的阻塞式导入失败提示。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body6">是 / 否 / 取消三选一，并为破坏性选项设置更安全的默认值。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Cap1">最近一次对话框交互</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Cap2">筛选器：</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Cap3">初始目录：</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip1">信息</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip2">警告</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip3">错误</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip4">确认</x:String>
+
+    <!-- DiffViewer -->
+    <x:String x:Key="Loc.P.DiffViewer.Title1">DiffViewer</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.Sub1">以并排或统一视图展示文本差异的控件，支持行级与词级高亮。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CT1">并排对比</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC1">在两个面板中分别高亮新增与删除，对比两份文本。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CT2">统一视图</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC2">把差异显示在单一统一视图中，类似 git diff 的输出。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC3">编辑原文与修改后的文本，即可实时看到差异更新。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC4">上述差异视图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC5">把两份源文档都绑定到 ViewModel 属性。</x:String>
+
+    <!-- DockLayout -->
+    <x:String x:Key="Loc.P.DockLayout.Title1">DockLayout</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Sub1">VS 风格的停靠布局，带可调整的分割面板与标签组，用于搭建类 IDE 的工作区。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CT1">IDE 布局</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC1">左侧栏 + 中央编辑器 + 底部面板，分隔条可拖动调整。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CT2">三栏布局</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC2">使用星号尺寸实现等分与按比例分割。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC3">上述停靠布局的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC4">在代码隐藏中构建带分割面板与可停靠标签项的 DockLayout。</x:String>
+
+    <!-- DockPanel -->
+    <x:String x:Key="Loc.P.DockPanel.Title1">DockPanel</x:String>
+    <x:String x:Key="Loc.P.DockPanel.Sub1">把子元素停靠到上、下、左、右四边，或让其填满剩余空间的面板。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CT1">基础 DockPanel</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC1">元素分别停靠到不同边，最后一个子元素填满中央。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CT2">LastChildFill = false</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC2">关闭该选项后，最后一个子元素不再填满剩余空间。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CT3">应用程序布局</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC3">含页眉、侧边栏与内容区的典型应用布局。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC4">上述 DockPanel 布局的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC5">所有 DockPanel 关系都在 XAML 中声明。</x:String>
+
+    <!-- DocumentViewer -->
+    <x:String x:Key="Loc.P.DocumentViewer.Title1">DocumentViewer</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Sub1">用于查看分页文档的控件，支持缩放、翻页、搜索、适配模式与打印。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CT1">文档查看器演示</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC1">带导航与缩放工具栏的 DocumentViewer。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CT2">文本搜索</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC2">在文档中搜索文本，并可设置匹配选项。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CT3">显示选项</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC3">配置页面显示模式、间距与边框可见性。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC4">使用默认设置的 DocumentViewer 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC5">ViewModel 通过命令与绑定驱动导航、缩放、搜索与显示选项。</x:String>
+
+    <!-- DragDrop -->
+    <x:String x:Key="Loc.P.DragDrop.Title1">拖放</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Sub1">演示 DragEnter、DragOver、DragLeave 与 Drop 事件，以及 Windows Shell 增强：源端可自定义拖拽图像、目标端可设置 Shell 放置说明，并可通过 DoShellDragDrop 把文件拖到其他应用。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT1">基础拖放</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC1">从源列表中拖出条目，放到目标区域里。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT2">DragEnter / DragLeave 反馈</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC2">把条目拖过下方各区域，即可看到 DragEnter 与 DragLeave 的视觉反馈。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT3">自定义拖拽图像（拖动源）</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC3">拖动下面的条目。跟随光标的是调用方提供的图像，而不是自动克隆的元素，用的是 DragDrop.DoDragDrop(source, data, effects, dragImage, offset)。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT4">Windows Shell 放置（外部文件）</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC4">把一个或多个文件从资源管理器拖到下方区域。Windows 会绘制自己的拖拽图像（IDropTargetHelper），DragOver 处理程序则通过 e.SetDropDescription(...) 设置 Shell 放置说明。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT5">拖出到资源管理器（跨进程）</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC5">把下面的条目拖到资源管理器窗口或桌面上。与应用内拖放不同，DragDrop.DoShellDragDrop 会发起真正的 OLE 拖放，从而把文件复制到其他应用，并使用 Windows 系统的拖拽图像。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT6">事件日志</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC6">按触发顺序显示 DragEnter、DragOver、DragLeave 与 Drop 事件。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC7">上述拖放演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC8">状态由 ViewModel 持有，附加行为负责适配原生拖放事件。</x:String>
+
+    <!-- EditControl -->
+    <x:String x:Key="Loc.P.EditControl.Title1">EditControl</x:String>
+    <x:String x:Key="Loc.P.EditControl.Sub1">代码编辑器控件，支持语法高亮、行号、代码折叠、键盘导航与完整的撤销/重做。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CT1">带 C# 语法高亮的代码编辑器</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC1">完整的键盘导航、选择、剪贴板、撤销/重做与自动缩进。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC2">切换编辑器功能开关，然后执行文档命令并加载示例代码。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CT2">架构</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC3">控件开箱即可识别的编辑手势。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC4">编辑器内部是如何搭起来的。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC5">配置编辑器及其选项的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC6">ViewModel 持有编辑器状态与命令，行为负责适配撤销、重做、选择与光标元数据。</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body1">{Shortcut.Copy} / {Shortcut.Cut} / {Shortcut.Paste} —— 复制 / 剪切 / 粘贴</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body2">{Shortcut.Undo} / {Shortcut.Redo} —— 撤销 / 重做</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body3">{Shortcut.SelectAll} —— 全选</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body4">Home —— 智能行首（首个非空白字符 / 行首）</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body5">{Shortcut.WordModifier}+左/右 —— 按词移动</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body6">{Shortcut.DocumentBoundary} —— 文档开头 / 结尾</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body7">Shift+方向键 —— 扩展选区</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body8">Tab / Shift+Tab —— 增加 / 减少缩进</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body9">Enter —— 换行并自动缩进</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body10">双击 —— 选中单词 / 三击 —— 选中整行</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body11">文档层：基于 Rope 的缓冲区（插入/删除 O(log n)）、DocumentLineTree、UndoStack</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body12">视图层：直接使用 DrawingContext 渲染，并按 span 做语法高亮</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body13">语法：ISyntaxHighlighter 接口，以及支持跨行 span 的 RegexSyntaxHighlighter</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body14">功能：代码折叠、括号匹配、查找/替换、缩略图</x:String>
+
+    <!-- ElementEffects -->
+    <x:String x:Key="Loc.P.ElementEffects.Title1">元素特效</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.Sub1">现代的元素级视觉特效——OuterGlow、InnerShadow、Emboss、ColorMatrix 与 EffectGroup——每一个都作用于单个元素，并可组合成特效组。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT1">OuterGlowEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC1">在元素外缘绘制辉光，用于取代已废弃的 OuterGlowBitmapEffect。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT2">InnerShadowEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC2">在元素边界内部绘制阴影，类似 CSS 的 box-shadow: inset。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT3">EmbossEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC3">模拟光照表面，营造凸起或凹陷的观感，用于取代已废弃的 EmbossBitmapEffect。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT4">ColorMatrixEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC4">应用 5x4 颜色矩阵变换，并提供灰度、棕褐、亮度、对比度、饱和度、色相旋转与反色等预设工厂方法。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT5">EffectGroup</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC5">把多个特效组合成一个整体。特效按顺序依次应用，前一个的输出作为后一个的输入。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC6">通过 Effect 属性应用元素特效的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC7">特效参数与命令绑定到 ViewModel，特效对象本身仍在 XAML 中声明。</x:String>
+
+    <!-- Expander -->
+    <x:String x:Key="Loc.P.Expander.Title1">Expander</x:String>
+    <x:String x:Key="Loc.P.Expander.Sub1">带可点击标题的控件，通过展开与折叠来显示或隐藏一段内容，把次要细节收起来直到需要时再展开。</x:String>
+    <x:String x:Key="Loc.P.Expander.CT1">基础展开器</x:String>
+    <x:String x:Key="Loc.P.Expander.CC1">点击标题即可展开或折叠内容区域。</x:String>
+    <x:String x:Key="Loc.P.Expander.CT2">复杂内容</x:String>
+    <x:String x:Key="Loc.P.Expander.CC2">展开器可以承载任意内容，从复选框、下拉框到完整的输入表单。</x:String>
+    <x:String x:Key="Loc.P.Expander.CT3">嵌套展开器</x:String>
+    <x:String x:Key="Loc.P.Expander.CC3">展开器可以嵌套，用于搭建可折叠的树状分区。</x:String>
+    <x:String x:Key="Loc.P.Expander.CC4">用代码驱动展开器——用按钮展开、折叠或切换它。</x:String>
+    <x:String x:Key="Loc.P.Expander.CC5">上述展开器的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Expander.CC6">在代码隐藏中把按钮接到展开器，并处理它的展开与折叠事件。</x:String>
+
+    <!-- FlexPanel -->
+    <x:String x:Key="Loc.P.FlexPanel.Title1">FlexPanel</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Sub1">完整的 CSS flexbox 容器：主轴方向、换行、六种 justify 分布方式、交叉轴对齐，以及规范中的 grow/shrink/basis 算法。它就是一个普通面板——在 XAML 里完全不用碰 CSS——同时也是 display: flex 映射的目标。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT1">方向</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC1">主轴由 Direction 决定；reverse 变体只是镜像摆放位置，不会改动 Children 的顺序。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT2">JustifyContent —— 主轴分布</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC2">六种 CSS 分布方式，每种都在同样 100% 宽的舞台上摆同样的三个条目。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT3">AlignItems 与 AlignSelf —— 交叉轴</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC3">AlignItems 为整行设定默认值，AlignSelf 则对单个条目覆盖它。默认是 Stretch，会撑满整行。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT4">Grow、Shrink 与 Basis</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC4">Basis 是条目在弹性计算前的尺寸。剩余空间按 Grow 的比例分配；空间不足时按 Shrink × Basis 的比例扣减，任何触到最小或最大值的条目都会冻结，它的份额再重新分配——这就是规范里的 resolve-flexible-lengths 循环。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT5">Wrap 与 AlignContent</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC5">启用 Wrap 后条目会换到新行，AlignContent 则沿交叉轴分配这些行。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT6">Order</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC6">Order 只改变条目的布局位置，不触碰 Children 集合，因此焦点顺序、命中测试与数据绑定仍按声明顺序进行。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT7">用 CSS 驱动它</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC7">整个 flex 属性族都映射到 FlexPanel。下面的标记没有设置任何一个面板属性——全部由样式表完成，包括条目上的 flex 简写。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT8">一个实用的应用栏</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC8">flexbox 的经典活儿：标题吃掉多余空间，操作按钮钉在右侧，所有元素垂直居中。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC9">面板属性、条目附加属性，以及对应的 CSS 写法。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC10">用命令式代码搭建同样的面板。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Cap1">凡是需要弹性伸缩的元素，请用 Basis 而不是 Width：显式 Width 是 arrange 阶段始终强制执行的硬约束，因此带 Width 的条目无论 Grow 分给它多少空间都保持原尺寸。在 CSS 里写 flex: 1 会映射为 Basis = 0，自动做对这件事。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Cap2">Order 值相同的条目会保持声明顺序——排序是稳定的，正如 CSS 规范要求的那样。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Cap3">flex-direction、flex-wrap、justify-content、align-items、align-content、gap/row-gap/column-gap、flex（以及 flex-grow/-shrink/-basis）、align-self 与 order 全部有对应映射。若目标不是 FlexPanel，容器类属性会转交给该面板自己的 TryApplyCssPropertyCore 重写——StackPanel 正是这样把 flex-direction 变成它的 Orientation 的。</x:String>
+
+    <!-- Flowchart -->
+    <x:String x:Key="Loc.P.Flowchart.Title1">Flowchart</x:String>
+    <x:String x:Key="Loc.P.Flowchart.Sub1">渲染有向流程图，自动把节点分层排列，并绘制形状、箭头与连线标签——用简洁的 mermaid 文本编写。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CT1">判定流程</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC1">包含判定节点、分支标签与自上而下层次布局的流程图。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CT2">节点形状与连线样式</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC2">矩形、圆角、体育场形、圆形、菱形、六边形、圆柱等等——配合实线、点线与粗线，并采用从左到右的布局。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC3">在左侧编辑 mermaid 流程图源码，右侧的图会实时更新。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC4">以 mermaid 文本声明式地编写流程图。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC5">用 MermaidDiagram 或 FlowchartDiagram 从代码渲染流程图。</x:String>
+
+    <!-- Frame -->
+    <x:String x:Key="Loc.P.Frame.Title1">Frame</x:String>
+    <x:String x:Key="Loc.P.Frame.Sub1">承载页面内容并在页面之间导航的容器，同时维护前进与后退历史。</x:String>
+    <x:String x:Key="Loc.P.Frame.CT1">基础 Frame</x:String>
+    <x:String x:Key="Loc.P.Frame.CC1">Frame 可以承载页面并在其间导航。</x:String>
+    <x:String x:Key="Loc.P.Frame.CT2">导航控制</x:String>
+    <x:String x:Key="Loc.P.Frame.CC2">Frame 支持后退与前进导航。</x:String>
+    <x:String x:Key="Loc.P.Frame.CT3">Frame 属性</x:String>
+    <x:String x:Key="Loc.P.Frame.CC3">Frame 常用的配置选项。</x:String>
+    <x:String x:Key="Loc.P.Frame.CC4">Frame 适用于多种导航场景。</x:String>
+    <x:String x:Key="Loc.P.Frame.CC5">Frame 及其导航按钮的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Frame.CC6">导航状态与命令都放在独立的 ViewModel 中。</x:String>
+
+    <!-- GanttChart -->
+    <x:String x:Key="Loc.P.GanttChart.Title1">GanttChart</x:String>
+    <x:String x:Key="Loc.P.GanttChart.Sub1">在时间轴上展示任务的图表控件，支持依赖关系、里程碑与进度跟踪。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CT1">基础甘特图</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC1">含若干跨越不同日期区间任务的简单甘特图。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CT2">依赖关系与里程碑</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC2">任务之间带依赖箭头，并标注里程碑的甘特图。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CT3">进度跟踪</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC3">用进度指示器展示任务部分完成情况的甘特图。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC4">上述甘特图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC5">任务、依赖、里程碑与进度都是 ViewModel 中的集合，由 XAML 绑定。</x:String>
+
+    <!-- GaugeChart -->
+    <x:String x:Key="Loc.P.GaugeChart.Title1">GaugeChart</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.Sub1">在径向仪表盘上展示数值，带彩色区间、刻度与指针。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CT1">基础仪表盘</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC1">只设置数值、最小值与最大值的仪表盘。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CT2">彩色区间</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC2">带绿、黄、红三段区间的仪表盘。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CT3">多个仪表盘</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC3">一排三个小仪表盘，分别显示 CPU、内存与磁盘占用。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC4">上述仪表盘的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC5">仪表盘配置与区间都直接在 XAML 中声明。</x:String>
+
+    <!-- GeographicHeatmap -->
+    <x:String x:Key="Loc.P.GeographicHeatmap.Title1">GeographicHeatmap</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.Sub1">渲染地理热力图的控件，使用高斯模糊的强度场，渐变可配置。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC1">在都市圈周围散布热点的 GeographicHeatmap。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CT1">半径与强度</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC2">多张热力图，演示不同的 Radius 与 Intensity 取值。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CT2">颜色渐变</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC3">采用默认、暖色与冷色三种渐变方案的热力图。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC4">上述热力图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC5">热点与渐变来自 ViewModel，XAML 负责声明每一种热力图变体。</x:String>
+
+    <!-- GettingStarted -->
+    <x:String x:Key="Loc.P.GettingStarted.Eyebrow1">JALIUM.UI / 入门</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Title1">快速上手</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Sub1">了解如何用 Jalium.UI 与规范的 ViewModel 边界构建声明式应用。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT1">安装</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC1">把 UI 包添加到你的应用项目中。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT2">创建你的第一个窗口</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC2">当不需要声明式视图时，窗口也可以完全用 C# 组装。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT3">使用 JALXAML</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC3">在标记中声明可视树，并把它绑定到专用的 ViewModel。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT4">布局控件</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC4">用面板来表达布局意图。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT5">数据绑定</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC5">从 ViewModel 暴露可观察属性与命令。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT6">用 CSS 设置样式</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC6">样式也可以用真正的 CSS 书写。属性关键字 100% 是原生 CSS；CSS 没有对应关键字的部分，通过 kebab-case 名称直达控件的依赖属性。</x:String>
+
+    <!-- Grid -->
+    <x:String x:Key="Loc.P.Grid.Title1">Grid</x:String>
+    <x:String x:Key="Loc.P.Grid.Sub1">把子元素排布进行与列的灵活布局面板，支持固定、自动与星号尺寸，以及跨行跨列。</x:String>
+    <x:String x:Key="Loc.P.Grid.CT1">基础 Grid 布局</x:String>
+    <x:String x:Key="Loc.P.Grid.CC1">3x3 网格，每个彩色单元格标注了自己的行列索引。</x:String>
+    <x:String x:Key="Loc.P.Grid.CT2">Grid 功能</x:String>
+    <x:String x:Key="Loc.P.Grid.CC2">Grid 控件的核心能力：混合尺寸、跨行与跨列。</x:String>
+    <x:String x:Key="Loc.P.Grid.CC3">应用式网格布局的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Grid.CC4">在代码隐藏中动态搭建同样的网格布局。</x:String>
+    <x:String x:Key="Loc.P.Grid.Cap1">本节现在使用的是真正的 RowDefinitions、ColumnDefinitions、RowSpan 与 ColumnSpan。</x:String>
+
+    <!-- GroupBox -->
+    <x:String x:Key="Loc.P.GroupBox.Title1">GroupBox</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Sub1">把一组相关控件框在带标题的边框内的容器，为表单与设置面板提供清晰的视觉结构。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC1">同一行内的两个 GroupBox，各自框住一组字段。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC2">GroupBox 容器能带给你什么。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC3">上述分组表单的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC4">在代码隐藏中构建设置用的 GroupBox 及其字段。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body1">• 把相关控件在视觉上归为一组</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body2">• 标题文字可自定义</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body3">• 标题可承载任意内容</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body4">• 内容周围带样式化边框</x:String>
+
+    <!-- Heatmap -->
+    <x:String x:Key="Loc.P.Heatmap.Title1">Heatmap</x:String>
+    <x:String x:Key="Loc.P.Heatmap.Sub1">把二维数值矩阵显示为按颜色编码的网格，可选标签与色阶条。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC1">使用默认 BlueToRed 色阶的 10x10 热力图。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CT1">色阶</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC2">同一份数据分别用 Viridis 与 Grayscale 色阶渲染。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CT2">单元格数值</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC3">启用 ShowCellValues 的热力图，会在每个单元格内显示数值。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC4">带坐标轴标签与单元格数值的热力图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC5">ViewModel 持有矩阵与标签，XAML 负责热力图的渲染配置。</x:String>
+
+    <!-- HexEditor -->
+    <x:String x:Key="Loc.P.HexEditor.Title1">HexEditor</x:String>
+    <x:String x:Key="Loc.P.HexEditor.Sub1">以十六进制形式显示并编辑二进制数据的控件，包含偏移量、十六进制与 ASCII 三列。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CT1">基础十六进制编辑器</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC1">用偏移量、十六进制与 ASCII 三列显示并编辑二进制数据。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CT2">配置选项</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC2">用下方的控件切换列显示，并调整每行字节数。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC3">只读的十六进制查看器，用于查看二进制数据而不修改它。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC4">上述十六进制编辑器的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC5">二进制数据与编辑器配置都从 ViewModel 绑定而来。</x:String>
+
+    <!-- HyperlinkButton -->
+    <x:String x:Key="Loc.P.HyperlinkButton.Title1">HyperlinkButton</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Sub1">外观像超链接的按钮，可导航到 URI 或执行点击处理，并自带悬停、按下与下划线状态。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC1">独立的链接会导航到 URI；链接也可以内嵌在句子中随文排版。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC2">该控件开箱即用的核心能力。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC3">上述链接的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC4">在代码隐藏中创建并接入链接。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body1">• 导航到外部 URL</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body2">• 超链接样式（下划线、颜色）</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body3">• 悬停与按下状态</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body4">• 在默认浏览器中打开</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Cap1">在段落语境中：</x:String>
+
+    <!-- IconElement -->
+    <x:String x:Key="Loc.P.IconElement.Eyebrow1">图标体系</x:String>
+    <x:String x:Key="Loc.P.IconElement.Title1">IconElement</x:String>
+    <x:String x:Key="Loc.P.IconElement.Sub1">一族可缩放的矢量图标——SymbolIcon、FontIcon 与 PathIcon——从 Segoe Fluent Icons 中取用 600 多个字形，供按钮、工具栏与应用栏使用。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT1">SymbolIcon</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC1">用 Symbol 枚举显示 Segoe Fluent Icons 中的常用图标。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT2">FontIcon</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC2">使用任意字体中的字形，并通过绑定控制其尺寸与颜色。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT3">带 SymbolIcon 的 AppBarButton</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC3">AppBarButton.Icon 接受的是 IconElement，而不是原始字符串。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT4">完整 Symbol 枚举图库</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC4">每一个 Symbol 枚举值都由 ViewModel 提供，并按字母顺序分组。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC5">SymbolIcon、FontIcon 与 AppBarButton 图标的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC6">专用 ViewModel 为可复用的 XAML 模板提供图标数据。</x:String>
+
+    <!-- Image -->
+    <x:String x:Key="Loc.P.Image.Title1">Image</x:String>
+    <x:String x:Key="Loc.P.Image.Sub1">以四种拉伸模式显示位图与矢量图，并可通过 ControlTemplate 获得圆角、边框与裁剪。</x:String>
+    <x:String x:Key="Loc.P.Image.CT1">远程图片</x:String>
+    <x:String x:Key="Loc.P.Image.CC1">以 Stretch.Uniform 从远程 URL 加载的图片。</x:String>
+    <x:String x:Key="Loc.P.Image.CT2">拉伸模式</x:String>
+    <x:String x:Key="Loc.P.Image.CC2">用同一张图片并排比较四种拉伸模式。</x:String>
+    <x:String x:Key="Loc.P.Image.CT3">SVG 图片</x:String>
+    <x:String x:Key="Loc.P.Image.CC3">以真正的矢量方式渲染的矢量图——任意分辨率下都很锐利，缩放不损失质量。</x:String>
+    <x:String x:Key="Loc.P.Image.CT4">SVG 拉伸模式</x:String>
+    <x:String x:Key="Loc.P.Image.CC4">用一张 SVG 矢量图比较四种拉伸模式。</x:String>
+    <x:String x:Key="Loc.P.Image.CT5">带样式的图片</x:String>
+    <x:String x:Key="Loc.P.Image.CC5">Image 控件通过 ControlTemplate 支持 CornerRadius、边框与背景画刷。</x:String>
+    <x:String x:Key="Loc.P.Image.CC6">Image 控件暴露的关键属性。</x:String>
+    <x:String x:Key="Loc.P.Image.CC7">加载与美化图片的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Image.CC8">在代码隐藏中创建 BitmapImage、SvgImage 源与 Image 控件。</x:String>
+    <x:String x:Key="Loc.P.Image.Body1">Source —— 要显示的 ImageSource（BitmapImage 或 SvgImage）</x:String>
+    <x:String x:Key="Loc.P.Image.Body2">Stretch —— 图片如何填满区域（None、Fill、Uniform、UniformToFill）</x:String>
+    <x:String x:Key="Loc.P.Image.Body3">StretchDirection —— 限制缩放方向（UpOnly、DownOnly、Both）</x:String>
+    <x:String x:Key="Loc.P.Image.Body4">Background —— 图片背后的背景画刷（经由 ControlTemplate）</x:String>
+    <x:String x:Key="Loc.P.Image.Body5">CornerRadius —— 带裁剪的圆角（经由 ControlTemplate）</x:String>
+    <x:String x:Key="Loc.P.Image.Body6">BorderBrush / BorderThickness —— 图片周围的边框（经由 ControlTemplate）</x:String>
+    <x:String x:Key="Loc.P.Image.Cap1">原始尺寸，不缩放</x:String>
+    <x:String x:Key="Loc.P.Image.Cap2">填满容器，可能变形</x:String>
+    <x:String x:Key="Loc.P.Image.Cap3">整体放入，保持比例</x:String>
+    <x:String x:Key="Loc.P.Image.Cap4">填满容器，裁掉溢出</x:String>
+    <x:String x:Key="Loc.P.Image.Cap5">圆角</x:String>
+    <x:String x:Key="Loc.P.Image.Cap6">圆形</x:String>
+    <x:String x:Key="Loc.P.Image.Cap7">带边框</x:String>
+
+    <!-- InfoBar -->
+    <x:String x:Key="Loc.P.InfoBar.Title1">InfoBar</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Sub1">用于就地呈现重要但不阻塞的状态消息的通知条，不打断用户操作。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC1">每种严重级别都有自己的强调色、图标与底色；最后一条可以用关闭按钮消掉。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC2">InfoBar 控件开箱即用的能力。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC3">上述 InfoBar 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC4">在代码隐藏中创建、显示与关闭通知。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body1">• 四种严重级别（信息、成功、警告、错误）</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body2">• 标题与正文内容</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body3">• 可选的关闭按钮</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body4">• 支持操作按钮</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body5">• 自定义内容区域</x:String>
+
+    <!-- InkCanvas -->
+    <x:String x:Key="Loc.P.InkCanvas.Title1">InkCanvas</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.Sub1">用于捕捉鼠标、触控笔或触摸手写笔迹的绘制表面，笔迹颜色、粗细、笔刷类型与橡皮模式均可配置。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT1">基础绘制</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC1">用鼠标绘制，在书写与擦除模式之间切换，或清空画布。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT2">笔迹颜色</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC2">选一种颜色来绘制。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT3">笔迹粗细</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC3">调整笔迹的粗细。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT4">荧光笔模式</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC4">开启荧光笔模式可获得半透明笔迹。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT5">笔刷类型</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC5">选择新笔迹使用的笔刷类型。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT6">笔锋模式</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC6">选择新笔迹的笔锋收尾样式。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT7">笔迹信息</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC7">显示画布上当前的笔迹数量。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC8">上述 InkCanvas 演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC9">ViewModel 暴露绘制状态与命令，附加行为负责适配 InkCanvas 的实例 API。</x:String>
+
+    <!-- JsonTreeViewer -->
+    <x:String x:Key="Loc.P.JsonTreeViewer.Title1">JsonTreeViewer</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.Sub1">以交互式树视图展示 JSON 数据的控件，支持搜索、展开/折叠与复制路径。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CT1">基础 JSON 树</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC1">以按类型着色的可展开节点展示结构化 JSON 数据。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CT2">搜索与筛选</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC2">在搜索框中输入，即可在树中高亮匹配的键与值。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC3">在左侧输入 JSON 文本，右侧的树视图会实时更新。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC4">上述 JSON 树视图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC5">JSON 内容与实时搜索状态都由 ViewModel 暴露。</x:String>
+
+    <!-- Label -->
+    <x:String x:Key="Loc.P.Label.Title1">Label</x:String>
+    <x:String x:Key="Loc.P.Label.Sub1">显示文本并可关联到目标元素的控件；点击标签或按下其访问键即可让配对控件获得焦点，提升表单可访问性。</x:String>
+    <x:String x:Key="Loc.P.Label.CC1">每个说明文字都是与输入框配对的 Label；点击标签即可聚焦旁边的字段。</x:String>
+    <x:String x:Key="Loc.P.Label.CC2">Label 控件能为表单带来什么。</x:String>
+    <x:String x:Key="Loc.P.Label.CC3">通过访问键把每个标签绑定到目标的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Label.CC4">在代码隐藏中创建标签并设置它们的 Target。</x:String>
+    <x:String x:Key="Loc.P.Label.Body1">• 把标签与目标控件关联起来</x:String>
+    <x:String x:Key="Loc.P.Label.Body2">• 点击标签即可聚焦目标</x:String>
+    <x:String x:Key="Loc.P.Label.Body3">• 支持访问键（Alt+字母）</x:String>
+    <x:String x:Key="Loc.P.Label.Body4">• 提升表单可访问性</x:String>
+
+    <!-- LineChart -->
+    <x:String x:Key="Loc.P.LineChart.Title1">LineChart</x:String>
+    <x:String x:Key="Loc.P.LineChart.Sub1">把数据显示为相连的折线，可选平滑曲线、区域填充与数据点标记。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CT1">基础折线图</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC1">把单个数据序列渲染为带数据点标记的折线图。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CT2">多序列</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC2">在同一张图上叠加多个数据序列，并附带图例。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CT3">平滑曲线与区域</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC3">使用 Catmull-Rom 样条平滑，并在线下方填充区域。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC4">单序列折线图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC5">序列在 XAML 中声明，并绑定到 ViewModel 持有的数据集合。</x:String>
+
+    <!-- LiquidGlass -->
+    <x:String x:Key="Loc.P.LiquidGlass.Title1">液态玻璃</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.Sub1">Apple 风格的液态玻璃效果，基于 SDF 的折射、色散、边缘高光与内阴影。在任意 Border 上设置 LiquidGlass=True 即可。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT1">默认液态玻璃</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC1">带边缘高光与内阴影的背景折射。BlurRadius=8，RefractionAmount=60。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT2">色散</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC2">添加彩虹边缘的色散效果。ChromaticAberration 控制色彩分离的程度。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT3">圆角变体</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC3">液态玻璃会让 SDF 形状随不同的圆角半径自适应。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT4">带色调的液态玻璃</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC4">在 Border 上设置 Background，即可在玻璃效果之上叠加一层色调。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT5">交互参数</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC5">实时调整模糊半径、折射强度与色散。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT6">液态玻璃融合</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC6">相邻的液态玻璃面板会通过 SDF 平滑最小值（smin）像 metaball 一样柔和融合。这些面板必须是同一个父 Panel 下的兄弟元素。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT7">超椭圆形状</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC7">设置 Shape=SuperEllipse 可获得 iOS 风格的圆角方形。SuperEllipseN 控制指数（2=圆形，4=iOS，越大越接近矩形）。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC8">不使用液态玻璃（纯色填充）</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC9">在 Border 上设置 LiquidGlass 相关属性：</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC10">为 Border 应用液态玻璃效果的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC11">在代码隐藏中接入交互滑块并设置玻璃属性。</x:String>
+
+    <!-- ListBox -->
+    <x:String x:Key="Loc.P.ListBox.Title1">ListBox</x:String>
+    <x:String x:Key="Loc.P.ListBox.Sub1">可滚动的容器，呈现一组条目并让用户选择一个或多个。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC1">点击条目即可选中。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC2">ListBox 支持多种选择模式、键盘导航与数据绑定。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC3">创建并填充 ListBox 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC4">在代码隐藏中填充条目并处理选中。</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body1">• 单选模式（默认）</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body2">• 多选模式</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body3">• 扩展选择模式（{Shortcut.PrimaryModifier}/Shift）</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body4">• 键盘导航（上/下/Home/End）</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body5">• ItemsSource 绑定</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body6">• 支持 ItemTemplate</x:String>
+
+    <!-- ListView -->
+    <x:String x:Key="Loc.P.ListView.Title1">ListView</x:String>
+    <x:String x:Key="Loc.P.ListView.Sub1">可滚动的集合控件，既能以纯列表也能以多列行的形式呈现条目，支持单选、多选与扩展选择。</x:String>
+    <x:String x:Key="Loc.P.ListView.CT1">基础 ListView</x:String>
+    <x:String x:Key="Loc.P.ListView.CC1">纵向排列的可选条目列表。</x:String>
+    <x:String x:Key="Loc.P.ListView.CT2">带列的 ListView</x:String>
+    <x:String x:Key="Loc.P.ListView.CC2">切换到 GridView，把条目铺排到带标题的多个列中。</x:String>
+    <x:String x:Key="Loc.P.ListView.CT3">选择模式</x:String>
+    <x:String x:Key="Loc.P.ListView.CC3">单选、多选与扩展选择在点击与拖动时的行为各不相同。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC4">添加与移除条目，观察选中信息的实时变化。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC5">天然适合列表式布局的一些场景。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC6">上述列表的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC7">在独立的 ViewModel 中填充、编辑并观察选中状态。</x:String>
+    <x:String x:Key="Loc.P.ListView.Cap1">单选</x:String>
+    <x:String x:Key="Loc.P.ListView.Cap2">多选</x:String>
+    <x:String x:Key="Loc.P.ListView.Cap3">扩展选择</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip1">文件管理器</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip2">邮件列表</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip3">联系人列表</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip4">任务管理器</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip5">日志查看器</x:String>
+
+    <!-- MapView -->
+    <x:String x:Key="Loc.P.MapView.Title1">MapView</x:String>
+    <x:String x:Key="Loc.P.MapView.Sub1">显示滑动地图瓦片的地图控件，支持标记、折线、平移与缩放。</x:String>
+    <x:String x:Key="Loc.P.MapView.CT1">基础地图</x:String>
+    <x:String x:Key="Loc.P.MapView.CC1">以北京为中心的 MapView，带默认缩放控件与比例尺。</x:String>
+    <x:String x:Key="Loc.P.MapView.CT2">标记与叠加层</x:String>
+    <x:String x:Key="Loc.P.MapView.CC2">在关键位置带标签标记，并用折线把它们连起来的 MapView。</x:String>
+    <x:String x:Key="Loc.P.MapView.CT3">缩放控制</x:String>
+    <x:String x:Key="Loc.P.MapView.CC3">交互式缩放与平移演示。用按钮放大缩小，或点击地图进行平移。</x:String>
+    <x:String x:Key="Loc.P.MapView.CC4">上述地图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.MapView.CC5">地图数据、视口状态与命令都由 ViewModel 暴露。</x:String>
+
+    <!-- Markdown -->
+    <x:String x:Key="Loc.P.Markdown.Title1">Markdown</x:String>
+    <x:String x:Key="Loc.P.Markdown.Sub1">渲染富文本 Markdown 文档，支持标题、列表、表格、代码块与相对链接。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT1">交互式预览</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC1">在几份有代表性的 Markdown 文档之间切换，实时查看渲染结果。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC2">在左侧输入框中输入 Markdown，右侧会实时显示渲染结果。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT2">自定义样式</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC3">该控件既可继承周围主题，也可用原生样式属性打造类文章的排版。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT3">Mermaid 图表</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC4">带 mermaid 标记的围栏代码块会渲染成图表（流程图、饼图），而不是源码。独立控件请看「图表 &gt; Flowchart」页面。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT4">Markdown 属性</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC5">设置源文本、解析相对链接与塑造原生渲染器的关键属性。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT5">选择与复制</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC6">拖动选择文本（或按 {Shortcut.SelectAll}），再用 {Shortcut.Copy} 或右键菜单复制。该控件会同时提供三种格式——纯文本、Markdown 源码与富文本（HTML + RTF）——并把文本开放给翻译等集成场景。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC7">上述 Markdown 控件的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC8">文本、示例、复制命令与实时编辑器状态都由 ViewModel 提供。</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body1">Text —— 控件渲染的 Markdown 源字符串</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body2">BaseUri —— 解析生成 HTML 中的相对链接与图片</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body3">LinkForeground / CodeBackground / QuoteBorderBrush —— 富内容的原生样式钩子</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body4">Background / Foreground / FontFamily / FontSize —— 塑造原生渲染器的排版</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cap1">Markdown 输入：</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cap2">渲染结果：</x:String>
+
+    <!-- MediaElement -->
+    <x:String x:Key="Loc.P.MediaElement.Title1">MediaElement</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Sub1">播放音频与视频的控件，带传输控件、音量与播放速度选项。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT1">视频播放器</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC1">加载本地文件或 URL，然后用 ViewModel 命令控制播放。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT2">音频播放器</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC2">同一个 MediaElement 也能播放音频，并通过行为汇报播放进度。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT3">播放控制</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC3">调整两个播放器共用的播放选项。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT4">支持的格式</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC4">支持常见的视频与音频容器及编解码格式。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC5">媒体源与播放选项的声明式绑定。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC6">媒体源、选项与传输命令都归 ViewModel 所有。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Body1">视频：MP4、WebM、AVI、WMV、MOV</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Body2">音频：MP3、WAV、AAC、OGG、FLAC</x:String>
+
+    <!-- Menu -->
+    <x:String x:Key="Loc.P.Menu.Title1">Menu</x:String>
+    <x:String x:Key="Loc.P.Menu.Sub1">横向的命令栏，其菜单项会展开命令下拉列表，支持键盘快捷键与多级子菜单。</x:String>
+    <x:String x:Key="Loc.P.Menu.CT1">基础菜单</x:String>
+    <x:String x:Key="Loc.P.Menu.CC1">含多个菜单项的标准菜单。</x:String>
+    <x:String x:Key="Loc.P.Menu.CT2">带键盘快捷键的菜单</x:String>
+    <x:String x:Key="Loc.P.Menu.CC2">菜单项可以显示键盘快捷键。</x:String>
+    <x:String x:Key="Loc.P.Menu.CT3">嵌套子菜单</x:String>
+    <x:String x:Key="Loc.P.Menu.CC3">菜单项可以包含多级子菜单。</x:String>
+    <x:String x:Key="Loc.P.Menu.CC4">上述菜单的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Menu.CC5">在代码隐藏中构建菜单并接入菜单项点击处理。</x:String>
+
+    <!-- MenuBar -->
+    <x:String x:Key="Loc.P.MenuBar.Title1">MenuBar</x:String>
+    <x:String x:Key="Loc.P.MenuBar.Sub1">把应用命令组织成顶层菜单并配以浮出子菜单的横向菜单栏。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CT1">基础 MenuBar</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC1">含文件、编辑、视图与帮助四个菜单的标准菜单栏，每项都带键盘操作提示。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CT2">菜单操作日志</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC2">点击菜单项即可看到触发了哪个操作。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC3">上述菜单的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC4">在代码隐藏中构建菜单并接入点击处理。</x:String>
+
+    <!-- MenuFlyout -->
+    <x:String x:Key="Loc.P.MenuFlyout.Title1">MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.Sub1">展示一组命令或选项的浮出菜单，通常由按钮点击打开。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CT1">基础 MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC1">点击按钮打开含常用操作的上下文菜单。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CT2">带图标的 MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC2">菜单项可以在文字旁显示图标，便于快速辨认。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CT3">带可勾选项的 MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC3">菜单项可以在开与关之间切换，用来控制视图选项。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC4">声明式菜单直接绑定到 ViewModel 的命令与状态。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC5">ViewModel 暴露 ICommand 属性与可勾选选项的状态。</x:String>
+
+    <!-- MiniMap -->
+    <x:String x:Key="Loc.P.MiniMap.Title1">MiniMap</x:String>
+    <x:String x:Key="Loc.P.MiniMap.Sub1">以缩小比例展示目标元素全貌的小地图控件，带可拖动的视口矩形。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CT1">基础 MiniMap</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC1">含大幅内容的 ScrollViewer，以及跟踪可见区域的 MiniMap。点击小地图即可跳转。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CT2">与地图集成</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC2">以 MapView 为目标的 MiniMap，提供带视口指示的地理概览。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CT3">渲染模式</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC3">多个 MiniMap 并排展示 None、Outline 与 Simplified 三种渲染模式。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC4">把 MiniMap 接到 ScrollViewer 或 MapView 目标的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC5">ViewModel 提供内容与标记，目标关系与渲染模式则在 XAML 中声明。</x:String>
+
+    <!-- NavigationDemo -->
+    <x:String x:Key="Loc.P.NavigationDemo.Title1">导航</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.Sub1">兼容 WPF 的导航体系，包含 NavigationService、JournalEntry 与 NavigationWindow。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT1">NavigationService</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC1">提供导航方法，并维护前进与后退历史。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT2">JournalEntry</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC2">表示导航历史中的条目，并支持自定义状态。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT3">NavigationWindow</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC3">自带导航外框的窗口，包含前进与后退按钮。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT4">CustomContentState</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC4">在导航过程中保存并恢复页面状态，含 DictionaryContentState 与 ScrollContentState。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC5">NavigationWindow、导航按钮与内嵌 Frame 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC6">在代码隐藏中执行导航、处理导航事件并打开 NavigationWindow。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.Val1">可用的状态类型：</x:String>
+
+    <!-- NetworkGraph -->
+    <x:String x:Key="Loc.P.NetworkGraph.Title1">NetworkGraph</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.Sub1">以节点与连线展示网络关系，支持多种布局算法与交互拖拽。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CT1">力导向布局</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC1">节点位置由 Fruchterman-Reingold 力导向算法计算得出。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CT2">环形布局</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC2">所有节点沿圆周均匀分布。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CT3">交互式</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC3">节点可以交互拖动。点击并拖拽任意节点即可改变其位置。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC4">上述三张图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC5">节点与连线集合放在 ViewModel 中，图的布局则是 XAML 声明。</x:String>
+
+    <!-- NotifyIcon -->
+    <x:String x:Key="Loc.P.NotifyIcon.Title1">NotifyIcon</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.Sub1">在系统通知区域（托盘）显示图标，支持提示文字、气泡提示、上下文菜单与点击事件。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT1">基础托盘图标</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC1">在系统托盘中显示或隐藏带提示文字的图标。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT2">气泡提示</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC2">从托盘图标弹出不同图标类型的气泡提示。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT3">事件</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC3">NotifyIcon 会为点击、双击与气泡提示交互触发事件。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT4">上下文菜单</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC4">为托盘图标指定 ContextMenu。右键点击托盘图标即可看到菜单。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC5">View 只负责声明控件，并把它们绑定到 ViewModel 的命令。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC6">ViewModel 调用注入的托盘服务，只对外暴露可绑定状态。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.Cap1">上下文菜单包含：显示窗口、设置、关于、退出</x:String>
+
+    <!-- NumberBox -->
+    <x:String x:Key="Loc.P.NumberBox.Title1">NumberBox</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Sub1">为输入数值优化的文本框，内置微调按钮、范围限制与校验。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC1">四种变体——基础字段、内联微调按钮、最小/最大边界，以及自定义步长。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC2">NumberBox 开箱即用能给你的能力。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC3">上述各种 NumberBox 变体的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC4">在代码中创建 NumberBox、处理 ValueChanged 并配置范围与步长。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body1">• 数值输入校验</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body2">• 用于增减的微调按钮</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body3">• 最小 / 最大值约束</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body4">• 步长可配置</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body5">• 支持表达式求值</x:String>
+
+    <!-- PasswordBox -->
+    <x:String x:Key="Loc.P.PasswordBox.Title1">PasswordBox</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.Sub1">安全的文本输入控件，输入时逐字符遮蔽，让密码不被旁人看到。</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CT1">基础 PasswordBox</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CC1">字符被遮蔽的标准密码输入。</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CT2">PasswordBox 状态</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CC2">上述密码输入的声明式标记，以及一个登录表单布局。</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CC3">在代码隐藏中处理 PasswordChanged、校验两次输入是否一致并评估密码强度。</x:String>
+
+    <!-- PieChart -->
+    <x:String x:Key="Loc.P.PieChart.Title1">PieChart</x:String>
+    <x:String x:Key="Loc.P.PieChart.Sub1">把数据显示为饼图或环形图，可选扇区外移、标签与引导线。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CT1">基础饼图</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC1">带标签扇区、按比例展示数据的标准饼图。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CT2">环形图</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC2">挖去内圈的饼图，形成环形。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CT3">外移扇区</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC3">可以把单个扇区从圆心拉出来以示强调。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC4">上述饼图与环形图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC5">ViewModel 提供扇区数据，XAML 负责图表与序列配置。</x:String>
+
+    <!-- Popup -->
+    <x:String x:Key="Loc.P.Popup.Title1">Popup</x:String>
+    <x:String x:Key="Loc.P.Popup.Sub1">轻量的浮层，把上下文内容悬浮在页面之上，锚定到目标元素，可按需显示或关闭。</x:String>
+    <x:String x:Key="Loc.P.Popup.CT1">基础弹出层</x:String>
+    <x:String x:Key="Loc.P.Popup.CC1">切换一个小弹出层，它会直接出现在触发按钮的下方。</x:String>
+    <x:String x:Key="Loc.P.Popup.CT2">带表单的弹出层</x:String>
+    <x:String x:Key="Loc.P.Popup.CC2">弹出层可以承载更丰富的内容，例如多字段表单。</x:String>
+    <x:String x:Key="Loc.P.Popup.CT3">弹出层位置</x:String>
+    <x:String x:Key="Loc.P.Popup.CC3">把弹出层锚定到目标的上、右、下或左边缘。</x:String>
+    <x:String x:Key="Loc.P.Popup.CC4">上述弹出层的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Popup.CC5">在代码隐藏中切换各弹出层的 IsOpen 属性来显示或关闭它们。</x:String>
+
+    <!-- Printing -->
+    <x:String x:Key="Loc.P.Printing.Title1">打印</x:String>
+    <x:String x:Key="Loc.P.Printing.Sub1">兼容 WPF 的打印能力，支持 PrintDialog、PrintQueue 与 DocumentPaginator。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT1">PrintDialog</x:String>
+    <x:String x:Key="Loc.P.Printing.CC1">用于选择打印机与打印选项的标准打印对话框。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT2">PrintQueue</x:String>
+    <x:String x:Key="Loc.P.Printing.CC2">表示一台打印机，并提供打印能力查询。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT3">PrintCapabilities</x:String>
+    <x:String x:Key="Loc.P.Printing.CC3">查询打印机能力，包括纸张尺寸、色彩与分辨率。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT4">DocumentPaginator</x:String>
+    <x:String x:Key="Loc.P.Printing.CC4">通过 IDocumentPaginatorSource 接口为打印做文档分页。</x:String>
+    <x:String x:Key="Loc.P.Printing.CC5">上述打印按钮与打印机列表的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Printing.CC6">在代码隐藏中显示对话框、枚举打印机并为文档分页。</x:String>
+    <x:String x:Key="Loc.P.Printing.Body1">纸张尺寸：Letter、Legal、A3、A4、A5、Tabloid、Executive</x:String>
+    <x:String x:Key="Loc.P.Printing.Body2">方向：纵向、横向、反向</x:String>
+    <x:String x:Key="Loc.P.Printing.Body3">色彩：彩色、灰度、单色</x:String>
+    <x:String x:Key="Loc.P.Printing.Body4">双面：单面、短边翻转、长边翻转</x:String>
+    <x:String x:Key="Loc.P.Printing.Body5">质量：草稿、普通、高、照片</x:String>
+    <x:String x:Key="Loc.P.Printing.Val1">支持的功能</x:String>
+
+    <!-- ProgressBar -->
+    <x:String x:Key="Loc.P.ProgressBar.Title1">ProgressBar</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.Sub1">可视化操作进度的控件，既能显示确定的百分比，也能播放不确定的加载动画。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC1">用滑块改变进度值。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CT1">进度样式</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC2">同一个 ProgressBar 填充到不同的确定值。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CT2">不确定模式</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC3">在没有具体百分比时展示持续进行中的活动。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC4">上述进度条的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC5">在代码隐藏中把滑块接到进度条，并模拟一次下载动画。</x:String>
+
+    <!-- PropertyGrid -->
+    <x:String x:Key="Loc.P.PropertyGrid.Title1">PropertyGrid</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.Sub1">显示并编辑对象属性的控件，支持分类与字母两种排序模式、实时搜索与属性说明。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CT1">基础属性网格</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC1">用分类视图查看并编辑示例对象的属性。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CT2">分类 vs 字母排序</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC2">在同一个对象上并排比较两种排序模式。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CT3">自定义对象</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC3">一个更丰富的示例对象，含枚举、集合与嵌套对象等多种属性类型。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC4">上述 PropertyGrid 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC5">在代码隐藏中绑定示例对象并配置排序模式。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.Cap1">按分类：</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.Cap2">按字母：</x:String>
+
+    <!-- QRCode -->
+    <x:String x:Key="Loc.P.QRCode.Title1">QRCode</x:String>
+    <x:String x:Key="Loc.P.QRCode.Sub1">为链接、联系人信息、Wi-Fi 配置字符串或任意紧凑文本生成二维码。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CT1">交互式生成器</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC1">修改内容与纠错等级，然后重新生成二维码。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CT2">常见内容格式</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC2">几种与 QRCode 配合良好的实用格式。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CT3">QRCode 属性</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC3">用于控制编码与呈现的关键属性。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC4">上述二维码的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC5">通过 ViewModel 绑定生成并更新 QRCode。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body1">Text —— 编码进二维码矩阵的内容</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body2">ErrorCorrectionLevel —— 按容错需求选择 L、M、Q 或 H</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body3">QuietZoneModules —— 控制编码矩阵四周的空白边框</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body4">Foreground / Background / Padding / CornerRadius —— 美化呈现表面</x:String>
+    <x:String x:Key="Loc.P.QRCode.Cap1">非常适合面向移动端的链接。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Cap2">把配置信息编码进去，扫一下就能连。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Cap3">分享紧凑的联系人信息。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Val1">文档链接</x:String>
+    <x:String x:Key="Loc.P.QRCode.Val2">Wi-Fi 配网</x:String>
+    <x:String x:Key="Loc.P.QRCode.Val3">名片</x:String>
+
+    <!-- RadioButton -->
+    <x:String x:Key="Loc.P.RadioButton.Title1">RadioButton</x:String>
+    <x:String x:Key="Loc.P.RadioButton.Sub1">用户可以选中但无法取消选中的按钮。同一组内的 RadioButton 互斥。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC1">选出你最喜欢的颜色——同一组内的选项互斥。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CT1">分组的 RadioButton</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC2">拆分到不同分组的 RadioButton 会各自独立地记录选中项。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC3">上述 RadioButton 分组的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC4">在代码隐藏中接入 Checked 事件并构建单选组。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.Val1">尺寸</x:String>
+    <x:String x:Key="Loc.P.RadioButton.Val2">速度</x:String>
+
+    <!-- RangeSlider -->
+    <x:String x:Key="Loc.P.RangeSlider.Title1">RangeSlider</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Sub1">带两个滑块的控件，让用户从数值区间中选取一段连续的子区间。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC1">拖动任一滑块即可改变 RangeStart / RangeEnd。点击轨道可让最近的滑块跳过去。Tab 键在两个滑块之间切换键盘焦点。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CT1">最小间隔（MinimumRange）</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC2">两个滑块之间的距离不会小于 MinimumRange——这在上下限必须保持分开的价格筛选场景中很有用。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CT2">自定义边界</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC3">当 IsSnapToTickEnabled 为 true 时，两个滑块都会吸附到 TickFrequency。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC4">TrackMode=&quot;Segmented&quot; 会按 TickFrequency 把轨道切成一段段胶囊；两个滑块之间的段落使用填充画刷，SegmentGap 控制段间距。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC5">RangeSlider 可用于任意数值域，包括负数。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC6">上述 RangeSlider 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC7">在代码隐藏中接入 RangeStartChanged / RangeEndChanged 事件并创建 RangeSlider。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap1">MinimumRange = 10</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap2">TickFrequency = 20，已吸附</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap3">TickFrequency = 10 且 SegmentGap = 2 —— 只要每段还容得下间隙，更细的步进依然清晰可辨</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap4">价格筛选（$0 — $1000）</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap5">温度舒适区间（-20 — 40°C）</x:String>
+
+    <!-- RazorDemo -->
+    <x:String x:Key="Loc.P.RazorDemo.Title1">Razor 语法</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.Sub1">Razor 指令把 C# 循环、条件与表达式直接嵌入 JALXAML 标记，在加载时用真实代码生成并绑定界面。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC1">就地求值一个 C# 表达式。支持三元运算、算术与方法调用。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC2">用经典的 C 风格 for 循环生成重复元素。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC3">遍历集合以生成子元素。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC4">按 switch 表达式渲染不同的元素。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC5">执行含局部函数、变量与混合标记输出的 C# 代码块。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC6">把标记生成包在 try/catch 中以安全执行。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC7">把 for 循环与三元表达式结合，生成带样式的方块。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC8">用 do-while 循环生成元素（至少执行一次）。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC9">用 $. 前缀访问控件自身的属性，等价于 RelativeSource Self 绑定。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC10">用 #. 前缀直接访问 DataContext 模型。非常适合每个条目都有自己 DataContext 的 ItemTemplate。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC11">展示上述所有 Razor 指令的完整 JALXAML 标记。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC12">独立的 ViewModel 及其 AOT 安全的属性访问器。</x:String>
+
+    <!-- RazorVirtualize -->
+    <x:String x:Key="Loc.P.RazorVirtualize.Sub1">会被降级为虚拟化列表的数据绑定循环：元素只为可见窗口创建，而不是为整份数据；滚动时回收容器，并跟随集合变化。</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CC1">数据源里确实有十万行。只有视野内的行才作为元素存在，因此列表瞬间出现并能全速滚动。</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CT1">2. 它会跟随集合变化</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CT2">3. 数值形式</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CC2">计数循环同样会虚拟化。上界是一个表达式，因此改变它会重新发布序列，而不会把它物化出来。</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CT3">4. 何时用哪一种</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CC3">有两条规则值得记住。循环体会成为条目模板，所以它必须是单个元素——多个元素请用容器包起来。另外虚拟化需要一个有界的滚动轴：把该块直接放进 ScrollViewer，或者给它一个明确的 Height。若两者都不满足，它仍会正确渲染，只是失去虚拟化的收益，并会在跟踪日志里说明这一点。</x:String>
+
+    <!-- RepeatButton -->
+    <x:String x:Key="Loc.P.RepeatButton.Title1">RepeatButton</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Sub1">按住不放时会持续触发 Click 事件的按钮——非常适合步进器、微调器与滚动重复，初始延迟与重复间隔均可配置。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC1">按住按钮即可持续重复操作——按住期间计数会一直变化。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC2">RepeatButton 与普通按钮的区别所在。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC3">计数器与音量控制演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC4">命令把重复触发的操作留在独立的 ViewModel 中。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body1">• 按住期间持续触发点击事件</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body2">• 初始延迟可配置</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body3">• 重复间隔可配置</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body4">• 适合滚动条与微调器</x:String>
+
+    <!-- Ribbon -->
+    <x:String x:Key="Loc.P.Ribbon.Title1">Ribbon</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Sub1">Office 风格的功能区控件，含选项卡、分组、库、应用程序菜单与快速访问工具栏。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CT1">实时 Ribbon</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC1">功能完整的 Ribbon，含选项卡、分组与按钮——点击任一命令即可在下方看到回显。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CT2">Ribbon 选项</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC2">在运行时切换 Ribbon 的各项功能。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CT3">Ribbon 组成部分</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC3">Ribbon 控件由若干子控件组合而成。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC4">组装 Ribbon 及其选项卡与分组的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC5">在代码隐藏中读取 Ribbon 属性并接入命令。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body1">Ribbon —— 顶层容器，含 Title、ApplicationMenu、QuickAccessToolBar</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body2">RibbonTab —— 一个选项卡页（Header、ContextualTabGroupHeader）</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body3">RibbonGroup —— 选项卡内的逻辑分组（Header、图像）</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body4">RibbonApplicationMenu —— 后台视图菜单（FooterPane、AuxiliaryPane）</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body5">RibbonQuickAccessToolBar —— 常用命令工具栏</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body6">RibbonGallery —— 带分类的可视化选择库</x:String>
+
+    <!-- RichTextBox -->
+    <x:String x:Key="Loc.P.RichTextBox.Title1">RichTextBox</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Sub1">用于编辑与展示富文本文档的控件，支持加粗、倾斜、字体、字号与颜色等内联格式。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CT1">基础 RichTextBox</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC1">用于带格式文本的富文本编辑器。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CT2">带格式工具栏的 RichTextBox</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC2">常见的文本编辑器组合：格式工具栏搭配文档编辑区。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC3">RichTextBox 也可用于只读地展示带格式的内容。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC4">RichTextBox 适用于多种创作场景。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC5">上述 RichTextBox 演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC6">在代码隐藏中构建 FlowDocument 并对选区应用格式。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body1">• 文档编辑</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body2">• 撰写邮件</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body3">• 笔记类应用</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body4">• 内容管理系统</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body5">• 报表生成器</x:String>
+
+    <!-- SankeyDiagram -->
+    <x:String x:Key="Loc.P.SankeyDiagram.Title1">SankeyDiagram</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.Sub1">以按比例缩放的节点与曲线连接可视化流量数据的图表控件。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CT1">基础桑基图</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC1">含来源、转换与消耗节点的简单能量流向图。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CT2">多层流向</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC2">含 4 层、展示网站用户旅程漏斗的桑基图。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CT3">自定义外观</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC3">自定义节点颜色与标签，并启用数值显示的桑基图。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC4">在标记中声明 SankeyDiagram，并设置标签、数值与自定义外观。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC5">ViewModel 持有流向节点与连接，XAML 负责呈现选项。</x:String>
+
+    <!-- ScatterPlot -->
+    <x:String x:Key="Loc.P.ScatterPlot.Title1">ScatterPlot</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.Sub1">把数据显示为散点图，支持多种点形状、气泡尺寸与趋势线。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CT1">基础散点图</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC1">使用圆形标记、以随机数据点绘制的散点图。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CT2">气泡图</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC2">用点的大小变化表达第三个数据维度的散点图。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CT3">趋势线</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC3">叠加线性趋势线以展示数据相关性的散点图。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC4">含序列、气泡尺寸与趋势线的散点图声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC5">ViewModel 持有确定性的示例数据集合，XAML 声明序列与渲染选项。</x:String>
+
+    <!-- ScrollViewer -->
+    <x:String x:Key="Loc.P.ScrollViewer.Title1">ScrollViewer</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Sub1">把内容裁剪到固定视口的容器，用户可通过滚动条、滚轮或触摸浏览超出部分。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.BounceHint">macOS：双指拉动边界后松手，内容会弹回。也可用下面的按钮预览。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.PullEdge">拉动顶部</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.ReleaseEdge">松开回弹</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.HorizontalTitle">水平滚动</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.HorizontalHint">双指左右滑动或拖动下方滚动条，也可使用按钮浏览。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.ScrollLeft">向左滚动</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.ScrollRight">向右滚动</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CT1">垂直滚动</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC1">超出可见区域的内容可以垂直滚动。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CT2">滚动条可见性选项</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC2">控制每个方向上滚动条何时出现。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CT3">关键属性</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC3">用于读取与驱动滚动状态的重要 ScrollViewer 属性。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC4">展示常见 ScrollViewer 配置的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC5">在代码隐藏中构建 ScrollViewer 并响应滚动事件。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body1">Auto —— 仅在需要时显示滚动条</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body2">Visible —— 始终显示滚动条</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body3">Hidden —— 可滚动，但隐藏滚动条</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body4">Disabled —— 不允许滚动</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body5">控制垂直滚动条</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body6">控制水平滚动条</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body7">当前垂直滚动位置</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body8">当前水平滚动位置</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body9">可见区域的尺寸</x:String>
+
+    <!-- SectionDemo -->
+    <x:String x:Key="Loc.P.SectionDemo.Title1">Section</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CT1">带分区的导航布局</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CC1">同一个分区可以在多个位置渲染。</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CT2">多次复用分区</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CC2">定义分区并把它们渲染进导航布局的声明式 JALXAML。</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CT3">语法参考</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CC3">在标记中声明的分区会自动注册；页面级分区请在卸载时注销。</x:String>
+
+    <!-- Separator -->
+    <x:String x:Key="Loc.P.Separator.Title1">Separator</x:String>
+    <x:String x:Key="Loc.P.Separator.Sub1">用于在菜单、工具栏及其他布局中分隔内容的视觉分隔线。</x:String>
+    <x:String x:Key="Loc.P.Separator.CT1">内容之间</x:String>
+    <x:String x:Key="Loc.P.Separator.CC1">在纵向排列的内容块之间放一条 Separator，画出干净的分割线。</x:String>
+    <x:String x:Key="Loc.P.Separator.CT2">菜单中</x:String>
+    <x:String x:Key="Loc.P.Separator.CC2">分隔符可以在菜单、浮出控件与命令列表中把相关命令归组。</x:String>
+    <x:String x:Key="Loc.P.Separator.CC3">Separator 能为菜单、工具栏与纵向布局带来什么。</x:String>
+    <x:String x:Key="Loc.P.Separator.CC4">内容之间、菜单中与工具栏中分隔符的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Separator.CC5">在代码隐藏中创建分隔符并组装一个设置面板。</x:String>
+    <x:String x:Key="Loc.P.Separator.Body1">• 在视觉上划分内容</x:String>
+    <x:String x:Key="Loc.P.Separator.Body2">• 可用于菜单、工具栏与状态栏</x:String>
+    <x:String x:Key="Loc.P.Separator.Body3">• 支持水平或垂直方向</x:String>
+
+    <!-- ShaderEffects -->
+    <x:String x:Key="Loc.P.ShaderEffects.Title1">着色器特效</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Sub1">兼容 WPF 的着色器特效体系，包含 BlurEffect、DropShadowEffect 与自定义 ShaderEffect。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CT1">BlurEffect</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC1">应用高斯模糊，支持 KernelType 与 RenderingBias 设置。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CT2">DropShadowEffect</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC2">在元素背后添加投影，颜色、模糊半径、方向与深度均可配置。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CT3">自定义 ShaderEffect</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC3">通过 SourceHlsl 编写 HLSL，并调节下方实时预览。常量使用 b0，捕获内容使用 t0 与 s0。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui1">反色强度</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui2">HLSL 实时预览</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui3">模糊半径：</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui4">投影深度：</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui5">模糊预览</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui6">投影预览</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui7">Box 模糊核</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC4">上述特效演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC5">特效参数从 ViewModel 绑定而来。</x:String>
+
+    <!-- Shapes -->
+    <x:String x:Key="Loc.P.Shapes.Title1">图形</x:String>
+    <x:String x:Key="Loc.P.Shapes.Sub1">矢量图元——矩形、椭圆、直线、多边形、折线与路径——用于绘制清晰、与分辨率无关的图形。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT1">Rectangle</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC1">基础矩形，可选圆角与描边。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT2">Ellipse</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC2">椭圆形；当宽高相等时即为圆形。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT3">Line</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC3">两点之间的直线，可选虚线样式。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT4">Polygon</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC4">由一系列相连点构成的闭合图形。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT5">Polyline</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC5">一串相连的线段，保持开放（不闭合）。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT6">Path</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC6">用路径几何数据描述的复杂图形。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT7">组合图形示例</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC7">图形可以在画布上叠加，组合出更丰富的图像。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC8">上述图形的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC9">在代码隐藏中以编程方式创建并配置图形。</x:String>
+
+    <!-- ShellIntegration -->
+    <x:String x:Key="Loc.P.ShellIntegration.Title1">Shell 集成</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Sub1">与 Windows Shell 的集成，包含 WindowChrome、JumpList 与任务栏功能。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT1">WindowChrome</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC1">自定义窗口边框外观，并支持 DWM 合成。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT2">JumpList</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC2">Windows 7 及以上的任务栏跳转列表，含任务与最近项目。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT3">TaskbarItemInfo</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC3">控制任务栏缩略图、进度指示器与覆盖图标。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT4">SystemParameters2</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC4">访问系统度量值与 DWM 状态信息。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC5">为 Window 应用 WindowChrome 与 TaskbarItemInfo 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC6">在代码隐藏中配置窗口边框、跳转列表、任务栏进度，并读取系统参数。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body1">CaptionHeight：标题栏高度</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body2">ResizeBorderThickness：调整大小手柄的尺寸</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body3">GlassFrameThickness：DWM 玻璃边框范围</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body4">CornerRadius：窗口圆角</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body5">UseAeroCaptionButtons：使用系统按钮</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body6">JumpTask：带参数启动应用</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body7">JumpPath：打开指定文件</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body8">自定义分类：把项目归到一起</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Val1">JumpList 项目</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Val2">进度</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Val3">进度状态</x:String>
+
+    <!-- Slider -->
+    <x:String x:Key="Loc.P.Slider.Title1">Slider</x:String>
+    <x:String x:Key="Loc.P.Slider.Sub1">让用户沿轨道拖动滑块以在区间中取值的控件，可选刻度与吸附。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC1">拖动滑块改变数值，读数会实时更新。</x:String>
+    <x:String x:Key="Loc.P.Slider.CT1">带刻度的 Slider</x:String>
+    <x:String x:Key="Loc.P.Slider.CC2">按固定 TickFrequency 排布的刻度，提示轨道上可用的停靠点。</x:String>
+    <x:String x:Key="Loc.P.Slider.CT2">自定义范围</x:String>
+    <x:String x:Key="Loc.P.Slider.CC3">启用 IsSnapToTickEnabled 后，拖动时滑块会锁定到最近的刻度位置。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC4">TrackMode=&quot;Segmented&quot; 会按刻度间隔把轨道切成一段段胶囊。停靠点在设置了 Ticks 时来自 Ticks，否则来自 TickFrequency，段间距由 SegmentGap 控制。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC5">Minimum 与 Maximum 可以取任意值——包括负区间——以匹配你绑定的数据。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC6">上述滑块的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC7">在代码隐藏中处理 ValueChanged 并构建滑块。</x:String>
+    <x:String x:Key="Loc.P.Slider.Cap1">TickFrequency = 20 且吸附 —— 取值总会落在段边界上</x:String>
+    <x:String x:Key="Loc.P.Slider.Cap2">不吸附时，滑块所在的那一段会按比例填充</x:String>
+    <x:String x:Key="Loc.P.Slider.Cap3">用 Ticks = 10, 30, 60 设置不等间隔停靠点，并加大 SegmentGap</x:String>
+    <x:String x:Key="Loc.P.Slider.Val1">音量（0-100）</x:String>
+    <x:String x:Key="Loc.P.Slider.Val2">温度（-10 到 40）</x:String>
+
+    <!-- Sparkline -->
+    <x:String x:Key="Loc.P.Sparkline.Title1">Sparkline</x:String>
+    <x:String x:Key="Loc.P.Sparkline.Sub1">轻量的内联图表，把一段数据序列压缩成词一般大小的图形——不画坐标轴、网格线与图例。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CT1">折线迷你图</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC1">多条使用 Line 类型并标出高低点的迷你图。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CT2">柱状与面积</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC2">以柱状图与面积填充形式渲染的迷你图。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CT3">胜负图</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC3">用胜负迷你图展示正负两种结果。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC4">上述各种迷你图变体的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC5">ViewModel 提供确定性的序列，所有 Sparkline 变体都在 XAML 中声明。</x:String>
+
+    <!-- SplitButton -->
+    <x:String x:Key="Loc.P.SplitButton.Title1">SplitButton</x:String>
+    <x:String x:Key="Loc.P.SplitButton.Sub1">兼具主操作与下拉按钮的控件，下拉部分会打开一个 Flyout。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CT1">基础 SplitButton</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC1">点击主区域执行操作，下拉部分用于选择目标。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CT2">Command + Flyout</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC2">演示 Command/CommandParameter 以及以编程方式控制浮出状态。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC3">上述 SplitButton 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC4">主操作与浮出操作是相互独立的 ViewModel 命令。</x:String>
+
+    <!-- Splitter -->
+    <x:String x:Key="Loc.P.Splitter.Title1">Splitter</x:String>
+    <x:String x:Key="Loc.P.Splitter.Sub1">在网格单元之间拖动 GridSplitter 即可调整相邻面板大小——这是可调列宽、行高乃至完整 IDE 式布局的基础构件。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CT1">水平方向的分隔条</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC1">拖动竖直分隔条即可调整左右面板的宽度。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CT2">垂直方向的分隔条</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC2">拖动水平分隔条即可调整上下面板的高度。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CT3">多面板布局</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC3">组合多个分隔条——侧边栏加上下堆叠的内容与控制台——搭出 IDE 式工作区。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC4">分隔条支撑起日常桌面应用中随处可见的可调布局。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC5">上述分隔布局的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC6">在代码隐藏中用 GridSplitter 搭建可调整的 IDE 式布局。</x:String>
+
+    <!-- StackPanel -->
+    <x:String x:Key="Loc.P.StackPanel.Title1">StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.Sub1">把子元素排成一条线的面板——可以自上而下纵向堆叠，也可以从左到右横向排列。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CT1">纵向 StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC1">子元素自上而下排列。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CT2">横向 StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC2">子元素从左到右排列。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CT3">嵌套 StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC3">把纵向与横向布局组合在一起。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC4">上述布局的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC5">在代码隐藏中构建 StackPanel 并添加子元素。</x:String>
+
+    <!-- StandardUICommand -->
+    <x:String x:Key="Loc.P.StandardUICommand.Title1">StandardUICommand</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.Sub1">为常见操作预定义的命令，自带标准文字、图标、快捷键与说明。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CT1">标准命令</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC1">剪切、复制、粘贴、删除等内置命令定义，以及它们的标准属性。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CT2">命令执行</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC2">点击上方的命令按钮即可执行，结果显示在下方。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC3">把标准命令绑定到命令栏的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC4">在 ViewModel 中创建 StandardUICommand，并把执行逻辑委托给应用命令。</x:String>
+
+    <!-- StatusBar -->
+    <x:String x:Key="Loc.P.StatusBar.Title1">StatusBar</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Sub1">沿窗口底部呈现状态信息的横条——光标位置、编码、进度等。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC1">用分隔线隔开的状态项，布局方式与编辑器窗口底部的常见做法一致。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC2">StatusBar 控件开箱即用能给你的能力。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC3">上述状态栏的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC4">在代码隐藏中随编辑器光标位置变化更新状态项。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body1">• 多个状态项，可用分隔线隔开</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body2">• 可承载任意内容</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body3">• 通常放在窗口底部</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body4">• 支持进度指示器</x:String>
+
+    <!-- SwipeControl -->
+    <x:String x:Key="Loc.P.SwipeControl.Title1">SwipeControl</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.Sub1">面向触摸的控件，通过在列表项上滑动来显示归档、删除、标记等上下文操作。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CT1">滑动显示操作</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC1">向左或向右滑动条目，即可露出归档、删除等上下文操作。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CT2">滑动操作日志</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC2">与上方的滑动条目交互，结果会显示在这里。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC3">含左右两侧操作的滑动控件的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC4">每一行模板都暴露相互独立的 ViewModel 命令。</x:String>
+
+    <!-- SystemNotification -->
+    <x:String x:Key="Loc.P.SystemNotification.Title1">SystemNotification</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Sub1">通过 SystemNotificationManager 发送系统原生通知，支持标题、正文、操作按钮、优先级与激活回调。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT1">基础通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC1">发送一条含标题与正文的简单系统通知。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT2">优先级</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC2">通知可以按不同优先级发送，从而影响送达行为。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT3">带操作按钮的通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC3">为通知添加操作按钮。用户点击通知或某个操作按钮时会触发 Activated 事件。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT4">高级选项</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC4">配置通知过期时间、静默模式、用于替换的 tag/group，并管理已有通知。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT5">平台支持</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC5">系统通知是否可用取决于当前平台。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC6">通知只能用代码发送——在标记中声明触发按钮，由代码隐藏驱动管理器。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC7">初始化管理器、组装 NotificationContent、发送，并处理激活与关闭。</x:String>
+
+    <!-- TabControl -->
+    <x:String x:Key="Loc.P.TabControl.Title1">TabControl</x:String>
+    <x:String x:Key="Loc.P.TabControl.Sub1">让多个内容共享同一块区域的控件，并提供标签栏在它们之间切换。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CT1">基础 TabControl</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC1">含多个标签页的简单 TabControl。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CT2">标签置于底部</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC2">把标签放到控件底部。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC3">选中索引与状态由 ViewModel 持有。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC4">上述标签控件的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC5">标签在标记中声明，选中状态与状态文字则绑定到 ViewModel。</x:String>
+
+    <!-- Terminal -->
+    <x:String x:Key="Loc.P.Terminal.Title1">Terminal</x:String>
+    <x:String x:Key="Loc.P.Terminal.Sub1">终端模拟器控件，支持 VT100/ANSI 转义序列、Shell 进程集成以及完整的键盘与输入法输入。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CT1">交互式终端</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC1">功能完整的 Shell 终端。输入命令即可与系统 Shell 交互。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC2">通过命令调整呈现状态并触发终端操作。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CT2">程序化输出</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC3">通过 ViewModel 请求写入 ANSI 内容，由终端行为负责适配。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC4">上述终端的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC5">终端状态与操作由 ViewModel 实现。</x:String>
+
+    <!-- TextBlock -->
+    <x:String x:Key="Loc.P.TextBlock.Title1">TextBlock</x:String>
+    <x:String x:Key="Loc.P.TextBlock.Sub1">轻量的只读文本显示控件，可控制字号、字重、换行与截断。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CT1">基础 TextBlock</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC1">使用默认样式的简单文本显示。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CT2">字号</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC2">从说明文字到展示级标题的不同字号变化。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CT3">文本换行</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC3">长文本超出可用宽度时会自动换到下一行。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC4">上述文本示例的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC5">在代码隐藏中创建并更新 TextBlock。</x:String>
+
+    <!-- TextBox -->
+    <x:String x:Key="Loc.P.TextBox.Title1">TextBox</x:String>
+    <x:String x:Key="Loc.P.TextBox.Sub1">用于录入与编辑纯文本的单行输入控件，含预填与禁用状态、剪贴板操作以及标准编辑快捷键。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CT1">基础 TextBox</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC1">标准文本输入，可为空或预填文本。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CT2">TextBox 状态</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC2">用 {Shortcut.Copy} 复制、{Shortcut.Cut} 剪切、{Shortcut.Paste} 粘贴、{Shortcut.SelectAll} 全选。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CT3">剪贴板操作</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC3">TextBox 响应的标准编辑快捷键。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC4">上述文本输入的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC5">在代码隐藏中处理文本变化并驱动输入框。</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body1">{Shortcut.SelectAll} —— 全选文本</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body2">{Shortcut.Copy} —— 复制选中文本</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body3">{Shortcut.Cut} —— 剪切选中文本</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body4">{Shortcut.Paste} —— 从剪贴板粘贴</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body5">{Shortcut.Undo} —— 撤销</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body6">{Shortcut.Redo} —— 重做</x:String>
+    <x:String x:Key="Loc.P.TextBox.Cap1">源 TextBox（选中文本并复制）：</x:String>
+    <x:String x:Key="Loc.P.TextBox.CopySample">选择这段文字，按 {Shortcut.Copy} 复制</x:String>
+    <x:String x:Key="Loc.P.TextBox.Cap2">目标 TextBox（用 {Shortcut.Paste} 粘贴到这里）：</x:String>
+
+    <!-- TextEffectPresenter -->
+    <x:String x:Key="Loc.P.TextEffectPresenter.Title1">TextEffectPresenter</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.Sub1">逐字符动画的文本表面，适合歌词、字幕、通知与富有趣味的界面。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CT1">变更 API</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC1">每个按钮都会调用一次呈现器——新的字素进入，已有的字素位移或消散。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CT2">内置特效</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC2">切换逐格动画驱动器。每个按钮都会让文本重新进入，以便看到完整的入场动画。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CT3">与 UIElement.Effect 组合</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC3">逐格动画（TextEffect）先在 CPU 上运行，随后整个表面再经过一次 GPU 像素着色器处理（UIElement.Effect）。叠加一个 BlurEffect 即可看到两层如何组合。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC4">演示宿主表面与接到呈现器的变更按钮的标记。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC5">ViewModel 持有文本与命令，附加行为把特效选择翻译成呈现器 API。</x:String>
+
+    <!-- ThemeColors -->
+    <x:String x:Key="Loc.P.ThemeColors.Title1">主题颜色</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Sub1">浏览某个主题字典中注册的所有颜色与画刷。预览字典不会切换应用程序主题。</x:String>
+
+    <!-- ThemeStudio -->
+    <x:String x:Key="Loc.P.ThemeStudio.Eyebrow1">主题工具</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Title1">主题工作室</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Sub1">在实时组件组合上调校语义色彩与几何参数。每个编辑器都与 ThemeStudioViewModel 双向绑定。</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.CT1">实时组合</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.CT2">检查器</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.CT3">生成的资源</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val1">强调色</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val2">表面色</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val3">圆角半径</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val4">间距</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val5">预览不透明度</x:String>
+
+    <!-- Thumb -->
+    <x:String x:Key="Loc.P.Thumb.Title1">Thumb</x:String>
+    <x:String x:Key="Loc.P.Thumb.Sub1">可拖动并汇报拖动增量的基元控件——Slider 与 ScrollBar 滑块背后的构件。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC1">在轨道内水平拖动滑块——下方的位置读数会实时更新。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC2">Thumb 基元能给你的能力。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC3">上述滑块演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC4">拖动事件以声明方式映射到 ViewModel 命令。</x:String>
+    <x:String x:Key="Loc.P.Thumb.Body1">• 鼠标拖动交互</x:String>
+    <x:String x:Key="Loc.P.Thumb.Body2">• DragStarted、DragDelta、DragCompleted 事件</x:String>
+    <x:String x:Key="Loc.P.Thumb.Body3">• 滑块拇指的基础构件</x:String>
+
+    <!-- TimePicker -->
+    <x:String x:Key="Loc.P.TimePicker.Title1">TimePicker</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Sub1">让用户选择一天中某个时刻的控件，支持 12 小时制与 24 小时制，分钟步进可配置。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CT1">基础 TimePicker</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC1">点击打开浮出层选择时间；第二个选取器展示的是禁用状态。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CT2">时间格式</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC2">用 ClockIdentifier 属性在 12 小时制与 24 小时制之间切换。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CT3">分钟步进</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC3">用 MinuteIncrement 属性把可选分钟限制到固定步长。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC4">选择时间后可实时看到格式化结果。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC5">闹钟、会议、提醒等典型的日程场景。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC6">上述选取器的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC7">在代码隐藏中创建并配置 TimePicker。</x:String>
+
+    <!-- TitleBar -->
+    <x:String x:Key="Loc.P.TitleBar.Title1">TitleBar</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Sub1">可自定义的窗口标题栏，带最小化、最大化与关闭三个标准标题按钮，可接入真实的窗口操作。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC1">切换要显示哪些标题按钮、翻转最大化状态，再点击标题栏控件来更新状态行。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CT1">说明</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC2">本演示如何对应到真实的应用窗口。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC3">TitleBar 及其标题按钮的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC4">在代码隐藏中创建 TitleBar 并接入其标题事件。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body1">这块区域代表自定义标题栏下方的窗口内容。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body2">在真实窗口中，这些按钮通常会接到最小化、最大化与关闭操作。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body3">设置 Window.TitleBarStyle = Custom，即可让 Window 使用它内置的 TitleBar 集成。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body4">这个示例页把所有操作限制在本地，只更新演示状态。</x:String>
+
+    <!-- ToastNotification -->
+    <x:String x:Key="Loc.P.ToastNotification.Title1">ToastNotification</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Sub1">短暂的浮层通知，在窗口一角显示简短、可自动消失的提示，不打断用户。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT1">基础 Toast 通知</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC1">按各个严重级别弹出一条 Toast，观察它出现在浮层宿主中。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT2">Toast 预览</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC2">各个严重级别在 Toast 中呈现效果的静态示例。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT3">带操作的 Toast</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC3">Toast 可以带操作按钮；触发其中一个即可看到处理程序的响应。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT4">Toast 配置</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC4">设置宿主位置与持续时长，切换关闭按钮与自动消失，然后显示一条自定义 Toast。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC5">上述 Toast 宿主与预览项的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC6">Toast 状态与命令位于 ViewModel，浮层宿主由行为适配。</x:String>
+
+    <!-- ToggleSwitch -->
+    <x:String x:Key="Loc.P.ToggleSwitch.Title1">ToggleSwitch</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Sub1">在开与关之间切换的开关控件，可选标题文字，开关两态的内容也可自定义。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC1">拨动每个开关即可改变其开关状态。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC2">ToggleSwitch 控件开箱即用的能力。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC3">上述开关的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC4">在代码隐藏中处理 Toggled 事件并创建开关。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body1">• 二元开关状态</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body2">• 开关内容可自定义</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body3">• 支持标题文字</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body4">• 状态切换带动画</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body5">• 支持触摸与鼠标交互</x:String>
+
+    <!-- ToolBar -->
+    <x:String x:Key="Loc.P.ToolBar.Title1">ToolBar</x:String>
+    <x:String x:Key="Loc.P.ToolBar.Sub1">把相关命令与控件汇聚到同一条带状容器中，并用分隔符把它们划分成逻辑分组。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CT1">基础 ToolBar</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC1">带按钮的工具栏。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CT2">混合控件的 ToolBar</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC2">工具栏可以容纳多种类型的控件。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CT3">ToolBarTray</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC3">多个工具栏可以组织在一个托盘中。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC4">点击工具栏按钮即可看到相应操作。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC5">上述工具栏的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC6">在代码隐藏中创建工具栏并接入按钮点击。</x:String>
+
+    <!-- ToolTip -->
+    <x:String x:Key="Loc.P.ToolTip.Title1">ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Sub1">指针悬停到控件上时给出上下文帮助的轻量弹出层，既支持纯文本，也支持结构化的富内容。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT1">基础 ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC1">把鼠标悬停到按钮上即可看到工具提示。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT2">各类控件上的 ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC2">工具提示可以添加到任意控件上。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT3">富内容 ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC3">工具提示可以承载包含多个元素的富内容。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT4">ToolTip 位置</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC4">工具提示可以定位到不同的位置。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC5">上述工具提示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC6">在代码隐藏中设置工具提示并构建富内容。</x:String>
+
+    <!-- TransitionDemo -->
+    <x:String x:Key="Loc.P.TransitionDemo.Title1">内容过渡</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.Sub1">TransitioningContentControl 会在内容变化时播放动画——先选一种过渡模式，再切换内容即可看到效果。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CT1">过渡设置</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC1">选择一种过渡模式，然后切换一次内容，或按顺序自动播放全部模式。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CT2">实时预览</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC2">每次内容在面板 A、B、C 之间切换时，都会播放所选的过渡动画。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC3">带裁剪的 TransitioningContentControl 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC4">内容切换、模式选择与自动播放都是 ViewModel 的命令与状态。</x:String>
+
+    <!-- TreeDataGrid -->
+    <x:String x:Key="Loc.P.TreeDataGrid.Title1">TreeDataGrid</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Sub1">把层次化数据展示为扁平的列式网格，并支持展开与折叠的控件。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC1">点击箭头展开或折叠，点击行进行选择，点击列头进行排序。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC2">TreeDataGrid 把树形层次与列式数据展示结合在一起。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC3">上述 TreeDataGrid 演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC4">ViewModel 提供树与选中项，行为负责适配展开/折叠与列配置。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body1">* 带缩进的层次展开/折叠</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body2">* 复用 DataGrid 的列类型（文本、复选框、模板等）</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body3">* 面向大数据集的行虚拟化</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body4">* 列排序（跨所有层级递归）</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body5">* 调整列宽与拖动重排</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body6">* 单选与扩展选择模式</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body7">* 键盘导航（方向键，左/右展开与折叠）</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body8">* 通过 ChildrenPropertyPath 或 ChildrenSelector 进行数据绑定</x:String>
+
+    <!-- TreeMap -->
+    <x:String x:Key="Loc.P.TreeMap.Title1">TreeMap</x:String>
+    <x:String x:Key="Loc.P.TreeMap.Sub1">把层次化数据显示为按数值比例填满空间的嵌套矩形。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CT1">基础 TreeMap</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC1">按市值大小排布市场板块的扁平树图。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CT2">嵌套 TreeMap</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC2">含父级分类与子级条目的层次化树图。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CT3">Squarified 算法</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC3">在相同数据上对比 Squarified 与 SliceAndDice 两种布局算法。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC4">构建上述树图的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC5">ViewModel 提供层次化条目集合，算法与布局保留在 XAML 中。</x:String>
+
+    <!-- TreeSelector -->
+    <x:String x:Key="Loc.P.TreeSelector.Title1">TreeSelector</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.Sub1">下拉式层次选择器，触发器显示当前选择——单选时是祖先路径，多选时是可移除的标签片——弹出层则承载可勾选的树，支持级联与实时搜索。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC1">SelectionMode = Single。触发器显示完整的祖先路径；选中叶子节点后弹出层会自动关闭。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC2">SelectionMode = Multiple 且 ShowCheckBoxes = True。选中行会生成可移除标签，勾选状态则通过 CheckedItems 独立维护。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC3">IsSearchEnabled = True。输入时会把树筛选到匹配项及其祖先。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC4">CheckCascadeMode = Cascade —— 勾选父节点会更新其所有后代，子项状态不一致时父节点显示为不确定态。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC5">上述 TreeSelector 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC6">区域数据与状态位于 ViewModel，行为投影 API 所需的 TreeSelectorItem 层次，并分别转发选中与勾选事件。</x:String>
+
+    <!-- TreeView -->
+    <x:String x:Key="Loc.P.TreeView.Title1">TreeView</x:String>
+    <x:String x:Key="Loc.P.TreeView.Sub1">以树形结构展示数据的层次控件，节点可展开与折叠。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CT1">基础 TreeView</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC1">含层次化条目的简单 TreeView。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC2">选中项的变化通过行为发布到 ViewModel。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CT2">预展开节点</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC3">部分节点已经展开的 TreeView。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC4">上述 TreeView 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC5">ViewModel 持有树数据与选中状态，行为负责适配 TreeView 的容器与事件。</x:String>
+
+    <!-- UniformGrid -->
+    <x:String x:Key="Loc.P.UniformGrid.Title1">UniformGrid</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.Sub1">把子元素排入所有单元格大小相同的网格的面板。行数与列数可自动计算，也可显式指定。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT1">自动布局</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC1">当 Rows 与 Columns 都为 0 时，网格会自动计算最合适的布局。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT2">显式指定行列</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC2">显式设置 Rows 与 Columns 来控制网格尺寸。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT3">交互式配置</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC3">调整 Rows、Columns 与 FirstColumn，观察布局如何动态变化。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT4">FirstColumn 属性</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC4">FirstColumn 会让首行的条目整体后移，留出前面的空单元格。适合日历一类的布局。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC5">上述 UniformGrid 布局的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC6">在代码隐藏中创建并配置 UniformGrid。</x:String>
+
+    <!-- Viewbox -->
+    <x:String x:Key="Loc.P.Viewbox.Title1">Viewbox</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Sub1">把唯一的子元素缩放到刚好填满可用空间的装饰器，可控制拉伸模式与方向。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CT1">Uniform 拉伸</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC1">内容按等比缩放以适应容器，同时保持宽高比。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CT2">拉伸模式</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC2">不同的拉伸模式决定内容如何填满 Viewbox。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CT3">拉伸方向</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC3">控制内容只能放大、只能缩小，还是两者皆可。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC4">用滑块调整容器尺寸，观察 Viewbox 如何重新缩放它的子元素。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC5">Viewbox 在真实布局中最能派上用场的地方。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC6">上述 Viewbox 示例的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC7">在代码隐藏中接入交互滑块并缩放图标。</x:String>
+
+    <!-- WebView -->
+    <x:String x:Key="Loc.P.WebView.Title1">WebView</x:String>
+    <x:String x:Key="Loc.P.WebView.Sub1">通过 Microsoft Edge WebView2 运行时在应用中嵌入实时网页内容，支持前进后退导航、页面状态事件与 JavaScript 执行。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT1">浏览器</x:String>
+    <x:String x:Key="Loc.P.WebView.CC1">带后退、前进与刷新控件，可导航到任意 URL。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT2">页面信息</x:String>
+    <x:String x:Key="Loc.P.WebView.CC2">显示当前文档标题与导航状态。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT3">执行 JavaScript</x:String>
+    <x:String x:Key="Loc.P.WebView.CC3">在网页中运行 JavaScript 代码并查看结果。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT4">WebView 属性</x:String>
+    <x:String x:Key="Loc.P.WebView.CC4">WebView 控件暴露的关键属性。</x:String>
+    <x:String x:Key="Loc.P.WebView.CC5">上述浏览器演示的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.WebView.CC6">导航与脚本请求都是命令，行为负责把 WebView 事件转换成 ViewModel 状态。</x:String>
+    <x:String x:Key="Loc.P.WebView.Body1">Source —— 要导航到的 URI（Uri）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body2">CanGoBack / CanGoForward —— 导航历史状态（bool，只读）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body3">ZoomFactor —— 缩放级别，0.25 到 4.0（double）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body4">DefaultBackgroundColor —— 内容加载前的背景色（Color）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body5">DocumentTitle —— 当前页面标题（string，只读）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body6">CoreWebView2 —— 供高级用法使用的底层 WebView2 实例</x:String>
+
+    <!-- WrapPanel -->
+    <x:String x:Key="Loc.P.WrapPanel.Title1">WrapPanel</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.Sub1">依次摆放子元素的面板，遇到可用空间的边界时会自动换到下一行。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT1">横向 WrapPanel</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC1">条目从左到右排列，满了就换到下一行。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT2">纵向 WrapPanel</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC2">条目自上而下排列，满了就换到下一列。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT3">固定条目尺寸</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC3">用 ItemWidth 与 ItemHeight 实现统一尺寸。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT4">标签云示例</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC4">WrapPanel 的一个实用场景。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC5">上述 WrapPanel 的声明式标记。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC6">所有换行布局与条目都在 XAML 中声明。</x:String>
+
+    <!-- XamlUICommand -->
+    <x:String x:Key="Loc.P.XamlUICommand.Title1">XamlUICommand</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.Sub1">为应用自有操作定义的自定义命令，可指定文字、图标与键盘快捷键。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CT1">自定义 XamlUICommand</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC1">带自定义文字、图标与快捷键的应用专属命令，已接到工具栏按钮上。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CT2">命令输出</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC2">点击命令按钮触发操作，最近一次结果与历史记录显示在下方。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC3">把 ViewModel 提供的 XamlUICommand 绑定到命令栏，并注册对应的键盘快捷键。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC4">命令定义与执行逻辑都放在各自独立的 ViewModel 中。</x:String>
+
+    <!-- RazorDemo -->
+    <x:String x:Key="Loc.P.RazorDemo.CT1">3. 混合文本 —— 路径 + 字面量</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CT2">10. 循环与表达式组合</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CT3">13. $.Property —— 引用自身</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CT4">14. #.Property —— 引用数据模型</x:String>
+
+    <!-- Canvas -->
+    <x:String x:Key="Loc.P.Canvas.Legend1">Canvas.Left —— 距左边缘的距离</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend2">Canvas.Top —— 距上边缘的距离</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend3">Canvas.Right —— 距右边缘的距离</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend4">Canvas.Bottom —— 距下边缘的距离</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend5">Panel.ZIndex —— 控制层叠顺序</x:String>
+
+    <!-- CssLayout -->
+    <x:String x:Key="Loc.P.CssLayout.Note1">固定 420 宽区块内的各种宽度</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Note2">高度需要一个确定的约束</x:String>
+
+    <!-- CssMappings -->
+    <x:String x:Key="Loc.P.CssMappings.Note1">设置了 flex-direction: row 的 StackPanel</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Note2">同样的标记，改用 flex-direction: column</x:String>
+
+    <!-- CssOutline -->
+    <x:String x:Key="Loc.P.CssOutline.Note1">加了 outline —— 相邻元素纹丝不动</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Note2">加了 border —— 它后面的一切都被推开</x:String>
+
+    <!-- CssSelectors -->
+    <x:String x:Key="Loc.P.CssSelectors.Note1">* { margin: 0 0 8px 0 }  —— 通配选择器同样会命中这个裸 TextBlock</x:String>
+
+    <!-- Frame -->
+    <x:String x:Key="Loc.P.Frame.Use1">• 向导式界面</x:String>
+    <x:String x:Key="Loc.P.Frame.Use2">• 多步骤表单</x:String>
+    <x:String x:Key="Loc.P.Frame.Use3">• 类浏览器的导航</x:String>
+    <x:String x:Key="Loc.P.Frame.Use4">• 内嵌的页面内容</x:String>
+    <x:String x:Key="Loc.P.Frame.Use5">• 帮助系统的导航</x:String>
+
+    <!-- Splitter -->
+    <x:String x:Key="Loc.P.Splitter.Use1">• IDE 布局（代码编辑器 + 输出）</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use2">• 文件管理器（树 + 详情）</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use3">• 邮件客户端（文件夹 + 列表 + 预览）</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use4">• 仪表盘布局</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use5">• 设置面板</x:String>
+
+    <!-- Viewbox -->
+    <x:String x:Key="Loc.P.Viewbox.Use1">• 把图标缩放到不同尺寸</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use2">• 构建响应式布局</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use3">• 让矢量图形恰好放入容器</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use4">• 缩略图预览</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use5">• 缩放功能</x:String>
+
+    <!-- ContentDialog -->
+    <x:String x:Key="Loc.P.ContentDialog.Demo1">主题预设预览</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo2">下面的就地对话框会留在本卡片内部，而不是遮住整个窗口，因此你可以在不丢失上下文的情况下就地审阅改动。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo3">预设：Studio Contrast</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo4">用更重的边框、更紧凑的表面，以及略大的模态审阅区域来突出获得焦点的元素。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo5">本对话框以 ContentDialogPlacement.InPlace 方式显示。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo6">它把周围的卡片当作宿主表面，因此很适合嵌在页面里的审阅与配置流程。</x:String>
+
+    <!-- DragDrop -->
+    <x:String x:Key="Loc.P.DragDrop.Hint1">拖动源</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Hint2">把我拖到各个区域上</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Hint3">拖动我 —— 自定义拖拽图像</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Hint4">把我拖到资源管理器（会生成一个 .txt）</x:String>
+
+    <!-- Expander -->
+    <x:String x:Key="Loc.P.Expander.Demo1">点击展开</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo2">展开后就会显示这段内容。这里可以放任意内容，包括文本、图片和其他控件。</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo3">初始即展开</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo4">这个展开器初始就是展开状态。点击标题即可折叠。</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo5">受控展开器</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo6">这个展开器可以用上方的按钮控制。</x:String>
+
+    <!-- ThemeColors -->
+    <x:String x:Key="Loc.P.ThemeColors.Ui1">选择要查看的主题字典。</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Ui2">按键名搜索</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Ui4">仅复制键名</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Ui5">筛选：</x:String>
+
+    <!-- TimePicker -->
+    <x:String x:Key="Loc.P.TimePicker.Lbl1">12 小时制：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl2">24 小时制：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl3">1 分钟步进：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl4">5 分钟步进：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl5">15 分钟步进：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl6">30 分钟步进：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl7">选择时间：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl8">闹钟时间</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl9">会议开始时间</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl10">提醒时间</x:String>
+
+    <!-- ContextMenu -->
+    <x:String x:Key="Loc.P.ContextMenu.Hint1">在此处点击右键</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Hint2">在此右键可打开嵌套菜单</x:String>
+
+    <!-- FlexPanel -->
+    <x:String x:Key="Loc.P.FlexPanel.Stage1">Row（默认）</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage2">SpaceBetween —— 首尾两项贴住边缘</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage3">SpaceAround —— 两端留半个间隙</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage4">SpaceEvenly —— 所有间隙完全相同</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage5">Stretch（默认）</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage6">Center，其中一项用 AlignSelf 单独覆盖</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage7">一个条目吃掉全部剩余空间</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage8">按权重分配 —— 剩余空间按 1 : 3 分摊</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage9">Shrink —— 两个条目要的宽度超过了这一行</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage10">被冻结的最小值 —— 左侧条目不能低于 MinWidth，因此右侧承担了全部缺口</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage11">带行间距与列间距的换行</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage12">WrapReverse —— 行的顺序被镜像</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage13">flex: 1 —— 吸收所有剩余空间</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage14">Grow 1 搭配 Basis 0 —— 标题条吃掉所有富余空间</x:String>
+
+    <!-- GroupBox -->
+    <x:String x:Key="Loc.P.GroupBox.Demo1">个人信息</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Demo2">接收更新</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Demo3">启用深色模式</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Demo4">显示高级选项</x:String>
+
+    <!-- TabControl -->
+    <x:String x:Key="Loc.P.TabControl.Body1">欢迎来到“主页”标签！</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body2">这里放你的个人资料信息。</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body3">应用程序的设置与偏好。</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body4">主页内容</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body5">文档内容</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body6">下载内容</x:String>
+
+    <!-- ToolTip -->
+    <x:String x:Key="Loc.P.ToolTip.Tip1">保存当前文档</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip2">打开已有文档</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip3">删除选中的项目</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip4">请输入用户名（3-20 个字符）</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip5">用户名输入框</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip6">调整音量大小</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip7">音量滑块</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip8">启用通知</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip9">开启或关闭通知提醒</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip10">悬停查看富文本提示</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip11">富文本 ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip12">这条提示包含多行文本，</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip13">并带有格式与结构。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip14">快捷键：{Shortcut.Reload}</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip15">提示显示在上方</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip16">提示显示在右侧</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip17">提示显示在下方</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip18">提示显示在左侧</x:String>
+
+    <!-- CheckBox -->
+    <x:String x:Key="Loc.P.CheckBox.Demo1">我同意相关条款</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Demo2">选项 2（已选中）</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Demo3">禁用的选项</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Demo4">三态复选框</x:String>
+
+    <!-- ComboBox -->
+    <x:String x:Key="Loc.P.ComboBox.Ph1">选择一种水果</x:String>
+    <x:String x:Key="Loc.P.ComboBox.Ph2">选择一种颜色</x:String>
+    <x:String x:Key="Loc.P.ComboBox.Ph3">选择一个星期几</x:String>
+
+    <!-- DockLayout -->
+    <x:String x:Key="Loc.P.DockLayout.Ui1">解决方案资源管理器</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui2">输入以跨文件搜索…</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui3">错误列表</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui4">0 个错误，0 个警告，0 条消息</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui5">文件浏览器</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui6">内容预览区</x:String>
+
+    <!-- GettingStarted -->
+    <x:String x:Key="Loc.P.GettingStarted.Panel1">把子元素排成横向或纵向的一条线。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel2">把子元素排布进行与列。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel3">按显式坐标摆放子元素。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel4">把子元素停靠到容器的各条边上。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel5">完整的 CSS flexbox 容器：grow、shrink、wrap 与六种 justify 分布方式。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel6">把鼠标悬停到我上面 —— 规则是父元素 Css.StyleSheet 里的 .demo:hover。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel7">由内联的 Css.Style 声明块设置样式。</x:String>
+
+    <!-- Markdown -->
+    <x:String x:Key="Loc.P.Markdown.Cmd1">文档示例</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd2">发行说明</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd3">复制为纯文本</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd4">复制为 Markdown</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd5">复制为富文本</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd6">全选</x:String>
+
+    <!-- MediaElement -->
+    <x:String x:Key="Loc.P.MediaElement.Ui1">视频文件：</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Ui2">输入视频文件路径或 URL…</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Ui3">音频文件：</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Ui4">输入音频文件路径或 URL…</x:String>
+
+    <!-- TextBlock -->
+    <x:String x:Key="Loc.P.TextBlock.Demo1">这是一个基础的 TextBlock</x:String>
+    <x:String x:Key="Loc.P.TextBlock.Demo2">TextBlock 用于显示只读文本内容</x:String>
+
+    <!-- ToastNotification -->
+    <x:String x:Key="Loc.P.ToastNotification.Ui1">下载完成</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui2">文件已下载完毕。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui3">显示带操作的 Toast</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui4">显示关闭按钮</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui5">自动消失（悬停时暂停）</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui6">显示自定义 Toast</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui7">全部关闭</x:String>
+
+    <!-- Canvas -->
+    <x:String x:Key="Loc.P.Canvas.Note1">Canvas 允许对元素进行绝对定位。</x:String>
+
+    <!-- ContentDialog -->
+    <x:String x:Key="Loc.P.ContentDialog.Ui1">显示对话框</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui2">全尺寸</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui3">审阅改动</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui4">启用亚克力背景</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui5">使用紧凑密度</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui6">把强调操作提升到标题区</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui7">校验名称</x:String>
+
+    <!-- ContextMenu -->
+    <x:String x:Key="Loc.P.ContextMenu.Menu1">全选</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu2">排序方式</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu3">大图标</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu4">小图标</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu5">尚未选择任何操作</x:String>
+
+    <!-- Dialogs -->
+    <x:String x:Key="Loc.P.Dialogs.Ui1">打开文件…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui2">打开多个文件…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui3">选择文件夹…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui4">另存为…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui5">浏览文件夹…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui6">选择图标…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui7">打开方式…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui8">文件属性…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui9">打印机属性…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui10">卷属性…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui11">多文件属性…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui12">选择字体…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui13">显示信息</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui14">重试流程</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui15">显示错误</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui16">确认操作</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui17">检查文件是否存在</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui18">加入最近使用的文件</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui19">显示隐藏文件</x:String>
+
+    <!-- DocumentViewer -->
+    <x:String x:Key="Loc.P.DocumentViewer.Ui1">适合宽度</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui2">适合整页</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui3">搜索文本…</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui4">区分大小写</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui5">全字匹配</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui6">页面显示：</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui7">显示页面边框</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui8">页面间距：</x:String>
+
+    <!-- Expander -->
+    <x:String x:Key="Loc.P.Expander.Ui1">启用通知</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui2">自动保存文档</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui3">显示行号</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui4">用户资料</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui5">保存更改</x:String>
+
+    <!-- Frame -->
+    <x:String x:Key="Loc.P.Frame.Ui1">后退</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui2">前进</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui3">显示导航界面</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui4">启用历史记录</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui5">沙箱化导航</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui6">缓存大小：</x:String>
+
+    <!-- HyperlinkButton -->
+    <x:String x:Key="Loc.P.HyperlinkButton.Ui1">访问 Microsoft</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Ui2">打开 GitHub</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Ui3">了解更多</x:String>
+
+    <!-- JsonTreeViewer -->
+    <x:String x:Key="Loc.P.JsonTreeViewer.Ui1">搜索键或值…</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.Ui2">JSON 输入：</x:String>
+
+    <!-- ListView -->
+    <x:String x:Key="Loc.P.ListView.Ui1">输入条目文字</x:String>
+
+    <!-- NotifyIcon -->
+    <x:String x:Key="Loc.P.NotifyIcon.Ui1">为托盘图标启用上下文菜单</x:String>
+
+    <!-- PlatformUnavailable -->
+    <x:String x:Key="Loc.P.PlatformUnavailable.Msg1">当前平台不支持</x:String>
+
+    <!-- Popup -->
+    <x:String x:Key="Loc.P.Popup.Demo1">这是一个弹出层！</x:String>
+
+    <!-- SystemNotification -->
+    <x:String x:Key="Loc.P.SystemNotification.Ui1">发送通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui2">发送带操作的通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui3">静默（无提示音）</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui4">发送带标签的通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui5">按标签移除</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui6">全部清除</x:String>
+
+    <!-- CssLayout -->
+    <x:String x:Key="Loc.P.CssLayout.Tile1">height: 60%&#x0a;相对 Grid 单元格</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile2">同样的 60% 放在&#x0a;StackPanel 里 —— 退化&#x0a;为 auto</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile3">margin: 10%&#x0a;→ 四边各 20 DIP</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile4">width: 90% 被 max-width: 50% 钳制</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile5">width: 10% 被 min-width: 40% 抬升</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile6">2 / 3&#x0a;（已给出高度）</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile7">border-box → 总宽 200</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile8">普通流中的元素</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile9">另一个流中元素 —— 不受钉住的方块影响</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile10">top + right</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile11">left + right + bottom  →  在两边之间拉伸</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile12">left/top&#x0a;用百分比</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile13">Width=&quot;140&quot; 胜过它</x:String>
+
+    <!-- CssMappings -->
+    <x:String x:Key="Loc.P.CssMappings.Tile1">9 —— 超出&#x0a;范围，被丢弃</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Tile2">horizontal-alignment: Right</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Tile3">text-wrapping: Wrap  ·  font-weight 来自真正的 CSS</x:String>
+
+    <!-- CssSelectors -->
+    <x:String x:Key="Loc.P.CssSelectors.Tile1">Border { … }  —— 类型选择器</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile2">.tinted { … }  —— 类选择器</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile3">#named { … }  —— id 选择器，匹配 x:Name</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile4">直接子级 —— .outer &gt; TextBlock 胜出（绿色、加粗）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile5">嵌套更深 —— 只有 .outer TextBlock 命中（琥珀色）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile6">悬停 / 按下我</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile7">按 Tab 到这里体验 :focus-visible</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile8">切换我 —— :checked 会翻转标签</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile9">只有 Border  →  优先级 0,0,1  →  石板灰</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile10">#winner  →  1,0,0 胜过任何类  →  紫罗兰</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile11">#louder 优先级更高，但类型规则带 !important —— 玫红胜出。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile12">没有本地值  →  CSS 背景生效（蓝色）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile13">标记里设置了本地 Background  →  本地值继续胜出（棕色）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile14">无过渡&#x0a;—— 瞬间切换</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile15">transition: 0.35s ease-in-out&#x0a;—— 双向缓动</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile16">内容 TextBlock —— 已命中（琥珀色）</x:String>
+
+    <!-- CssStyling -->
+    <x:String x:Key="Loc.P.CssStyling.Tile1">rgb() 现代写法&#x0a;胶囊圆角</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile2">hsl()&#x0a;border 简写</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile3">linear-gradient()&#x0a;CSS 角度语义</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile4">box-shadow&#x0a;→ DropShadowEffect</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile5">transform&#x0a;不影响布局</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile6">#hero —— id 选择器匹配 x:Name</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile7">Border —— 类型选择器，派生类型同样命中</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile8">.accent —— 通过 Css.Class 的类选择器</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile9">.warn —— 同一样式表里的第二个类</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile10">第一条 background-color 无效被丢弃，后面那条有效的胜出。</x:String>
+
+    <!-- FlexPanel -->
+    <x:String x:Key="Loc.P.FlexPanel.Tile1">Grow 1 —— 吃掉剩余空间</x:String>
+
+    <!-- RazorVirtualize -->
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui1">添加一行</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui2">移除一行</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui3">增加方块</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui4">减少方块</x:String>
+
+    <!-- Workbench -->
+    <x:String x:Key="Loc.Workbench.Ui1">实时演示</x:String>
+    <x:String x:Key="Loc.Workbench.Ui2">预览</x:String>
+    <x:String x:Key="Loc.Workbench.Ui3">代码</x:String>
+    <x:String x:Key="Loc.Workbench.Ui4">桌面</x:String>
+    <x:String x:Key="Loc.Workbench.Ui5">平板</x:String>
+    <x:String x:Key="Loc.Workbench.Ui6">手机</x:String>
+    <x:String x:Key="Loc.Workbench.Ui7">声明式的组件用法</x:String>
+    <x:String x:Key="Loc.Workbench.Ui8">等价的代码隐藏写法</x:String>
+    <x:String x:Key="Loc.Workbench.Ui9">检查器</x:String>
+    <x:String x:Key="Loc.Workbench.Ui10">实时</x:String>
+    <x:String x:Key="Loc.Workbench.Ui11">参数</x:String>
+    <x:String x:Key="Loc.Workbench.Ui12">外观</x:String>
+    <x:String x:Key="Loc.Workbench.Ui13">重置检查器</x:String>
+    <x:String x:Key="Loc.Workbench.Ui14">浅色</x:String>
+    <x:String x:Key="Loc.Workbench.Ui15">深色</x:String>
+    <x:String x:Key="Loc.Workbench.Ui16">画布内边距</x:String>
+    <x:String x:Key="Loc.Workbench.Ui17">圆角半径</x:String>
+    <x:String x:Key="Loc.Workbench.Ui18">内容不透明度</x:String>
+    <x:String x:Key="Loc.Workbench.Ui19">强调色</x:String>
+    <x:String x:Key="Loc.Workbench.Ui20">画布</x:String>
+    <x:String x:Key="Loc.Workbench.Ui21">启用</x:String>
+
+    <!-- Overview -->
+    <x:String x:Key="Loc.P.Overview.Hero1">  /  组件图鉴</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero2">第 1 期</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero3">原生 .NET 10 UI 平台</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero4">构建</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero5">能交付的</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero6">用户界面。</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero7">WPF 级的开发手感、GPU 加速的渲染器、跨桌面与移动端和 Web 的同一套 XAML 方言——每一个控件都在这座图鉴里实时可验。</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero8">进入图鉴</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero9">按 [ enter ] 加载图鉴</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero10">120+ 控件 · 实时 · gpu · native-aot</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero11">样张</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero12">自藏品中手工挑选的几件实时样张</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero13">GPU 合成</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero14">硬件加速</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero15">磨砂 · 折射玻璃</x:String>
+
+    <!-- AppBarSeparator -->
+    <x:String x:Key="Loc.P.AppBarSeparator.CT2">CommandBar 中的分隔符</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC4">它真正的归宿：一条分隔符划开主命令，另一条则为溢出菜单分组。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St0">点击工具栏按钮即可看到对应操作。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St1">已新建文件。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St2">已触发打开文件对话框。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St3">文件已保存。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St4">已把选中内容剪切到剪贴板。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St5">已把选中内容复制到剪贴板。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St6">已粘贴剪贴板内容。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St7">已撤销上一步操作。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St8">已重做上一次撤销。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St9">未知的工具栏操作。</x:String>
+
+    <!-- Calendar -->
+    <x:String x:Key="Loc.P.Calendar.CT1">选择模式与显示选项</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC5">同一个控件分别设置为区间选择、周一为一周起始、年视图——每一种都只靠一个属性。</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap2">SelectionMode = SingleRange</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap3">FirstDayOfWeek = Sunday，不高亮今天</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap4">DisplayMode = Year</x:String>
+
+    <!-- InfoBar -->
+
+    <x:String x:Key="Loc.P.CssLayout.GridTitle">原生控件中的 CSS Grid</x:String>
+    <x:String x:Key="Loc.P.CssLayout.GridCaption">三列弹性轨道、自动放置和跨列。StackPanel 保留原有子控件，显式设置 display:grid 后启用网格布局。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.SubgridTitle">嵌套控件共享网格轨道</x:String>
+    <x:String x:Key="Loc.P.CssLayout.SubgridCaption">内部 StackPanel 通过 subgrid 共享父级的列和间距。内边距保留在共享轨道内，子控件仍属于原来的父容器。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.FlowTitle">块级与行内排列</x:String>
+    <x:String x:Key="Loc.P.CssLayout.FlowCaption">行内控件在空间不足时换行，块级控件独占一行并填满可用宽度，原生控件对象和父子关系保持不变。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.MarginCollapseCaption">相邻的 20px 与 32px 垂直外边距折叠为 32px 间隔。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.FloatTitle">浮动避让与清除浮动</x:String>
+    <x:String x:Key="Loc.P.CssLayout.ContainerTitle">随容器宽度调整布局</x:String>
+    <x:String x:Key="Loc.P.CssLayout.ContainerCaption">拖动滑块调整卡片宽度。内容宽度达到 360px 时切换为两列，指示条始终占内容宽度的 10%。卡片宽度通过原生 XAML 绑定设置。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.FloatCaption">行内控件沿浮动卡片旁排列，最后一个块级控件清除两侧浮动，flow-root 容纳浮动区域。</x:String>
+</ResourceDictionary>

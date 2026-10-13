@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToggleSwitchPage">
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToggleSwitchPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ToggleSwitch" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ToggleSwitch.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A switch control that flips between on and off states, with an optional header and customizable on/off content." />
+                   Text="{DynamicResource Loc.P.ToggleSwitch.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Flip each switch to change its on/off state." />
+                           Text="{DynamicResource Loc.P.ToggleSwitch.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ToggleSwitch x:Name="WifiSwitch" Header="Wi-Fi" OnContent="On" OffContent="Off" Margin="0,0,0,16" />
                         <ToggleSwitch Header="Bluetooth" IsOn="True" OnContent="Enabled" OffContent="Disabled" Margin="0,0,0,16" />
-                        <ToggleSwitch Header="Airplane Mode" OnContent="&#x2713;" OffContent="&#x2715;" Margin="0,0,0,16" />
+                        <ToggleSwitch Header="Airplane Mode" Margin="0,0,0,16">
+                            <ToggleSwitch.OnContent>
+                                <SymbolIcon Symbol="Accept" Width="14" Height="14" />
+                            </ToggleSwitch.OnContent>
+                            <ToggleSwitch.OffContent>
+                                <SymbolIcon Symbol="Cancel" Width="14" Height="14" />
+                            </ToggleSwitch.OffContent>
+                        </ToggleSwitch>
                         <ToggleSwitch Header="Dark Mode" IsEnabled="False" />
                     </StackPanel>
                 </Border>
@@ -31,15 +40,15 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="What the ToggleSwitch control supports out of the box." />
+                           Text="{DynamicResource Loc.P.ToggleSwitch.CC2}" />
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Binary on/off toggle state" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Customizable on/off content" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Header text support" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Animated state transitions" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Touch and mouse interaction" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ToggleSwitch.Body1}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ToggleSwitch.Body2}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ToggleSwitch.Body3}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ToggleSwitch.Body4}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ToggleSwitch.Body5}" />
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -47,16 +56,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the switches above." />
+                           Text="{DynamicResource Loc.P.ToggleSwitch.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -64,16 +75,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Handling the Toggled event and creating switches in code-behind." />
+                           Text="{DynamicResource Loc.P.ToggleSwitch.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

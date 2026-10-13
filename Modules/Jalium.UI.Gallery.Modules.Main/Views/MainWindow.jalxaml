@@ -1,16 +1,26 @@
 <Window xmlns="http://schemas.jalium.ui/2024"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+        xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+        xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+        xmlns:converters="clr-namespace:Jalium.UI.Gallery.Modules.Main.Converters"
+        xmlns:presentation="clr-namespace:Jalium.UI.Gallery.Modules.Main.Presentation"
         x:Class="Jalium.UI.Gallery.Modules.Main.Views.MainWindow"
-        Title="Jalium UI Gallery"
+        hosting:ViewModelLocator.AutoWireViewModel="True"
+        behaviors:GalleryShellBehavior.IsEnabled="True"
+        Title="{DynamicResource Loc.App.Title}"
         Width="1500"
         Height="920"
-        MinWidth="900"
-        MinHeight="640"
+        MinWidth="320"
+        MinHeight="480"
         TitleBarHeight="64"
+        behaviors:GalleryShellBehavior.CurrentPageTag="{Binding CurrentPageTag, Mode=TwoWay}"
         Background="{DynamicResource GalleryShellBackground}"
         Foreground="{DynamicResource GalleryTextPrimary}">
 
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility" />
         <ControlTemplate x:Key="GalleryChromeButtonTemplate" TargetType="Button">
             <Border Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -24,9 +34,9 @@
 
         <Style x:Key="GalleryUtilityLinkButton" TargetType="Button">
             <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
-            <Setter Property="Height" Value="34" />
+            <Setter Property="Height" Value="36" />
             <Setter Property="Padding" Value="12,0" />
-            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="CornerRadius" Value="10" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Background" Value="Transparent" />
@@ -43,6 +53,37 @@
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                    <Setter Property="Opacity" Value="0.82" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--
+            Square icon button for the desktop title bar. Sized to the 34px chrome
+            height and 4px radius the utility links use, so the back affordance reads
+            as part of the same command row rather than a bolted-on control.
+        -->
+        <Style x:Key="GalleryChromeIconButton" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
+            <Setter Property="Width" Value="36" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundHover}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                    <Setter Property="Opacity" Value="0.78" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -50,7 +91,7 @@
         <Style x:Key="GalleryFooterButton" TargetType="Button">
             <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
             <Setter Property="Padding" Value="10,8" />
-            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="CornerRadius" Value="10" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -64,15 +105,91 @@
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                    <Setter Property="Opacity" Value="0.82" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GalleryMobileIconButton" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
+            <Setter Property="Width" Value="44" />
+            <Setter Property="Height" Value="44" />
+            <Setter Property="Padding" Value="11" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                    <Setter Property="Opacity" Value="0.78" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GalleryMobileNavButton" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource GalleryChromeButtonTemplate}" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="Padding" Value="8,5" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="CornerRadius" Value="28" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource GalleryTextMuted}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundHover}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                    <Setter Property="Opacity" Value="0.82" />
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
 
     <Window.LeftWindowCommands>
-        <StackPanel Orientation="Horizontal"
+        <StackPanel x:Name="DesktopTitleCommands"
+                    Orientation="Horizontal"
                     VerticalAlignment="Center"
                     Margin="18,0,0,0">
+            <!--
+                Desktop back affordance. Only the mobile header used to carry one, so a
+                component detail page opened from the catalog had no way back except the
+                navigation pane. Shown by GalleryShellBehavior.UpdatePageContext on the
+                same condition the mobile button uses.
+            -->
+            <Button x:Name="DesktopBackButton"
+                    Style="{StaticResource GalleryChromeIconButton}"
+                    Visibility="Collapsed"
+                    ToolTip="{DynamicResource Loc.Shell.BackTooltip}"
+                    automation:AutomationProperties.Name="{DynamicResource Loc.Shell.BackTooltip}"
+                    Margin="0,0,12,0"
+                    VerticalAlignment="Center"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="home">
+                <Path Data="M18,4 L8,12 L18,20 M8,12 H22"
+                      Stroke="{DynamicResource GalleryTextSecondary}"
+                      StrokeThickness="1.8"
+                      Fill="Transparent"
+                      Width="18"
+                      Height="18"
+                      Stretch="Uniform"
+                      IsHitTestVisible="False" />
+            </Button>
+
             <Border x:Name="SectionBadge"
                     Background="{DynamicResource GalleryAccentSoft}"
                     BorderBrush="{DynamicResource GalleryAccent}"
@@ -89,7 +206,7 @@
                             CornerRadius="4"
                             Margin="0,0,8,0"
                             VerticalAlignment="Center" />
-                    <TextBlock Text="Section"
+                    <TextBlock Text="{DynamicResource Loc.Shell.SectionBadge}"
                                FontSize="12"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource GalleryAccentDark}"
@@ -97,19 +214,15 @@
                 </StackPanel>
             </Border>
 
-            <Grid Width="440" Height="40">
+            <Grid x:Name="TitleBarSearchContainer" Width="440" Height="40">
                 <TextBox x:Name="TitleBarSearchBox"
                          Padding="36,0,58,0"
-                         ToolTip="Search all components..."
+                         ToolTip="{DynamicResource Loc.Shell.SearchAll}"
+                         PlaceholderText="{DynamicResource Loc.Shell.SearchAll}"
+                         Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=80}"
+                         behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding OpenBestMatchCommand}"
                          VerticalAlignment="Center"
-                         TextChanged="OnTitleBarSearchTextChanged"
-                         KeyDown="OnTitleBarSearchKeyDown" />
-                <TextBlock x:Name="TitleBarSearchPlaceholder"
-                           Text="Search all components..."
-                           Foreground="{DynamicResource GalleryTextMuted}"
-                           Margin="36,0,58,0"
-                           VerticalAlignment="Center"
-                           IsHitTestVisible="False" />
+                         />
                 <Path Data="M10.5,3 A7.5,7.5,0,1,0,10.5,18 A7.5,7.5,0,1,0,10.5,3 Z M16,16 L22,22"
                       Stroke="{DynamicResource GalleryTextTertiary}"
                       StrokeThickness="1.5"
@@ -130,7 +243,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         IsHitTestVisible="False">
-                    <TextBlock Text="Ctrl K"
+                    <TextBlock Text="{DynamicResource Loc.Shell.SearchShortcut}"
                                FontSize="10"
                                Foreground="{DynamicResource GalleryTextMuted}" />
                 </Border>
@@ -139,32 +252,65 @@
     </Window.LeftWindowCommands>
 
     <Window.RightWindowCommands>
-        <StackPanel Orientation="Horizontal"
+        <StackPanel x:Name="DesktopUtilityCommands"
+                    Orientation="Horizontal"
                     VerticalAlignment="Center"
                     Margin="0,0,16,0">
-            <Button Content="Docs"
-                    Tag="https://jaliumui.top"
+            <Button Tag="https://jaliumui.top"
+                    Command="{Binding OpenExternalUriCommand}"
+                    CommandParameter="https://jaliumui.top"
                     Style="{StaticResource GalleryUtilityLinkButton}"
-                    ToolTip="Open Docs"
-                    Click="OnUtilityLinkClick" />
-            <Button Content="GitHub"
-                    Tag="https://github.com/VeryJokerJal/Jalium.UI"
+                    ToolTip="{DynamicResource Loc.Shell.DocsTooltip}"
+                    automation:AutomationProperties.Name="{DynamicResource Loc.Shell.Docs}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <SymbolIcon Symbol="Website"
+                                Width="15"
+                                Height="15"
+                                Foreground="{DynamicResource GalleryTextSecondary}"
+                                Margin="0,0,7,0" />
+                    <TextBlock Text="{DynamicResource Loc.Shell.Docs}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+            <Button Tag="https://github.com/VeryJokerJal/Jalium.UI"
+                    Command="{Binding OpenExternalUriCommand}"
+                    CommandParameter="https://github.com/VeryJokerJal/Jalium.UI"
                     Style="{StaticResource GalleryUtilityLinkButton}"
-                    ToolTip="Open GitHub"
-                    Margin="4,0,0,0"
-                    Click="OnUtilityLinkClick" />
+                    ToolTip="{DynamicResource Loc.Shell.GitHubTooltip}"
+                    automation:AutomationProperties.Name="{DynamicResource Loc.Shell.GitHub}"
+                    Margin="4,0,0,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <PathIcon Data="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"
+                              Width="15"
+                              Height="15"
+                              Foreground="{DynamicResource GalleryTextSecondary}"
+                              Margin="0,0,7,0" />
+                    <TextBlock Text="{DynamicResource Loc.Shell.GitHub}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Window.RightWindowCommands>
 
     <Grid x:Name="RootShellGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
         <NavigationView x:Name="NavigationView"
+                        Grid.Row="0"
+                        Grid.RowSpan="3"
                         OpenPaneLength="248"
-                        PaneTitle="Components"
+                        CompactPaneLength="0"
+                        PaneTitle="{DynamicResource Loc.Nav.PaneTitle}"
                         PaneBackground="{DynamicResource GalleryPaneBackground}"
                         ContentBackground="Transparent"
-                        SelectionChanged="OnSelectionChanged">
+                        behaviors:NavigationViewCommandBehavior.NavigateCommand="{Binding NavigateCommand}">
             <NavigationView.PaneHeader>
-                <Border Margin="16,18,12,14"
+                <Border x:Name="PaneBrandHeader"
+                        Margin="16,18,12,14"
                         Padding="6,8"
                         Background="Transparent"
                         BorderThickness="0">
@@ -176,12 +322,12 @@
                                Margin="0,0,10,0"
                                VerticalAlignment="Center" />
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                            <TextBlock Text="Jalium UI Gallery"
+                            <TextBlock Text="{DynamicResource Loc.App.Title}"
                                        FontSize="15"
                                        FontWeight="Bold"
                                        Foreground="{DynamicResource GalleryTextPrimary}"
                                        Margin="0,0,0,1" />
-                            <TextBlock Text="COMPONENT LIBRARY"
+                            <TextBlock Text="{DynamicResource Loc.App.Subtitle}"
                                        FontSize="9"
                                        FontWeight="SemiBold"
                                        Foreground="{DynamicResource GalleryTextMuted}" />
@@ -191,33 +337,47 @@
             </NavigationView.PaneHeader>
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Components"
+                <NavigationViewItem Content="{DynamicResource Loc.Nav.Components}"
                                     Tag="home"
-                                    Foreground="{DynamicResource GalleryTextPrimary}" />
-                <NavigationViewItem Content="Design Tokens"
+                                    Foreground="{DynamicResource GalleryTextPrimary}">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="GridView" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="{DynamicResource Loc.Nav.DesignTokens}"
                                     Tag="design-tokens"
-                                    Foreground="{DynamicResource GalleryTextPrimary}" />
-                <NavigationViewItem Content="Theme Studio"
+                                    Foreground="{DynamicResource GalleryTextPrimary}">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Color" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="{DynamicResource Loc.Nav.ThemeStudio}"
                                     Tag="theme-studio"
-                                    Foreground="{DynamicResource GalleryTextPrimary}" />
+                                    Foreground="{DynamicResource GalleryTextPrimary}">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Design" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.PaneFooter>
-                <Border Margin="14,12,14,16"
+                <Border x:Name="PaneFooterContent"
+                        Margin="14,12,14,16"
                         Padding="0,12,0,0"
                         Background="Transparent"
                         BorderThickness="0">
                     <StackPanel Orientation="Vertical">
                         <Button Style="{StaticResource GalleryFooterButton}"
-                                ToolTip="Switch color theme"
-                                Click="OnThemeToggleClick">
+                                ToolTip="{DynamicResource Loc.Shell.ThemeTooltip}"
+                                automation:AutomationProperties.Name="{DynamicResource Loc.Shell.ThemeTooltip}"
+                                Command="{Binding ToggleThemeCommand}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <Border Width="28"
                                         Height="28"
                                         Background="{DynamicResource GalleryAccentSoft}"
                                         BorderBrush="{DynamicResource GalleryBorderDefault}"
                                         BorderThickness="1"
-                                        CornerRadius="6"
+                                        CornerRadius="8"
                                         Margin="0,0,10,0"
                                         VerticalAlignment="Center">
                                     <Grid Width="16" Height="16">
@@ -225,17 +385,52 @@
                                               Data="M12.3,22 C6.6,22,2,17.4,2,11.7 C2,7.1,5,3.2,9.2,1.8 C9.7,1.6,10.1,2.2,9.8,2.6 C8.8,4,8.2,5.8,8.2,7.7 C8.2,12.2,11.8,15.8,16.3,15.8 C18.2,15.8,20,15.2,21.4,14.2 C21.8,13.9,22.4,14.3,22.2,14.8 C20.8,19,16.9,22,12.3,22 Z"
                                               Fill="{DynamicResource GalleryAccent}"
                                               Stretch="Uniform"
+                                              Visibility="{Binding IsDarkTheme, Converter={StaticResource BooleanToVisibility}}"
                                               IsHitTestVisible="False" />
                                         <Path x:Name="ThemeSunIcon"
                                               Data="F1 M12,6 A6,6,0,1,0,12,18 A6,6,0,1,0,12,6 Z M11,1 H13 V4 H11 Z M11,20 H13 V23 H11 Z M20,11 H23 V13 H20 Z M1,11 H4 V13 H1 Z M18.36,4.22 L19.78,5.64 L17.66,7.76 L16.24,6.34 Z M4.22,18.36 L5.64,19.78 L7.76,17.66 L6.34,16.24 Z M18.36,19.78 L19.78,18.36 L17.66,16.24 L16.24,17.66 Z M4.22,5.64 L5.64,4.22 L7.76,6.34 L6.34,7.76 Z"
                                               Fill="{DynamicResource GalleryAccent}"
                                               Stretch="Uniform"
-                                              Visibility="Collapsed"
+                                              Visibility="{Binding IsLightTheme, Converter={StaticResource BooleanToVisibility}}"
                                               IsHitTestVisible="False" />
                                     </Grid>
                                 </Border>
                                 <TextBlock x:Name="ThemeToggleLabel"
-                                           Text="Light theme"
+                                           Text="{Binding ThemeLabel}"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource GalleryTextPrimary}"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource GalleryFooterButton}"
+                                ToolTip="{DynamicResource Loc.Shell.LanguageTooltip}"
+                                automation:AutomationProperties.Name="{DynamicResource Loc.Shell.LanguageTooltip}"
+                                Margin="0,4,0,0"
+                                Command="{Binding SwitchLanguageCommand}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Border Width="28"
+                                        Height="28"
+                                        Background="{DynamicResource GalleryAccentSoft}"
+                                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Margin="0,0,10,0"
+                                        VerticalAlignment="Center">
+                                    <Path Data="M12,2 A10,10,0,1,0,12,22 A10,10,0,1,0,12,2 Z M2,12 H22 M12,2 C15.5,5.5,15.5,18.5,12,22 M12,2 C8.5,5.5,8.5,18.5,12,22"
+                                          Stroke="{DynamicResource GalleryAccent}"
+                                          StrokeThickness="1.6"
+                                          Fill="Transparent"
+                                          Width="16"
+                                          Height="16"
+                                          Stretch="Uniform"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          IsHitTestVisible="False" />
+                                </Border>
+                                <TextBlock x:Name="LanguageToggleLabel"
+                                           Text="{Binding LanguageLabel}"
                                            FontSize="12"
                                            FontWeight="SemiBold"
                                            Foreground="{DynamicResource GalleryTextPrimary}"
@@ -244,7 +439,7 @@
                         </Button>
 
                         <Border Background="Transparent"
-                                CornerRadius="6"
+                            CornerRadius="10"
                                 Padding="10,8"
                                 Margin="0,4,0,0">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -253,7 +448,7 @@
                                         Background="{DynamicResource GalleryBackgroundHover}"
                                         BorderBrush="{DynamicResource GalleryBorderDefault}"
                                         BorderThickness="1"
-                                        CornerRadius="6"
+                                        CornerRadius="8"
                                         Margin="0,0,10,0">
                                     <Grid Width="16"
                                           Height="16"
@@ -268,7 +463,7 @@
                                               Stretch="Uniform" />
                                     </Grid>
                                 </Border>
-                                <TextBlock Text="Jalium Team"
+                                <TextBlock Text="{DynamicResource Loc.Shell.Team}"
                                            FontSize="12"
                                            FontWeight="SemiBold"
                                            Foreground="{DynamicResource GalleryTextSecondary}"
@@ -279,13 +474,247 @@
                 </Border>
             </NavigationView.PaneFooter>
 
-            <ScrollViewer x:Name="ContentHost"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Disabled"
-                          Padding="24,22,24,28"
-                          Background="{DynamicResource GalleryShellBackground}"
-                          ClipToBounds="True" />
+            <Grid x:Name="NavigationContentLayer">
+                <ScrollViewer x:Name="ContentHost"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Padding="0"
+                              Background="{DynamicResource GalleryShellBackground}"
+                              ClipToBounds="True">
+                    <presentation:GalleryNavigationHost x:Name="ContentFrame"
+                                                        PageTag="{Binding CurrentPageTag}"
+                                                        ScrollViewer.FillViewport="Vertical"
+                                                        Padding="24,22,24,28"
+                                                        Background="Transparent" />
+                </ScrollViewer>
+
+            </Grid>
         </NavigationView>
+
+        <Border x:Name="MobileBottomBar"
+                Grid.Row="2"
+                Visibility="Collapsed"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Stretch"
+                MaxWidth="520"
+                Margin="14,8,14,14"
+                Padding="5"
+                Background="{DynamicResource GalleryPaneBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="34"
+                Panel.ZIndex="80">
+            <UniformGrid Columns="3">
+                <Button x:Name="MobileComponentsButton"
+                        Tag="home"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="home"
+                        automation:AutomationProperties.Name="{DynamicResource Loc.Nav.Components}"
+                        Style="{StaticResource GalleryMobileNavButton}"
+                        >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Path x:Name="MobileComponentsIcon"
+                              Data="M2,2 H9 V9 H2 Z M13,2 H20 V9 H13 Z M2,13 H9 V20 H2 Z M13,13 H20 V20 H13 Z"
+                              Fill="{DynamicResource GalleryTextMuted}"
+                              Width="20"
+                              Height="20"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              IsHitTestVisible="False" />
+                        <TextBlock x:Name="MobileComponentsLabel"
+                                   Text="{DynamicResource Loc.Nav.Components}"
+                                   FontSize="9.5"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,3,0,0"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="MobileTokensButton"
+                        Tag="design-tokens"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="design-tokens"
+                        automation:AutomationProperties.Name="{DynamicResource Loc.Nav.DesignTokens}"
+                        Style="{StaticResource GalleryMobileNavButton}"
+                        >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Path x:Name="MobileTokensIcon"
+                              Data="M6,2 A4,4,0,1,0,6,10 A4,4,0,1,0,6,2 Z M16,7 A4,4,0,1,0,16,15 A4,4,0,1,0,16,7 Z M7,14 A4,4,0,1,0,7,22 A4,4,0,1,0,7,14 Z"
+                              Fill="{DynamicResource GalleryTextMuted}"
+                              Width="20"
+                              Height="20"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              IsHitTestVisible="False" />
+                        <TextBlock x:Name="MobileTokensLabel"
+                                   Text="{DynamicResource Loc.Nav.TokensShort}"
+                                   FontSize="9.5"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,3,0,0"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="MobileStudioButton"
+                        Tag="theme-studio"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="theme-studio"
+                        automation:AutomationProperties.Name="{DynamicResource Loc.Nav.ThemeStudio}"
+                        Style="{StaticResource GalleryMobileNavButton}"
+                        >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Path x:Name="MobileStudioIcon"
+                              Data="M12,2 L14.7,8.3 L21.5,9 L16.3,13.5 L17.8,20.2 L12,16.7 L6.2,20.2 L7.7,13.5 L2.5,9 L9.3,8.3 Z"
+                              Fill="{DynamicResource GalleryTextMuted}"
+                              Width="20"
+                              Height="20"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              IsHitTestVisible="False" />
+                        <TextBlock x:Name="MobileStudioLabel"
+                                   Text="{DynamicResource Loc.Nav.StudioShort}"
+                                   FontSize="9.5"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                   Margin="0,3,0,0"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </UniformGrid>
+        </Border>
+
+        <Border x:Name="MobileHeader"
+                Grid.Row="0"
+                Visibility="Collapsed"
+                Background="{DynamicResource GalleryPaneBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="0,0,0,1"
+                Padding="14,10,14,12">
+            <Grid x:Name="MobileHeaderLayout">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="42" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Width="44" Height="44">
+                    <Border x:Name="MobileLogoFrame"
+                            Background="{DynamicResource GalleryAccentSoft}"
+                            BorderBrush="{DynamicResource GalleryBorderDefault}"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            Padding="8">
+                        <Image x:Name="MobileLogoImage" Stretch="Uniform" />
+                    </Border>
+                    <Button x:Name="MobileBackButton"
+                            Style="{StaticResource GalleryMobileIconButton}"
+                            Visibility="Collapsed"
+                            ToolTip="{DynamicResource Loc.Shell.BackTooltip}"
+                            automation:AutomationProperties.Name="{DynamicResource Loc.Shell.BackTooltip}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="home">
+                        <Path Data="M18,4 L8,12 L18,20 M8,12 H22"
+                              Stroke="{DynamicResource GalleryTextPrimary}"
+                              StrokeThickness="1.8"
+                              Fill="Transparent"
+                              Width="20"
+                              Height="20"
+                              Stretch="Uniform"
+                              IsHitTestVisible="False" />
+                    </Button>
+                </Grid>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Vertical"
+                            VerticalAlignment="Center"
+                            Margin="12,0,10,0">
+                    <TextBlock x:Name="MobilePageEyebrow"
+                               Text="JALIUM UI / MOBILE"
+                               FontSize="9"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryAccent}"
+                               Margin="0,0,0,2" />
+                    <TextBlock x:Name="MobilePageTitle"
+                               Text="Components"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <Button x:Name="MobileLanguageButton"
+                            Style="{StaticResource GalleryMobileIconButton}"
+                            Margin="0,0,8,0"
+                            ToolTip="{DynamicResource Loc.Shell.LanguageTooltip}"
+                            automation:AutomationProperties.Name="{DynamicResource Loc.Shell.LanguageTooltip}"
+                            Command="{Binding SwitchLanguageCommand}">
+                        <Path Data="M12,2 A10,10,0,1,0,12,22 A10,10,0,1,0,12,2 Z M2,12 H22 M12,2 C15.5,5.5,15.5,18.5,12,22 M12,2 C8.5,5.5,8.5,18.5,12,22"
+                              Stroke="{DynamicResource GalleryTextPrimary}"
+                              StrokeThickness="1.6"
+                              Fill="Transparent"
+                              Width="20"
+                              Height="20"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              IsHitTestVisible="False" />
+                    </Button>
+
+                    <Button x:Name="MobileThemeButton"
+                            Style="{StaticResource GalleryMobileIconButton}"
+                            ToolTip="{DynamicResource Loc.Shell.ThemeTooltip}"
+                            automation:AutomationProperties.Name="{DynamicResource Loc.Shell.ThemeTooltip}"
+                            Command="{Binding ToggleThemeCommand}">
+                        <Grid Width="20" Height="20">
+                            <Path x:Name="MobileThemeMoonIcon"
+                                  Data="M12.3,22 C6.6,22,2,17.4,2,11.7 C2,7.1,5,3.2,9.2,1.8 C9.7,1.6,10.1,2.2,9.8,2.6 C8.8,4,8.2,5.8,8.2,7.7 C8.2,12.2,11.8,15.8,16.3,15.8 C18.2,15.8,20,15.2,21.4,14.2 C21.8,13.9,22.4,14.3,22.2,14.8 C20.8,19,16.9,22,12.3,22 Z"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Stretch="Uniform"
+                                  Visibility="{Binding IsDarkTheme, Converter={StaticResource BooleanToVisibility}}"
+                                  IsHitTestVisible="False" />
+                            <Path x:Name="MobileThemeSunIcon"
+                                  Data="F1 M12,6 A6,6,0,1,0,12,18 A6,6,0,1,0,12,6 Z M11,1 H13 V4 H11 Z M11,20 H13 V23 H11 Z M20,11 H23 V13 H20 Z M1,11 H4 V13 H1 Z M18.36,4.22 L19.78,5.64 L17.66,7.76 L16.24,6.34 Z M4.22,18.36 L5.64,19.78 L7.76,17.66 L6.34,16.24 Z M18.36,19.78 L19.78,18.36 L17.66,16.24 L16.24,17.66 Z M4.22,5.64 L5.64,4.22 L7.76,6.34 L6.34,7.76 Z"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Stretch="Uniform"
+                                  Visibility="{Binding IsLightTheme, Converter={StaticResource BooleanToVisibility}}"
+                                  IsHitTestVisible="False" />
+                        </Grid>
+                    </Button>
+                </StackPanel>
+
+                <Grid x:Name="MobileSearchPanel"
+                      Grid.Row="2"
+                      Grid.ColumnSpan="3"
+                      Height="42">
+                    <TextBox x:Name="MobileSearchBox"
+                             Padding="38,0,14,0"
+                             VerticalAlignment="Stretch"
+                             PlaceholderText="{DynamicResource Loc.Shell.SearchShort}"
+                             Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=80}"
+                             behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding OpenBestMatchCommand}" />
+                    <Path Data="M10.5,3 A7.5,7.5,0,1,0,10.5,18 A7.5,7.5,0,1,0,10.5,3 Z M16,16 L22,22"
+                          Stroke="{DynamicResource GalleryTextTertiary}"
+                          StrokeThickness="1.5"
+                          Fill="Transparent"
+                          Width="17"
+                          Height="17"
+                          Stretch="Uniform"
+                          Margin="13,0,0,0"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          IsHitTestVisible="False" />
+                </Grid>
+            </Grid>
+        </Border>
+
     </Grid>
 
 </Window>

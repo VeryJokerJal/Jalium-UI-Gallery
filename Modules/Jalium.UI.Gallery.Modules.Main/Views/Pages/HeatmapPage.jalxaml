@@ -1,59 +1,95 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.HeatmapPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Heatmap">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Heatmap" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Heatmap.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays a 2D matrix of values as a color-coded grid with optional labels and a color scale bar." />
+                   Text="{DynamicResource Loc.P.Heatmap.Sub1}" />
 
         <!-- Basic Heatmap -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Heatmap" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.BasicHeatmap}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A 10x10 heatmap with the default BlueToRed color scale." />
-                <Border x:Name="BasicHeatmapContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.Heatmap.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Heatmap Width="600"
+                             Height="400"
+                             Data="{Binding BasicData}"
+                             XLabels="{Binding BasicXLabels}"
+                             YLabels="{Binding BasicYLabels}"
+                             ColorScale="BlueToRed"
+                             Title="10x10 Matrix" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Color Scales -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Color Scales" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Heatmap.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The same data rendered with the Viridis and Grayscale color scales." />
-                <Border x:Name="ColorScalesContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.Heatmap.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal">
+                        <Heatmap Width="290"
+                                 Height="300"
+                                 Data="{Binding ScaleData}"
+                                 ColorScale="Viridis"
+                                 Title="Viridis" />
+                        <Heatmap Width="290"
+                                 Height="300"
+                                 Data="{Binding ScaleData}"
+                                 ColorScale="Grayscale"
+                                 Title="Grayscale"
+                                 Margin="16,0,0,0" />
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Cell Values -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Cell Values" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Heatmap.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A heatmap with ShowCellValues enabled, displaying the numeric value inside each cell." />
-                <Border x:Name="CellValuesContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.Heatmap.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Heatmap Width="600"
+                             Height="400"
+                             Data="{Binding CellValueData}"
+                             XLabels="{Binding WeekdayLabels}"
+                             YLabels="{Binding WeekLabels}"
+                             ShowCellValues="True"
+                             CellValueFormat="F1"
+                             ColorScale="BlueToRed"
+                             Title="Weekly Activity" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a heatmap with axis labels and cell values." />
+                           Text="{DynamicResource Loc.P.Heatmap.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -61,16 +97,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Generating sample data and building a heatmap in code-behind." />
+                           Text="{DynamicResource Loc.P.Heatmap.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

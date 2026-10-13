@@ -1,24 +1,30 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GanttChartPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="GanttChart">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="GanttChart" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.GanttChart.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A chart control that displays tasks on a timeline with support for dependencies, milestones, and progress tracking." />
+                   Text="{DynamicResource Loc.P.GanttChart.Sub1}" />
 
         <!-- Basic Gantt Chart -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Gantt Chart" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GanttChart.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A simple Gantt chart with several tasks spanning different date ranges." />
+                           Text="{DynamicResource Loc.P.GanttChart.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicGanttContainer" Orientation="Vertical" />
+                    <GanttChart Height="250"
+                                ShowDependencies="False"
+                                ShowProgress="False"
+                                ShowToday="True"
+                                Tasks="{Binding BasicTasks}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +32,15 @@
         <!-- Dependencies & Milestones -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Dependencies &amp; Milestones" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GanttChart.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Gantt chart with dependency arrows between tasks and milestone markers." />
+                           Text="{DynamicResource Loc.P.GanttChart.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="DependenciesGanttContainer" Orientation="Vertical" />
+                    <GanttChart Height="280"
+                                ShowDependencies="True"
+                                ShowProgress="False"
+                                ShowToday="True"
+                                Tasks="{Binding DependencyTasks}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +48,15 @@
         <!-- Progress Tracking -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Progress Tracking" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GanttChart.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Gantt chart showing partial task completion with progress indicators." />
+                           Text="{DynamicResource Loc.P.GanttChart.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="ProgressGanttContainer" Orientation="Vertical" />
+                    <GanttChart Height="280"
+                                ShowDependencies="True"
+                                ShowProgress="True"
+                                ShowToday="True"
+                                Tasks="{Binding ProgressTasks}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +64,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the Gantt charts above." />
+                           Text="{DynamicResource Loc.P.GanttChart.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +83,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building tasks, dependencies and milestones in code-behind." />
+                           Text="{DynamicResource Loc.P.GanttChart.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

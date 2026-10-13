@@ -1,0 +1,249 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ThemeStudioPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      Title="Theme Studio">
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <TextBlock Style="{StaticResource GalleryEyebrow}"
+                   Text="{DynamicResource Loc.P.ThemeStudio.Eyebrow1}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}"
+                   Text="{DynamicResource Loc.P.ThemeStudio.Title1}" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="{DynamicResource Loc.P.ThemeStudio.Sub1}" />
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource GalleryCardTitle}"
+                               Text="{DynamicResource Loc.P.ThemeStudio.CT1}"
+                               VerticalAlignment="Center" />
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <RadioButton Content="Light"
+                                     GroupName="ThemeStudioThemes"
+                                     Style="{StaticResource GallerySegmentButton}"
+                                     IsChecked="{Binding IsLightTheme, Mode=OneWay}"
+                                     Command="{Binding UseLightThemeCommand}"
+                                     Width="72"
+                                     Margin="0,0,6,0" />
+                        <RadioButton Content="Dark"
+                                     GroupName="ThemeStudioThemes"
+                                     Style="{StaticResource GallerySegmentButton}"
+                                     IsChecked="{Binding IsDarkTheme, Mode=OneWay}"
+                                     Command="{Binding UseDarkThemeCommand}"
+                                     Width="72" />
+                    </StackPanel>
+                </Grid>
+
+                <Border Background="{Binding SurfaceBrush}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="{Binding PreviewCornerRadius}"
+                        Padding="{Binding PreviewPadding}"
+                        Opacity="{Binding PreviewOpacity}"
+                        IsEnabled="{Binding IsPreviewEnabled}"
+                        MinHeight="300">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Project dashboard"
+                                       FontSize="24"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource GalleryTextPrimary}" />
+                            <TextBlock Text="A semantic preview using the currently edited surface, accent, spacing, and radius."
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource GalleryTextSecondary}"
+                                       Margin="0,6,0,16" />
+                        </StackPanel>
+
+                        <WrapPanel Grid.Row="1">
+                            <Border Width="210"
+                                    Height="110"
+                                    Background="{DynamicResource GalleryCardAltBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="{Binding PreviewCornerRadius}"
+                                    Padding="14"
+                                    Margin="0,0,12,12">
+                                <StackPanel>
+                                    <TextBlock Text="Build health"
+                                               FontWeight="SemiBold" />
+                                    <ProgressBar Value="84"
+                                                 Height="7"
+                                                 Foreground="{Binding AccentBrush}"
+                                                 Margin="0,16,0,8" />
+                                    <TextBlock Text="84% passing"
+                                               FontSize="11"
+                                               Opacity="0.7" />
+                                </StackPanel>
+                            </Border>
+                            <Border Width="210"
+                                    Height="110"
+                                    Background="{DynamicResource GalleryCardAltBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="{Binding PreviewCornerRadius}"
+                                    Padding="14"
+                                    Margin="0,0,12,12">
+                                <StackPanel>
+                                    <TextBlock Text="Deployment"
+                                               FontWeight="SemiBold" />
+                                    <ToggleSwitch Header="Auto deploy"
+                                                  Style="{StaticResource GalleryToggleSwitch}"
+                                                  IsOn="True"
+                                                  Margin="0,12,0,0" />
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+
+                        <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    Margin="0,12,0,0">
+                            <Button Content="Primary action"
+                                    Style="{StaticResource GalleryPrimaryButton}"
+                                    Padding="18,9"
+                                    Margin="0,0,10,0" />
+                            <Button Content="Secondary"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    Padding="18,9" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCardTitle}"
+                                   Text="{DynamicResource Loc.P.ThemeStudio.CT2}" />
+                        <TextBlock Style="{StaticResource GalleryCardCaption}"
+                                   Text="{Binding ActiveThemeLabel}" />
+                    </StackPanel>
+                    <Button Grid.Column="1"
+                            Content="Reset"
+                            Command="{Binding ResetCommand}"
+                            Style="{StaticResource GallerySecondaryButton}"
+                            Width="82"
+                            Height="34" />
+                </Grid>
+
+                <WrapPanel>
+                    <StackPanel Width="330"
+                                Margin="0,0,20,12">
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{DynamicResource Loc.P.ThemeStudio.Val1}" />
+                        <ColorPicker Color="{Binding Accent, Mode=TwoWay}"
+                                     Margin="0,8,0,4" />
+                        <TextBlock Text="{Binding AccentHex}"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="11" />
+                    </StackPanel>
+                    <StackPanel Width="330"
+                                Margin="0,0,20,12">
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{DynamicResource Loc.P.ThemeStudio.Val2}" />
+                        <ColorPicker Color="{Binding Surface, Mode=TwoWay}"
+                                     Margin="0,8,0,4" />
+                        <TextBlock Text="{Binding SurfaceHex}"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="11" />
+                    </StackPanel>
+                </WrapPanel>
+
+                <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="70" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{DynamicResource Loc.P.ThemeStudio.Val3}"
+                               Style="{StaticResource GalleryValueLabel}"
+                               VerticalAlignment="Center" />
+                    <Slider Grid.Column="1"
+                            Minimum="0"
+                            Maximum="32"
+                            Value="{Binding Radius, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding Radius}"
+                               Style="{StaticResource GalleryCaptionText}"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center" />
+                </Grid>
+                <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="70" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{DynamicResource Loc.P.ThemeStudio.Val4}"
+                               Style="{StaticResource GalleryValueLabel}"
+                               VerticalAlignment="Center" />
+                    <Slider Grid.Column="1"
+                            Minimum="4"
+                            Maximum="40"
+                            Value="{Binding Spacing, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding Spacing}"
+                               Style="{StaticResource GalleryCaptionText}"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center" />
+                </Grid>
+                <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="70" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{DynamicResource Loc.P.ThemeStudio.Val5}"
+                               Style="{StaticResource GalleryValueLabel}"
+                               VerticalAlignment="Center" />
+                    <Slider Grid.Column="1"
+                            Minimum="0.2"
+                            Maximum="1"
+                            Value="{Binding PreviewOpacity, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding PreviewOpacity}"
+                               Style="{StaticResource GalleryCaptionText}"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center" />
+                </Grid>
+                <ToggleSwitch Header="Preview enabled"
+                              Style="{StaticResource GalleryToggleSwitch}"
+                              IsOn="{Binding IsPreviewEnabled, Mode=TwoWay}"
+                              Margin="0,14,0,0" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}"
+                           Text="{DynamicResource Loc.P.ThemeStudio.CT3}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl Height="220"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding TokenCode}" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

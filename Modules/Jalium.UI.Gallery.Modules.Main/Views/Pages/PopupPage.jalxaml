@@ -1,28 +1,32 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PopupPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Popup">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Popup" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Overlays}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Popup.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A lightweight overlay surface that floats contextual content above the page, anchored to a target element and shown or dismissed on demand." />
+                   Text="{DynamicResource Loc.P.Popup.Sub1}" />
 
         <!-- Basic popup -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic popup" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Popup.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Toggle a small popup that opens directly below its trigger button." />
+                           Text="{DynamicResource Loc.P.Popup.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ShowPopupButton"
                                 Content="Show Popup"
+                                Command="{Binding ToggleBasicPopupCommand}"
                                 Height="32" />
                         <Popup x:Name="BasicPopup"
+                               IsOpen="{Binding IsBasicPopupOpen, Mode=TwoWay}"
                                PlacementTarget="{Binding ElementName=ShowPopupButton}"
                                Placement="Bottom">
                             <Border Background="{DynamicResource GalleryCardBackground}"
@@ -31,10 +35,11 @@
                                     CornerRadius="8"
                                     Padding="16">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="This is a popup!"
+                                    <TextBlock Text="{DynamicResource Loc.P.Popup.Demo1}"
                                                Margin="0,0,0,8" />
                                     <Button x:Name="ClosePopupButton"
                                             Content="Close"
+                                            Command="{Binding CloseBasicPopupCommand}"
                                             Width="80"
                                             Height="28" />
                                 </StackPanel>
@@ -48,16 +53,18 @@
         <!-- Popup with form -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Popup with form" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Popup.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Popups can host richer content such as a multi-field form." />
+                           Text="{DynamicResource Loc.P.Popup.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ShowFormPopupButton"
                                 Content="Quick Add"
+                                Command="{Binding ToggleFormPopupCommand}"
                                 Width="100"
                                 Height="32" />
                         <Popup x:Name="FormPopup"
+                               IsOpen="{Binding IsFormPopupOpen, Mode=TwoWay}"
                                PlacementTarget="{Binding ElementName=ShowFormPopupButton}"
                                Placement="Bottom"
                                StaysOpen="True">
@@ -76,22 +83,26 @@
                                                FontSize="12"
                                                Margin="0,0,0,4" />
                                     <TextBox ToolTip="Enter name"
+                                             Text="{Binding ItemName, Mode=TwoWay}"
                                              Height="32"
                                              Margin="0,0,0,12" />
                                     <TextBlock Text="Description"
                                                FontSize="12"
                                                Margin="0,0,0,4" />
                                     <TextBox ToolTip="Enter description"
+                                             Text="{Binding Description, Mode=TwoWay}"
                                              Height="32"
                                              Margin="0,0,0,16" />
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Button x:Name="CancelFormButton"
                                                 Content="Cancel"
+                                                Command="{Binding CancelFormCommand}"
                                                 Width="70"
                                                 Height="28"
                                                 Margin="0,0,8,0" />
                                         <Button x:Name="SaveFormButton"
                                                 Content="Save"
+                                                Command="{Binding SaveFormCommand}"
                                                 Width="70"
                                                 Height="28" />
                                     </StackPanel>
@@ -106,9 +117,9 @@
         <!-- Popup placement -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Popup placement" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Popup.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Anchor a popup to the top, right, bottom or left edge of its target." />
+                           Text="{DynamicResource Loc.P.Popup.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Button x:Name="TopPopupButton" Content="Top" Height="32" Margin="0,0,10,10" />
@@ -123,16 +134,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the popups above." />
+                           Text="{DynamicResource Loc.P.Popup.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -140,16 +153,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Toggle each popup's IsOpen property to show or dismiss it from code-behind." />
+                           Text="{DynamicResource Loc.P.Popup.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

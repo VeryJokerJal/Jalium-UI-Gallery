@@ -1,5 +1,6 @@
 using Jalium.UI;
 using Jalium.UI.Threading;
+using System.Runtime.CompilerServices;
 
 namespace Jalium.UI.Gallery.Modules.Main.Support;
 
@@ -13,6 +14,13 @@ namespace Jalium.UI.Gallery.Modules.Main.Support;
 internal static class FadeAnimator
 {
     private const double FrameIntervalMs = 16.0;
+    private static readonly ConditionalWeakTable<UIElement, FadeState>
+        ActiveFades = new();
+
+    private sealed class FadeState(DispatcherTimer timer)
+    {
+        public DispatcherTimer Timer { get; } = timer;
+    }
 
     /// <summary>
     /// Linearly tweens <see cref="UIElement.Opacity"/> from <paramref name="from"/>
@@ -30,6 +38,14 @@ internal static class FadeAnimator
     {
         ArgumentNullException.ThrowIfNull(element);
 
+        var effectiveFrom = from;
+        if (ActiveFades.TryGetValue(element, out var activeFade))
+        {
+            effectiveFrom = element.Opacity;
+            activeFade.Timer.Stop();
+            ActiveFades.Remove(element);
+        }
+
         if (duration.TotalMilliseconds <= 0)
         {
             element.Opacity = to;
@@ -37,23 +53,25 @@ internal static class FadeAnimator
             return;
         }
 
-        element.Opacity = from;
+        element.Opacity = effectiveFrom;
 
         var totalMs = duration.TotalMilliseconds;
         var start = DateTime.UtcNow;
         var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(FrameIntervalMs) };
+        ActiveFades.Add(element, new FadeState(timer));
 
         timer.Tick += (_, _) =>
         {
             var elapsed = (DateTime.UtcNow - start).TotalMilliseconds;
             var t = Math.Clamp(elapsed / totalMs, 0.0, 1.0);
             var eased = EaseOutCubic(t);
-            element.Opacity = from + ((to - from) * eased);
+            element.Opacity = effectiveFrom + ((to - effectiveFrom) * eased);
 
             if (t >= 1.0)
             {
                 element.Opacity = to;
                 timer.Stop();
+                ActiveFades.Remove(element);
                 completed?.Invoke();
             }
         };

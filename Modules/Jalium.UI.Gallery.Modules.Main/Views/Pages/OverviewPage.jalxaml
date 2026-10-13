@@ -1,6 +1,11 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.OverviewPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      behaviors:OverviewVisualBehavior.IsEnabled="True"
       Title="Jalium.UI Gallery Overview">
 
     <!--
@@ -73,7 +78,7 @@
                       x:Name="RunningHead" Opacity="0" Margin="0,30,40,0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Border Width="30" Height="30"
-                                Shape="SuperEllipse" SuperEllipseN="4"
+                                Shape="RoundedRectangle"
                                 Background="{DynamicResource GalleryAccent}"
                                 VerticalAlignment="Center" Margin="0,0,14,0">
                             <TextBlock Text="J"
@@ -88,7 +93,7 @@
                                    FontSize="15" FontWeight="Bold"
                                    Foreground="{DynamicResource GalleryTextPrimary}"
                                    VerticalAlignment="Center"/>
-                        <TextBlock Text="  /  THE CONTROL GALLERY"
+                        <TextBlock Text="{DynamicResource Loc.P.Overview.Hero1}"
                                    FontFamily="Cascadia Code, Consolas" FontSize="12"
                                    Foreground="{DynamicResource GalleryTextTertiary}"
                                    VerticalAlignment="Center"/>
@@ -98,7 +103,7 @@
                         <Border x:Name="LiveDot" Width="8" Height="8" CornerRadius="4"
                                 Background="{DynamicResource GalleryAccentLight}"
                                 VerticalAlignment="Center" Margin="0,0,8,0"/>
-                        <TextBlock Text="ISSUE Nº 1"
+                        <TextBlock Text="{DynamicResource Loc.P.Overview.Hero2}"
                                    FontFamily="Cascadia Code, Consolas"
                                    FontSize="12" FontWeight="SemiBold"
                                    Foreground="{DynamicResource GalleryTextTertiary}"
@@ -120,31 +125,31 @@
                         <Border x:Name="KickerTick" Width="34" Height="6" CornerRadius="3"
                                 VerticalAlignment="Center" Margin="0,0,14,0"
                                 Background="{DynamicResource GalleryAccent}"/>
-                        <TextBlock Text="A NATIVE .NET 10 UI PLATFORM"
+                        <TextBlock Text="{DynamicResource Loc.P.Overview.Hero3}"
                                    FontFamily="Cascadia Code, Consolas"
                                    FontSize="13" FontWeight="SemiBold"
                                    Foreground="{DynamicResource GalleryTextSecondary}"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <TextBlock x:Name="TitleLine1" Text="Compose"
+                    <TextBlock x:Name="TitleLine1" Text="{DynamicResource Loc.P.Overview.Hero4}"
                                FontFamily="Segoe UI Variable Display, Segoe UI"
                                FontSize="84" FontWeight="Bold"
                                Opacity="0"
                                Foreground="{DynamicResource GalleryTextPrimary}"/>
-                    <TextBlock x:Name="TitleLine2" Text="interfaces"
+                    <TextBlock x:Name="TitleLine2" Text="{DynamicResource Loc.P.Overview.Hero5}"
                                FontFamily="Segoe UI Variable Display, Segoe UI"
                                FontSize="84" FontWeight="Light"
                                Opacity="0"
                                Foreground="{DynamicResource GalleryTextSecondary}"/>
-                    <TextBlock x:Name="TitleLine3" Text="that ship."
+                    <TextBlock x:Name="TitleLine3" Text="{DynamicResource Loc.P.Overview.Hero6}"
                                FontFamily="Segoe UI Variable Display, Segoe UI"
                                FontSize="84" FontWeight="Bold"
                                HorizontalAlignment="Left"
-                               Opacity="0" Foreground="#F59E0B"/>
+                               Opacity="0" Foreground="{DynamicResource GalleryWarningOnSurface}"/>
 
                     <TextBlock x:Name="Deck"
-                               Text="WPF-grade ergonomics, a GPU-accelerated renderer, one XAML dialect across desktop, mobile and web — with every control proven live in this gallery."
+                               Text="{DynamicResource Loc.P.Overview.Hero7}"
                                FontFamily="Segoe UI" FontSize="16"
                                MaxWidth="520" Opacity="0" TextWrapping="Wrap"
                                HorizontalAlignment="Left" Margin="4,28,0,0"
@@ -153,16 +158,29 @@
                     <StackPanel x:Name="CtaRow" Orientation="Horizontal"
                                 Opacity="0" Margin="4,38,0,0" VerticalAlignment="Center">
                         <Button x:Name="EnterButton"
-                                Content="Enter the Gallery  →"
-                                Click="OnEnterButtonClick"
+                                Command="{Binding EnterGalleryCommand}"
+                                Style="{StaticResource GalleryPrimaryButton}"
+                                automation:AutomationProperties.Name="{DynamicResource Loc.P.Overview.Hero8}"
                                 Height="56" MinWidth="248"
                                 FontSize="16" FontWeight="Bold"
-                                Padding="32,0,32,0"/>
+                                Padding="32,0,32,0">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="{DynamicResource Loc.P.Overview.Hero8}"
+                                           VerticalAlignment="Center" />
+                                <SymbolIcon Symbol="Forward"
+                                            Width="17"
+                                            Height="17"
+                                            Margin="10,0,0,0"
+                                            Foreground="{DynamicResource GalleryTextOnAccent}" />
+                            </StackPanel>
+                        </Button>
                         <StackPanel Margin="22,0,0,0" VerticalAlignment="Center">
-                            <TextBlock Text="press [ enter ] to load the gallery"
+                            <TextBlock Text="{DynamicResource Loc.P.Overview.Hero9}"
                                        FontFamily="Cascadia Code, Consolas" FontSize="12"
                                        Foreground="{DynamicResource GalleryTextSecondary}"/>
-                            <TextBlock Text="120+ controls · live · gpu · native-aot"
+                            <TextBlock Text="{DynamicResource Loc.P.Overview.Hero10}"
                                        FontFamily="Cascadia Code, Consolas" FontSize="11"
                                        Foreground="{DynamicResource GalleryTextMuted}"
                                        Margin="0,3,0,0"/>
@@ -180,13 +198,13 @@
                 <StackPanel Grid.Row="1" Grid.Column="3"
                             VerticalAlignment="Center" Margin="34,0,40,0">
 
-                    <TextBlock x:Name="RailHead" Text="SPECIMENS"
+                    <TextBlock x:Name="RailHead" Text="{DynamicResource Loc.P.Overview.Hero11}"
                                FontFamily="Cascadia Code, Consolas"
                                FontSize="12" FontWeight="SemiBold"
                                Opacity="0" Margin="0,0,0,6"
                                Foreground="{DynamicResource GalleryTextTertiary}"/>
                     <TextBlock x:Name="RailSub"
-                               Text="A few live, hand-set from the collection"
+                               Text="{DynamicResource Loc.P.Overview.Hero12}"
                                FontFamily="Segoe UI" FontSize="12" Opacity="0"
                                TextWrapping="Wrap" Margin="0,0,0,20"
                                Foreground="{DynamicResource GalleryTextMuted}"/>
@@ -196,10 +214,10 @@
                                    FontFamily="Cascadia Code, Consolas" FontSize="11"
                                    Foreground="{DynamicResource GalleryTextMuted}"
                                    Margin="0,0,0,8"/>
-                        <ToggleSwitch Header="GPU compositing"
+                        <ToggleSwitch Header="{DynamicResource Loc.P.Overview.Hero13}"
                                       IsOn="True" OnContent="On" OffContent="Off"/>
                         <CheckBox IsChecked="True" Margin="0,4,0,0">
-                            <TextBlock Text="Hardware acceleration" FontSize="11"
+                            <TextBlock Text="{DynamicResource Loc.P.Overview.Hero14}" FontSize="11"
                                        Foreground="{DynamicResource GalleryTextSecondary}"/>
                         </CheckBox>
                     </StackPanel>
@@ -247,7 +265,7 @@
                             Background="{DynamicResource GalleryBorderSubtle}"/>
 
                     <StackPanel x:Name="Specimen4" Opacity="0" Margin="0,0,0,16">
-                        <TextBlock Text="04 — Razor @@{ for } · SuperEllipse"
+                        <TextBlock Text="04 — Razor @@{ for } · rounded corners"
                                    FontFamily="Cascadia Code, Consolas" FontSize="11"
                                    Foreground="{DynamicResource GalleryTextMuted}"
                                    Margin="0,0,0,10"/>
@@ -255,7 +273,7 @@
                             @{
                                 for (var i = 1; i <= 6; i++) {
                                     <Border Width="34" Height="34"
-                                            Shape="SuperEllipse" SuperEllipseN="4"
+                                            Shape="RoundedRectangle"
                                             Background="{DynamicResource GalleryAccent}"
                                             Margin="0,0,7,7">
                                         <TextBlock Text="@(i.ToString())"
@@ -280,8 +298,8 @@
                                    Margin="0,0,0,10"/>
                         <Border Height="46" CornerRadius="12"
                                 LiquidGlass="True" LiquidGlassInteractive="True"
-                                Background="#2238BDF8">
-                            <TextBlock Text="frosted · refractive glass"
+                                Background="{DynamicResource GalleryInfoSoft}">
+                            <TextBlock Text="{DynamicResource Loc.P.Overview.Hero15}"
                                        FontFamily="Cascadia Code, Consolas" FontSize="11"
                                        Foreground="{DynamicResource GalleryTextPrimary}"
                                        HorizontalAlignment="Center"
@@ -324,7 +342,7 @@
                     <TextBlock Grid.Column="1" Text="jaliumui.top"
                                FontFamily="Cascadia Code, Consolas" FontSize="12"
                                FontWeight="SemiBold" VerticalAlignment="Center"
-                               Margin="0,18,0,0" Foreground="#F59E0B"/>
+                               Margin="0,18,0,0" Foreground="{DynamicResource GalleryWarningOnSurface}"/>
                 </Grid>
             </Grid>
         </Grid>

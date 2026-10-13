@@ -1,24 +1,30 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SankeyDiagramPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="SankeyDiagram">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="SankeyDiagram" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.SankeyDiagram.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A diagram control that visualizes flow data with proportionally-sized nodes and curved links." />
+                   Text="{DynamicResource Loc.P.SankeyDiagram.Sub1}" />
 
         <!-- Basic Sankey -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Sankey" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SankeyDiagram.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A simple energy flow diagram with source, conversion, and consumption nodes." />
+                           Text="{DynamicResource Loc.P.SankeyDiagram.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicSankeyContainer" Orientation="Vertical" />
+                    <SankeyDiagram Height="300"
+                                   ShowLabels="True"
+                                   ShowValues="False"
+                                   Nodes="{Binding BasicNodes}"
+                                   Links="{Binding BasicLinks}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +32,15 @@
         <!-- Multi-Layer Flow -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multi-Layer Flow" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SankeyDiagram.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A Sankey diagram with 4 layers showing a website user journey funnel." />
+                           Text="{DynamicResource Loc.P.SankeyDiagram.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="MultiLayerSankeyContainer" Orientation="Vertical" />
+                    <SankeyDiagram Height="320"
+                                   ShowLabels="True"
+                                   ShowValues="True"
+                                   Nodes="{Binding TrafficNodes}"
+                                   Links="{Binding TrafficLinks}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +48,19 @@
         <!-- Customized -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Customized" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SankeyDiagram.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A Sankey diagram with custom node colors, labels, and value display enabled." />
+                           Text="{DynamicResource Loc.P.SankeyDiagram.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="CustomSankeyContainer" Orientation="Vertical" />
+                    <SankeyDiagram Height="280"
+                                   ShowLabels="True"
+                                   ShowValues="True"
+                                   NodeWidth="24"
+                                   NodeSpacing="14"
+                                   LinkOpacity="0.5"
+                                   LabelPosition="Right"
+                                   Nodes="{Binding BudgetNodes}"
+                                   Links="{Binding BudgetLinks}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +68,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declaring SankeyDiagram controls in markup with labels, values, and custom appearance." />
+                           Text="{DynamicResource Loc.P.SankeyDiagram.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +87,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Populating nodes and links, then applying custom node colors in code-behind." />
+                           Text="{DynamicResource Loc.P.SankeyDiagram.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

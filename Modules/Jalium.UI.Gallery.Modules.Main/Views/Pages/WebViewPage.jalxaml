@@ -1,49 +1,60 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.WebViewPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="WebView">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="WebView" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Media}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.WebView.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Embeds live web content in your app through the Microsoft Edge WebView2 runtime, with back / forward navigation, page-state events, and JavaScript execution." />
+                   Text="{DynamicResource Loc.P.WebView.Sub1}" />
 
         <!-- Browser demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Browser" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WebView.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Navigate to any URL with back, forward, and refresh controls." />
+                           Text="{DynamicResource Loc.P.WebView.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" ClipToBounds="True">
                     <StackPanel Orientation="Vertical">
                         <!-- Address / navigation toolbar -->
                         <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8">
                             <WrapPanel>
-                                <Button x:Name="BackButton"
-                                        Content="&lt;"
-                                        Width="32"
-                                        Height="32"
-                                        Margin="0,0,10,10" />
-                                <Button x:Name="ForwardButton"
-                                        Content="&gt;"
-                                        Width="32"
-                                        Height="32"
-                                        Margin="0,0,10,10" />
-                                <Button x:Name="RefreshButton"
-                                        Content="R"
-                                        Width="32"
-                                        Height="32"
-                                        Margin="0,0,10,10" />
-                                <TextBox x:Name="AddressBar"
-                                         Height="32"
+                                <Button Command="{Binding BackCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Back"
+                                        automation:AutomationProperties.Name="Back"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Back" />
+                                </Button>
+                                <Button Command="{Binding ForwardCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Forward"
+                                        automation:AutomationProperties.Name="Forward"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Forward" />
+                                </Button>
+                                <Button Command="{Binding RefreshCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Refresh"
+                                        automation:AutomationProperties.Name="Refresh"
+                                        Margin="0,0,12,8">
+                                    <SymbolIcon Symbol="Refresh" />
+                                </Button>
+                                <TextBox Height="32"
                                          Width="300"
                                          FontSize="13"
-                                         Margin="0,0,10,10" />
-                                <Button x:Name="GoButton"
-                                        Content="Go"
+                                         Text="{Binding Address, Mode=TwoWay}"
+                                         behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding NavigateCommand}"
+                                         Margin="0,0,10,8" />
+                                <Button Content="Go"
+                                        Command="{Binding NavigateCommand}"
                                         Width="48"
                                         Height="32"
                                         Margin="0,0,10,10" />
@@ -51,15 +62,19 @@
                         </Border>
 
                         <!-- WebView viewport -->
-                        <Border x:Name="WebViewContainer"
-                                Height="500"
-                                ClipToBounds="True" />
+                        <Border Height="500"
+                                ClipToBounds="True">
+                            <WebView Source="{Binding InitialSource}"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     behaviors:WebViewBehavior.IsEnabled="True"
+                                     behaviors:WebViewBehavior.Request="{Binding RequestValue}" />
+                        </Border>
 
                         <!-- Status strip -->
                         <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="10,8">
-                            <TextBlock x:Name="InlineStatusText"
-                                       Style="{StaticResource GalleryCaptionText}"
-                                       Text="Status: Initializing WebView..." />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{Binding Status}" />
                         </Border>
                     </StackPanel>
                 </Border>
@@ -69,18 +84,16 @@
         <!-- Page info -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Page Info" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WebView.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Displays the current document title and navigation state." />
+                           Text="{DynamicResource Loc.P.WebView.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock x:Name="TitleText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Title: (not loaded)"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding DocumentTitle}"
                                    Margin="0,0,0,8" />
-                        <TextBlock x:Name="StatusText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Status: Ready" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding Status}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -89,24 +102,23 @@
         <!-- JavaScript execution -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Execute JavaScript" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WebView.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Run JavaScript code in the web page and see the result." />
+                           Text="{DynamicResource Loc.P.WebView.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBox x:Name="ScriptInput"
-                                 Height="32"
+                        <TextBox Height="32"
                                  FontSize="13"
+                                 Text="{Binding Script, Mode=TwoWay}"
                                  Margin="0,0,0,8" />
-                        <Button x:Name="ExecuteScriptButton"
-                                Content="Execute"
+                        <Button Content="Execute"
+                                Command="{Binding ExecuteScriptCommand}"
                                 Height="32"
                                 Width="100"
                                 Margin="0,0,0,8"
                                 HorizontalAlignment="Left" />
-                        <TextBlock x:Name="ScriptResultText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Result: " />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding ScriptResult}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -115,28 +127,28 @@
         <!-- Properties -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="WebView Properties" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WebView.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Key properties exposed by the WebView control." />
+                           Text="{DynamicResource Loc.P.WebView.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Source - The URI to navigate to (Uri)"
+                                   Text="{DynamicResource Loc.P.WebView.Body1}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="CanGoBack / CanGoForward - Navigation history state (bool, read-only)"
+                                   Text="{DynamicResource Loc.P.WebView.Body2}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="ZoomFactor - Zoom level from 0.25 to 4.0 (double)"
+                                   Text="{DynamicResource Loc.P.WebView.Body3}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="DefaultBackgroundColor - Background color before content loads (Color)"
+                                   Text="{DynamicResource Loc.P.WebView.Body4}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="DocumentTitle - Current page title (string, read-only)"
+                                   Text="{DynamicResource Loc.P.WebView.Body5}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="CoreWebView2 - Underlying WebView2 instance for advanced usage" />
+                                   Text="{DynamicResource Loc.P.WebView.Body6}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -145,16 +157,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the browser demo above." />
+                           Text="{DynamicResource Loc.P.WebView.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -162,16 +176,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating a WebView, wiring navigation events and executing JavaScript from code-behind." />
+                           Text="{DynamicResource Loc.P.WebView.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

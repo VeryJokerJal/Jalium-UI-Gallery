@@ -19,6 +19,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\CssImports\*.css">
+      <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.CssImports.%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\CssFonts\*">
+      <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.CssFonts.%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assets\logo.png">
       <LogicalName>Jalium.UI.Gallery.Modules.Main.Assets.logo.png</LogicalName>
     </EmbeddedResource>
@@ -30,6 +36,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
+  </ItemGroup>
+
   <!-- 引用本地项目 (开发模式，可访问最新代码) -->
   <ItemGroup>
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Core\Jalium.UI.Core.csproj" />
@@ -39,10 +49,7 @@
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Controls\Jalium.UI.Controls.csproj" />
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml\Jalium.UI.Xaml.csproj" />
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Gpu\Jalium.UI.Gpu.csproj" />
-    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj"
-                      OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false"
-                      UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
+    <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
     <!-- Build 项目：仅构建时依赖（提供 MSBuild 任务 DLL），不作为运行时引用 -->
     <ProjectReference Include="..\..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
   </ItemGroup>

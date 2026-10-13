@@ -17,7 +17,7 @@ namespace Jalium.UI.Gallery.Android;
     Label = "Jalium.UI.Gallery.Android",
     MainLauncher = true,
     Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
-    ScreenOrientation = global::Android.Content.PM.ScreenOrientation.SensorLandscape,
+    ScreenOrientation = global::Android.Content.PM.ScreenOrientation.SensorPortrait,
     ConfigurationChanges = global::Android.Content.PM.ConfigChanges.Orientation
         | global::Android.Content.PM.ConfigChanges.ScreenSize
         | global::Android.Content.PM.ConfigChanges.KeyboardHidden)]
@@ -35,6 +35,7 @@ public class MainActivity : JaliumActivity
         // the Services project. Additional Add{Transient,Scoped,Singleton} or
         // AddHostedService calls belong right here.
         builder.Services.AddAppServices();
+        builder.Services.AddMainModule();
 
         var app = builder.Build();
 

@@ -1,0 +1,146 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RazorVirtualizePage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      Title="Razor @@virtualize">
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataAndBinding}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Razor @@virtualize" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="{DynamicResource Loc.P.RazorVirtualize.Sub1}" />
+
+        <!-- ======== 1. Collection form over a large source ======== -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="1. @@virtualize over 100,000 rows" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.RazorVirtualize.CC1}" />
+
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="@RowCountLabel" />
+
+                <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,0,10">
+                    <!-- The block sits directly inside the ScrollViewer, which is what lets the
+                         generated host reuse that viewport instead of building its own. The
+                         explicit height is what bounds the scrolling axis. -->
+                    <ScrollViewer Height="320" HorizontalScrollBarVisibility="Disabled">
+                        @virtualize(var row in Rows)
+                        {
+                            <Border Height="44"
+                                    Padding="14,0"
+                                    BorderThickness="0,0,0,1"
+                                    BorderBrush="{DynamicResource GalleryDivider}">
+                                <Grid ColumnDefinitions="*,120,90" VerticalAlignment="Center">
+                                    <TextBlock Grid.Column="0"
+                                               Text="@row.Name"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource GalleryTextPrimary}" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="@row.Category"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource GalleryTextSecondary}" />
+                                    <TextBlock Grid.Column="2"
+                                               Text="@(row.Value.ToString(&quot;F1&quot;))"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource GalleryTextSecondary}" />
+                                </Grid>
+                            </Border>
+                        }
+                    </ScrollViewer>
+                </Border>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <TextBlock Text="{Binding VirtualizeExample}" FontSize="12" FontFamily="Consolas"
+                               Foreground="{DynamicResource GalleryCodeText}" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 2. Collection changes ======== -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RazorVirtualize.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="The loop binds to the source rather than copying it, so adding and removing rows updates the list in place. A plain @@foreach would have to re-expand the whole document to notice." />
+
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,10">
+                    <Button Content="{DynamicResource Loc.P.RazorVirtualize.Ui1}" Command="{Binding PrependRowCommand}" />
+                    <Button Content="{DynamicResource Loc.P.RazorVirtualize.Ui2}" Command="{Binding RemoveFirstRowCommand}" />
+                    <TextBlock Text="@RowCountLabel"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource GalleryTextSecondary}" />
+                </StackPanel>
+
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ScrollViewer Height="180" HorizontalScrollBarVisibility="Disabled">
+                        @virtualize(var row in Rows)
+                        {
+                            <Border Height="32" Padding="14,0">
+                                <TextBlock Text="@row.Name"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource GalleryTextPrimary}" />
+                            </Border>
+                        }
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 3. Numeric form ======== -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RazorVirtualize.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.RazorVirtualize.CC2}" />
+
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,10">
+                    <Button Content="{DynamicResource Loc.P.RazorVirtualize.Ui3}" Command="{Binding GrowTilesCommand}" />
+                    <Button Content="{DynamicResource Loc.P.RazorVirtualize.Ui4}" Command="{Binding ShrinkTilesCommand}" />
+                    <TextBlock Text="Count: @TileCount"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource GalleryTextSecondary}" />
+                </StackPanel>
+
+                <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,0,10">
+                    <ScrollViewer Height="220" HorizontalScrollBarVisibility="Disabled">
+                        @virtualize(var i = 0; i < TileCount; i++)
+                        {
+                            <Border Height="36" Padding="14,0">
+                                <TextBlock Text="Tile @i."
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource GalleryTextPrimary}" />
+                            </Border>
+                        }
+                    </ScrollViewer>
+                </Border>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <TextBlock Text="{Binding NumericExample}" FontSize="12" FontFamily="Consolas"
+                               Foreground="{DynamicResource GalleryCodeText}" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- ======== 4. How it differs from @foreach ======== -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RazorVirtualize.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="@@foreach expands while the document is read: one real element per item, no recycling, evaluated once at load. It suits a short fixed list. Anything data-driven or open-ended belongs in @@virtualize." />
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12" Margin="0,0,0,10">
+                    <TextBlock Text="{Binding ForeachExample}" FontSize="12" FontFamily="Consolas"
+                               Foreground="{DynamicResource GalleryCodeText}" />
+                </Border>
+
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.RazorVirtualize.CC3}" />
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+</Page>

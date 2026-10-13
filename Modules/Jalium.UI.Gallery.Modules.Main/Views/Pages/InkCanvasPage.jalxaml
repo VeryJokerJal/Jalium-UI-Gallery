@@ -1,63 +1,69 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.InkCanvasPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="InkCanvas">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="InkCanvas" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Media}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.InkCanvas.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A drawing surface that captures freehand ink strokes from mouse, pen or touch, with configurable stroke color, width, brush type and eraser modes." />
+                   Text="{DynamicResource Loc.P.InkCanvas.Sub1}" />
 
         <!-- Basic drawing -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Drawing" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Draw with your mouse, switch between ink and erase modes, or clear the canvas." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <InkCanvas x:Name="MainInkCanvas"
                                Width="600"
                                Height="300"
-                               EditingMode="Ink" />
+                               EditingMode="{Binding EditingMode}"
+                               behaviors:InkCanvasBehavior.IsEnabled="True"
+                               behaviors:InkCanvasBehavior.DrawingSettings="{Binding DrawingSettings}"
+                               behaviors:InkCanvasBehavior.Request="{Binding CanvasRequest}" />
                 </Border>
                 <WrapPanel Margin="0,16,0,0">
-                    <Button x:Name="InkModeButton" Content="Draw" Margin="0,0,10,10" />
-                    <Button x:Name="EraseModeButton" Content="Erase" Margin="0,0,10,10" />
-                    <Button x:Name="ClearButton" Content="Clear All" Margin="0,0,10,10" />
+                    <Button Content="Draw" Command="{Binding DrawCommand}" Margin="0,0,10,10" />
+                    <Button Content="Erase" Command="{Binding EraseCommand}" Margin="0,0,10,10" />
+                    <Button Content="Clear All" Command="{Binding ClearCommand}" Margin="0,0,10,10" />
                 </WrapPanel>
                 <TextBlock x:Name="StatusText"
                            Style="{StaticResource GalleryValueLabel}"
-                           Text="Mode: Ink" />
+                           Text="{Binding ModeStatus}" />
             </StackPanel>
         </Border>
 
         <!-- Stroke color -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stroke Color" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Pick a color to draw with." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
-                        <Button x:Name="BlackColorButton" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="#33FFFFFF" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Button Command="{Binding UseBlackCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <Border Background="#000000" CornerRadius="3" />
                         </Button>
-                        <Button x:Name="RedColorButton" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="#33FFFFFF" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Button Command="{Binding UseRedCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <Border Background="#E81123" CornerRadius="3" />
                         </Button>
-                        <Button x:Name="BlueColorButton" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="#33FFFFFF" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Button Command="{Binding UseBlueCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <Border Background="#0078D4" CornerRadius="3" />
                         </Button>
-                        <Button x:Name="GreenColorButton" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="#33FFFFFF" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Button Command="{Binding UseGreenCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <Border Background="#00CC6A" CornerRadius="3" />
                         </Button>
-                        <Button x:Name="OrangeColorButton" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="#33FFFFFF" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Button Command="{Binding UseOrangeCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <Border Background="#F7630C" CornerRadius="3" />
                         </Button>
-                        <Button x:Name="PurpleColorButton" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="#33FFFFFF" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Button Command="{Binding UsePurpleCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <Border Background="#886CE4" CornerRadius="3" />
                         </Button>
                     </WrapPanel>
@@ -68,20 +74,20 @@
         <!-- Stroke width -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stroke Width" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Adjust the width of the stroke." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal">
                         <Slider x:Name="WidthSlider"
                                 Width="300"
                                 Minimum="1"
                                 Maximum="20"
-                                Value="2"
+                                Value="{Binding StrokeWidth, Mode=TwoWay}"
                                 Margin="0,0,16,0" />
                         <TextBlock x:Name="WidthText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Width: 2" />
+                                   Text="{Binding WidthStatus}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -90,11 +96,12 @@
         <!-- Highlighter mode -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Highlighter Mode" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Toggle highlighter mode for semi-transparent strokes." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <CheckBox x:Name="HighlighterCheckBox" Content="Enable Highlighter" />
+                    <CheckBox Content="Enable Highlighter"
+                              IsChecked="{Binding IsHighlighter, Mode=TwoWay}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -102,25 +109,25 @@
         <!-- Brush type -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Brush Type" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Select the brush type used for new strokes." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="RoundBrushButton" Content="圆笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="CalligraphyBrushButton" Content="毛笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="PenBrushButton" Content="书写笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="AirbrushButton" Content="喷枪" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="OilBrushButton" Content="油画笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="CrayonBrushButton" Content="蜡笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="MarkerBrushButton" Content="记号笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="PencilBrushButton" Content="铅笔" Width="80" Margin="0,0,10,10" />
-                            <Button x:Name="WatercolorBrushButton" Content="水彩笔" Width="80" Margin="0,0,10,10" />
+                            <Button Content="圆笔" Command="{Binding UseRoundBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="毛笔" Command="{Binding UseCalligraphyBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="书写笔" Command="{Binding UsePenBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="喷枪" Command="{Binding UseAirbrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="油画笔" Command="{Binding UseOilBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="蜡笔" Command="{Binding UseCrayonBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="记号笔" Command="{Binding UseMarkerBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="铅笔" Command="{Binding UsePencilBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="水彩笔" Command="{Binding UseWatercolorBrushCommand}" Width="80" Margin="0,0,10,10" />
                         </WrapPanel>
                         <TextBlock x:Name="BrushTypeStatusText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Brush Type: 圆笔"
+                                   Text="{Binding BrushTypeStatus}"
                                    Margin="0,6,0,0" />
                     </StackPanel>
                 </Border>
@@ -130,19 +137,19 @@
         <!-- Taper mode -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Taper Mode" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT6}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Select the taper style for new strokes." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="AnimNoneButton" Content="Normal" Margin="0,0,10,10" />
-                            <Button x:Name="AnimGrowInButton" Content="Tapered Start" Margin="0,0,10,10" />
-                            <Button x:Name="AnimShrinkOutButton" Content="Tapered End" Margin="0,0,10,10" />
+                            <Button Content="Normal" Command="{Binding UseNormalTaperCommand}" Margin="0,0,10,10" />
+                            <Button Content="Tapered Start" Command="{Binding UseTaperedStartCommand}" Margin="0,0,10,10" />
+                            <Button Content="Tapered End" Command="{Binding UseTaperedEndCommand}" Margin="0,0,10,10" />
                         </WrapPanel>
                         <TextBlock x:Name="AnimationStatusText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Taper: Normal"
+                                   Text="{Binding TaperStatus}"
                                    Margin="0,6,0,0" />
                     </StackPanel>
                 </Border>
@@ -152,13 +159,13 @@
         <!-- Stroke information -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stroke Information" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.InkCanvas.CT7}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Shows the number of strokes currently on the canvas." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <TextBlock x:Name="StrokeCountText"
                                Style="{StaticResource GalleryValueLabel}"
-                               Text="Strokes: 0" />
+                               Text="{Binding StrokeCountStatus}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -166,16 +173,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the InkCanvas demo above." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC8}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -183,16 +192,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Setting the editing mode, drawing attributes and handling stroke events in code-behind." />
+                           Text="{DynamicResource Loc.P.InkCanvas.CC9}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

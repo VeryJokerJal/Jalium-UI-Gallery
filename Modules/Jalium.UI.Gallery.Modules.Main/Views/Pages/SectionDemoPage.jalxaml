@@ -1,6 +1,10 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SectionDemoPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      behaviors:RazorSectionCleanupBehavior.SectionName="PaneFooterSection"
       Title="Section Demo">
 
     @section PaneFooterSection {
@@ -24,7 +28,7 @@
         </StackPanel>
     }
     @section NavFooter {
-        <Border Background="#2D7D2D" CornerRadius="8" Padding="10,6">
+        <Border Background="{DynamicResource GalleryAccentSoft}" CornerRadius="8" Padding="10,6">
             <TextBlock Text="v1.0 - Section Demo" FontSize="11" TextAlignment="Center"/>
         </Border>
     }
@@ -34,10 +38,10 @@
     @section PageContent {
         <StackPanel>
             <TextBlock Text="Welcome to the dashboard. This entire layout is built with @@section and @@RenderSection." FontSize="13" Margin="0,0,0,12"/>
-            <Border Background="#1A3A5C" CornerRadius="8" Padding="16" Margin="0,0,0,8">
+            <Border Background="{DynamicResource GalleryInfoSoft}" CornerRadius="8" Padding="16" Margin="0,0,0,8">
                 <TextBlock Text="Card 1 - Rendered from @@RenderSection" FontSize="13"/>
             </Border>
-            <Border Background="#1A5C30" CornerRadius="8" Padding="16">
+            <Border Background="{DynamicResource GallerySuccessSoft}" CornerRadius="8" Padding="16">
                 <TextBlock Text="Card 2 - Also from a section" FontSize="13"/>
             </Border>
         </StackPanel>
@@ -46,15 +50,15 @@
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA &amp; BINDING" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Section" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataAndBinding}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.SectionDemo.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
                    Text="Define reusable named blocks of markup with @@section, then render them anywhere in the page with @@RenderSection." />
 
         <!-- Navigation layout built from sections -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Navigation layout with sections" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SectionDemo.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
                            Text="A sidebar + content layout built entirely with @@section and @@RenderSection." />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
@@ -82,9 +86,9 @@
         <!-- Reuse the same section in several places -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Reuse sections multiple times" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SectionDemo.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The same section can be rendered in multiple locations." />
+                           Text="{DynamicResource Loc.P.SectionDemo.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         @RenderSection("NavHeader")
@@ -98,7 +102,7 @@
         <!-- Syntax reference -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Syntax reference" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SectionDemo.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
                            Text="The @@section directive declares a named block of markup; @@RenderSection emits it wherever you place the call." />
                 <Border Style="{StaticResource GalleryDemoSurface}">
@@ -117,16 +121,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative JALXAML that defines the sections and renders them into a nav layout." />
+                           Text="{DynamicResource Loc.P.SectionDemo.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -134,16 +140,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Sections declared in markup register automatically; unregister page-scoped ones on unload." />
+                           Text="{DynamicResource Loc.P.SectionDemo.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

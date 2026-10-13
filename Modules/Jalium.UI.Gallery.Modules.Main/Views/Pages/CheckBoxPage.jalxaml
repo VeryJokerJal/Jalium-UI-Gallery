@@ -1,30 +1,34 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CheckBoxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="CheckBox">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="CheckBox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.CheckBox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control a user can select and clear, with optional support for an indeterminate third state." />
+                   Text="{DynamicResource Loc.P.CheckBox.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click the checkbox to toggle its state." />
+                           Text="{DynamicResource Loc.P.CheckBox.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <CheckBox x:Name="DemoCheckBox" Margin="0,0,0,8">
-                            <TextBlock Text="I agree to the terms" FontSize="14"/>
+                        <CheckBox x:Name="DemoCheckBox"
+                                  IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                  Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo1}" FontSize="14"/>
                         </CheckBox>
                         <TextBlock x:Name="CheckBoxStatus"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Status: Unchecked" />
+                                   Text="{Binding CheckBoxStatus}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -33,19 +37,19 @@
         <!-- Basic checkboxes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic checkboxes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CheckBox.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Standard checkbox controls in unchecked, checked and disabled states." />
+                           Text="{DynamicResource Loc.P.CheckBox.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <CheckBox Margin="0,0,0,8">
                             <TextBlock Text="Option 1" FontSize="14"/>
                         </CheckBox>
                         <CheckBox IsChecked="True" Margin="0,0,0,8">
-                            <TextBlock Text="Option 2 (checked)" FontSize="14"/>
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo2}" FontSize="14"/>
                         </CheckBox>
                         <CheckBox IsEnabled="False">
-                            <TextBlock Text="Disabled option" FontSize="14"/>
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo3}" FontSize="14"/>
                         </CheckBox>
                     </StackPanel>
                 </Border>
@@ -55,17 +59,20 @@
         <!-- Three-state checkbox -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Three-state checkbox" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CheckBox.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A checkbox that adds an indeterminate state alongside checked and unchecked." />
+                           Text="{DynamicResource Loc.P.CheckBox.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <CheckBox x:Name="ThreeStateCheckBox" IsThreeState="True" Margin="0,0,0,8">
-                            <TextBlock Text="Three-state checkbox" FontSize="14"/>
+                        <CheckBox x:Name="ThreeStateCheckBox"
+                                  IsThreeState="True"
+                                  IsChecked="{Binding ThreeStateValue, Mode=TwoWay}"
+                                  Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo4}" FontSize="14"/>
                         </CheckBox>
                         <TextBlock x:Name="ThreeStateStatus"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Status: Indeterminate" />
+                                   Text="{Binding ThreeStateStatus}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -74,16 +81,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the checkboxes above." />
+                           Text="{DynamicResource Loc.P.CheckBox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -91,16 +100,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring checked, unchecked and indeterminate handlers in code-behind." />
+                           Text="{DynamicResource Loc.P.CheckBox.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

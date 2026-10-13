@@ -1,0 +1,277 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DesignTokensPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      Title="Design Tokens">
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <Grid behaviors:DesignTokensLayoutBehavior.IsEnabled="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Style="{StaticResource GalleryEyebrow}"
+                           Text="{DynamicResource Loc.P.DesignTokens.Eyebrow1}" />
+                <TextBlock Style="{StaticResource GalleryPageTitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.Title1}" />
+                <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.Sub1}" />
+            </StackPanel>
+            <StackPanel x:Name="ThemeActions"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Top">
+                <RadioButton Content="Light"
+                             GroupName="DesignTokenThemes"
+                             Style="{StaticResource GallerySegmentButton}"
+                             IsChecked="{Binding IsLightTheme, Mode=OneWay}"
+                             Command="{Binding UseLightThemeCommand}"
+                             Width="74"
+                             Margin="0,0,6,0" />
+                <RadioButton Content="Dark"
+                             GroupName="DesignTokenThemes"
+                             Style="{StaticResource GallerySegmentButton}"
+                             IsChecked="{Binding IsDarkTheme, Mode=OneWay}"
+                             Command="{Binding UseDarkThemeCommand}"
+                             Width="74" />
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Text="{Binding ActiveThemeLabel}"
+                   Style="{StaticResource GalleryCaptionText}"
+                   Margin="0,0,0,10" />
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CC1}" />
+                <ItemsControl ItemsSource="{Binding ColorTokens}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="210"
+                                    Height="92"
+                                    Background="{DynamicResource GalleryCardAltBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Padding="10"
+                                    Margin="0,0,10,10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="54" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="42"
+                                            Height="42"
+                                            CornerRadius="8"
+                                            Background="{Binding Preview}"
+                                            VerticalAlignment="Center" />
+                                    <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource GalleryValueLabel}"
+                                                   FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Role}"
+                                                   Style="{StaticResource GalleryCaptionText}"
+                                                   FontSize="10" />
+                                        <TextBlock Text="{Binding Value}"
+                                                   Style="{StaticResource GalleryBodyText}"
+                                                   FontFamily="Cascadia Code, Consolas"
+                                                   FontSize="10"
+                                                   Margin="0,3,0,0" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CT2}" />
+                <ItemsControl ItemsSource="{Binding TypeTokens}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource GalleryCaptionText}"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Sample}"
+                                           FontSize="{Binding Size}"
+                                           FontWeight="{Binding Weight}"
+                                           Foreground="{DynamicResource GalleryTextPrimary}"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CC2}" />
+                <WrapPanel>
+                    <StackPanel Width="400"
+                                Margin="0,0,28,0">
+                        <TextBlock Style="{StaticResource GalleryEyebrow}"
+                                   Text="{DynamicResource Loc.P.DesignTokens.Eyebrow2}" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.DesignTokens.Cap1}"
+                                   Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding SpacingTokens}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="38"
+                                          Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="72" />
+                                            <ColumnDefinition Width="78" />
+                                            <ColumnDefinition Width="62" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+                                            <Border Width="14"
+                                                    Height="22"
+                                                    Background="{DynamicResource GalleryAccentSoft}"
+                                                    BorderBrush="{DynamicResource GalleryAccentOnSurface}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="3" />
+                                            <Border Width="{Binding Pixels}"
+                                                    Background="Transparent" />
+                                            <Border Width="14"
+                                                    Height="22"
+                                                    Background="{DynamicResource GalleryAccentSoft}"
+                                                    BorderBrush="{DynamicResource GalleryAccentOnSurface}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="3" />
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Name}"
+                                                   Style="{StaticResource GalleryValueLabel}" />
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Value}"
+                                                   Style="{StaticResource GalleryBodyText}"
+                                                   FontFamily="Cascadia Code, Consolas"
+                                                   VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding Usage}"
+                                                   Style="{StaticResource GalleryCaptionText}"
+                                                   VerticalAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <StackPanel Width="400">
+                        <TextBlock Style="{StaticResource GalleryEyebrow}"
+                                   Text="{DynamicResource Loc.P.DesignTokens.Eyebrow3}" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.DesignTokens.Cap2}"
+                                   Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding RadiusTokens}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="44"
+                                          Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="72" />
+                                            <ColumnDefinition Width="78" />
+                                            <ColumnDefinition Width="62" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="60"
+                                                Height="36"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Background="{DynamicResource GalleryAccentSoft}"
+                                                BorderBrush="{DynamicResource GalleryAccentOnSurface}"
+                                                BorderThickness="1"
+                                                CornerRadius="{Binding PreviewRadius}" />
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Name}"
+                                                   Style="{StaticResource GalleryValueLabel}" />
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Value}"
+                                                   Style="{StaticResource GalleryBodyText}"
+                                                   FontFamily="Cascadia Code, Consolas"
+                                                   VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding Usage}"
+                                                   Style="{StaticResource GalleryCaptionText}"
+                                                   VerticalAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CT4}" />
+                <ItemsControl ItemsSource="{Binding MotionTokens}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource GalleryValueLabel}" />
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Value}"
+                                           Style="{StaticResource GalleryBodyText}"
+                                           FontFamily="Cascadia Code, Consolas" />
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Usage}"
+                                           Style="{StaticResource GalleryCaptionText}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}"
+                           Text="{DynamicResource Loc.P.DesignTokens.CT5}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl Height="220"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding TokenExample}" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

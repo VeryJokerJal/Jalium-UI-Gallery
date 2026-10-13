@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.InfoBarPage">
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.InfoBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="STATUS &amp; INFO" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="InfoBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.StatusAndInfo}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.InfoBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A notification bar for surfacing important, non-blocking status messages inline, without interrupting the user." />
+                   Text="{DynamicResource Loc.P.InfoBar.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Each severity paints its own accent, icon and tint; the last bar can be dismissed with its close button." />
+                           Text="{DynamicResource Loc.P.InfoBar.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <InfoBar Title="Informational" Message="This is an informational message." Severity="Informational" IsOpen="True" Margin="0,0,0,8" />
@@ -32,15 +34,15 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="What the InfoBar control supports out of the box." />
+                           Text="{DynamicResource Loc.P.InfoBar.CC2}" />
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Four severity levels (Info, Success, Warning, Error)" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Title and message content" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Optional close button" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Action button support" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Custom content area" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.InfoBar.Body1}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.InfoBar.Body2}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.InfoBar.Body3}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.InfoBar.Body4}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.InfoBar.Body5}" />
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -48,16 +50,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the InfoBars above." />
+                           Text="{DynamicResource Loc.P.InfoBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -65,16 +69,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating, showing and dismissing notifications from code-behind." />
+                           Text="{DynamicResource Loc.P.InfoBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

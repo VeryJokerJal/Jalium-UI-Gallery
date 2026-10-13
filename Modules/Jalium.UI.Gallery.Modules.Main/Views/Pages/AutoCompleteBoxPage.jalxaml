@@ -1,30 +1,36 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.AutoCompleteBoxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="AutoCompleteBox">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="AutoCompleteBox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.AutoCompleteBox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A text input control that suggests matching items from a source list as you type, with keyboard navigation and configurable filter modes." />
+                   Text="{DynamicResource Loc.P.AutoCompleteBox.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Start typing to see suggestions. Use the arrow keys to navigate." />
+                           Text="{DynamicResource Loc.P.AutoCompleteBox.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                   Text="Search for a programming language:"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Cap1}"
                                    Margin="0,0,0,8" />
                         <AutoCompleteBox x:Name="DemoAutoComplete"
+                                         ItemsSource="{Binding Languages}"
+                                         SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                                         FilterMode="Contains"
+                                         MinimumPrefixLength="1"
                                          Width="300"
-                                         Watermark="Type to search..."
+                                         PlaceholderText="Type to search..."
                                          Margin="0,0,0,16"
                                          HorizontalAlignment="Left" />
                         <StackPanel Orientation="Horizontal">
@@ -33,7 +39,7 @@
                                        VerticalAlignment="Center" />
                             <TextBlock x:Name="SelectedItemText"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="(none)" />
+                                       Text="{Binding SelectedLanguageText}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -43,22 +49,22 @@
         <!-- Filter modes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Filter modes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.AutoCompleteBox.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Choose how typed text is matched against the suggestion list." />
+                           Text="{DynamicResource Loc.P.AutoCompleteBox.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* StartsWith - items beginning with typed text"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body1}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Contains - items containing typed text"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body2}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Equals - exact match only"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body3}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Custom - use your own filter predicate" />
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body4}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -67,28 +73,28 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="AutoCompleteBox provides rich auto-completion functionality." />
+                           Text="{DynamicResource Loc.P.AutoCompleteBox.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Watermark placeholder text"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body5}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Minimum prefix length before suggestions"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body6}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Keyboard navigation (Up/Down/Enter/Escape)"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body7}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Text completion on Tab key"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body8}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Customizable max drop-down height"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body9}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* TextMemberPath for complex objects" />
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Body10}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -97,16 +103,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the AutoCompleteBox examples." />
+                           Text="{DynamicResource Loc.P.AutoCompleteBox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -114,16 +122,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring the items source, filter mode and selection handler in code-behind." />
+                           Text="{DynamicResource Loc.P.AutoCompleteBox.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

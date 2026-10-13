@@ -1,24 +1,35 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PieChartPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="PieChart">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="PieChart" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.PieChart.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays data as a pie or donut chart with optional slice explosion, labels, and connectors." />
+                   Text="{DynamicResource Loc.P.PieChart.Sub1}" />
 
         <!-- Basic Pie Chart -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Pie Chart" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.PieChart.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A standard pie chart with labeled slices showing proportional data." />
+                           Text="{DynamicResource Loc.P.PieChart.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicPieContainer" Orientation="Vertical" />
+                    <PieChart Height="350"
+                              Title="Market Share"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              LabelPosition="Outside">
+                        <PieChart.Series>
+                            <PieSeries Title="Market Share"
+                                       DataPoints="{Binding MarketShare}" />
+                        </PieChart.Series>
+                    </PieChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +37,20 @@
         <!-- Donut Chart -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Donut Chart" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.PieChart.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A pie chart with an inner radius cut-out, creating a donut shape." />
+                           Text="{DynamicResource Loc.P.PieChart.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="DonutContainer" Orientation="Vertical" />
+                    <PieChart Height="350"
+                              Title="Storage Usage"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              InnerRadiusRatio="0.5">
+                        <PieChart.Series>
+                            <PieSeries Title="Storage"
+                                       DataPoints="{Binding StorageUsage}" />
+                        </PieChart.Series>
+                    </PieChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +58,20 @@
         <!-- Exploded Slices -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Exploded Slices" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.PieChart.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Individual slices can be pulled out from the center for emphasis." />
+                           Text="{DynamicResource Loc.P.PieChart.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="ExplodedPieContainer" Orientation="Vertical" />
+                    <PieChart Height="350"
+                              Title="Browser Usage"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              ExplodeOffset="12">
+                        <PieChart.Series>
+                            <PieSeries Title="Browsers"
+                                       DataPoints="{Binding BrowserUsage}" />
+                        </PieChart.Series>
+                    </PieChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +79,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the pie and donut charts above." />
+                           Text="{DynamicResource Loc.P.PieChart.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +98,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building pie charts and configuring slices in code-behind." />
+                           Text="{DynamicResource Loc.P.PieChart.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

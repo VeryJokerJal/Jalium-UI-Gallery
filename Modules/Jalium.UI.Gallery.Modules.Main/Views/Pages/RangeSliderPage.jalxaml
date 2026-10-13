@@ -1,36 +1,38 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RangeSliderPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="RangeSlider">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="RangeSlider" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.RangeSlider.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A slider with two thumbs that lets the user pick a continuous sub-range from a numeric range." />
+                   Text="{DynamicResource Loc.P.RangeSlider.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag either thumb to change RangeStart / RangeEnd. Click the track to jump the closest thumb. Tab switches keyboard focus between thumbs." />
+                           Text="{DynamicResource Loc.P.RangeSlider.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <RangeSlider x:Name="DemoRangeSlider"
                                      Minimum="0"
                                      Maximum="100"
-                                     RangeStart="20"
-                                     RangeEnd="80"
+                                     RangeStart="{Binding RangeStart, Mode=TwoWay}"
+                                     RangeEnd="{Binding RangeEnd, Mode=TwoWay}"
                                      Height="24"
                                      Margin="0,0,0,16" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Range: " />
-                            <TextBlock x:Name="RangeStartLabel" Style="{StaticResource GalleryValueLabel}" Text="20" />
+                            <TextBlock x:Name="RangeStartLabel" Style="{StaticResource GalleryValueLabel}" Text="{Binding RangeStartText}" />
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text=" — " />
-                            <TextBlock x:Name="RangeEndLabel" Style="{StaticResource GalleryValueLabel}" Text="80" />
+                            <TextBlock x:Name="RangeEndLabel" Style="{StaticResource GalleryValueLabel}" Text="{Binding RangeEndText}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -40,12 +42,12 @@
         <!-- Minimum gap -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Minimum gap (MinimumRange)" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RangeSlider.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The two thumbs cannot get closer than MinimumRange — useful for price filters where the lower and upper bound must stay separated." />
+                           Text="{DynamicResource Loc.P.RangeSlider.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="MinimumRange = 10" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.RangeSlider.Cap1}" Margin="0,0,0,4" />
                         <RangeSlider Minimum="0"
                                      Maximum="100"
                                      RangeStart="35"
@@ -60,9 +62,9 @@
         <!-- Snap to ticks -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Snap to ticks" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.SnapToTicks}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Both thumbs snap to TickFrequency when IsSnapToTickEnabled is true." />
+                           Text="{DynamicResource Loc.P.RangeSlider.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <RangeSlider Minimum="0"
@@ -77,15 +79,53 @@
             </StackPanel>
         </Border>
 
+        <!-- Segmented track -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.SegmentedTrack}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.RangeSlider.CC4}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.RangeSlider.Cap2}"
+                                   Margin="0,0,0,4" />
+                        <RangeSlider Minimum="0"
+                                     Maximum="100"
+                                     RangeStart="20"
+                                     RangeEnd="80"
+                                     TickFrequency="20"
+                                     IsSnapToTickEnabled="True"
+                                     TrackMode="Segmented"
+                                     Height="24"
+                                     Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.RangeSlider.Cap3}"
+                                   Margin="0,0,0,4" />
+                        <RangeSlider Minimum="0"
+                                     Maximum="100"
+                                     RangeStart="30"
+                                     RangeEnd="70"
+                                     TickFrequency="10"
+                                     IsSnapToTickEnabled="True"
+                                     SegmentGap="2"
+                                     TrackMode="Segmented"
+                                     Height="24" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
         <!-- Custom bounds -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom bounds" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RangeSlider.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="RangeSliders can address any numeric domain, including negative numbers." />
+                           Text="{DynamicResource Loc.P.RangeSlider.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Price Filter ($0 — $1000)" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.RangeSlider.Cap4}" Margin="0,0,0,4" />
                         <RangeSlider Minimum="0"
                                      Maximum="1000"
                                      RangeStart="100"
@@ -93,7 +133,7 @@
                                      Height="24"
                                      Margin="0,0,0,16" />
 
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Temperature Comfort Zone (-20 — 40°C)" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.RangeSlider.Cap5}" Margin="0,0,0,4" />
                         <RangeSlider Minimum="-20"
                                      Maximum="40"
                                      RangeStart="18"
@@ -107,16 +147,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the RangeSliders above." />
+                           Text="{DynamicResource Loc.P.RangeSlider.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -124,16 +166,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring the RangeStartChanged / RangeEndChanged events and creating RangeSliders in code-behind." />
+                           Text="{DynamicResource Loc.P.RangeSlider.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

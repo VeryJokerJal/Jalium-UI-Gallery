@@ -1,6 +1,8 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.IconElementPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="IconElement">
 
     <!--
@@ -11,27 +13,176 @@
     -->
     <StackPanel x:Name="RootPanel" Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="ICONOGRAPHY" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="IconElement" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.P.IconElement.Eyebrow1}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.IconElement.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A family of scalable vector icons — SymbolIcon, FontIcon, and PathIcon — drawing 600+ glyphs from Segoe Fluent Icons for buttons, toolbars, and app bars." />
+                   Text="{DynamicResource Loc.P.IconElement.Sub1}" />
 
-        <!-- Interactive demos are inserted here by CreateContent(). -->
-        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.IconElement.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.IconElement.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ItemsControl ItemsSource="{Binding FeaturedSymbols}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="80"
+                                        Height="68"
+                                        Padding="4,8,4,4"
+                                        CornerRadius="4">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <SymbolIcon Symbol="{Binding Symbol}"
+                                                    Width="24"
+                                                    Height="24"
+                                                    Foreground="{DynamicResource GalleryTextPrimary}"
+                                                    HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontSize="9"
+                                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   MaxWidth="72"
+                                                   Margin="0,4,0,0"
+                                                   HorizontalAlignment="Center" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.IconElement.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.IconElement.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ItemsControl ItemsSource="{Binding FontIcons}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="108"
+                                        Height="76"
+                                        Padding="4,8,4,4"
+                                        CornerRadius="4">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <FontIcon Glyph="{Binding Glyph}"
+                                                  FontSize="{Binding Size}"
+                                                  Foreground="{Binding Foreground}"
+                                                  Width="36"
+                                                  Height="36"
+                                                  HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Label}"
+                                                   FontSize="10"
+                                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                                   HorizontalAlignment="Center" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.IconElement.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.IconElement.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal">
+                        <AppBarButton Label="Save" Icon="Save" IsCompact="True" MinWidth="40" Height="48" />
+                        <AppBarButton Label="Undo" Icon="Undo" IsCompact="True" MinWidth="40" Height="48" />
+                        <AppBarButton Label="Redo" Icon="Redo" IsCompact="True" MinWidth="40" Height="48" />
+                        <AppBarSeparator Height="48" />
+                        <AppBarButton Label="Start" Icon="Play" IsCompact="True" MinWidth="40" Height="48" Foreground="{DynamicResource GallerySuccessOnSurface}" />
+                        <AppBarButton Label="Stop" Icon="Stop" IsCompact="True" MinWidth="40" Height="48" Foreground="{DynamicResource GalleryErrorOnSurface}" />
+                        <AppBarSeparator Height="48" />
+                        <AppBarButton Label="Debug" Icon="Bug" IsCompact="True" MinWidth="40" Height="48" />
+                        <AppBarButton Label="Search" Icon="Find" IsCompact="True" MinWidth="40" Height="48" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.IconElement.CT4}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.IconElement.CC4}" />
+                <ItemsControl ItemsSource="{Binding SymbolCategories}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource GalleryValueLabel}"
+                                           Margin="0,12,0,6" />
+                                <Border Style="{StaticResource GalleryDemoSurface}">
+                                    <ItemsControl ItemsSource="{Binding Symbols}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Width="80"
+                                                        Height="68"
+                                                        Padding="4,8,4,4"
+                                                        CornerRadius="4">
+                                                    <StackPanel HorizontalAlignment="Center">
+                                                        <SymbolIcon Symbol="{Binding Symbol}"
+                                                                    Width="24"
+                                                                    Height="24"
+                                                                    Foreground="{DynamicResource GalleryTextPrimary}"
+                                                                    HorizontalAlignment="Center" />
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   FontSize="9"
+                                                                   Foreground="{DynamicResource GalleryTextTertiary}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   MaxWidth="72"
+                                                                   Margin="0,4,0,0"
+                                                                   HorizontalAlignment="Center" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for SymbolIcon, FontIcon, and AppBarButton icons." />
+                           Text="{DynamicResource Loc.P.IconElement.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -39,16 +190,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Constructing SymbolIcon and FontIcon instances in code-behind." />
+                           Text="{DynamicResource Loc.P.IconElement.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

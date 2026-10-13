@@ -1,22 +1,24 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GridPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Grid">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Grid" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Grid.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A flexible layout panel that arranges its children into rows and columns, with fixed, auto and star sizing plus row and column spanning." />
+                   Text="{DynamicResource Loc.P.Grid.Sub1}" />
 
         <!-- Basic grid layout -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Grid Layout" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Grid.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A 3x3 grid with colored cells labelled by their row and column index." />
+                           Text="{DynamicResource Loc.P.Grid.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <!-- Real 3x3 Grid demo -->
                     <Grid HorizontalAlignment="Left">
@@ -32,41 +34,41 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource GalleryAccent}" Margin="0,0,4,4">
-                            <TextBlock Text="0,0"
+                            <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="0,0"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="1" Background="#22C55E" Margin="0,0,4,4">
-                            <TextBlock Text="0,1"
+                            <TextBlock Foreground="Black" Text="0,1"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="2" Background="#179842" Margin="0,0,0,4">
-                            <TextBlock Text="0,2"
+                            <TextBlock Foreground="Black" Text="0,2"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
                         <Border Grid.Row="1" Grid.Column="0" Background="#CA5010" Margin="0,0,4,4">
-                            <TextBlock Text="1,0"
+                            <TextBlock Foreground="White" Text="1,0"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="1" Background="#008272" Margin="0,0,4,4">
-                            <TextBlock Text="1,1"
+                            <TextBlock Foreground="White" Text="1,1"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="2" Background="#39C267" Margin="0,0,0,4">
-                            <TextBlock Text="1,2"
+                            <TextBlock Foreground="Black" Text="1,2"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
                         <Border Grid.Row="2" Grid.Column="0" Background="#567C73" Margin="0,0,4,0">
-                            <TextBlock Text="2,0"
+                            <TextBlock Foreground="White" Text="2,0"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="1" Background="#7E735F" Margin="0,0,4,0">
-                            <TextBlock Text="2,1"
+                            <TextBlock Foreground="White" Text="2,1"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="2" Background="#4C4A48">
-                            <TextBlock Text="2,2"
+                            <TextBlock Foreground="White" Text="2,2"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Grid>
@@ -77,9 +79,9 @@
         <!-- Grid features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Grid Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Grid.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Key capabilities of the Grid control: mixed sizing, row spanning and column spanning." />
+                           Text="{DynamicResource Loc.P.Grid.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <!-- Real Grid demo showing spans and mixed sizing -->
@@ -100,7 +102,7 @@
                                     CornerRadius="8"
                                     Padding="12,8"
                                     Margin="0,0,0,8">
-                                <TextBlock Text="Header (ColumnSpan=3)"
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="Header (ColumnSpan=3)"
                                            HorizontalAlignment="Center"/>
                             </Border>
 
@@ -109,7 +111,7 @@
                                     CornerRadius="8"
                                     Padding="12"
                                     Margin="0,0,8,0">
-                                <TextBlock Text="Sidebar&#10;(RowSpan=2)"
+                                <TextBlock Foreground="Black" Text="Sidebar&#10;(RowSpan=2)"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            TextAlignment="Center"/>
@@ -120,7 +122,7 @@
                                     CornerRadius="8"
                                     Padding="12"
                                     Margin="0,0,0,8">
-                                <TextBlock Text="Content Area&#10;(ColumnSpan=2)"
+                                <TextBlock Foreground="Black" Text="Content Area&#10;(ColumnSpan=2)"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            TextAlignment="Center"/>
@@ -131,7 +133,7 @@
                                     CornerRadius="8"
                                     Padding="12"
                                     Margin="0,0,8,0">
-                                <TextBlock Text="Fixed + Star sizing"
+                                <TextBlock Foreground="White" Text="Fixed + Star sizing"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            TextAlignment="Center"/>
@@ -141,7 +143,7 @@
                                     Background="#008272"
                                     CornerRadius="8"
                                     Padding="12">
-                                <TextBlock Text="Grid.Row / Grid.Column"
+                                <TextBlock Foreground="White" Text="Grid.Row / Grid.Column"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            TextAlignment="Center"/>
@@ -149,7 +151,7 @@
                         </Grid>
 
                         <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                   Text="This section now uses real RowDefinitions, ColumnDefinitions, RowSpan, and ColumnSpan."
+                                   Text="{DynamicResource Loc.P.Grid.Cap1}"
                                    Margin="0,12,0,0" />
                     </StackPanel>
                 </Border>
@@ -159,16 +161,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for an application-style grid layout." />
+                           Text="{DynamicResource Loc.P.Grid.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -176,16 +180,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building the same grid layout dynamically in code-behind." />
+                           Text="{DynamicResource Loc.P.Grid.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

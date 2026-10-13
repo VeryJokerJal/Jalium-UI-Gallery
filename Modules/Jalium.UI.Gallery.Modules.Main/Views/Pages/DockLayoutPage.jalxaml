@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DockLayoutPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="DockLayout">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DockLayout" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DockLayout.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A VS-style docking layout with resizable split panels and tab groups for composing IDE-like workspaces." />
+                   Text="{DynamicResource Loc.P.DockLayout.Sub1}" />
 
         <!-- Example 1: IDE Layout -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="IDE Layout" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DockLayout.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Left sidebar + center editor + bottom panel, with resizable splitters." />
+                           Text="{DynamicResource Loc.P.DockLayout.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="400">
                     <DockLayout>
                         <DockSplitPanel Orientation="Horizontal">
@@ -24,7 +26,7 @@
                             <DockTabPanel DockSplitPanel.Size="220" DockSplitPanel.MinSize="150">
                                 <DockItem Header="Explorer">
                                     <StackPanel Margin="12">
-                                        <TextBlock Text="Solution Explorer" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui1}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
                                         <TextBlock Text="  MyApp" FontSize="12"/>
                                         <TextBlock Text="    src/" FontSize="12"/>
                                         <TextBlock Text="      Program.cs" FontSize="12"/>
@@ -37,7 +39,7 @@
                                 <DockItem Header="Search">
                                     <StackPanel Margin="12">
                                         <TextBox Margin="0,0,0,8"/>
-                                        <TextBlock Text="Type to search across files..." FontSize="12"/>
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui2}" FontSize="12"/>
                                     </StackPanel>
                                 </DockItem>
                             </DockTabPanel>
@@ -84,9 +86,9 @@
                                             <TextBlock Text="PS D:\Projects\MyApp> _" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="Cascadia Code"/>
                                         </StackPanel>
                                     </DockItem>
-                                    <DockItem Header="Error List">
+                                    <DockItem Header="{DynamicResource Loc.P.DockLayout.Ui3}">
                                         <StackPanel Margin="8">
-                                            <TextBlock Text="0 Errors, 0 Warnings, 0 Messages" FontSize="11"/>
+                                            <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui4}" FontSize="11"/>
                                         </StackPanel>
                                     </DockItem>
                                 </DockTabPanel>
@@ -100,16 +102,16 @@
         <!-- Example 2: Three Column Layout -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Three Column Layout" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DockLayout.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Equal and proportional splitting with star sizing." />
+                           Text="{DynamicResource Loc.P.DockLayout.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="250">
                     <DockLayout>
                         <DockSplitPanel Orientation="Horizontal">
                             <DockTabPanel DockSplitPanel.Size="*">
                                 <DockItem Header="Files">
                                     <StackPanel Margin="12">
-                                        <TextBlock Text="File Browser" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui5}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
                                         <TextBlock Text="Documents/" FontSize="12"/>
                                         <TextBlock Text="Downloads/" FontSize="12"/>
                                         <TextBlock Text="Pictures/" FontSize="12"/>
@@ -119,7 +121,7 @@
                             <DockTabPanel DockSplitPanel.Size="2*">
                                 <DockItem Header="Preview">
                                     <StackPanel Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBlock Text="Content Preview Area" FontSize="14"/>
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui6}" FontSize="14"/>
                                         <TextBlock Text="(2x width)" FontSize="12" Margin="0,4,0,0"/>
                                     </StackPanel>
                                 </DockItem>
@@ -143,16 +145,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the docking layouts shown above." />
+                           Text="{DynamicResource Loc.P.DockLayout.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -160,16 +164,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a DockLayout with split panels and dockable tab items in code-behind." />
+                           Text="{DynamicResource Loc.P.DockLayout.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

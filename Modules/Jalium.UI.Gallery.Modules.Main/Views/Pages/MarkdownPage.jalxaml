@@ -1,50 +1,56 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MarkdownPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Markdown">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="TEXT &amp; TYPOGRAPHY" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Markdown" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.TextAndTypography}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Markdown.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Render rich Markdown documents with headings, lists, tables, code fences, and relative links." />
+                   Text="{DynamicResource Loc.P.Markdown.Sub1}" />
 
         <!-- Interactive preview -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Preview" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Markdown.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Switch between a few representative Markdown documents and see the rendered output update live." />
+                           Text="{DynamicResource Loc.P.Markdown.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel>
-                            <Button Content="Docs Sample"
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd1}"
                                     Width="110"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnDocsSampleClick"/>
-                            <Button Content="Release Notes"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="Docs"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd2}"
                                     Width="110"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnReleaseNotesClick"/>
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="ReleaseNotes"/>
                             <Button Content="Checklist"
                                     Width="110"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnChecklistClick"/>
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="Checklist"/>
                         </WrapPanel>
 
-                        <TextBlock x:Name="PreviewStatusText"
-                                   Style="{StaticResource GalleryValueLabel}"
-                                   Text="Showing: Docs Sample"
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding PreviewStatus}"
                                    Margin="0,2,0,14"/>
 
-                        <Markdown x:Name="InteractiveMarkdown"
+                        <Markdown
                                   Height="360"
-                                  BaseUri="https://jalium.dev/docs/" />
+                                  BaseUri="https://jalium.dev/docs/"
+                                  Text="{Binding InteractiveText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -53,31 +59,32 @@
         <!-- Live editor -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Live Editor" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.LiveEditor}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Type Markdown in the input box on the left and see the rendered output update live on the right." />
+                           Text="{DynamicResource Loc.P.Markdown.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <StackPanel Orientation="Vertical"
                                     Width="400"
                                     Margin="0,0,10,10">
                             <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                       Text="Markdown Input:"
+                                       Text="{DynamicResource Loc.P.Markdown.Cap1}"
                                        Margin="0,0,0,6"/>
                             <TextBox x:Name="MarkdownInput"
                                      AcceptsReturn="True"
                                      Height="360"
                                      FontFamily="Consolas"
-                                     FontSize="13"/>
+                                     FontSize="13"
+                                     Text="{Binding LiveText, Mode=TwoWay}"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical"
                                     Width="400"
                                     Margin="0,0,10,10">
                             <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                       Text="Rendered Output:"
+                                       Text="{DynamicResource Loc.P.Markdown.Cap2}"
                                        Margin="0,0,0,6"/>
-                            <Markdown x:Name="LiveMarkdown"
-                                      Height="360" />
+                            <Markdown Height="360"
+                                      Text="{Binding LiveText}" />
                         </StackPanel>
                     </WrapPanel>
                 </Border>
@@ -87,12 +94,15 @@
         <!-- Custom styling -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom Styling" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Markdown.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The control can inherit the surrounding theme or use native styling properties for article-like layouts." />
+                           Text="{DynamicResource Loc.P.Markdown.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <Markdown x:Name="StyledMarkdown"
-                              Height="280" />
+                    <Markdown Height="280"
+                              LinkForeground="#7DD3FC"
+                              InlineCodeForeground="#E2E8F0"
+                              InlineCodeBackground="#162133"
+                              Text="{Binding StyledText}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -100,11 +110,12 @@
         <!-- Mermaid diagrams -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Mermaid Diagrams" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Markdown.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Fenced mermaid code blocks render as diagrams (flowcharts, pie charts) instead of source. See the Charts &gt; Flowchart page for the standalone control." />
+                           Text="{DynamicResource Loc.P.Markdown.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <Markdown x:Name="MermaidMarkdown" Height="520"/>
+                    <Markdown Height="520"
+                              Text="{Binding MermaidText}"/>
                 </Border>
             </StackPanel>
         </Border>
@@ -112,22 +123,22 @@
         <!-- Markdown properties -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Markdown Properties" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Markdown.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Key properties for setting the source, resolving relative links, and shaping the native renderer." />
+                           Text="{DynamicResource Loc.P.Markdown.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Text - Markdown source string rendered by the control"
+                                   Text="{DynamicResource Loc.P.Markdown.Body1}"
                                    Margin="0,0,0,8"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="BaseUri - Resolves relative links and images in the generated HTML"
+                                   Text="{DynamicResource Loc.P.Markdown.Body2}"
                                    Margin="0,0,0,8"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="LinkForeground / CodeBackground / QuoteBorderBrush - Native styling hooks for rich content"
+                                   Text="{DynamicResource Loc.P.Markdown.Body3}"
                                    Margin="0,0,0,8"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Background / Foreground / FontFamily / FontSize - Shape the native renderer typography"/>
+                                   Text="{DynamicResource Loc.P.Markdown.Body4}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -136,35 +147,36 @@
         <!-- Selection and copy -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Selection &amp; Copy" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Markdown.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag to select text (or press Ctrl+A), then copy with Ctrl+C or the right-click menu. The control copies in three formats — plain text, Markdown source, and rich text (HTML + RTF) — and exposes the text for translation and other integrations." />
+                           Text="{DynamicResource Loc.P.Markdown.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <Markdown x:Name="CopyDemoMarkdown" Height="240"/>
+                        <Markdown Height="240"
+                                  Text="{Binding CopyDemoText}"
+                                  behaviors:MarkdownBehavior.Request="{Binding CopyRequest}"/>
 
                         <WrapPanel Margin="0,12,0,0">
-                            <Button Content="Copy as Plain Text"
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd3}"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnCopyPlainClick"/>
-                            <Button Content="Copy as Markdown"
+                                    Command="{Binding CopyPlainTextCommand}"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd4}"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnCopyMarkdownClick"/>
-                            <Button Content="Copy as Rich Text"
+                                    Command="{Binding CopyMarkdownCommand}"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd5}"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnCopyRichClick"/>
-                            <Button Content="Select All"
+                                    Command="{Binding CopyRichTextCommand}"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd6}"
                                     Height="32"
                                     Margin="0,0,10,10"
-                                    Click="OnSelectAllClick"/>
+                                    Command="{Binding SelectAllCommand}"/>
                         </WrapPanel>
 
-                        <TextBlock x:Name="CopyStatusText"
-                                   Style="{StaticResource GalleryCaptionText}"
-                                   Text="Select some text above, or use the buttons to copy the whole document."
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding CopyStatus}"
                                    Margin="0,4,0,0"/>
                     </StackPanel>
                 </Border>
@@ -174,16 +186,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the Markdown controls above." />
+                           Text="{DynamicResource Loc.P.Markdown.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -191,16 +205,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Setting text, applying styling hooks, and wiring the live editor in code-behind." />
+                           Text="{DynamicResource Loc.P.Markdown.CC8}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

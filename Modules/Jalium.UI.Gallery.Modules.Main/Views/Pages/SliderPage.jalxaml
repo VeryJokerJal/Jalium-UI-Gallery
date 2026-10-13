@@ -1,35 +1,37 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SliderPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Slider">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Slider" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Slider.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that lets people pick a value from a range by dragging a thumb along a track, with optional tick marks and snapping." />
+                   Text="{DynamicResource Loc.P.Slider.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag the thumb to change the value and watch the readout update live." />
+                           Text="{DynamicResource Loc.P.Slider.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <Slider x:Name="DemoSlider"
                                 Minimum="0"
                                 Maximum="100"
-                                Value="50"
+                                Value="{Binding Value, Mode=TwoWay}"
                                 Height="24"
                                 Margin="0,0,0,16" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
                             <TextBlock x:Name="SliderValue"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="50" />
+                                       Text="{Binding ValueText}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -39,9 +41,9 @@
         <!-- Slider with ticks -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Slider with ticks" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Slider.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Tick marks placed at a regular TickFrequency hint at the available stops along the track." />
+                           Text="{DynamicResource Loc.P.Slider.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Slider Minimum="0"
                             Maximum="100"
@@ -55,9 +57,9 @@
         <!-- Snap to ticks -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Snap to ticks" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.SnapToTicks}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="With IsSnapToTickEnabled the thumb locks onto the nearest tick position as you drag." />
+                           Text="{DynamicResource Loc.P.Slider.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Slider Minimum="0"
                             Maximum="100"
@@ -69,16 +71,62 @@
             </StackPanel>
         </Border>
 
+        <!-- Segmented track -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.SegmentedTrack}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.Slider.CC4}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Slider.Cap1}"
+                                   Margin="0,0,0,4" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="60"
+                                TickFrequency="20"
+                                IsSnapToTickEnabled="True"
+                                TrackMode="Segmented"
+                                Height="24"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Slider.Cap2}"
+                                   Margin="0,0,0,4" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="45"
+                                TickFrequency="20"
+                                TrackMode="Segmented"
+                                Height="24"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Slider.Cap3}"
+                                   Margin="0,0,0,4" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="45"
+                                Ticks="10, 30, 60"
+                                SegmentGap="6"
+                                TrackMode="Segmented"
+                                Height="24" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
         <!-- Custom range -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom range" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Slider.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Set any Minimum and Maximum — including negative ranges — to match the data you are bound to." />
+                           Text="{DynamicResource Loc.P.Slider.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <TextBlock Style="{StaticResource GalleryValueLabel}"
-                                   Text="Volume (0-100)"
+                                   Text="{DynamicResource Loc.P.Slider.Val1}"
                                    Margin="0,0,0,6" />
                         <Slider Minimum="0"
                                 Maximum="100"
@@ -87,7 +135,7 @@
                                 Margin="0,0,0,16" />
 
                         <TextBlock Style="{StaticResource GalleryValueLabel}"
-                                   Text="Temperature (-10 to 40)"
+                                   Text="{DynamicResource Loc.P.Slider.Val2}"
                                    Margin="0,0,0,6" />
                         <Slider Minimum="-10"
                                 Maximum="40"
@@ -101,16 +149,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the sliders above." />
+                           Text="{DynamicResource Loc.P.Slider.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -118,16 +168,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Handling ValueChanged and building sliders in code-behind." />
+                           Text="{DynamicResource Loc.P.Slider.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

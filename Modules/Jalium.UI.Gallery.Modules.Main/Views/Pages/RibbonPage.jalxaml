@@ -1,26 +1,32 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       xmlns:ribbon="clr-namespace:Jalium.UI.Controls.Ribbon;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RibbonPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Ribbon">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Ribbon" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Ribbon.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="An Office-style ribbon control with tabs, groups, galleries, application menu, and quick access toolbar." />
+                   Text="{DynamicResource Loc.P.Ribbon.Sub1}" />
 
         <!-- Live ribbon demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Live Ribbon" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Ribbon.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A fully functional ribbon with tabs, groups, and buttons — click a command to see it echoed below." />
+                           Text="{DynamicResource Loc.P.Ribbon.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" ClipToBounds="True">
                     <StackPanel Orientation="Vertical">
-                        <ribbon:Ribbon x:Name="DemoRibbon" Title="Ribbon Demo">
+                        <ribbon:Ribbon x:Name="DemoRibbon"
+                                       Title="Ribbon Demo"
+                                       IsMinimized="{Binding IsRibbonMinimized, Mode=TwoWay}"
+                                       SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                             <ribbon:Ribbon.QuickAccessToolBar>
                                 <ribbon:RibbonQuickAccessToolBar>
                                     <Button Content="Save" Width="50" Height="22" FontSize="11"/>
@@ -30,14 +36,20 @@
                             </ribbon:Ribbon.QuickAccessToolBar>
                             <ribbon:RibbonTab Header="Home">
                                 <ribbon:RibbonGroup Header="Clipboard">
-                                    <Button x:Name="PasteButton" Content="Paste" Width="60" Height="28"/>
-                                    <Button x:Name="CutButton" Content="Cut" Width="50" Height="24" FontSize="11"/>
-                                    <Button x:Name="CopyButton" Content="Copy" Width="50" Height="24" FontSize="11"/>
+                                    <Button x:Name="PasteButton" Content="Paste" Command="{Binding ExecuteCommand}" CommandParameter="Paste" Width="60" Height="28"/>
+                                    <Button x:Name="CutButton" Content="Cut" Command="{Binding ExecuteCommand}" CommandParameter="Cut" Width="50" Height="24" FontSize="11"/>
+                                    <Button x:Name="CopyButton" Content="Copy" Command="{Binding ExecuteCommand}" CommandParameter="Copy" Width="50" Height="24" FontSize="11"/>
                                 </ribbon:RibbonGroup>
                                 <ribbon:RibbonGroup Header="Font">
-                                    <Button x:Name="BoldButton" Content="B" Width="28" Height="24" FontWeight="Bold"/>
-                                    <Button x:Name="ItalicButton" Content="I" Width="28" Height="24" FontStyle="Italic"/>
-                                    <Button x:Name="UnderlineButton" Content="U" Width="28" Height="24"/>
+                                    <Button x:Name="BoldButton" Command="{Binding ExecuteCommand}" CommandParameter="Bold" Width="32" Height="32" ToolTip="Bold" automation:AutomationProperties.Name="Bold">
+                                        <SymbolIcon Symbol="Bold" Width="15" Height="15" />
+                                    </Button>
+                                    <Button x:Name="ItalicButton" Command="{Binding ExecuteCommand}" CommandParameter="Italic" Width="32" Height="32" ToolTip="Italic" automation:AutomationProperties.Name="Italic">
+                                        <SymbolIcon Symbol="Italic" Width="15" Height="15" />
+                                    </Button>
+                                    <Button x:Name="UnderlineButton" Command="{Binding ExecuteCommand}" CommandParameter="Underline" Width="32" Height="32" ToolTip="Underline" automation:AutomationProperties.Name="Underline">
+                                        <SymbolIcon Symbol="Underline" Width="15" Height="15" />
+                                    </Button>
                                 </ribbon:RibbonGroup>
                                 <ribbon:RibbonGroup Header="Paragraph">
                                     <Button Content="Left" Width="45" Height="24" FontSize="11"/>
@@ -47,7 +59,7 @@
                             </ribbon:RibbonTab>
                             <ribbon:RibbonTab Header="Insert">
                                 <ribbon:RibbonGroup Header="Tables">
-                                    <Button x:Name="InsertTableButton" Content="Table" Width="60" Height="28"/>
+                                    <Button x:Name="InsertTableButton" Content="Table" Command="{Binding ExecuteCommand}" CommandParameter="Insert Table" Width="60" Height="28"/>
                                 </ribbon:RibbonGroup>
                                 <ribbon:RibbonGroup Header="Illustrations">
                                     <Button Content="Picture" Width="65" Height="28"/>
@@ -77,7 +89,7 @@
                         <Border Background="{DynamicResource GalleryShellBackground}" Padding="16" Height="100">
                             <TextBlock x:Name="StatusText"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="Click ribbon buttons to see interactions..." />
+                                       Text="{Binding RibbonStatus}" />
                         </Border>
                     </StackPanel>
                 </Border>
@@ -87,15 +99,21 @@
         <!-- Ribbon options -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Ribbon Options" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Ribbon.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Toggle ribbon features at runtime." />
+                           Text="{DynamicResource Loc.P.Ribbon.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <CheckBox x:Name="MinimizeCheckBox" Content="Minimize ribbon (collapse tabs)" Margin="0,0,0,8"/>
+                        <CheckBox x:Name="MinimizeCheckBox"
+                                  Content="Minimize ribbon (collapse tabs)"
+                                  IsChecked="{Binding IsRibbonMinimized, Mode=TwoWay}"
+                                  Margin="0,0,0,8"/>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <TextBlock Text="Selected Tab:" Width="100" VerticalAlignment="Center"/>
-                            <ComboBox x:Name="TabSelectComboBox" Width="120" Height="28">
+                            <ComboBox x:Name="TabSelectComboBox"
+                                      SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}"
+                                      Width="120"
+                                      Height="28">
                                 <ComboBoxItem Content="Home" IsSelected="True"/>
                                 <ComboBoxItem Content="Insert"/>
                                 <ComboBoxItem Content="View"/>
@@ -109,25 +127,25 @@
         <!-- Ribbon components -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Ribbon Components" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Ribbon.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The Ribbon control is composed of several sub-controls." />
+                           Text="{DynamicResource Loc.P.Ribbon.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
-                                   Text="Ribbon — Top-level container with Title, ApplicationMenu, QuickAccessToolBar"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body1}"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}" Margin="16,0,0,6"
-                                   Text="RibbonTab — A tab page (Header, ContextualTabGroupHeader)"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body2}"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}" Margin="32,0,0,6"
-                                   Text="RibbonGroup — Logical grouping within a tab (Header, images)"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body3}"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
-                                   Text="RibbonApplicationMenu — Backstage menu (FooterPane, AuxiliaryPane)"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body4}"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
-                                   Text="RibbonQuickAccessToolBar — Frequently-used commands toolbar"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body5}"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
-                                   Text="RibbonGallery — Visual selection gallery with categories"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body6}"/>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="RibbonMenuButton / RibbonSplitButton / RibbonToggleButton"/>
+                                   Text="{DynamicResource Loc.P.Ribbon.Body7}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -136,16 +154,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup that assembles the ribbon, its tabs and its groups." />
+                           Text="{DynamicResource Loc.P.Ribbon.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="350"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -153,16 +173,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Reading ribbon properties and wiring commands from code-behind." />
+                           Text="{DynamicResource Loc.P.Ribbon.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="250"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

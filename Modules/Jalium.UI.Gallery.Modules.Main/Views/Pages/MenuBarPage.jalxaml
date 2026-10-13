@@ -1,38 +1,71 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MenuBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="MenuBar">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="MenuBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.MenuBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A horizontal bar that organizes application commands into top-level menus with flyout submenus." />
+                   Text="{DynamicResource Loc.P.MenuBar.Sub1}" />
 
         <!-- Basic MenuBar -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic MenuBar" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.MenuBar.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A standard menu bar with File, Edit, View, and Help menus, each with keyboard-gesture hints." />
+                           Text="{DynamicResource Loc.P.MenuBar.CC1}" />
                 <Border x:Name="MenuBarContainer"
                         Style="{StaticResource GalleryDemoSurfaceFlush}"
-                        MinHeight="28" />
+                        MinHeight="28">
+                    <MenuBar>
+                        <MenuBarItem Title="File">
+                            <MenuFlyoutItem Text="New" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.New}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > New" />
+                            <MenuFlyoutItem Text="Open" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Open}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Open" />
+                            <MenuFlyoutItem Text="Save" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Save}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Save" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="Exit" KeyboardAcceleratorTextOverride="Alt+F4" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Exit" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="Edit">
+                            <MenuFlyoutItem Text="Undo" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Undo}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Undo" />
+                            <MenuFlyoutItem Text="Redo" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Redo}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Redo" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="Cut" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Cut}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Cut" />
+                            <MenuFlyoutItem Text="Copy" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Copy}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Copy" />
+                            <MenuFlyoutItem Text="Paste" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Paste}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Paste" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="View">
+                            <MenuFlyoutItem Text="Zoom In" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.ZoomIn}" Command="{Binding ExecuteMenuCommand}" CommandParameter="View > Zoom In" />
+                            <MenuFlyoutItem Text="Zoom Out" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.ZoomOut}" Command="{Binding ExecuteMenuCommand}" CommandParameter="View > Zoom Out" />
+                            <MenuFlyoutSeparator />
+                            <ToggleMenuFlyoutItem Text="Status Bar" IsChecked="{Binding IsStatusBarVisible, Mode=TwoWay}" />
+                            <ToggleMenuFlyoutItem Text="Word Wrap" IsChecked="{Binding IsWordWrapEnabled, Mode=TwoWay}" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="Help">
+                            <MenuFlyoutItem Text="Documentation" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > Documentation" />
+                            <MenuFlyoutItem Text="Release Notes" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > Release Notes" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="About" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > About" />
+                        </MenuBarItem>
+                    </MenuBar>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Menu action log -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Menu Action Log" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.MenuBar.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click menu items to see which action was triggered." />
+                           Text="{DynamicResource Loc.P.MenuBar.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <TextBlock x:Name="MenuStatusText"
                                Style="{StaticResource GalleryBodyText}"
-                               Text="No menu action yet." />
+                               Text="{Binding MenuStatus}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -40,16 +73,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the menu shown above." />
+                           Text="{DynamicResource Loc.P.MenuBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -57,16 +92,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building the menu and wiring click handlers in code-behind." />
+                           Text="{DynamicResource Loc.P.MenuBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

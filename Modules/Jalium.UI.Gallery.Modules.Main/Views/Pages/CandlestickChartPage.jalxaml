@@ -1,59 +1,93 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CandlestickChartPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="CandlestickChart">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="CandlestickChart" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.CandlestickChart.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays financial OHLC data as candlesticks with optional volume bars and moving average overlays." />
+                   Text="{DynamicResource Loc.P.CandlestickChart.Sub1}" />
 
         <!-- Basic Candlestick -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Candlestick" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CandlestickChart.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A candlestick chart with simulated OHLC price data." />
-                <Border x:Name="BasicCandlestickContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.CandlestickChart.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <CandlestickChart Width="700"
+                                      Height="400"
+                                      ItemsSource="{Binding BasicData}"
+                                      Title="ACME Corp (ACME)" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- With Volume -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="With Volume" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CandlestickChart.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A candlestick chart with a volume sub-chart below the price data." />
-                <Border x:Name="VolumeContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.CandlestickChart.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <CandlestickChart Width="700"
+                                      Height="450"
+                                      ItemsSource="{Binding VolumeData}"
+                                      ShowVolume="True"
+                                      VolumeHeight="0.2"
+                                      Title="Widget Inc (WGT)" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Moving Averages -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Moving Averages" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CandlestickChart.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A candlestick chart with SMA and EMA overlay lines." />
-                <Border x:Name="MovingAverageContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.CandlestickChart.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <CandlestickChart Width="700"
+                                      Height="450"
+                                      ItemsSource="{Binding MovingAverageData}"
+                                      ShowVolume="True"
+                                      VolumeHeight="0.15"
+                                      Title="TechGlobal Ltd (TGL)">
+                        <CandlestickChart.MovingAverages>
+                            <MovingAverageConfig Period="10"
+                                                 Type="SMA"
+                                                 Brush="#FF9E22"
+                                                 Thickness="1.5" />
+                            <MovingAverageConfig Period="20"
+                                                 Type="EMA"
+                                                 Brush="#417EE0"
+                                                 Thickness="1.5" />
+                        </CandlestickChart.MovingAverages>
+                    </CandlestickChart>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the candlestick charts above." />
+                           Text="{DynamicResource Loc.P.CandlestickChart.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -61,16 +95,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Generating OHLC data and configuring the charts in code-behind." />
+                           Text="{DynamicResource Loc.P.CandlestickChart.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

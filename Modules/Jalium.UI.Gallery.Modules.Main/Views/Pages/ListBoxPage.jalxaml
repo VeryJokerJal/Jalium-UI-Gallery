@@ -1,25 +1,29 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ListBoxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ListBox">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="COLLECTIONS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ListBox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Collections}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ListBox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A scrollable container that presents a collection of items and lets the user select one or many." />
+                   Text="{DynamicResource Loc.P.ListBox.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click an item to select it." />
+                           Text="{DynamicResource Loc.P.ListBox.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ListBox x:Name="DemoListBox"
+                                 ItemsSource="{Binding Items}"
+                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                  Height="150"
                                  Margin="0,0,0,16" />
                         <StackPanel Orientation="Horizontal">
@@ -28,7 +32,7 @@
                                        VerticalAlignment="Center" />
                             <TextBlock x:Name="SelectedItemText"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="(none)" />
+                                       Text="{Binding SelectedItemText}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -38,28 +42,28 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="ListBox supports several selection modes, keyboard navigation and data binding." />
+                           Text="{DynamicResource Loc.P.ListBox.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="• Single selection mode (default)"
+                                   Text="{DynamicResource Loc.P.ListBox.Body1}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="• Multiple selection mode"
+                                   Text="{DynamicResource Loc.P.ListBox.Body2}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="• Extended selection mode (Ctrl/Shift)"
+                                   Text="{DynamicResource Loc.P.ListBox.Body3}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="• Keyboard navigation (Up/Down/Home/End)"
+                                   Text="{DynamicResource Loc.P.ListBox.Body4}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="• ItemsSource binding"
+                                   Text="{DynamicResource Loc.P.ListBox.Body5}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="• ItemTemplate support" />
+                                   Text="{DynamicResource Loc.P.ListBox.Body6}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -68,16 +72,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for creating and populating a ListBox." />
+                           Text="{DynamicResource Loc.P.ListBox.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -85,16 +91,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Populating items and handling selection in code-behind." />
+                           Text="{DynamicResource Loc.P.ListBox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

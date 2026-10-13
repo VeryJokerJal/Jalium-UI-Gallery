@@ -1,41 +1,43 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.UniformGridPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="UniformGrid">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="UniformGrid" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.UniformGrid.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A panel that arranges children in a grid where all cells are the same size. Rows and Columns can be auto-calculated or explicitly set." />
+                   Text="{DynamicResource Loc.P.UniformGrid.Sub1}" />
 
         <!-- Auto Layout -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Auto Layout" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.UniformGrid.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="When Rows and Columns are both 0, the grid automatically calculates the best layout." />
+                           Text="{DynamicResource Loc.P.UniformGrid.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <UniformGrid>
                         <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="12" Margin="4">
-                            <TextBlock Text="Item 1" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="Item 1" HorizontalAlignment="Center"/>
                         </Border>
                         <Border Background="#22C55E" CornerRadius="8" Padding="12" Margin="4">
-                            <TextBlock Text="Item 2" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="Black" Text="Item 2" HorizontalAlignment="Center"/>
                         </Border>
                         <Border Background="#D83B01" CornerRadius="8" Padding="12" Margin="4">
-                            <TextBlock Text="Item 3" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="Item 3" HorizontalAlignment="Center"/>
                         </Border>
                         <Border Background="#64B880" CornerRadius="8" Padding="12" Margin="4">
-                            <TextBlock Text="Item 4" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="Black" Text="Item 4" HorizontalAlignment="Center"/>
                         </Border>
                         <Border Background="#00B7C3" CornerRadius="8" Padding="12" Margin="4">
-                            <TextBlock Text="Item 5" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="Black" Text="Item 5" HorizontalAlignment="Center"/>
                         </Border>
                         <Border Background="#39C267" CornerRadius="8" Padding="12" Margin="4">
-                            <TextBlock Text="Item 6" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="Black" Text="Item 6" HorizontalAlignment="Center"/>
                         </Border>
                     </UniformGrid>
                 </Border>
@@ -45,37 +47,37 @@
         <!-- Explicit Rows and Columns -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Explicit Rows and Columns" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.UniformGrid.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Set Rows and Columns explicitly to control the grid dimensions." />
+                           Text="{DynamicResource Loc.P.UniformGrid.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <!-- 2x4 grid -->
                         <TextBlock Text="Rows=2, Columns=4" Margin="0,0,0,8"/>
                         <UniformGrid Rows="2" Columns="4">
                             <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="1" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="1" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="2" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="2" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="3" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="3" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="4" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="4" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#B88A06" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="5" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="5" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#B88A06" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="6" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="6" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#B88A06" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="7" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="7" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#B88A06" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="8" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="8" HorizontalAlignment="Center"/>
                             </Border>
                         </UniformGrid>
 
@@ -83,31 +85,31 @@
                         <TextBlock Text="Rows=3, Columns=3" Margin="0,16,0,8"/>
                         <UniformGrid Rows="3" Columns="3">
                             <Border Background="#22C55E" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="A" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="A" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#22C55E" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="B" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="B" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#22C55E" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="C" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="Black" Text="C" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#0B5E0B" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="D" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="D" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#0B5E0B" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="E" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="E" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#0B5E0B" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="F" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="F" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#094509" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="G" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="G" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#094509" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="H" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="H" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#094509" CornerRadius="8" Padding="8" Margin="2">
-                                <TextBlock Text="I" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="I" HorizontalAlignment="Center"/>
                             </Border>
                         </UniformGrid>
                     </StackPanel>
@@ -118,54 +120,57 @@
         <!-- Interactive Configuration -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Configuration" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.UniformGrid.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Adjust Rows, Columns, and FirstColumn to see how the layout changes dynamically." />
+                           Text="{DynamicResource Loc.P.UniformGrid.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Rows:" Width="100" VerticalAlignment="Center"/>
-                            <Slider x:Name="RowsSlider" Minimum="0" Maximum="6" Value="0" Width="150" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="RowsText" Text="Auto" VerticalAlignment="Center"/>
+                            <Slider x:Name="RowsSlider" Minimum="0" Maximum="6" Value="{Binding RowsValue, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock x:Name="RowsText" Text="{Binding RowsText}" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Columns:" Width="100" VerticalAlignment="Center"/>
-                            <Slider x:Name="ColumnsSlider" Minimum="0" Maximum="6" Value="3" Width="150" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="ColumnsText" Text="3" VerticalAlignment="Center"/>
+                            <Slider x:Name="ColumnsSlider" Minimum="0" Maximum="6" Value="{Binding ColumnsValue, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock x:Name="ColumnsText" Text="{Binding ColumnsText}" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="FirstColumn:" Width="100" VerticalAlignment="Center"/>
-                            <Slider x:Name="FirstColumnSlider" Minimum="0" Maximum="3" Value="0" Width="150" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="FirstColumnText" Text="0" VerticalAlignment="Center"/>
+                            <Slider x:Name="FirstColumnSlider" Minimum="0" Maximum="3" Value="{Binding FirstColumnValue, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock x:Name="FirstColumnText" Text="{Binding FirstColumnText}" VerticalAlignment="Center"/>
                         </StackPanel>
 
-                        <UniformGrid x:Name="InteractiveGrid" Columns="3">
+                        <UniformGrid x:Name="InteractiveGrid"
+                                     Rows="{Binding Rows}"
+                                     Columns="{Binding Columns}"
+                                     FirstColumn="{Binding FirstColumn}">
                             <Border Background="#D83B01" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="1" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="White" Text="1" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#FF8C00" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="2" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="Black" Text="2" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#FFB900" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="3" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="Black" Text="3" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#22C55E" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="4" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="Black" Text="4" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="5" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="5" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#64B880" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="6" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="Black" Text="6" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#00E34C" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="7" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="Black" Text="7" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#00B7C3" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="8" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="Black" Text="8" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                             <Border Background="#68768A" CornerRadius="8" Padding="12" Margin="3">
-                                <TextBlock Text="9" HorizontalAlignment="Center" FontSize="16"/>
+                                <TextBlock Foreground="White" Text="9" HorizontalAlignment="Center" FontSize="16"/>
                             </Border>
                         </UniformGrid>
                     </StackPanel>
@@ -176,9 +181,9 @@
         <!-- FirstColumn Property -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="FirstColumn Property" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.UniformGrid.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="FirstColumn offsets items in the first row, leaving initial cells empty. Useful for calendar-like layouts." />
+                           Text="{DynamicResource Loc.P.UniformGrid.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Columns=7, FirstColumn=3 (calendar-style offset)" Margin="0,0,0,8"/>
@@ -195,37 +200,37 @@
                         <!-- Calendar days starting on Wednesday -->
                         <UniformGrid Columns="7" FirstColumn="3">
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="1" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="1" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="2" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="2" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="3" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="3" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="4" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="4" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="5" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="5" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="6" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="6" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="7" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="7" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="8" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="8" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="9" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="9" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="10" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="10" HorizontalAlignment="Center"/>
                             </Border>
                             <Border Background="#2B2742" CornerRadius="8" Padding="6" Margin="2">
-                                <TextBlock Text="11" HorizontalAlignment="Center"/>
+                                <TextBlock Foreground="White" Text="11" HorizontalAlignment="Center"/>
                             </Border>
                         </UniformGrid>
                     </StackPanel>
@@ -236,16 +241,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the UniformGrid layouts above." />
+                           Text="{DynamicResource Loc.P.UniformGrid.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="250"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -253,16 +260,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating and configuring a UniformGrid in code-behind." />
+                           Text="{DynamicResource Loc.P.UniformGrid.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

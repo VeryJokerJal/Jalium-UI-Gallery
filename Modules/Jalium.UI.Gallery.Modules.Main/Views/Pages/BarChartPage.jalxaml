@@ -1,24 +1,44 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.BarChartPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="BarChart">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="BarChart" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.BarChart.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Renders numeric series as grouped, stacked, or horizontal bars with optional value labels, gridlines, and a legend." />
+                   Text="{DynamicResource Loc.P.BarChart.Sub1}" />
 
         <!-- Grouped Bars -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Grouped Bars" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.BarChart.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Multiple series displayed as grouped bars side by side for easy comparison." />
+                           Text="{DynamicResource Loc.P.BarChart.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="GroupedBarContainer" Orientation="Vertical" />
+                    <BarChart Height="350"
+                              Title="Sales by Region"
+                              IsLegendVisible="True"
+                              BarMode="Grouped"
+                              ShowValueLabels="True"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="2024"
+                                       Brush="#3B82F6"
+                                       ItemsSource="{Binding Grouped2024}"
+                                       XBindingPath="Category"
+                                       YBindingPath="Value" />
+                            <BarSeries Title="2025"
+                                       Brush="#10B981"
+                                       ItemsSource="{Binding Grouped2025}"
+                                       XBindingPath="Category"
+                                       YBindingPath="Value" />
+                        </BarChart.Series>
+                    </BarChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +46,33 @@
         <!-- Stacked Bars -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stacked Bars" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.BarChart.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Series stacked on top of each other to show total and composition." />
+                           Text="{DynamicResource Loc.P.BarChart.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="StackedBarContainer" Orientation="Vertical" />
+                    <BarChart Height="350"
+                              Title="Revenue Breakdown"
+                              IsLegendVisible="True"
+                              BarMode="Stacked"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="Products"
+                                       Brush="#6366F1"
+                                       ItemsSource="{Binding Products}"
+                                       XBindingPath="Category"
+                                       YBindingPath="Value" />
+                            <BarSeries Title="Services"
+                                       Brush="#F59E0B"
+                                       ItemsSource="{Binding Services}"
+                                       XBindingPath="Category"
+                                       YBindingPath="Value" />
+                            <BarSeries Title="Licensing"
+                                       Brush="#EC4899"
+                                       ItemsSource="{Binding Licensing}"
+                                       XBindingPath="Category"
+                                       YBindingPath="Value" />
+                        </BarChart.Series>
+                    </BarChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +80,25 @@
         <!-- Horizontal Bars -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Horizontal Bars" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.BarChart.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Bars rendered horizontally, useful for category comparisons with long labels." />
+                           Text="{DynamicResource Loc.P.BarChart.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="HorizontalBarContainer" Orientation="Vertical" />
+                    <BarChart Height="350"
+                              Title="Programming Language Popularity"
+                              IsLegendVisible="True"
+                              Orientation="Horizontal"
+                              BarMode="Grouped"
+                              ShowValueLabels="True"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="Developers (%)"
+                                       Brush="#0EA5E9"
+                                       ItemsSource="{Binding LanguagePopularity}"
+                                       XBindingPath="Category"
+                                       YBindingPath="Value" />
+                        </BarChart.Series>
+                    </BarChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +106,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a grouped bar chart with two series." />
+                           Text="{DynamicResource Loc.P.BarChart.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +125,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building and configuring a BarChart with series and data points in code-behind." />
+                           Text="{DynamicResource Loc.P.BarChart.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

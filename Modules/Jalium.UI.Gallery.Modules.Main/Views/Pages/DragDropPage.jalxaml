@@ -1,30 +1,33 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DragDropPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Drag &amp; Drop">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Drag &amp; Drop" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DragDrop.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Demonstrates DragEnter, DragOver, DragLeave, and Drop events, plus the Windows Shell enhancements: a caller-supplied drag image on the source, a Shell drop description on the target, and dragging files out to other applications via DoShellDragDrop." />
+                   Text="{DynamicResource Loc.P.DragDrop.Sub1}" />
 
         <!-- Basic drag and drop -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Drag &amp; Drop" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DragDrop.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag items from the source list and drop them into the target area." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <!-- Drag Source -->
                         <StackPanel Orientation="Vertical" Width="200" Margin="0,0,10,10">
-                            <TextBlock Text="Drag Source"
+                            <TextBlock Text="{DynamicResource Loc.P.DragDrop.Hint1}"
                                        FontSize="13"
                                        Margin="0,0,0,8" />
-                            <Border x:Name="DragItem1"
+                            <Border behaviors:DragDropBehavior.SourceText="Item A"
                                     Background="{DynamicResource GalleryAccent}"
                                     CornerRadius="8"
                                     Padding="12,8"
@@ -32,7 +35,7 @@
                                     Cursor="Hand">
                                 <TextBlock Text="Item A" FontSize="13" />
                             </Border>
-                            <Border x:Name="DragItem2"
+                            <Border behaviors:DragDropBehavior.SourceText="Item B"
                                     Background="#22C55E"
                                     CornerRadius="8"
                                     Padding="12,8"
@@ -40,7 +43,7 @@
                                     Cursor="Hand">
                                 <TextBlock Text="Item B" FontSize="13" />
                             </Border>
-                            <Border x:Name="DragItem3"
+                            <Border behaviors:DragDropBehavior.SourceText="Item C"
                                     Background="#D83B01"
                                     CornerRadius="8"
                                     Padding="12,8"
@@ -51,7 +54,8 @@
                         </StackPanel>
 
                         <!-- Drop Target -->
-                        <Border x:Name="DropTarget"
+                        <Border behaviors:DragDropBehavior.TargetRole="ItemList"
+                                behaviors:DragDropBehavior.TargetName="DropTarget"
                                 Background="{DynamicResource GalleryCardAltBackground}"
                                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                                 BorderThickness="2"
@@ -62,14 +66,25 @@
                                 Margin="0,0,10,10"
                                 AllowDrop="True">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock x:Name="DropTargetHint"
-                                           Text="Drop items here"
+                                <TextBlock Text="{Binding DropTargetHint}"
                                            FontSize="14"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Margin="0,0,0,8" />
-                                <StackPanel x:Name="DroppedItemsPanel"
-                                            Orientation="Vertical" />
+                                <ItemsControl ItemsSource="{Binding DroppedItems}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#0F6CBD"
+                                                    CornerRadius="4"
+                                                    Padding="10,6"
+                                                    Margin="0,0,0,4">
+                                                <TextBlock Text="{Binding}"
+                                                           Foreground="#FFFFFF"
+                                                           FontSize="13" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </StackPanel>
                         </Border>
                     </WrapPanel>
@@ -80,24 +95,25 @@
         <!-- DragEnter / DragLeave feedback -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="DragEnter / DragLeave Feedback" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DragDrop.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag an item over the zones below to see visual feedback on DragEnter and DragLeave." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <!-- Drag source for this demo -->
-                        <Border x:Name="FeedbackDragSource"
+                        <Border behaviors:DragDropBehavior.SourceText="Feedback Item"
                                 Background="{DynamicResource GalleryAccent}"
                                 CornerRadius="8"
                                 Padding="12,8"
                                 Margin="0,0,0,16"
                                 Cursor="Hand"
                                 HorizontalAlignment="Left">
-                            <TextBlock Text="Drag me over the zones" FontSize="13" />
+                            <TextBlock Text="{DynamicResource Loc.P.DragDrop.Hint2}" FontSize="13" />
                         </Border>
 
                         <WrapPanel>
-                            <Border x:Name="FeedbackZone1"
+                            <Border behaviors:DragDropBehavior.TargetRole="Feedback"
+                                    behaviors:DragDropBehavior.TargetName="Zone 1"
                                     Background="{DynamicResource GalleryCardAltBackground}"
                                     BorderBrush="{DynamicResource GalleryBorderDefault}"
                                     BorderThickness="2"
@@ -106,13 +122,13 @@
                                     Height="100"
                                     Margin="0,0,10,10"
                                     AllowDrop="True">
-                                <TextBlock x:Name="FeedbackZone1Text"
-                                           Text="Zone 1"
+                                <TextBlock Text="Zone 1"
                                            FontSize="14"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center" />
                             </Border>
-                            <Border x:Name="FeedbackZone2"
+                            <Border behaviors:DragDropBehavior.TargetRole="Feedback"
+                                    behaviors:DragDropBehavior.TargetName="Zone 2"
                                     Background="{DynamicResource GalleryCardAltBackground}"
                                     BorderBrush="{DynamicResource GalleryBorderDefault}"
                                     BorderThickness="2"
@@ -121,13 +137,13 @@
                                     Height="100"
                                     Margin="0,0,10,10"
                                     AllowDrop="True">
-                                <TextBlock x:Name="FeedbackZone2Text"
-                                           Text="Zone 2"
+                                <TextBlock Text="Zone 2"
                                            FontSize="14"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center" />
                             </Border>
-                            <Border x:Name="FeedbackZone3"
+                            <Border behaviors:DragDropBehavior.TargetRole="Feedback"
+                                    behaviors:DragDropBehavior.TargetName="Zone 3"
                                     Background="{DynamicResource GalleryCardAltBackground}"
                                     BorderBrush="{DynamicResource GalleryBorderDefault}"
                                     BorderThickness="2"
@@ -136,8 +152,7 @@
                                     Height="100"
                                     Margin="0,0,10,10"
                                     AllowDrop="True">
-                                <TextBlock x:Name="FeedbackZone3Text"
-                                           Text="Zone 3"
+                                <TextBlock Text="Zone 3"
                                            FontSize="14"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center" />
@@ -151,22 +166,24 @@
         <!-- Custom drag image (drag source) -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom Drag Image (drag source)" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DragDrop.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag the item below. A caller-supplied image follows the cursor instead of an automatic element clone, using DragDrop.DoDragDrop(source, data, effects, dragImage, offset)." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
-                        <Border x:Name="CustomImageDragSource"
+                        <Border behaviors:DragDropBehavior.SourceText="Custom Image Item"
+                                behaviors:DragDropBehavior.UseCustomImage="True"
                                 Background="{DynamicResource GalleryAccent}"
                                 CornerRadius="8"
                                 Padding="12,8"
                                 Margin="0,0,10,10"
                                 VerticalAlignment="Center"
                                 Cursor="Hand">
-                            <TextBlock Text="Drag me — custom image" FontSize="13" />
+                            <TextBlock Text="{DynamicResource Loc.P.DragDrop.Hint3}" FontSize="13" />
                         </Border>
 
-                        <Border x:Name="CustomImageDropTarget"
+                        <Border behaviors:DragDropBehavior.TargetRole="CustomImage"
+                                behaviors:DragDropBehavior.TargetName="CustomImageDropTarget"
                                 Background="{DynamicResource GalleryCardAltBackground}"
                                 BorderBrush="{DynamicResource GalleryBorderDefault}"
                                 BorderThickness="2"
@@ -176,8 +193,7 @@
                                 Padding="16"
                                 Margin="0,0,10,10"
                                 AllowDrop="True">
-                            <TextBlock x:Name="CustomImageDropHint"
-                                       Text="Drop here"
+                            <TextBlock Text="{Binding CustomImageDropHint}"
                                        FontSize="14"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center" />
@@ -190,10 +206,11 @@
         <!-- Windows Shell drop (external files) -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Windows Shell Drop (external files)" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DragDrop.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag one or more files from Windows Explorer onto the area below. Windows renders its own drag image (IDropTargetHelper), and the DragOver handler sets a Shell drop description via e.SetDropDescription(...)." />
-                <Border x:Name="ShellDropTarget"
+                           Text="{DynamicResource Loc.P.DragDrop.CC4}" />
+                <Border behaviors:DragDropBehavior.TargetRole="ShellFiles"
+                        behaviors:DragDropBehavior.TargetName="ShellDropTarget"
                         Background="{DynamicResource GalleryCardAltBackground}"
                         BorderBrush="{DynamicResource GalleryBorderDefault}"
                         BorderThickness="2"
@@ -202,14 +219,21 @@
                         Padding="16"
                         AllowDrop="True">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock x:Name="ShellDropHint"
-                                   Text="Drag files here from Explorer"
+                        <TextBlock Text="{Binding ShellDropHint}"
                                    FontSize="14"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="0,0,0,8" />
-                        <StackPanel x:Name="ShellDroppedFilesPanel"
-                                    Orientation="Vertical" />
+                        <ItemsControl ItemsSource="{Binding ShellDroppedFiles}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource GalleryTextSecondary}"
+                                               Margin="0,2,0,0" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -218,21 +242,21 @@
         <!-- Drag out to Explorer (cross-process) -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Drag Out to Explorer (cross-process)" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DragDrop.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag the item below onto a Windows Explorer window or the desktop. Unlike the in-app drag, DragDrop.DoShellDragDrop runs a real OLE drag so the file is copied out to another application, with the Windows system drag image." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <Border x:Name="DragOutSource"
+                        <Border behaviors:DragDropBehavior.SourceText="JaliumGalleryDragDrop.txt"
+                                behaviors:DragDropBehavior.ShellDragOut="True"
                                 Background="#7C3AED"
                                 CornerRadius="8"
                                 Padding="12,8"
                                 Cursor="Hand"
                                 HorizontalAlignment="Left">
-                            <TextBlock Text="Drag me to Explorer (creates a .txt)" FontSize="13" />
+                            <TextBlock Text="{DynamicResource Loc.P.DragDrop.Hint4}" FontSize="13" />
                         </Border>
-                        <TextBlock x:Name="DragOutStatus"
-                                   Text="A temp file is created on drag; drop it into a folder to copy it out."
+                        <TextBlock Text="{Binding DragOutStatus}"
                                    FontSize="12"
                                    TextWrapping="Wrap"
                                    Margin="0,8,0,0" />
@@ -246,24 +270,22 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                     <TextBlock Style="{StaticResource GalleryCardTitle}"
-                               Text="Event Log"
+                               Text="{DynamicResource Loc.P.DragDrop.CT6}"
                                Margin="0"
                                VerticalAlignment="Center" />
-                    <Button x:Name="ClearLogButton"
-                            Content="Clear"
+                    <Button Content="Clear"
+                            Command="{Binding ClearLogCommand}"
                             Height="24"
                             FontSize="11"
                             Margin="12,0,0,0"
                             VerticalAlignment="Center" />
                 </StackPanel>
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Shows DragEnter, DragOver, DragLeave, and Drop events as they fire." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" MaxHeight="200">
-                    <ScrollViewer x:Name="LogScrollViewer"
-                                  VerticalScrollBarVisibility="Auto"
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   Padding="12">
-                        <TextBlock x:Name="EventLogText"
-                                   Text="(drag items to see events)"
+                        <TextBlock Text="{Binding EventLog}"
                                    FontSize="12"
                                    FontFamily="Consolas"
                                    TextWrapping="Wrap" />
@@ -275,16 +297,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the drag and drop demo above." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -292,16 +316,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring drag sources, drop targets and Shell enhancements in code-behind." />
+                           Text="{DynamicResource Loc.P.DragDrop.CC8}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

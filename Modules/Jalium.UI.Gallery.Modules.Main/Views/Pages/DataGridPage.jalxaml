@@ -1,25 +1,30 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DataGridPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="DataGrid">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="COLLECTIONS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DataGrid" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Collections}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DataGrid.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that presents a collection of data in a customizable grid of rows and columns, with sorting, resizing, selection and auto-generated columns." />
+                   Text="{DynamicResource Loc.P.DataGrid.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click a row to select it, and click a column header to sort." />
+                           Text="{DynamicResource Loc.P.DataGrid.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <DataGrid x:Name="DemoDataGrid"
+                                  ItemsSource="{Binding People}"
+                                  SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"
+                                  AutoGenerateColumns="True"
                                   Height="200"
                                   Margin="0,0,0,16" />
                         <StackPanel Orientation="Horizontal">
@@ -28,7 +33,7 @@
                                        VerticalAlignment="Center" />
                             <TextBlock x:Name="SelectedItemText"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="(none)" />
+                                       Text="{Binding SelectedPersonText}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -38,19 +43,19 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A quick tour of what the grid supports out of the box." />
+                           Text="{DynamicResource Loc.P.DataGrid.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Auto-generate columns from the data source" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Column sorting (click headers)" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Column resizing (drag column edges)" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Single and Extended selection modes" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Row and column header visibility" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Alternating row backgrounds" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Grid lines customization" Margin="0,0,0,8" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="•  Keyboard navigation (Up / Down / Home / End)" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body1}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body3}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body4}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body5}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body6}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body7}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.DataGrid.Body8}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -59,16 +64,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the grid above." />
+                           Text="{DynamicResource Loc.P.DataGrid.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -76,16 +83,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Populating the grid and handling selection in code-behind." />
+                           Text="{DynamicResource Loc.P.DataGrid.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,36 +1,36 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DialogsPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="File Dialogs">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DIALOGS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="File Dialogs" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Dialogs}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Dialogs.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Invoke the native file, save, folder, shell, font, and message dialogs, then read back exactly what each one returns." />
+                   Text="{DynamicResource Loc.P.Dialogs.Sub1}" />
 
         <!-- Open File Dialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Open File Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Browse files, select multiple files, or use the WPF OpenFolderDialog." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="OpenFileButton" Content="Open File..." Width="100" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="OpenMultipleFilesButton" Content="Open Multiple..." Width="110" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="OpenFolderPickerButton" Content="Pick Folder..." Width="118" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui1}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenFile" Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui2}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenMultiple" Width="110" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui3}" Command="{Binding ShowDialogCommand}" CommandParameter="PickFolder" Width="118" Height="28" Margin="0,0,10,10" />
                         </WrapPanel>
-                        <TextBlock x:Name="SelectedFileText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="No file selected"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedFile}"
                                    Margin="0,0,0,6" />
-                        <TextBlock x:Name="SelectedFolderViaOpenFileText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="No folder selected via OpenFolderDialog" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedPickerFolder}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -39,15 +39,14 @@
         <!-- Save File Dialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Save File Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Allows users to specify a file name and location for saving." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Button x:Name="SaveFileButton" Content="Save As..." Width="100" Height="28" Margin="0,0,0,12" />
-                        <TextBlock x:Name="SaveFilePathText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="No save location selected" />
+                        <Button Content="{DynamicResource Loc.P.Dialogs.Ui4}" Command="{Binding ShowDialogCommand}" CommandParameter="SaveFile" Width="100" Height="28" Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SavePath}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -56,15 +55,14 @@
         <!-- Folder Browser Dialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Folder Browser Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Allows users to browse and select a folder." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Button x:Name="BrowseFolderButton" Content="Browse Folder..." Width="120" Height="28" Margin="0,0,0,12" />
-                        <TextBlock x:Name="SelectedFolderText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="No folder selected" />
+                        <Button Content="{DynamicResource Loc.P.Dialogs.Ui5}" Command="{Binding ShowDialogCommand}" CommandParameter="BrowseFolder" Width="120" Height="28" Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedFolder}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -73,30 +71,27 @@
         <!-- Shell Dialogs -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Shell Dialogs" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Open icon picking, Open With, and file properties sheets backed directly by Win32 shell APIs." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="PickIconButton" Content="Pick Icon..." Width="100" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="OpenWithButton" Content="Open With..." Width="105" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="FilePropertiesButton" Content="File Properties..." Width="126" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="PrinterPropertiesButton" Content="Printer Properties..." Width="140" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="VolumePropertiesButton" Content="Volume Properties..." Width="140" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="MultiFilePropertiesButton" Content="Multi-file Properties..." Width="156" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui6}" Command="{Binding ShowDialogCommand}" CommandParameter="PickIcon" Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui7}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenWith" Width="105" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui8}" Command="{Binding ShowDialogCommand}" CommandParameter="FileProperties" Width="126" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui9}" Command="{Binding ShowDialogCommand}" CommandParameter="PrinterProperties" Width="140" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui10}" Command="{Binding ShowDialogCommand}" CommandParameter="VolumeProperties" Width="140" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui11}" Command="{Binding ShowDialogCommand}" CommandParameter="MultiFileProperties" Width="156" Height="28" Margin="0,0,10,10" />
                         </WrapPanel>
-                        <TextBlock x:Name="SelectedIconText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="No icon selected"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedIcon}"
                                    Margin="0,0,0,6" />
-                        <TextBlock x:Name="OpenWithTargetText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Open With target not launched"
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding OpenWithTarget}"
                                    Margin="0,0,0,6" />
-                        <TextBlock x:Name="PropertiesTargetText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Properties dialog not launched" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding PropertiesTarget}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -105,18 +100,16 @@
         <!-- Font Dialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Font Dialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Allows users to select a font family, style, and size." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Button x:Name="ChooseFontButton" Content="Choose Font..." Width="110" Height="28" Margin="0,0,0,12" />
-                        <TextBlock x:Name="FontPreviewText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="The quick brown fox jumps over the lazy dog" />
-                        <TextBlock x:Name="SelectedFontText"
-                                   Style="{StaticResource GalleryCaptionText}"
-                                   Text="Current: Segoe UI, 14pt"
+                        <Button Content="{DynamicResource Loc.P.Dialogs.Ui12}" Command="{Binding ShowDialogCommand}" CommandParameter="ChooseFont" Width="110" Height="28" Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Dialogs.Body1}" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding SelectedFont}"
                                    Margin="0,8,0,0" />
                     </StackPanel>
                 </Border>
@@ -126,24 +119,25 @@
         <!-- Message Dialogs -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Message Dialogs" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT6}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Launch native message boxes with different icons, button layouts, and default actions." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC6}" />
                 <TextBlock Style="{StaticResource GalleryBodyText}"
-                           Text="These examples use Jalium.UI.Controls.MessageBox so the sample window stays the owner while you test classic system prompts."
+                           Text="{DynamicResource Loc.P.Dialogs.Body2}"
                            Margin="0,0,0,16" />
 
                 <WrapPanel Margin="0,0,0,6">
                     <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
                         <StackPanel>
                             <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
-                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Information" />
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip1}" />
                             </Border>
                             <TextBlock Style="{StaticResource GalleryBodyText}"
-                                       Text="Single-button acknowledgement after a successful sync."
+                                       Text="{DynamicResource Loc.P.Dialogs.Body3}"
                                        Margin="0,0,0,12" />
-                            <Button x:Name="InfoDialogButton"
-                                    Content="Show info"
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui13}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Information"
                                     Width="108"
                                     Height="32" />
                         </StackPanel>
@@ -152,13 +146,14 @@
                     <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
                         <StackPanel>
                             <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
-                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Warning" />
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip2}" />
                             </Border>
                             <TextBlock Style="{StaticResource GalleryBodyText}"
-                                       Text="Retry or cancel a save flow before leaving the current view."
+                                       Text="{DynamicResource Loc.P.Dialogs.Body4}"
                                        Margin="0,0,0,12" />
-                            <Button x:Name="WarningDialogButton"
-                                    Content="Retry flow"
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui14}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Warning"
                                     Width="108"
                                     Height="32" />
                         </StackPanel>
@@ -167,13 +162,14 @@
                     <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
                         <StackPanel>
                             <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
-                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Error" />
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip3}" />
                             </Border>
                             <TextBlock Style="{StaticResource GalleryBodyText}"
-                                       Text="Blocking import failure with a system error icon and acknowledgement."
+                                       Text="{DynamicResource Loc.P.Dialogs.Body5}"
                                        Margin="0,0,0,12" />
-                            <Button x:Name="ErrorDialogButton"
-                                    Content="Show error"
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui15}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Error"
                                     Width="108"
                                     Height="32" />
                         </StackPanel>
@@ -182,13 +178,14 @@
                     <Border Style="{StaticResource GalleryDemoSurface}" Width="200" Margin="0,0,10,10">
                         <StackPanel>
                             <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
-                                <TextBlock Style="{StaticResource GalleryChipText}" Text="Confirm" />
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip4}" />
                             </Border>
                             <TextBlock Style="{StaticResource GalleryBodyText}"
-                                       Text="Yes, No, and Cancel with a safer default for destructive choices."
+                                       Text="{DynamicResource Loc.P.Dialogs.Body6}"
                                        Margin="0,0,0,12" />
-                            <Button x:Name="ConfirmDialogButton"
-                                    Content="Confirm action"
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui16}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Confirm"
                                     Width="116"
                                     Height="32" />
                         </StackPanel>
@@ -203,27 +200,22 @@
                                 Height="4"
                                 Margin="0,0,0,12" />
                         <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                   Text="Last dialog interaction"
+                                   Text="{DynamicResource Loc.P.Dialogs.Cap1}"
                                    Margin="0,0,0,4" />
-                        <TextBlock x:Name="DialogResultTitleText"
-                                   Style="{StaticResource GalleryCardTitle}"
-                                   Text="Native message boxes ready"
+                        <TextBlock Style="{StaticResource GalleryCardTitle}"
+                                   Text="{Binding MessageCaption}"
                                    Margin="0,0,0,8" />
-                        <TextBlock x:Name="DialogScenarioText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Run one of the samples above to inspect the icon, buttons, default result, and returned value."
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding MessageDescription}"
                                    Margin="0,0,0,10" />
-                        <TextBlock x:Name="DialogMessageText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Message: The preview panel will summarize the exact prompt after you close it."
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding MessageText}"
                                    Margin="0,0,0,10" />
-                        <TextBlock x:Name="DialogDetailsText"
-                                   Style="{StaticResource GalleryCaptionText}"
-                                   Text="Buttons: -  |  Icon: -  |  Default: -"
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding MessageDetails}"
                                    Margin="0,0,0,8" />
-                        <TextBlock x:Name="DialogResultText"
-                                   Style="{StaticResource GalleryValueLabel}"
-                                   Text="Result: -" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding MessageResult}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -232,22 +224,22 @@
         <!-- Dialog Options -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Dialog Options" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Dialogs.CT7}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Common configuration options for file dialogs." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Filter:" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Dialogs.Cap2}" Margin="0,0,0,4" />
                         <TextBox Text="Text files (*.txt)|*.txt|All files (*.*)|*.*"
                                  Height="28"
                                  Margin="0,0,0,12" />
-                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Initial Directory:" Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Dialogs.Cap3}" Margin="0,0,0,4" />
                         <TextBox Text="C:\Users\Documents"
                                  Height="28"
                                  Margin="0,0,0,12" />
-                        <CheckBox Content="Check if file exists" Margin="0,0,0,8" />
-                        <CheckBox Content="Add to recent files" Margin="0,0,0,8" IsChecked="True" />
-                        <CheckBox Content="Show hidden files" />
+                        <CheckBox Content="{DynamicResource Loc.P.Dialogs.Ui17}" Margin="0,0,0,8" />
+                        <CheckBox Content="{DynamicResource Loc.P.Dialogs.Ui18}" Margin="0,0,0,8" IsChecked="True" />
+                        <CheckBox Content="{DynamicResource Loc.P.Dialogs.Ui19}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -256,16 +248,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the dialog buttons above." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC8}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -273,16 +267,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating and showing each dialog from the code-behind." />
+                           Text="{DynamicResource Loc.P.Dialogs.CC9}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

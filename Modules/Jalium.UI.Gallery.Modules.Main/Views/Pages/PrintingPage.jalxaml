@@ -1,32 +1,34 @@
 <Page
     xmlns="http://schemas.jalium.com/jalxaml"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
     x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PrintingPage"
+    hosting:ViewModelLocator.AutoWireViewModel="True"
     Title="Printing System">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="SYSTEM" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Printing" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.System}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Printing.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="WPF-compatible printing with PrintDialog, PrintQueue, and DocumentPaginator support." />
+                   Text="{DynamicResource Loc.P.Printing.Sub1}" />
 
         <!-- PrintDialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="PrintDialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Printing.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Standard print dialog for selecting a printer and print options." />
+                           Text="{DynamicResource Loc.P.Printing.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="ShowPrintDialogButton" Content="Show Print Dialog" Width="150" Margin="0,0,10,10" />
-                            <Button x:Name="PrintVisualButton" Content="Print Visual" Width="120" Margin="0,0,10,10" />
+                            <Button x:Name="ShowPrintDialogButton" Content="Show Print Dialog" Command="{Binding ShowPrintDialogCommand}" Width="150" Margin="0,0,10,10" />
+                            <Button x:Name="PrintVisualButton" Content="Print Visual" Command="{Binding PrintVisualCommand}" Width="120" Margin="0,0,10,10" />
                         </WrapPanel>
                         <TextBlock x:Name="PrintStatus"
                                    Style="{StaticResource GalleryCaptionText}"
-                                   Text="Print Status: Ready"
+                                   Text="{Binding PrintStatus}"
                                    Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
@@ -36,19 +38,20 @@
         <!-- PrintQueue -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="PrintQueue" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Printing.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Represents a printer and provides print-capabilities querying." />
+                           Text="{DynamicResource Loc.P.Printing.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <Button x:Name="ListPrintersButton"
                                 Content="List Available Printers"
+                                Command="{Binding ListPrintersCommand}"
                                 Width="180"
                                 HorizontalAlignment="Left"
                                 Margin="0,0,0,12" />
                         <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="150">
                             <TextBlock x:Name="PrinterList"
-                                       Text="Click to list printers..."
+                                       Text="{Binding PrinterList}"
                                        FontFamily="Consolas"
                                        FontSize="12" />
                         </ScrollViewer>
@@ -60,17 +63,17 @@
         <!-- PrintCapabilities -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="PrintCapabilities" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Printing.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Query printer capabilities including paper sizes, colors, and resolution." />
+                           Text="{DynamicResource Loc.P.Printing.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Supported features" Margin="0,0,0,10" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Page Sizes: Letter, Legal, A3, A4, A5, Tabloid, Executive" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Orientations: Portrait, Landscape, Reverse" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Colors: Color, Grayscale, Monochrome" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Duplex: OneSided, TwoSidedShortEdge, TwoSidedLongEdge" Margin="0,0,0,6" />
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="Quality: Draft, Normal, High, Photographic" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Printing.Val1}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body1}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body2}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body3}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body4}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body5}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -79,9 +82,9 @@
         <!-- DocumentPaginator -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="DocumentPaginator" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Printing.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Paginate documents for printing with the IDocumentPaginatorSource interface." />
+                           Text="{DynamicResource Loc.P.Printing.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <TextBlock Text="// Print a document" FontFamily="Consolas" FontSize="12" />
@@ -96,16 +99,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the print buttons and printer list above." />
+                           Text="{DynamicResource Loc.P.Printing.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -113,16 +118,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Showing the dialog, enumerating printers, and paginating a document in code-behind." />
+                           Text="{DynamicResource Loc.P.Printing.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

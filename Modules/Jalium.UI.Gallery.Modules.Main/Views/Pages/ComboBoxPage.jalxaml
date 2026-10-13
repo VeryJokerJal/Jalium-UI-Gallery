@@ -1,37 +1,78 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ComboBoxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ComboBox">
 
-    <!--
-        Hybrid page: the header and the two code-example cards live in markup;
-        the interactive demo cards are built imperatively into DemoHost by
-        CreateContent() using the GalleryUi factory (the C# mirror of the shared
-        styles), so both halves render the identical card scaffold.
-    -->
     <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ComboBox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ComboBox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A dropdown that presents a list of options for single selection — with placeholder text, pre-selection, and selection-changed events." />
+                   Text="{DynamicResource Loc.P.ComboBox.Sub1}" />
 
-        <!-- Interactive demos are inserted here by CreateContent(). -->
-        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Basic}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.ComboBox.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ComboBox PlaceholderText="{DynamicResource Loc.P.ComboBox.Ph1}"
+                              ItemsSource="{Binding Fruits}"
+                              Width="220" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ComboBox.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.ComboBox.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ComboBox PlaceholderText="{DynamicResource Loc.P.ComboBox.Ph2}"
+                              ItemsSource="{Binding Colors}"
+                              SelectedItem="{Binding SelectedColor, Mode=TwoWay}"
+                              Width="220" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ComboBox.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.ComboBox.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <ComboBox PlaceholderText="{DynamicResource Loc.P.ComboBox.Ph3}"
+                                  ItemsSource="{Binding Days}"
+                                  SelectedItem="{Binding SelectedDay, Mode=TwoWay}"
+                                  Width="220"
+                                  Margin="0,0,16,0" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding SelectedDayText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the ComboBoxes above." />
+                           Text="{DynamicResource Loc.P.ComboBox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -39,16 +80,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Populating items and handling selection in code-behind." />
+                           Text="{DynamicResource Loc.P.ComboBox.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

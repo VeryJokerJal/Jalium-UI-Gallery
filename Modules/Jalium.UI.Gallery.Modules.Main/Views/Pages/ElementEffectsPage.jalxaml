@@ -1,37 +1,47 @@
-<Page
+﻿<Page
     xmlns="http://schemas.jalium.com/jalxaml"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:effects="clr-namespace:Jalium.UI.Media.Effects;assembly=Jalium.UI.Media"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
     x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ElementEffectsPage"
+    hosting:ViewModelLocator.AutoWireViewModel="True"
     Title="Element Effects">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Element Effects" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Effects}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ElementEffects.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Modern element-level visual effects — OuterGlow, InnerShadow, Emboss, ColorMatrix and EffectGroup — each applied to a single element and composable into effect groups." />
+                   Text="{DynamicResource Loc.P.ElementEffects.Sub1}" />
 
         <!-- OuterGlowEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="OuterGlowEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ElementEffects.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Renders a glow around the outer edges of an element. Replaces the deprecated OuterGlowBitmapEffect." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Glow Size: " />
-                            <Slider x:Name="GlowSizeSlider" Width="200" Minimum="0" Maximum="40" Value="10" Margin="12,0,0,0" />
-                            <TextBlock x:Name="GlowSizeText" Style="{StaticResource GalleryValueLabel}" Text="10" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="40" Value="{Binding GlowSize, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding GlowSize, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Intensity: " />
-                            <Slider x:Name="GlowIntensitySlider" Width="200" Minimum="0" Maximum="50" Value="10" Margin="12,0,0,0" />
-                            <TextBlock x:Name="GlowIntensityText" Style="{StaticResource GalleryValueLabel}" Text="1.0" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="5" Value="{Binding GlowIntensity, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding GlowIntensity, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
                         </StackPanel>
-                        <Border Background="#1A1A2E" Height="120" CornerRadius="8" HorizontalAlignment="Stretch">
+                        <Border Background="{DynamicResource GalleryEffectStage}" Height="120" CornerRadius="8" HorizontalAlignment="Stretch">
                             <Border x:Name="OuterGlowDemo" Background="{DynamicResource GalleryAccent}" Width="160" Height="60" CornerRadius="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border.Effect>
+                                    <effects:OuterGlowEffect GlowSize="{Binding GlowSize}"
+                                                             GlowColor="#FF0078D4"
+                                                             Intensity="{Binding GlowIntensity}"
+                                                             Opacity="0.9" />
+                                </Border.Effect>
                                 <TextBlock Text="Outer Glow" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
                             </Border>
                         </Border>
@@ -43,23 +53,29 @@
         <!-- InnerShadowEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="InnerShadowEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ElementEffects.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Renders a shadow inside the element bounds, similar to CSS box-shadow: inset." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Blur Radius: " />
-                            <Slider x:Name="InnerShadowBlurSlider" Width="200" Minimum="0" Maximum="30" Value="8" Margin="12,0,0,0" />
-                            <TextBlock x:Name="InnerShadowBlurText" Style="{StaticResource GalleryValueLabel}" Text="8" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="30" Value="{Binding InnerShadowBlur, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding InnerShadowBlur, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Shadow Depth: " />
-                            <Slider x:Name="InnerShadowDepthSlider" Width="200" Minimum="0" Maximum="20" Value="5" Margin="12,0,0,0" />
-                            <TextBlock x:Name="InnerShadowDepthText" Style="{StaticResource GalleryValueLabel}" Text="5" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="20" Value="{Binding InnerShadowDepth, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding InnerShadowDepth, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
                         </StackPanel>
-                        <Border x:Name="InnerShadowDemo" Background="#3D3D50" Width="220" Height="100" CornerRadius="16" HorizontalAlignment="Left">
-                            <TextBlock Text="Inner Shadow" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                        <Border x:Name="InnerShadowDemo" Background="{DynamicResource GalleryEffectRelief}" Width="220" Height="100" CornerRadius="16" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <effects:InnerShadowEffect BlurRadius="{Binding InnerShadowBlur}"
+                                                           ShadowDepth="{Binding InnerShadowDepth}"
+                                                           Color="#B4000000"
+                                                           Direction="315" />
+                            </Border.Effect>
+                            <TextBlock Text="Inner Shadow" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
                         </Border>
                     </StackPanel>
                 </Border>
@@ -69,23 +85,29 @@
         <!-- EmbossEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="EmbossEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ElementEffects.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creates a raised or sunken appearance by simulating light hitting the surface. Replaces the deprecated EmbossBitmapEffect." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Amount: " />
-                            <Slider x:Name="EmbossAmountSlider" Width="200" Minimum="0" Maximum="50" Value="15" Margin="12,0,0,0" />
-                            <TextBlock x:Name="EmbossAmountText" Style="{StaticResource GalleryValueLabel}" Text="1.5" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="5" Value="{Binding EmbossAmount, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding EmbossAmount, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Light Angle: " />
-                            <Slider x:Name="EmbossAngleSlider" Width="200" Minimum="0" Maximum="360" Value="45" Margin="12,0,0,0" />
-                            <TextBlock x:Name="EmbossAngleText" Style="{StaticResource GalleryValueLabel}" Text="45" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="360" Value="{Binding EmbossAngle, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding EmbossAngle, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
                         </StackPanel>
-                        <Border x:Name="EmbossDemo" Background="#556677" Width="200" Height="80" CornerRadius="10" HorizontalAlignment="Left">
-                            <TextBlock Text="Emboss Demo" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                        <Border x:Name="EmbossDemo" Background="{DynamicResource GalleryEffectRelief}" Width="200" Height="80" CornerRadius="10" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <effects:EmbossEffect Amount="{Binding EmbossAmount}"
+                                                      LightAngle="{Binding EmbossAngle}"
+                                                      Relief="0.44"
+                                                      Width="1" />
+                            </Border.Effect>
+                            <TextBlock Text="Emboss Demo" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
                         </Border>
                     </StackPanel>
                 </Border>
@@ -95,31 +117,31 @@
         <!-- ColorMatrixEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ColorMatrixEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ElementEffects.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Applies 5x4 color matrix transformations with preset factories for grayscale, sepia, brightness, contrast, saturation, hue rotation and invert." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel Margin="0,0,0,6">
-                            <Button x:Name="GrayscaleBtn" Content="Grayscale" Margin="0,0,10,10" />
-                            <Button x:Name="SepiaBtn" Content="Sepia" Margin="0,0,10,10" />
-                            <Button x:Name="InvertBtn" Content="Invert" Margin="0,0,10,10" />
-                            <Button x:Name="HueRotateBtn" Content="Hue Rotate" Margin="0,0,10,10" />
-                            <Button x:Name="ResetColorBtn" Content="Reset" Margin="0,0,10,10" />
+                            <Button Content="Grayscale" Command="{Binding UseGrayscaleCommand}" Margin="0,0,10,10" />
+                            <Button Content="Sepia" Command="{Binding UseSepiaCommand}" Margin="0,0,10,10" />
+                            <Button Content="Invert" Command="{Binding UseInvertCommand}" Margin="0,0,10,10" />
+                            <Button Content="Hue Rotate" Command="{Binding UseHueRotateCommand}" Margin="0,0,10,10" />
+                            <Button Content="Reset" Command="{Binding ResetColorMatrixCommand}" Margin="0,0,10,10" />
                         </WrapPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Saturation: " />
-                            <Slider x:Name="SaturationSlider" Width="200" Minimum="0" Maximum="30" Value="10" Margin="12,0,0,0" />
-                            <TextBlock x:Name="SaturationText" Style="{StaticResource GalleryValueLabel}" Text="1.0" Margin="12,0,0,0" />
+                            <Slider Width="200" Minimum="0" Maximum="3" Value="{Binding Saturation, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding Saturation, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
                         </StackPanel>
-                        <Border Background="#1A1A2E" CornerRadius="8" Padding="12">
+                        <Border Background="{DynamicResource GalleryEffectStage}" CornerRadius="8" Padding="12">
                             <WrapPanel HorizontalAlignment="Center">
-                                <Border x:Name="ColorDemo1" Background="#FF4444" Width="50" Height="50" CornerRadius="8" Margin="2" />
-                                <Border x:Name="ColorDemo2" Background="#FF8800" Width="50" Height="50" CornerRadius="8" Margin="2" />
-                                <Border x:Name="ColorDemo3" Background="#FFDD00" Width="50" Height="50" CornerRadius="8" Margin="2" />
-                                <Border x:Name="ColorDemo4" Background="#44CC44" Width="50" Height="50" CornerRadius="8" Margin="2" />
-                                <Border x:Name="ColorDemo5" Background="#4488FF" Width="50" Height="50" CornerRadius="8" Margin="2" />
-                                <Border x:Name="ColorDemo6" Background="#44CC71" Width="50" Height="50" CornerRadius="8" Margin="2" />
+                                <Border Background="#FF4444" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#FF8800" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#FFDD00" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#44CC44" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#4488FF" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#44CC71" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
                             </WrapPanel>
                         </Border>
                     </StackPanel>
@@ -130,12 +152,21 @@
         <!-- EffectGroup -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="EffectGroup" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ElementEffects.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Composes multiple effects into a single group. Effects are applied sequentially, with each output feeding the next." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,0,12">
-                    <Border Background="#1A1A2E" Height="120" CornerRadius="8" HorizontalAlignment="Stretch">
+                    <Border Background="{DynamicResource GalleryEffectStage}" Height="120" CornerRadius="8" HorizontalAlignment="Stretch">
                         <Border x:Name="EffectGroupDemo" Background="#CC5500" Width="180" Height="70" CornerRadius="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border.Effect>
+                                <effects:EffectGroup>
+                                    <effects:OuterGlowEffect GlowColor="#FFFF8C00"
+                                                             GlowSize="12"
+                                                             Intensity="1" />
+                                    <effects:DropShadowEffect ShadowDepth="6"
+                                                              BlurRadius="8" />
+                                </effects:EffectGroup>
+                            </Border.Effect>
                             <TextBlock Text="Glow + Shadow" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
                         </Border>
                     </Border>
@@ -157,16 +188,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup applying element effects through the Effect property." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -174,16 +207,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating, configuring and composing effects in code-behind." />
+                           Text="{DynamicResource Loc.P.ElementEffects.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ShapesPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Shapes">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Shapes" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Media}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Shapes.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Vector primitives — rectangles, ellipses, lines, polygons, polylines and paths — for drawing crisp, resolution-independent graphics." />
+                   Text="{DynamicResource Loc.P.Shapes.Sub1}" />
 
         <!-- Rectangle -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Rectangle" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A basic rectangular shape with optional rounded corners and strokes." />
+                           Text="{DynamicResource Loc.P.Shapes.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Rectangle Width="100" Height="60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,10,10"/>
@@ -31,9 +33,9 @@
         <!-- Ellipse -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Ellipse" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="An elliptical shape that becomes a circle when width equals height." />
+                           Text="{DynamicResource Loc.P.Shapes.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Ellipse Width="60" Height="60" Fill="{DynamicResource GalleryAccent}" Margin="0,0,10,10"/>
@@ -48,9 +50,9 @@
         <!-- Line -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Line" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A straight line between two points, with optional dash patterns." />
+                           Text="{DynamicResource Loc.P.Shapes.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Canvas Width="400" Height="100">
                         <Line X1="0" Y1="10" X2="150" Y2="10" Stroke="{DynamicResource GalleryAccent}" StrokeThickness="2"/>
@@ -65,9 +67,9 @@
         <!-- Polygon -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Polygon" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A closed shape built from a series of connected points." />
+                           Text="{DynamicResource Loc.P.Shapes.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <!-- Triangle -->
@@ -88,9 +90,9 @@
         <!-- Polyline -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Polyline" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A series of connected line segments that stays open (not closed)." />
+                           Text="{DynamicResource Loc.P.Shapes.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Canvas Width="400" Height="80">
                         <Polyline Points="0,40 50,10 100,60 150,20 200,50 250,30 300,70 350,40"
@@ -106,9 +108,9 @@
         <!-- Path -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Path" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT6}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Complex shapes described with path geometry data." />
+                           Text="{DynamicResource Loc.P.Shapes.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <!-- Heart shape -->
@@ -129,9 +131,9 @@
         <!-- Combined shapes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Combined shapes example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Shapes.CT7}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Shapes can be layered on a canvas to compose richer graphics." />
+                           Text="{DynamicResource Loc.P.Shapes.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Canvas Width="300" Height="150">
                         <!-- Simple house -->
@@ -153,16 +155,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the shapes shown above." />
+                           Text="{DynamicResource Loc.P.Shapes.CC8}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -170,16 +174,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating and configuring shapes programmatically in code-behind." />
+                           Text="{DynamicResource Loc.P.Shapes.CC9}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

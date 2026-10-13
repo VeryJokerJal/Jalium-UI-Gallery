@@ -1,6 +1,8 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ButtonPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Button">
 
     <!--
@@ -14,26 +16,27 @@
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Button" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Button.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A clickable command surface that triggers an action. Buttons carry text or custom content, come in multiple sizes and states, and repaint automatically with the accent theme." />
+                   Text="{DynamicResource Loc.P.Button.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Tap the button to increment the counter." />
+                           Text="{DynamicResource Loc.P.Button.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Button x:Name="CounterButton"
                                 Content="Click Me"
                                 Height="40"
-                                Padding="20,0" />
+                                Padding="20,0"
+                                Command="{Binding IncrementCommand}" />
                         <TextBlock x:Name="CounterText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Count: 0"
+                                   Text="{Binding CounterText}"
                                    Margin="18,0,0,0" />
                     </StackPanel>
                 </Border>
@@ -43,9 +46,9 @@
         <!-- Basic button -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Basic}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Standard button with default styling, plus a disabled state." />
+                           Text="{DynamicResource Loc.P.Button.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Button Content="Click Me" Height="40" Padding="20,0" Margin="0,0,10,10" />
@@ -58,9 +61,9 @@
         <!-- Sizes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Sizes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Button.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Small, medium and large presets scale font and padding together." />
+                           Text="{DynamicResource Loc.P.Button.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Button Content="Small"  Height="30" Padding="14,0" FontSize="12" Margin="0,0,10,10" />
@@ -74,9 +77,9 @@
         <!-- Accent theming -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Accent theming" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Button.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Buttons bound to the accent brushes via {ThemeResource} repaint automatically when the theme or accent color switches." />
+                           Text="{DynamicResource Loc.P.Button.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Button Content="Accent"
@@ -108,15 +111,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the buttons above." />
+                           Text="{DynamicResource Loc.P.Button.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>
@@ -125,15 +130,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring click handlers and creating buttons in code-behind." />
+                           Text="{DynamicResource Loc.P.Button.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>

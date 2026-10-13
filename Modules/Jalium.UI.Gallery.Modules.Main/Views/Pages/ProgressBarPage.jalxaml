@@ -1,26 +1,28 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ProgressBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ProgressBar">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ProgressBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ProgressBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that visualizes the progress of an operation, either as a determinate percentage or an indeterminate loading animation." />
+                   Text="{DynamicResource Loc.P.ProgressBar.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Use the slider to change the progress value." />
+                           Text="{DynamicResource Loc.P.ProgressBar.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ProgressBar x:Name="DemoProgressBar"
-                                     Value="45"
+                                     Value="{Binding Progress}"
                                      Minimum="0"
                                      Maximum="100"
                                      Height="8"
@@ -29,12 +31,12 @@
                             <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
                             <TextBlock x:Name="ProgressValue"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="45%" />
+                                       Text="{Binding ProgressText}" />
                         </StackPanel>
                         <Slider x:Name="ProgressSlider"
                                 Minimum="0"
                                 Maximum="100"
-                                Value="45"
+                                Value="{Binding Progress, Mode=TwoWay}"
                                 Height="24"
                                 Margin="0,16,0,0" />
                     </StackPanel>
@@ -45,9 +47,9 @@
         <!-- Progress variants -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Progress variants" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ProgressBar.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The same ProgressBar filled to a range of determinate values." />
+                           Text="{DynamicResource Loc.P.ProgressBar.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryCaptionText}" Text="25%" Margin="0,0,0,4" />
@@ -84,9 +86,9 @@
         <!-- Indeterminate mode -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Indeterminate mode" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ProgressBar.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A progress bar that shows ongoing activity without a specific percentage." />
+                           Text="{DynamicResource Loc.P.ProgressBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <ProgressBar IsIndeterminate="True"
                                  Height="8" />
@@ -97,16 +99,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the progress bars shown above." />
+                           Text="{DynamicResource Loc.P.ProgressBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -114,16 +118,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring the slider to the bar and animating a download from code-behind." />
+                           Text="{DynamicResource Loc.P.ProgressBar.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

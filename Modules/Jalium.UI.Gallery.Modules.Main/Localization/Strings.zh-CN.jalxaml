@@ -1,0 +1,102 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Localization.StringsZhCN"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        简体中文 (zh-CN)。
+
+        键集合与 Strings.en-US.jalxaml 完全一致；缺失的键会回退到英文。
+        标记中用 {DynamicResource Loc.*} 引用，切换语言时自动重新解析。
+        以 Format 结尾的键含复合格式占位符（{0}、{1}），翻译时必须保留。
+    -->
+
+    <!-- ============================== 外壳 ================================= -->
+
+    <x:String x:Key="Loc.App.Title">Jalium UI Gallery</x:String>
+    <x:String x:Key="Loc.App.Subtitle">组件库</x:String>
+
+    <x:String x:Key="Loc.Shell.BackTooltip">返回组件列表（Esc）</x:String>
+    <x:String x:Key="Loc.Shell.SectionBadge">分区</x:String>
+    <x:String x:Key="Loc.Shell.SearchAll">搜索全部组件…</x:String>
+    <x:String x:Key="Loc.Shell.SearchShort">搜索组件…</x:String>
+    <x:String x:Key="Loc.Shell.SearchShortcut">{Shortcut.Search}</x:String>
+    <x:String x:Key="Loc.Shell.Docs">文档</x:String>
+    <x:String x:Key="Loc.Shell.DocsTooltip">打开文档</x:String>
+    <x:String x:Key="Loc.Shell.GitHub">GitHub</x:String>
+    <x:String x:Key="Loc.Shell.GitHubTooltip">打开 GitHub</x:String>
+    <x:String x:Key="Loc.Shell.Team">Jalium 团队</x:String>
+    <x:String x:Key="Loc.Shell.ThemeTooltip">切换配色主题</x:String>
+    <x:String x:Key="Loc.Shell.ThemeDark">深色主题</x:String>
+    <x:String x:Key="Loc.Shell.ThemeLight">浅色主题</x:String>
+    <x:String x:Key="Loc.Shell.LanguageTooltip">切换显示语言</x:String>
+
+    <x:String x:Key="Loc.Nav.PaneTitle">组件</x:String>
+    <x:String x:Key="Loc.Nav.Components">组件</x:String>
+    <x:String x:Key="Loc.Nav.DesignTokens">设计变量</x:String>
+    <x:String x:Key="Loc.Nav.ThemeStudio">主题工作室</x:String>
+    <x:String x:Key="Loc.Nav.TokensShort">变量</x:String>
+    <x:String x:Key="Loc.Nav.StudioShort">工作室</x:String>
+
+    <x:String x:Key="Loc.Shell.EyebrowMobile">JALIUM UI / 移动端</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowFoundations">基础规范</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowPersonalize">个性化</x:String>
+
+    <!-- ============================ 组件目录页 ============================== -->
+
+    <x:String x:Key="Loc.Home.Title">组件</x:String>
+    <x:String x:Key="Loc.Home.Subtitle">浏览 Gallery 中的每个组件，先预览，再打开完整示例。</x:String>
+    <x:String x:Key="Loc.Home.DirectOpenSubtitle">轻点任意卡片，直接打开完整组件示例。</x:String>
+    <x:String x:Key="Loc.Home.FilterAll">全部</x:String>
+    <x:String x:Key="Loc.Home.EmptyTitle">未找到组件</x:String>
+    <x:String x:Key="Loc.Home.EmptyHint">换个名称或分类再试试。</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktop">桌面</x:String>
+    <x:String x:Key="Loc.Home.DeviceTablet">平板</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobile">手机</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktopTooltip">按桌面宽度预览</x:String>
+    <x:String x:Key="Loc.Home.DeviceTabletTooltip">按平板宽度预览</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobileTooltip">按手机宽度预览</x:String>
+    <x:String x:Key="Loc.Home.MarkupHeading">JALXAML</x:String>
+    <x:String x:Key="Loc.Home.TokensHeading">设计变量</x:String>
+    <x:String x:Key="Loc.Home.TokenTeal">青色</x:String>
+    <x:String x:Key="Loc.Home.TokenIndigo">靛蓝</x:String>
+    <x:String x:Key="Loc.Home.TokenSky">天蓝</x:String>
+    <x:String x:Key="Loc.Home.TokenGreen">绿色</x:String>
+    <x:String x:Key="Loc.Home.TokenAmber">琥珀</x:String>
+    <x:String x:Key="Loc.Home.TokenRose">玫红</x:String>
+    <x:String x:Key="Loc.Home.ResultCountFormat">{0} 个组件</x:String>
+    <x:String x:Key="Loc.Home.ResultCountOneFormat">{0} 个组件</x:String>
+    <x:String x:Key="Loc.Home.OpenDemoFormat">打开 {0} 示例</x:String>
+
+    <!-- ============================== 分类 ================================= -->
+
+    <x:String x:Key="Loc.Category.Controls">控件</x:String>
+    <x:String x:Key="Loc.Category.Text">文本</x:String>
+    <x:String x:Key="Loc.Category.Layout">布局</x:String>
+    <x:String x:Key="Loc.Category.Navigation">导航</x:String>
+    <x:String x:Key="Loc.Category.Data">数据</x:String>
+    <x:String x:Key="Loc.Category.Media">媒体</x:String>
+    <x:String x:Key="Loc.Category.Visuals">视觉</x:String>
+    <x:String x:Key="Loc.Category.System">系统</x:String>
+    <x:String x:Key="Loc.Category.Styling">CSS</x:String>
+
+    <!-- =========================== 组件说明文案 ============================= -->
+
+    <x:String x:Key="Loc.Catalog.DefaultDescriptionFormat">了解 {0} 组件的状态、行为与 API。</x:String>
+
+    <x:String x:Key="Loc.Catalog.Desc.button">主要、次要、幽灵与禁用等命令状态。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.textbox">文本输入的各种状态，焦点与禁用反馈清晰可辨。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.border">用于组织内容与辅助操作的安静表面。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.checkbox">选中、未选中与不可用三种选择状态。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.toggleswitch">即时生效的开关设置，并带明确的状态文字。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.label">用于状态与元数据的紧凑语义标签。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.combobox">提示清晰的紧凑单选控件。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.progressbar">带可读百分比数值的确定型进度。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.infobar">停留在相关内容旁的上下文提示信息。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.css">用真正的 CSS 为任意元素设置样式：内联声明、作用域样式表与属性映射。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssselectors">类型、类、id 与组合选择器，动态伪类、优先级以及 !important。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.csslayout">百分比、aspect-ratio、box-sizing 与 position: absolute，全部由框架自身的布局过程解析。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssoutline">绘制在元素外侧、不占布局空间的描边环——focus-visible 的利器。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssmappings">通过 CssMappings 注册自定义的 CSS 属性名、值转换器与别名。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.flexpanel">完整的 CSS flexbox 容器：主轴方向、换行、主轴对齐、交叉轴对齐与 grow/shrink/basis。</x:String>
+
+</ResourceDictionary>

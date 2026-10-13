@@ -1,59 +1,93 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TreeMapPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TreeMap">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TreeMap" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TreeMap.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays hierarchical data as nested, space-filling rectangles proportional to data values." />
+                   Text="{DynamicResource Loc.P.TreeMap.Sub1}" />
 
         <!-- Basic TreeMap -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic TreeMap" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TreeMap.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A flat tree map of market sectors sized by market capitalization." />
-                <Border x:Name="BasicTreeMapContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.TreeMap.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <TreeMap Width="600"
+                             Height="400"
+                             Algorithm="Squarified"
+                             ShowLabels="True"
+                             Title="Market Sectors"
+                             Items="{Binding MarketItems}" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Nested TreeMap -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Nested TreeMap" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TreeMap.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A hierarchical tree map with parent categories and child items." />
-                <Border x:Name="NestedTreeMapContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.TreeMap.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <TreeMap Width="600"
+                             Height="400"
+                             Algorithm="Squarified"
+                             ShowLabels="True"
+                             Title="Disk Usage"
+                             Items="{Binding NestedItems}" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Squarified Algorithm -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Squarified Algorithm" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TreeMap.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Comparison of Squarified vs SliceAndDice layout algorithms on identical data." />
-                <Border x:Name="AlgorithmContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.TreeMap.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal">
+                        <TreeMap Width="290"
+                                 Height="300"
+                                 Algorithm="Squarified"
+                                 ShowLabels="True"
+                                 Title="Squarified"
+                                 Items="{Binding SquarifiedItems}" />
+                        <TreeMap Width="290"
+                                 Height="300"
+                                 Algorithm="SliceAndDice"
+                                 ShowLabels="True"
+                                 Title="Slice &amp; Dice"
+                                 Items="{Binding SliceAndDiceItems}"
+                                 Margin="16,0,0,0" />
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for building the tree maps above." />
+                           Text="{DynamicResource Loc.P.TreeMap.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -61,16 +95,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building tree maps and switching layout algorithms in code-behind." />
+                           Text="{DynamicResource Loc.P.TreeMap.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

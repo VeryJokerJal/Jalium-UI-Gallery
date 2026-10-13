@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Jalium.UI.Gallery.Headless</RootNamespace>
+    <AssemblyName>Jalium.UI.Gallery.Headless</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Jalium.UI.Gallery.Modules.Main\Jalium.UI.Gallery.Modules.Main.csproj" />
+    <ProjectReference Include="..\Services\Jalium.UI.Gallery.Services\Jalium.UI.Gallery.Services.csproj" />
+  </ItemGroup>
+
+</Project>

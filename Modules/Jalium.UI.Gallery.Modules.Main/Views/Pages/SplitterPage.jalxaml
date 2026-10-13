@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SplitterPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Splitter">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Splitter" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Splitter.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Drag a GridSplitter between grid cells to resize adjacent panels — the building block for resizable columns, rows and full IDE-style layouts." />
+                   Text="{DynamicResource Loc.P.Splitter.Sub1}" />
 
         <!-- Horizontal splitter -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Horizontal Splitter" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Splitter.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag the vertical bar to resize the left and right panels." />
+                           Text="{DynamicResource Loc.P.Splitter.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="200">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -42,9 +44,9 @@
         <!-- Vertical splitter -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Vertical Splitter" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Splitter.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drag the horizontal bar to resize the top and bottom panels." />
+                           Text="{DynamicResource Loc.P.Splitter.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="250">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -70,9 +72,9 @@
         <!-- Multi-panel layout -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multi-Panel Layout" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Splitter.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Combine several splitters — a sidebar plus a stacked content and console — for an IDE-style workspace." />
+                           Text="{DynamicResource Loc.P.Splitter.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" Height="300">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -120,16 +122,16 @@
         <!-- Common use cases -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CommonUseCases}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Splitters power the resizable layouts found across everyday desktop apps." />
+                           Text="{DynamicResource Loc.P.Splitter.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="• IDE layouts (code editor + output)" Margin="0,0,0,8"/>
-                        <TextBlock Text="• File explorers (tree + details)" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Email clients (folders + list + preview)" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Dashboard layouts" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Settings panels"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Splitter.Use1}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Splitter.Use2}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Splitter.Use3}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Splitter.Use4}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Splitter.Use5}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -138,16 +140,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the splitter layouts above." />
+                           Text="{DynamicResource Loc.P.Splitter.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -155,16 +159,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a resizable IDE-style layout with GridSplitters in code-behind." />
+                           Text="{DynamicResource Loc.P.Splitter.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

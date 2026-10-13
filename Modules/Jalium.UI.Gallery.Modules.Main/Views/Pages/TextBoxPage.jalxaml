@@ -1,27 +1,33 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TextBoxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TextBox">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TextBox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TextBox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A single-line text input control for capturing and editing plain text, with pre-filled and disabled states, clipboard operations and the standard editing shortcuts." />
+                   Text="{DynamicResource Loc.P.TextBox.Sub1}" />
 
         <!-- Basic TextBox -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic TextBox" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TextBox.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Standard text input, empty or with pre-filled text." />
+                           Text="{DynamicResource Loc.P.TextBox.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBox Width="300"
                                  Height="32"
-                                 Margin="0,0,0,12" />
+                                 Text="{Binding Text, Mode=TwoWay}"
+                                 Margin="0,0,0,4" />
+                        <TextBlock Text="{Binding CharacterCountText}"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                  Margin="0,0,0,12" />
                         <TextBox Width="300"
                                  Height="32"
                                  Text="Pre-filled text" />
@@ -33,9 +39,9 @@
         <!-- TextBox States -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="TextBox States" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TextBox.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Enabled and disabled states." />
+                           Text="{DynamicResource Loc.Shared.EnabledAndDisabledStates}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <TextBox Width="200"
@@ -55,21 +61,21 @@
         <!-- Clipboard Operations -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Clipboard Operations" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TextBox.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Use Ctrl+C to copy, Ctrl+X to cut, Ctrl+V to paste, Ctrl+A to select all." />
+                           Text="{DynamicResource Loc.P.TextBox.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                   Text="Source TextBox (select text and copy):"
+                                   Text="{DynamicResource Loc.P.TextBox.Cap1}"
                                    Margin="0,0,0,8" />
                         <TextBox x:Name="SourceTextBox"
                                  Width="400"
                                  Height="32"
-                                 Text="Select this text and press Ctrl+C to copy"
+                                 Text="{DynamicResource Loc.P.TextBox.CopySample}"
                                  Margin="0,0,0,16" />
                         <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                   Text="Target TextBox (paste here with Ctrl+V):"
+                                   Text="{DynamicResource Loc.P.TextBox.Cap2}"
                                    Margin="0,0,0,8" />
                         <TextBox x:Name="TargetTextBox"
                                  Width="400"
@@ -82,28 +88,28 @@
         <!-- Keyboard Shortcuts -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Keyboard Shortcuts" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.KeyboardShortcuts}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Standard editing shortcuts the TextBox responds to." />
+                           Text="{DynamicResource Loc.P.TextBox.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Ctrl+A - Select all text"
+                                   Text="{DynamicResource Loc.P.TextBox.Body1}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Ctrl+C - Copy selected text"
+                                   Text="{DynamicResource Loc.P.TextBox.Body2}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Ctrl+X - Cut selected text"
+                                   Text="{DynamicResource Loc.P.TextBox.Body3}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Ctrl+V - Paste from clipboard"
+                                   Text="{DynamicResource Loc.P.TextBox.Body4}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Ctrl+Z - Undo"
+                                   Text="{DynamicResource Loc.P.TextBox.Body5}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Ctrl+Y - Redo" />
+                                   Text="{DynamicResource Loc.P.TextBox.Body6}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -112,16 +118,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the text inputs above." />
+                           Text="{DynamicResource Loc.P.TextBox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -129,16 +137,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Handling text changes and driving inputs from code-behind." />
+                           Text="{DynamicResource Loc.P.TextBox.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

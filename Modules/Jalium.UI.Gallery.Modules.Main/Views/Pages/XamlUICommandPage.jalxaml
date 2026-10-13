@@ -1,43 +1,90 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.XamlUICommandPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      behaviors:XamlUICommandInputBehavior.Commands="{Binding Commands}"
       Title="XamlUICommand">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="XamlUICommand" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.XamlUICommand.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Custom commands defined with user-specified labels, icons, and keyboard accelerators for application-specific actions." />
+                   Text="{DynamicResource Loc.P.XamlUICommand.Sub1}" />
 
         <!-- Custom XamlUICommand -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom XamlUICommand" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.XamlUICommand.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Application-specific commands with custom labels, icons, and accelerators, wired to toolbar buttons." />
+                           Text="{DynamicResource Loc.P.XamlUICommand.CC1}" />
                 <Border x:Name="XamlCommandContainer"
                         Style="{StaticResource GalleryDemoSurface}"
-                        MinHeight="200" />
+                        MinHeight="200">
+                    <StackPanel>
+                        <CommandBar Width="500"
+                                    OverflowButtonVisibility="Collapsed">
+                            <CommandBar.PrimaryCommands>
+                                <AppBarButton Label="{Binding AddToFavoritesCommand.Label}"
+                                              ToolTip="{Binding AddToFavoritesCommand.Description}"
+                                              Command="{Binding AddToFavoritesCommand}"
+                                              automation:AutomationProperties.Name="Add to Favorites">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding AddToFavoritesCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                                <AppBarButton Label="{Binding ShareViaLinkCommand.Label}"
+                                              ToolTip="{Binding ShareViaLinkCommand.Description}"
+                                              Command="{Binding ShareViaLinkCommand}"
+                                              automation:AutomationProperties.Name="Share via Link">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding ShareViaLinkCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                                <AppBarButton Label="{Binding ExportAsPdfCommand.Label}"
+                                              ToolTip="{Binding ExportAsPdfCommand.Description}"
+                                              Command="{Binding ExportAsPdfCommand}"
+                                              automation:AutomationProperties.Name="Export as PDF">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding ExportAsPdfCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                            </CommandBar.PrimaryCommands>
+                        </CommandBar>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                            <CheckBox Content="Allow PDF export"
+                                      IsChecked="{Binding CanExportAsPdf}"
+                                      VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource Loc.Shortcut.XamlUICommand}"
+                                       Style="{StaticResource GalleryCaptionText}"
+                                       Margin="24,0,0,0"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Command output -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Command output" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.XamlUICommand.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click the command buttons to trigger actions. The most recent result and history appear below." />
+                           Text="{DynamicResource Loc.P.XamlUICommand.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock x:Name="CommandOutputText"
                                    Style="{StaticResource GalleryBodyText}"
-                                   Text="No command executed yet."
+                                   Text="{Binding CommandOutputText}"
                                    Margin="0,0,0,8" />
                         <TextBlock x:Name="CommandHistoryText"
                                    Style="{StaticResource GalleryCaptionText}"
-                                   Text="" />
+                                   Text="{Binding CommandHistoryText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -46,15 +93,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup that defines a XamlUICommand and binds it to a command bar button." />
+                           Text="{DynamicResource Loc.P.XamlUICommand.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>
@@ -63,15 +112,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building the commands in code and wiring each to a toolbar button's Click handler." />
+                           Text="{DynamicResource Loc.P.XamlUICommand.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>

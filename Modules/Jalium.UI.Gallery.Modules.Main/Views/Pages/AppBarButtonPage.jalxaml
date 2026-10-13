@@ -1,44 +1,64 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.AppBarButtonPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="AppBarButton">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="AppBarButton" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.AppBarButton.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A button control designed for use in a CommandBar, pairing an icon with a label to expose common commands on a toolbar." />
+                   Text="{DynamicResource Loc.P.AppBarButton.Sub1}" />
 
         <!-- Basic AppBarButton -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic AppBarButton" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.AppBarButton.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="AppBarButtons pair an icon with a label for common actions." />
+                           Text="{DynamicResource Loc.P.AppBarButton.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <AppBarButton x:Name="AddButton"
                                       Label="Add"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Add"
                                       Width="72"
                                       Height="60"
-                                      Margin="0,0,10,10" />
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Add" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                         <AppBarButton x:Name="EditButton"
                                       Label="Edit"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Edit"
                                       Width="72"
                                       Height="60"
-                                      Margin="0,0,10,10" />
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Edit" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                         <AppBarButton x:Name="DeleteButton"
                                       Label="Delete"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Delete"
                                       Width="72"
                                       Height="60"
-                                      Margin="0,0,10,10" />
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                     </WrapPanel>
                 </Border>
                 <TextBlock x:Name="BasicStatusText"
                            Style="{StaticResource GalleryValueLabel}"
-                           Text="Click any button to see its action."
+                           Text="{Binding BasicStatus}"
                            Margin="0,12,0,0" />
             </StackPanel>
         </Border>
@@ -46,34 +66,55 @@
         <!-- Compact mode -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Compact mode" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.AppBarButton.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="AppBarButtons in compact mode show only icons, without labels." />
+                           Text="{DynamicResource Loc.P.AppBarButton.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <AppBarButton x:Name="CompactAddButton"
                                       Label="Add"
+                                      Command="{Binding CompactCommand}"
+                                      CommandParameter="Add"
                                       IsCompact="True"
+                                      ToolTip="Add"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,10,10" />
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Add" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                         <AppBarButton x:Name="CompactEditButton"
                                       Label="Edit"
+                                      Command="{Binding CompactCommand}"
+                                      CommandParameter="Edit"
                                       IsCompact="True"
+                                      ToolTip="Edit"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,10,10" />
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Edit" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                         <AppBarButton x:Name="CompactDeleteButton"
                                       Label="Delete"
+                                      Command="{Binding CompactCommand}"
+                                      CommandParameter="Delete"
                                       IsCompact="True"
+                                      ToolTip="Delete"
                                       Width="40"
                                       Height="40"
-                                      Margin="0,0,10,10" />
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                     </WrapPanel>
                 </Border>
                 <TextBlock x:Name="CompactStatusText"
                            Style="{StaticResource GalleryValueLabel}"
-                           Text="Compact buttons show icon only, hover for tooltip with label."
+                           Text="{Binding CompactStatus}"
                            Margin="0,12,0,0" />
             </StackPanel>
         </Border>
@@ -81,16 +122,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the AppBarButtons above." />
+                           Text="{DynamicResource Loc.P.AppBarButton.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -98,16 +141,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating AppBarButtons and wiring click handlers in code-behind." />
+                           Text="{DynamicResource Loc.P.AppBarButton.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

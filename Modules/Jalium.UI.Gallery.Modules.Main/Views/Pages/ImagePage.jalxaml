@@ -1,32 +1,38 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ImagePage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Image">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MEDIA" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Image" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Media}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Image.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays raster and vector images with four stretch modes, plus corner rounding, borders and clipping supplied through its ControlTemplate." />
+                   Text="{DynamicResource Loc.P.Image.Sub1}" />
 
         <!-- Remote image -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Remote image" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Image.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Image loaded from a remote URL with Stretch.Uniform." />
+                           Text="{DynamicResource Loc.P.Image.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Border x:Name="ImageContainer"
-                                Height="300"
+                        <Border Height="300"
                                 CornerRadius="8"
-                                Background="#08140C"
-                                Margin="0,0,0,12" />
-                        <TextBlock x:Name="ImageStatusText"
-                                   Style="{StaticResource GalleryCaptionText}"
-                                   Text="Loading image..."
+                                Background="{DynamicResource GalleryMediaMat}"
+                                ClipToBounds="True"
+                                Margin="0,0,0,12">
+                            <Image Source="{Binding RasterSource}"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding RasterStatus}"
                                    HorizontalAlignment="Center" />
                     </StackPanel>
                 </Border>
@@ -36,9 +42,9 @@
         <!-- Stretch modes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stretch modes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Image.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Compare the four stretch modes side-by-side using the same image." />
+                           Text="{DynamicResource Loc.P.Image.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <!-- 2x2 grid comparing every stretch mode -->
                     <Grid>
@@ -55,46 +61,62 @@
 
                         <!-- Stretch.None -->
                         <StackPanel Grid.Column="0" Grid.Row="0">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.None" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Original size, no scaling" Margin="0,0,0,8" />
-                            <Border x:Name="StretchNoneContainer"
-                                    Height="160"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val1}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap1}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="None"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Stretch.Fill -->
                         <StackPanel Grid.Column="2" Grid.Row="0">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.Fill" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Fills container, may distort" Margin="0,0,0,8" />
-                            <Border x:Name="StretchFillContainer"
-                                    Height="160"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val2}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap2}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Stretch.Uniform -->
                         <StackPanel Grid.Column="0" Grid.Row="2">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.Uniform" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Fits inside, preserves ratio" Margin="0,0,0,8" />
-                            <Border x:Name="StretchUniformContainer"
-                                    Height="160"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val3}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap3}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Stretch.UniformToFill -->
                         <StackPanel Grid.Column="2" Grid.Row="2">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.UniformToFill" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Fills container, clips overflow" Margin="0,0,0,8" />
-                            <Border x:Name="StretchUniformToFillContainer"
-                                    Height="160"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val4}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap4}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -104,19 +126,23 @@
         <!-- SVG image -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="SVG image" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Image.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A vector image rendered as true vector graphics — sharp at any resolution, with no quality loss when scaled." />
+                           Text="{DynamicResource Loc.P.Image.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Border x:Name="SvgImageContainer"
-                                Height="400"
+                        <Border Height="400"
                                 CornerRadius="8"
-                                Background="#08140C"
-                                Margin="0,0,0,12" />
-                        <TextBlock x:Name="SvgStatusText"
-                                   Style="{StaticResource GalleryCaptionText}"
-                                   Text="Loading SVG..."
+                                Background="{DynamicResource GalleryMediaMat}"
+                                ClipToBounds="True"
+                                Margin="0,0,0,12">
+                            <Image Source="{Binding SvgSource}"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding SvgStatus}"
                                    HorizontalAlignment="Center" />
                     </StackPanel>
                 </Border>
@@ -126,9 +152,9 @@
         <!-- SVG stretch modes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="SVG stretch modes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Image.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Compare the four stretch modes with an SVG vector image." />
+                           Text="{DynamicResource Loc.P.Image.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -144,46 +170,62 @@
 
                         <!-- Stretch.None -->
                         <StackPanel Grid.Column="0" Grid.Row="0">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.None" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Original size, no scaling" Margin="0,0,0,8" />
-                            <Border x:Name="SvgStretchNoneContainer"
-                                    Height="200"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val1}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap1}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="None"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Stretch.Fill -->
                         <StackPanel Grid.Column="2" Grid.Row="0">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.Fill" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Fills container, may distort" Margin="0,0,0,8" />
-                            <Border x:Name="SvgStretchFillContainer"
-                                    Height="200"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val2}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap2}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Stretch.Uniform -->
                         <StackPanel Grid.Column="0" Grid.Row="2">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.Uniform" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Fits inside, preserves ratio" Margin="0,0,0,8" />
-                            <Border x:Name="SvgStretchUniformContainer"
-                                    Height="200"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val3}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap3}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Stretch.UniformToFill -->
                         <StackPanel Grid.Column="2" Grid.Row="2">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Stretch.UniformToFill" Margin="0,0,0,4" />
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Fills container, clips overflow" Margin="0,0,0,8" />
-                            <Border x:Name="SvgStretchUniformToFillContainer"
-                                    Height="200"
-                                    Background="#08140C"
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val4}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap4}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
                                     CornerRadius="8"
-                                    ClipToBounds="True" />
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="UniformToFill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -193,39 +235,50 @@
         <!-- Styled images -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Styled images" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Image.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The Image control supports CornerRadius, a border and a background brush through its ControlTemplate." />
+                           Text="{DynamicResource Loc.P.Image.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel HorizontalAlignment="Center">
                         <!-- Rounded corners -->
                         <StackPanel Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Rounded" HorizontalAlignment="Center" Margin="0,0,0,8" />
-                            <Border x:Name="RoundedImageContainer"
-                                    Width="150"
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap5}" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                            <Border Width="150"
                                     Height="150"
-                                    Background="#08140C"
-                                    CornerRadius="8" />
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="16"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Circle -->
                         <StackPanel Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Circle" HorizontalAlignment="Center" Margin="0,0,0,8" />
-                            <Border x:Name="CircleImageContainer"
-                                    Width="150"
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap6}" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                            <Border Width="150"
                                     Height="150"
-                                    Background="#08140C"
-                                    CornerRadius="8" />
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="75"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill" />
+                            </Border>
                         </StackPanel>
 
                         <!-- Bordered -->
                         <StackPanel Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="Bordered" HorizontalAlignment="Center" Margin="0,0,0,8" />
-                            <Border x:Name="BorderedImageContainer"
-                                    Width="150"
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap7}" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                            <Border Width="150"
                                     Height="150"
-                                    Background="#08140C"
-                                    CornerRadius="8" />
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    BorderBrush="#0078D4"
+                                    BorderThickness="3"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill" />
+                            </Border>
                         </StackPanel>
                     </WrapPanel>
                 </Border>
@@ -235,28 +288,28 @@
         <!-- Properties -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Properties" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Properties}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The key properties the Image control exposes." />
+                           Text="{DynamicResource Loc.P.Image.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Source - The ImageSource to display (BitmapImage or SvgImage)"
+                                   Text="{DynamicResource Loc.P.Image.Body1}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Stretch - How the image fills its area (None, Fill, Uniform, UniformToFill)"
+                                   Text="{DynamicResource Loc.P.Image.Body2}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="StretchDirection - Limits scaling direction (UpOnly, DownOnly, Both)"
+                                   Text="{DynamicResource Loc.P.Image.Body3}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="Background - Background brush behind the image (via ControlTemplate)"
+                                   Text="{DynamicResource Loc.P.Image.Body4}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="CornerRadius - Rounded corners with clipping (via ControlTemplate)"
+                                   Text="{DynamicResource Loc.P.Image.Body5}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="BorderBrush / BorderThickness - Border around the image (via ControlTemplate)" />
+                                   Text="{DynamicResource Loc.P.Image.Body6}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -265,16 +318,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for loading and styling images." />
+                           Text="{DynamicResource Loc.P.Image.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -282,16 +337,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating BitmapImage and SvgImage sources and Image controls in code-behind." />
+                           Text="{DynamicResource Loc.P.Image.CC8}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

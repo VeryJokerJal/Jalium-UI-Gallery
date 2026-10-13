@@ -27,15 +27,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Linux\Jalium.UI.Linux.csproj"
-                      ExcludeAssets="build;buildTransitive" />
-    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj"
-                      OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false"
-                      UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
-    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj"
-                      ReferenceOutputAssembly="false"
-                      BuildReference="false" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Linux\Jalium.UI.Linux.csproj" ExcludeAssets="build;buildTransitive" />
+    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
+    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
   </ItemGroup>
 
   <ItemGroup>

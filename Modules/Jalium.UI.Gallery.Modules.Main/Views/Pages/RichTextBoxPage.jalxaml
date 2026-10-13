@@ -1,22 +1,25 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RichTextBoxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="RichTextBox">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="TEXT &amp; TYPOGRAPHY" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="RichTextBox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.TextAndTypography}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.RichTextBox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control for editing and displaying rich text documents with inline formatting such as bold, italic, fonts, sizes and colors." />
+                   Text="{DynamicResource Loc.P.RichTextBox.Sub1}" />
 
         <!-- Basic RichTextBox -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic RichTextBox" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RichTextBox.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A rich text editor for formatted text." />
+                           Text="{DynamicResource Loc.P.RichTextBox.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <RichTextBox Width="500" Height="150" />
                 </Border>
@@ -26,33 +29,36 @@
         <!-- RichTextBox with formatting toolbar -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="RichTextBox with Formatting Toolbar" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RichTextBox.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A common text editor pairing a formatting toolbar with the document surface." />
+                           Text="{DynamicResource Loc.P.RichTextBox.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ToolBar Margin="0,0,0,8">
-                            <Button x:Name="BoldButton" Content="B" Width="32" Height="28" FontWeight="Bold"/>
-                            <Button x:Name="ItalicButton" Content="I" Width="32" Height="28" FontStyle="Italic"/>
-                            <Button x:Name="UnderlineButton" Content="U" Width="32" Height="28"/>
-                            <Separator/>
-                            <ComboBox Width="120" Height="28">
-                                <ComboBoxItem Content="Arial"/>
-                                <ComboBoxItem Content="Times New Roman"/>
-                                <ComboBoxItem Content="Consolas"/>
-                                <ComboBoxItem Content="Segoe UI" IsSelected="True"/>
-                            </ComboBox>
-                            <ComboBox Width="60" Height="28">
-                                <ComboBoxItem Content="8"/>
-                                <ComboBoxItem Content="10"/>
-                                <ComboBoxItem Content="12" IsSelected="True"/>
-                                <ComboBoxItem Content="14"/>
-                                <ComboBoxItem Content="16"/>
-                                <ComboBoxItem Content="18"/>
-                                <ComboBoxItem Content="24"/>
-                            </ComboBox>
-                            <Separator/>
-                            <Button Content="Color" Width="50" Height="28"/>
+                            <Button Width="36"
+                                    Height="36"
+                                    ToolTip="Bold"
+                                    Command="{x:Static EditingCommands.ToggleBold}"
+                                    CommandTarget="{Binding ElementName=FormattedRichTextBox}"
+                                    automation:AutomationProperties.Name="Bold">
+                                <SymbolIcon Symbol="Bold" Width="16" Height="16" />
+                            </Button>
+                            <Button Width="36"
+                                    Height="36"
+                                    ToolTip="Italic"
+                                    Command="{x:Static EditingCommands.ToggleItalic}"
+                                    CommandTarget="{Binding ElementName=FormattedRichTextBox}"
+                                    automation:AutomationProperties.Name="Italic">
+                                <SymbolIcon Symbol="Italic" Width="16" Height="16" />
+                            </Button>
+                            <Button Width="36"
+                                    Height="36"
+                                    ToolTip="Underline"
+                                    Command="{x:Static EditingCommands.ToggleUnderline}"
+                                    CommandTarget="{Binding ElementName=FormattedRichTextBox}"
+                                    automation:AutomationProperties.Name="Underline">
+                                <SymbolIcon Symbol="Underline" Width="16" Height="16" />
+                            </Button>
                         </ToolBar>
                         <RichTextBox x:Name="FormattedRichTextBox" Width="500" Height="200"/>
                     </StackPanel>
@@ -63,9 +69,9 @@
         <!-- Read-only mode -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Read-Only Mode" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.ReadOnlyMode}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="RichTextBox can be used to display read-only formatted content." />
+                           Text="{DynamicResource Loc.P.RichTextBox.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <RichTextBox Width="500" Height="150" IsReadOnly="True" />
                 </Border>
@@ -75,16 +81,16 @@
         <!-- Common use cases -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CommonUseCases}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="RichTextBox is useful across a range of authoring scenarios." />
+                           Text="{DynamicResource Loc.P.RichTextBox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Document editing" Margin="0,0,0,8"/>
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Email composition" Margin="0,0,0,8"/>
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Note-taking applications" Margin="0,0,0,8"/>
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Content management systems" Margin="0,0,0,8"/>
-                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Report generators"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RichTextBox.Body1}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RichTextBox.Body2}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RichTextBox.Body3}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RichTextBox.Body4}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RichTextBox.Body5}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -93,16 +99,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the RichTextBox demos above." />
+                           Text="{DynamicResource Loc.P.RichTextBox.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -110,16 +118,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a FlowDocument and applying formatting to the selection in code-behind." />
+                           Text="{DynamicResource Loc.P.RichTextBox.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,62 +1,120 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GaugeChartPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="GaugeChart">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="GaugeChart" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.GaugeChart.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays a value on a radial gauge with colored ranges, tick marks, and a needle indicator." />
+                   Text="{DynamicResource Loc.P.GaugeChart.Sub1}" />
 
         <!-- Basic Gauge -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Gauge" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GaugeChart.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A gauge chart with a simple value, minimum, and maximum." />
-                <Border x:Name="BasicGaugeContainer"
-                        Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.GaugeChart.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <GaugeChart Width="300"
+                                Height="300"
+                                Value="72"
+                                Minimum="0"
+                                Maximum="100"
+                                ShowValueText="True"
+                                ValueFormat="F0"
+                                Title="Speed" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Colored Ranges -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Colored Ranges" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GaugeChart.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A gauge with green, yellow, and red range segments." />
-                <Border x:Name="ColoredRangesContainer"
-                        Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.GaugeChart.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <GaugeChart Width="300"
+                                Height="300"
+                                Value="65"
+                                Minimum="0"
+                                Maximum="100"
+                                ShowValueText="True"
+                                ValueFormat="F0"
+                                Title="Temperature">
+                        <GaugeChart.Ranges>
+                            <GaugeRange Minimum="0" Maximum="40" Brush="#4CAF50" InnerRadiusRatio="0.8" />
+                            <GaugeRange Minimum="40" Maximum="70" Brush="#FFC107" InnerRadiusRatio="0.8" />
+                            <GaugeRange Minimum="70" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.8" />
+                        </GaugeChart.Ranges>
+                    </GaugeChart>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Multiple Gauges -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multiple Gauges" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GaugeChart.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A row of three small gauges showing CPU, Memory, and Disk usage." />
-                <Border x:Name="MultiGaugeContainer"
-                        Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.GaugeChart.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0">
+                            <GaugeChart Width="180" Height="180" Value="45" Minimum="0" Maximum="100" ShowValueText="True" ValueFormat="F0" ValueFontSize="16" TrackThickness="14" MajorTickInterval="25" MinorTickInterval="5">
+                                <GaugeChart.Ranges>
+                                    <GaugeRange Minimum="0" Maximum="60" Brush="#4CAF50" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="60" Maximum="85" Brush="#FFC107" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="85" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.82" />
+                                </GaugeChart.Ranges>
+                            </GaugeChart>
+                            <TextBlock Text="CPU" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0">
+                            <GaugeChart Width="180" Height="180" Value="78" Minimum="0" Maximum="100" ShowValueText="True" ValueFormat="F0" ValueFontSize="16" TrackThickness="14" MajorTickInterval="25" MinorTickInterval="5">
+                                <GaugeChart.Ranges>
+                                    <GaugeRange Minimum="0" Maximum="60" Brush="#4CAF50" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="60" Maximum="85" Brush="#FFC107" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="85" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.82" />
+                                </GaugeChart.Ranges>
+                            </GaugeChart>
+                            <TextBlock Text="Memory" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <GaugeChart Width="180" Height="180" Value="92" Minimum="0" Maximum="100" ShowValueText="True" ValueFormat="F0" ValueFontSize="16" TrackThickness="14" MajorTickInterval="25" MinorTickInterval="5">
+                                <GaugeChart.Ranges>
+                                    <GaugeRange Minimum="0" Maximum="60" Brush="#4CAF50" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="60" Maximum="85" Brush="#FFC107" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="85" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.82" />
+                                </GaugeChart.Ranges>
+                            </GaugeChart>
+                            <TextBlock Text="Disk" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the gauges above." />
+                           Text="{DynamicResource Loc.P.GaugeChart.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -64,16 +122,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building and configuring gauges in code-behind." />
+                           Text="{DynamicResource Loc.P.GaugeChart.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

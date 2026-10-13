@@ -1,0 +1,104 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Localization.StringsJaJP"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        日本語 (ja-JP)。
+
+        キー集合は Strings.en-US.jalxaml と完全に一致します。欠けているキーは
+        英語にフォールバックします。マークアップからは {DynamicResource Loc.*}
+        で参照し、言語を切り替えると自動的に再解決されます。
+        末尾が Format のキーは複合書式のプレースホルダー（{0}、{1}）を含むため、
+        翻訳しても必ず残してください。
+    -->
+
+    <!-- ============================== シェル =============================== -->
+
+    <x:String x:Key="Loc.App.Title">Jalium UI Gallery</x:String>
+    <x:String x:Key="Loc.App.Subtitle">コンポーネントライブラリ</x:String>
+
+    <x:String x:Key="Loc.Shell.BackTooltip">コンポーネント一覧に戻る（Esc）</x:String>
+    <x:String x:Key="Loc.Shell.SectionBadge">セクション</x:String>
+    <x:String x:Key="Loc.Shell.SearchAll">すべてのコンポーネントを検索…</x:String>
+    <x:String x:Key="Loc.Shell.SearchShort">コンポーネントを検索…</x:String>
+    <x:String x:Key="Loc.Shell.SearchShortcut">{Shortcut.Search}</x:String>
+    <x:String x:Key="Loc.Shell.Docs">ドキュメント</x:String>
+    <x:String x:Key="Loc.Shell.DocsTooltip">ドキュメントを開く</x:String>
+    <x:String x:Key="Loc.Shell.GitHub">GitHub</x:String>
+    <x:String x:Key="Loc.Shell.GitHubTooltip">GitHub を開く</x:String>
+    <x:String x:Key="Loc.Shell.Team">Jalium チーム</x:String>
+    <x:String x:Key="Loc.Shell.ThemeTooltip">配色テーマを切り替える</x:String>
+    <x:String x:Key="Loc.Shell.ThemeDark">ダークテーマ</x:String>
+    <x:String x:Key="Loc.Shell.ThemeLight">ライトテーマ</x:String>
+    <x:String x:Key="Loc.Shell.LanguageTooltip">表示言語を切り替える</x:String>
+
+    <x:String x:Key="Loc.Nav.PaneTitle">コンポーネント</x:String>
+    <x:String x:Key="Loc.Nav.Components">コンポーネント</x:String>
+    <x:String x:Key="Loc.Nav.DesignTokens">デザイントークン</x:String>
+    <x:String x:Key="Loc.Nav.ThemeStudio">テーマスタジオ</x:String>
+    <x:String x:Key="Loc.Nav.TokensShort">トークン</x:String>
+    <x:String x:Key="Loc.Nav.StudioShort">スタジオ</x:String>
+
+    <x:String x:Key="Loc.Shell.EyebrowMobile">JALIUM UI / モバイル</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowFoundations">ファンデーション</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowPersonalize">パーソナライズ</x:String>
+
+    <!-- =========================== カタログページ =========================== -->
+
+    <x:String x:Key="Loc.Home.Title">コンポーネント</x:String>
+    <x:String x:Key="Loc.Home.Subtitle">Gallery のすべてのコンポーネントを見て、確かめて、デモを開きましょう。</x:String>
+    <x:String x:Key="Loc.Home.DirectOpenSubtitle">カードをタップすると、コンポーネントの完全なデモが開きます。</x:String>
+    <x:String x:Key="Loc.Home.FilterAll">すべて</x:String>
+    <x:String x:Key="Loc.Home.EmptyTitle">コンポーネントが見つかりません</x:String>
+    <x:String x:Key="Loc.Home.EmptyHint">別の名前やカテゴリでお試しください。</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktop">デスクトップ</x:String>
+    <x:String x:Key="Loc.Home.DeviceTablet">タブレット</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobile">モバイル</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktopTooltip">デスクトップ幅でプレビュー</x:String>
+    <x:String x:Key="Loc.Home.DeviceTabletTooltip">タブレット幅でプレビュー</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobileTooltip">モバイル幅でプレビュー</x:String>
+    <x:String x:Key="Loc.Home.MarkupHeading">JALXAML</x:String>
+    <x:String x:Key="Loc.Home.TokensHeading">デザイントークン</x:String>
+    <x:String x:Key="Loc.Home.TokenTeal">ティール</x:String>
+    <x:String x:Key="Loc.Home.TokenIndigo">インディゴ</x:String>
+    <x:String x:Key="Loc.Home.TokenSky">スカイ</x:String>
+    <x:String x:Key="Loc.Home.TokenGreen">グリーン</x:String>
+    <x:String x:Key="Loc.Home.TokenAmber">アンバー</x:String>
+    <x:String x:Key="Loc.Home.TokenRose">ローズ</x:String>
+    <x:String x:Key="Loc.Home.ResultCountFormat">{0} 件のコンポーネント</x:String>
+    <x:String x:Key="Loc.Home.ResultCountOneFormat">{0} 件のコンポーネント</x:String>
+    <x:String x:Key="Loc.Home.OpenDemoFormat">{0} のデモを開く</x:String>
+
+    <!-- ============================== カテゴリ ============================== -->
+
+    <x:String x:Key="Loc.Category.Controls">コントロール</x:String>
+    <x:String x:Key="Loc.Category.Text">テキスト</x:String>
+    <x:String x:Key="Loc.Category.Layout">レイアウト</x:String>
+    <x:String x:Key="Loc.Category.Navigation">ナビゲーション</x:String>
+    <x:String x:Key="Loc.Category.Data">データ</x:String>
+    <x:String x:Key="Loc.Category.Media">メディア</x:String>
+    <x:String x:Key="Loc.Category.Visuals">ビジュアル</x:String>
+    <x:String x:Key="Loc.Category.System">システム</x:String>
+    <x:String x:Key="Loc.Category.Styling">CSS</x:String>
+
+    <!-- ========================= コンポーネント説明 ========================= -->
+
+    <x:String x:Key="Loc.Catalog.DefaultDescriptionFormat">{0} コンポーネントの状態、動作、API を確認できます。</x:String>
+
+    <x:String x:Key="Loc.Catalog.Desc.button">プライマリ、セカンダリ、ゴースト、無効の各コマンド状態。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.textbox">フォーカスと無効状態がはっきり伝わるテキスト入力。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.border">コンテンツと補助操作をまとめる静かなサーフェス。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.checkbox">オン、オフ、選択不可の 3 つの状態。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.toggleswitch">状態ラベル付きで即座に反映されるオン／オフ設定。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.label">ステータスやメタデータ向けのコンパクトなセマンティックラベル。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.combobox">明快なプロンプトを備えた単一選択コントロール。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.progressbar">読み取りやすいパーセント表示付きの確定的な進捗。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.infobar">関連する作業のそばに残り続けるコンテキストメッセージ。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.css">本物の CSS であらゆる要素をスタイリング：インライン宣言、スコープ付きスタイルシート、プロパティマッピング。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssselectors">型・クラス・id・結合子セレクター、動的擬似クラス、詳細度、そして !important。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.csslayout">パーセンテージ、aspect-ratio、box-sizing、position: absolute をフレームワーク自身のレイアウトパスで解決。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssoutline">レイアウト領域を取らずに要素の外側へ描かれるリング——focus-visible の定番。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssmappings">CssMappings で独自の CSS プロパティ名、値コンバーター、エイリアスを登録。</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.flexpanel">完全な CSS フレックスボックスコンテナー：方向、折り返し、主軸・交差軸の配置、grow/shrink/basis。</x:String>
+
+</ResourceDictionary>

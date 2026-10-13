@@ -1,0 +1,37 @@
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.PlatformUnavailablePage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
+    <StackPanel Orientation="Vertical" Margin="8">
+        <TextBlock Text="{Binding Feature}"
+                   FontSize="32"
+                   Foreground="{DynamicResource GalleryTextPrimary}"
+                   Margin="0,0,0,8" />
+        <TextBlock Text="{DynamicResource Loc.P.PlatformUnavailable.Msg1}"
+                   FontSize="16"
+                   Foreground="{DynamicResource GalleryWarningOnSurface}"
+                   Margin="0,0,0,24" />
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Reason}"
+                           TextWrapping="Wrap"
+                           FontSize="15"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,12" />
+                <TextBlock Text="{Binding Guidance}"
+                           TextWrapping="Wrap"
+                           FontSize="13"
+                           Foreground="{DynamicResource GalleryTextSecondary}"
+                           Margin="0,0,0,16" />
+                <TextBlock Text="{Binding RuntimeDescription}"
+                           FontSize="12"
+                           Foreground="{DynamicResource GalleryTextMuted}" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

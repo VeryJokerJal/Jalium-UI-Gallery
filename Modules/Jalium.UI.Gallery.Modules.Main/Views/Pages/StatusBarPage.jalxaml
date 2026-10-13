@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.StatusBarPage">
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.StatusBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="STATUS &amp; INFO" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="StatusBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.StatusAndInfo}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.StatusBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A horizontal bar that surfaces status information — cursor position, encoding, progress — along the bottom edge of a window." />
+                   Text="{DynamicResource Loc.P.StatusBar.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Status items separated by dividers, laid out as you would place them at the bottom of an editor window." />
+                           Text="{DynamicResource Loc.P.StatusBar.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StatusBar Height="28">
                         <StatusBarItem Content="Ready" />
@@ -34,29 +36,31 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="What the StatusBar control gives you out of the box." />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Multiple status items with separators" Margin="0,0,0,4" />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Can contain any content" Margin="0,0,0,4" />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Typically placed at window bottom" Margin="0,0,0,4" />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Supports progress indicators" />
+                           Text="{DynamicResource Loc.P.StatusBar.CC2}" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.StatusBar.Body1}" Margin="0,0,0,4" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.StatusBar.Body2}" Margin="0,0,0,4" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.StatusBar.Body3}" Margin="0,0,0,4" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.StatusBar.Body4}" />
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the status bar above." />
+                           Text="{DynamicResource Loc.P.StatusBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -64,16 +68,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Updating status items from code-behind as the editor's caret position changes." />
+                           Text="{DynamicResource Loc.P.StatusBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

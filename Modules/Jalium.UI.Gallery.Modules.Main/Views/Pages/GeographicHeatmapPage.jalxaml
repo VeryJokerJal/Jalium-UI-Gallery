@@ -1,24 +1,32 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.GeographicHeatmapPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="GeographicHeatmap">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MAPS &amp; GEO" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="GeographicHeatmap" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MapsAndGeo}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.GeographicHeatmap.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that renders a geographic heatmap visualization with Gaussian-blurred intensity fields and configurable gradients." />
+                   Text="{DynamicResource Loc.P.GeographicHeatmap.Sub1}" />
 
         <!-- Basic heatmap -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Heatmap" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.BasicHeatmap}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A GeographicHeatmap with scattered heat points around a metropolitan area." />
+                           Text="{DynamicResource Loc.P.GeographicHeatmap.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicHeatmapContainer" Orientation="Vertical" />
+                    <GeographicHeatmap Height="300"
+                                       Points="{Binding Points}"
+                                       Radius="25"
+                                       Intensity="1"
+                                       HeatmapOpacity="0.7"
+                                       ShowLegend="True"
+                                       LegendPosition="BottomRight" />
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +34,24 @@
         <!-- Radius & intensity -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Radius &amp; Intensity" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GeographicHeatmap.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Multiple heatmaps demonstrating different Radius and Intensity values." />
+                           Text="{DynamicResource Loc.P.GeographicHeatmap.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="RadiusIntensityContainer" Orientation="Vertical" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Radius: 10, Intensity: 1.0" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="10" Intensity="1" HeatmapOpacity="0.7" ShowLegend="False" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Radius: 40, Intensity: 0.5" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="40" Intensity="0.5" HeatmapOpacity="0.7" ShowLegend="False" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Radius: 25, Intensity: 2.0" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="2" HeatmapOpacity="0.7" ShowLegend="False" />
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +59,24 @@
         <!-- Color gradients -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Color Gradients" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.GeographicHeatmap.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Heatmaps with different color gradient options: default, warm, and cool." />
+                           Text="{DynamicResource Loc.P.GeographicHeatmap.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="GradientContainer" Orientation="Vertical" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Default (Spectrum)" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="1" HeatmapOpacity="0.7" ShowLegend="True" LegendPosition="BottomRight" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Warm (Yellow-Red)" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="1" HeatmapOpacity="0.7" Gradient="{Binding WarmGradient}" ShowLegend="True" LegendPosition="BottomRight" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Cool (Cyan-Purple)" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="1" HeatmapOpacity="0.7" Gradient="{Binding CoolGradient}" ShowLegend="True" LegendPosition="BottomRight" />
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +84,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the heatmaps above." />
+                           Text="{DynamicResource Loc.P.GeographicHeatmap.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +103,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building heat points and heatmaps in code-behind." />
+                           Text="{DynamicResource Loc.P.GeographicHeatmap.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

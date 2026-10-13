@@ -1,38 +1,103 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.StandardUICommandPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="StandardUICommand">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="StandardUICommand" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.StandardUICommand.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Predefined commands with standard labels, icons, keyboard shortcuts, and descriptions for common operations." />
+                   Text="{DynamicResource Loc.P.StandardUICommand.Sub1}" />
 
         <!-- Standard commands -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Standard commands" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.StandardUICommand.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Built-in command definitions for Cut, Copy, Paste, Delete, and more with their standard properties." />
+                           Text="{DynamicResource Loc.P.StandardUICommand.CC1}" />
                 <Border x:Name="CommandContainer"
                         Style="{StaticResource GalleryDemoSurface}"
-                        MinHeight="200" />
+                        MinHeight="200">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="92" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Icon" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="1" Text="Label" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="2" Text="Shortcut" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="3" Text="Description" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                        </Grid>
+                        <Border Height="1" Background="{DynamicResource GalleryBorderDefault}" Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding Commands}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="90" />
+                                            <ColumnDefinition Width="92" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Command="{Binding Command}"
+                                                CommandParameter="{Binding Label}"
+                                                Style="{StaticResource GalleryIconButton}"
+                                                ToolTip="{Binding Label}"
+                                                automation:AutomationProperties.Name="{Binding Label}"
+                                                HorizontalAlignment="Left">
+                                            <FontIcon Glyph="{Binding IconGlyph}"
+                                                      Width="18"
+                                                      Height="18" />
+                                        </Button>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Label}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource GalleryTextPrimary}" />
+                                        <Border Grid.Column="2"
+                                                Background="{DynamicResource GalleryCardAltBackground}"
+                                                CornerRadius="3"
+                                                Padding="6,2"
+                                                Margin="0,0,12,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding KeyboardShortcut}"
+                                                       FontSize="11"
+                                                       FontFamily="Consolas"
+                                                       Foreground="{DynamicResource GalleryTextSecondary}" />
+                                        </Border>
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding Description}"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource GalleryTextTertiary}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Command execution -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Command execution" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.StandardUICommand.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click the command buttons above to execute them. The result is shown below." />
+                           Text="{DynamicResource Loc.P.StandardUICommand.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <TextBlock x:Name="CommandStatusText"
                                Style="{StaticResource GalleryBodyText}"
-                               Text="No command executed yet." />
+                               Text="{Binding CommandStatus}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -40,16 +105,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup that binds standard commands to a command bar." />
+                           Text="{DynamicResource Loc.P.StandardUICommand.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -57,16 +124,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Defining standard commands and wiring their execution in code-behind." />
+                           Text="{DynamicResource Loc.P.StandardUICommand.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

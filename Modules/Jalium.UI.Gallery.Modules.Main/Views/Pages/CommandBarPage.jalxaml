@@ -1,81 +1,140 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CommandBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="CommandBar">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
-
-        <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="CommandBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.CommandBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A toolbar that lays out AppBarButton and related command elements, with primary commands inline and overflow support for the rest." />
+                   Text="{DynamicResource Loc.P.CommandBar.Sub1}" />
 
-        <!-- Basic CommandBar -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic CommandBar" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CommandBar.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A CommandBar with primary commands. Built programmatically in code-behind." />
+                           Text="{DynamicResource Loc.P.CommandBar.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicCommandBarContainer" Orientation="Vertical" />
+                    <CommandBar Width="500"
+                                Height="48"
+                                HorizontalAlignment="Left"
+                                OverflowButtonVisibility="Collapsed">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Label="Add"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Add">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Add" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Edit"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Edit">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Edit" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Delete"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Delete">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Delete" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Refresh"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Refresh">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Refresh" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                    </CommandBar>
                 </Border>
-                <TextBlock x:Name="BasicCommandBarStatus"
-                           Style="{StaticResource GalleryCaptionText}"
-                           Text="Click a command to see its action."
+                <TextBlock Style="{StaticResource GalleryCaptionText}"
+                           Text="{Binding BasicStatus}"
                            Margin="0,12,0,0" />
             </StackPanel>
         </Border>
 
-        <!-- CommandBar with Secondary Commands -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="CommandBar with Secondary Commands" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CommandBar.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A CommandBar with primary and secondary (overflow) commands. Click the overflow button to see more." />
+                           Text="{DynamicResource Loc.P.CommandBar.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="SecondaryCommandBarContainer" Orientation="Vertical" />
+                    <CommandBar Width="500"
+                                Height="48"
+                                HorizontalAlignment="Left"
+                                OverflowButtonVisibility="Visible">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Label="Share"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Share">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Share" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Favorite"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Favorite">
+                                <AppBarButton.Icon><SymbolIcon Symbol="FavoriteStar" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Print"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Print">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Print" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Label="Settings"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Settings">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Settings" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Help"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Help">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Help" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="About"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="About">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Info" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
                 </Border>
-                <TextBlock x:Name="SecondaryCommandBarStatus"
-                           Style="{StaticResource GalleryCaptionText}"
-                           Text="Click the overflow (⋯) button to see secondary commands."
+                <TextBlock Style="{StaticResource GalleryCaptionText}"
+                           Text="{Binding SecondaryStatus}"
                            Margin="0,12,0,0" />
             </StackPanel>
         </Border>
 
-        <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a CommandBar with primary and secondary commands." />
+                           Text="{DynamicResource Loc.P.CommandBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
-                    <EditControl x:Name="XamlCodeEditor"
-                                 Height="200"
+                    <EditControl Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a CommandBar and wiring command handlers in code-behind." />
+                           Text="{DynamicResource Loc.P.CommandBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
-                    <EditControl x:Name="CSharpCodeEditor"
-                                 Height="200"
+                    <EditControl Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>
-
     </StackPanel>
 </Page>

@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.LiquidGlassPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Liquid Glass">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Liquid Glass" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Effects}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.LiquidGlass.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Apple-style liquid glass effect with SDF-based refraction, chromatic aberration, edge highlights, and inner shadow. Set LiquidGlass=True on any Border control." />
+                   Text="{DynamicResource Loc.P.LiquidGlass.Sub1}" />
 
         <!-- Default Liquid Glass -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Default Liquid Glass" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Background refraction with edge highlights and inner shadow. BlurRadius=8, RefractionAmount=60." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC1}" />
 
                 <Border Style="{StaticResource GalleryDemoSurface}" Height="200">
                     <Grid>
@@ -85,9 +87,9 @@
         <!-- Chromatic Aberration Demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Chromatic Aberration" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Add rainbow-edge dispersion effect. ChromaticAberration controls the amount of color separation." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC2}" />
 
                 <Border Style="{StaticResource GalleryDemoSurface}" Height="200">
                     <Grid>
@@ -157,9 +159,9 @@
         <!-- Different Corner Radii -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Corner Radius Variants" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Liquid glass adapts the SDF shape to different corner radii." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC3}" />
 
                 <WrapPanel>
                     <!-- Sharp corners -->
@@ -348,9 +350,9 @@
         <!-- Tinted Glass -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Tinted Liquid Glass" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Set Background on the Border to apply a colored tint over the glass effect." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC4}" />
 
                 <WrapPanel>
                     <!-- Blue tint -->
@@ -458,9 +460,9 @@
         <!-- Interactive Parameters -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Parameters" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Adjust blur radius, refraction amount, and chromatic aberration in real-time." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC5}" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -510,14 +512,14 @@
                                     CornerRadius="16"
                                     LiquidGlass="True"
                                     LiquidGlassInteractive="True"
-                                    LiquidGlassBlurRadius="8"
-                                    LiquidGlassRefractionAmount="60"
-                                    LiquidGlassChromaticAberration="0"
+                                    LiquidGlassBlurRadius="{Binding BlurRadius}"
+                                    LiquidGlassRefractionAmount="{Binding RefractionAmount}"
+                                    LiquidGlassChromaticAberration="{Binding ChromaticAberration}"
                                     Background="#200078D4"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch">
                                 <TextBlock x:Name="InteractiveLabel"
-                                           Text="Blur=8  Refraction=60  Chromatic=0"
+                                           Text="{Binding SettingsSummary}"
                                            FontSize="12"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"/>
@@ -528,13 +530,25 @@
                     <!-- Controls -->
                     <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
                         <TextBlock Text="Blur Radius" FontSize="12" Margin="0,0,0,4"/>
-                        <Slider x:Name="BlurSlider" Minimum="1" Maximum="30" Value="8" Margin="0,0,0,12"/>
+                        <Slider x:Name="BlurSlider"
+                                Minimum="1"
+                                Maximum="30"
+                                Value="{Binding BlurRadius, Mode=TwoWay}"
+                                Margin="0,0,0,12"/>
 
                         <TextBlock Text="Refraction Amount" FontSize="12" Margin="0,0,0,4"/>
-                        <Slider x:Name="RefractionSlider" Minimum="0" Maximum="120" Value="60" Margin="0,0,0,12"/>
+                        <Slider x:Name="RefractionSlider"
+                                Minimum="0"
+                                Maximum="120"
+                                Value="{Binding RefractionAmount, Mode=TwoWay}"
+                                Margin="0,0,0,12"/>
 
                         <TextBlock Text="Chromatic Aberration" FontSize="12" Margin="0,0,0,4"/>
-                        <Slider x:Name="ChromaticSlider" Minimum="0" Maximum="1" Value="0" Margin="0,0,0,12"/>
+                        <Slider x:Name="ChromaticSlider"
+                                Minimum="0"
+                                Maximum="1"
+                                Value="{Binding ChromaticAberration, Mode=TwoWay}"
+                                Margin="0,0,0,12"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -543,9 +557,9 @@
         <!-- Fusion Demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Liquid Glass Fusion" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT6}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Adjacent liquid glass panels fuse together with smooth metaball-like blending via SDF smooth minimum (smin). Panels must be siblings in the same parent Panel." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC6}" />
 
                 <Border Style="{StaticResource GalleryDemoSurface}" Height="280">
                     <Grid>
@@ -628,9 +642,9 @@
         <!-- SuperEllipse Shape -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="SuperEllipse Shape" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LiquidGlass.CT7}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Set Shape=SuperEllipse for iOS-style squircle borders. SuperEllipseN controls the exponent (2=circle, 4=iOS, higher=more rectangular)." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC7}" />
 
                 <WrapPanel>
                     <!-- N=2 (Ellipse) -->
@@ -816,7 +830,7 @@
 
                 <!-- Non-glass superellipse demo -->
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Without Liquid Glass (solid fill)"
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC8}"
                            Margin="0,4,0,12" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
@@ -856,9 +870,9 @@
         <!-- Usage Code -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Usage" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Usage}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Set LiquidGlass properties on Border:" />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC9}" />
 
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
@@ -883,9 +897,9 @@
         <!-- XAML Code Example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for applying the liquid glass effect to a Border." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC10}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}"
                         HorizontalAlignment="Stretch">
                     <EditControl x:Name="XamlCodeEditor"
@@ -893,7 +907,9 @@
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -901,9 +917,9 @@
         <!-- C# Code Example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring the interactive sliders and setting glass properties in code-behind." />
+                           Text="{DynamicResource Loc.P.LiquidGlass.CC11}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}"
                         HorizontalAlignment="Stretch">
                     <EditControl x:Name="CSharpCodeEditor"
@@ -911,7 +927,9 @@
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

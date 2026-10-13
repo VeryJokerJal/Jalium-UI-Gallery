@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RepeatButtonPage">
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RepeatButtonPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="RepeatButton" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.RepeatButton.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A button that fires Click events repeatedly while it stays pressed — ideal for steppers, spinners and scroll repeat, with a configurable initial delay and repeat interval." />
+                   Text="{DynamicResource Loc.P.RepeatButton.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Hold a button to repeat the action continuously — the counter keeps changing while pressed." />
+                           Text="{DynamicResource Loc.P.RepeatButton.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <RepeatButton x:Name="DecrementButton" Content="-" Width="40" Height="40" Margin="0,0,8,0" />
-                        <TextBlock x:Name="CounterText" Text="0" Width="60" TextAlignment="Center" FontSize="24" VerticalAlignment="Center" />
-                        <RepeatButton x:Name="IncrementButton" Content="+" Width="40" Height="40" Margin="8,0,0,0" />
+                        <RepeatButton x:Name="DecrementButton"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,8,0"
+                                      ToolTip="Decrease"
+                                      automation:AutomationProperties.Name="Decrease"
+                                      Command="{Binding DecrementCommand}">
+                            <SymbolIcon Symbol="Remove"
+                                        Width="18"
+                                        Height="18" />
+                        </RepeatButton>
+                        <TextBlock x:Name="CounterText"
+                                   Text="{Binding Count}"
+                                   Width="60"
+                                   TextAlignment="Center"
+                                   FontSize="24"
+                                   VerticalAlignment="Center" />
+                        <RepeatButton x:Name="IncrementButton"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="8,0,0,0"
+                                      ToolTip="Increase"
+                                      automation:AutomationProperties.Name="Increase"
+                                      Command="{Binding IncrementCommand}">
+                            <SymbolIcon Symbol="Add"
+                                        Width="18"
+                                        Height="18" />
+                        </RepeatButton>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -30,14 +58,14 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="What sets RepeatButton apart from a standard button." />
+                           Text="{DynamicResource Loc.P.RepeatButton.CC2}" />
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Continuous click events while pressed" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Configurable initial delay" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Configurable repeat interval" Margin="0,0,0,6" />
-                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Useful for scrollbars and spinners" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RepeatButton.Body1}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RepeatButton.Body2}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RepeatButton.Body3}" Margin="0,0,0,6" />
+                    <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.RepeatButton.Body4}" />
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -45,15 +73,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the counter and volume-control demos." />
+                           Text="{DynamicResource Loc.P.RepeatButton.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>
@@ -62,15 +92,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring Click handlers and creating RepeatButtons in code-behind." />
+                           Text="{DynamicResource Loc.P.RepeatButton.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>

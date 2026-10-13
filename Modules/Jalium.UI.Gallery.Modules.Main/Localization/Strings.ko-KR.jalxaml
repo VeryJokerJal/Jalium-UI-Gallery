@@ -1,0 +1,104 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Localization.StringsKoKR"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        한국어 (ko-KR).
+
+        키 집합은 Strings.en-US.jalxaml과 완전히 동일합니다. 빠진 키는 영어로
+        폴백됩니다. 마크업에서는 {DynamicResource Loc.*} 로 참조하며 언어를
+        바꾸면 자동으로 다시 확인됩니다.
+        Format 으로 끝나는 키는 복합 서식 자리 표시자({0}, {1})를 포함하므로
+        번역할 때 반드시 유지해야 합니다.
+    -->
+
+    <!-- ================================ 셸 ================================= -->
+
+    <x:String x:Key="Loc.App.Title">Jalium UI Gallery</x:String>
+    <x:String x:Key="Loc.App.Subtitle">컴포넌트 라이브러리</x:String>
+
+    <x:String x:Key="Loc.Shell.BackTooltip">컴포넌트 목록으로 돌아가기(Esc)</x:String>
+    <x:String x:Key="Loc.Shell.SectionBadge">섹션</x:String>
+    <x:String x:Key="Loc.Shell.SearchAll">모든 컴포넌트 검색…</x:String>
+    <x:String x:Key="Loc.Shell.SearchShort">컴포넌트 검색…</x:String>
+    <x:String x:Key="Loc.Shell.SearchShortcut">{Shortcut.Search}</x:String>
+    <x:String x:Key="Loc.Shell.Docs">문서</x:String>
+    <x:String x:Key="Loc.Shell.DocsTooltip">문서 열기</x:String>
+    <x:String x:Key="Loc.Shell.GitHub">GitHub</x:String>
+    <x:String x:Key="Loc.Shell.GitHubTooltip">GitHub 열기</x:String>
+    <x:String x:Key="Loc.Shell.Team">Jalium 팀</x:String>
+    <x:String x:Key="Loc.Shell.ThemeTooltip">색상 테마 전환</x:String>
+    <x:String x:Key="Loc.Shell.ThemeDark">다크 테마</x:String>
+    <x:String x:Key="Loc.Shell.ThemeLight">라이트 테마</x:String>
+    <x:String x:Key="Loc.Shell.LanguageTooltip">표시 언어 전환</x:String>
+
+    <x:String x:Key="Loc.Nav.PaneTitle">컴포넌트</x:String>
+    <x:String x:Key="Loc.Nav.Components">컴포넌트</x:String>
+    <x:String x:Key="Loc.Nav.DesignTokens">디자인 토큰</x:String>
+    <x:String x:Key="Loc.Nav.ThemeStudio">테마 스튜디오</x:String>
+    <x:String x:Key="Loc.Nav.TokensShort">토큰</x:String>
+    <x:String x:Key="Loc.Nav.StudioShort">스튜디오</x:String>
+
+    <x:String x:Key="Loc.Shell.EyebrowMobile">JALIUM UI / 모바일</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowFoundations">파운데이션</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowPersonalize">개인 설정</x:String>
+
+    <!-- ============================ 카탈로그 페이지 ========================= -->
+
+    <x:String x:Key="Loc.Home.Title">컴포넌트</x:String>
+    <x:String x:Key="Loc.Home.Subtitle">Gallery의 모든 컴포넌트를 살펴보고 확인한 뒤 전체 데모를 열어 보세요.</x:String>
+    <x:String x:Key="Loc.Home.DirectOpenSubtitle">카드를 탭하면 전체 컴포넌트 데모가 바로 열립니다.</x:String>
+    <x:String x:Key="Loc.Home.FilterAll">전체</x:String>
+    <x:String x:Key="Loc.Home.EmptyTitle">컴포넌트를 찾을 수 없습니다</x:String>
+    <x:String x:Key="Loc.Home.EmptyHint">다른 이름이나 카테고리로 다시 시도해 보세요.</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktop">데스크톱</x:String>
+    <x:String x:Key="Loc.Home.DeviceTablet">태블릿</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobile">모바일</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktopTooltip">데스크톱 너비로 미리 보기</x:String>
+    <x:String x:Key="Loc.Home.DeviceTabletTooltip">태블릿 너비로 미리 보기</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobileTooltip">모바일 너비로 미리 보기</x:String>
+    <x:String x:Key="Loc.Home.MarkupHeading">JALXAML</x:String>
+    <x:String x:Key="Loc.Home.TokensHeading">디자인 토큰</x:String>
+    <x:String x:Key="Loc.Home.TokenTeal">틸</x:String>
+    <x:String x:Key="Loc.Home.TokenIndigo">인디고</x:String>
+    <x:String x:Key="Loc.Home.TokenSky">스카이</x:String>
+    <x:String x:Key="Loc.Home.TokenGreen">그린</x:String>
+    <x:String x:Key="Loc.Home.TokenAmber">앰버</x:String>
+    <x:String x:Key="Loc.Home.TokenRose">로즈</x:String>
+    <x:String x:Key="Loc.Home.ResultCountFormat">컴포넌트 {0}개</x:String>
+    <x:String x:Key="Loc.Home.ResultCountOneFormat">컴포넌트 {0}개</x:String>
+    <x:String x:Key="Loc.Home.OpenDemoFormat">{0} 데모 열기</x:String>
+
+    <!-- ============================== 카테고리 ============================= -->
+
+    <x:String x:Key="Loc.Category.Controls">컨트롤</x:String>
+    <x:String x:Key="Loc.Category.Text">텍스트</x:String>
+    <x:String x:Key="Loc.Category.Layout">레이아웃</x:String>
+    <x:String x:Key="Loc.Category.Navigation">내비게이션</x:String>
+    <x:String x:Key="Loc.Category.Data">데이터</x:String>
+    <x:String x:Key="Loc.Category.Media">미디어</x:String>
+    <x:String x:Key="Loc.Category.Visuals">비주얼</x:String>
+    <x:String x:Key="Loc.Category.System">시스템</x:String>
+    <x:String x:Key="Loc.Category.Styling">CSS</x:String>
+
+    <!-- =========================== 컴포넌트 설명 =========================== -->
+
+    <x:String x:Key="Loc.Catalog.DefaultDescriptionFormat">{0} 컴포넌트의 상태, 동작, API를 살펴보세요.</x:String>
+
+    <x:String x:Key="Loc.Catalog.Desc.button">기본, 보조, 고스트, 비활성 명령 상태.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.textbox">포커스와 비활성 피드백이 분명한 텍스트 입력 상태.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.border">콘텐츠와 보조 동작을 묶어 주는 차분한 표면.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.checkbox">선택, 선택 해제, 사용 불가의 세 가지 상태.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.toggleswitch">상태 레이블이 있는 즉시 적용 온/오프 설정.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.label">상태와 메타데이터를 위한 간결한 시맨틱 레이블.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.combobox">프롬프트가 명확한 간결한 단일 선택 컨트롤.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.progressbar">읽기 쉬운 백분율 값을 갖춘 확정형 진행률.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.infobar">관련 작업 옆에 계속 남아 있는 상황별 메시지.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.css">진짜 CSS로 모든 요소를 스타일링: 인라인 선언, 범위 지정 스타일 시트, 속성 매핑.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssselectors">형식·클래스·id·결합자 선택자, 동적 의사 클래스, 명시도 그리고 !important.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.csslayout">백분율, aspect-ratio, box-sizing, position: absolute를 프레임워크 자체 레이아웃 패스로 해석합니다.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssoutline">레이아웃 공간을 차지하지 않고 요소 바깥에 그려지는 링——focus-visible에 딱 맞는 도구.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssmappings">CssMappings로 나만의 CSS 속성 이름, 값 변환기, 별칭을 등록합니다.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.flexpanel">완전한 CSS 플렉스박스 컨테이너: 방향, 줄 바꿈, 주축·교차축 정렬, grow/shrink/basis.</x:String>
+
+</ResourceDictionary>

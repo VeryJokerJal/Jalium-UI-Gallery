@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MenuPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Menu">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Menu" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Navigation}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Menu.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A horizontal command bar whose items open drop-down lists of commands, keyboard shortcuts and nested submenus." />
+                   Text="{DynamicResource Loc.P.Menu.Sub1}" />
 
         <!-- Basic menu -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Menu" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Menu.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A standard menu with multiple items." />
+                           Text="{DynamicResource Loc.P.Menu.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Menu>
                         <MenuItem Header="File">
@@ -50,24 +52,24 @@
         <!-- Menu with keyboard shortcuts -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Menu with Keyboard Shortcuts" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Menu.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Menu items can display keyboard shortcuts." />
+                           Text="{DynamicResource Loc.P.Menu.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Menu>
                         <MenuItem Header="File">
-                            <MenuItem Header="New" InputGestureText="Ctrl+N"/>
-                            <MenuItem Header="Open" InputGestureText="Ctrl+O"/>
-                            <MenuItem Header="Save" InputGestureText="Ctrl+S"/>
-                            <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S"/>
+                            <MenuItem Header="New" InputGestureText="{DynamicResource Loc.Shortcut.New}"/>
+                            <MenuItem Header="Open" InputGestureText="{DynamicResource Loc.Shortcut.Open}"/>
+                            <MenuItem Header="Save" InputGestureText="{DynamicResource Loc.Shortcut.Save}"/>
+                            <MenuItem Header="Save As" InputGestureText="{DynamicResource Loc.Shortcut.SaveAs}"/>
                         </MenuItem>
                         <MenuItem Header="Edit">
-                            <MenuItem Header="Undo" InputGestureText="Ctrl+Z"/>
-                            <MenuItem Header="Redo" InputGestureText="Ctrl+Y"/>
+                            <MenuItem Header="Undo" InputGestureText="{DynamicResource Loc.Shortcut.Undo}"/>
+                            <MenuItem Header="Redo" InputGestureText="{DynamicResource Loc.Shortcut.Redo}"/>
                             <Separator/>
-                            <MenuItem Header="Cut" InputGestureText="Ctrl+X"/>
-                            <MenuItem Header="Copy" InputGestureText="Ctrl+C"/>
-                            <MenuItem Header="Paste" InputGestureText="Ctrl+V"/>
+                            <MenuItem Header="Cut" InputGestureText="{DynamicResource Loc.Shortcut.Cut}"/>
+                            <MenuItem Header="Copy" InputGestureText="{DynamicResource Loc.Shortcut.Copy}"/>
+                            <MenuItem Header="Paste" InputGestureText="{DynamicResource Loc.Shortcut.Paste}"/>
                         </MenuItem>
                     </Menu>
                 </Border>
@@ -77,9 +79,9 @@
         <!-- Nested submenus -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Nested Submenus" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Menu.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Menu items can contain nested submenus." />
+                           Text="{DynamicResource Loc.P.Menu.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Menu>
                         <MenuItem Header="Settings">
@@ -109,16 +111,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the menus above." />
+                           Text="{DynamicResource Loc.P.Menu.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -126,16 +130,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a menu and wiring item click handlers in code-behind." />
+                           Text="{DynamicResource Loc.P.Menu.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,6 +1,9 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TreeViewPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TreeView">
 
     <!--
@@ -11,27 +14,68 @@
     -->
     <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="COLLECTIONS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TreeView" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Collections}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TreeView.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A hierarchical control that displays data in a tree structure with expandable and collapsible nodes." />
+                   Text="{DynamicResource Loc.P.TreeView.Sub1}" />
 
-        <!-- Interactive demos are inserted here by CreateContent(). -->
-        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TreeView.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.TreeView.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <TreeView Width="300"
+                              Height="250"
+                              behaviors:TreeViewBehavior.Items="{Binding FileSystemItems}" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.BoundSelection}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.TreeView.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding SelectedTreeStatus}"
+                                   Margin="0,0,0,8" />
+                        <TreeView Width="300"
+                                  Height="200"
+                                  behaviors:TreeViewBehavior.Items="{Binding CategoryItems}"
+                                  behaviors:TreeViewBehavior.PublishSelection="True" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TreeView.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.TreeView.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <TreeView Width="300"
+                              Height="200"
+                              behaviors:TreeViewBehavior.Items="{Binding ExpandedItems}" />
+                </Border>
+            </StackPanel>
+        </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the TreeViews above." />
+                           Text="{DynamicResource Loc.P.TreeView.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -39,16 +83,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building nodes and handling selection in code-behind." />
+                           Text="{DynamicResource Loc.P.TreeView.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

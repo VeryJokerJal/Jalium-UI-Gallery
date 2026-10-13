@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TimePickerPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TimePicker">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATE &amp; TIME" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TimePicker" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DateAndTime}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TimePicker.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that lets users pick a time of day, with support for 12- or 24-hour clocks and configurable minute increments." />
+                   Text="{DynamicResource Loc.P.TimePicker.Sub1}" />
 
         <!-- Basic TimePicker -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic TimePicker" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TimePicker.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click to open the flyout and choose a time; the second picker shows the disabled state." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <TimePicker Width="150" Margin="0,0,10,10" />
@@ -29,17 +31,17 @@
         <!-- Time formats -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Time Formats" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TimePicker.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Switch between 12-hour and 24-hour clocks with the ClockIdentifier property." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="12-hour format:" Width="140" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl1}" Width="140" VerticalAlignment="Center"/>
                             <TimePicker Width="150" ClockIdentifier="12HourClock"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="24-hour format:" Width="140" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl2}" Width="140" VerticalAlignment="Center"/>
                             <TimePicker Width="150" ClockIdentifier="24HourClock"/>
                         </StackPanel>
                     </StackPanel>
@@ -50,25 +52,25 @@
         <!-- Minute increment -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Minute Increment" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TimePicker.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Constrain selectable minutes to fixed steps using the MinuteIncrement property." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="1 minute steps:" Width="140" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl3}" Width="140" VerticalAlignment="Center"/>
                             <TimePicker Width="150" MinuteIncrement="1"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="5 minute steps:" Width="140" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl4}" Width="140" VerticalAlignment="Center"/>
                             <TimePicker Width="150" MinuteIncrement="5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="15 minute steps:" Width="140" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl5}" Width="140" VerticalAlignment="Center"/>
                             <TimePicker Width="150" MinuteIncrement="15"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="30 minute steps:" Width="140" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl6}" Width="140" VerticalAlignment="Center"/>
                             <TimePicker Width="150" MinuteIncrement="30"/>
                         </StackPanel>
                     </StackPanel>
@@ -79,18 +81,20 @@
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Pick a time and see the formatted result update live." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                            <TextBlock Text="Select time:" Width="120" VerticalAlignment="Center"/>
-                            <TimePicker x:Name="DemoTimePicker" Width="150"/>
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl7}" Width="120" VerticalAlignment="Center"/>
+                            <TimePicker x:Name="DemoTimePicker"
+                                        Width="150"
+                                        SelectedTime="{Binding SelectedTime, Mode=TwoWay}"/>
                         </StackPanel>
                         <TextBlock x:Name="SelectedTimeText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="No time selected" />
+                                   Text="{Binding SelectedTimeText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -99,18 +103,18 @@
         <!-- Common use cases -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CommonUseCases}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Typical scheduling scenarios such as alarms, meetings and reminders." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Alarm Time" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl8}" FontSize="12" Margin="0,0,0,4"/>
                         <TimePicker Width="150" Margin="0,0,0,16"/>
 
-                        <TextBlock Text="Meeting Start Time" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl9}" FontSize="12" Margin="0,0,0,4"/>
                         <TimePicker Width="150" MinuteIncrement="15" Margin="0,0,0,16"/>
 
-                        <TextBlock Text="Reminder Time" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl10}" FontSize="12" Margin="0,0,0,4"/>
                         <TimePicker Width="150" MinuteIncrement="5"/>
                     </StackPanel>
                 </Border>
@@ -120,16 +124,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the pickers shown above." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -137,16 +143,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating and configuring a TimePicker in code-behind." />
+                           Text="{DynamicResource Loc.P.TimePicker.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

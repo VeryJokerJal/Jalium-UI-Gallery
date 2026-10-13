@@ -1,24 +1,36 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.LineChartPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="LineChart">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="LineChart" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.LineChart.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays data as connected line segments with optional smoothing, area fill, and data point markers." />
+                   Text="{DynamicResource Loc.P.LineChart.Sub1}" />
 
         <!-- Basic line chart -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Line Chart" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LineChart.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A single data series rendered as a line chart with data point markers." />
+                           Text="{DynamicResource Loc.P.LineChart.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicChartContainer" Orientation="Vertical" />
+                    <LineChart Height="300"
+                               Title="Monthly Sales"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="Revenue"
+                                        Brush="#0078D4"
+                                        DataPoints="{Binding MonthlyRevenue}" />
+                        </LineChart.Series>
+                    </LineChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +38,21 @@
         <!-- Multiple series -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Multiple Series" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LineChart.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Overlay multiple data series on the same chart with a legend." />
+                           Text="{DynamicResource Loc.P.LineChart.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="MultiSeriesContainer" Orientation="Vertical" />
+                    <LineChart Height="350"
+                               Title="Quarterly Performance"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="Product A" Brush="#0078D4" DataPoints="{Binding ProductA}" />
+                            <LineSeries Title="Product B" Brush="#10B981" DataPoints="{Binding ProductB}" />
+                            <LineSeries Title="Product C" Brush="#EF4444" DataPoints="{Binding ProductC}" />
+                        </LineChart.Series>
+                    </LineChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +60,24 @@
         <!-- Smoothed line & area -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Smoothed Line &amp; Area" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.LineChart.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Catmull-Rom spline smoothing with a filled area beneath the line." />
+                           Text="{DynamicResource Loc.P.LineChart.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="SmoothedChartContainer" Orientation="Vertical" />
+                    <LineChart Height="300"
+                               Title="CPU Usage Over Time"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               LineSmoothing="True"
+                               ShowArea="True"
+                               AreaOpacity="0.3"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="CPU %"
+                                        Brush="#8B5CF6"
+                                        DataPoints="{Binding CpuUsage}" />
+                        </LineChart.Series>
+                    </LineChart>
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +85,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a line chart with a single series." />
+                           Text="{DynamicResource Loc.P.LineChart.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +104,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a multi-series line chart with smoothing and area fill in code-behind." />
+                           Text="{DynamicResource Loc.P.LineChart.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

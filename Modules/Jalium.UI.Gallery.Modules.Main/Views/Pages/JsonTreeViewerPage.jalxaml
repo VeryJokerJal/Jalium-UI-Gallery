@@ -1,26 +1,29 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.JsonTreeViewerPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="JsonTreeViewer">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VIEWERS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="JsonTreeViewer" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataViewers}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.JsonTreeViewer.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that displays JSON data in an interactive tree view with search, expand/collapse, and path copying." />
+                   Text="{DynamicResource Loc.P.JsonTreeViewer.Sub1}" />
 
         <!-- Basic JSON tree -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic JSON tree" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.JsonTreeViewer.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Display structured JSON data with color-coded types and expandable nodes." />
+                           Text="{DynamicResource Loc.P.JsonTreeViewer.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <JsonTreeViewer x:Name="BasicJsonTree"
                                     Height="350"
-                                    ExpandDepth="2" />
+                                    ExpandDepth="2"
+                                    JsonText="{Binding SampleJson}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -28,17 +31,20 @@
         <!-- Search & filter -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Search &amp; filter" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.JsonTreeViewer.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Type in the search box to highlight matching keys and values in the tree." />
+                           Text="{DynamicResource Loc.P.JsonTreeViewer.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <TextBox x:Name="SearchInput"
-                                 ToolTip="Search keys or values..."
-                                 Margin="0,0,0,12" />
+                                 ToolTip="{DynamicResource Loc.P.JsonTreeViewer.Ui1}"
+                                 Margin="0,0,0,12"
+                                 Text="{Binding SearchText, Mode=TwoWay}" />
                         <JsonTreeViewer x:Name="SearchJsonTree"
                                         Height="300"
-                                        ExpandDepth="3" />
+                                        ExpandDepth="3"
+                                        JsonText="{Binding SearchSampleJson}"
+                                        SearchText="{Binding SearchText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -47,24 +53,26 @@
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Enter JSON text on the left and see the tree view update on the right." />
+                           Text="{DynamicResource Loc.P.JsonTreeViewer.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <StackPanel Orientation="Vertical" Width="400" Margin="0,0,10,10">
-                            <TextBlock Text="JSON Input:" FontSize="12" Margin="0,0,0,4" />
+                            <TextBlock Text="{DynamicResource Loc.P.JsonTreeViewer.Ui2}" FontSize="12" Margin="0,0,0,4" />
                             <TextBox x:Name="JsonInput"
                                      AcceptsReturn="True"
                                      Height="350"
                                      FontFamily="Consolas"
-                                     FontSize="12" />
+                                     FontSize="12"
+                                     Text="{Binding InteractiveJson, Mode=TwoWay}" />
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Width="400" Margin="0,0,10,10">
                             <TextBlock Text="Tree View:" FontSize="12" Margin="0,0,0,4" />
                             <JsonTreeViewer x:Name="InteractiveJsonTree"
                                             Height="350"
-                                            ExpandDepth="3" />
+                                            ExpandDepth="3"
+                                            JsonText="{Binding InteractiveJson}" />
                         </StackPanel>
                     </WrapPanel>
                 </Border>
@@ -74,16 +82,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the JSON tree viewers above." />
+                           Text="{DynamicResource Loc.P.JsonTreeViewer.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -91,16 +101,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Loading JSON, wiring the search box, and updating the tree in code-behind." />
+                           Text="{DynamicResource Loc.P.JsonTreeViewer.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

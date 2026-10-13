@@ -1,33 +1,35 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ExpanderPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Expander">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Expander" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Expander.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control with a clickable header that expands and collapses to reveal or hide a section of content, keeping secondary details tucked away until they are needed." />
+                   Text="{DynamicResource Loc.P.Expander.Sub1}" />
 
         <!-- Basic expander -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic expander" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Expander.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click the header to expand or collapse the content region." />
+                           Text="{DynamicResource Loc.P.Expander.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <Expander Header="Click to expand" Margin="0,0,0,8">
+                        <Expander Header="{DynamicResource Loc.P.Expander.Demo1}" Margin="0,0,0,8">
                             <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
-                                <TextBlock Text="This content is revealed when the expander is expanded. You can put any content here including text, images, and other controls."
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo2}"
                                            TextWrapping="Wrap"/>
                             </Border>
                         </Expander>
-                        <Expander Header="Initially expanded" IsExpanded="True">
+                        <Expander Header="{DynamicResource Loc.P.Expander.Demo3}" IsExpanded="True">
                             <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
-                                <TextBlock Text="This expander starts in the expanded state. Click the header to collapse it."
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo4}"
                                            TextWrapping="Wrap"/>
                             </Border>
                         </Expander>
@@ -39,17 +41,17 @@
         <!-- Complex content -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Complex content" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Expander.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="An expander can host any content, from checkboxes and dropdowns to full input forms." />
+                           Text="{DynamicResource Loc.P.Expander.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <Expander Header="Settings" Margin="0,0,0,8">
                             <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
                                 <StackPanel Orientation="Vertical">
-                                    <CheckBox Content="Enable notifications" Margin="0,0,0,8"/>
-                                    <CheckBox Content="Auto-save documents" Margin="0,0,0,8"/>
-                                    <CheckBox Content="Show line numbers" Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.Expander.Ui1}" Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.Expander.Ui2}" Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.Expander.Ui3}" Margin="0,0,0,8"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Theme:" VerticalAlignment="Center" Margin="0,0,8,0"/>
                                         <ComboBox Width="120" Height="28">
@@ -61,7 +63,7 @@
                                 </StackPanel>
                             </Border>
                         </Expander>
-                        <Expander Header="User Profile">
+                        <Expander Header="{DynamicResource Loc.P.Expander.Ui4}">
                             <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
@@ -72,7 +74,7 @@
                                         <TextBlock Text="Email:" Width="80"/>
                                         <TextBox Width="200" Height="28" Text="john@example.com"/>
                                     </StackPanel>
-                                    <Button Content="Save Changes" Width="120" Height="32" HorizontalAlignment="Left"/>
+                                    <Button Content="{DynamicResource Loc.P.Expander.Ui5}" Width="120" Height="32" HorizontalAlignment="Left"/>
                                 </StackPanel>
                             </Border>
                         </Expander>
@@ -84,9 +86,9 @@
         <!-- Nested expanders -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Nested expanders" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Expander.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Expanders can be nested to build collapsible, tree-like sections." />
+                           Text="{DynamicResource Loc.P.Expander.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <Expander Header="Category A">
                         <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8" CornerRadius="8">
@@ -116,19 +118,21 @@
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Drive the expander from code — expand, collapse or toggle it with the buttons." />
+                           Text="{DynamicResource Loc.P.Expander.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel Margin="0,0,0,6">
-                            <Button x:Name="ExpandButton" Content="Expand" Width="80" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="CollapseButton" Content="Collapse" Width="80" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="ToggleButton" Content="Toggle" Width="80" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="ExpandButton" Content="Expand" Command="{Binding ExpandCommand}" Width="80" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="CollapseButton" Content="Collapse" Command="{Binding CollapseCommand}" Width="80" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="ToggleButton" Content="Toggle" Command="{Binding ToggleCommand}" Width="80" Height="28" Margin="0,0,10,10"/>
                         </WrapPanel>
-                        <Expander x:Name="ControlledExpander" Header="Controlled Expander">
+                        <Expander x:Name="ControlledExpander"
+                                  Header="{DynamicResource Loc.P.Expander.Demo5}"
+                                  IsExpanded="{Binding IsControlledExpanderOpen, Mode=TwoWay}">
                             <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
-                                <TextBlock Text="This expander can be controlled using the buttons above."
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo6}"
                                            TextWrapping="Wrap"/>
                             </Border>
                         </Expander>
@@ -140,16 +144,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the expanders shown above." />
+                           Text="{DynamicResource Loc.P.Expander.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -157,16 +163,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring the buttons to the expander and handling its expand and collapse events from code-behind." />
+                           Text="{DynamicResource Loc.P.Expander.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

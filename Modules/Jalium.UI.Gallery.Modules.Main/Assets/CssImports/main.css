@@ -1,0 +1,3 @@
+@layer base, responsive;
+@import "base.css" layer(base);
+@import "responsive.css" layer(responsive) supports(display: grid) (min-width: 600px);

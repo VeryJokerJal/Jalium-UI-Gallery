@@ -7,7 +7,7 @@
     <TargetFramework>net10.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
     <ApplicationId>jalium.ui.gallery.android</ApplicationId>
-    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationVersion>261100</ApplicationVersion>
     <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
     <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
     <RootNamespace>Jalium.UI.Gallery.Android</RootNamespace>
@@ -25,13 +25,14 @@
     <JalxamlCompilerPath>$(MSBuildProjectDirectory)\..\..\Jalium.UI\src\managed\Jalium.UI.Build\tools\jalxamlc.exe</JalxamlCompilerPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
+  </ItemGroup>
+
   <!-- 引用本地 Jalium.UI Android 包（开发模式，内部聚合了 net10.0 核心 + .so 原生库） -->
   <ItemGroup>
     <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Android\Jalium.UI.Android.csproj" />
-    <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj"
-                      OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false"
-                      UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
+    <!-- TEMP-EXPERIMENT: source-built generator disabled -->
     <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
   </ItemGroup>
 

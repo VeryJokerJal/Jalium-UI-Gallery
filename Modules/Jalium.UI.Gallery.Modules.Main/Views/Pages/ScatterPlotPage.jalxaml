@@ -1,59 +1,104 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ScatterPlotPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ScatterPlot">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ScatterPlot" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ScatterPlot.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays data as a scatter plot with multiple point shapes, optional bubble sizing, and trend lines." />
+                   Text="{DynamicResource Loc.P.ScatterPlot.Sub1}" />
 
         <!-- Basic Scatter Plot -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Scatter Plot" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScatterPlot.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A scatter plot with random data points using circle markers." />
-                <Border x:Name="BasicScatterContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.ScatterPlot.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ScatterPlot Width="600"
+                                 Height="400"
+                                 Title="Random Data Points">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Dataset A"
+                                           Brush="#417EE0"
+                                           PointShape="Circle"
+                                           DataPoints="{Binding DatasetA}" />
+                            <ScatterSeries Title="Dataset B"
+                                           Brush="#4CAF50"
+                                           PointShape="Triangle"
+                                           DataPoints="{Binding DatasetB}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Bubble Chart -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Bubble Chart" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScatterPlot.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A scatter plot with varying point sizes to represent a third data dimension." />
-                <Border x:Name="BubbleChartContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.ScatterPlot.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ScatterPlot Width="600"
+                                 Height="400"
+                                 Title="Bubble Sizing"
+                                 MinPointSize="6"
+                                 MaxPointSize="30">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Bubble Data"
+                                           Brush="#9C5FC4"
+                                           PointShape="Circle"
+                                           DataPoints="{Binding BubbleData}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Trend Line -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Trend Line" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScatterPlot.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A scatter plot with a linear trend line overlay showing data correlation." />
-                <Border x:Name="TrendLineContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.ScatterPlot.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ScatterPlot Width="600"
+                                 Height="400"
+                                 Title="Linear Trend Line"
+                                 ShowTrendLine="True"
+                                 TrendLineType="Linear">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Correlated Data"
+                                           Brush="#FF9E22"
+                                           PointShape="Diamond"
+                                           DataPoints="{Binding CorrelatedData}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a scatter plot with series, bubble sizing and a trend line." />
+                           Text="{DynamicResource Loc.P.ScatterPlot.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -61,16 +106,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a scatter plot and its series in code-behind." />
+                           Text="{DynamicResource Loc.P.ScatterPlot.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -37,6 +37,7 @@ internal static class Program
             });
 
             builder.Services.AddAppServices();
+            builder.Services.AddMainModule();
 
             using var app = builder.Build();
             app.UseShared();

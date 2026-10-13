@@ -1,31 +1,38 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.NotifyIconPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="NotifyIcon">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="NotifyIcon" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Overlays}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.NotifyIcon.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Displays an icon in the system notification area (system tray), with support for tooltip text, balloon tips, context menus, and click events." />
+                   Text="{DynamicResource Loc.P.NotifyIcon.Sub1}" />
 
         <!-- Basic tray icon -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Tray Icon" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.NotifyIcon.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Show or hide an icon in the system tray with tooltip text." />
+                           Text="{DynamicResource Loc.P.NotifyIcon.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Tooltip:" Width="80" VerticalAlignment="Center" />
-                            <TextBox x:Name="TooltipBox" Text="Jalium.UI Gallery" Width="250" Height="28" />
+                            <TextBox x:Name="TooltipBox"
+                                     Text="{Binding TooltipText, Mode=TwoWay}"
+                                     Width="250"
+                                     Height="28" />
                         </StackPanel>
                         <WrapPanel>
-                            <Button x:Name="ShowIconButton" Content="Show Icon" Width="100" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="HideIconButton" Content="Hide Icon" Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="ShowIconButton" Content="Show Icon" Width="100" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding ShowIconCommand}" />
+                            <Button x:Name="HideIconButton" Content="Hide Icon" Width="100" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding HideIconCommand}" />
                         </WrapPanel>
                     </StackPanel>
                 </Border>
@@ -35,34 +42,50 @@
         <!-- Balloon tips -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Balloon Tips" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.NotifyIcon.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Show balloon tip notifications from the tray icon with different icon types." />
+                           Text="{DynamicResource Loc.P.NotifyIcon.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Title:" Width="80" VerticalAlignment="Center" />
-                            <TextBox x:Name="BalloonTitleBox" Text="Balloon Tip" Width="250" Height="28" />
+                            <TextBox x:Name="BalloonTitleBox"
+                                     Text="{Binding BalloonTitle, Mode=TwoWay}"
+                                     Width="250"
+                                     Height="28" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Text:" Width="80" VerticalAlignment="Center" />
-                            <TextBox x:Name="BalloonTextBox" Text="This is a balloon tip from the tray." Width="250" Height="28" />
+                            <TextBox x:Name="BalloonTextBox"
+                                     Text="{Binding BalloonText, Mode=TwoWay}"
+                                     Width="250"
+                                     Height="28" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Icon:" Width="80" VerticalAlignment="Center" />
-                            <ComboBox x:Name="BalloonIconComboBox" Width="150" Height="28">
-                                <ComboBoxItem Content="None" />
-                                <ComboBoxItem Content="Info" IsSelected="True" />
-                                <ComboBoxItem Content="Warning" />
-                                <ComboBoxItem Content="Error" />
-                            </ComboBox>
+                            <ComboBox x:Name="BalloonIconComboBox"
+                                      Width="150"
+                                      Height="28"
+                                      ItemsSource="{Binding BalloonIcons}"
+                                      SelectedItem="{Binding SelectedBalloonIcon, Mode=TwoWay}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Timeout:" Width="80" VerticalAlignment="Center" />
-                            <Slider x:Name="BalloonTimeoutSlider" Minimum="1" Maximum="30" Value="5" Width="150" Margin="0,0,8,0" />
-                            <TextBlock x:Name="BalloonTimeoutText" Text="5s" VerticalAlignment="Center" />
+                            <Slider x:Name="BalloonTimeoutSlider"
+                                    Minimum="1"
+                                    Maximum="30"
+                                    Value="{Binding BalloonTimeout, Mode=TwoWay}"
+                                    Width="150"
+                                    Margin="0,0,8,0" />
+                            <TextBlock x:Name="BalloonTimeoutText"
+                                       Text="{Binding BalloonTimeoutText}"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
-                        <Button x:Name="ShowBalloonButton" Content="Show Balloon Tip" Width="140" Height="28" />
+                        <Button x:Name="ShowBalloonButton"
+                                Content="Show Balloon Tip"
+                                Width="140"
+                                Height="28"
+                                Command="{Binding ShowBalloonCommand}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -71,21 +94,29 @@
         <!-- Events -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Events" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.NotifyIcon.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="NotifyIcon raises events for click, double-click, and balloon tip interactions." />
+                           Text="{DynamicResource Loc.P.NotifyIcon.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <TextBlock Text="Event Log:" Margin="0,0,0,8" />
-                        <Border Background="#111111" CornerRadius="8" Padding="8" Height="120">
+                        <Border Background="{DynamicResource GalleryCardBackground}"
+                                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                BorderThickness="1"
+                                CornerRadius="8" Padding="8" Height="120">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <TextBlock x:Name="EventLogText"
-                                           Text="Interact with the tray icon to see events..."
+                                           Text="{Binding EventLogText}"
                                            FontSize="12"
                                            TextWrapping="Wrap" />
                             </ScrollViewer>
                         </Border>
-                        <Button x:Name="ClearLogButton" Content="Clear Log" Width="100" Height="24" Margin="0,8,0,0" />
+                        <Button x:Name="ClearLogButton"
+                                Content="Clear Log"
+                                Width="100"
+                                Height="24"
+                                Margin="0,8,0,0"
+                                Command="{Binding ClearLogCommand}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -94,14 +125,17 @@
         <!-- Context menu -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Context Menu" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.NotifyIcon.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Assign a ContextMenu to the tray icon. Right-click the tray icon to see the menu." />
+                           Text="{DynamicResource Loc.P.NotifyIcon.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <CheckBox x:Name="EnableContextMenuCheckBox" Content="Enable context menu on tray icon" IsChecked="True" Margin="0,0,0,8" />
+                        <CheckBox x:Name="EnableContextMenuCheckBox"
+                                  Content="{DynamicResource Loc.P.NotifyIcon.Ui1}"
+                                  IsChecked="{Binding IsContextMenuEnabled, Mode=TwoWay}"
+                                  Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryCaptionText}"
-                                   Text="The context menu includes: Show Window, Settings, About, Exit" />
+                                   Text="{DynamicResource Loc.P.NotifyIcon.Cap1}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -110,15 +144,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="NotifyIcon is a code-only component; declare the trigger buttons in markup and build the icon from code-behind." />
+                           Text="{DynamicResource Loc.P.NotifyIcon.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>
@@ -127,15 +163,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating the tray icon, wiring events, showing balloon tips, and attaching a context menu in code-behind." />
+                           Text="{DynamicResource Loc.P.NotifyIcon.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="300"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>

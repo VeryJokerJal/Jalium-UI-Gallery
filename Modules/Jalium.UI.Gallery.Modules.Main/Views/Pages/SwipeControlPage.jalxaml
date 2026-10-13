@@ -1,38 +1,79 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SwipeControlPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="SwipeControl">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MENUS &amp; TOOLBARS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="SwipeControl" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MenusAndToolbars}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.SwipeControl.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A touch-friendly control that reveals contextual actions such as Archive, Delete and Flag through swipe gestures on list items." />
+                   Text="{DynamicResource Loc.P.SwipeControl.Sub1}" />
 
         <!-- Swipe to reveal -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Swipe to reveal" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SwipeControl.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Swipe items left or right to reveal contextual actions like Archive and Delete." />
+                           Text="{DynamicResource Loc.P.SwipeControl.CC1}" />
                 <Border x:Name="SwipeContainer"
                         Style="{StaticResource GalleryDemoSurfaceFlush}"
-                        MinHeight="200" />
+                        MinHeight="200">
+                    <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeControl Visibility="{Binding Visibility}">
+                                    <SwipeControl.LeftItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="Archive"
+                                                       Background="#0078D4"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding ArchiveCommand}" />
+                                        </SwipeItems>
+                                    </SwipeControl.LeftItems>
+                                    <SwipeControl.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="Flag"
+                                                       Background="#C18A00"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding FlagCommand}" />
+                                            <SwipeItem Text="Delete"
+                                                       Background="#C42B1C"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding DeleteCommand}" />
+                                        </SwipeItems>
+                                    </SwipeControl.RightItems>
+                                    <Border Background="{Binding Background}"
+                                            BorderBrush="#3D3D3D"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="16,12"
+                                            MinHeight="52">
+                                        <TextBlock Text="{Binding Text}"
+                                                   FontSize="14"
+                                                   Foreground="{Binding Foreground}"
+                                                   VerticalAlignment="Center" />
+                                    </Border>
+                                </SwipeControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Swipe action log -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Swipe action log" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SwipeControl.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Interact with the swipe items above to see the action results here." />
+                           Text="{DynamicResource Loc.P.SwipeControl.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <TextBlock x:Name="SwipeStatusText"
                                Style="{StaticResource GalleryBodyText}"
-                               Text="No swipe action yet." />
+                               Text="{Binding StatusText}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -40,15 +81,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a swipe control with left and right actions." />
+                           Text="{DynamicResource Loc.P.SwipeControl.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>
@@ -57,15 +100,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building swipe rows and wiring their action handlers in code-behind." />
+                           Text="{DynamicResource Loc.P.SwipeControl.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>

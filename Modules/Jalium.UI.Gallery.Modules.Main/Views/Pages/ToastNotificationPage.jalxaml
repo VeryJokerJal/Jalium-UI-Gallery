@@ -1,6 +1,9 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToastNotificationPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ToastNotification">
 
     <!--
@@ -16,23 +19,23 @@
         <StackPanel Style="{StaticResource GalleryPageStack}">
 
             <!-- Page header -->
-            <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
-            <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ToastNotification" />
+            <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Overlays}" />
+            <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ToastNotification.Title1}" />
             <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                       Text="A transient overlay that surfaces brief, self-dismissing notifications in a corner of the window without blocking the user." />
+                       Text="{DynamicResource Loc.P.ToastNotification.Sub1}" />
 
             <!-- Basic notifications -->
             <Border Style="{StaticResource GalleryCard}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic toast notifications" />
+                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToastNotification.CT1}" />
                     <TextBlock Style="{StaticResource GalleryCardCaption}"
-                               Text="Fire a toast at each severity level and watch it appear in the overlay host." />
+                               Text="{DynamicResource Loc.P.ToastNotification.CC1}" />
                     <Border Style="{StaticResource GalleryDemoSurface}">
                         <WrapPanel>
-                            <Button x:Name="InfoToastButton" Content="Info" Width="70" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="SuccessToastButton" Content="Success" Width="80" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="WarningToastButton" Content="Warning" Width="80" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="ErrorToastButton" Content="Error" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Info" Command="{Binding ShowToastCommand}" CommandParameter="Information" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Success" Command="{Binding ShowToastCommand}" CommandParameter="Success" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Warning" Command="{Binding ShowToastCommand}" CommandParameter="Warning" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Error" Command="{Binding ShowToastCommand}" CommandParameter="Error" Width="70" Height="28" Margin="0,0,10,10" />
                         </WrapPanel>
                     </Border>
                 </StackPanel>
@@ -41,9 +44,9 @@
             <!-- Preview -->
             <Border Style="{StaticResource GalleryCard}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Toast preview" />
+                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToastNotification.CT2}" />
                     <TextBlock Style="{StaticResource GalleryCardCaption}"
-                               Text="Static examples of how each severity renders inside a toast." />
+                               Text="{DynamicResource Loc.P.ToastNotification.CC2}" />
                     <Border Style="{StaticResource GalleryDemoSurface}">
                         <StackPanel Orientation="Vertical">
                             <!-- Info Toast Preview -->
@@ -84,19 +87,30 @@
             <!-- With actions -->
             <Border Style="{StaticResource GalleryCard}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Toast with actions" />
+                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToastNotification.CT3}" />
                     <TextBlock Style="{StaticResource GalleryCardCaption}"
-                               Text="Toasts can include action buttons; trigger one to see the action handler respond." />
+                               Text="{DynamicResource Loc.P.ToastNotification.CC3}" />
                     <Border Style="{StaticResource GalleryDemoSurface}">
                         <StackPanel Orientation="Vertical">
                             <!-- Toast with Actions Preview -->
                             <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8" Padding="12">
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                        <TextBlock Text="📥" FontSize="16" Margin="0,0,12,0"/>
+                                        <Border Width="36"
+                                                Height="36"
+                                                Background="{DynamicResource GalleryInfoSoft}"
+                                                CornerRadius="10"
+                                                Margin="0,0,12,0">
+                                            <SymbolIcon Symbol="Download"
+                                                        Width="18"
+                                                        Height="18"
+                                                        Foreground="{DynamicResource GalleryInfoOnSurface}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center" />
+                                        </Border>
                                         <StackPanel Orientation="Vertical">
-                                            <TextBlock Text="Download Complete" FontWeight="SemiBold"/>
-                                            <TextBlock Text="Your file has been downloaded." FontSize="12"/>
+                                            <TextBlock Text="{DynamicResource Loc.P.ToastNotification.Ui1}" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{DynamicResource Loc.P.ToastNotification.Ui2}" FontSize="12"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -106,7 +120,7 @@
                                 </StackPanel>
                             </Border>
 
-                            <Button x:Name="ShowActionToastButton" Content="Show Toast with Actions" Width="180" Height="28" Margin="0,16,0,0"/>
+                            <Button Content="{DynamicResource Loc.P.ToastNotification.Ui3}" Command="{Binding ShowActionToastCommand}" Width="180" Height="28" Margin="0,16,0,0"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -115,32 +129,28 @@
             <!-- Configuration -->
             <Border Style="{StaticResource GalleryCard}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Toast configuration" />
+                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToastNotification.CT4}" />
                     <TextBlock Style="{StaticResource GalleryCardCaption}"
-                               Text="Set the host position and duration, toggle the close button and auto-dismiss, then show a custom toast." />
+                               Text="{DynamicResource Loc.P.ToastNotification.CC4}" />
                     <Border Style="{StaticResource GalleryDemoSurface}">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                                 <TextBlock Text="Position:" Width="100" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="PositionComboBox" Width="150" Height="28">
-                                    <ComboBoxItem Content="Top Right" IsSelected="True"/>
-                                    <ComboBoxItem Content="Top Left"/>
-                                    <ComboBoxItem Content="Top Center"/>
-                                    <ComboBoxItem Content="Bottom Right"/>
-                                    <ComboBoxItem Content="Bottom Left"/>
-                                    <ComboBoxItem Content="Bottom Center"/>
-                                </ComboBox>
+                                <ComboBox Width="150"
+                                          Height="28"
+                                          ItemsSource="{Binding Positions}"
+                                          SelectedItem="{Binding Position, Mode=TwoWay}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                                 <TextBlock Text="Duration:" Width="100" VerticalAlignment="Center"/>
-                                <Slider x:Name="DurationSlider" Minimum="1" Maximum="15" Value="5" Width="150" Margin="0,0,8,0"/>
-                                <TextBlock x:Name="DurationText" Text="5s" VerticalAlignment="Center"/>
+                                <Slider Minimum="1" Maximum="15" Value="{Binding DurationSeconds, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding DurationSeconds, StringFormat='{}{0:F0}s'}" VerticalAlignment="Center"/>
                             </StackPanel>
-                            <CheckBox x:Name="ShowCloseCheckBox" Content="Show close button" IsChecked="True" Margin="0,0,0,8"/>
-                            <CheckBox x:Name="PauseOnHoverCheckBox" Content="Auto-dismiss (pause on hover)" IsChecked="True" Margin="0,0,0,8"/>
+                            <CheckBox Content="{DynamicResource Loc.P.ToastNotification.Ui4}" IsChecked="{Binding ShowCloseButton, Mode=TwoWay}" Margin="0,0,0,8"/>
+                            <CheckBox Content="{DynamicResource Loc.P.ToastNotification.Ui5}" IsChecked="{Binding AutoDismiss, Mode=TwoWay}" Margin="0,0,0,8"/>
                             <WrapPanel Margin="0,8,0,0">
-                                <Button x:Name="ShowCustomToastButton" Content="Show Custom Toast" Width="150" Height="28" Margin="0,0,10,10"/>
-                                <Button x:Name="DismissAllButton" Content="Dismiss All" Width="100" Height="28" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.ToastNotification.Ui6}" Command="{Binding ShowCustomToastCommand}" Width="150" Height="28" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.ToastNotification.Ui7}" Command="{Binding DismissAllCommand}" Width="100" Height="28" Margin="0,0,10,10"/>
                             </WrapPanel>
                         </StackPanel>
                     </Border>
@@ -150,16 +160,18 @@
             <!-- XAML code example -->
             <Border Style="{StaticResource GalleryCard}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                     <TextBlock Style="{StaticResource GalleryCardCaption}"
-                               Text="Declarative markup for the toast host and preview items above." />
+                               Text="{DynamicResource Loc.P.ToastNotification.CC5}" />
                     <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                         <EditControl x:Name="XamlCodeEditor"
                                      Height="200"
                                      HorizontalAlignment="Stretch"
                                      IsReadOnly="True"
                                      ShowLineNumbers="True"
-                                     FontSize="13"/>
+                                     FontSize="13"
+                                     Language="jalxaml"
+                                     Text="{Binding XamlExample}" />
                     </Border>
                 </StackPanel>
             </Border>
@@ -167,16 +179,18 @@
             <!-- C# code example -->
             <Border Style="{StaticResource GalleryCard}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                    <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                     <TextBlock Style="{StaticResource GalleryCardCaption}"
-                               Text="Showing, configuring and dismissing toasts from code-behind." />
+                               Text="{DynamicResource Loc.P.ToastNotification.CC6}" />
                     <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                         <EditControl x:Name="CSharpCodeEditor"
                                      Height="200"
                                      HorizontalAlignment="Stretch"
                                      IsReadOnly="True"
                                      ShowLineNumbers="True"
-                                     FontSize="13"/>
+                                     FontSize="13"
+                                     Language="csharp"
+                                     Text="{Binding CSharpExample}" />
                     </Border>
                 </StackPanel>
             </Border>
@@ -185,9 +199,10 @@
 
         <!-- Toast notification overlay host (renders on top of content) -->
         <ToastNotificationHost x:Name="ToastHost"
-                               Position="TopRight"
+                               Position="{Binding Position}"
                                MaxVisibleToasts="5"
                                ToastWidth="380"
-                               Spacing="8"/>
+                               Spacing="8"
+                               behaviors:ToastHostBehavior.Request="{Binding Request}"/>
     </Grid>
 </Page>

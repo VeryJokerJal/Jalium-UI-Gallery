@@ -17,7 +17,7 @@
         • Colors come from the theme-reactive {DynamicResource Gallery*} brushes
           registered by GalleryTheme.RegisterResources, so a live Dark/Light
           flip re-skins these styles automatically.
-        • Numeric tokens mirror GalleryTheme (radius 16/12/8, spacing 4..32,
+        • Numeric tokens mirror GalleryTheme (radius 20/16/12/8, spacing 4..32,
           type ramp 12/13/14/16/20/28).
 
         Reminder (Jalium styling): a *local* attribute on an element beats a
@@ -29,6 +29,18 @@
     <!-- Page scaffold                                                 -->
     <!-- ============================================================= -->
 
+    <!--
+        Page is the inheritance boundary for Foreground. Pinning it to the
+        Gallery token keeps unstyled sample labels in sync with the custom
+        Light/Dark palette instead of retaining the framework mode that happened
+        to be active when the page was materialized.
+    -->
+    <Style TargetType="Page">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI" />
+    </Style>
+
     <!-- Root vertical stack for a page's content column. -->
     <Style x:Key="GalleryPageStack" TargetType="StackPanel">
         <Setter Property="Orientation" Value="Vertical" />
@@ -38,14 +50,15 @@
     <Style x:Key="GalleryEyebrow" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12.5" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentLight}" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentOnSurface}" />
         <Setter Property="Margin" Value="0,0,0,6" />
     </Style>
 
     <!-- Page H1. -->
     <Style x:Key="GalleryPageTitle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="28" />
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI" />
         <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
         <Setter Property="Margin" Value="0,0,0,6" />
     </Style>
@@ -68,9 +81,9 @@
         <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Padding" Value="18" />
-        <Setter Property="Margin" Value="0,0,0,16" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Margin" Value="0,0,0,18" />
     </Style>
 
     <!-- Accent-tinted hero header card for a page intro. -->
@@ -78,9 +91,9 @@
         <Setter Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
         <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderStrong}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Padding" Value="20" />
-        <Setter Property="Margin" Value="0,0,0,20" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Padding" Value="22" />
+        <Setter Property="Margin" Value="0,0,0,22" />
     </Style>
 
     <!-- Inner surface that actually holds the live control demo. -->
@@ -88,8 +101,8 @@
         <Setter Property="Background" Value="{DynamicResource GalleryCardInnerBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderSubtle}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="6" />
-        <Setter Property="Padding" Value="16" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="18" />
     </Style>
 
     <!-- Full-bleed inner surface (no padding) for editors / media / lists. -->
@@ -97,7 +110,7 @@
         <Setter Property="Background" Value="{DynamicResource GalleryCardInnerBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderSubtle}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="0" />
     </Style>
 
@@ -107,7 +120,7 @@
 
     <!-- Card / section heading. -->
     <Style x:Key="GalleryCardTitle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="17" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
         <Setter Property="Margin" Value="0,0,0,4" />
@@ -151,14 +164,14 @@
     <!-- Rounded accent pill for tags / status. Pair with a TextBlock. -->
     <Style x:Key="GalleryChip" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="10,4" />
     </Style>
 
     <Style x:Key="GalleryChipText" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentLight}" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentOnSurface}" />
     </Style>
 
     <!-- 1px hairline separator between rows inside a card. -->
@@ -166,6 +179,354 @@
         <Setter Property="Background" Value="{DynamicResource GalleryBorderSubtle}" />
         <Setter Property="Height" Value="1" />
         <Setter Property="Margin" Value="0,14" />
+    </Style>
+
+    <!-- ============================================================= -->
+    <!-- Semantic buttons                                               -->
+    <!-- ============================================================= -->
+
+    <Style x:Key="GalleryPrimaryButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource GalleryAccent}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextOnAccent}" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="MinWidth" Value="60" />
+        <Setter Property="MinHeight" Value="38" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border Name="PrimaryRootBorder"
+                        TransitionProperty="None"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Shape="RoundedRectangle">
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <!--
+                        Transient-state precedence follows declaration order:
+                        keyboard focus < pointer hover < pointer press. Keeping
+                        press last makes the same accent border win on the first
+                        and every subsequent click after the button has focus.
+                    -->
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsKeyboardFocused" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="PrimaryRootBorder" Property="BorderBrush" Value="{ThemeResource SystemControlFocusVisualSecondaryBrush}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="PrimaryRootBorder" Property="Background" Value="{DynamicResource GalleryAccentLight}" />
+                        <Setter TargetName="PrimaryRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccentLight}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsPressed" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="PrimaryRootBorder" Property="Background" Value="{DynamicResource GalleryAccentSecondary}" />
+                        <Setter TargetName="PrimaryRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccentSecondary}" />
+                        <Setter TargetName="PrimaryRootBorder" Property="Opacity" Value="0.86" />
+                    </MultiTrigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="PrimaryRootBorder" Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+                        <Setter TargetName="PrimaryRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccentSoft}" />
+                        <Setter TargetName="PrimaryRootBorder" Property="Opacity" Value="0.62" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource GalleryTextDisabled}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GalleryToggleSwitch" TargetType="ToggleSwitch">
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="OnBackground" Value="{DynamicResource GalleryAccent}" />
+    </Style>
+
+    <Style x:Key="GallerySecondaryButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderStrong}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="MinWidth" Value="60" />
+        <Setter Property="MinHeight" Value="38" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border Name="SecondaryRootBorder"
+                        TransitionProperty="None"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Shape="RoundedRectangle">
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="SecondaryRootBorder" Property="Background" Value="{DynamicResource GalleryBackgroundHover}" />
+                        <Setter TargetName="SecondaryRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsPressed" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="SecondaryRootBorder" Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                        <Setter TargetName="SecondaryRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccentSecondary}" />
+                        <Setter TargetName="SecondaryRootBorder" Property="Opacity" Value="0.84" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsKeyboardFocused" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="SecondaryRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="SecondaryRootBorder" Property="Background" Value="{ThemeResource ControlBackgroundDisabled}" />
+                        <Setter TargetName="SecondaryRootBorder" Property="BorderBrush" Value="{ThemeResource ControlBorderDisabled}" />
+                        <Setter TargetName="SecondaryRootBorder" Property="Opacity" Value="0.55" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{ThemeResource TextDisabled}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GalleryGhostButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryAccentOnSurface}" />
+        <Setter Property="Padding" Value="10,7" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="MinHeight" Value="38" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border Name="GhostRootBorder"
+                        TransitionProperty="None"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Shape="RoundedRectangle">
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="GhostRootBorder" Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsPressed" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="GhostRootBorder" Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                        <Setter TargetName="GhostRootBorder" Property="Opacity" Value="0.78" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsKeyboardFocused" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="GhostRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="GhostRootBorder" Property="Background" Value="Transparent" />
+                        <Setter TargetName="GhostRootBorder" Property="BorderBrush" Value="Transparent" />
+                        <Setter TargetName="GhostRootBorder" Property="Opacity" Value="0.55" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{ThemeResource TextDisabled}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--
+        Icon-only command surface. The 40px hit target is intentionally larger
+        than the artwork, so precision never depends on the glyph itself.
+    -->
+    <Style x:Key="GalleryIconButton" TargetType="Button">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border Name="IconButtonRoot"
+                        TransitionProperty="None"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Shape="RoundedRectangle">
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="IconButtonRoot" Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+                        <Setter TargetName="IconButtonRoot" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsPressed" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="IconButtonRoot" Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                        <Setter TargetName="IconButtonRoot" Property="Opacity" Value="0.78" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsKeyboardFocused" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="IconButtonRoot" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="IconButtonRoot" Property="Opacity" Value="0.45" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!--
+        Persistent segmented choice. RadioButton is intentional: a selected
+        segment cannot be cleared by clicking it again, and IsChecked is the
+        single source of truth for both behavior and visuals. The selected
+        trigger is declared after hover/pressed/focus so it remains authoritative
+        while those transient states overlap.
+    -->
+    <Style x:Key="GallerySegmentButton" TargetType="RadioButton">
+        <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="MinWidth" Value="60" />
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="RadioButton">
+                <Border Name="SegmentRootBorder"
+                        TransitionProperty="None"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Shape="RoundedRectangle">
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="SegmentRootBorder" Property="Background" Value="{DynamicResource GalleryBackgroundHover}" />
+                        <Setter TargetName="SegmentRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryBorderStrong}" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsPressed" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="SegmentRootBorder" Property="Background" Value="{DynamicResource GalleryBackgroundPressed}" />
+                        <Setter TargetName="SegmentRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccentSecondary}" />
+                        <Setter TargetName="SegmentRootBorder" Property="Opacity" Value="0.84" />
+                    </MultiTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsKeyboardFocused" Value="True" />
+                            <Condition Property="IsEnabled" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="SegmentRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="SegmentRootBorder" Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+                        <Setter TargetName="SegmentRootBorder" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="SegmentRootBorder" Property="Background" Value="{ThemeResource ControlBackgroundDisabled}" />
+                        <Setter TargetName="SegmentRootBorder" Property="BorderBrush" Value="{ThemeResource ControlBorderDisabled}" />
+                        <Setter TargetName="SegmentRootBorder" Property="Opacity" Value="0.55" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GalleryAccentOnSurface}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{ThemeResource TextDisabled}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

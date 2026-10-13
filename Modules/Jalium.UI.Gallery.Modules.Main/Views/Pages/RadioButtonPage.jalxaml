@@ -1,36 +1,47 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.RadioButtonPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="RadioButton">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="BASIC INPUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="RadioButton" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.BasicInput}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.RadioButton.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A button that can be selected but not cleared by a user. RadioButtons in the same group are mutually exclusive." />
+                   Text="{DynamicResource Loc.P.RadioButton.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Select your favorite color — options in the same group are mutually exclusive." />
+                           Text="{DynamicResource Loc.P.RadioButton.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <RadioButton x:Name="RadioRed" GroupName="Colors" Margin="0,0,0,8">
+                        <RadioButton x:Name="RadioRed"
+                                     GroupName="Colors"
+                                     IsChecked="{Binding IsRedSelected, Mode=TwoWay}"
+                                     Margin="0,0,0,8">
                             <TextBlock Text="Red" FontSize="14" />
                         </RadioButton>
-                        <RadioButton x:Name="RadioGreen" GroupName="Colors" Margin="0,0,0,8">
+                        <RadioButton x:Name="RadioGreen"
+                                     GroupName="Colors"
+                                     IsChecked="{Binding IsGreenSelected, Mode=TwoWay}"
+                                     Margin="0,0,0,8">
                             <TextBlock Text="Green" FontSize="14" />
                         </RadioButton>
-                        <RadioButton x:Name="RadioBlue" GroupName="Colors" IsChecked="True" Margin="0,0,0,8">
+                        <RadioButton x:Name="RadioBlue"
+                                     GroupName="Colors"
+                                     IsChecked="{Binding IsBlueSelected, Mode=TwoWay}"
+                                     Margin="0,0,0,8">
                             <TextBlock Text="Blue" FontSize="14" />
                         </RadioButton>
                         <TextBlock x:Name="RadioStatus"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Selected: Blue"
+                                   Text="{Binding SelectionText}"
                                    Margin="0,12,0,0" />
                     </StackPanel>
                 </Border>
@@ -40,13 +51,13 @@
         <!-- Grouped radio buttons -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Grouped RadioButtons" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.RadioButton.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="RadioButtons split into separate groups track their selection independently." />
+                           Text="{DynamicResource Loc.P.RadioButton.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <StackPanel Orientation="Vertical" Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Size" Margin="0,0,0,8" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.RadioButton.Val1}" Margin="0,0,0,8" />
                             <RadioButton GroupName="Size" Margin="0,0,0,4">
                                 <TextBlock Text="Small" FontSize="14" />
                             </RadioButton>
@@ -58,7 +69,7 @@
                             </RadioButton>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Margin="0,0,10,10">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Speed" Margin="0,0,0,8" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.RadioButton.Val2}" Margin="0,0,0,8" />
                             <RadioButton GroupName="Speed" Margin="0,0,0,4">
                                 <TextBlock Text="Slow" FontSize="14" />
                             </RadioButton>
@@ -77,16 +88,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the RadioButton groups above." />
+                           Text="{DynamicResource Loc.P.RadioButton.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -94,16 +107,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring Checked events and building radio groups in code-behind." />
+                           Text="{DynamicResource Loc.P.RadioButton.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

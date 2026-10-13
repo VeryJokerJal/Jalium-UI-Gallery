@@ -1,59 +1,104 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SparklinePage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Sparkline">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VISUALIZATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Sparkline" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataVisualization}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Sparkline.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A lightweight inline chart that condenses a data series into a compact, word-sized graphic — rendered without axes, gridlines, or legends." />
+                   Text="{DynamicResource Loc.P.Sparkline.Sub1}" />
 
         <!-- Line Sparklines -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Line Sparklines" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Sparkline.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Multiple sparklines using the Line type with high/low point markers." />
-                <Border x:Name="LineSparklineContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.Sparkline.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Revenue" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="80" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="32" SparklineType="Line" Values="{Binding Revenue}" LineBrush="#417EE0" ShowHighLowPoints="True" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Users" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="80" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="32" SparklineType="Line" Values="{Binding Users}" LineBrush="#4CAF50" ShowHighLowPoints="True" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Latency" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="80" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="32" SparklineType="Line" Values="{Binding Latency}" LineBrush="#FF9E22" ShowHighLowPoints="True" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Bar & Area -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Bar &amp; Area" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Sparkline.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Sparklines rendered as bar charts and area fills." />
-                <Border x:Name="BarAreaContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.Sparkline.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Sales (Bar)" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="100" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="40" SparklineType="Bar" Values="{Binding Sales}" LineBrush="#417EE0" NegativeBarBrush="#E0593E" BaselineValue="50" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Traffic (Area)" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="100" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="40" SparklineType="Area" Values="{Binding Traffic}" LineBrush="#4CAF50" FillBrush="#3C4CAF50" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Win/Loss -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Win/Loss" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Sparkline.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Win/Loss sparklines showing positive and negative outcomes." />
-                <Border x:Name="WinLossContainer" Style="{StaticResource GalleryDemoSurface}" />
+                           Text="{DynamicResource Loc.P.Sparkline.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Team Alpha" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="100" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="32" SparklineType="WinLoss" Values="{Binding TeamAlpha}" WinColor="#4CAF50" LossColor="#E0593E" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Team Beta" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="100" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="32" SparklineType="WinLoss" Values="{Binding TeamBeta}" WinColor="#4CAF50" LossColor="#E0593E" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Team Gamma" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" Width="100" VerticalAlignment="Center" />
+                            <Sparkline Width="200" Height="32" SparklineType="WinLoss" Values="{Binding TeamGamma}" WinColor="#4CAF50" LossColor="#E0593E" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the sparkline variants shown above." />
+                           Text="{DynamicResource Loc.P.Sparkline.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -61,16 +106,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Generating random-walk data and building sparklines in code-behind." />
+                           Text="{DynamicResource Loc.P.Sparkline.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

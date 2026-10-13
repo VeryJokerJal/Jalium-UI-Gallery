@@ -435,3 +435,9 @@ FodyWeavers.xsd
 
 # Language Server / IDE per-project cache
 *.lscache
+
+# Local generated caches
+**/.nuget/
+Library/
+.idea/
+.DS_Store

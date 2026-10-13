@@ -1,0 +1,107 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Localization.StringsEnUS"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        English (en-US) — the reference dictionary.
+
+        Every shipped language declares exactly the same key set; a key that is
+        missing from a translation falls back to this file (see
+        LocalizationManager.Get). Keys are consumed from markup with
+        {DynamicResource Loc.*} so a language switch re-resolves them live, and
+        from C# with Loc.Get / Loc.Format.
+
+        Keys ending in "Format" carry composite-format placeholders ({0}, {1}) and
+        must keep them in every translation.
+    -->
+
+    <!-- ============================ Shell chrome ============================ -->
+
+    <x:String x:Key="Loc.App.Title">Jalium UI Gallery</x:String>
+    <x:String x:Key="Loc.App.Subtitle">COMPONENT LIBRARY</x:String>
+
+    <x:String x:Key="Loc.Shell.BackTooltip">Back to Components (Esc)</x:String>
+    <x:String x:Key="Loc.Shell.SectionBadge">Section</x:String>
+    <x:String x:Key="Loc.Shell.SearchAll">Search all components...</x:String>
+    <x:String x:Key="Loc.Shell.SearchShort">Search components...</x:String>
+    <x:String x:Key="Loc.Shell.SearchShortcut">{Shortcut.Search}</x:String>
+    <x:String x:Key="Loc.Shell.Docs">Docs</x:String>
+    <x:String x:Key="Loc.Shell.DocsTooltip">Open Docs</x:String>
+    <x:String x:Key="Loc.Shell.GitHub">GitHub</x:String>
+    <x:String x:Key="Loc.Shell.GitHubTooltip">Open GitHub</x:String>
+    <x:String x:Key="Loc.Shell.Team">Jalium Team</x:String>
+    <x:String x:Key="Loc.Shell.ThemeTooltip">Switch color theme</x:String>
+    <x:String x:Key="Loc.Shell.ThemeDark">Dark theme</x:String>
+    <x:String x:Key="Loc.Shell.ThemeLight">Light theme</x:String>
+    <x:String x:Key="Loc.Shell.LanguageTooltip">Switch display language</x:String>
+
+    <x:String x:Key="Loc.Nav.PaneTitle">Components</x:String>
+    <x:String x:Key="Loc.Nav.Components">Components</x:String>
+    <x:String x:Key="Loc.Nav.DesignTokens">Design Tokens</x:String>
+    <x:String x:Key="Loc.Nav.ThemeStudio">Theme Studio</x:String>
+    <x:String x:Key="Loc.Nav.TokensShort">Tokens</x:String>
+    <x:String x:Key="Loc.Nav.StudioShort">Studio</x:String>
+
+    <x:String x:Key="Loc.Shell.EyebrowMobile">JALIUM UI / MOBILE</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowFoundations">FOUNDATIONS</x:String>
+    <x:String x:Key="Loc.Shell.EyebrowPersonalize">PERSONALIZE</x:String>
+
+    <!-- ============================ Catalog page ============================ -->
+
+    <x:String x:Key="Loc.Home.Title">Components</x:String>
+    <x:String x:Key="Loc.Home.Subtitle">Browse every Gallery component, inspect it, then open the full demo.</x:String>
+    <x:String x:Key="Loc.Home.DirectOpenSubtitle">Open any card to explore its full component demo.</x:String>
+    <x:String x:Key="Loc.Home.FilterAll">All</x:String>
+    <x:String x:Key="Loc.Home.EmptyTitle">No components found</x:String>
+    <x:String x:Key="Loc.Home.EmptyHint">Try another name or category.</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktop">Desktop</x:String>
+    <x:String x:Key="Loc.Home.DeviceTablet">Tablet</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobile">Mobile</x:String>
+    <x:String x:Key="Loc.Home.DeviceDesktopTooltip">Preview at desktop width</x:String>
+    <x:String x:Key="Loc.Home.DeviceTabletTooltip">Preview at tablet width</x:String>
+    <x:String x:Key="Loc.Home.DeviceMobileTooltip">Preview at mobile width</x:String>
+    <x:String x:Key="Loc.Home.MarkupHeading">JALXAML</x:String>
+    <x:String x:Key="Loc.Home.TokensHeading">Design tokens</x:String>
+    <x:String x:Key="Loc.Home.TokenTeal">Teal</x:String>
+    <x:String x:Key="Loc.Home.TokenIndigo">Indigo</x:String>
+    <x:String x:Key="Loc.Home.TokenSky">Sky</x:String>
+    <x:String x:Key="Loc.Home.TokenGreen">Green</x:String>
+    <x:String x:Key="Loc.Home.TokenAmber">Amber</x:String>
+    <x:String x:Key="Loc.Home.TokenRose">Rose</x:String>
+    <x:String x:Key="Loc.Home.ResultCountFormat">{0} components</x:String>
+    <x:String x:Key="Loc.Home.ResultCountOneFormat">{0} component</x:String>
+    <x:String x:Key="Loc.Home.OpenDemoFormat">Open {0} demo</x:String>
+
+    <!-- ============================= Categories ============================= -->
+
+    <x:String x:Key="Loc.Category.Controls">Controls</x:String>
+    <x:String x:Key="Loc.Category.Text">Text</x:String>
+    <x:String x:Key="Loc.Category.Layout">Layout</x:String>
+    <x:String x:Key="Loc.Category.Navigation">Navigation</x:String>
+    <x:String x:Key="Loc.Category.Data">Data</x:String>
+    <x:String x:Key="Loc.Category.Media">Media</x:String>
+    <x:String x:Key="Loc.Category.Visuals">Visuals</x:String>
+    <x:String x:Key="Loc.Category.System">System</x:String>
+    <x:String x:Key="Loc.Category.Styling">CSS</x:String>
+
+    <!-- ======================= Catalog descriptions ========================= -->
+
+    <x:String x:Key="Loc.Catalog.DefaultDescriptionFormat">Explore the {0} component, its states, behavior, and API.</x:String>
+
+    <x:String x:Key="Loc.Catalog.Desc.button">Primary, secondary, ghost, and disabled command states.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.textbox">Text entry states with clear focus and disabled feedback.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.border">A quiet surface for grouping content and supporting actions.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.checkbox">Checked, unchecked, and unavailable selection states.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.toggleswitch">Immediate on/off settings with an explicit state label.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.label">Compact semantic labels for status and metadata.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.combobox">A concise single-choice control with a clear prompt.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.progressbar">Determinate progress with a readable percentage value.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.infobar">Contextual messages that remain visible near related work.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.css">Style any element with real CSS: inline declarations, scoped style sheets, and the property mapping.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssselectors">Type, class, id, and combinator selectors, the dynamic pseudo-classes, specificity, and !important.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.csslayout">Percentages, aspect-ratio, box-sizing, and position: absolute, resolved by the framework's own layout pass.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssoutline">A ring drawn outside an element that takes no layout space — the focus-visible tool.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.cssmappings">Register your own CSS property names, value converters, and aliases through CssMappings.</x:String>
+    <x:String x:Key="Loc.Catalog.Desc.flexpanel">A full CSS flexbox container: direction, wrapping, justification, alignment, and grow/shrink/basis.</x:String>
+
+</ResourceDictionary>

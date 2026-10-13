@@ -12,6 +12,11 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>false</UseWindowsForms>
     <UseWPF>false</UseWPF>
+    <!-- The catalog creates short-lived layout/decode objects during scrolling.
+         Prefer a smaller natural-GC budget for this app; these are not heap
+         limits and do not force collections. Both values remain overridable. -->
+    <GalleryGcConserveMemory Condition="'$(GalleryGcConserveMemory)' == ''">5</GalleryGcConserveMemory>
+    <GalleryGen0MaxBudgetBytes Condition="'$(GalleryGen0MaxBudgetBytes)' == ''">524288</GalleryGen0MaxBudgetBytes>
     <PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
     <PublishAot Condition="'$(Configuration)' != 'Release'">false</PublishAot>
     <PublishTrimmed>true</PublishTrimmed>
@@ -36,7 +41,10 @@
     <UseJaliumNativeAot Condition="'$(Configuration)' == 'Release' and '$(PublishAot)' == 'true'">true</UseJaliumNativeAot>
     <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == '' and '$(PublishAot)' == 'true'">win-x64</RuntimeIdentifier>
     <SelfContained Condition="'$(PublishAot)' == 'true'">true</SelfContained>
-    <InvariantGlobalization Condition="'$(PublishAot)' == 'true'">true</InvariantGlobalization>
+    <!-- Gallery selects zh-CN/en-US/ja-JP/ko-KR cultures at startup. NativeAOT
+         invariant mode rejects every named culture and crashes before the first
+         window is created, so the desktop release must retain globalization. -->
+    <InvariantGlobalization Condition="'$(PublishAot)' == 'true'">false</InvariantGlobalization>
     <IlcOptimizationPreference Condition="'$(PublishAot)' == 'true'">Speed</IlcOptimizationPreference>
     <!-- Gallery ships a WebView demo page. Statically link jalium.native.browser
          (and WebView2LoaderStatic.lib via Jalium.UI.Build's ConfigureJaliumNativeAot)
@@ -83,6 +91,9 @@
 
   <ItemGroup>
     <Content Include="app_logo.ico" />
+    <RuntimeHostConfigurationOption Include="System.GC.ConserveMemory" Value="$(GalleryGcConserveMemory)" />
+    <RuntimeHostConfigurationOption Include="System.GC.Gen0MaxBudget" Value="$(GalleryGen0MaxBudgetBytes)" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
     <Resource Include="app_logo.ico" />
   </ItemGroup>
 
@@ -106,12 +117,20 @@
          exclusion the NuGet-cached older copy wins (same target names
          override) and ConfigureJaliumNativeAot looks in the package's
          build/nativeaot/ folder instead of the in-repo build output. -->
-    <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Desktop\Jalium.UI.Desktop.csproj"
-                      ExcludeAssets="build;buildTransitive" />
+    <ProjectReference Include="..\..\Jalium.UI\src\packaging\Jalium.UI.Desktop\Jalium.UI.Desktop.csproj" ExcludeAssets="build;buildTransitive" />
     <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Xaml.SourceGenerator\Jalium.UI.Xaml.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" UndefineProperties="PublishAot;PublishTrimmed;PublishSingleFile;PublishReadyToRun;SelfContained;RuntimeIdentifier;RuntimeIdentifiers" />
     <!-- Build 项目：仅构建时依赖（提供 MSBuild 任务 DLL），不作为运行时引用 -->
     <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
   </ItemGroup>
+
+  <!-- Jalium.UI.Desktop carries the packaged source generator as a transitive
+       dependency for NuGet consumers. This source-tree app already references
+       the local generator project above, so keep only that analyzer instance. -->
+  <Target Name="PreferLocalJalxamlSourceGenerator" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <Analyzer Remove="$(NuGetPackageRoot)jalium.ui.xaml.sourcegenerator/**/analyzers/dotnet/cs/Jalium.UI.Xaml.SourceGenerator.dll" />
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <ProjectReference Include="..\Jalium.UI.Gallery.Core\Jalium.UI.Gallery.Core.csproj" />

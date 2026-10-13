@@ -1,6 +1,8 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TabControlPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TabControl">
 
     <!--
@@ -11,27 +13,70 @@
     -->
     <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TabControl" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Navigation}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TabControl.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that hosts multiple items sharing the same space, with a tab strip for switching between them." />
+                   Text="{DynamicResource Loc.P.TabControl.Sub1}" />
 
-        <!-- Interactive demos are inserted here by CreateContent(). -->
-        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TabControl.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.TabControl.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <TabControl Width="400" Height="200">
+                        <TabItem Header="Home"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body1}" Margin="16" /></TabItem>
+                        <TabItem Header="Profile"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body2}" Margin="16" /></TabItem>
+                        <TabItem Header="Settings"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body3}" Margin="16" /></TabItem>
+                    </TabControl>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TabControl.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.TabControl.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <TabControl Width="400" Height="200" TabStripPlacement="Bottom">
+                        <TabItem Header="Tab 1"><TextBlock Text="Content for Tab 1" Margin="16" /></TabItem>
+                        <TabItem Header="Tab 2"><TextBlock Text="Content for Tab 2" Margin="16" /></TabItem>
+                    </TabControl>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.BoundSelection}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.TabControl.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding SelectedTabStatus}" Margin="0,0,0,8" />
+                        <TabControl Width="400" Height="150" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                            <TabItem Header="Home"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body4}" Margin="16" /></TabItem>
+                            <TabItem Header="Documents"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body5}" Margin="16" /></TabItem>
+                            <TabItem Header="Downloads"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body6}" Margin="16" /></TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the tab controls above." />
+                           Text="{DynamicResource Loc.P.TabControl.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -39,16 +84,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building tabs and handling selection in code-behind." />
+                           Text="{DynamicResource Loc.P.TabControl.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,21 +1,23 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SeparatorPage">
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SeparatorPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Separator" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Separator.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A visual separator used to divide content in menus, toolbars, and other layouts." />
+                   Text="{DynamicResource Loc.P.Separator.Sub1}" />
 
         <!-- Between content -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Between content" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Separator.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Place a Separator between stacked blocks to draw a clean dividing line." />
+                           Text="{DynamicResource Loc.P.Separator.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Section 1 Content" Margin="0,0,0,8" />
@@ -29,11 +31,14 @@
         <!-- In a menu -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="In a menu" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Separator.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Separators group related commands inside menus, flyouts, and command lists." />
+                           Text="{DynamicResource Loc.P.Separator.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <Border Background="#3D3D40" Padding="8" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <Border Background="{DynamicResource GalleryCardBackground}"
+                            BorderBrush="{DynamicResource GalleryBorderDefault}"
+                            BorderThickness="1"
+                            Padding="8" CornerRadius="8" Width="200" HorizontalAlignment="Left">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="New File" Margin="4" />
                             <TextBlock Text="Open File" Margin="4" />
@@ -51,29 +56,31 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="What the Separator brings to menus, toolbars, and stacked layouts." />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Visual division of content" Margin="0,0,0,6" />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Works in menus, toolbars, status bars" Margin="0,0,0,6" />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Horizontal or vertical orientation" Margin="0,0,0,6" />
-                <TextBlock Style="{StaticResource GalleryBodyText}" Text="• Customizable appearance" />
+                           Text="{DynamicResource Loc.P.Separator.CC3}" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Separator.Body1}" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Separator.Body2}" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Separator.Body3}" Margin="0,0,0,6" />
+                <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.Shared.CustomizableAppearance}" />
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for separators between content, in a menu, and in a toolbar." />
+                           Text="{DynamicResource Loc.P.Separator.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -81,16 +88,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating separators and assembling a settings panel in code-behind." />
+                           Text="{DynamicResource Loc.P.Separator.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

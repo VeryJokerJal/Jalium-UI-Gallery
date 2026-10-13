@@ -1,0 +1,434 @@
+<Page xmlns="http://schemas.jalium.ui/2024"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      xmlns:documents="clr-namespace:Jalium.UI.Documents;assembly=Jalium.UI.Controls"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CssStylingPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
+      Title="CSS Styling">
+
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Styling}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.CssStyling.Title1}" />
+        <TextBlock Style="{StaticResource GalleryPageSubtitle}"
+                   Text="{DynamicResource Loc.P.CssStyling.Sub1}" />
+
+        <Border Style="{StaticResource GalleryHeroCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT1}" />
+                <TextBlock Style="{StaticResource GalleryBodyText}"
+                           Text="{DynamicResource Loc.P.CssStyling.Body1}" />
+                <WrapPanel Margin="0,12,0,0">
+                    <Border Style="{StaticResource GalleryChip}" Margin="0,0,8,8"><TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.CssStyling.Chip1}" /></Border>
+                    <Border Style="{StaticResource GalleryChip}" Margin="0,0,8,8"><TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.CssStyling.Chip2}" /></Border>
+                    <Border Style="{StaticResource GalleryChip}" Margin="0,0,8,8"><TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.CssStyling.Chip3}" /></Border>
+                    <Border Style="{StaticResource GalleryChip}" Margin="0,0,8,8"><TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.CssStyling.Chip4}" /></Border>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Inline declarations -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssStyling.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Border x:Name="InlineTile"
+                                Css.Style="background-color: #0078D4; border-radius: 8px; padding: 14px 18px; margin: 6px"
+                                Width="150">
+                            <TextBlock Text="background-color&#x0a;border-radius&#x0a;padding" Foreground="White" FontSize="12" />
+                        </Border>
+                        <Border Css.Style="background-color: rgb(76 175 80); border-radius: 20px; padding: 14px 18px; margin: 6px"
+                                Width="150">
+                            <TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile1}" Foreground="White" FontSize="12" />
+                        </Border>
+                        <Border Css.Style="background-color: hsl(280 60% 45%); border: 2px solid #ffffff88; border-radius: 8px; padding: 14px 18px; margin: 6px"
+                                Width="150">
+                            <TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile2}" Foreground="White" FontSize="12" />
+                        </Border>
+                        <Border Css.Style="background: linear-gradient(135deg, #f97316, #db2777); border-radius: 8px; padding: 14px 18px; margin: 6px"
+                                Width="150">
+                            <TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile3}" Foreground="White" FontSize="12" />
+                        </Border>
+                        <Border Css.Style="background-color: #1f2937; border-radius: 8px; padding: 14px 18px; margin: 6px; box-shadow: 0 4px 12px rgba(0,0,0,.45)"
+                                Width="150">
+                            <TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile4}" Foreground="White" FontSize="12" />
+                        </Border>
+                        <Border Css.Style="background-color: #0f766e; border-radius: 8px; padding: 14px 18px; margin: 6px; transform: rotate(-4deg) scale(1.05)"
+                                Width="150">
+                            <TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile5}" Foreground="White" FontSize="12" />
+                        </Border>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Percentage and elliptical corners" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="Resize the oval with a native width binding. Each percentage follows its own axis; the purple tile keeps its XAML CornerRadius, and the button keeps its native template." />
+                <Slider x:Name="CssRadiusWidthSlider" Minimum="100" Maximum="300" Value="200" Width="300"
+                        HorizontalAlignment="Left" Margin="0,8,0,12" />
+                <WrapPanel>
+                    <Border x:Name="CssPercentageRadiusTile" Width="{Binding Value, ElementName=CssRadiusWidthSlider}" Height="80"
+                            Margin="0,0,16,12" Css.Style="border-radius:50%; background-color:#0f766e" />
+                    <Border x:Name="CssEllipticalRadiusTile" Width="160" Height="80" Margin="0,0,16,12"
+                            Css.Style="border-radius:50px 15px 40px / 20px 25px; background-color:#2563eb; border:3px solid #93c5fd" />
+                    <Border x:Name="CssRadiusClipHost" Width="160" Height="80" Margin="0,0,16,12"
+                            Css.Style="border-radius:35% / 60%; overflow:hidden; border:5px solid #93c5fd; background-color:#1e293b">
+                        <Border x:Name="CssRadiusClipContent" Width="200" Height="90" Margin="-25,-10,-25,-10"
+                                Css.Style="background:linear-gradient(135deg,#f97316,#db2777)" />
+                    </Border>
+                    <Border x:Name="CssNativeRadiusTile" Width="120" Height="80" CornerRadius="8" Margin="0,0,0,12"
+                            Css.Style="border-radius:50%; background-color:#7c3aed" />
+                    <Button x:Name="CssTemplateRadiusButton" Content="Template corners" Width="160" Height="80" Margin="16,0,0,12"
+                            Css.Style="border-radius:50%; overflow:hidden" />
+                    <Border x:Name="CssImageBrushEllipse" Width="180" Height="90" Margin="16,0,16,12"
+                            Css.Style="border-radius:50%; overflow:hidden; border:3px solid #93c5fd" />
+                    <Border x:Name="CssImageBrushCorners" Width="180" Height="90" Margin="0,0,0,12"
+                            Css.Style="border-radius:42px 0 30px 12px / 28px 0 18px 36px; overflow:hidden; border:3px solid #f0abfc" />
+                    <Border x:Name="CssEllipticalShadowTile" Width="180" Height="90" Margin="16,0,16,20"
+                            Css.Style="border-radius:60px 18px / 14px 34px; background-color:#1d4ed8; box-shadow:0 8px 18px rgba(56,189,248,.65)">
+                        <TextBlock Text="elliptical shadow" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="CssInsetShadowTile" Width="180" Height="90" Margin="16,0,16,20"
+                            BorderThickness="6" BorderBrush="#fbbf24"
+                            Css.Style="border-radius:60px 18px / 14px 34px; background-color:#1e3a8a; box-shadow:inset 0 0 12px 5px rgba(249,115,22,.75)">
+                        <TextBlock Text="inset + spread" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Style sheet in markup -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssStyling.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                            Border { background-color: #334155; border-radius: 8px; padding: 12px 16px; margin: 0 0 8px 0 }
+                            Border TextBlock { color: #e2e8f0; font-size: 13px }
+                            .accent { background-color: #2563eb }
+                            .warn { background-color: #b45309 }
+                            #hero { background-color: #0f766e; border-radius: 16px; padding: 18px }
+                            #hero TextBlock { font-size: 15px; font-weight: 600 }">
+                        <Border x:Name="hero"><TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile6}" /></Border>
+                        <Border><TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile7}" /></Border>
+                        <Border Css.Class="accent"><TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile8}" /></Border>
+                        <Border Css.Class="warn"><TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile9}" /></Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.PropertyTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.PropertyCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Css.StyleSheet="
+                        @property --gallery-meter-width {syntax:'&lt;length&gt;'; inherits:false; initial-value:160px}
+                        @property --gallery-meter-color {syntax:'&lt;color&gt;'; inherits:true; initial-value:#2563eb}
+                        .registered-meter {width:var(--gallery-meter-width); height:36px; background-color:var(--gallery-meter-color); border-radius:6px}">
+                        <TextBox x:Name="CssRegisteredDeclarationInput" Margin="0,0,0,12"
+                                 Text="--gallery-meter-width:220px; --gallery-meter-color:#0f766e" />
+                        <Border x:Name="CssRegisteredMeter" Css.Class="registered-meter" HorizontalAlignment="Left"
+                                Css.Style="{Binding Text, ElementName=CssRegisteredDeclarationInput}">
+                            <TextBlock Text="@property" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.ImportTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.ImportCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Slider x:Name="CssImportWidthSlider" Minimum="240" Maximum="520" Value="420" Width="420"
+                                HorizontalAlignment="Left" Margin="0,0,0,12" />
+                        <StackPanel x:Name="CssImportDemoHost" Css.Style="container:import-demo / inline-size"
+                                    Width="{Binding Value, ElementName=CssImportWidthSlider}" HorizontalAlignment="Left">
+                            <StackPanel Css.Class="import-grid">
+                                <Border x:Name="CssImportFirstTile" Css.Class="import-tile">
+                                    <TextBlock Text="layer(base)" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <Border x:Name="CssImportSecondTile" Css.Class="import-tile">
+                                    <TextBlock Text="layer(responsive)" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Lengths -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT4}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssStyling.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="96px" Width="60" VerticalAlignment="Center" FontFamily="Consolas" FontSize="12" />
+                            <Border Css.Style="width: 96px; height: 18px; background-color: #0078D4; border-radius: 4px" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="72pt" Width="60" VerticalAlignment="Center" FontFamily="Consolas" FontSize="12" />
+                            <Border Css.Style="width: 72pt; height: 18px; background-color: #2563eb; border-radius: 4px" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="1in" Width="60" VerticalAlignment="Center" FontFamily="Consolas" FontSize="12" />
+                            <Border Css.Style="width: 1in; height: 18px; background-color: #4f46e5; border-radius: 4px" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="2.54cm" Width="60" VerticalAlignment="Center" FontFamily="Consolas" FontSize="12" />
+                            <Border Css.Style="width: 2.54cm; height: 18px; background-color: #7c3aed; border-radius: 4px" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="6pc" Width="60" VerticalAlignment="Center" FontFamily="Consolas" FontSize="12" />
+                            <Border Css.Style="width: 6pc; height: 18px; background-color: #a21caf; border-radius: 4px" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="6em" Width="60" VerticalAlignment="Center" FontFamily="Consolas" FontSize="12" />
+                            <Border Css.Style="font-size: 16px; width: 6em; height: 18px; background-color: #db2777; border-radius: 4px" />
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,10,0,0"
+                                   Text="{DynamicResource Loc.P.CssStyling.Cap1}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Colors -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT5}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssStyling.CC4}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel>
+                        <Border Width="128" Height="64" Margin="0,0,8,8" Css.Style="background-color: #e11d48; border-radius: 6px; padding: 8px">
+                            <TextBlock Text="#e11d48" Foreground="White" FontFamily="Consolas" FontSize="12" VerticalAlignment="Bottom" />
+                        </Border>
+                        <Border Width="128" Height="64" Margin="0,0,8,8" Css.Style="background-color: #e11d4880; border-radius: 6px; padding: 8px">
+                            <TextBlock Text="#e11d4880" Foreground="White" FontFamily="Consolas" FontSize="12" VerticalAlignment="Bottom" />
+                        </Border>
+                        <Border Width="128" Height="64" Margin="0,0,8,8" Css.Style="background-color: rebeccapurple; border-radius: 6px; padding: 8px">
+                            <TextBlock Text="rebeccapurple" Foreground="White" FontFamily="Consolas" FontSize="12" VerticalAlignment="Bottom" />
+                        </Border>
+                        <Border Width="128" Height="64" Margin="0,0,8,8" Css.Style="background-color: rgb(14 165 233); border-radius: 6px; padding: 8px">
+                            <TextBlock Text="rgb(14 165 233)" Foreground="White" FontFamily="Consolas" FontSize="12" VerticalAlignment="Bottom" />
+                        </Border>
+                        <Border Width="128" Height="64" Margin="0,0,8,8" Css.Style="background-color: rgba(14,165,233,.45); border-radius: 6px; padding: 8px">
+                            <TextBlock Text="rgba(…,.45)" Foreground="White" FontFamily="Consolas" FontSize="12" VerticalAlignment="Bottom" />
+                        </Border>
+                        <Border Width="128" Height="64" Margin="0,0,8,8" Css.Style="background-color: hsl(155 70% 38%); border-radius: 6px; padding: 8px">
+                            <TextBlock Text="hsl(155 70% 38%)" Foreground="White" FontFamily="Consolas" FontSize="12" VerticalAlignment="Bottom" />
+                        </Border>
+                    </WrapPanel>
+                </Border>
+                <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,10,0,0"
+                           Text="{DynamicResource Loc.P.CssStyling.Cap2}" />
+            </StackPanel>
+        </Border>
+
+        <!-- Property mapping -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT6}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssStyling.CC5}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <ItemsControl ItemsSource="{Binding Mappings}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{DynamicResource GalleryCardAltBackground}"
+                                        BorderBrush="{DynamicResource GalleryBorderSubtle}"
+                                        BorderThickness="0,0,0,1"
+                                        Padding="0,10,0,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="250" />
+                                            <ColumnDefinition Width="230" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Css}"
+                                                   FontFamily="Consolas"
+                                                   FontSize="12.5"
+                                                   Foreground="{DynamicResource GalleryAccentOnSurface}"
+                                                   TextWrapping="Wrap"
+                                                   Margin="0,0,12,0" />
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Target}"
+                                                   FontSize="12.5"
+                                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                                   TextWrapping="Wrap"
+                                                   Margin="0,0,12,0" />
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Note}"
+                                                   FontSize="12.5"
+                                                   Foreground="{DynamicResource GalleryTextMuted}"
+                                                   TextWrapping="Wrap" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}"
+                Css.StyleSheet="
+                    @layer foundation, accent;
+                    :scope { --space: 16px; --brand: #2563eb }
+                    @layer foundation { .computed-card { background-color: #334155; border-radius: 10px; padding: 12px } }
+                    @layer accent { .computed-card { background-color: var(--brand) } }
+                    .computed-card &gt; TextBlock { color: white }
+                    .basis-card { background-color: #0f766e; border-radius: 8px; padding: 10px }">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="var() · calc() · @layer" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Border x:Name="ComputedCssHost" Width="420">
+                            <Border x:Name="ComputedCssTile" Css.Class="computed-card"
+                                    Css.Style="width: calc(100% - var(--space) * 2); margin: 0 auto">
+                                <TextBlock Text="calc(100% - var(--space) * 2)" FontSize="12" />
+                            </Border>
+                        </Border>
+                        <FlexPanel Width="420" Margin="0,14,0,0" Css.Style="flex-flow: row nowrap; gap: 12px">
+                            <Border x:Name="PercentBasisCssTile" Css.Class="basis-card" Css.Style="flex: 0 0 25%">
+                                <TextBlock Text="flex: 0 0 25%" Foreground="White" FontSize="12" />
+                            </Border>
+                            <Border Css.Class="basis-card" Css.Style="flex: 1">
+                                <TextBlock Text="flex: 1" Foreground="White" FontSize="12" />
+                            </Border>
+                        </FlexPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.MathTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.MathCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Width="420">
+                        <Slider x:Name="CssMathFontSlider" Minimum="10" Maximum="40" Value="20" Margin="0,0,0,16" />
+                        <TextBox x:Name="CssMathDemoBox" Text="CSS math" IsReadOnly="True" Height="64"
+                                 HorizontalAlignment="Left" FontSize="{Binding Value, ElementName=CssMathFontSlider}"
+                                 Css.Style="width:round(8em,40px); background-color:#2563eb; color:white; opacity:clamp(.25, 1em / 40px, 1)" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,12,0,0"
+                                   Text="width: round(8em, 40px)&#x0a;opacity: clamp(.25, 1em / 40px, 1)" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.RelativeUnitTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.RelativeUnitCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel Width="420">
+                        <Border x:Name="CssGlyphUnitDemoBox" HorizontalAlignment="Left"
+                                documents:TextElement.FontFamily="Consolas"
+                                documents:TextElement.FontSize="{Binding Value, ElementName=CssMathFontSlider}"
+                                Css.Style="width:12ch; height:2lh; line-height:1.4; background-color:#0f766e; color:white">
+                            <TextBlock Text="12ch × 2lh" Margin="8" />
+                        </Border>
+                        <Slider x:Name="CssViewportDynamicSlider" Minimum="100" Maximum="200" Value="150" Margin="0,20,0,12" />
+                        <StackPanel x:Name="CssViewportDemoHost" Orientation="Horizontal">
+                            <Border x:Name="CssSmallViewportBox" Width="120" Margin="0,0,8,0"
+                                    Css.Style="height:20svh; background-color:#2563eb"><TextBlock Text="20svh" Foreground="White" FontSize="12" /></Border>
+                            <Border x:Name="CssDynamicViewportBox" Width="120" Margin="0,0,8,0"
+                                    Css.Style="height:20dvh; background-color:#0f766e"><TextBlock Text="20dvh" Foreground="White" FontSize="12" /></Border>
+                            <Border x:Name="CssLargeViewportBox" Width="120"
+                                    Css.Style="height:20lvh; background-color:#7c3aed"><TextBlock Text="20lvh" Foreground="White" FontSize="12" /></Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="@font-face" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.FontFaceCaption}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel x:Name="CssFontFaceDemoHost" Width="420">
+                        <TextBox x:Name="CssFontFaceInput" Text="XXXX" Margin="0,0,0,12" />
+                        <TextBlock x:Name="CssFontFaceText" Css.Class="downloaded-font" FontSize="20"
+                                   Text="{Binding Text, ElementName=CssFontFaceInput}" Foreground="#0f766e" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Diagnostics -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.CssStyling.CT7}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.CssStyling.CC6}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <Border Css.Style="background-color: not-a-color; border-radius: 8px; padding: 12px; background-color: #166534">
+                            <TextBlock Text="{DynamicResource Loc.P.CssStyling.Tile10}"
+                                       Foreground="White" FontSize="13" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,12,0,0"
+                                   Text="{DynamicResource Loc.P.CssStyling.Cap3}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- XAML code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.CC7}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="240"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- C# code example -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.CC8}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="240"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

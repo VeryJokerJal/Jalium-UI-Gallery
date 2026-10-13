@@ -1,50 +1,101 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DocumentViewerPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="DocumentViewer">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VIEWERS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DocumentViewer" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataViewers}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DocumentViewer.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control for viewing paginated documents with zoom, page navigation, search, fit modes, and print support." />
+                   Text="{DynamicResource Loc.P.DocumentViewer.Sub1}" />
 
         <!-- Live demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Document Viewer Demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DocumentViewer.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A DocumentViewer with toolbar controls for navigation and zoom." />
+                           Text="{DynamicResource Loc.P.DocumentViewer.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}" ClipToBounds="True">
                     <StackPanel Orientation="Vertical">
                         <!-- Toolbar -->
                         <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8">
                             <WrapPanel>
-                                <Button x:Name="FirstPageButton" Content="|&lt;" Width="32" Height="24" FontSize="11" Margin="0,0,10,10"/>
-                                <Button x:Name="PrevPageButton" Content="&lt;" Width="28" Height="24" FontSize="11" Margin="0,0,10,10"/>
-                                <TextBlock x:Name="PageInfoText" Text="Page 1 / 1" VerticalAlignment="Center" Margin="0,0,10,10"/>
-                                <Button x:Name="NextPageButton" Content="&gt;" Width="28" Height="24" FontSize="11" Margin="0,0,10,10"/>
-                                <Button x:Name="LastPageButton" Content="&gt;|" Width="32" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Command="{Binding FirstPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="First page"
+                                        automation:AutomationProperties.Name="First page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Previous" />
+                                </Button>
+                                <Button Command="{Binding PreviousPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Previous page"
+                                        automation:AutomationProperties.Name="Previous page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="PageLeft" />
+                                </Button>
+                                <TextBlock Text="{Binding PageInfo}" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                                <Button Command="{Binding NextPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Next page"
+                                        automation:AutomationProperties.Name="Next page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="PageRight" />
+                                </Button>
+                                <Button Command="{Binding LastPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Last page"
+                                        automation:AutomationProperties.Name="Last page"
+                                        Margin="0,0,16,8">
+                                    <SymbolIcon Symbol="Next" />
+                                </Button>
 
-                                <Button x:Name="ZoomOutButton" Content="-" Width="28" Height="24" FontSize="11" Margin="0,0,10,10"/>
-                                <TextBlock x:Name="ZoomText" Text="100%" VerticalAlignment="Center" Width="45" TextAlignment="Center" Margin="0,0,10,10"/>
-                                <Button x:Name="ZoomInButton" Content="+" Width="28" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Command="{Binding ZoomOutCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Zoom out"
+                                        automation:AutomationProperties.Name="Zoom out"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="ZoomOut" />
+                                </Button>
+                                <TextBlock Text="{Binding Zoom, StringFormat='{}{0:F0}%'}" VerticalAlignment="Center" Width="52" TextAlignment="Center" Margin="0,0,8,8"/>
+                                <Button Command="{Binding ZoomInCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Zoom in"
+                                        automation:AutomationProperties.Name="Zoom in"
+                                        Margin="0,0,16,8">
+                                    <SymbolIcon Symbol="ZoomIn" />
+                                </Button>
 
-                                <Button x:Name="FitWidthButton" Content="Fit Width" Width="70" Height="24" FontSize="11" Margin="0,0,10,10"/>
-                                <Button x:Name="FitPageButton" Content="Fit Page" Width="65" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.DocumentViewer.Ui1}" Command="{Binding FitWidthCommand}" Width="70" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.DocumentViewer.Ui2}" Command="{Binding FitPageCommand}" Width="65" Height="24" FontSize="11" Margin="0,0,10,10"/>
 
-                                <Button x:Name="PrintButton" Content="Print" Width="50" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Command="{Binding PrintCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Print"
+                                        automation:AutomationProperties.Name="Print"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Print" />
+                                </Button>
                             </WrapPanel>
                         </Border>
 
                         <!-- DocumentViewer -->
                         <DocumentViewer x:Name="DemoViewer"
                                         Height="400"
-                                        Zoom="100"
+                                        Zoom="{Binding Zoom, Mode=TwoWay}"
                                         FitMode="FitWidth"
-                                        ShowPageBorders="True"/>
+                                        PageDisplay="{Binding PageDisplay}"
+                                        ShowPageBorders="{Binding ShowPageBorders}"
+                                        HorizontalPageSpacing="{Binding PageSpacing}"
+                                        VerticalPageSpacing="{Binding PageSpacing}"
+                                        behaviors:DocumentViewerBehavior.IsEnabled="True"
+                                        behaviors:DocumentViewerBehavior.Request="{Binding ViewerRequest}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -53,25 +104,24 @@
         <!-- Text search -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Text Search" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DocumentViewer.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Search for text within the document with match options." />
+                           Text="{DynamicResource Loc.P.DocumentViewer.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel>
-                            <TextBox x:Name="SearchBox" ToolTip="Search text..." Width="250" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="FindButton" Content="Find" Width="50" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="FindNextButton" Content="Next" Width="50" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="FindPrevButton" Content="Prev" Width="50" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="ClearSearchButton" Content="Clear" Width="50" Height="28" Margin="0,0,10,10"/>
+                            <TextBox ToolTip="{DynamicResource Loc.P.DocumentViewer.Ui3}" Text="{Binding SearchText, Mode=TwoWay}" Width="250" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Find" Command="{Binding FindCommand}" Width="50" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Next" Command="{Binding FindNextCommand}" Width="50" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Prev" Command="{Binding FindPreviousCommand}" Width="50" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Clear" Command="{Binding ClearSearchCommand}" Width="50" Height="28" Margin="0,0,10,10"/>
                         </WrapPanel>
                         <WrapPanel>
-                            <CheckBox x:Name="MatchCaseCheckBox" Content="Match case" Margin="0,0,10,10"/>
-                            <CheckBox x:Name="WholeWordCheckBox" Content="Whole word" Margin="0,0,10,10"/>
+                            <CheckBox Content="{DynamicResource Loc.P.DocumentViewer.Ui4}" IsChecked="{Binding MatchCase, Mode=TwoWay}" Margin="0,0,10,10"/>
+                            <CheckBox Content="{DynamicResource Loc.P.DocumentViewer.Ui5}" IsChecked="{Binding MatchWholeWord, Mode=TwoWay}" Margin="0,0,10,10"/>
                         </WrapPanel>
-                        <TextBlock x:Name="SearchResultText"
-                                   Style="{StaticResource GalleryCaptionText}"
-                                   Text="Enter text and click Find to search."/>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding SearchResult}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -80,31 +130,28 @@
         <!-- Display options -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Display Options" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DocumentViewer.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Configure page display mode, spacing, and border visibility." />
+                           Text="{DynamicResource Loc.P.DocumentViewer.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <TextBlock Text="Page Display:" Width="100" VerticalAlignment="Center"/>
-                            <ComboBox x:Name="PageDisplayComboBox" Width="160" Height="28">
-                                <ComboBoxItem Content="One Page" IsSelected="True"/>
-                                <ComboBoxItem Content="Two Pages"/>
-                                <ComboBoxItem Content="Two Up Facing"/>
-                                <ComboBoxItem Content="Continuous"/>
-                                <ComboBoxItem Content="Continuous Facing"/>
-                            </ComboBox>
+                            <TextBlock Text="{DynamicResource Loc.P.DocumentViewer.Ui6}" Width="100" VerticalAlignment="Center"/>
+                            <ComboBox Width="160"
+                                      Height="28"
+                                      ItemsSource="{Binding PageDisplayOptions}"
+                                      SelectedItem="{Binding PageDisplay, Mode=TwoWay}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Zoom:" Width="100" VerticalAlignment="Center"/>
-                            <Slider x:Name="ZoomSlider" Minimum="25" Maximum="400" Value="100" Width="200" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="ZoomSliderText" Text="100%" VerticalAlignment="Center"/>
+                            <Slider Minimum="25" Maximum="400" Value="{Binding Zoom, Mode=TwoWay}" Width="200" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding Zoom, StringFormat='{}{0:F0}%'}" VerticalAlignment="Center"/>
                         </StackPanel>
-                        <CheckBox x:Name="ShowBordersCheckBox" Content="Show page borders" IsChecked="True" Margin="0,0,0,8"/>
+                        <CheckBox Content="{DynamicResource Loc.P.DocumentViewer.Ui7}" IsChecked="{Binding ShowPageBorders, Mode=TwoWay}" Margin="0,0,0,8"/>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Text="Page Spacing:" Width="100" VerticalAlignment="Center"/>
-                            <Slider x:Name="SpacingSlider" Minimum="0" Maximum="30" Value="10" Width="150" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="SpacingText" Text="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Loc.P.DocumentViewer.Ui8}" Width="100" VerticalAlignment="Center"/>
+                            <Slider Minimum="0" Maximum="30" Value="{Binding PageSpacing, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding PageSpacing, StringFormat='{}{0:F0}'}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -114,16 +161,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a DocumentViewer with default settings." />
+                           Text="{DynamicResource Loc.P.DocumentViewer.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="180"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -131,16 +180,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Driving navigation, zoom, search and events from code-behind." />
+                           Text="{DynamicResource Loc.P.DocumentViewer.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="350"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

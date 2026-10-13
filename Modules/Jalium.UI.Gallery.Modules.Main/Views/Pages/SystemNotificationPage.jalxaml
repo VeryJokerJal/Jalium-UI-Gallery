@@ -1,33 +1,35 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.SystemNotificationPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="SystemNotification">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="SystemNotification" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Overlays}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.SystemNotification.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Sends native OS notifications through SystemNotificationManager, with titles, body text, action buttons, priority levels, and activation callbacks." />
+                   Text="{DynamicResource Loc.P.SystemNotification.Sub1}" />
 
         <!-- Basic notification -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Notification" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SystemNotification.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Send a simple system notification with title and body text." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Title:" Width="80" VerticalAlignment="Center"/>
-                            <TextBox x:Name="BasicTitleBox" Text="Hello from Jalium.UI" Width="300" Height="28"/>
+                            <TextBox Text="{Binding BasicTitle, Mode=TwoWay}" Width="300" Height="28"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Body:" Width="80" VerticalAlignment="Center"/>
-                            <TextBox x:Name="BasicBodyBox" Text="This is a system notification demo." Width="300" Height="28"/>
+                            <TextBox Text="{Binding BasicBody, Mode=TwoWay}" Width="300" Height="28"/>
                         </StackPanel>
-                        <Button x:Name="SendBasicButton" Content="Send Notification" Width="150" Height="28"/>
+                        <Button Content="{DynamicResource Loc.P.SystemNotification.Ui1}" Command="{Binding SendBasicCommand}" IsEnabled="{Binding IsSupported}" Width="150" Height="28"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -36,14 +38,14 @@
         <!-- Priority levels -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Priority Levels" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SystemNotification.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Notifications can be sent with different priority levels that affect delivery behavior." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
-                        <Button x:Name="LowPriorityButton" Content="Low" Width="70" Height="28" Margin="0,0,10,10"/>
-                        <Button x:Name="NormalPriorityButton" Content="Normal" Width="80" Height="28" Margin="0,0,10,10"/>
-                        <Button x:Name="HighPriorityButton" Content="High" Width="70" Height="28" Margin="0,0,10,10"/>
+                        <Button Content="Low" Command="{Binding SendPriorityCommand}" CommandParameter="Low" IsEnabled="{Binding IsSupported}" Width="70" Height="28" Margin="0,0,10,10"/>
+                        <Button Content="Normal" Command="{Binding SendPriorityCommand}" CommandParameter="Normal" IsEnabled="{Binding IsSupported}" Width="80" Height="28" Margin="0,0,10,10"/>
+                        <Button Content="High" Command="{Binding SendPriorityCommand}" CommandParameter="High" IsEnabled="{Binding IsSupported}" Width="70" Height="28" Margin="0,0,10,10"/>
                     </WrapPanel>
                 </Border>
             </StackPanel>
@@ -52,15 +54,14 @@
         <!-- Notification with actions -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Notification with Actions" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SystemNotification.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Add action buttons to notifications. The Activated event fires when the user clicks the notification or an action button." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <Button x:Name="SendActionButton" Content="Send with Actions" Width="150" Height="28" Margin="0,0,0,12"/>
-                        <TextBlock x:Name="ActionResultText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Click a notification action to see the result here."/>
+                        <Button Content="{DynamicResource Loc.P.SystemNotification.Ui2}" Command="{Binding SendWithActionsCommand}" IsEnabled="{Binding IsSupported}" Width="150" Height="28" Margin="0,0,0,12"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding ActionResult}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -69,29 +70,29 @@
         <!-- Advanced options -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Advanced Options" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SystemNotification.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Configure notification expiration, silent mode, tag/group for replacement, and manage existing notifications." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Tag:" Width="80" VerticalAlignment="Center"/>
-                            <TextBox x:Name="TagBox" Text="demo-tag" Width="200" Height="28"/>
+                            <TextBox Text="{Binding Tag, Mode=TwoWay}" Width="200" Height="28"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Group:" Width="80" VerticalAlignment="Center"/>
-                            <TextBox x:Name="GroupBox" Text="gallery" Width="200" Height="28"/>
+                            <TextBox Text="{Binding Group, Mode=TwoWay}" Width="200" Height="28"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBlock Text="Expiration:" Width="80" VerticalAlignment="Center"/>
-                            <Slider x:Name="ExpirationSlider" Minimum="0" Maximum="30" Value="10" Width="150" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="ExpirationText" Text="10s" VerticalAlignment="Center"/>
+                            <Slider Minimum="0" Maximum="30" Value="{Binding ExpirationSeconds, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding ExpirationSeconds, StringFormat='{}{0:F0}s'}" VerticalAlignment="Center"/>
                         </StackPanel>
-                        <CheckBox x:Name="SilentCheckBox" Content="Silent (no sound)" Margin="0,0,0,12"/>
+                        <CheckBox Content="{DynamicResource Loc.P.SystemNotification.Ui3}" IsChecked="{Binding IsSilent, Mode=TwoWay}" Margin="0,0,0,12"/>
                         <WrapPanel>
-                            <Button x:Name="SendAdvancedButton" Content="Send Tagged" Width="120" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="RemoveTagButton" Content="Remove by Tag" Width="120" Height="28" Margin="0,0,10,10"/>
-                            <Button x:Name="ClearAllButton" Content="Clear All" Width="100" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="{DynamicResource Loc.P.SystemNotification.Ui4}" Command="{Binding SendAdvancedCommand}" IsEnabled="{Binding IsSupported}" Width="120" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="{DynamicResource Loc.P.SystemNotification.Ui5}" Command="{Binding RemoveTagCommand}" IsEnabled="{Binding IsSupported}" Width="120" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="{DynamicResource Loc.P.SystemNotification.Ui6}" Command="{Binding ClearAllCommand}" IsEnabled="{Binding IsSupported}" Width="100" Height="28" Margin="0,0,10,10"/>
                         </WrapPanel>
                     </StackPanel>
                 </Border>
@@ -101,14 +102,13 @@
         <!-- Platform support -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Platform Support" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.SystemNotification.CT5}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="System notification availability depends on the current platform." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock x:Name="SupportedText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Checking..."/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SupportMessage}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -117,16 +117,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Notifications are code-only — declare the trigger buttons in markup and drive the manager from code-behind." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="150"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -134,16 +136,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Initialize the manager, compose a NotificationContent, send it, and handle activation and dismissal." />
+                           Text="{DynamicResource Loc.P.SystemNotification.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="350"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

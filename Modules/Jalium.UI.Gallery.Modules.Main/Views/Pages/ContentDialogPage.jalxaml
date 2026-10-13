@@ -1,39 +1,41 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ContentDialogPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ContentDialog">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DIALOGS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ContentDialog" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Dialogs}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ContentDialog.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Modal dialogs for confirmations, inline review flows, and async validation without requiring XamlRoot." />
+                   Text="{DynamicResource Loc.P.ContentDialog.Sub1}" />
 
         <!-- Popup dialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Popup ContentDialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ContentDialog.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Shows a classic modal dialog over the current window. Enter triggers the default button and Escape closes." />
+                           Text="{DynamicResource Loc.P.ContentDialog.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="ShowBasicDialogButton"
-                                    Content="Show Dialog"
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui1}"
+                                    Command="{Binding ShowBasicDialogCommand}"
                                     Width="110"
                                     Height="32"
                                     Margin="0,0,10,10" />
-                            <Button x:Name="ShowFullSizeDialogButton"
-                                    Content="Full Size"
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui2}"
+                                    Command="{Binding ShowFullSizeDialogCommand}"
                                     Width="100"
                                     Height="32"
                                     Margin="0,0,10,10" />
                         </WrapPanel>
-                        <TextBlock x:Name="PopupDialogResultText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Open a dialog to see the result here." />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding PopupResult}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -42,14 +44,14 @@
         <!-- In-place dialog -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="In-Place ContentDialog" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ContentDialog.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="This example keeps the dialog inside a host region to preview embedded review flows." />
+                           Text="{DynamicResource Loc.P.ContentDialog.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                            <Button x:Name="ShowInlineDialogButton"
-                                    Content="Review Changes"
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui3}"
+                                    Command="{Binding ShowInlineDialogCommand}"
                                     Width="130"
                                     Height="32"/>
                         </StackPanel>
@@ -57,21 +59,21 @@
                         <Grid x:Name="InlineDialogHost"
                               Width="720"
                               Height="320">
-                            <Border Background="#262626"
+                            <Border Background="{DynamicResource GalleryCardBackground}"
                                     BorderBrush="{DynamicResource GalleryBorderDefault}"
                                     BorderThickness="1"
                                     CornerRadius="10"
                                     Padding="20">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="Theme Preset Preview"
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo1}"
                                                FontSize="18"
                                                Margin="0,0,0,8"/>
-                                    <TextBlock Text="The inline dialog below stays inside this card instead of covering the whole window, so you can review changes inline without losing surrounding context."
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo2}"
                                                TextWrapping="Wrap"
                                                Margin="0,0,0,12"/>
-                                    <TextBlock Text="Preset: Studio Contrast"
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo3}"
                                                Margin="0,0,0,4"/>
-                                    <TextBlock Text="Highlights focused elements with stronger borders, denser surfaces, and a slightly larger review region for modal content."
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo4}"
                                                TextWrapping="Wrap"/>
                                 </StackPanel>
                             </Border>
@@ -81,29 +83,29 @@
                                            PrimaryButtonText="Apply"
                                            SecondaryButtonText="Preview Only"
                                            CloseButtonText="Cancel"
-                                           DefaultButton="Primary">
+                                           DefaultButton="Primary"
+                                           behaviors:ContentDialogBehavior.Request="{Binding InlineRequest}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="This dialog is shown with ContentDialogPlacement.InPlace."
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo5}"
                                                TextWrapping="Wrap"
                                                Margin="0,0,0,12"/>
-                                    <TextBlock Text="It uses the surrounding card as the host surface, which makes it useful for review and configuration flows embedded in a page."
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo6}"
                                                TextWrapping="Wrap"
                                                Margin="0,0,0,12"/>
-                                    <CheckBox Content="Enable acrylic backdrop"
+                                    <CheckBox Content="{DynamicResource Loc.P.ContentDialog.Ui4}"
                                               IsChecked="True"
                                               Margin="0,0,0,8"/>
-                                    <CheckBox Content="Use compact density"
+                                    <CheckBox Content="{DynamicResource Loc.P.ContentDialog.Ui5}"
                                               IsChecked="True"
                                               Margin="0,0,0,8"/>
-                                    <CheckBox Content="Promote accent actions to title area"
+                                    <CheckBox Content="{DynamicResource Loc.P.ContentDialog.Ui6}"
                                               IsChecked="False"/>
                                 </StackPanel>
                             </ContentDialog>
                         </Grid>
 
-                        <TextBlock x:Name="InlineDialogResultText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="The inline host is idle."
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding InlineResult}"
                                    Margin="0,12,0,0"/>
                     </StackPanel>
                 </Border>
@@ -113,19 +115,18 @@
         <!-- Deferred validation -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Deferred Validation" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ContentDialog.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Primary button deferrals can run async work before the dialog is allowed to close." />
+                           Text="{DynamicResource Loc.P.ContentDialog.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Button x:Name="ShowDeferredDialogButton"
-                                Content="Validate Name"
+                        <Button Content="{DynamicResource Loc.P.ContentDialog.Ui7}"
+                                Command="{Binding ShowDeferredDialogCommand}"
                                 Width="120"
                                 Height="32"
                                 Margin="0,0,0,12"/>
-                        <TextBlock x:Name="DeferredDialogStatusText"
-                                   Style="{StaticResource GalleryBodyText}"
-                                   Text="Try confirming with an empty field to keep the dialog open."/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding DeferredStatus}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -134,16 +135,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declaring an in-place ContentDialog directly in markup." />
+                           Text="{DynamicResource Loc.P.ContentDialog.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -151,16 +154,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building and showing popup and in-place dialogs from code-behind." />
+                           Text="{DynamicResource Loc.P.ContentDialog.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,31 +1,45 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.FramePage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Frame">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Frame" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Navigation}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Frame.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A container that hosts page content and navigates between pages, keeping a back and forward history along the way." />
+                   Text="{DynamicResource Loc.P.Frame.Sub1}" />
 
         <!-- Basic Frame -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Frame" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Frame.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A frame can host and navigate between pages." />
+                           Text="{DynamicResource Loc.P.Frame.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="NavigatePage1Button" Content="Page 1" Width="80" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="NavigatePage2Button" Content="Page 2" Width="80" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="NavigatePage3Button" Content="Page 3" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="NavigatePage1Button" Content="Page 1" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageOneCommand}" />
+                            <Button x:Name="NavigatePage2Button" Content="Page 2" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageTwoCommand}" />
+                            <Button x:Name="NavigatePage3Button" Content="Page 3" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageThreeCommand}" />
                         </WrapPanel>
                         <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8">
-                            <Frame x:Name="DemoFrame" Width="400" Height="200" />
+                            <Frame x:Name="DemoFrame" Width="400" Height="200">
+                                <Border Background="{Binding CurrentPageBackground}">
+                                    <TextBlock Text="{Binding CurrentPageTitle}"
+                                               FontSize="24"
+                                               Foreground="#FFFFFF"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                </Border>
+                            </Frame>
                         </Border>
                     </StackPanel>
                 </Border>
@@ -35,19 +49,49 @@
         <!-- Navigation Controls -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Navigation Controls" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Frame.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Frame supports back and forward navigation." />
+                           Text="{DynamicResource Loc.P.Frame.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="BackButton" Content="← Back" Width="80" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="ForwardButton" Content="Forward →" Width="80" Height="28" Margin="0,0,10,10" />
-                            <Button x:Name="RefreshButton" Content="Refresh" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button x:Name="BackButton"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    MinWidth="96"
+                                    automation:AutomationProperties.Name="{DynamicResource Loc.P.Frame.Ui1}"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding BackCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <SymbolIcon Symbol="Back" Width="15" Height="15" Margin="0,0,7,0" />
+                                    <TextBlock Text="{DynamicResource Loc.P.Frame.Ui1}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ForwardButton"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    MinWidth="96"
+                                    automation:AutomationProperties.Name="{DynamicResource Loc.P.Frame.Ui2}"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding ForwardCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="{DynamicResource Loc.P.Frame.Ui2}" VerticalAlignment="Center" />
+                                    <SymbolIcon Symbol="Forward" Width="15" Height="15" Margin="7,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="RefreshButton"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    MinWidth="104"
+                                    automation:AutomationProperties.Name="Refresh"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding RefreshCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <SymbolIcon Symbol="Refresh" Width="15" Height="15" Margin="0,0,7,0" />
+                                    <TextBlock Text="Refresh" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
                         </WrapPanel>
                         <TextBlock x:Name="NavigationHistoryText"
                                    Style="{StaticResource GalleryCaptionText}"
-                                   Text="Navigation history: Empty" />
+                                   Text="{Binding NavigationHistoryText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -56,16 +100,16 @@
         <!-- Frame Properties -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Frame Properties" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Frame.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Common frame configuration options." />
+                           Text="{DynamicResource Loc.P.Frame.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <CheckBox Content="Show navigation UI" Margin="0,0,0,8" />
-                        <CheckBox Content="Enable journal (history)" Margin="0,0,0,8" IsChecked="True" />
-                        <CheckBox Content="Sandboxed navigation" Margin="0,0,0,8" />
+                        <CheckBox Content="{DynamicResource Loc.P.Frame.Ui3}" Margin="0,0,0,8" />
+                        <CheckBox Content="{DynamicResource Loc.P.Frame.Ui4}" Margin="0,0,0,8" IsChecked="True" />
+                        <CheckBox Content="{DynamicResource Loc.P.Frame.Ui5}" Margin="0,0,0,8" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Cache size:" Width="100" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource Loc.P.Frame.Ui6}" Width="100" VerticalAlignment="Center" />
                             <NumberBox Width="100" Height="28" Value="10" Minimum="0" Maximum="100" />
                         </StackPanel>
                     </StackPanel>
@@ -76,16 +120,16 @@
         <!-- Common Use Cases -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CommonUseCases}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Frame is useful for various navigation scenarios." />
+                           Text="{DynamicResource Loc.P.Frame.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Text="• Wizard-style interfaces" Margin="0,0,0,8" />
-                        <TextBlock Text="• Multi-step forms" Margin="0,0,0,8" />
-                        <TextBlock Text="• Browser-like navigation" Margin="0,0,0,8" />
-                        <TextBlock Text="• Embedded page content" Margin="0,0,0,8" />
-                        <TextBlock Text="• Help system navigation" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Frame.Use1}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Frame.Use2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Frame.Use3}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Frame.Use4}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Frame.Use5}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -94,15 +138,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the frame and its navigation buttons." />
+                           Text="{DynamicResource Loc.P.Frame.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>
@@ -111,15 +157,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Swapping frame content and handling back and forward navigation in code-behind." />
+                           Text="{DynamicResource Loc.P.Frame.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13" />
                 </Border>
             </StackPanel>

@@ -1,6 +1,8 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DockPanelPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="DockPanel">
 
     <!--
@@ -11,27 +13,112 @@
     -->
     <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DockPanel" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DockPanel.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A panel that positions child elements to the edges (top, bottom, left, right) or fills the remaining space." />
+                   Text="{DynamicResource Loc.P.DockPanel.Sub1}" />
 
-        <!-- Interactive demos are inserted here by CreateContent(). -->
-        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DockPanel.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.DockPanel.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Border Width="400" Height="250" Background="#202020">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Top" Height="50" Background="#0078D4">
+                                <TextBlock Text="Top" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Bottom" Height="50" Background="#4CAF50">
+                                <TextBlock Text="Bottom" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="80" Background="#FF9800">
+                                <TextBlock Text="Left" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Right" Width="80" Background="#9C27B0">
+                                <TextBlock Text="Right" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Background="#2196F3">
+                                <TextBlock Text="Fill" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DockPanel.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.DockPanel.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <Border Width="400" Height="150" Background="#202020">
+                        <DockPanel LastChildFill="False">
+                            <Border DockPanel.Dock="Top" Height="40" Background="#0078D4">
+                                <TextBlock Text="Top" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="100" Background="#FF9800">
+                                <TextBlock Text="Left" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Right" Width="100" Background="#9C27B0">
+                                <TextBlock Text="Right" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DockPanel.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.DockPanel.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <!--
+                        Mock app chrome, fully theme-sourced. The three panes must stay
+                        visibly stepped, but the registered surface tokens are crowded
+                        into one luminance band in Dark mode, so the header and sidebar
+                        carry an explicit hairline instead of relying on fill contrast
+                        alone. The outer wrapper needs no Background: Top + Left + the
+                        LastChildFill content cover it completely.
+                    -->
+                    <Border Width="400" Height="250">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Top" Height="40"
+                                    Background="{DynamicResource GalleryPaneBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="0,0,0,1">
+                                <TextBlock Text="Application Header" Foreground="{DynamicResource GalleryTextPrimary}" VerticalAlignment="Center" Margin="12,0,0,0" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="120"
+                                    Background="{DynamicResource GalleryCardAltBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="0,0,1,0">
+                                <TextBlock Text="Sidebar" Foreground="{DynamicResource GalleryTextSecondary}" Margin="12" />
+                            </Border>
+                            <Border Background="{DynamicResource GalleryCardBackground}">
+                                <TextBlock Text="Main Content Area" Foreground="{DynamicResource GalleryTextTertiary}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </Border>
+            </StackPanel>
+        </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the DockPanel layouts above." />
+                           Text="{DynamicResource Loc.P.DockPanel.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -39,16 +126,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a docked application layout in code-behind." />
+                           Text="{DynamicResource Loc.P.DockPanel.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,33 +1,50 @@
-<Page
+﻿<Page
     xmlns="http://schemas.jalium.com/jalxaml"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:effects="clr-namespace:Jalium.UI.Media.Effects;assembly=Jalium.UI.Media"
+    xmlns:local="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages;assembly=Jalium.UI.Gallery.Modules.Main"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
     x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ShaderEffectsPage"
+    hosting:ViewModelLocator.AutoWireViewModel="True"
     Title="Shader Effects">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Shader Effects" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Effects}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ShaderEffects.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A WPF-compatible shader effect system with BlurEffect, DropShadowEffect, and custom ShaderEffect support." />
+                   Text="{DynamicResource Loc.P.ShaderEffects.Sub1}" />
 
         <!-- BlurEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="BlurEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShaderEffects.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Applies a Gaussian blur effect. Supports KernelType and RenderingBias settings." />
+                           Text="{DynamicResource Loc.P.ShaderEffects.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Text="Blur Radius: " VerticalAlignment="Center"/>
-                            <Slider x:Name="BlurRadiusSlider" Width="200" Minimum="0" Maximum="50" Value="10" Margin="8,0,0,0"/>
-                            <TextBlock x:Name="BlurRadiusText" Text="10" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui3}" Margin="0,0,0,8" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="BlurRadiusSlider" Width="200" Minimum="0" Maximum="50" SmallChange="1" LargeChange="5"
+                                        Value="{Binding BlurRadius, Mode=TwoWay}"
+                                        automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui3}" />
+                                <TextBlock Text="{Binding BlurRadius, StringFormat='{}{0:F0}'}"
+                                           Margin="8,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
                         </StackPanel>
 
-                        <Border x:Name="BlurEffectDemo" Background="#2B2742" Width="200" Height="100" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Left">
-                            <TextBlock Text="Blur Demo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="BoxBlurCheckBox" Margin="0,0,0,8" HorizontalAlignment="Left"
+                                  Content="{DynamicResource Loc.P.ShaderEffects.Ui7}"
+                                  automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui7}" />
+
+                        <Border x:Name="BlurPreview" Background="{DynamicResource GalleryEffectStage}" Width="200" Height="100" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <effects:BlurEffect />
+                            </Border.Effect>
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui5}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </StackPanel>
                 </Border>
@@ -37,19 +54,30 @@
         <!-- DropShadowEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="DropShadowEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShaderEffects.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Adds a drop shadow behind elements. Configurable color, blur radius, direction, and depth." />
+                           Text="{DynamicResource Loc.P.ShaderEffects.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Text="Shadow Depth: " VerticalAlignment="Center"/>
-                            <Slider x:Name="ShadowDepthSlider" Width="200" Minimum="0" Maximum="30" Value="5" Margin="8,0,0,0"/>
-                            <TextBlock x:Name="ShadowDepthText" Text="5" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui4}" Margin="0,0,0,8" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="ShadowDepthSlider" Width="200" Minimum="0" Maximum="30" SmallChange="1" LargeChange="5"
+                                        Value="{Binding ShadowDepth, Mode=TwoWay}"
+                                        automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui4}" />
+                                <TextBlock Text="{Binding ShadowDepth, StringFormat='{}{0:F0}'}"
+                                           Margin="8,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
                         </StackPanel>
 
-                        <Border x:Name="DropShadowDemo" Background="{DynamicResource GalleryAccent}" Width="150" Height="80" CornerRadius="14" Margin="20,16,0,0" HorizontalAlignment="Left">
-                            <TextBlock Text="Shadow Demo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border x:Name="ShadowPreview" Background="{DynamicResource GalleryAccent}" Width="150" Height="80" CornerRadius="14" Margin="20,16,0,0" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <effects:DropShadowEffect BlurRadius="10"
+                                                          ShadowDepth="5"
+                                                          Direction="315"
+                                                          Opacity="0.8" />
+                            </Border.Effect>
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui6}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </StackPanel>
                 </Border>
@@ -59,20 +87,28 @@
         <!-- Custom ShaderEffect -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Custom ShaderEffect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ShaderEffects.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Create custom pixel shader effects using HLSL. Load compiled shader bytecode and register shader constant/sampler properties." />
+                           Text="{DynamicResource Loc.P.ShaderEffects.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <TextBlock Text="// Example custom shader effect" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="public class MyShaderEffect : ShaderEffect" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="{" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="    public MyShaderEffect()" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="    {" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="        PixelShader = new PixelShader();" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="        PixelShader.UriSource = new Uri(&quot;myshader.ps&quot;);" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="    }" FontFamily="Consolas" FontSize="12"/>
-                        <TextBlock Text="}" FontFamily="Consolas" FontSize="12"/>
+                        <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui1}" Margin="0,0,0,8" />
+                        <Slider x:Name="InvertAmountSlider"
+                                Minimum="0" Maximum="1" Value="0.75" SmallChange="0.05" LargeChange="0.25"
+                                Width="200" HorizontalAlignment="Left"
+                                automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui1}" />
+                        <Border x:Name="HlslPreview" Background="{DynamicResource GalleryEffectStage}" Width="200" Height="100"
+                                CornerRadius="8" Margin="0,16,0,0" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <local:GalleryInvertEffect />
+                            </Border.Effect>
+                            <Grid>
+                                <Border Background="{DynamicResource GalleryAccent}" Width="60" Height="60"
+                                        CornerRadius="16" HorizontalAlignment="Left" Margin="16,0,0,0" />
+                                <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui2}" Foreground="White"
+                                           Margin="88,0,12,0" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -81,16 +117,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the effect demos above." />
+                           Text="{DynamicResource Loc.P.ShaderEffects.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -98,16 +136,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Applying the effects and wiring the sliders in code-behind." />
+                           Text="{DynamicResource Loc.P.ShaderEffects.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

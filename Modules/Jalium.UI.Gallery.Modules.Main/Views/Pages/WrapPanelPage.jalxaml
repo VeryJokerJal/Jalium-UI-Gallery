@@ -1,6 +1,8 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.WrapPanelPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="WrapPanel">
 
     <!--
@@ -11,27 +13,97 @@
     -->
     <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
 
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="WrapPanel" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.WrapPanel.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A panel that positions child elements sequentially, wrapping to the next line when it reaches the edge of the available space." />
+                   Text="{DynamicResource Loc.P.WrapPanel.Sub1}" />
 
-        <!-- Interactive demos are inserted here by CreateContent(). -->
-        <StackPanel x:Name="DemoHost" Orientation="Vertical" />
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WrapPanel.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.WrapPanel.CC1}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel Orientation="Horizontal" Width="400">
+                        <Border Width="80" Height="40" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="Item 1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="Item 2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="Item 3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="80" Height="40" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="Item 4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#2196F3" Margin="4" CornerRadius="4"><TextBlock Text="Item 5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#F44336" Margin="4" CornerRadius="4"><TextBlock Text="Item 6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="80" Height="40" Background="#009688" Margin="4" CornerRadius="4"><TextBlock Text="Item 7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#FF5722" Margin="4" CornerRadius="4"><TextBlock Text="Item 8" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="Item 9" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WrapPanel.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.WrapPanel.CC2}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel Orientation="Vertical" Width="400" Height="150">
+                        <Border Width="60" Height="30" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="V1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="40" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="V2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="50" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="V3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="30" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="V4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="40" Background="#2196F3" Margin="4" CornerRadius="4"><TextBlock Text="V5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="50" Background="#F44336" Margin="4" CornerRadius="4"><TextBlock Text="V6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WrapPanel.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.WrapPanel.CC3}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel Orientation="Horizontal" ItemWidth="80" ItemHeight="80" Width="400">
+                        <Border Width="60" Height="60" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="60" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="60" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="60" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.WrapPanel.CT4}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.WrapPanel.CC4}" />
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <WrapPanel Orientation="Horizontal" Width="400">
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="C#" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="WPF" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="XAML" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="UI Framework" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text=".NET" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="Windows" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="Controls" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="Layout" Foreground="White" /></Border>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+        </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the WrapPanels above." />
+                           Text="{DynamicResource Loc.P.WrapPanel.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -39,16 +111,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a tag cloud and a photo gallery in code-behind." />
+                           Text="{DynamicResource Loc.P.WrapPanel.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

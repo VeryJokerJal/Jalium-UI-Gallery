@@ -1,22 +1,24 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TransitionDemoPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Content Transitions">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="EFFECTS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Content Transitions" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Effects}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TransitionDemo.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="TransitioningContentControl plays an animation whenever its content changes — pick a transition mode, then switch the content to watch the effect." />
+                   Text="{DynamicResource Loc.P.TransitionDemo.Sub1}" />
 
         <!-- Transition settings -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Transition settings" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TransitionDemo.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Choose a transition mode, then switch content once or auto-play through every mode in sequence." />
+                           Text="{DynamicResource Loc.P.TransitionDemo.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
@@ -25,7 +27,9 @@
                                        Margin="0,0,12,0" />
                             <ComboBox x:Name="TransitionComboBox"
                                       Width="220"
-                                      Height="32" />
+                                      Height="32"
+                                      ItemsSource="{Binding Modes}"
+                                      SelectedItem="{Binding SelectedMode, Mode=TwoWay}" />
                         </StackPanel>
 
                         <WrapPanel>
@@ -33,12 +37,14 @@
                                     Content="Switch Content"
                                     Width="140"
                                     Height="32"
-                                    Margin="0,0,10,10" />
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SwitchContentCommand}" />
                             <Button x:Name="AutoPlayButton"
-                                    Content="Auto Play All"
+                                    Content="{Binding AutoPlayButtonText}"
                                     Width="140"
                                     Height="32"
-                                    Margin="0,0,10,10" />
+                                    Margin="0,0,10,10"
+                                    Command="{Binding ToggleAutoPlayCommand}" />
                         </WrapPanel>
                     </StackPanel>
                 </Border>
@@ -48,22 +54,43 @@
         <!-- Live preview -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Live preview" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TransitionDemo.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The selected transition plays each time the content swaps between panels A, B and C." />
+                           Text="{DynamicResource Loc.P.TransitionDemo.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
-                        <Border Background="#1A1A1A"
+                        <Border Background="{DynamicResource GalleryEffectStage}"
                                 CornerRadius="8"
                                 Height="300"
                                 ClipToBounds="True">
                             <TransitioningContentControl x:Name="TransitionControl"
+                                                         TransitionMode="{Binding SelectedMode}"
                                                          HorizontalAlignment="Stretch"
-                                                         VerticalAlignment="Stretch"/>
+                                                         VerticalAlignment="Stretch">
+                                <StackPanel HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <Border Width="120"
+                                            Height="120"
+                                            Background="{Binding ContentBackground}"
+                                            CornerRadius="{Binding ContentCornerRadius}"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,16">
+                                        <TextBlock Text="{Binding ContentLetter}"
+                                                   FontSize="48"
+                                                   Foreground="#FFFFFF"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center" />
+                                    </Border>
+                                    <TextBlock Text="{Binding ContentTitle}"
+                                               FontSize="18"
+                                               Foreground="{DynamicResource GalleryTextPrimary}"
+                                               HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </TransitioningContentControl>
                         </Border>
                         <TextBlock x:Name="CurrentTransitionText"
                                    Style="{StaticResource GalleryValueLabel}"
-                                   Text="Current: Crossfade"
+                                   Text="{Binding CurrentTransitionText}"
                                    Margin="0,12,0,0" />
                     </StackPanel>
                 </Border>
@@ -73,15 +100,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a clipped TransitioningContentControl." />
+                           Text="{DynamicResource Loc.P.TransitionDemo.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
                                  FontSize="13"/>
                 </Border>
             </StackPanel>
@@ -90,15 +119,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Switching content, changing the transition mode and auto-playing every mode in code-behind." />
+                           Text="{DynamicResource Loc.P.TransitionDemo.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
                                  FontSize="13"/>
                 </Border>
             </StackPanel>

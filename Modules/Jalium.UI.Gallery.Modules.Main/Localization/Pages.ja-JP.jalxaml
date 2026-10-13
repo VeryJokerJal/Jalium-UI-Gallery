@@ -1,0 +1,2301 @@
+<ResourceDictionary x:Class="Jalium.UI.Gallery.Modules.Main.Localization.PagesJaJP"
+                    xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        サンプルページの文言、日本語 (ja-JP)。
+
+        キーは Pages.en-US.jalxaml に対応します。ここに無いキーは英語へ
+        フォールバックするので、ページ単位で少しずつ追加できます。
+
+        Loc.Shared.*   複数ページで共有する文言（カテゴリのアイブロウ、
+                       「インタラクティブデモ」、XAML / C# など）。
+        Loc.P.<ページ>.*  そのページ専用の文言。接尾辞はデザインシステム上の
+                       役割で、Eyebrow / Title / Sub がページヘッダー、
+                       CT / CC がカードの見出しと説明、残りは Body / Cap /
+                       Chip / Val です。
+    -->
+
+    <!-- ============================== 共有 ================================ -->
+
+    <x:String x:Key="Loc.Shared.Basic">基本</x:String>
+    <x:String x:Key="Loc.Shared.BasicHeatmap">基本のヒートマップ</x:String>
+    <x:String x:Key="Loc.Shared.BasicInput">基本入力</x:String>
+    <x:String x:Key="Loc.Shared.BoundSelection">バインドされた選択</x:String>
+    <x:String x:Key="Loc.Shared.CSharp">C#</x:String>
+    <x:String x:Key="Loc.Shared.CSharpCodeExample">C# コード例</x:String>
+    <x:String x:Key="Loc.Shared.Collections">コレクション</x:String>
+    <x:String x:Key="Loc.Shared.CommonUseCases">よくある使い方</x:String>
+    <x:String x:Key="Loc.Shared.CommonUseCases2">よくある使い方</x:String>
+    <x:String x:Key="Loc.Shared.CustomizableAppearance">• 外観をカスタマイズ可能</x:String>
+    <x:String x:Key="Loc.Shared.DataAndBinding">データとバインディング</x:String>
+    <x:String x:Key="Loc.Shared.DataViewers">データビューアー</x:String>
+    <x:String x:Key="Loc.Shared.DataVisualization">データ可視化</x:String>
+    <x:String x:Key="Loc.Shared.DateAndTime">日付と時刻</x:String>
+    <x:String x:Key="Loc.Shared.Dialogs">ダイアログ</x:String>
+    <x:String x:Key="Loc.Shared.Effects">エフェクト</x:String>
+    <x:String x:Key="Loc.Shared.EnabledAndDisabledStates">有効状態と無効状態。</x:String>
+    <x:String x:Key="Loc.Shared.Features">機能</x:String>
+    <x:String x:Key="Loc.Shared.InteractiveDemo">インタラクティブデモ</x:String>
+    <x:String x:Key="Loc.Shared.InteractiveDemo2">インタラクティブデモ</x:String>
+    <x:String x:Key="Loc.Shared.KeyboardShortcuts">キーボードショートカット</x:String>
+    <x:String x:Key="Loc.Shared.Layout">レイアウト</x:String>
+    <x:String x:Key="Loc.Shared.LiveEditor">ライブエディター</x:String>
+    <x:String x:Key="Loc.Shared.MapsAndGeo">地図と位置情報</x:String>
+    <x:String x:Key="Loc.Shared.Media">メディア</x:String>
+    <x:String x:Key="Loc.Shared.MenusAndToolbars">メニューとツールバー</x:String>
+    <x:String x:Key="Loc.Shared.Navigation">ナビゲーション</x:String>
+    <x:String x:Key="Loc.Shared.Options">オプション</x:String>
+    <x:String x:Key="Loc.Shared.Overlays">オーバーレイ</x:String>
+    <x:String x:Key="Loc.Shared.Properties">プロパティ</x:String>
+    <x:String x:Key="Loc.Shared.ReadOnlyMode">読み取り専用モード</x:String>
+    <x:String x:Key="Loc.Shared.SegmentedTrack">セグメント化されたトラック</x:String>
+    <x:String x:Key="Loc.Shared.SnapToTicks">目盛りにスナップ</x:String>
+    <x:String x:Key="Loc.Shared.StatusAndInfo">ステータスと情報</x:String>
+    <x:String x:Key="Loc.Shared.Styling">スタイリング</x:String>
+    <x:String x:Key="Loc.Shared.System">システム</x:String>
+    <x:String x:Key="Loc.Shared.TextAndTypography">テキストとタイポグラフィ</x:String>
+    <x:String x:Key="Loc.Shared.Usage">使い方</x:String>
+    <x:String x:Key="Loc.Shared.Xaml">XAML</x:String>
+    <x:String x:Key="Loc.Shared.XamlCodeExample">XAML コード例</x:String>
+
+    <!-- AppBarButton -->
+    <x:String x:Key="Loc.P.AppBarButton.Title1">AppBarButton</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.Sub1">CommandBar での利用を想定したボタン。アイコンとラベルを組み合わせ、よく使うコマンドをツールバーに並べます。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CT1">基本の AppBarButton</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC1">AppBarButton はアイコンとラベルを組み合わせて、よく使う操作を表します。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CT2">コンパクトモード</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC2">コンパクトモードの AppBarButton はラベルを省き、アイコンだけを表示します。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC3">上記の AppBarButton を宣言的マークアップで書いたもの。</x:String>
+    <x:String x:Key="Loc.P.AppBarButton.CC4">コードビハインドで AppBarButton を生成し、クリックハンドラーを接続します。</x:String>
+
+    <!-- AppBarSeparator -->
+    <x:String x:Key="Loc.P.AppBarSeparator.Title1">AppBarSeparator</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.Sub1">CommandBar やツールバー内で関連するコマンド群を視覚的に区切る細い縦罫線です。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CT1">ツールバー内の AppBarSeparator</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC1">セパレーターはツールバーのボタンを論理的なグループに分けます。幅が狭いときは複数行に折り返します。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC2">上記のツールバーとセパレーターを宣言的マークアップで書いたもの。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC3">コードビハインドでツールバーを組み立て、ボタンのクリックハンドラーを接続します。</x:String>
+
+    <!-- AppBarToggleButton -->
+    <x:String x:Key="Loc.P.AppBarToggleButton.Title1">AppBarToggleButton</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.Sub1">CommandBar 向けのトグルボタン。チェック状態を保持し、設定のオン・オフを切り替えます。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CT1">文字書式</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC1">太字・斜体・下線などの文字書式を切り替えるトグルボタン。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CT2">チェック状態</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC2">自身の IsChecked 状態を表示するトグルボタン。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC3">上記のトグルボタンを宣言的マークアップで書いたもの。</x:String>
+    <x:String x:Key="Loc.P.AppBarToggleButton.CC4">コードビハインドで Checked / Unchecked ハンドラーを接続します。</x:String>
+
+    <!-- AutoCompleteBox -->
+    <x:String x:Key="Loc.P.AutoCompleteBox.Title1">AutoCompleteBox</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Sub1">入力に応じて候補一覧から一致する項目を提案するテキスト入力。キーボード操作と複数のフィルターモードに対応します。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC1">入力を始めると候補が表示されます。矢印キーで移動できます。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CT1">フィルターモード</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC2">入力したテキストを候補一覧とどう照合するかを選びます。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC3">AutoCompleteBox は充実したオートコンプリート機能を備えています。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC4">上記 AutoCompleteBox の例を宣言的マークアップで書いたもの。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.CC5">コードビハインドでアイテムソース、フィルターモード、選択ハンドラーを設定します。</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body1">* StartsWith — 入力テキストで始まる項目</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body2">* Contains — 入力テキストを含む項目</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body3">* Equals — 完全一致のみ</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body4">* Custom — 独自のフィルター述語を使用</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body5">* ウォーターマーク（プレースホルダー）テキスト</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body6">* 候補を出すまでの最小入力文字数</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body7">* キーボード操作（上／下／Enter／Esc）</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body8">* Tab キーでテキスト補完</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body9">* ドロップダウンの最大高さをカスタマイズ可能</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Body10">* TextMemberPath による複雑なオブジェクト対応</x:String>
+    <x:String x:Key="Loc.P.AutoCompleteBox.Cap1">プログラミング言語を検索：</x:String>
+
+    <!-- BackdropEffects -->
+    <x:String x:Key="Loc.P.BackdropEffects.Title1">背景エフェクト</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.Sub1">背景にぼかしやマテリアル効果を適用します。組み込みのエフェクトのほか、独自の IBackdropEffect も使えます。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT1">BackdropBlurEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC1">シンプルなガウスぼかし。ぼかし半径で強さを調整します。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT2">AcrylicEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC2">ぼかし・ティントカラー・ノイズテクスチャを備えた Windows アクリルマテリアル。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT3">MicaEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC3">彩度と輝度を高めた Windows 11 の Mica マテリアル。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT4">FrostedGlassEffect</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC4">ノイズテクスチャ付きのすりガラス効果で、よりリアルなガラス表現になります。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT5">ColorAdjustmentEffect — グレースケール</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC5">色をグレースケールに変換します。無効状態の表現やアート効果に向いています。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT6">ColorAdjustmentEffect — セピア</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC6">ヴィンテージなセピア調にして、温かく懐かしい雰囲気に仕上げます。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT7">ColorAdjustmentEffect — 色反転</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC7">すべての色を反転します。赤はシアンに、白は黒になります。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT8">ColorAdjustmentEffect — 色相回転</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC8">すべての色の色相を回転します。90° で赤は緑に、緑は青になります。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CT9">ウィンドウのシステム背景</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC9">ウィンドウの背後（デスクトップや他のアプリ）をぼかすシステムレベルの背景効果です。Windows 11 22H2 以降が必要です。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC10">任意の UIElement で BackdropEffect プロパティを設定します：</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC11">上記の背景オーバーレイとシステム背景ボタンの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.BackdropEffects.CC12">コードビハインドで各 BackdropEffect とウィンドウの SystemBackdrop を割り当てます。</x:String>
+
+    <!-- BarChart -->
+    <x:String x:Key="Loc.P.BarChart.Title1">BarChart</x:String>
+    <x:String x:Key="Loc.P.BarChart.Sub1">数値の系列をグループ・積み上げ・横向きの棒として描画します。値ラベル、グリッド線、凡例も指定できます。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CT1">グループ棒グラフ</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC1">複数の系列を横に並べて表示し、比較しやすくします。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CT2">積み上げ棒グラフ</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC2">系列を積み重ねて、合計と内訳を同時に示します。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CT3">横棒グラフ</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC3">棒を横方向に描画します。ラベルが長いカテゴリの比較に向いています。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC4">2 つの系列を持つグループ棒グラフの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.BarChart.CC5">系列は XAML で宣言し、ViewModel が持つカテゴリ／値のコレクションにバインドします。</x:String>
+
+    <!-- Binding -->
+    <x:String x:Key="Loc.P.Binding.Title1">Binding</x:String>
+    <x:String x:Key="Loc.P.Binding.Sub1">ある要素のプロパティを別の要素やデータソースにつなぎ、値を自動的に同期させます。つなぎのコードは不要です。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT1">ElementName バインディング</x:String>
+    <x:String x:Key="Loc.P.Binding.CC1">ElementName で、あるコントロールを別要素のプロパティに直接バインドします。スライダーを動かすと表示が即座に更新されます。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT2">双方向 ElementName バインディング</x:String>
+    <x:String x:Key="Loc.P.Binding.CC2">Mode=TwoWay にすると値が双方向に流れます。どちらのボックスを編集しても、もう一方がすぐ追従します。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT3">JALXAML の書き方</x:String>
+    <x:String x:Key="Loc.P.Binding.CC3">ElementName バインディングを JALXAML マークアップで書くとこうなります。</x:String>
+    <x:String x:Key="Loc.P.Binding.CT4">バインディングモード</x:String>
+    <x:String x:Key="Loc.P.Binding.CC4">バインディングのソースとターゲットの間で、データが流れる向きです。</x:String>
+    <x:String x:Key="Loc.P.Binding.CC5">上で示したバインディングの完全なマークアップ。</x:String>
+    <x:String x:Key="Loc.P.Binding.CC6">コードビハインドで同じバインディングを作成して適用します。</x:String>
+    <x:String x:Key="Loc.P.Binding.Body1">OneWay — ソースからターゲットへのみ（既定）</x:String>
+    <x:String x:Key="Loc.P.Binding.Body2">TwoWay — ソースからターゲットへ、ターゲットからソースへ</x:String>
+    <x:String x:Key="Loc.P.Binding.Body3">OneWayToSource — ターゲットからソースへのみ</x:String>
+    <x:String x:Key="Loc.P.Binding.Body4">OneTime — バインド時に一度だけソースからターゲットへ</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap1">スライダーの値（ソース）：</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap2">Slider.Value にバインドした TextBlock：</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap3">ソースの TextBox：</x:String>
+    <x:String x:Key="Loc.P.Binding.Cap4">ターゲットの TextBox（SourceTextBox.Text にバインド）：</x:String>
+
+    <!-- Border -->
+    <x:String x:Key="Loc.P.Border.Title1">Border</x:String>
+    <x:String x:Key="Loc.P.Border.Sub1">子要素の周囲に枠線や背景、あるいはその両方を描画するデコレーターです。</x:String>
+    <x:String x:Key="Loc.P.Border.CT1">基本の Border</x:String>
+    <x:String x:Key="Loc.P.Border.CC1">同じデコレーターで、塗りのみ・線のみ・その両方を使い分けます。</x:String>
+    <x:String x:Key="Loc.P.Border.CT2">角丸の半径</x:String>
+    <x:String x:Key="Loc.P.Border.CC2">直角から完全なピル形まで角を丸めます。</x:String>
+    <x:String x:Key="Loc.P.Border.CT3">枠線の太さ</x:String>
+    <x:String x:Key="Loc.P.Border.CC3">線の太さはヘアラインから太い輪郭まで調整できます。</x:String>
+    <x:String x:Key="Loc.P.Border.CT4">パディング</x:String>
+    <x:String x:Key="Loc.P.Border.CC4">枠線と中身の間の余白が、値に応じて広がります。</x:String>
+    <x:String x:Key="Loc.P.Border.CC5">上記のボーダーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Border.CC6">コードビハインドでボーダーやカードを組み立てます。</x:String>
+
+    <!-- Button -->
+    <x:String x:Key="Loc.P.Button.Title1">Button</x:String>
+    <x:String x:Key="Loc.P.Button.Sub1">操作を実行するクリック可能なコマンド面です。テキストや任意のコンテンツを載せられ、複数のサイズと状態を持ち、アクセントテーマに合わせて自動的に再描画されます。</x:String>
+    <x:String x:Key="Loc.P.Button.CC1">ボタンを押すとカウンターが 1 増えます。</x:String>
+    <x:String x:Key="Loc.P.Button.CT1">サイズ</x:String>
+    <x:String x:Key="Loc.P.Button.CC2">既定スタイルの標準ボタンと、無効状態。</x:String>
+    <x:String x:Key="Loc.P.Button.CT2">アクセントテーマ</x:String>
+    <x:String x:Key="Loc.P.Button.CC3">小・中・大のプリセットが、フォントサイズとパディングをまとめて調整します。</x:String>
+    <x:String x:Key="Loc.P.Button.CC4">{ThemeResource} でアクセントブラシにバインドしたボタンは、テーマやアクセントカラーの切り替えに合わせて自動的に再描画されます。</x:String>
+    <x:String x:Key="Loc.P.Button.CC5">上記のボタンの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Button.CC6">ボタンの状態と操作を、バインド可能な ViewModel に置きます。</x:String>
+
+    <!-- Calendar -->
+    <x:String x:Key="Loc.P.Calendar.Title1">Calendar</x:String>
+    <x:String x:Key="Loc.P.Calendar.Sub1">月単位のカレンダーを表示して日付を閲覧・選択するコントロールです。月・年・10 年のビューを備えます。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC1">カレンダーで日付を選ぶと、下の選択日が更新されます。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC2">Calendar コントロールは、標準で次の機能に対応しています。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC3">上記の Calendar の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC4">コードビハインドで Calendar を作成し、日付選択を処理します。</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body1">• 月／年／10 年ビュー</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body2">• 単一または期間での日付選択</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body3">• 選択不可の日付</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body4">• 表示できる日付範囲の制限</x:String>
+    <x:String x:Key="Loc.P.Calendar.Body5">• 週の開始曜日のカスタマイズ</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap1">選択した日付</x:String>
+
+    <!-- CandlestickChart -->
+    <x:String x:Key="Loc.P.CandlestickChart.Title1">CandlestickChart</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.Sub1">金融の OHLC データをローソク足として描画し、出来高バーや移動平均線を重ねられます。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CT1">基本のローソク足</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC1">模擬した OHLC 価格データによるローソク足チャート。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CT2">出来高付き</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC2">価格データの下に出来高のサブチャートを添えたローソク足。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CT3">移動平均線</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC3">SMA と EMA のラインを重ねたローソク足チャート。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC4">上記のローソク足チャートの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.CandlestickChart.CC5">ViewModel が決定的な OHLC コレクションを生成し、チャートの設定は XAML の宣言のままにします。</x:String>
+
+    <!-- Canvas -->
+    <x:String x:Key="Loc.P.Canvas.Title1">Canvas</x:String>
+    <x:String x:Key="Loc.P.Canvas.Sub1">子要素を絶対座標に配置するレイアウトパネル。座標は Canvas.Left / Top / Right / Bottom で指定し、重なり順は Panel.ZIndex で制御します。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CT1">Canvas の概要</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC1">Canvas.Left と Canvas.Top で配置した要素。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CT2">Canvas の機能</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC2">Canvas コントロールの主な機能。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC3">Canvas 上に Border を配置する宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Canvas.CC4">コードビハインドで Canvas の子要素を作成して配置します。</x:String>
+
+    <!-- CheckBox -->
+    <x:String x:Key="Loc.P.CheckBox.Title1">CheckBox</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Sub1">選択・解除ができるコントロール。第 3 の状態である不確定状態にも対応できます。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC1">チェックボックスをクリックすると状態が切り替わります。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CT1">基本のチェックボックス</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC2">未チェック・チェック済み・無効の各状態の標準チェックボックス。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CT2">3 状態チェックボックス</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC3">チェック済み・未チェックに加えて、不確定状態を持つチェックボックス。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC4">上記のチェックボックスの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.CheckBox.CC5">コードビハインドで Checked / Unchecked / Indeterminate ハンドラーを接続します。</x:String>
+
+    <!-- ColorPicker -->
+    <x:String x:Key="Loc.P.ColorPicker.Eyebrow1">ピッカー</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Title1">ColorPicker</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Sub1">スペクトラムとスライダーから色を選ぶコントロール。アルファチャンネルの表示切り替えや、省スペース向けのコンパクトなレイアウトも用意しています。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CT1">基本の ColorPicker</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC1">スペクトラムとスライダーを備えたフル機能のカラーピッカー。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CT2">コンパクトな ColorPicker</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC2">スペースが限られる場面向けの、よりコンパクトな版。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CT3">ColorPicker のオプション</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC3">アルファチャンネルなど、どの要素を表示するかを設定します。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC4">色を選ぶと、ライブプレビューのスウォッチに反映されます。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC5">ColorPicker をスウォッチやトリガーボタンと組み合わせる例。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC6">上記のカラーピッカーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.CC7">コードビハインドで ColorChanged を処理し、選択色を読み取ります。</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Cap1">アルファチャンネルあり：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Cap2">アルファチャンネルなし：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Cap3">プレビュー：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Val1">文字色：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Val2">背景：</x:String>
+    <x:String x:Key="Loc.P.ColorPicker.Val3">枠線の色：</x:String>
+
+    <!-- ComboBox -->
+    <x:String x:Key="Loc.P.ComboBox.Title1">ComboBox</x:String>
+    <x:String x:Key="Loc.P.ComboBox.Sub1">選択肢を一覧表示して 1 つを選ばせるドロップダウン。プレースホルダー、初期選択、選択変更イベントに対応します。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC1">文字列の項目を並べたシンプルなドロップダウン。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CT1">初期選択済みの項目</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC2">ViewModel のプロパティにより、開いた時点で項目が選ばれています。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CT2">選択の変更</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC3">双方向バインディングにより、ビュー側のイベントハンドラーなしで選択変更に反応します。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC4">上記の ComboBox の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ComboBox.CC5">専用の ViewModel から項目と選択状態を公開します。</x:String>
+
+    <!-- CommandBar -->
+    <x:String x:Key="Loc.P.CommandBar.Title1">CommandBar</x:String>
+    <x:String x:Key="Loc.P.CommandBar.Sub1">AppBarButton などのコマンド要素を並べるツールバー。主要コマンドはそのまま表示し、残りはオーバーフローに収めます。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CT1">基本の CommandBar</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC1">主要コマンドだけを持つ CommandBar。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CT2">セカンダリコマンド付きの CommandBar</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC2">主要コマンドとセカンダリ（オーバーフロー）コマンドを併せ持つ CommandBar。オーバーフローボタンで残りを表示します。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC3">主要コマンドとセカンダリコマンドを持つ CommandBar の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.CommandBar.CC4">CommandBar の操作を ViewModel の ICommand プロパティとして公開します。</x:String>
+
+    <!-- CommandBarFlyout -->
+    <x:String x:Key="Loc.P.CommandBarFlyout.Title1">CommandBarFlyout</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.Sub1">軽量なポップアップの中に CommandBar を表示し、主要コマンドとセカンダリコマンドをまとめて出すフライアウトです。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CT1">基本の CommandBarFlyout</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC1">下のボタンを押すと、編集コマンドを備えた CommandBarFlyout が開きます。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CT2">コマンドを混在させた CommandBarFlyout</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC2">主要コマンドは常に表示され、セカンダリコマンドはオーバーフローから使えます。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC3">コマンドにバインドしたフライアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.CommandBarFlyout.CC4">コマンドと状態は ViewModel 側で実装します。</x:String>
+
+    <!-- ContentDialog -->
+    <x:String x:Key="Loc.P.ContentDialog.Title1">ContentDialog</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Sub1">確認、埋め込み型のレビュー、非同期の検証に使えるモーダルダイアログ。XamlRoot は不要です。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CT1">ポップアップの ContentDialog</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC1">現在のウィンドウの上に、従来型のモーダルダイアログを表示します。Enter で既定のボタン、Esc で閉じます。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CT2">その場に表示する ContentDialog</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC2">この例ではダイアログをホスト領域の中に留め、埋め込み型のレビュー体験を確認します。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CT3">遅延バリデーション</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC3">主要ボタンの Deferral を使うと、閉じる前に非同期処理を実行できます。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC4">その場に置く ContentDialog をマークアップで直接宣言します。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.CC5">ダイアログのコマンドは ViewModel に置き、ポップアップの生成はダイアログサービスの裏に隠します。</x:String>
+
+    <!-- ContextMenu -->
+    <x:String x:Key="Loc.P.ContextMenu.Title1">ContextMenu</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Sub1">右クリックした位置に開くコマンドメニュー。ContextMenuService を使って任意の要素に付けられます。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CT1">基本の ContextMenu</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC1">下の領域を右クリックするとコンテキストメニューが開きます。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CT2">サブメニュー付きの ContextMenu</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC2">コンテキストメニューには入れ子のサブメニューを持たせられます。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC3">右クリックして操作を選ぶと、選んだ操作が表示されます。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC4">ContextMenuService で ContextMenu を要素に付ける宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.CC5">コードで ContextMenu を組み立て、MenuItem のクリックハンドラーを接続します。</x:String>
+
+    <!-- CssLayout -->
+    <x:String x:Key="Loc.P.CssLayout.Title1">CSS レイアウト</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Sub1">パーセンテージ、aspect-ratio、box-sizing、position: absolute はフレームワーク自身のレイアウトパスが処理します。すべてのパネルが対応し、独自パネルも 3 行で参加できます。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT1">パーセンテージは解決されるもので、固定値にはならない</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC1">水平方向のパーセンテージは包含ブロックの幅、垂直方向は高さを基準に解決されます。つまりその軸が確定している必要があります。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT2">パーセンテージの幅と高さ</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC2">4 辺すべてがパーセンテージを受け付けます。CSS の規定どおり、上下の辺も含めてすべて包含ブロックの幅を基準に解決されます。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT3">パーセンテージのマージンとパディング</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC3">min-width / max-width / min-height / max-height もパーセンテージを取り、望ましいサイズが決まったあとにクランプします。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT4">パーセンテージの最小・最大境界</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC4">片方の軸だけ指定すれば、比率がもう一方を導きます。下のタイルはいずれも幅しか設定していません。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT5">aspect-ratio</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC5">どちらのタイルも width: 200px に 20px のパディングと 4px のボーダーを指定しています。border-box（フレームワークの既定）は装飾を内側に収め、content-box は外側に足すため、2 つ目は実際に幅が広くなります。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT6">box-sizing</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC6">絶対配置された要素はパネルのフローから完全に外れます。フローにもパネルの希望サイズにも寄与せず、inset プロパティが位置を決めます。下のホストはごく普通の StackPanel で、流れる項目は固定された要素を無視します。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT7">position: absolute</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC7">2 本のバーは同じ幅 420 のブロック内にあり、どちらも width: 50% を指定しています。2 本目はマークアップで Width も設定しており、それはローカル値です。ローカル値はすべての CSS レイヤーより優先されます。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CT8">明示したサイズが優先される</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC8">上記のレイアウト機能をすべてマークアップで書いたもの。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.CC9">独自パネルを絶対配置のプロトコルに参加させます。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Body1">パーセンテージは解析した瞬間に固定の Width にはなりません。包含ブロックは measure の最中にしか分からないからです。そのためパーセンテージ長はレイアウト状態として保持され、親から渡される制約に対して毎回解決されます。ウィンドウのリサイズに追従できるのはそのためであり、コードで設定したローカルの Width が CSS のパーセンテージより優先されるのも同じ理由です。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Cap1">StackPanel は積み上げ方向に無限の制約を子へ渡すため、その方向のパーセンテージには基準がなく、0 に潰れる代わりに auto へフォールバックします。Canvas も、横方向に積むパネル内の水平パーセンテージも同様です。</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Cap2">StackPanel、WrapPanel、DockPanel、Grid、Canvas はすべて対応済みです。独自パネルはループ内で絶対配置の子をスキップし（if (IsCssAbsolute(child)) continue;）、MeasureCssAbsoluteChildren と ArrangeCssAbsoluteChildren の 2 つのヘルパーを呼ぶだけで参加できます。position: absolute を使わない場合、ピクセル指定の left/top は従来どおり Canvas 添付プロパティに対応します。</x:String>
+
+    <!-- CssMappings -->
+    <x:String x:Key="Loc.P.CssMappings.Title1">カスタムプロパティ</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Sub1">マッピング表は両側とも開かれています。独自のプロパティ名や値コンバーターを登録することも、名前を既存のものへ振り向けることもできます。このページの宣言はすべて、CSS には存在しないカスタムプロパティです。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT1">マッピング表を拡張する 4 つの方法</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC1">brand-corner は border-radius の別名として登録されています。カスケードでの競合を含め、あらゆる面でその longhand と同じ振る舞いをします。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT2">デザイントークンの別名</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC2">gallery-elevation は 0 から 5 のレベルを受け取り、対応するドロップシャドウを組み立てます。CSS にもフレームワークにも存在せず、30 行の登録コードだけで成り立っています。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT3">独自コンバーター付きのカスタムプロパティ</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC3">gallery-tint は任意の CSS カラーを受け取り、アルファ 35% で塗り戻します。アルファは登録時のコンバーターパラメーターから来ており、Background は要素の実際の型に対して解決されます。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT4">名前でターゲットを解決する</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC4">パラメーターは宣言ではなく登録に属します。gallery-tint と gallery-tint-strong は同じコンバーターインスタンスを 2 回登録したもので、違いは登録時に渡したアルファだけです。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT5">1 つのコンバーター、2 つの登録</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC5">マルチプロパティコンバーターは要素を受け取り、代入のリストを返します。gallery-square は 1 つの長さから Width と Height の両方を書き込みます。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT6">1 つの宣言で複数のプロパティ</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC6">CSS にキーワードが無い名前は、ケバブケースから変換して要素自身のプロパティへフォールバックします。登録は不要で、horizontal-content-alignment は HorizontalContentAlignment に、is-tab-stop は IsTabStop に届きます。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT7">ケバブケースのチャンネル — すべての依存関係プロパティが無料で使える</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC7">パネルは TryApplyCssPropertyCore をオーバーライドして CSS の概念を引き受け、自身のプロパティへ写せます。StackPanel は flex-direction でまさにそれを行い、本来知らないはずの flexbox キーワードに反応します。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CT8">パネル自身がプロパティを横取りできる</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC8">カスタムプロパティは組み込みのものとまったく同じように書けます。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.CC9">このページを支える登録コードをそのまま掲載します。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Body1">CssMappings.RegisterAlias は名前を別の名前に向けます。RegisterProperty は名前を固定の依存関係プロパティに束ねるか、要素の型ごとに名前で解決するか、複数プロパティへ一度に代入できるマルチプロパティコンバーターに丸ごと委ねます。値変換はインターフェイス形式で、ICssValueConverter は IValueConverter を手本にしつつ CSS 向けに絞ってあります。入力は常に宣言テキスト、変換は一方向、カルチャは常にインバリアントです。あとから登録したものが勝ち（組み込みや未対応のプレースホルダーにも優先します）、解析済みのスタイルシートも新しい登録を自動的に取り込みます。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap1">コンバーターが null を返すとその宣言だけが破棄され、ブロック内の残りは適用されます。例外ではなく CSS のエラーモデルです。既定では同じ宣言テキストにつき 1 回だけ変換し、その結果をマッチしたすべての要素で共有するため、凍結済みオブジェクトを返してください。cacheByValue: false を渡せば、適用のたびに変換します。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap2">CssValueParsing はエンジン自身の色と長さの解析をカスタムコンバーターに公開します。そのため手書きのプロパティも組み込みとまったく同じ構文を理解します。末尾アルファ付きの 16 進、CSS の名前付き色、新旧どちらの記法の rgb()/hsl() も扱えます。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap3">コンバーターはターゲットプロパティの型と、常にインバリアントなカルチャも受け取ります。スタイルシートのテキストはカルチャに依存しないソースコードであり、キャッシュされた変換結果はプロセス全体で共有されるため、たまたまコンパイルしたスレッドに左右されてはなりません。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap4">値は XAML と同じコンバーターのスタックを通るため、列挙型・真偽値・型コンバーターを持つ任意の型が扱えます。フレームワークが実現できない実在の CSS プロパティは、明示的に「未対応」として登録されるので、このチャンネルへ紛れ込んで同名プロパティを誤って狙うことはありません。</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Cap5">オーバーライドは渡されたセッター経由で書き込むため、値は CSS レイヤーに入り、ルールがマッチしなくなると自動的に消えます。同じフックは未登録のプロパティ名に対する最後の受け皿でもあり、独自パネルが任意のキーを自分で消費できます。</x:String>
+
+    <!-- CssOutline -->
+    <x:String x:Key="Loc.P.CssOutline.Title1">アウトライン</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Sub1">要素の境界の外側に描かれ、レイアウト領域を取らないリングです。フレームワークの第一級機能で、XAML からもコードからも使える 4 つの依存関係プロパティを持ち、CSS の outline 系プロパティがそのまま対応します。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT1">なぜボーダーではだめなのか</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC1">outline-style は none / solid / dashed / dotted を取ります。ショートハンドでは 3 つの要素を任意の順に書けます。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT2">太さ・色・スタイル</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC2">正の値はリングを要素から遠ざけ、負の値は内側へ引き込みます。いずれも要素のサイズは変えません。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT3">outline-offset</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC3">角丸の要素には角丸のアウトラインが付き、オフセットぶん拡大されて曲線が同心に保たれます。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT4">リングは角の丸みに追従する</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC4">どちらの行にも同じタイルが 3 つ並んでいます。上の行は中央のタイルにアウトラインを、下の行は同じ太さのボーダーを足しています。行のずれ方に注目してください。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT5">アウトラインはレイアウトを消費しないが、ボーダーは消費する</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC5">まずボタンをクリックし、次に Tab を押してみてください。:focus-visible はキーボードフォーカスにのみ一致するため、リングはキーボード操作のときだけ現れ、マウス操作の邪魔をしません。これで必要なのは CSS 2 行だけです。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT6">本来の用途であるフォーカスリング</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC6">4 つのプロパティは FrameworkElement 上にあるので、バインドもアニメーションも可能で、スタイルやトリガーにも普通に参加します。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CT7">CSS を一切使わずに</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC7">2 つのチャンネル、すなわち CSS のショートハンドと、プロパティを直接指定する方法。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.CC8">コードから制御するバリデーション用の光輪。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Body1">ボーダーはボックスの一部なので、太くすると周囲がすべて再レイアウトされます。アウトラインは要素の描画後に境界の外側へ描かれ、measure にも arrange にも一切関与しません。だからこそフォーカスリングやバリデーションの光輪、選択マーカーに最適で、状態が現れた瞬間にレイアウトがずれることがありません。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Cap1">リングは要素自身のエフェクトのあと、境界の外側に描かれるため、親の角丸でクリップされることも、要素に掛けたエフェクトでぼけることもありません。</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Cap2">OutlineStyle の既定は Solid なので、ブラシと太さを設定するだけでリングが見えます。一方 CSS のショートハンドは常に 3 要素すべてをリセットするため、outline: 2px red はスタイルを指定するまで見えません（ブラウザーと同じ規則です）。outline: none はすべてを解除します。</x:String>
+
+    <!-- CssSelectors -->
+    <x:String x:Key="Loc.P.CssSelectors.Title1">セレクターとカスケード</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Sub1">型・クラス・id・全称セレクターに、子孫と子の結合子、動的擬似クラス、そしてどの宣言が勝つかを決めるカスケード規則。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT1">セレクターの種類</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC1">型セレクターは派生型にも一致するため、Control はすべての Button を捉えます。id セレクターは x:Name に一致します。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT2">子孫結合子と子結合子</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC2">A B は A の下にある任意の深さの B に一致し、A &gt; B は直接の子だけに一致します。どちらも論理ツリーをたどります。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT3">動的擬似クラス</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC3">下のコントロールにホバーし、押し、Tab で移動してみてください。ここでの見た目の変化はすべて擬似クラスのルールによるもので、トリガーではありません。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT4">詳細度とドキュメント順</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC4">下の各 Border は複数のルールに同時に一致します。勝者は標準の CSS カスケード、すなわちスコープ → 詳細度 → ドキュメント順で決まります。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT5">!important</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC5">important 付きの宣言は、より詳細度の高い通常の宣言からも守られます。Web とまったく同じです。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT6">CSS はプロパティシステムのどこに位置するか</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC6">CSS の値は 2 つの専用レイヤーに置かれます。テーマ・暗黙・明示のいずれのスタイルセッターも上書きしますが、自分で設定したローカル値を超えることは決してありません。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT7">擬似クラス切り替え時のトランジション</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC7">transition を宣言すると、状態が変わるたびにアニメーションします。2 つのペインにホバーして見比べてください。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CT8">テンプレートのパーツはページ CSS から見えない</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC8">コントロールテンプレートが生成した要素はページレベルのセレクターに一致せず、祖先の探索でも読み飛ばされます。そのため Button &gt; TextBlock は、見た目上その間にテンプレート要素があってもボタンのコンテンツに届きます。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC9">上記のセレクターのデモをマークアップで書いたもの。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.CC10">スタイルシート、クラス、そしてカスケードの結果を読み戻す方法。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap1">兄弟結合子（~ と +）、属性セレクター、擬似要素、:not() のような関数形式の擬似クラスは未対応です。これらを使ったルールは黙って誤マッチさせるのではなく、診断を出して破棄します。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap3">ローカル値  &gt;  テンプレートトリガー  &gt;  CSS :state の勝者  &gt;  スタイルトリガー  &gt;  テンプレートトリガー  &gt;  CSS 通常の勝者  &gt;  スタイルセッター  &gt;  既定値</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap4">要素ごとに共有の継続時間とイージングが 1 組だけ使われます。プロパティ単位の遅延は診断を出したうえで無視されます。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Cap5">この規則がなければ、ボタン自身のテンプレート装飾までスタイルの対象になり、ページが型セレクターを 1 つ書いた瞬間にあらゆるテーマが壊れます。自分で書いたコンテンツは、DataTemplate の出力も含めて引き続き完全にマッチ対象です。</x:String>
+
+    <!-- CssStyling -->
+    <x:String x:Key="Loc.P.CssStyling.Title1">CSS スタイリング</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Sub1">本物の CSS であらゆる要素をスタイリングします。プロパティのキーワードは 100% ネイティブな CSS で、CSS にキーワードが無いものは自動のケバブケース名でコントロールの依存関係プロパティに届きます。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT1">2 つのチャンネル、1 つのエンジン</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC1">Css.Style は宣言ブロックを受け取ります。Web の style 属性に書くのとまったく同じ形です。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT2">インライン宣言</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC2">Css.StyleSheet は、その要素のサブツリーにスコープされたルールを持ちます。マークアップ版の &lt;style&gt; ブロックだと考えてください。下の Border はどれもマークアップ上は無装飾で、すべてスタイルシートの仕事です。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT3">マークアップ内のスタイルシート</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC3">px（数値に単位が無いときの既定）、pt、in、cm、mm、q、pc に加えて、フォント相対の em と rem。下のバーはいずれも同じ見た目の幅を別々の書き方で指定しています。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT4">長さの単位</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC4">CSS の末尾アルファ方式の 16 進表記、すべての CSS 名前付き色、レガシーとモダン両方の rgb()/rgba()/hsl()/hsla()、そして transparent。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT5">色の構文</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC5">CSS とフレームワークで食い違う箇所では、エンジンは独自のキーワードを作らず変換で対応します。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT6">CSS の名前がプロパティシステムに届くまで</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC6">CSS は例外を投げません。不正な宣言は破棄され、ブロックの残りはそのまま適用されます。ブラウザーと同じエラーモデルです。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CT7">プロパティを適用できないとき</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC7">2 つのチャンネルをマークアップで宣言したもの。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.CC8">同じエンジンをコードから使う方法。アプリ全体のスタイルシートも含みます。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Body1">Css.Style は単一要素に宣言ブロックを持たせます。Css.StyleSheet（コードでは Css.StyleSheets）はサブツリーにスコープされたセレクタールールを、Application.StyleSheets はアプリ全体のルールを持ちます。どちらも同じカスケードに合流し、スタイルセッターより上、自分で設定したローカル値より下の専用レイヤーに収まります。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Cap1">em は要素自身の font-size を基準に解決されます。ただし font-size 自体に指定した場合だけは、CSS の規定どおり継承したサイズを基準にします。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Cap2">CSS の規定では #RRGGBBAA のようにアルファが末尾に来ます。XAML の #AARRGGBB とは逆なので、CSS チャンネルは XAML のコンバーターを借りず自前で色を解析します。</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Cap3">フレームワークが実現できない実在の CSS プロパティ（letter-spacing、text-shadow、animation、backdrop-filter など）は、明示的に未対応として登録されています。ケバブケースのチャンネルへ黙って流れ込むことはなく、それぞれ最も近い代替を示す一度きりの診断を出します。CssDiagnostics.LogUnresolvedProperties = false で抑制できます。</x:String>
+
+    <!-- DataGrid -->
+    <x:String x:Key="Loc.P.DataGrid.Title1">DataGrid</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Sub1">データのコレクションを、カスタマイズ可能な行と列のグリッドで表示するコントロール。並べ替え、列幅の変更、選択、列の自動生成に対応します。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC1">行をクリックすると選択され、列ヘッダーをクリックすると並べ替えられます。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC2">グリッドが標準で備える機能をひととおり紹介します。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC3">上記のグリッドの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.CC4">コードビハインドでグリッドにデータを流し込み、選択を処理します。</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body1">•  データソースから列を自動生成</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body2">•  列の並べ替え（ヘッダーをクリック）</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body3">•  列幅の変更（列の境界をドラッグ）</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body4">•  単一選択と拡張選択モード</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body5">•  行ヘッダー・列ヘッダーの表示切り替え</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body6">•  行ごとの交互背景</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body7">•  グリッド線のカスタマイズ</x:String>
+    <x:String x:Key="Loc.P.DataGrid.Body8">•  キーボード操作（上／下／Home／End）</x:String>
+
+    <!-- DatePicker -->
+    <x:String x:Key="Loc.P.DatePicker.Title1">DatePicker</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Sub1">ドロップダウンのカレンダーから日付を選ばせるコントロール。表示形式を設定でき、範囲の制限も付けられます。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CT1">基本の DatePicker</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC1">クリックでカレンダーを開いて日付を選びます。無効状態も併せて示します。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CT2">日付の書式</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC2">DatePicker はさまざまな日付表示形式に対応します。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CT3">日付範囲の制限</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC3">DatePicker には最小日付と最大日付を設定できます。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC4">日付を選ぶと、書式化された結果が表示されます。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC5">実際の場面での DatePicker の使用例。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC6">上記の日付ピッカーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.CC7">コードビハインドで日付ピッカーを作り、選択の変更を処理します。</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Cap1">生年月日</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Cap2">予約日</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Cap3">プロジェクトの期限</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val1">短い形式：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val2">長い形式：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val3">開始日：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val4">終了日：</x:String>
+    <x:String x:Key="Loc.P.DatePicker.Val5">日付を選択：</x:String>
+
+    <!-- DesignTokens -->
+    <x:String x:Key="Loc.P.DesignTokens.Eyebrow1">ファンデーション</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Eyebrow2">スペーシング / 距離</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Eyebrow3">角丸 / シルエット</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Title1">デザイントークン</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Sub1">Gallery 全体で共有している色・タイポグラフィ・スペーシング・形状・モーションの決めごと。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT1">カラーロール</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CC1">セマンティックなロールにより、テーマが変わってもコントロールの見た目が揃います。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT2">タイポグラフィ</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CC2">どちらのファミリーも同じ 4px グリッドを使います。スペーシングは距離を、角丸はシルエットを決めます。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT3">スペーシングと角丸</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT4">モーション</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.CT5">リソースのエクスポート</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Cap1">プレビューでは、2 つの要素の実際の間隔を示しています。</x:String>
+    <x:String x:Key="Loc.P.DesignTokens.Cap2">各サンプルは、同じ 60 × 36 px の面にトークンを適用しています。</x:String>
+
+    <!-- Dialogs -->
+    <x:String x:Key="Loc.P.Dialogs.Title1">ファイルダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Sub1">ネイティブのファイル・保存・フォルダー・シェル・フォント・メッセージの各ダイアログを呼び出し、それぞれの戻り値をそのまま読み取ります。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT1">ファイルを開くダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC1">ファイルの参照、複数選択、または WPF の OpenFolderDialog を利用します。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT2">ファイルを保存ダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC2">保存するファイル名と場所をユーザーに指定させます。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT3">フォルダー参照ダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC3">フォルダーを参照して選択させます。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT4">シェルダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC4">Win32 シェル API を直接使って、アイコンの選択、プログラムから開く、ファイルのプロパティを表示します。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT5">フォントダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC5">フォントファミリー、スタイル、サイズを選ばせます。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT6">メッセージダイアログ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC6">アイコン、ボタン構成、既定の操作を変えてネイティブのメッセージボックスを表示します。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CT7">ダイアログのオプション</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC7">ファイルダイアログでよく使う設定項目。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC8">上記のダイアログ用ボタンの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.CC9">ViewModel のコマンドが注入されたダイアログサービスを呼び出し、コードビハインドは空のままです。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body1">素早い茶色の狐がのろまな犬を飛び越える</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body2">これらの例では Jalium.UI.Controls.MessageBox を使うため、従来型のシステムプロンプトを試している間もサンプルウィンドウが所有者のままになります。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body3">同期が成功したあとの、ボタン 1 つの確認表示。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body4">現在のビューを離れる前に、保存処理を再試行するかキャンセルします。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body5">システムエラーアイコン付きで確認を求める、インポート失敗のブロッキング表示。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Body6">「はい」「いいえ」「キャンセル」の 3 択で、破壊的な選択にはより安全な既定を設定します。</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Cap1">直近のダイアログ操作</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Cap2">フィルター：</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Cap3">初期ディレクトリ：</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip1">情報</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip2">警告</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip3">エラー</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Chip4">確認</x:String>
+
+    <!-- DiffViewer -->
+    <x:String x:Key="Loc.P.DiffViewer.Title1">DiffViewer</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.Sub1">テキストの差分を左右並置または統合ビューで表示し、行単位・単語単位でハイライトするコントロール。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CT1">左右並置の差分</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC1">追加と削除を別々のパネルでハイライトし、2 つの文書を比較します。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CT2">統合ビュー</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC2">git diff の出力のように、差分を 1 つの統合ビューで表示します。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC3">元のテキストと変更後のテキストを編集すると、差分がリアルタイムに更新されます。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC4">上記の差分ビューアーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DiffViewer.CC5">2 つのソース文書をどちらも ViewModel のプロパティにバインドします。</x:String>
+
+    <!-- DockLayout -->
+    <x:String x:Key="Loc.P.DockLayout.Title1">DockLayout</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Sub1">VS 風のドッキングレイアウト。サイズ変更できる分割パネルとタブグループで、IDE のようなワークスペースを組み立てます。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CT1">IDE レイアウト</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC1">左サイドバー＋中央エディター＋下部パネル。スプリッターでサイズを変えられます。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CT2">3 カラムレイアウト</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC2">スター指定による等分・比例分割。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC3">上記のドッキングレイアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DockLayout.CC4">コードビハインドで分割パネルとドッキング可能なタブ項目を持つ DockLayout を組み立てます。</x:String>
+
+    <!-- DockPanel -->
+    <x:String x:Key="Loc.P.DockPanel.Title1">DockPanel</x:String>
+    <x:String x:Key="Loc.P.DockPanel.Sub1">子要素を上下左右のいずれかの辺に寄せるか、残りの領域を埋めさせるパネルです。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CT1">基本の DockPanel</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC1">要素をそれぞれ別の辺に寄せ、最後の子が中央を埋めます。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CT2">LastChildFill = false</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC2">この設定を無効にすると、最後の子は残りの領域を埋めなくなります。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CT3">アプリケーションのレイアウト</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC3">ヘッダー、サイドバー、コンテンツ領域からなる典型的なアプリレイアウト。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC4">上記の DockPanel レイアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DockPanel.CC5">DockPanel の関係はすべて XAML で宣言しています。</x:String>
+
+    <!-- DocumentViewer -->
+    <x:String x:Key="Loc.P.DocumentViewer.Title1">DocumentViewer</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Sub1">ページ分割された文書を閲覧するコントロール。ズーム、ページ移動、検索、フィットモード、印刷に対応します。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CT1">ドキュメントビューアーのデモ</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC1">ナビゲーションとズームのツールバーを備えた DocumentViewer。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CT2">テキスト検索</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC2">文書内のテキストを、一致条件を指定して検索します。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CT3">表示オプション</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC3">ページの表示モード、間隔、境界線の表示を設定します。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC4">既定設定の DocumentViewer の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.CC5">ViewModel がコマンドとバインディングでナビゲーション、ズーム、検索、表示オプションを制御します。</x:String>
+
+    <!-- DragDrop -->
+    <x:String x:Key="Loc.P.DragDrop.Title1">ドラッグ &amp; ドロップ</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Sub1">DragEnter / DragOver / DragLeave / Drop の各イベントに加え、Windows シェル拡張も紹介します。ドラッグ元では呼び出し側が指定したドラッグ画像を使い、ドロップ先ではシェルのドロップ説明を設定でき、DoShellDragDrop で他アプリへファイルを持ち出せます。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT1">基本のドラッグ &amp; ドロップ</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC1">ソースの一覧から項目をドラッグして、ターゲット領域にドロップします。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT2">DragEnter / DragLeave のフィードバック</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC2">下の各ゾーンの上を項目でドラッグすると、DragEnter と DragLeave の視覚的フィードバックが見られます。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT3">カスタムのドラッグ画像（ドラッグ元）</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC3">下の項目をドラッグしてください。要素の自動クローンではなく、呼び出し側が渡した画像がカーソルに追従します。DragDrop.DoDragDrop(source, data, effects, dragImage, offset) を使います。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT4">Windows シェルのドロップ（外部ファイル）</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC4">エクスプローラーから 1 つ以上のファイルを下の領域にドラッグしてください。Windows が独自のドラッグ画像（IDropTargetHelper）を描画し、DragOver ハンドラーが e.SetDropDescription(...) でシェルのドロップ説明を設定します。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT5">エクスプローラーへドラッグアウト（プロセス間）</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC5">下の項目をエクスプローラーのウィンドウやデスクトップへドラッグしてください。アプリ内のドラッグとは異なり、DragDrop.DoShellDragDrop は本物の OLE ドラッグを実行するため、ファイルが他のアプリへコピーされ、Windows のシステムドラッグ画像が使われます。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CT6">イベントログ</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC6">DragEnter / DragOver / DragLeave / Drop の各イベントを、発生した順に表示します。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC7">上記のドラッグ＆ドロップデモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.DragDrop.CC8">状態は ViewModel が持ち、添付ビヘイビアーがネイティブのドラッグイベントを橋渡しします。</x:String>
+
+    <!-- EditControl -->
+    <x:String x:Key="Loc.P.EditControl.Title1">EditControl</x:String>
+    <x:String x:Key="Loc.P.EditControl.Sub1">シンタックスハイライト、行番号、コード折りたたみ、キーボード操作、完全な元に戻す／やり直しを備えたコードエディターコントロール。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CT1">C# シンタックスハイライト付きコードエディター</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC1">キーボード操作、選択、クリップボード、元に戻す／やり直し、自動インデントをひととおり備えています。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC2">エディターの機能を切り替えたうえで、ドキュメントコマンドを実行しサンプルコードを読み込みます。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CT2">アーキテクチャ</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC3">コントロールが標準で認識する編集操作。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC4">エディターが内部でどう構成されているか。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC5">エディターとそのオプションを設定する宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.EditControl.CC6">ViewModel がエディターの状態とコマンドを持ち、ビヘイビアーが元に戻す・やり直し・選択・キャレット情報を橋渡しします。</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body1">{Shortcut.Copy} / {Shortcut.Cut} / {Shortcut.Paste} — コピー／切り取り／貼り付け</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body2">{Shortcut.Undo} / {Shortcut.Redo} — 元に戻す／やり直し</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body3">{Shortcut.SelectAll} — すべて選択</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body4">Home — スマートホーム（最初の非空白文字／行頭）</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body5">{Shortcut.WordModifier}+左／右 — 単語単位の移動</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body6">{Shortcut.DocumentBoundary} — 文書の先頭／末尾</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body7">Shift+矢印キー — 選択範囲を広げる</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body8">Tab / Shift+Tab — インデント／逆インデント</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body9">Enter — 自動インデント付きの改行</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body10">ダブルクリック — 単語を選択／トリプルクリック — 行を選択</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body11">ドキュメント層：ロープベースのバッファー（挿入・削除が O(log n)）、DocumentLineTree、UndoStack</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body12">ビュー層：DrawingContext による直接描画と、スパン単位のシンタックスハイライト</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body13">シンタックス：ISyntaxHighlighter インターフェイスと、複数行スパンに対応した RegexSyntaxHighlighter</x:String>
+    <x:String x:Key="Loc.P.EditControl.Body14">機能：コード折りたたみ、括弧の対応表示、検索／置換、ミニマップ</x:String>
+
+    <!-- ElementEffects -->
+    <x:String x:Key="Loc.P.ElementEffects.Title1">要素エフェクト</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.Sub1">要素単位のモダンな視覚エフェクト（OuterGlow、InnerShadow、Emboss、ColorMatrix、EffectGroup）。それぞれ 1 つの要素に適用でき、エフェクトグループとして合成もできます。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT1">OuterGlowEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC1">要素の外縁に光彩を描きます。非推奨の OuterGlowBitmapEffect の置き換えです。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT2">InnerShadowEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC2">要素の内側に影を描きます。CSS の box-shadow: inset に相当します。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT3">EmbossEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC3">面に当たる光をシミュレートして、浮き出しまたはくぼんだ見た目を作ります。非推奨の EmbossBitmapEffect の置き換えです。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT4">ColorMatrixEffect</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC4">5x4 のカラーマトリックス変換を適用します。グレースケール、セピア、明度、コントラスト、彩度、色相回転、反転のプリセットも用意されています。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CT5">EffectGroup</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC5">複数のエフェクトを 1 つのグループにまとめます。エフェクトは順に適用され、前段の出力が次段の入力になります。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC6">Effect プロパティで要素エフェクトを適用する宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ElementEffects.CC7">エフェクトのパラメーターとコマンドは ViewModel にバインドし、エフェクトオブジェクト自体は XAML の宣言のままにします。</x:String>
+
+    <!-- Expander -->
+    <x:String x:Key="Loc.P.Expander.Title1">Expander</x:String>
+    <x:String x:Key="Loc.P.Expander.Sub1">クリックできるヘッダーを持ち、展開・折りたたみでコンテンツの表示を切り替えるコントロール。副次的な情報は必要になるまで隠しておけます。</x:String>
+    <x:String x:Key="Loc.P.Expander.CT1">基本の Expander</x:String>
+    <x:String x:Key="Loc.P.Expander.CC1">ヘッダーをクリックすると、コンテンツ領域が展開・折りたたみされます。</x:String>
+    <x:String x:Key="Loc.P.Expander.CT2">複雑なコンテンツ</x:String>
+    <x:String x:Key="Loc.P.Expander.CC2">Expander にはチェックボックスやドロップダウンから本格的な入力フォームまで、あらゆるコンテンツを入れられます。</x:String>
+    <x:String x:Key="Loc.P.Expander.CT3">入れ子の Expander</x:String>
+    <x:String x:Key="Loc.P.Expander.CC3">Expander は入れ子にでき、折りたためるツリー状のセクションを作れます。</x:String>
+    <x:String x:Key="Loc.P.Expander.CC4">コードから Expander を操作します。ボタンで展開・折りたたみ・切り替えができます。</x:String>
+    <x:String x:Key="Loc.P.Expander.CC5">上記の Expander の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Expander.CC6">コードビハインドでボタンを Expander に接続し、展開・折りたたみイベントを処理します。</x:String>
+
+    <!-- FlexPanel -->
+    <x:String x:Key="Loc.P.FlexPanel.Title1">FlexPanel</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Sub1">完全な CSS フレックスボックスコンテナーです。方向、折り返し、6 種類の justify 配分、交差軸の配置、そして仕様どおりの grow/shrink/basis アルゴリズムを備えます。CSS を使わず XAML から普通のパネルとして使え、display: flex の対応先でもあります。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT1">方向</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC1">主軸は Direction に従います。reverse 系は Children の順序を変えずに配置だけを反転します。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT2">JustifyContent — 主軸方向の配分</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC2">CSS の 6 種類の配分を、同じ幅 100% のステージに同じ 3 項目を並べて比較します。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT3">AlignItems と AlignSelf — 交差軸</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC3">AlignItems は行の既定値を決め、AlignSelf は 1 項目だけそれを上書きします。既定は Stretch で、行いっぱいに伸びます。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT4">Grow・Shrink・Basis</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC4">Basis はフレックス計算前のサイズです。余った空間は Grow の比で配り、足りない分は Shrink × Basis の比で削ります。最小値・最大値に達した項目は凍結し、その分が再配分されます。仕様の resolve-flexible-lengths ループそのものです。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT5">Wrap と AlignContent</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC5">Wrap を有効にすると項目が新しい行へ折り返し、AlignContent がそれらの行を交差軸方向に配分します。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT6">Order</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC6">Order は Children コレクションに触れずに配置位置だけを変えるため、フォーカス順・ヒットテスト・データバインディングはいずれも宣言順のままです。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT7">CSS から動かす</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC7">flex 系のプロパティ一式が FlexPanel に対応します。以下ではパネルのプロパティをマークアップで 1 つも設定していません。項目の flex ショートハンドも含め、すべてスタイルシートの仕事です。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CT8">実用的なアプリバー</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC8">フレックスボックスの定番の仕事です。タイトルが余白を吸収し、アクションは右端に固定、すべて垂直方向に中央揃え。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC9">パネルのプロパティ、項目の添付プロパティ、そして対応する CSS。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.CC10">同じパネルを命令的なコードで組み立てたもの。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Cap1">伸縮させたい要素には Width ではなく Basis を使ってください。明示した Width は arrange が必ず守る強い制約なので、Grow がどれだけ空間を割り当てても Width を持つ項目はサイズを変えません。CSS で flex: 1 と書くと Basis = 0 に対応し、自動的に正しく動きます。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Cap2">Order の値が同じ項目は宣言順を保ちます。CSS の規定どおり、ソートは安定です。</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Cap3">flex-direction、flex-wrap、justify-content、align-items、align-content、gap/row-gap/column-gap、flex（および flex-grow/-shrink/-basis）、align-self、order がすべて対応します。FlexPanel 以外のパネルでは、コンテナー系プロパティがそのパネル自身の TryApplyCssPropertyCore オーバーライドに渡されます。StackPanel はそうして flex-direction を Orientation に変換しています。</x:String>
+
+    <!-- Flowchart -->
+    <x:String x:Key="Loc.P.Flowchart.Title1">Flowchart</x:String>
+    <x:String x:Key="Loc.P.Flowchart.Sub1">有向フローチャートを描画します。ノードを自動的に階層へ割り当て、図形・矢印・エッジラベルを描きます。記述は簡潔な mermaid テキストです。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CT1">判断を含むフロー</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC1">判断ノード、分岐ラベル、上から下への階層レイアウトを持つフローチャート。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CT2">ノードの形とエッジのスタイル</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC2">長方形、角丸、スタジアム、円、ひし形、六角形、円柱などに加え、実線・点線・太線のエッジを左から右へのレイアウトで示します。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC3">左側で mermaid のソースを編集すると、右側の図がリアルタイムに更新されます。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC4">フローチャートを mermaid テキストとして宣言的に記述します。</x:String>
+    <x:String x:Key="Loc.P.Flowchart.CC5">MermaidDiagram または FlowchartDiagram を使ってコードからフローチャートを描画します。</x:String>
+
+    <!-- Frame -->
+    <x:String x:Key="Loc.P.Frame.Title1">Frame</x:String>
+    <x:String x:Key="Loc.P.Frame.Sub1">ページのコンテンツをホストし、ページ間を移動するコンテナー。戻る・進むの履歴も保持します。</x:String>
+    <x:String x:Key="Loc.P.Frame.CT1">基本の Frame</x:String>
+    <x:String x:Key="Loc.P.Frame.CC1">Frame はページをホストし、その間を移動できます。</x:String>
+    <x:String x:Key="Loc.P.Frame.CT2">ナビゲーション操作</x:String>
+    <x:String x:Key="Loc.P.Frame.CC2">Frame は戻る・進むのナビゲーションに対応します。</x:String>
+    <x:String x:Key="Loc.P.Frame.CT3">Frame のプロパティ</x:String>
+    <x:String x:Key="Loc.P.Frame.CC3">Frame でよく使う設定項目。</x:String>
+    <x:String x:Key="Loc.P.Frame.CC4">Frame はさまざまなナビゲーションの場面で役立ちます。</x:String>
+    <x:String x:Key="Loc.P.Frame.CC5">Frame とそのナビゲーションボタンの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Frame.CC6">ナビゲーションの状態とコマンドは独立した ViewModel に置きます。</x:String>
+
+    <!-- GanttChart -->
+    <x:String x:Key="Loc.P.GanttChart.Title1">GanttChart</x:String>
+    <x:String x:Key="Loc.P.GanttChart.Sub1">タスクをタイムライン上に表示するチャートコントロール。依存関係、マイルストーン、進捗の追跡に対応します。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CT1">基本のガントチャート</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC1">異なる期間にまたがる複数のタスクを並べたシンプルなガントチャート。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CT2">依存関係とマイルストーン</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC2">タスク間に依存関係の矢印を引き、マイルストーンのマーカーを添えたガントチャート。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CT3">進捗の追跡</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC3">進捗インジケーターでタスクの部分的な完了度を示すガントチャート。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC4">上記のガントチャートの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.GanttChart.CC5">タスク・依存関係・マイルストーン・進捗はいずれも ViewModel のコレクションで、XAML からバインドします。</x:String>
+
+    <!-- GaugeChart -->
+    <x:String x:Key="Loc.P.GaugeChart.Title1">GaugeChart</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.Sub1">値をラジアルゲージ上に表示します。色分けされた範囲、目盛り、針のインジケーターを備えます。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CT1">基本のゲージ</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC1">値・最小・最大だけを指定したゲージチャート。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CT2">色分けされた範囲</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC2">緑・黄・赤の範囲セグメントを持つゲージ。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CT3">複数のゲージ</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC3">CPU・メモリ・ディスクの使用率を示す小さなゲージを 3 つ並べたもの。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC4">上記のゲージの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.GaugeChart.CC5">ゲージの設定と範囲は XAML で直接宣言します。</x:String>
+
+    <!-- GeographicHeatmap -->
+    <x:String x:Key="Loc.P.GeographicHeatmap.Title1">GeographicHeatmap</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.Sub1">地理的なヒートマップを描画するコントロール。ガウスぼかしを掛けた強度フィールドと、設定可能なグラデーションを使います。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC1">都市圏の周辺に熱点を散らした GeographicHeatmap。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CT1">半径と強度</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC2">Radius と Intensity の値を変えた複数のヒートマップ。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CT2">カラーグラデーション</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC3">既定・暖色・寒色の 3 種類のグラデーションを使ったヒートマップ。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC4">上記のヒートマップの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.GeographicHeatmap.CC5">熱点とグラデーションは ViewModel から供給し、XAML が各ヒートマップのバリエーションを宣言します。</x:String>
+
+    <!-- GettingStarted -->
+    <x:String x:Key="Loc.P.GettingStarted.Eyebrow1">JALIUM.UI / スタート</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Title1">はじめに</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Sub1">Jalium.UI と、きちんと分けた ViewModel の境界を使って、宣言的なアプリケーションを作る方法を学びます。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT1">インストール</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC1">アプリケーションのプロジェクトに UI パッケージを追加します。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT2">最初のウィンドウを作る</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC2">宣言的なビューが不要な場面では、ウィンドウを C# だけで組み立てられます。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT3">JALXAML を使う</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC3">ビジュアルツリーをマークアップで宣言し、専用の ViewModel にバインドします。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT4">レイアウトコントロール</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC4">パネルを使ってレイアウトの意図を表現します。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT5">データバインディング</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC5">ViewModel から監視可能なプロパティとコマンドを公開します。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CT6">CSS でスタイリング</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.CC6">スタイルは本物の CSS でも書けます。プロパティのキーワードは 100% ネイティブな CSS で、CSS にキーワードが無いものはケバブケース名でコントロールの依存関係プロパティに届きます。</x:String>
+
+    <!-- Grid -->
+    <x:String x:Key="Loc.P.Grid.Title1">Grid</x:String>
+    <x:String x:Key="Loc.P.Grid.Sub1">子要素を行と列に配置する柔軟なレイアウトパネル。固定・自動・スター指定のサイズに加え、行と列のスパンにも対応します。</x:String>
+    <x:String x:Key="Loc.P.Grid.CT1">基本の Grid レイアウト</x:String>
+    <x:String x:Key="Loc.P.Grid.CC1">3×3 のグリッド。色分けされた各セルに行・列のインデックスを表示しています。</x:String>
+    <x:String x:Key="Loc.P.Grid.CT2">Grid の機能</x:String>
+    <x:String x:Key="Loc.P.Grid.CC2">Grid コントロールの主な機能。サイズ指定の組み合わせ、行スパン、列スパンです。</x:String>
+    <x:String x:Key="Loc.P.Grid.CC3">アプリ風のグリッドレイアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Grid.CC4">同じグリッドレイアウトをコードビハインドで動的に組み立てます。</x:String>
+    <x:String x:Key="Loc.P.Grid.Cap1">このセクションでは実際の RowDefinitions、ColumnDefinitions、RowSpan、ColumnSpan を使っています。</x:String>
+
+    <!-- GroupBox -->
+    <x:String x:Key="Loc.P.GroupBox.Title1">GroupBox</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Sub1">関連するコントロールを見出し付きの枠でまとめるコンテナー。フォームや設定画面に明確な視覚的構造を与えます。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC1">同じ行に並べた 2 つの GroupBox が、それぞれ別のフィールド群を囲んでいます。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC2">GroupBox コンテナーが提供するもの。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC3">上記のグループ化されたフォームの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.CC4">コードビハインドで設定用の GroupBox とそのフィールドを組み立てます。</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body1">• 関連するコントロールを視覚的にグループ化</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body2">• 見出しテキストをカスタマイズ可能</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body3">• 見出しには任意のコンテンツを配置可能</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Body4">• コンテンツを囲むスタイル付きの枠線</x:String>
+
+    <!-- Heatmap -->
+    <x:String x:Key="Loc.P.Heatmap.Title1">Heatmap</x:String>
+    <x:String x:Key="Loc.P.Heatmap.Sub1">2 次元の数値行列を色分けされたグリッドとして表示します。ラベルとカラースケールバーも付けられます。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC1">既定の BlueToRed カラースケールを使った 10×10 のヒートマップ。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CT1">カラースケール</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC2">同じデータを Viridis と Grayscale のカラースケールで描画したもの。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CT2">セルの値</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC3">ShowCellValues を有効にしたヒートマップ。各セル内に数値を表示します。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC4">軸ラベルとセルの値を備えたヒートマップの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Heatmap.CC5">ViewModel が行列とラベルを持ち、XAML がヒートマップの描画設定を担います。</x:String>
+
+    <!-- HexEditor -->
+    <x:String x:Key="Loc.P.HexEditor.Title1">HexEditor</x:String>
+    <x:String x:Key="Loc.P.HexEditor.Sub1">バイナリデータを 16 進形式で表示・編集するコントロール。オフセット、16 進、ASCII の 3 列を備えます。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CT1">基本のヘックスエディター</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC1">オフセット・16 進・ASCII の 3 列でバイナリデータを表示・編集します。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CT2">設定オプション</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC2">下のコントロールで列の表示を切り替え、1 行あたりのバイト数を調整します。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC3">変更せずにバイナリデータを確認するための、読み取り専用のヘックスビューアー。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC4">上記のヘックスエディターの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.HexEditor.CC5">バイナリデータとエディターの設定は ViewModel からバインドします。</x:String>
+
+    <!-- HyperlinkButton -->
+    <x:String x:Key="Loc.P.HyperlinkButton.Title1">HyperlinkButton</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Sub1">ハイパーリンクのように見えるボタン。URI へ移動したりクリックハンドラーを実行したりでき、ホバー・押下・下線の状態を自動で扱います。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC1">単独のリンクは URI へ移動します。リンクは文章の中にインラインで流し込むこともできます。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC2">このコントロールが標準で備える主な機能。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC3">上記のリンクの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.CC4">コードビハインドでリンクを作成し、接続します。</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body1">• 外部 URL への移動</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body2">• ハイパーリンクのスタイル（下線・色）</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body3">• ホバーと押下の状態</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Body4">• 既定のブラウザーで開く</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Cap1">段落の中で：</x:String>
+
+    <!-- IconElement -->
+    <x:String x:Key="Loc.P.IconElement.Eyebrow1">アイコノグラフィ</x:String>
+    <x:String x:Key="Loc.P.IconElement.Title1">IconElement</x:String>
+    <x:String x:Key="Loc.P.IconElement.Sub1">拡大縮小できるベクターアイコンのファミリー（SymbolIcon、FontIcon、PathIcon）。Segoe Fluent Icons の 600 以上のグリフを、ボタン・ツールバー・アプリバーで使えます。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT1">SymbolIcon</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC1">Symbol 列挙体を使って、Segoe Fluent Icons のよく使うアイコンを表示します。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT2">FontIcon</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC2">任意のフォントのグリフを使い、サイズと色をバインディングで制御します。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT3">SymbolIcon 付きの AppBarButton</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC3">AppBarButton.Icon は生の文字列ではなく IconElement を受け取ります。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CT4">Symbol 列挙体の全ギャラリー</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC4">すべての Symbol 列挙値を ViewModel が供給し、アルファベット順にグループ化しています。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC5">SymbolIcon、FontIcon、AppBarButton アイコンの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.IconElement.CC6">専用の ViewModel が、再利用可能な XAML テンプレートにアイコンデータを供給します。</x:String>
+
+    <!-- Image -->
+    <x:String x:Key="Loc.P.Image.Title1">Image</x:String>
+    <x:String x:Key="Loc.P.Image.Sub1">ラスター画像とベクター画像を 4 種類のストレッチモードで表示します。角丸・枠線・クリッピングは ControlTemplate から提供されます。</x:String>
+    <x:String x:Key="Loc.P.Image.CT1">リモート画像</x:String>
+    <x:String x:Key="Loc.P.Image.CC1">リモート URL から Stretch.Uniform で読み込んだ画像。</x:String>
+    <x:String x:Key="Loc.P.Image.CT2">ストレッチモード</x:String>
+    <x:String x:Key="Loc.P.Image.CC2">同じ画像で 4 種類のストレッチモードを並べて比較します。</x:String>
+    <x:String x:Key="Loc.P.Image.CT3">SVG 画像</x:String>
+    <x:String x:Key="Loc.P.Image.CC3">本物のベクターグラフィックスとして描画されるベクター画像。どの解像度でも鮮明で、拡大しても劣化しません。</x:String>
+    <x:String x:Key="Loc.P.Image.CT4">SVG のストレッチモード</x:String>
+    <x:String x:Key="Loc.P.Image.CC4">SVG のベクター画像で 4 種類のストレッチモードを比較します。</x:String>
+    <x:String x:Key="Loc.P.Image.CT5">スタイルを付けた画像</x:String>
+    <x:String x:Key="Loc.P.Image.CC5">Image コントロールは ControlTemplate を通じて CornerRadius、枠線、背景ブラシに対応します。</x:String>
+    <x:String x:Key="Loc.P.Image.CC6">Image コントロールが公開する主要なプロパティ。</x:String>
+    <x:String x:Key="Loc.P.Image.CC7">画像の読み込みとスタイル設定の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Image.CC8">コードビハインドで BitmapImage / SvgImage のソースと Image コントロールを作成します。</x:String>
+    <x:String x:Key="Loc.P.Image.Body1">Source — 表示する ImageSource（BitmapImage または SvgImage）</x:String>
+    <x:String x:Key="Loc.P.Image.Body2">Stretch — 画像が領域をどう埋めるか（None / Fill / Uniform / UniformToFill）</x:String>
+    <x:String x:Key="Loc.P.Image.Body3">StretchDirection — 拡大縮小の方向を制限（UpOnly / DownOnly / Both）</x:String>
+    <x:String x:Key="Loc.P.Image.Body4">Background — 画像の背後の背景ブラシ（ControlTemplate 経由）</x:String>
+    <x:String x:Key="Loc.P.Image.Body5">CornerRadius — クリッピングを伴う角丸（ControlTemplate 経由）</x:String>
+    <x:String x:Key="Loc.P.Image.Body6">BorderBrush / BorderThickness — 画像を囲む枠線（ControlTemplate 経由）</x:String>
+    <x:String x:Key="Loc.P.Image.Cap1">元のサイズ、拡大縮小なし</x:String>
+    <x:String x:Key="Loc.P.Image.Cap2">コンテナーを埋める（歪む場合あり）</x:String>
+    <x:String x:Key="Loc.P.Image.Cap3">内側に収める（比率を維持）</x:String>
+    <x:String x:Key="Loc.P.Image.Cap4">コンテナーを埋め、はみ出しは切り取る</x:String>
+    <x:String x:Key="Loc.P.Image.Cap5">角丸</x:String>
+    <x:String x:Key="Loc.P.Image.Cap6">円形</x:String>
+    <x:String x:Key="Loc.P.Image.Cap7">枠線あり</x:String>
+
+    <!-- InfoBar -->
+    <x:String x:Key="Loc.P.InfoBar.Title1">InfoBar</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Sub1">重要でありながら操作を妨げない状態メッセージを、その場に表示する通知バー。ユーザーの作業を中断しません。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC1">重大度ごとに専用のアクセント・アイコン・色合いが付きます。最後のバーは閉じるボタンで消せます。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC2">InfoBar コントロールが標準で備える機能。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC3">上記の InfoBar の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.CC4">コードビハインドで通知を作成・表示・非表示にします。</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body1">• 4 段階の重大度（情報・成功・警告・エラー）</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body2">• タイトルとメッセージ本文</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body3">• 任意で表示できる閉じるボタン</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body4">• アクションボタンに対応</x:String>
+    <x:String x:Key="Loc.P.InfoBar.Body5">• 自由なコンテンツ領域</x:String>
+
+    <!-- InkCanvas -->
+    <x:String x:Key="Loc.P.InkCanvas.Title1">InkCanvas</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.Sub1">マウス・ペン・タッチによる手書きストロークを取り込む描画面。ストロークの色、太さ、ブラシ種別、消しゴムモードを設定できます。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT1">基本の描画</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC1">マウスで描き、インクモードと消去モードを切り替えたり、キャンバスを消去したりできます。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT2">ストロークの色</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC2">描画に使う色を選びます。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT3">ストロークの太さ</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC3">ストロークの太さを調整します。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT4">蛍光ペンモード</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC4">蛍光ペンモードを有効にすると、半透明のストロークになります。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT5">ブラシの種類</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC5">新しいストロークに使うブラシの種類を選びます。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT6">テーパーモード</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC6">新しいストロークの先細りスタイルを選びます。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CT7">ストローク情報</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC7">キャンバス上にある現在のストローク数を表示します。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC8">上記の InkCanvas デモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.InkCanvas.CC9">ViewModel が描画の状態とコマンドを公開し、添付ビヘイビアーが InkCanvas のインスタンス API を橋渡しします。</x:String>
+
+    <!-- JsonTreeViewer -->
+    <x:String x:Key="Loc.P.JsonTreeViewer.Title1">JsonTreeViewer</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.Sub1">JSON データを対話的なツリービューで表示するコントロール。検索、展開・折りたたみ、パスのコピーに対応します。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CT1">基本の JSON ツリー</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC1">型ごとに色分けされた展開可能なノードで、構造化された JSON データを表示します。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CT2">検索とフィルター</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC2">検索ボックスに入力すると、ツリー内で一致するキーと値がハイライトされます。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC3">左側に JSON テキストを入力すると、右側のツリービューがリアルタイムに更新されます。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC4">上記の JSON ツリービューアーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.CC5">JSON の内容とライブ検索の状態は ViewModel が公開します。</x:String>
+
+    <!-- Label -->
+    <x:String x:Key="Loc.P.Label.Title1">Label</x:String>
+    <x:String x:Key="Loc.P.Label.Sub1">テキストを表示し、対象の要素に関連付けられるコントロール。ラベルをクリックするかアクセスキーを押すと相手のコントロールにフォーカスが移り、フォームのアクセシビリティが向上します。</x:String>
+    <x:String x:Key="Loc.P.Label.CC1">各キャプションは入力欄と対になった Label です。ラベルをクリックすると隣のフィールドにフォーカスが移ります。</x:String>
+    <x:String x:Key="Loc.P.Label.CC2">Label コントロールがフォームにもたらすもの。</x:String>
+    <x:String x:Key="Loc.P.Label.CC3">アクセスキーで各ラベルをターゲットに結び付ける宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Label.CC4">コードビハインドでラベルを作成し、Target を設定します。</x:String>
+    <x:String x:Key="Loc.P.Label.Body1">• ラベルとターゲットコントロールを関連付け</x:String>
+    <x:String x:Key="Loc.P.Label.Body2">• ラベルをクリックしてターゲットにフォーカス</x:String>
+    <x:String x:Key="Loc.P.Label.Body3">• アクセスキー対応（Alt+キー）</x:String>
+    <x:String x:Key="Loc.P.Label.Body4">• フォームのアクセシビリティを向上</x:String>
+
+    <!-- LineChart -->
+    <x:String x:Key="Loc.P.LineChart.Title1">LineChart</x:String>
+    <x:String x:Key="Loc.P.LineChart.Sub1">データを線分でつないで表示します。スムージング、面の塗りつぶし、データポイントのマーカーも指定できます。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CT1">基本の折れ線グラフ</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC1">1 つのデータ系列を、データポイントのマーカー付き折れ線グラフとして描画します。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CT2">複数系列</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC2">同じチャートに複数のデータ系列を重ね、凡例を添えます。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CT3">スムージングと面</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC3">Catmull-Rom スプラインでスムージングし、線の下を塗りつぶします。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC4">単一系列の折れ線グラフの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.LineChart.CC5">系列は XAML で宣言し、ViewModel が持つデータコレクションにバインドします。</x:String>
+
+    <!-- LiquidGlass -->
+    <x:String x:Key="Loc.P.LiquidGlass.Title1">リキッドグラス</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.Sub1">SDF ベースの屈折、色収差、エッジハイライト、インナーシャドウを備えた Apple 風のリキッドグラス効果です。任意の Border に LiquidGlass=True を設定するだけで使えます。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT1">既定のリキッドグラス</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC1">エッジハイライトとインナーシャドウを伴う背景の屈折。BlurRadius=8、RefractionAmount=60。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT2">色収差</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC2">虹色のエッジ分散効果を加えます。ChromaticAberration が色の分離量を決めます。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT3">角丸のバリエーション</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC3">リキッドグラスは SDF の形状を、さまざまな角丸半径に合わせて変えます。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT4">色を付けたリキッドグラス</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC4">Border に Background を設定すると、ガラス効果の上に色味を重ねられます。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT5">対話的なパラメーター</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC5">ぼかし半径、屈折量、色収差をリアルタイムに調整します。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT6">リキッドグラスの融合</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC6">隣り合うリキッドグラスのパネルは、SDF のスムーズ最小値（smin）によってメタボールのように滑らかに融合します。パネル同士は同じ親 Panel の兄弟である必要があります。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CT7">スーパー楕円の形状</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC7">Shape=SuperEllipse を設定すると iOS 風のスクワークルになります。SuperEllipseN が指数を決めます（2＝円、4＝iOS、大きいほど長方形に近づく）。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC8">リキッドグラスなし（単色の塗りつぶし）</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC9">Border に LiquidGlass 系のプロパティを設定します：</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC10">Border にリキッドグラス効果を適用する宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.LiquidGlass.CC11">コードビハインドで対話用スライダーを接続し、ガラスのプロパティを設定します。</x:String>
+
+    <!-- ListBox -->
+    <x:String x:Key="Loc.P.ListBox.Title1">ListBox</x:String>
+    <x:String x:Key="Loc.P.ListBox.Sub1">スクロール可能なコンテナーで、項目のコレクションを表示し、1 つまたは複数を選択させます。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC1">項目をクリックすると選択されます。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC2">ListBox は複数の選択モード、キーボード操作、データバインディングに対応します。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC3">ListBox を作成して項目を入れる宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ListBox.CC4">コードビハインドで項目を追加し、選択を処理します。</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body1">• 単一選択モード（既定）</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body2">• 複数選択モード</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body3">• 拡張選択モード（{Shortcut.PrimaryModifier}／Shift）</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body4">• キーボード操作（上／下／Home／End）</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body5">• ItemsSource へのバインディング</x:String>
+    <x:String x:Key="Loc.P.ListBox.Body6">• ItemTemplate 対応</x:String>
+
+    <!-- ListView -->
+    <x:String x:Key="Loc.P.ListView.Title1">ListView</x:String>
+    <x:String x:Key="Loc.P.ListView.Sub1">スクロール可能なコレクションコントロール。項目を単純なリストとしても、複数列の行としても表示でき、単一・複数・拡張の各選択に対応します。</x:String>
+    <x:String x:Key="Loc.P.ListView.CT1">基本の ListView</x:String>
+    <x:String x:Key="Loc.P.ListView.CC1">縦に並んだ選択可能な項目リスト。</x:String>
+    <x:String x:Key="Loc.P.ListView.CT2">列付きの ListView</x:String>
+    <x:String x:Key="Loc.P.ListView.CC2">GridView に切り替えて、見出し付きの複数列に項目を並べます。</x:String>
+    <x:String x:Key="Loc.P.ListView.CT3">選択モード</x:String>
+    <x:String x:Key="Loc.P.ListView.CC3">単一・複数・拡張の各選択は、クリックやドラッグ時の挙動がそれぞれ異なります。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC4">項目を追加・削除して、選択状態の表示が更新される様子を確認します。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC5">リスト型のレイアウトが自然に馴染む用途。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC6">上記のリストの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ListView.CC7">独立した ViewModel の中で項目の追加・編集と選択状態の監視を行います。</x:String>
+    <x:String x:Key="Loc.P.ListView.Cap1">単一選択</x:String>
+    <x:String x:Key="Loc.P.ListView.Cap2">複数選択</x:String>
+    <x:String x:Key="Loc.P.ListView.Cap3">拡張選択</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip1">ファイルエクスプローラー</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip2">メール一覧</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip3">連絡先一覧</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip4">タスク管理</x:String>
+    <x:String x:Key="Loc.P.ListView.Chip5">ログビューアー</x:String>
+
+    <!-- MapView -->
+    <x:String x:Key="Loc.P.MapView.Title1">MapView</x:String>
+    <x:String x:Key="Loc.P.MapView.Sub1">スリッピーマップのタイルを表示する地図コントロール。マーカー、ポリライン、パン、ズームに対応します。</x:String>
+    <x:String x:Key="Loc.P.MapView.CT1">基本の地図</x:String>
+    <x:String x:Key="Loc.P.MapView.CC1">北京を中心にした MapView。既定のズームコントロールとスケールバー付きです。</x:String>
+    <x:String x:Key="Loc.P.MapView.CT2">マーカーとオーバーレイ</x:String>
+    <x:String x:Key="Loc.P.MapView.CC2">主要な地点にラベル付きマーカーを置き、それらをポリラインでつないだ MapView。</x:String>
+    <x:String x:Key="Loc.P.MapView.CT3">ズーム操作</x:String>
+    <x:String x:Key="Loc.P.MapView.CC3">対話的なズームとパンのデモ。ボタンで拡大・縮小し、地図をクリックすると移動します。</x:String>
+    <x:String x:Key="Loc.P.MapView.CC4">上記の地図の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.MapView.CC5">地図データ、ビューポートの状態、コマンドはいずれも ViewModel が公開します。</x:String>
+
+    <!-- Markdown -->
+    <x:String x:Key="Loc.P.Markdown.Title1">Markdown</x:String>
+    <x:String x:Key="Loc.P.Markdown.Sub1">見出し、リスト、表、コードフェンス、相対リンクを備えたリッチな Markdown 文書を描画します。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT1">インタラクティブなプレビュー</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC1">代表的な Markdown 文書をいくつか切り替えて、描画結果がその場で変わる様子を確認します。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC2">左側の入力ボックスに Markdown を入力すると、右側に描画結果がリアルタイムで表示されます。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT2">スタイルのカスタマイズ</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC3">このコントロールは周囲のテーマを継承することも、ネイティブのスタイルプロパティで記事風のレイアウトに仕立てることもできます。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT3">Mermaid 図</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC4">mermaid を指定したフェンスコードブロックは、ソースではなく図（フローチャートや円グラフ）として描画されます。単体のコントロールは「チャート &gt; Flowchart」ページをご覧ください。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT4">Markdown のプロパティ</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC5">ソースの指定、相対リンクの解決、ネイティブレンダラーの見た目を決める主要なプロパティ。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CT5">選択とコピー</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC6">ドラッグでテキストを選択（または {Shortcut.SelectAll}）し、{Shortcut.Copy} か右クリックメニューでコピーします。このコントロールはプレーンテキスト、Markdown ソース、リッチテキスト（HTML + RTF）の 3 形式でコピーし、翻訳などの連携用にテキストを公開します。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC7">上記の Markdown コントロールの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Markdown.CC8">テキスト、サンプル、コピーコマンド、ライブエディターの状態はいずれも ViewModel が供給します。</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body1">Text — コントロールが描画する Markdown ソース文字列</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body2">BaseUri — 生成された HTML 内の相対リンクと画像を解決</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body3">LinkForeground / CodeBackground / QuoteBorderBrush — リッチコンテンツ向けのネイティブなスタイルフック</x:String>
+    <x:String x:Key="Loc.P.Markdown.Body4">Background / Foreground / FontFamily / FontSize — ネイティブレンダラーのタイポグラフィを決定</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cap1">Markdown の入力：</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cap2">描画結果：</x:String>
+
+    <!-- MediaElement -->
+    <x:String x:Key="Loc.P.MediaElement.Title1">MediaElement</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Sub1">音声と映像を再生するコントロール。再生操作、音量、再生速度のオプションを備えます。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT1">動画プレーヤー</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC1">ローカルファイルまたは URL を読み込み、ViewModel のコマンドで再生を制御します。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT2">オーディオプレーヤー</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC2">同じ MediaElement で音声も再生し、ビヘイビアー経由で再生位置を報告します。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT3">再生の設定</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC3">2 つのプレーヤーで共有する再生オプションを調整します。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CT4">対応フォーマット</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC4">一般的な動画・音声のコンテナーとコーデックに対応します。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC5">メディアソースと再生オプションの宣言的なバインディング。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.CC6">メディアソース、オプション、再生コマンドはすべて ViewModel が持ちます。</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Body1">動画：MP4、WebM、AVI、WMV、MOV</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Body2">音声：MP3、WAV、AAC、OGG、FLAC</x:String>
+
+    <!-- Menu -->
+    <x:String x:Key="Loc.P.Menu.Title1">Menu</x:String>
+    <x:String x:Key="Loc.P.Menu.Sub1">横並びのコマンドバー。各項目からコマンドのドロップダウンが開き、キーボードショートカットや入れ子のサブメニューにも対応します。</x:String>
+    <x:String x:Key="Loc.P.Menu.CT1">基本のメニュー</x:String>
+    <x:String x:Key="Loc.P.Menu.CC1">複数の項目を持つ標準的なメニュー。</x:String>
+    <x:String x:Key="Loc.P.Menu.CT2">キーボードショートカット付きのメニュー</x:String>
+    <x:String x:Key="Loc.P.Menu.CC2">メニュー項目にはキーボードショートカットを表示できます。</x:String>
+    <x:String x:Key="Loc.P.Menu.CT3">入れ子のサブメニュー</x:String>
+    <x:String x:Key="Loc.P.Menu.CC3">メニュー項目には入れ子のサブメニューを持たせられます。</x:String>
+    <x:String x:Key="Loc.P.Menu.CC4">上記のメニューの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Menu.CC5">コードビハインドでメニューを組み立て、項目のクリックハンドラーを接続します。</x:String>
+
+    <!-- MenuBar -->
+    <x:String x:Key="Loc.P.MenuBar.Title1">MenuBar</x:String>
+    <x:String x:Key="Loc.P.MenuBar.Sub1">アプリのコマンドをトップレベルのメニューにまとめ、フライアウトのサブメニューを開く横並びのバーです。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CT1">基本の MenuBar</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC1">ファイル・編集・表示・ヘルプの 4 つのメニューを備えた標準的なメニューバー。各項目にキーボード操作のヒントが付きます。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CT2">メニュー操作のログ</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC2">メニュー項目をクリックすると、どの操作が実行されたか分かります。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC3">上記のメニューの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.MenuBar.CC4">コードビハインドでメニューを組み立て、クリックハンドラーを接続します。</x:String>
+
+    <!-- MenuFlyout -->
+    <x:String x:Key="Loc.P.MenuFlyout.Title1">MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.Sub1">コマンドやオプションの一覧を表示するフライアウトメニュー。多くはボタンのクリックで開きます。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CT1">基本の MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC1">ボタンをクリックすると、よく使う操作を並べたコンテキストメニューが開きます。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CT2">アイコン付きの MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC2">メニュー項目はラベルの横にアイコンを表示でき、素早く見分けられます。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CT3">チェック可能な項目を持つ MenuFlyout</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC3">メニュー項目のオン・オフを切り替えて、表示オプションを制御できます。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC4">宣言的なメニューを ViewModel のコマンドと状態に直接バインドします。</x:String>
+    <x:String x:Key="Loc.P.MenuFlyout.CC5">ViewModel が ICommand プロパティとチェック可能なオプションの状態を公開します。</x:String>
+
+    <!-- MiniMap -->
+    <x:String x:Key="Loc.P.MiniMap.Title1">MiniMap</x:String>
+    <x:String x:Key="Loc.P.MiniMap.Sub1">対象要素の全体像を縮小表示するミニマップコントロール。ドラッグできるビューポート矩形が付きます。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CT1">基本の MiniMap</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC1">大きなコンテンツを持つ ScrollViewer と、表示領域を追跡する MiniMap。ミニマップをクリックすると移動します。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CT2">地図との連携</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC2">MapView を対象にした MiniMap。ビューポート表示付きの地理的な全体像を提供します。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CT3">レンダーモード</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC3">None・Outline・Simplified の 3 つのレンダーモードを、複数の MiniMap で並べて示します。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC4">MiniMap を ScrollViewer や MapView の対象に結び付ける宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.MiniMap.CC5">ViewModel がコンテンツとマーカーを供給し、対象の関連付けとレンダーモードは XAML の宣言です。</x:String>
+
+    <!-- NavigationDemo -->
+    <x:String x:Key="Loc.P.NavigationDemo.Title1">ナビゲーション</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.Sub1">WPF 互換のナビゲーション。NavigationService、JournalEntry、NavigationWindow を備えます。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT1">NavigationService</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC1">ナビゲーションのメソッドを提供し、戻る・進むの履歴を保持します。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT2">JournalEntry</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC2">ナビゲーション履歴の各エントリーを表し、独自の状態も保持できます。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT3">NavigationWindow</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC3">戻る・進むボタンを含むナビゲーション用のクロームを備えたウィンドウ。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CT4">CustomContentState</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC4">ナビゲーション中にページの状態を保存・復元します。DictionaryContentState と ScrollContentState も含みます。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC5">NavigationWindow、ナビゲーションボタン、埋め込み Frame の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.CC6">コードビハインドでナビゲーションを実行し、イベントを処理し、NavigationWindow を開きます。</x:String>
+    <x:String x:Key="Loc.P.NavigationDemo.Val1">利用できる状態の種類：</x:String>
+
+    <!-- NetworkGraph -->
+    <x:String x:Key="Loc.P.NetworkGraph.Title1">NetworkGraph</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.Sub1">ノードとリンクでネットワークを可視化します。複数のレイアウトアルゴリズムと対話的なドラッグに対応します。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CT1">力指向レイアウト</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC1">ノードの位置は Fruchterman-Reingold の力指向アルゴリズムで決まります。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CT2">円形レイアウト</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC2">すべてのノードを円周上に等間隔で配置します。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CT3">インタラクティブ</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC3">ノードは対話的にドラッグできます。任意のノードをクリックしてドラッグすると位置を変えられます。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC4">上記 3 つのグラフの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.NetworkGraph.CC5">ノードとリンクのコレクションは ViewModel に置き、グラフのレイアウトは XAML の宣言です。</x:String>
+
+    <!-- NotifyIcon -->
+    <x:String x:Key="Loc.P.NotifyIcon.Title1">NotifyIcon</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.Sub1">システム通知領域（タスクトレイ）にアイコンを表示します。ツールチップ、バルーン通知、コンテキストメニュー、クリックイベントに対応します。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT1">基本のトレイアイコン</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC1">ツールチップ付きのアイコンをタスクトレイに表示・非表示します。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT2">バルーン通知</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC2">トレイアイコンから、種類の異なるアイコンでバルーン通知を表示します。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT3">イベント</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC3">NotifyIcon はクリック、ダブルクリック、バルーン通知の操作に対してイベントを発生させます。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CT4">コンテキストメニュー</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC4">トレイアイコンに ContextMenu を割り当てます。トレイアイコンを右クリックするとメニューが表示されます。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC5">View はコントロールを宣言し、ViewModel のコマンドにバインドするだけです。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.CC6">ViewModel は注入されたトレイサービスを呼び出し、バインド可能な状態だけを公開します。</x:String>
+    <x:String x:Key="Loc.P.NotifyIcon.Cap1">コンテキストメニューの内容：ウィンドウを表示、設定、バージョン情報、終了</x:String>
+
+    <!-- NumberBox -->
+    <x:String x:Key="Loc.P.NumberBox.Title1">NumberBox</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Sub1">数値入力に最適化されたテキストボックス。スピンボタン、範囲の制限、検証を内蔵しています。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC1">4 つのバリエーション。基本のフィールド、インラインのスピンボタン、最小／最大の境界、独自のステップ幅です。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC2">NumberBox が標準で備える機能。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC3">上記の NumberBox バリエーションの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.CC4">コードで NumberBox を作り、ValueChanged を処理して範囲とステップを設定します。</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body1">• 数値入力の検証</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body2">• 増減用のスピンボタン</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body3">• 最小／最大値の制約</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body4">• ステップ幅を設定可能</x:String>
+    <x:String x:Key="Loc.P.NumberBox.Body5">• 式の評価に対応</x:String>
+
+    <!-- PasswordBox -->
+    <x:String x:Key="Loc.P.PasswordBox.Title1">PasswordBox</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.Sub1">入力した文字を 1 文字ずつ伏せる安全なテキスト入力。パスワードを画面上で見えないようにします。</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CT1">基本の PasswordBox</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CC1">文字が伏せ字になる標準的なパスワード入力。</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CT2">PasswordBox の状態</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CC2">上記のパスワード入力の宣言的マークアップと、ログインフォームのレイアウト。</x:String>
+    <x:String x:Key="Loc.P.PasswordBox.CC3">コードビハインドで PasswordChanged を処理し、一致を検証してパスワード強度を評価します。</x:String>
+
+    <!-- PieChart -->
+    <x:String x:Key="Loc.P.PieChart.Title1">PieChart</x:String>
+    <x:String x:Key="Loc.P.PieChart.Sub1">データを円グラフまたはドーナツグラフとして表示します。スライスの切り出し、ラベル、引き出し線も指定できます。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CT1">基本の円グラフ</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC1">ラベル付きのスライスで比率を示す標準的な円グラフ。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CT2">ドーナツグラフ</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC2">内側を丸くくり抜いてドーナツ形にした円グラフ。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CT3">切り出したスライス</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC3">個々のスライスを中心から引き出して強調できます。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC4">上記の円グラフとドーナツグラフの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.PieChart.CC5">ViewModel がスライスのデータを供給し、XAML がチャートと系列の設定を担います。</x:String>
+
+    <!-- Popup -->
+    <x:String x:Key="Loc.P.Popup.Title1">Popup</x:String>
+    <x:String x:Key="Loc.P.Popup.Sub1">コンテキストに応じた内容をページの上に浮かべる軽量なオーバーレイ。対象要素に紐づき、必要なときだけ表示できます。</x:String>
+    <x:String x:Key="Loc.P.Popup.CT1">基本のポップアップ</x:String>
+    <x:String x:Key="Loc.P.Popup.CC1">小さなポップアップを開閉します。トリガーとなるボタンのすぐ下に開きます。</x:String>
+    <x:String x:Key="Loc.P.Popup.CT2">フォーム付きのポップアップ</x:String>
+    <x:String x:Key="Loc.P.Popup.CC2">ポップアップには複数フィールドのフォームなど、より豊かな内容も入れられます。</x:String>
+    <x:String x:Key="Loc.P.Popup.CT3">ポップアップの配置</x:String>
+    <x:String x:Key="Loc.P.Popup.CC3">ポップアップを対象の上・右・下・左のいずれかの辺に配置します。</x:String>
+    <x:String x:Key="Loc.P.Popup.CC4">上記のポップアップの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Popup.CC5">コードビハインドで各ポップアップの IsOpen プロパティを切り替えて表示・非表示にします。</x:String>
+
+    <!-- Printing -->
+    <x:String x:Key="Loc.P.Printing.Title1">印刷</x:String>
+    <x:String x:Key="Loc.P.Printing.Sub1">WPF 互換の印刷機能。PrintDialog、PrintQueue、DocumentPaginator に対応します。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT1">PrintDialog</x:String>
+    <x:String x:Key="Loc.P.Printing.CC1">プリンターと印刷オプションを選ぶ標準の印刷ダイアログ。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT2">PrintQueue</x:String>
+    <x:String x:Key="Loc.P.Printing.CC2">1 台のプリンターを表し、印刷機能の照会を提供します。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT3">PrintCapabilities</x:String>
+    <x:String x:Key="Loc.P.Printing.CC3">用紙サイズ、カラー、解像度などプリンターの機能を照会します。</x:String>
+    <x:String x:Key="Loc.P.Printing.CT4">DocumentPaginator</x:String>
+    <x:String x:Key="Loc.P.Printing.CC4">IDocumentPaginatorSource インターフェイスを使って、印刷用に文書をページ分割します。</x:String>
+    <x:String x:Key="Loc.P.Printing.CC5">上記の印刷ボタンとプリンター一覧の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Printing.CC6">コードビハインドでダイアログを表示し、プリンターを列挙して文書をページ分割します。</x:String>
+    <x:String x:Key="Loc.P.Printing.Body1">用紙サイズ：Letter、Legal、A3、A4、A5、Tabloid、Executive</x:String>
+    <x:String x:Key="Loc.P.Printing.Body2">向き：縦・横・反転</x:String>
+    <x:String x:Key="Loc.P.Printing.Body3">カラー：カラー、グレースケール、モノクロ</x:String>
+    <x:String x:Key="Loc.P.Printing.Body4">両面：片面、短辺とじ、長辺とじ</x:String>
+    <x:String x:Key="Loc.P.Printing.Body5">品質：ドラフト、標準、高、写真</x:String>
+    <x:String x:Key="Loc.P.Printing.Val1">対応する機能</x:String>
+
+    <!-- ProgressBar -->
+    <x:String x:Key="Loc.P.ProgressBar.Title1">ProgressBar</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.Sub1">処理の進行状況を可視化するコントロール。確定的なパーセンテージでも、不確定の読み込みアニメーションでも表せます。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC1">スライダーで進捗の値を変更します。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CT1">進捗のバリエーション</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC2">同じ ProgressBar を、さまざまな確定値まで満たしたもの。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CT2">不確定モード</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC3">具体的な割合を示さずに、処理が続いていることを表す進捗バー。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC4">上記のプログレスバーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ProgressBar.CC5">コードビハインドでスライダーをバーに接続し、ダウンロードの進行をアニメーションさせます。</x:String>
+
+    <!-- PropertyGrid -->
+    <x:String x:Key="Loc.P.PropertyGrid.Title1">PropertyGrid</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.Sub1">オブジェクトのプロパティを表示・編集するコントロール。カテゴリ順とアルファベット順の並べ替え、ライブ検索、説明表示に対応します。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CT1">基本のプロパティグリッド</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC1">カテゴリ表示でサンプルオブジェクトのプロパティを確認・編集します。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CT2">カテゴリ順とアルファベット順</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC2">同じオブジェクトに対して 2 つの並べ替えモードを並べて比較します。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CT3">カスタムオブジェクト</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC3">列挙型、コレクション、入れ子のオブジェクトなど、さまざまな型を含むより充実したサンプル。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC4">上記の PropertyGrid の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.CC5">コードビハインドでサンプルオブジェクトをバインドし、並べ替えモードを設定します。</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.Cap1">カテゴリ順：</x:String>
+    <x:String x:Key="Loc.P.PropertyGrid.Cap2">アルファベット順：</x:String>
+
+    <!-- QRCode -->
+    <x:String x:Key="Loc.P.QRCode.Title1">QRCode</x:String>
+    <x:String x:Key="Loc.P.QRCode.Sub1">リンク、連絡先、Wi-Fi 設定文字列など、コンパクトなテキストから QR コードを生成します。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CT1">対話型ジェネレーター</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC1">内容と誤り訂正レベルを変えて、QR コードを再生成します。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CT2">よく使うペイロード</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC2">QRCode と相性のよい実用的な形式をいくつか紹介します。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CT3">QRCode のプロパティ</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC3">エンコードと表示を制御する主要なプロパティ。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC4">上記の QR コードの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.QRCode.CC5">ViewModel のバインディングで QRCode を生成・更新します。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body1">Text — QR マトリックスにエンコードする内容</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body2">ErrorCorrectionLevel — 耐性の必要度に応じて L / M / Q / H を選択</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body3">QuietZoneModules — マトリックス周囲の余白の幅を制御</x:String>
+    <x:String x:Key="Loc.P.QRCode.Body4">Foreground / Background / Padding / CornerRadius — 表示面のスタイル設定</x:String>
+    <x:String x:Key="Loc.P.QRCode.Cap1">モバイル向けのリンクに最適です。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Cap2">設定情報をエンコードしておけば、読み取るだけで接続できます。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Cap3">コンパクトな連絡先情報を共有します。</x:String>
+    <x:String x:Key="Loc.P.QRCode.Val1">ドキュメントの URL</x:String>
+    <x:String x:Key="Loc.P.QRCode.Val2">Wi-Fi の設定</x:String>
+    <x:String x:Key="Loc.P.QRCode.Val3">連絡先カード</x:String>
+
+    <!-- RadioButton -->
+    <x:String x:Key="Loc.P.RadioButton.Title1">RadioButton</x:String>
+    <x:String x:Key="Loc.P.RadioButton.Sub1">ユーザーが選択できるが解除はできないボタン。同じグループ内の RadioButton は排他的です。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC1">好きな色を選んでください。同じグループの選択肢は排他的です。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CT1">グループ化した RadioButton</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC2">別々のグループに分けた RadioButton は、それぞれ独立して選択状態を保持します。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC3">上記の RadioButton グループの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.CC4">コードビハインドで Checked イベントを接続し、ラジオグループを組み立てます。</x:String>
+    <x:String x:Key="Loc.P.RadioButton.Val1">サイズ</x:String>
+    <x:String x:Key="Loc.P.RadioButton.Val2">速度</x:String>
+
+    <!-- RangeSlider -->
+    <x:String x:Key="Loc.P.RangeSlider.Title1">RangeSlider</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Sub1">つまみが 2 つあるスライダー。数値範囲の中から連続した部分区間を選べます。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC1">どちらのつまみをドラッグしても RangeStart / RangeEnd が変わります。トラックをクリックすると近い方のつまみが移動し、Tab キーで 2 つのつまみ間のフォーカスを切り替えます。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CT1">最小の間隔（MinimumRange）</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC2">2 つのつまみは MinimumRange より近づけません。下限と上限を必ず離しておきたい価格フィルターなどで役立ちます。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CT2">独自の範囲</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC3">IsSnapToTickEnabled が true のとき、どちらのつまみも TickFrequency にスナップします。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC4">TrackMode=&quot;Segmented&quot; はトラックを TickFrequency ごとのピル形に分割します。2 つのつまみの間のセグメントには塗りブラシが適用され、SegmentGap がその間隔を決めます。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC5">RangeSlider は負の数を含む任意の数値領域を扱えます。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC6">上記の RangeSlider の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.CC7">コードビハインドで RangeStartChanged / RangeEndChanged を接続し、RangeSlider を生成します。</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap1">MinimumRange = 10</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap2">TickFrequency = 20、スナップあり</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap3">TickFrequency = 10 と SegmentGap = 2 — セグメントが間隔を保てる限り、細かいステップでも見分けが付きます</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap4">価格フィルター（$0 — $1000）</x:String>
+    <x:String x:Key="Loc.P.RangeSlider.Cap5">快適な温度帯（-20 — 40°C）</x:String>
+
+    <!-- RazorDemo -->
+    <x:String x:Key="Loc.P.RazorDemo.Title1">Razor 構文</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.Sub1">Razor ディレクティブは C# のループ・条件分岐・式を JALXAML マークアップに直接埋め込み、読み込み時に実際のコードから UI を生成してバインドします。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC1">C# の式をその場で評価します。三項演算子、算術、メソッド呼び出しに対応します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC2">古典的な C スタイルの for ループで、要素を繰り返し生成します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC3">コレクションを反復して子要素を生成します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC4">switch 式に応じて異なる要素を描画します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC5">ローカル関数・変数・マークアップ出力を混在させた C# コードブロックを実行します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC6">マークアップの生成を try/catch で包み、安全に実行します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC7">for ループと三項式を組み合わせ、スタイル付きの四角を生成します。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC8">do-while ループで要素を生成します（必ず 1 回は実行されます）。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC9">$. 接頭辞でコントロール自身のプロパティにアクセスします。RelativeSource Self バインディングと同等です。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC10">#. 接頭辞で DataContext のモデルへ直接アクセスします。項目ごとに DataContext を持つ ItemTemplate に最適です。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC11">上記のすべての Razor ディレクティブを含む完全な JALXAML マークアップ。</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CC12">独立した ViewModel と、AOT に安全なプロパティアクセサー。</x:String>
+
+    <!-- RazorVirtualize -->
+    <x:String x:Key="Loc.P.RazorVirtualize.Sub1">仮想化リストに落ちるデータバインド済みのループです。要素はデータ全体ではなく表示中のウィンドウ分だけ生成され、スクロール中はコンテナーが再利用され、コレクションの変更にも追従します。</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CC1">ソースには本当に 10 万行あります。要素として存在するのは表示中の行だけなので、リストは即座に現れ、フルスピードでスクロールします。</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CT1">2. コレクションに追従する</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CT2">3. 数値形式</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CC2">カウントするループも仮想化されます。上限は式なので、変更すればシーケンスが再発行され、実体化はされません。</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CT3">4. どちらをいつ使うか</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.CC3">覚えておきたい規則が 2 つあります。ループ本体は項目テンプレートになるため、単一の要素でなければなりません。複数ある場合はコンテナーで包んでください。もう 1 つ、仮想化にはスクロール軸が有界である必要があります。ブロックを ScrollViewer の直下に置くか、明示的な Height を与えてください。どちらも満たさない場所では、描画は正しく行われますが仮想化の恩恵はなく、その旨がトレースに出力されます。</x:String>
+
+    <!-- RepeatButton -->
+    <x:String x:Key="Loc.P.RepeatButton.Title1">RepeatButton</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Sub1">押し続けている間、Click イベントを繰り返し発生させるボタン。ステッパー、スピナー、スクロールの連続入力に最適で、初回の遅延と繰り返し間隔を設定できます。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC1">ボタンを押し続けると操作が繰り返されます。押している間、カウントが変わり続けます。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC2">RepeatButton が通常のボタンと違う点。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC3">カウンターと音量調整デモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.CC4">コマンドによって、繰り返し実行される操作を独立した ViewModel に置きます。</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body1">• 押している間、クリックイベントを継続発生</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body2">• 初回の遅延を設定可能</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body3">• 繰り返し間隔を設定可能</x:String>
+    <x:String x:Key="Loc.P.RepeatButton.Body4">• スクロールバーやスピナーに最適</x:String>
+
+    <!-- Ribbon -->
+    <x:String x:Key="Loc.P.Ribbon.Title1">Ribbon</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Sub1">Office 風のリボンコントロール。タブ、グループ、ギャラリー、アプリケーションメニュー、クイックアクセスツールバーを備えます。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CT1">動く Ribbon</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC1">タブ・グループ・ボタンを備えた実用的なリボン。コマンドをクリックすると、下に結果が表示されます。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CT2">Ribbon のオプション</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC2">実行中にリボンの各機能を切り替えます。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CT3">Ribbon の構成要素</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC3">Ribbon コントロールは複数のサブコントロールから構成されます。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC4">リボンとそのタブ・グループを組み立てる宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.CC5">コードビハインドでリボンのプロパティを読み取り、コマンドを接続します。</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body1">Ribbon — Title、ApplicationMenu、QuickAccessToolBar を持つ最上位のコンテナー</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body2">RibbonTab — タブページ（Header、ContextualTabGroupHeader）</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body3">RibbonGroup — タブ内の論理グループ（Header、画像）</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body4">RibbonApplicationMenu — バックステージメニュー（FooterPane、AuxiliaryPane）</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body5">RibbonQuickAccessToolBar — よく使うコマンドのツールバー</x:String>
+    <x:String x:Key="Loc.P.Ribbon.Body6">RibbonGallery — カテゴリ付きのビジュアル選択ギャラリー</x:String>
+
+    <!-- RichTextBox -->
+    <x:String x:Key="Loc.P.RichTextBox.Title1">RichTextBox</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Sub1">リッチテキスト文書を編集・表示するコントロール。太字、斜体、フォント、サイズ、色などのインライン書式に対応します。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CT1">基本の RichTextBox</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC1">書式付きテキストのためのリッチテキストエディター。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CT2">書式ツールバー付きの RichTextBox</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC2">書式ツールバーと文書領域を組み合わせた、よくあるテキストエディターの構成。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC3">RichTextBox は、書式付きコンテンツを読み取り専用で表示する用途にも使えます。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC4">RichTextBox はさまざまな執筆の場面で役立ちます。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC5">上記の RichTextBox デモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.CC6">コードビハインドで FlowDocument を組み立て、選択範囲に書式を適用します。</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body1">• 文書の編集</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body2">• メールの作成</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body3">• ノートアプリ</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body4">• コンテンツ管理システム</x:String>
+    <x:String x:Key="Loc.P.RichTextBox.Body5">• レポート生成</x:String>
+
+    <!-- SankeyDiagram -->
+    <x:String x:Key="Loc.P.SankeyDiagram.Title1">SankeyDiagram</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.Sub1">ノードの大きさを量に比例させ、曲線のリンクでフローを可視化する図表コントロール。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CT1">基本のサンキー図</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC1">供給・変換・消費のノードからなるシンプルなエネルギーフロー図。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CT2">多層のフロー</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC2">4 層構成で、ウェブサイトのユーザージャーニーのファネルを示すサンキー図。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CT3">カスタマイズ</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC3">ノードの色やラベルを独自に設定し、値の表示を有効にしたサンキー図。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC4">マークアップで SankeyDiagram を宣言し、ラベル・値・見た目を設定します。</x:String>
+    <x:String x:Key="Loc.P.SankeyDiagram.CC5">ViewModel がフローのノードとリンクを持ち、XAML が表示オプションを担います。</x:String>
+
+    <!-- ScatterPlot -->
+    <x:String x:Key="Loc.P.ScatterPlot.Title1">ScatterPlot</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.Sub1">データを散布図として表示します。複数のマーカー形状、バブルのサイズ表現、トレンドラインに対応します。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CT1">基本の散布図</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC1">円形マーカーとランダムなデータ点による散布図。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CT2">バブルチャート</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC2">点の大きさを変えて第 3 のデータ次元を表す散布図。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CT3">トレンドライン</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC3">線形のトレンドラインを重ね、データの相関を示す散布図。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC4">系列、バブルのサイズ、トレンドラインを含む散布図の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ScatterPlot.CC5">ViewModel が決定的なサンプルコレクションを持ち、XAML が系列と描画オプションを宣言します。</x:String>
+
+    <!-- ScrollViewer -->
+    <x:String x:Key="Loc.P.ScrollViewer.Title1">ScrollViewer</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Sub1">コンテンツを固定のビューポートにクリップするコンテナー。スクロールバー、ホイール、タッチではみ出した部分を見渡せます。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.BounceHint">macOSでは2本指で境界を引いて離すと元に戻ります。下のボタンでもプレビューできます。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.PullEdge">上端を引く</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.ReleaseEdge">離して戻す</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.HorizontalTitle">水平方向のスクロール</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.HorizontalHint">2本指で左右にスワイプするか、下のスクロールバーをドラッグします。ボタンでも移動できます。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.ScrollLeft">左にスクロール</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.ScrollRight">右にスクロール</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CT1">垂直方向のスクロール</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC1">表示領域を超えたコンテンツは、垂直方向にスクロールできます。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CT2">スクロールバーの表示オプション</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC2">各軸でスクロールバーをいつ表示するかを制御します。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CT3">主要なプロパティ</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC3">スクロール状態を読み取り、制御するための重要な ScrollViewer プロパティ。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC4">よくある ScrollViewer の設定を示す宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.CC5">コードビハインドで ScrollViewer を組み立て、スクロールイベントに反応します。</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body1">Auto — 必要なときだけスクロールバーを表示</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body2">Visible — 常にスクロールバーを表示</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body3">Hidden — スクロールは有効、バーは非表示</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body4">Disabled — スクロールを許可しない</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body5">垂直スクロールバーを制御</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body6">水平スクロールバーを制御</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body7">現在の垂直スクロール位置</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body8">現在の水平スクロール位置</x:String>
+    <x:String x:Key="Loc.P.ScrollViewer.Body9">表示領域の大きさ</x:String>
+
+    <!-- SectionDemo -->
+    <x:String x:Key="Loc.P.SectionDemo.Title1">Section</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CT1">セクションを使ったナビゲーションレイアウト</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CC1">同じセクションを複数の場所に描画できます。</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CT2">セクションを何度も再利用する</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CC2">セクションを定義し、ナビゲーションレイアウトへ描画する宣言的な JALXAML。</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CT3">構文リファレンス</x:String>
+    <x:String x:Key="Loc.P.SectionDemo.CC3">マークアップで宣言したセクションは自動的に登録されます。ページ単位のものはアンロード時に登録を解除してください。</x:String>
+
+    <!-- Separator -->
+    <x:String x:Key="Loc.P.Separator.Title1">Separator</x:String>
+    <x:String x:Key="Loc.P.Separator.Sub1">メニューやツールバーなどのレイアウトで、内容を区切るための視覚的なセパレーターです。</x:String>
+    <x:String x:Key="Loc.P.Separator.CT1">コンテンツの間に</x:String>
+    <x:String x:Key="Loc.P.Separator.CC1">縦に積んだブロックの間に Separator を置いて、すっきりした区切り線を引きます。</x:String>
+    <x:String x:Key="Loc.P.Separator.CT2">メニュー内で</x:String>
+    <x:String x:Key="Loc.P.Separator.CC2">セパレーターはメニュー、フライアウト、コマンド一覧の中で関連するコマンドをグループ化します。</x:String>
+    <x:String x:Key="Loc.P.Separator.CC3">Separator がメニュー・ツールバー・縦積みのレイアウトにもたらすもの。</x:String>
+    <x:String x:Key="Loc.P.Separator.CC4">コンテンツの間、メニュー内、ツールバー内のセパレーターの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Separator.CC5">コードビハインドでセパレーターを作り、設定パネルを組み立てます。</x:String>
+    <x:String x:Key="Loc.P.Separator.Body1">• コンテンツを視覚的に区切る</x:String>
+    <x:String x:Key="Loc.P.Separator.Body2">• メニュー・ツールバー・ステータスバーで利用可能</x:String>
+    <x:String x:Key="Loc.P.Separator.Body3">• 水平・垂直のどちらの向きにも対応</x:String>
+
+    <!-- ShaderEffects -->
+    <x:String x:Key="Loc.P.ShaderEffects.Title1">シェーダーエフェクト</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Sub1">WPF 互換のシェーダーエフェクト。BlurEffect、DropShadowEffect、独自の ShaderEffect に対応します。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CT1">BlurEffect</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC1">ガウスぼかしを適用します。KernelType と RenderingBias の設定に対応します。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CT2">DropShadowEffect</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC2">要素の背後にドロップシャドウを付けます。色、ぼかし半径、方向、深さを設定できます。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CT3">独自の ShaderEffect</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC3">SourceHlsl に HLSL を指定し、ライブプレビューを調整します。定数は b0、キャプチャは t0 と s0 を使用します。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui1">反転の強さ</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui2">HLSL プレビュー</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui3">ぼかし半径：</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui4">影の深さ：</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui5">ぼかしプレビュー</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui6">影のプレビュー</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.Ui7">ボックスぼかし</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC4">上記のエフェクトデモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ShaderEffects.CC5">エフェクトのパラメーターは ViewModel からバインドします。</x:String>
+
+    <!-- Shapes -->
+    <x:String x:Key="Loc.P.Shapes.Title1">図形</x:String>
+    <x:String x:Key="Loc.P.Shapes.Sub1">ベクター図形のプリミティブ（長方形・楕円・線・多角形・折れ線・パス）。解像度に依存しない鮮明なグラフィックを描けます。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT1">Rectangle</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC1">基本の長方形。角丸や線も指定できます。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT2">Ellipse</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC2">楕円。幅と高さが等しいときは円になります。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT3">Line</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC3">2 点を結ぶ直線。破線パターンも指定できます。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT4">Polygon</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC4">連続した点から作られる閉じた図形。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT5">Polyline</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC5">つながった線分の連なりで、閉じません。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT6">Path</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC6">パスジオメトリのデータで記述する複雑な図形。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CT7">図形を組み合わせた例</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC7">図形をキャンバス上で重ねて、より豊かなグラフィックを構成できます。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC8">上記の図形の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Shapes.CC9">コードビハインドでプログラム的に図形を作成・設定します。</x:String>
+
+    <!-- ShellIntegration -->
+    <x:String x:Key="Loc.P.ShellIntegration.Title1">シェル統合</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Sub1">Windows シェルとの統合。WindowChrome、JumpList、タスクバー機能を扱います。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT1">WindowChrome</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC1">DWM コンポジションに対応しつつ、ウィンドウ枠の見た目をカスタマイズします。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT2">JumpList</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC2">Windows 7 以降のタスクバーのジャンプリスト。タスクと最近使った項目を扱います。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT3">TaskbarItemInfo</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC3">タスクバーのサムネイル、進捗インジケーター、オーバーレイアイコンを制御します。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CT4">SystemParameters2</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC4">システムメトリックと DWM の状態情報にアクセスします。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC5">Window に WindowChrome と TaskbarItemInfo を適用する宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.CC6">コードビハインドでウィンドウ枠、ジャンプリスト、タスクバーの進捗を設定し、システムパラメーターを読み取ります。</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body1">CaptionHeight：タイトルバーの高さ</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body2">ResizeBorderThickness：リサイズ用グリップの幅</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body3">GlassFrameThickness：DWM のガラス枠の範囲</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body4">CornerRadius：ウィンドウの角丸</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body5">UseAeroCaptionButtons：システム標準のボタンを使用</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body6">JumpTask：引数付きでアプリを起動</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body7">JumpPath：特定のファイルを開く</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Body8">カスタムカテゴリ：項目をまとめる</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Val1">JumpList の項目</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Val2">進捗</x:String>
+    <x:String x:Key="Loc.P.ShellIntegration.Val3">進捗の状態</x:String>
+
+    <!-- Slider -->
+    <x:String x:Key="Loc.P.Slider.Title1">Slider</x:String>
+    <x:String x:Key="Loc.P.Slider.Sub1">つまみをトラック上でドラッグして範囲内の値を選ぶコントロール。目盛りやスナップも指定できます。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC1">つまみをドラッグして値を変えると、表示がその場で更新されます。</x:String>
+    <x:String x:Key="Loc.P.Slider.CT1">目盛り付きの Slider</x:String>
+    <x:String x:Key="Loc.P.Slider.CC2">一定の TickFrequency で並ぶ目盛りが、トラック上の停止位置を示します。</x:String>
+    <x:String x:Key="Loc.P.Slider.CT2">独自の範囲</x:String>
+    <x:String x:Key="Loc.P.Slider.CC3">IsSnapToTickEnabled を有効にすると、ドラッグ中につまみが最も近い目盛りに吸着します。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC4">TrackMode=&quot;Segmented&quot; はトラックを目盛りの間隔ごとにピル形へ分割します。停止位置は Ticks が設定されていればそれを、なければ TickFrequency を使い、間隔は SegmentGap が決めます。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC5">バインド先のデータに合わせて、Minimum と Maximum に負の範囲を含む任意の値を設定できます。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC6">上記のスライダーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Slider.CC7">コードビハインドで ValueChanged を処理し、スライダーを組み立てます。</x:String>
+    <x:String x:Key="Loc.P.Slider.Cap1">TickFrequency = 20、スナップあり — 値は必ずセグメントの境界に収まります</x:String>
+    <x:String x:Key="Loc.P.Slider.Cap2">スナップしない場合、つまみのあるセグメントが比例して満たされます</x:String>
+    <x:String x:Key="Loc.P.Slider.Cap3">Ticks = 10, 30, 60 で不均等な停止位置を設定し、SegmentGap を広げた例</x:String>
+    <x:String x:Key="Loc.P.Slider.Val1">音量（0〜100）</x:String>
+    <x:String x:Key="Loc.P.Slider.Val2">温度（-10〜40）</x:String>
+
+    <!-- Sparkline -->
+    <x:String x:Key="Loc.P.Sparkline.Title1">Sparkline</x:String>
+    <x:String x:Key="Loc.P.Sparkline.Sub1">データ系列を単語ほどの大きさに凝縮する軽量なインラインチャート。軸・グリッド線・凡例は描きません。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CT1">折れ線のスパークライン</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC1">Line 型を使い、高値・安値のマーカーを付けた複数のスパークライン。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CT2">棒と面</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC2">棒グラフや面の塗りつぶしとして描いたスパークライン。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CT3">勝敗</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC3">勝敗のスパークラインで、プラスとマイナスの結果を示します。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC4">上記のスパークラインのバリエーションの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Sparkline.CC5">ViewModel が決定的な系列を供給し、Sparkline のバリエーションはすべて XAML で宣言します。</x:String>
+
+    <!-- SplitButton -->
+    <x:String x:Key="Loc.P.SplitButton.Title1">SplitButton</x:String>
+    <x:String x:Key="Loc.P.SplitButton.Sub1">主要な操作と、Flyout を開くドロップダウンボタンを併せ持つコントロールです。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CT1">基本の SplitButton</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC1">主要部分をクリックすると操作を実行し、ドロップダウンで対象を選びます。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CT2">Command と Flyout</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC2">Command / CommandParameter と、フライアウトの状態をプログラムから制御する方法を示します。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC3">上記の SplitButton の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.SplitButton.CC4">主要な操作とフライアウトの操作は、それぞれ独立した ViewModel のコマンドです。</x:String>
+
+    <!-- Splitter -->
+    <x:String x:Key="Loc.P.Splitter.Title1">Splitter</x:String>
+    <x:String x:Key="Loc.P.Splitter.Sub1">グリッドのセル間にある GridSplitter をドラッグして、隣り合うパネルのサイズを変えます。可変の列・行、そして IDE 風レイアウトの基本部品です。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CT1">水平方向のスプリッター</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC1">縦のバーをドラッグして、左右のパネルのサイズを変えます。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CT2">垂直方向のスプリッター</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC2">横のバーをドラッグして、上下のパネルのサイズを変えます。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CT3">マルチパネルのレイアウト</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC3">複数のスプリッターを組み合わせ、サイドバーと縦に重ねたコンテンツ・コンソールで IDE 風のワークスペースを作ります。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC4">スプリッターは、日常的なデスクトップアプリでよく見るリサイズ可能なレイアウトを支えています。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC5">上記のスプリッターレイアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Splitter.CC6">コードビハインドで GridSplitter を使い、リサイズ可能な IDE 風レイアウトを組み立てます。</x:String>
+
+    <!-- StackPanel -->
+    <x:String x:Key="Loc.P.StackPanel.Title1">StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.Sub1">子要素を 1 列に並べるパネル。上から下へ縦に積むことも、左から右へ横に並べることもできます。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CT1">縦方向の StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC1">子要素を上から下へ並べます。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CT2">横方向の StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC2">子要素を左から右へ並べます。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CT3">入れ子の StackPanel</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC3">縦と横のレイアウトを組み合わせます。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC4">上記のレイアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.StackPanel.CC5">コードビハインドで StackPanel を作り、子要素を追加します。</x:String>
+
+    <!-- StandardUICommand -->
+    <x:String x:Key="Loc.P.StandardUICommand.Title1">StandardUICommand</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.Sub1">よくある操作向けにあらかじめ定義されたコマンド。標準のラベル、アイコン、ショートカット、説明を備えます。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CT1">標準コマンド</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC1">切り取り、コピー、貼り付け、削除などの組み込みコマンド定義と、その標準プロパティ。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CT2">コマンドの実行</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC2">上のコマンドボタンをクリックすると実行され、結果が下に表示されます。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC3">標準コマンドをコマンドバーにバインドする宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.StandardUICommand.CC4">ViewModel で StandardUICommand を作成し、実行処理をアプリケーションコマンドへ委譲します。</x:String>
+
+    <!-- StatusBar -->
+    <x:String x:Key="Loc.P.StatusBar.Title1">StatusBar</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Sub1">ウィンドウ下端に沿ってステータス情報（カーソル位置、エンコード、進捗など）を表示する横並びのバー。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC1">区切り線で分けたステータス項目を、エディターウィンドウの下端に置くのと同じ要領で配置しています。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC2">StatusBar コントロールが標準で提供するもの。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC3">上記のステータスバーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.CC4">エディターのキャレット位置に合わせて、コードビハインドからステータス項目を更新します。</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body1">• 区切り線を挟んだ複数のステータス項目</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body2">• 任意のコンテンツを配置可能</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body3">• 通常はウィンドウ下端に配置</x:String>
+    <x:String x:Key="Loc.P.StatusBar.Body4">• 進捗インジケーターに対応</x:String>
+
+    <!-- SwipeControl -->
+    <x:String x:Key="Loc.P.SwipeControl.Title1">SwipeControl</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.Sub1">タッチ操作向けのコントロール。リスト項目をスワイプして、アーカイブ・削除・フラグなどの操作を表示します。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CT1">スワイプして表示</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC1">項目を左右にスワイプすると、アーカイブや削除などの操作が現れます。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CT2">スワイプ操作のログ</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC2">上のスワイプ項目を操作すると、その結果がここに表示されます。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC3">左右の操作を備えたスワイプコントロールの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.SwipeControl.CC4">テンプレート化された各行が、それぞれ独立した ViewModel のコマンドを公開します。</x:String>
+
+    <!-- SystemNotification -->
+    <x:String x:Key="Loc.P.SystemNotification.Title1">SystemNotification</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Sub1">SystemNotificationManager から OS ネイティブの通知を送ります。タイトル、本文、アクションボタン、優先度、アクティブ化コールバックに対応します。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT1">基本の通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC1">タイトルと本文だけのシンプルなシステム通知を送ります。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT2">優先度</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC2">通知は優先度を変えて送信でき、配信の挙動が変わります。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT3">アクション付きの通知</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC3">通知にアクションボタンを追加します。通知本体やアクションボタンがクリックされると Activated イベントが発生します。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT4">詳細オプション</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC4">通知の有効期限、サイレントモード、置き換え用の tag / group を設定し、既存の通知を管理します。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CT5">プラットフォームの対応状況</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC5">システム通知が使えるかどうかは、実行中のプラットフォームによります。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC6">通知はコードからのみ送れます。マークアップではトリガーとなるボタンを宣言し、マネージャーはコードビハインドから操作します。</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.CC7">マネージャーを初期化し、NotificationContent を組み立てて送信し、アクティブ化と消去を処理します。</x:String>
+
+    <!-- TabControl -->
+    <x:String x:Key="Loc.P.TabControl.Title1">TabControl</x:String>
+    <x:String x:Key="Loc.P.TabControl.Sub1">複数の項目が同じ領域を共有し、タブストリップで切り替えられるコントロールです。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CT1">基本の TabControl</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC1">複数のタブを持つシンプルな TabControl。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CT2">タブを下に配置</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC2">タブをコントロールの下側に配置します。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC3">選択中のインデックスと状態は ViewModel が持ちます。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC4">上記のタブコントロールの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TabControl.CC5">タブはマークアップで宣言し、選択状態とステータスは ViewModel にバインドします。</x:String>
+
+    <!-- Terminal -->
+    <x:String x:Key="Loc.P.Terminal.Title1">Terminal</x:String>
+    <x:String x:Key="Loc.P.Terminal.Sub1">VT100／ANSI エスケープシーケンス、シェルプロセスとの連携、キーボードと IME の入力に対応したターミナルエミュレーターコントロール。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CT1">対話型ターミナル</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC1">実用的なシェルターミナル。コマンドを入力してシステムのシェルとやり取りできます。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC2">コマンドを通じて表示状態を調整し、ターミナルの操作を実行します。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CT2">プログラムからの出力</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC3">ViewModel のリクエストで ANSI コンテンツを書き込み、ターミナルのビヘイビアーが橋渡しします。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC4">上記のターミナルの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Terminal.CC5">ターミナルの状態と操作は ViewModel が実装します。</x:String>
+
+    <!-- TextBlock -->
+    <x:String x:Key="Loc.P.TextBlock.Title1">TextBlock</x:String>
+    <x:String x:Key="Loc.P.TextBlock.Sub1">軽量な読み取り専用のテキスト表示コントロール。フォントサイズ、太さ、折り返し、省略を制御できます。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CT1">基本の TextBlock</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC1">既定のスタイルによるシンプルなテキスト表示。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CT2">フォントサイズ</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC2">キャプションからディスプレイまで、さまざまなフォントサイズのバリエーション。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CT3">テキストの折り返し</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC3">長いテキストは、使える幅を超えると自動的に次の行へ折り返します。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC4">上記のテキストサンプルの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TextBlock.CC5">コードビハインドで TextBlock を作成・更新します。</x:String>
+
+    <!-- TextBox -->
+    <x:String x:Key="Loc.P.TextBox.Title1">TextBox</x:String>
+    <x:String x:Key="Loc.P.TextBox.Sub1">プレーンテキストを入力・編集する 1 行のコントロール。初期値や無効状態、クリップボード操作、標準の編集ショートカットに対応します。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CT1">基本の TextBox</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC1">空の状態でも初期値付きでも使える標準的なテキスト入力。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CT2">TextBox の状態</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC2">{Shortcut.Copy} でコピー、{Shortcut.Cut} で切り取り、{Shortcut.Paste} で貼り付け、{Shortcut.SelectAll} ですべて選択。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CT3">クリップボード操作</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC3">TextBox が反応する標準の編集ショートカット。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC4">上記のテキスト入力の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TextBox.CC5">コードビハインドでテキストの変更を処理し、入力欄を操作します。</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body1">{Shortcut.SelectAll} — すべてのテキストを選択</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body2">{Shortcut.Copy} — 選択したテキストをコピー</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body3">{Shortcut.Cut} — 選択したテキストを切り取り</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body4">{Shortcut.Paste} — クリップボードから貼り付け</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body5">{Shortcut.Undo} — 元に戻す</x:String>
+    <x:String x:Key="Loc.P.TextBox.Body6">{Shortcut.Redo} — やり直し</x:String>
+    <x:String x:Key="Loc.P.TextBox.Cap1">コピー元の TextBox（テキストを選んでコピー）：</x:String>
+    <x:String x:Key="Loc.P.TextBox.CopySample">このテキストを選択し、{Shortcut.Copy} でコピー</x:String>
+    <x:String x:Key="Loc.P.TextBox.Cap2">貼り付け先の TextBox（{Shortcut.Paste} でここに貼り付け）：</x:String>
+
+    <!-- TextEffectPresenter -->
+    <x:String x:Key="Loc.P.TextEffectPresenter.Title1">TextEffectPresenter</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.Sub1">文字単位でアニメーションするテキスト面。歌詞、字幕、通知、遊び心のある UI に向いています。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CT1">ミューテーション API</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC1">各ボタンがプレゼンターの呼び出しを 1 回行います。新しい書記素が入り、既存のものは移動または消えていきます。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CT2">組み込みエフェクト</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC2">セルごとのアニメーションドライバーを切り替えます。各ボタンでテキストが再入場し、入場アニメーションを最初から確認できます。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CT3">UIElement.Effect との合成</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC3">セル単位のアニメーション（TextEffect）がまず CPU で走り、その後で面全体が GPU のピクセルシェーダーパス（UIElement.Effect）を通ります。BlurEffect を重ねると 2 層の合成が確認できます。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC4">デモのホスト面と、プレゼンターに接続した操作ボタンのマークアップ。</x:String>
+    <x:String x:Key="Loc.P.TextEffectPresenter.CC5">ViewModel がテキストとコマンドを持ち、添付ビヘイビアーがエフェクトの選択をプレゼンターの API に変換します。</x:String>
+
+    <!-- ThemeColors -->
+    <x:String x:Key="Loc.P.ThemeColors.Title1">テーマカラー</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Sub1">テーマディクショナリに登録されたすべての色とブラシを一覧できます。プレビューしてもアプリのテーマは切り替わりません。</x:String>
+
+    <!-- ThemeStudio -->
+    <x:String x:Key="Loc.P.ThemeStudio.Eyebrow1">テーマツール</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Title1">テーマスタジオ</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Sub1">実際に動くコンポーネント構成を見ながら、セマンティックカラーとジオメトリを調整します。各エディターは ThemeStudioViewModel と双方向バインドされています。</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.CT1">ライブ構成</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.CT2">インスペクター</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.CT3">生成されたリソース</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val1">アクセントカラー</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val2">サーフェスカラー</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val3">角丸の半径</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val4">スペーシング</x:String>
+    <x:String x:Key="Loc.P.ThemeStudio.Val5">プレビューの不透明度</x:String>
+
+    <!-- Thumb -->
+    <x:String x:Key="Loc.P.Thumb.Title1">Thumb</x:String>
+    <x:String x:Key="Loc.P.Thumb.Sub1">ドラッグ量を通知するドラッグ可能なプリミティブ。Slider や ScrollBar のつまみを支える部品です。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC1">トラック内でつまみを水平にドラッグすると、下の位置表示がリアルタイムで更新されます。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC2">Thumb プリミティブが提供するもの。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC3">上記のつまみデモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Thumb.CC4">ドラッグイベントを宣言的に ViewModel のコマンドへ対応付けます。</x:String>
+    <x:String x:Key="Loc.P.Thumb.Body1">• マウスによるドラッグ操作</x:String>
+    <x:String x:Key="Loc.P.Thumb.Body2">• DragStarted / DragDelta / DragCompleted の各イベント</x:String>
+    <x:String x:Key="Loc.P.Thumb.Body3">• スライダーのつまみの土台</x:String>
+
+    <!-- TimePicker -->
+    <x:String x:Key="Loc.P.TimePicker.Title1">TimePicker</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Sub1">時刻を選ばせるコントロール。12 時間制と 24 時間制に対応し、分の刻み幅も設定できます。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CT1">基本の TimePicker</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC1">クリックするとフライアウトが開いて時刻を選べます。2 つ目は無効状態の例です。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CT2">時刻の書式</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC2">ClockIdentifier プロパティで 12 時間制と 24 時間制を切り替えます。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CT3">分の刻み幅</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC3">MinuteIncrement プロパティで、選べる分を一定の刻みに制限します。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC4">時刻を選ぶと、書式化された結果がその場で更新されます。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC5">アラーム、会議、リマインダーなど、典型的なスケジュールの場面。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC6">上記のピッカーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TimePicker.CC7">コードビハインドで TimePicker を作成・設定します。</x:String>
+
+    <!-- TitleBar -->
+    <x:String x:Key="Loc.P.TitleBar.Title1">TitleBar</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Sub1">カスタマイズ可能なウィンドウタイトルバー。最小化・最大化・閉じるの標準キャプションボタンを備え、実際のウィンドウ操作に接続できます。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC1">表示するキャプションボタンを切り替え、最大化状態を反転させ、タイトルバーの操作でステータス行を更新します。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CT1">メモ</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC2">このデモが実際のアプリケーションウィンドウにどう対応するか。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC3">TitleBar とそのキャプションボタンの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.CC4">コードビハインドで TitleBar を作成し、キャプションのイベントを接続します。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body1">この領域は、カスタムタイトルバーの下にあるウィンドウのコンテンツを表します。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body2">実際のウィンドウでは、これらのボタンは通常、最小化・最大化・閉じる操作に接続されます。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body3">Window.TitleBarStyle = Custom を設定すると、Window が内蔵の TitleBar 統合を使うようになります。</x:String>
+    <x:String x:Key="Loc.P.TitleBar.Body4">このギャラリーページでは操作をすべてローカルに留め、デモ用の状態だけを更新します。</x:String>
+
+    <!-- ToastNotification -->
+    <x:String x:Key="Loc.P.ToastNotification.Title1">ToastNotification</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Sub1">ウィンドウの隅に短いメッセージを表示し、自動的に消える一時的なオーバーレイ通知。ユーザーの操作を妨げません。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT1">基本のトースト通知</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC1">重大度ごとにトーストを表示し、オーバーレイのホストに現れる様子を確認します。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT2">トーストのプレビュー</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC2">各重大度がトースト内でどう表示されるかの静的な例。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT3">アクション付きのトースト</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC3">トーストにはアクションボタンを付けられます。押すとハンドラーの反応が確認できます。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CT4">トーストの設定</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC4">ホストの位置と表示時間を設定し、閉じるボタンと自動消去を切り替えたうえで、カスタムのトーストを表示します。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC5">上記のトーストホストとプレビュー項目の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.CC6">トーストの状態とコマンドは ViewModel にあり、オーバーレイのホストはビヘイビアーが橋渡しします。</x:String>
+
+    <!-- ToggleSwitch -->
+    <x:String x:Key="Loc.P.ToggleSwitch.Title1">ToggleSwitch</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Sub1">オンとオフを切り替えるスイッチコントロール。ヘッダーを付けられ、オン／オフのコンテンツもカスタマイズできます。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC1">各スイッチを操作すると、オン／オフの状態が切り替わります。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC2">ToggleSwitch コントロールが標準で備える機能。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC3">上記のスイッチの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.CC4">コードビハインドで Toggled イベントを処理し、スイッチを作成します。</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body1">• オン／オフの 2 値状態</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body2">• オン／オフのコンテンツをカスタマイズ可能</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body3">• ヘッダーテキストに対応</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body4">• 状態遷移のアニメーション</x:String>
+    <x:String x:Key="Loc.P.ToggleSwitch.Body5">• タッチとマウスの操作に対応</x:String>
+
+    <!-- ToolBar -->
+    <x:String x:Key="Loc.P.ToolBar.Title1">ToolBar</x:String>
+    <x:String x:Key="Loc.P.ToolBar.Sub1">関連するコマンドやコントロールを 1 本の帯にまとめ、セパレーターで論理的なグループに分けるコンテナーです。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CT1">基本の ToolBar</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC1">ボタンを並べたツールバー。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CT2">各種コントロールを混在させた ToolBar</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC2">ツールバーにはさまざまな種類のコントロールを入れられます。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CT3">ToolBarTray</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC3">複数のツールバーをトレイにまとめて配置できます。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC4">ツールバーのボタンをクリックすると、対応する操作が確認できます。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC5">上記のツールバーの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ToolBar.CC6">コードビハインドでツールバーを作り、ボタンのクリックを接続します。</x:String>
+
+    <!-- ToolTip -->
+    <x:String x:Key="Loc.P.ToolTip.Title1">ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Sub1">ポインターをコントロールに重ねたときに補足説明を出す軽量なポップアップ。単純な文字列にも、構造を持つリッチな内容にも対応します。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT1">基本の ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC1">ボタンにマウスを重ねるとツールチップが表示されます。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT2">さまざまなコントロールでの ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC2">ツールチップはどのコントロールにも付けられます。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT3">リッチな内容の ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC3">ツールチップには複数の要素からなるリッチな内容を入れられます。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CT4">ToolTip の配置</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC4">ツールチップはさまざまな位置に配置できます。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC5">上記のツールチップの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.CC6">コードビハインドでツールチップを設定し、リッチな内容を組み立てます。</x:String>
+
+    <!-- TransitionDemo -->
+    <x:String x:Key="Loc.P.TransitionDemo.Title1">コンテンツのトランジション</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.Sub1">TransitioningContentControl は内容が変わるたびにアニメーションを再生します。トランジションのモードを選んでから内容を切り替えてみてください。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CT1">トランジションの設定</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC1">トランジションのモードを選び、内容を 1 回切り替えるか、すべてのモードを順に自動再生します。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CT2">ライブプレビュー</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC2">内容がパネル A・B・C の間で切り替わるたびに、選んだトランジションが再生されます。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC3">クリップを効かせた TransitioningContentControl の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TransitionDemo.CC4">内容の切り替え、モードの選択、自動再生はいずれも ViewModel のコマンドと状態です。</x:String>
+
+    <!-- TreeDataGrid -->
+    <x:String x:Key="Loc.P.TreeDataGrid.Title1">TreeDataGrid</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Sub1">階層データを、展開・折りたたみに対応したフラットな列ベースのグリッドで表示するコントロール。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC1">矢印をクリックして展開・折りたたみ、行をクリックして選択、列ヘッダーをクリックして並べ替えます。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC2">TreeDataGrid はツリーの階層と列ベースのデータ表示を組み合わせます。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC3">上記の TreeDataGrid デモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.CC4">ViewModel がツリーと選択状態を供給し、ビヘイビアーが展開・折りたたみと列の設定を橋渡しします。</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body1">* インデント付きの階層展開・折りたたみ</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body2">* DataGrid の列タイプ（テキスト、チェックボックス、テンプレートなど）を再利用</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body3">* 大規模データ向けの行仮想化</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body4">* 列の並べ替え（全階層に再帰的に適用）</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body5">* 列幅の変更とドラッグでの並べ替え</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body6">* 単一選択と拡張選択モード</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body7">* キーボード操作（矢印キー、左／右で展開・折りたたみ）</x:String>
+    <x:String x:Key="Loc.P.TreeDataGrid.Body8">* ChildrenPropertyPath または ChildrenSelector によるデータバインディング</x:String>
+
+    <!-- TreeMap -->
+    <x:String x:Key="Loc.P.TreeMap.Title1">TreeMap</x:String>
+    <x:String x:Key="Loc.P.TreeMap.Sub1">階層データを、値に比例した入れ子の長方形で空間を埋めるように表示します。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CT1">基本の TreeMap</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC1">時価総額に応じて市場セクターを並べたフラットなツリーマップ。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CT2">入れ子の TreeMap</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC2">親カテゴリと子項目を持つ階層的なツリーマップ。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CT3">Squarified アルゴリズム</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC3">同じデータで Squarified と SliceAndDice のレイアウトアルゴリズムを比較します。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC4">上記のツリーマップを組み立てる宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TreeMap.CC5">ViewModel が階層的な項目コレクションを供給し、アルゴリズムとレイアウトは XAML に残します。</x:String>
+
+    <!-- TreeSelector -->
+    <x:String x:Key="Loc.P.TreeSelector.Title1">TreeSelector</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.Sub1">ドロップダウン式の階層セレクター。トリガーには現在の選択（単一選択なら祖先のパス、複数選択なら削除できるチップ）が表示され、ポップアップにはチェック可能なツリーが入ります。カスケードやライブ検索にも対応します。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC1">SelectionMode = Single。トリガーには祖先のパス全体が表示され、葉ノードを選ぶとポップアップが自動的に閉じます。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC2">SelectionMode = Multiple かつ ShowCheckBoxes = True。行の選択は削除可能なチップになり、チェック状態は CheckedItems で個別に管理されます。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC3">IsSearchEnabled = True。入力すると、ツリーが一致する項目とその祖先だけに絞り込まれます。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC4">CheckCascadeMode = Cascade — 親をチェックすると子孫にも反映され、子の状態が混在する場合は親が不確定状態で表示されます。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC5">上記の TreeSelector の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TreeSelector.CC6">地域データと状態は ViewModel にあり、ビヘイビアーが API に必要な TreeSelectorItem 階層を生成し、選択とチェックのイベントを個別に通知します。</x:String>
+
+    <!-- TreeView -->
+    <x:String x:Key="Loc.P.TreeView.Title1">TreeView</x:String>
+    <x:String x:Key="Loc.P.TreeView.Sub1">データをツリー構造で表示する階層コントロール。ノードは展開・折りたたみできます。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CT1">基本の TreeView</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC1">階層的な項目を持つシンプルな TreeView。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC2">選択の変更は、ビヘイビアーを介して ViewModel に伝えられます。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CT2">あらかじめ展開したノード</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC3">一部のノードが最初から展開されている TreeView。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC4">上記の TreeView の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.TreeView.CC5">ViewModel がツリーのデータと選択状態を持ち、ビヘイビアーが TreeView のコンテナーとイベントを橋渡しします。</x:String>
+
+    <!-- UniformGrid -->
+    <x:String x:Key="Loc.P.UniformGrid.Title1">UniformGrid</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.Sub1">すべてのセルが同じ大きさになるグリッドに子要素を並べるパネル。行数と列数は自動計算も明示指定もできます。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT1">自動レイアウト</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC1">Rows と Columns がどちらも 0 のとき、グリッドが最適なレイアウトを自動的に計算します。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT2">行と列を明示的に指定</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC2">Rows と Columns を明示的に設定して、グリッドの寸法を制御します。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT3">対話的な設定</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC3">Rows、Columns、FirstColumn を変えて、レイアウトが動的に変わる様子を確認します。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CT4">FirstColumn プロパティ</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC4">FirstColumn は最初の行の項目をずらし、先頭のセルを空けます。カレンダーのようなレイアウトに便利です。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC5">上記の UniformGrid レイアウトの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.UniformGrid.CC6">コードビハインドで UniformGrid を作成・設定します。</x:String>
+
+    <!-- Viewbox -->
+    <x:String x:Key="Loc.P.Viewbox.Title1">Viewbox</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Sub1">唯一の子要素を、使える領域に合わせて拡大縮小するデコレーター。ストレッチのモードと方向を制御できます。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CT1">Uniform ストレッチ</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC1">縦横比を保ったまま、内容を等比で拡大縮小して収めます。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CT2">ストレッチモード</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC2">ストレッチモードによって、内容が Viewbox をどう埋めるかが変わります。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CT3">ストレッチの方向</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC3">内容を拡大のみ、縮小のみ、あるいは両方に対応させるかを制御します。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC4">スライダーでコンテナーのサイズを変え、Viewbox が子要素をどう再スケールするか確認します。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC5">実際のレイアウトで Viewbox が真価を発揮する場面。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC6">上記の Viewbox の例の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.Viewbox.CC7">コードビハインドで対話用スライダーを接続し、アイコンを拡大縮小します。</x:String>
+
+    <!-- WebView -->
+    <x:String x:Key="Loc.P.WebView.Title1">WebView</x:String>
+    <x:String x:Key="Loc.P.WebView.Sub1">Microsoft Edge WebView2 ランタイムを通じて、アプリに実際の Web コンテンツを埋め込みます。戻る／進むのナビゲーション、ページ状態のイベント、JavaScript の実行に対応します。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT1">ブラウザー</x:String>
+    <x:String x:Key="Loc.P.WebView.CC1">戻る・進む・更新のボタンを備え、任意の URL に移動できます。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT2">ページ情報</x:String>
+    <x:String x:Key="Loc.P.WebView.CC2">現在のドキュメントのタイトルとナビゲーション状態を表示します。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT3">JavaScript の実行</x:String>
+    <x:String x:Key="Loc.P.WebView.CC3">Web ページ内で JavaScript を実行し、結果を確認します。</x:String>
+    <x:String x:Key="Loc.P.WebView.CT4">WebView のプロパティ</x:String>
+    <x:String x:Key="Loc.P.WebView.CC4">WebView コントロールが公開する主要なプロパティ。</x:String>
+    <x:String x:Key="Loc.P.WebView.CC5">上記のブラウザーデモの宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.WebView.CC6">ナビゲーションとスクリプトの要求はコマンドで、ビヘイビアーが WebView のイベントを ViewModel の状態に変換します。</x:String>
+    <x:String x:Key="Loc.P.WebView.Body1">Source — 移動先の URI（Uri）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body2">CanGoBack / CanGoForward — ナビゲーション履歴の状態（bool、読み取り専用）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body3">ZoomFactor — ズーム倍率、0.25〜4.0（double）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body4">DefaultBackgroundColor — コンテンツ読み込み前の背景色（Color）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body5">DocumentTitle — 現在のページタイトル（string、読み取り専用）</x:String>
+    <x:String x:Key="Loc.P.WebView.Body6">CoreWebView2 — 高度な用途向けの下位 WebView2 インスタンス</x:String>
+
+    <!-- WrapPanel -->
+    <x:String x:Key="Loc.P.WrapPanel.Title1">WrapPanel</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.Sub1">子要素を順に並べ、使える領域の端に達すると次の行へ折り返すパネルです。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT1">横方向の WrapPanel</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC1">項目は左から右へ並び、いっぱいになると次の行へ折り返します。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT2">縦方向の WrapPanel</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC2">項目は上から下へ並び、いっぱいになると次の列へ折り返します。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT3">項目サイズの固定</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC3">ItemWidth と ItemHeight でサイズを揃えます。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CT4">タグクラウドの例</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC4">WrapPanel の実用的な使い方の一例。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC5">上記の WrapPanel の宣言的マークアップ。</x:String>
+    <x:String x:Key="Loc.P.WrapPanel.CC6">折り返しのレイアウトと項目はすべて XAML で宣言しています。</x:String>
+
+    <!-- XamlUICommand -->
+    <x:String x:Key="Loc.P.XamlUICommand.Title1">XamlUICommand</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.Sub1">アプリ固有の操作向けに、ラベル・アイコン・キーボードアクセラレーターを自分で指定して定義するカスタムコマンド。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CT1">カスタムの XamlUICommand</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC1">独自のラベル・アイコン・アクセラレーターを持つアプリ固有のコマンドを、ツールバーのボタンに接続しています。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CT2">コマンドの出力</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC2">コマンドボタンをクリックすると操作が実行され、直近の結果と履歴が下に表示されます。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC3">ViewModel の XamlUICommand をコマンドバーにバインドし、対応するキーボードショートカットを登録します。</x:String>
+    <x:String x:Key="Loc.P.XamlUICommand.CC4">コマンドの定義と実行は、それぞれ独立した ViewModel に置きます。</x:String>
+
+    <!-- RazorDemo -->
+    <x:String x:Key="Loc.P.RazorDemo.CT1">3. テキストの混在 — パス + リテラル</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CT2">10. ループと式の組み合わせ</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CT3">13. $.Property — 自分自身への参照</x:String>
+    <x:String x:Key="Loc.P.RazorDemo.CT4">14. #.Property — データモデルへの参照</x:String>
+
+    <!-- Canvas -->
+    <x:String x:Key="Loc.P.Canvas.Legend1">Canvas.Left — 左端からの距離</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend2">Canvas.Top — 上端からの距離</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend3">Canvas.Right — 右端からの距離</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend4">Canvas.Bottom — 下端からの距離</x:String>
+    <x:String x:Key="Loc.P.Canvas.Legend5">Panel.ZIndex — 重なり順を制御</x:String>
+
+    <!-- CssLayout -->
+    <x:String x:Key="Loc.P.CssLayout.Note1">幅 420 の固定ブロック内での幅</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Note2">高さには確定した制約が必要です</x:String>
+
+    <!-- CssMappings -->
+    <x:String x:Key="Loc.P.CssMappings.Note1">flex-direction: row を指定した StackPanel</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Note2">同じマークアップで flex-direction: column にした場合</x:String>
+
+    <!-- CssOutline -->
+    <x:String x:Key="Loc.P.CssOutline.Note1">アウトラインを付けた場合 — 隣の要素は動きません</x:String>
+    <x:String x:Key="Loc.P.CssOutline.Note2">ボーダーを付けた場合 — その後ろのすべてが押し出されます</x:String>
+
+    <!-- CssSelectors -->
+    <x:String x:Key="Loc.P.CssSelectors.Note1">* { margin: 0 0 8px 0 }  — 全称セレクターはこの裸の TextBlock にも届きます</x:String>
+
+    <!-- Frame -->
+    <x:String x:Key="Loc.P.Frame.Use1">• ウィザード形式の画面</x:String>
+    <x:String x:Key="Loc.P.Frame.Use2">• 複数ステップのフォーム</x:String>
+    <x:String x:Key="Loc.P.Frame.Use3">• ブラウザーのようなナビゲーション</x:String>
+    <x:String x:Key="Loc.P.Frame.Use4">• 埋め込みのページコンテンツ</x:String>
+    <x:String x:Key="Loc.P.Frame.Use5">• ヘルプシステムのナビゲーション</x:String>
+
+    <!-- Splitter -->
+    <x:String x:Key="Loc.P.Splitter.Use1">• IDE のレイアウト（コードエディター＋出力）</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use2">• ファイルエクスプローラー（ツリー＋詳細）</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use3">• メールクライアント（フォルダー＋一覧＋プレビュー）</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use4">• ダッシュボードのレイアウト</x:String>
+    <x:String x:Key="Loc.P.Splitter.Use5">• 設定パネル</x:String>
+
+    <!-- Viewbox -->
+    <x:String x:Key="Loc.P.Viewbox.Use1">• アイコンをさまざまなサイズに拡大縮小</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use2">• レスポンシブなレイアウトの構築</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use3">• ベクター画像をぴったり収める</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use4">• サムネイルのプレビュー</x:String>
+    <x:String x:Key="Loc.P.Viewbox.Use5">• ズーム機能</x:String>
+
+    <!-- ContentDialog -->
+    <x:String x:Key="Loc.P.ContentDialog.Demo1">テーマプリセットのプレビュー</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo2">下のインラインダイアログはウィンドウ全体を覆わず、このカードの中に留まります。周囲の文脈を保ったまま変更を確認できます。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo3">プリセット：Studio Contrast</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo4">より強い枠線、密度の高いサーフェス、やや広いモーダル用の確認領域で、フォーカスされた要素を際立たせます。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo5">このダイアログは ContentDialogPlacement.InPlace で表示されています。</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Demo6">周囲のカードをホスト面として使うため、ページに埋め込む確認や設定のフローに向いています。</x:String>
+
+    <!-- DragDrop -->
+    <x:String x:Key="Loc.P.DragDrop.Hint1">ドラッグ元</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Hint2">各ゾーンの上へドラッグしてください</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Hint3">ドラッグしてください — カスタムのドラッグ画像</x:String>
+    <x:String x:Key="Loc.P.DragDrop.Hint4">エクスプローラーへドラッグ（.txt が作られます）</x:String>
+
+    <!-- Expander -->
+    <x:String x:Key="Loc.P.Expander.Demo1">クリックして展開</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo2">展開するとこの内容が現れます。テキストや画像、他のコントロールなど何でも置けます。</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo3">最初から展開</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo4">この Expander は最初から展開されています。ヘッダーをクリックすると折りたためます。</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo5">コントロールされる Expander</x:String>
+    <x:String x:Key="Loc.P.Expander.Demo6">この Expander は上のボタンから操作できます。</x:String>
+
+    <!-- ThemeColors -->
+    <x:String x:Key="Loc.P.ThemeColors.Ui1">確認するテーマディクショナリを選びます。</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Ui2">キー名で検索</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Ui4">キー名だけコピー</x:String>
+    <x:String x:Key="Loc.P.ThemeColors.Ui5">フィルター：</x:String>
+
+    <!-- TimePicker -->
+    <x:String x:Key="Loc.P.TimePicker.Lbl1">12 時間制：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl2">24 時間制：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl3">1 分刻み：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl4">5 分刻み：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl5">15 分刻み：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl6">30 分刻み：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl7">時刻を選択：</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl8">アラームの時刻</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl9">会議の開始時刻</x:String>
+    <x:String x:Key="Loc.P.TimePicker.Lbl10">リマインダーの時刻</x:String>
+
+    <!-- ContextMenu -->
+    <x:String x:Key="Loc.P.ContextMenu.Hint1">ここを右クリック</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Hint2">ここを右クリックすると入れ子のメニューが開きます</x:String>
+
+    <!-- FlexPanel -->
+    <x:String x:Key="Loc.P.FlexPanel.Stage1">Row（既定）</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage2">SpaceBetween — 最初と最後が端に寄る</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage3">SpaceAround — 両端は半分の間隔</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage4">SpaceEvenly — すべての間隔が同じ</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage5">Stretch（既定）</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage6">Center。1 項目だけ AlignSelf で上書き</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage7">1 つの項目が余った空間をすべて取る</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage8">重み付きの分配 — 余白を 1 : 3 で分け合う</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage9">Shrink — 2 つの項目が行に収まらない幅を要求</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage10">凍結された最小値 — 左の項目は MinWidth を下回れないため、不足分をすべて右が引き受ける</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage11">行と列の間隔を付けた折り返し</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage12">WrapReverse — 行の順序が反転する</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage13">flex: 1 — 残りをすべて吸収</x:String>
+    <x:String x:Key="Loc.P.FlexPanel.Stage14">Grow 1 と Basis 0 — タイトル帯が余白をすべて取る</x:String>
+
+    <!-- GroupBox -->
+    <x:String x:Key="Loc.P.GroupBox.Demo1">個人情報</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Demo2">更新を受け取る</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Demo3">ダークモードを有効にする</x:String>
+    <x:String x:Key="Loc.P.GroupBox.Demo4">詳細オプションを表示</x:String>
+
+    <!-- TabControl -->
+    <x:String x:Key="Loc.P.TabControl.Body1">「ホーム」タブへようこそ！</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body2">ここにプロフィール情報が入ります。</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body3">アプリケーションの設定と環境設定。</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body4">ホームの内容</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body5">ドキュメントの内容</x:String>
+    <x:String x:Key="Loc.P.TabControl.Body6">ダウンロードの内容</x:String>
+
+    <!-- ToolTip -->
+    <x:String x:Key="Loc.P.ToolTip.Tip1">現在の文書を保存</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip2">既存の文書を開く</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip3">選択した項目を削除</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip4">ユーザー名を入力（3〜20 文字）</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip5">ユーザー名の入力欄</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip6">音量を調整</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip7">音量スライダー</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip8">通知を有効にする</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip9">通知アラートのオン・オフ</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip10">ホバーしてリッチなツールチップを表示</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip11">リッチな ToolTip</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip12">このツールチップは複数行のテキストを含み、</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip13">書式と構造を持っています。</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip14">ショートカット：{Shortcut.Reload}</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip15">上に表示されるツールチップ</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip16">右に表示されるツールチップ</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip17">下に表示されるツールチップ</x:String>
+    <x:String x:Key="Loc.P.ToolTip.Tip18">左に表示されるツールチップ</x:String>
+
+    <!-- CheckBox -->
+    <x:String x:Key="Loc.P.CheckBox.Demo1">利用規約に同意します</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Demo2">選択肢 2（チェック済み）</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Demo3">無効な選択肢</x:String>
+    <x:String x:Key="Loc.P.CheckBox.Demo4">3 状態のチェックボックス</x:String>
+
+    <!-- ComboBox -->
+    <x:String x:Key="Loc.P.ComboBox.Ph1">果物を選択</x:String>
+    <x:String x:Key="Loc.P.ComboBox.Ph2">色を選択</x:String>
+    <x:String x:Key="Loc.P.ComboBox.Ph3">曜日を選択</x:String>
+
+    <!-- DockLayout -->
+    <x:String x:Key="Loc.P.DockLayout.Ui1">ソリューションエクスプローラー</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui2">入力してファイル全体を検索…</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui3">エラー一覧</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui4">エラー 0、警告 0、メッセージ 0</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui5">ファイルブラウザー</x:String>
+    <x:String x:Key="Loc.P.DockLayout.Ui6">コンテンツのプレビュー領域</x:String>
+
+    <!-- GettingStarted -->
+    <x:String x:Key="Loc.P.GettingStarted.Panel1">子要素を横または縦の 1 列に並べます。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel2">子要素を行と列に配置します。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel3">明示した座標に子要素を配置します。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel4">子要素をコンテナーの各辺に寄せます。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel5">完全な CSS フレックスボックスコンテナー：grow、shrink、wrap、6 種類の justify 配分。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel6">ここにホバーしてください — ルールは親の Css.StyleSheet にある .demo:hover です。</x:String>
+    <x:String x:Key="Loc.P.GettingStarted.Panel7">インラインの Css.Style 宣言ブロックでスタイルを指定しています。</x:String>
+
+    <!-- Markdown -->
+    <x:String x:Key="Loc.P.Markdown.Cmd1">ドキュメントのサンプル</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd2">リリースノート</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd3">プレーンテキストとしてコピー</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd4">Markdown としてコピー</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd5">リッチテキストとしてコピー</x:String>
+    <x:String x:Key="Loc.P.Markdown.Cmd6">すべて選択</x:String>
+
+    <!-- MediaElement -->
+    <x:String x:Key="Loc.P.MediaElement.Ui1">動画ファイル：</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Ui2">動画ファイルのパスまたは URL を入力…</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Ui3">音声ファイル：</x:String>
+    <x:String x:Key="Loc.P.MediaElement.Ui4">音声ファイルのパスまたは URL を入力…</x:String>
+
+    <!-- TextBlock -->
+    <x:String x:Key="Loc.P.TextBlock.Demo1">これは基本的な TextBlock です</x:String>
+    <x:String x:Key="Loc.P.TextBlock.Demo2">TextBlock は読み取り専用のテキストを表示します</x:String>
+
+    <!-- ToastNotification -->
+    <x:String x:Key="Loc.P.ToastNotification.Ui1">ダウンロード完了</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui2">ファイルのダウンロードが完了しました。</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui3">アクション付きトーストを表示</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui4">閉じるボタンを表示</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui5">自動的に消える（ホバー中は停止）</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui6">カスタムのトーストを表示</x:String>
+    <x:String x:Key="Loc.P.ToastNotification.Ui7">すべて閉じる</x:String>
+
+    <!-- Canvas -->
+    <x:String x:Key="Loc.P.Canvas.Note1">Canvas は要素を絶対座標で配置できます。</x:String>
+
+    <!-- ContentDialog -->
+    <x:String x:Key="Loc.P.ContentDialog.Ui1">ダイアログを表示</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui2">フルサイズ</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui3">変更を確認</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui4">アクリル背景を有効にする</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui5">コンパクトな密度にする</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui6">アクセントの操作をタイトル領域へ移す</x:String>
+    <x:String x:Key="Loc.P.ContentDialog.Ui7">名前を検証</x:String>
+
+    <!-- ContextMenu -->
+    <x:String x:Key="Loc.P.ContextMenu.Menu1">すべて選択</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu2">並べ替え</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu3">大きいアイコン</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu4">小さいアイコン</x:String>
+    <x:String x:Key="Loc.P.ContextMenu.Menu5">操作は選択されていません</x:String>
+
+    <!-- Dialogs -->
+    <x:String x:Key="Loc.P.Dialogs.Ui1">ファイルを開く…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui2">複数のファイルを開く…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui3">フォルダーを選択…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui4">名前を付けて保存…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui5">フォルダーを参照…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui6">アイコンを選択…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui7">プログラムから開く…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui8">ファイルのプロパティ…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui9">プリンターのプロパティ…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui10">ボリュームのプロパティ…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui11">複数ファイルのプロパティ…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui12">フォントを選択…</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui13">情報を表示</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui14">再試行の流れ</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui15">エラーを表示</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui16">操作を確認</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui17">ファイルの存在を確認</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui18">最近使ったファイルに追加</x:String>
+    <x:String x:Key="Loc.P.Dialogs.Ui19">隠しファイルを表示</x:String>
+
+    <!-- DocumentViewer -->
+    <x:String x:Key="Loc.P.DocumentViewer.Ui1">幅に合わせる</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui2">ページ全体に合わせる</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui3">テキストを検索…</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui4">大文字と小文字を区別</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui5">単語単位で一致</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui6">ページ表示：</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui7">ページの枠線を表示</x:String>
+    <x:String x:Key="Loc.P.DocumentViewer.Ui8">ページの間隔：</x:String>
+
+    <!-- Expander -->
+    <x:String x:Key="Loc.P.Expander.Ui1">通知を有効にする</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui2">文書を自動保存</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui3">行番号を表示</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui4">ユーザープロフィール</x:String>
+    <x:String x:Key="Loc.P.Expander.Ui5">変更を保存</x:String>
+
+    <!-- Frame -->
+    <x:String x:Key="Loc.P.Frame.Ui1">戻る</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui2">進む</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui3">ナビゲーション UI を表示</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui4">履歴（ジャーナル）を有効にする</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui5">サンドボックス化されたナビゲーション</x:String>
+    <x:String x:Key="Loc.P.Frame.Ui6">キャッシュサイズ：</x:String>
+
+    <!-- HyperlinkButton -->
+    <x:String x:Key="Loc.P.HyperlinkButton.Ui1">Microsoft を開く</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Ui2">GitHub を開く</x:String>
+    <x:String x:Key="Loc.P.HyperlinkButton.Ui3">詳しく見る</x:String>
+
+    <!-- JsonTreeViewer -->
+    <x:String x:Key="Loc.P.JsonTreeViewer.Ui1">キーまたは値を検索…</x:String>
+    <x:String x:Key="Loc.P.JsonTreeViewer.Ui2">JSON の入力：</x:String>
+
+    <!-- ListView -->
+    <x:String x:Key="Loc.P.ListView.Ui1">項目のテキストを入力</x:String>
+
+    <!-- NotifyIcon -->
+    <x:String x:Key="Loc.P.NotifyIcon.Ui1">トレイアイコンでコンテキストメニューを有効にする</x:String>
+
+    <!-- PlatformUnavailable -->
+    <x:String x:Key="Loc.P.PlatformUnavailable.Msg1">このプラットフォームでは利用できません</x:String>
+
+    <!-- Popup -->
+    <x:String x:Key="Loc.P.Popup.Demo1">これはポップアップです！</x:String>
+
+    <!-- SystemNotification -->
+    <x:String x:Key="Loc.P.SystemNotification.Ui1">通知を送信</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui2">アクション付きで送信</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui3">サイレント（音なし）</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui4">タグを付けて送信</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui5">タグで削除</x:String>
+    <x:String x:Key="Loc.P.SystemNotification.Ui6">すべて消去</x:String>
+
+    <!-- CssLayout -->
+    <x:String x:Key="Loc.P.CssLayout.Tile1">height: 60%&#x0a;Grid セルに対して</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile2">同じ 60% を&#x0a;StackPanel に置くと&#x0a;auto に退化</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile3">margin: 10%&#x0a;→ 各辺 20 DIP</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile4">width: 90% を max-width: 50% がクランプ</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile5">width: 10% を min-width: 40% が引き上げ</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile6">2 / 3&#x0a;（高さを指定）</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile7">border-box → 合計 200</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile8">通常フローの項目</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile9">もう 1 つのフロー項目 — 固定された箱の影響を受けない</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile10">top + right</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile11">left + right + bottom  →  両端の間で引き伸ばされる</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile12">left/top&#x0a;をパーセンテージで</x:String>
+    <x:String x:Key="Loc.P.CssLayout.Tile13">Width=&quot;140&quot; の方が優先される</x:String>
+
+    <!-- CssMappings -->
+    <x:String x:Key="Loc.P.CssMappings.Tile1">9 — 範囲外&#x0a;のため破棄</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Tile2">horizontal-alignment: Right</x:String>
+    <x:String x:Key="Loc.P.CssMappings.Tile3">text-wrapping: Wrap  ·  font-weight は本物の CSS 由来</x:String>
+
+    <!-- CssSelectors -->
+    <x:String x:Key="Loc.P.CssSelectors.Tile1">Border { … }  — 型セレクター</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile2">.tinted { … }  — クラスセレクター</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile3">#named { … }  — id セレクター、x:Name に一致</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile4">直接の子 — .outer &gt; TextBlock が勝つ（緑・太字）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile5">さらに深い入れ子 — .outer TextBlock だけが一致（アンバー）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile6">ホバー／押してみてください</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile7">Tab でここへ移動して :focus-visible を確認</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile8">切り替えてください — :checked でラベルが変わります</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile9">Border だけ  →  詳細度 0,0,1  →  スレート</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile10">#winner  →  1,0,0 はどのクラスにも勝つ  →  バイオレット</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile11">#louder の方が詳細度は高いものの、型ルールに !important があるためローズが勝ちます。</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile12">ローカル値なし  →  CSS の背景が適用（青）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile13">マークアップで Background を設定  →  ローカル値が勝ち続ける（ブラウン）</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile14">トランジションなし&#x0a;— 一瞬で切り替わる</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile15">transition: 0.35s ease-in-out&#x0a;— 双方向にイージング</x:String>
+    <x:String x:Key="Loc.P.CssSelectors.Tile16">コンテンツの TextBlock — 一致（アンバー）</x:String>
+
+    <!-- CssStyling -->
+    <x:String x:Key="Loc.P.CssStyling.Tile1">rgb() のモダン記法&#x0a;ピル形の角丸</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile2">hsl()&#x0a;border のショートハンド</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile3">linear-gradient()&#x0a;CSS の角度セマンティクス</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile4">box-shadow&#x0a;→ DropShadowEffect</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile5">transform&#x0a;レイアウトに影響しない</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile6">#hero — id セレクターが x:Name に一致</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile7">Border — 型セレクター、派生型にも一致</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile8">.accent — Css.Class によるクラスセレクター</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile9">.warn — 同じシート内の 2 つ目のクラス</x:String>
+    <x:String x:Key="Loc.P.CssStyling.Tile10">最初の background-color は不正なので破棄され、後の有効な方が勝ちます。</x:String>
+
+    <!-- FlexPanel -->
+    <x:String x:Key="Loc.P.FlexPanel.Tile1">Grow 1 — 残りを取る</x:String>
+
+    <!-- RazorVirtualize -->
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui1">行を追加</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui2">行を削除</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui3">タイルを増やす</x:String>
+    <x:String x:Key="Loc.P.RazorVirtualize.Ui4">タイルを減らす</x:String>
+
+    <!-- Workbench -->
+    <x:String x:Key="Loc.Workbench.Ui1">ライブデモ</x:String>
+    <x:String x:Key="Loc.Workbench.Ui2">プレビュー</x:String>
+    <x:String x:Key="Loc.Workbench.Ui3">コード</x:String>
+    <x:String x:Key="Loc.Workbench.Ui4">デスクトップ</x:String>
+    <x:String x:Key="Loc.Workbench.Ui5">タブレット</x:String>
+    <x:String x:Key="Loc.Workbench.Ui6">モバイル</x:String>
+    <x:String x:Key="Loc.Workbench.Ui7">宣言的なコンポーネントの記述</x:String>
+    <x:String x:Key="Loc.Workbench.Ui8">同等のコードビハインドでの記述</x:String>
+    <x:String x:Key="Loc.Workbench.Ui9">インスペクター</x:String>
+    <x:String x:Key="Loc.Workbench.Ui10">ライブ</x:String>
+    <x:String x:Key="Loc.Workbench.Ui11">パラメーター</x:String>
+    <x:String x:Key="Loc.Workbench.Ui12">外観</x:String>
+    <x:String x:Key="Loc.Workbench.Ui13">インスペクターをリセット</x:String>
+    <x:String x:Key="Loc.Workbench.Ui14">ライト</x:String>
+    <x:String x:Key="Loc.Workbench.Ui15">ダーク</x:String>
+    <x:String x:Key="Loc.Workbench.Ui16">キャンバスのパディング</x:String>
+    <x:String x:Key="Loc.Workbench.Ui17">角丸の半径</x:String>
+    <x:String x:Key="Loc.Workbench.Ui18">コンテンツの不透明度</x:String>
+    <x:String x:Key="Loc.Workbench.Ui19">アクセント</x:String>
+    <x:String x:Key="Loc.Workbench.Ui20">キャンバス</x:String>
+    <x:String x:Key="Loc.Workbench.Ui21">有効</x:String>
+
+    <!-- Overview -->
+    <x:String x:Key="Loc.P.Overview.Hero1">  /  コントロールギャラリー</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero2">第 1 号</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero3">ネイティブ .NET 10 UI プラットフォーム</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero4">出荷できる</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero5">UI を</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero6">つくる。</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero7">WPF 並みの使い心地、GPU アクセラレーションのレンダラー、デスクトップ・モバイル・Web を貫く 1 つの XAML 方言。すべてのコントロールをこのギャラリーで実際に確かめられます。</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero8">ギャラリーへ</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero9">[ enter ] でギャラリーを読み込む</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero10">120+ コントロール · ライブ · gpu · native-aot</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero11">見本</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero12">コレクションから手作業で選んだライブの数点</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero13">GPU コンポジション</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero14">ハードウェアアクセラレーション</x:String>
+    <x:String x:Key="Loc.P.Overview.Hero15">すりガラス · 屈折</x:String>
+
+    <!-- AppBarSeparator -->
+    <x:String x:Key="Loc.P.AppBarSeparator.CT2">CommandBar の中のセパレーター</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.CC4">本来の居場所です。1 本目が主要コマンドを区切り、2 本目がオーバーフローメニューをグループ分けします。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St0">ツールバーのボタンをクリックすると、対応する操作が表示されます。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St1">新しいファイルを作成しました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St2">ファイルを開くダイアログを表示しました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St3">ファイルを保存しました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St4">選択範囲をクリップボードに切り取りました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St5">選択範囲をクリップボードにコピーしました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St6">クリップボードの内容を貼り付けました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St7">直前の操作を元に戻しました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St8">直前の取り消しをやり直しました。</x:String>
+    <x:String x:Key="Loc.P.AppBarSeparator.St9">不明なツールバー操作です。</x:String>
+
+    <!-- Calendar -->
+    <x:String x:Key="Loc.P.Calendar.CT1">選択モードと表示オプション</x:String>
+    <x:String x:Key="Loc.P.Calendar.CC5">同じコントロールを、範囲選択・週の始まりを月曜・年ビューに設定したもの。いずれもプロパティ 1 つで切り替わります。</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap2">SelectionMode = SingleRange</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap3">FirstDayOfWeek = Sunday、今日を強調しない</x:String>
+    <x:String x:Key="Loc.P.Calendar.Cap4">DisplayMode = Year</x:String>
+
+    <!-- InfoBar -->
+
+</ResourceDictionary>

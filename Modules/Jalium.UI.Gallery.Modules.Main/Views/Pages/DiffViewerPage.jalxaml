@@ -1,28 +1,32 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.DiffViewerPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="DiffViewer">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="DATA VIEWERS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="DiffViewer" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.DataViewers}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.DiffViewer.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that displays side-by-side or unified text diffs with line-level and word-level highlighting." />
+                   Text="{DynamicResource Loc.P.DiffViewer.Sub1}" />
 
         <!-- Side-by-Side Diff -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Side-by-Side Diff" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DiffViewer.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Compare two text documents with additions and removals highlighted in separate panels." />
+                           Text="{DynamicResource Loc.P.DiffViewer.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <DiffViewer x:Name="SideBySideDiff"
                                 ViewMode="SideBySide"
                                 Height="300"
                                 ShowLineNumbers="True"
-                                ShowMinimap="True"/>
+                                ShowMinimap="True"
+                                OriginalText="{Binding SampleOriginalText}"
+                                ModifiedText="{Binding SampleModifiedText}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -30,14 +34,16 @@
         <!-- Unified View -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Unified View" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.DiffViewer.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Display the diff in a single unified view, similar to git diff output." />
+                           Text="{DynamicResource Loc.P.DiffViewer.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <DiffViewer x:Name="UnifiedDiff"
                                 ViewMode="Unified"
                                 Height="300"
-                                ShowLineNumbers="True"/>
+                                ShowLineNumbers="True"
+                                OriginalText="{Binding SampleOriginalText}"
+                                ModifiedText="{Binding SampleModifiedText}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -45,9 +51,9 @@
         <!-- Interactive Demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Edit the original and modified text to see the diff update in real time." />
+                           Text="{DynamicResource Loc.P.DiffViewer.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel>
                         <WrapPanel Margin="0,0,0,12">
@@ -57,7 +63,8 @@
                                          AcceptsReturn="True"
                                          Height="120"
                                          FontFamily="Consolas"
-                                         FontSize="12"/>
+                                         FontSize="12"
+                                         Text="{Binding InteractiveOriginalText, Mode=TwoWay}" />
                             </StackPanel>
                             <StackPanel Width="400" Margin="0,0,10,10">
                                 <TextBlock Text="Modified Text:" FontSize="12" Margin="0,0,0,4"/>
@@ -65,13 +72,16 @@
                                          AcceptsReturn="True"
                                          Height="120"
                                          FontFamily="Consolas"
-                                         FontSize="12"/>
+                                         FontSize="12"
+                                         Text="{Binding InteractiveModifiedText, Mode=TwoWay}" />
                             </StackPanel>
                         </WrapPanel>
                         <DiffViewer x:Name="InteractiveDiff"
                                     ViewMode="SideBySide"
                                     Height="250"
-                                    ShowLineNumbers="True"/>
+                                    ShowLineNumbers="True"
+                                    OriginalText="{Binding InteractiveOriginalText}"
+                                    ModifiedText="{Binding InteractiveModifiedText}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -80,16 +90,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the diff viewers above." />
+                           Text="{DynamicResource Loc.P.DiffViewer.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -97,16 +109,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Setting the diff text and wiring live updates from code-behind." />
+                           Text="{DynamicResource Loc.P.DiffViewer.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

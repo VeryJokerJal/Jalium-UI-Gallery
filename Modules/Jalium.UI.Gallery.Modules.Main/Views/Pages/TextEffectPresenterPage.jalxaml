@@ -1,22 +1,25 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TextEffectPresenterPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TextEffectPresenter">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="TEXT &amp; TYPOGRAPHY" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TextEffectPresenter" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.TextAndTypography}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TextEffectPresenter.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="Per-character animated text surface for lyrics, subtitles, notifications, and playful UI." />
+                   Text="{DynamicResource Loc.P.TextEffectPresenter.Sub1}" />
 
         <!-- Card 1: Mutation API — Append / Insert / Remove / Clear -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Mutation API" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TextEffectPresenter.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Each button triggers a call on the presenter — new graphemes enter, existing ones shift or dissipate." />
+                           Text="{DynamicResource Loc.P.TextEffectPresenter.CC1}" />
 
                 <!-- Buttons are placed BEFORE MutationDemoHost on purpose: the demo host
                      grows with its content (AppendLine etc. add lines), and a vertical stack
@@ -26,57 +29,69 @@
                      how tall the presenter gets. -->
                 <WrapPanel Margin="0,0,0,6">
                     <Button Content="Append 'lyric '"
-                            Click="OnAppendClick"
+                            Command="{Binding AppendCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="AppendLine"
-                            Click="OnAppendLineClick"
+                            Command="{Binding AppendLineCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="Insert @3"
-                            Click="OnInsertClick"
+                            Command="{Binding InsertCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="Remove 2 @3"
-                            Click="OnRemoveClick"
+                            Command="{Binding RemoveCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="Clear"
-                            Click="OnClearClick"
+                            Command="{Binding ClearCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="Reset text"
-                            Click="OnResetClick"
+                            Command="{Binding ResetCommand}"
                             Margin="0,0,10,10" />
                 </WrapPanel>
 
                 <Border x:Name="MutationDemoHost"
                         Style="{StaticResource GalleryDemoSurface}"
-                        MinHeight="100" />
+                        MinHeight="100">
+                    <TextEffectPresenter Text="{Binding MutationText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="RiseSettle" />
+                </Border>
             </StackPanel>
         </Border>
 
         <!-- Card 2: Built-in effects -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Built-in Effects" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TextEffectPresenter.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Swap the per-cell animation driver. Each button re-enters the text so you see the full enter animation." />
+                           Text="{DynamicResource Loc.P.TextEffectPresenter.CC2}" />
 
                 <Border x:Name="EffectSwitchDemoHost"
                         Style="{StaticResource GalleryDemoSurface}"
-                        MinHeight="80" />
+                        MinHeight="80">
+                    <TextEffectPresenter Text="{Binding EffectText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="{Binding AnimationEffect}" />
+                </Border>
 
                 <WrapPanel Margin="0,16,0,0">
                     <Button Content="RiseSettle (default)"
-                            Click="OnUseRiseSettleClick"
+                            Command="{Binding UseRiseSettleCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="FadeIn"
-                            Click="OnUseFadeInClick"
+                            Command="{Binding UseFadeInCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="Typewriter"
-                            Click="OnUseTypewriterClick"
+                            Command="{Binding UseTypewriterCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="WaveBounce"
-                            Click="OnUseWaveBounceClick"
+                            Command="{Binding UseWaveBounceCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="PulsingBlur (GPU shader)"
-                            Click="OnUsePulsingBlurClick"
+                            Command="{Binding UsePulsingBlurCommand}"
                             Margin="0,0,10,10" />
                 </WrapPanel>
             </StackPanel>
@@ -85,23 +100,30 @@
         <!-- Card 3: Compose with UIElement.Effect (GPU pass) -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Composition with UIElement.Effect" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TextEffectPresenter.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="The per-cell animation (TextEffect) runs first on CPU, then the whole surface goes through a GPU pixel-shader pass (UIElement.Effect). Toggle a BlurEffect on top to see the two layers compose." />
+                           Text="{DynamicResource Loc.P.TextEffectPresenter.CC3}" />
 
                 <Border x:Name="EffectComposeDemoHost"
                         Style="{StaticResource GalleryDemoSurface}"
-                        MinHeight="80" />
+                        MinHeight="80">
+                    <TextEffectPresenter Text="{Binding ComposeText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="WaveBounce"
+                                         behaviors:TextEffectPresenterBehavior.GpuEffect="{Binding GpuEffect}" />
+                </Border>
 
                 <WrapPanel Margin="0,16,0,0">
                     <Button Content="No GPU effect"
-                            Click="OnNoGpuEffectClick"
+                            Command="{Binding UseNoGpuEffectCommand}"
                             Margin="0,0,10,10" />
                     <Button Content="BlurEffect 4px"
-                            Click="OnBlur4Click"
+                            Command="{Binding UseBlur4Command}"
                             Margin="0,0,10,10" />
                     <Button Content="BlurEffect 10px"
-                            Click="OnBlur10Click"
+                            Command="{Binding UseBlur10Command}"
                             Margin="0,0,10,10" />
                 </WrapPanel>
             </StackPanel>
@@ -110,16 +132,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Markup for the demo host surface and the mutation buttons wired to the presenter." />
+                           Text="{DynamicResource Loc.P.TextEffectPresenter.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="220"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -127,16 +151,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating the presenter, wiring the mutation handlers, swapping drivers, and composing a GPU blur." />
+                           Text="{DynamicResource Loc.P.TextEffectPresenter.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="320"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

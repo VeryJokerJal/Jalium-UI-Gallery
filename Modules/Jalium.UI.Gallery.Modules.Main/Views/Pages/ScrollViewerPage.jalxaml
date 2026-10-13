@@ -1,79 +1,143 @@
-<Page xmlns="http://schemas.jalium.ui/2024"
+﻿<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ScrollViewerPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ScrollViewer">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ScrollViewer" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ScrollViewer.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A container that clips its content to a fixed viewport and lets the user pan through the overflow with scrollbars, the mouse wheel or touch." />
+                   Text="{DynamicResource Loc.P.ScrollViewer.Sub1}" />
 
         <!-- Vertical scrolling -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Vertical scrolling" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScrollViewer.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Content that exceeds the visible area can be scrolled vertically." />
+                           Text="{DynamicResource Loc.P.ScrollViewer.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
-                    <ScrollViewer Height="150" VerticalScrollBarVisibility="Visible">
+                    <ScrollViewer x:Name="BouncePreviewViewer" Height="150" VerticalScrollBarVisibility="Visible">
                         <StackPanel Orientation="Vertical" Margin="12">
                             <TextBlock Text="Scroll down to see more content..." FontSize="12" Margin="0,0,0,8"/>
                             <Border Background="{DynamicResource GalleryAccent}" Height="30" Margin="0,0,0,4">
-                                <TextBlock Text="Item 1"
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="Item 1"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <Border Background="#22C55E" Height="30" Margin="0,0,0,4">
-                                <TextBlock Text="Item 2"
+                                <TextBlock Foreground="Black" Text="Item 2"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <Border Background="#179842" Height="30" Margin="0,0,0,4">
-                                <TextBlock Text="Item 3"
+                                <TextBlock Foreground="Black" Text="Item 3"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <Border Background="#CA5010" Height="30" Margin="0,0,0,4">
-                                <TextBlock Text="Item 4"
+                                <TextBlock Foreground="White" Text="Item 4"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <Border Background="#008272" Height="30">
-                                <TextBlock Text="Item 5"
+                                <TextBlock Foreground="White" Text="Item 5"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
+                <StackPanel x:Name="BouncePreviewControls" Margin="0,12,0,0">
+                    <TextBlock Style="{StaticResource GalleryCardCaption}" TextWrapping="Wrap"
+                               Text="{DynamicResource Loc.P.ScrollViewer.BounceHint}" />
+                    <WrapPanel>
+                        <Button x:Name="PullBounceButton" Content="{DynamicResource Loc.P.ScrollViewer.PullEdge}" MinWidth="110" MinHeight="36"
+                                Margin="0,8,12,0" Click="OnPullTopEdge" />
+                        <Button x:Name="ReleaseBounceButton" Content="{DynamicResource Loc.P.ScrollViewer.ReleaseEdge}"
+                                MinWidth="110" MinHeight="36" Margin="0,8,0,0" IsEnabled="False" Click="OnReleaseTopEdge" />
+                    </WrapPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Horizontal scrolling -->
+        <Border Style="{StaticResource GalleryCard}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScrollViewer.HorizontalTitle}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}"
+                           Text="{DynamicResource Loc.P.ScrollViewer.HorizontalHint}" />
+                <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
+                    <ScrollViewer x:Name="HorizontalPreviewViewer" Height="150"
+                                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel Orientation="Horizontal" Margin="12">
+                            <Border Style="{StaticResource GalleryDemoSurface}" Background="{DynamicResource GalleryAccentSoft}"
+                                    Width="220" Height="100" Margin="0,0,12,0">
+                                <TextBlock Style="{StaticResource GalleryValueLabel}" Text="01" FontSize="28"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryDemoSurface}"
+                                    Width="220" Height="100" Margin="0,0,12,0">
+                                <TextBlock Style="{StaticResource GalleryValueLabel}" Text="02" FontSize="28"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryDemoSurface}"
+                                    Width="220" Height="100" Margin="0,0,12,0">
+                                <TextBlock Style="{StaticResource GalleryValueLabel}" Text="03" FontSize="28"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryDemoSurface}"
+                                    Width="220" Height="100" Margin="0,0,12,0">
+                                <TextBlock Style="{StaticResource GalleryValueLabel}" Text="04" FontSize="28"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryDemoSurface}"
+                                    Width="220" Height="100" Margin="0,0,12,0">
+                                <TextBlock Style="{StaticResource GalleryValueLabel}" Text="05" FontSize="28"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryDemoSurface}"
+                                    Width="220" Height="100" Margin="0">
+                                <TextBlock Style="{StaticResource GalleryValueLabel}" Text="06" FontSize="28"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+                <WrapPanel>
+                    <Button Content="{DynamicResource Loc.P.ScrollViewer.ScrollLeft}" MinWidth="110" MinHeight="36"
+                            Margin="0,12,12,0" Click="OnScrollLeft" />
+                    <Button Content="{DynamicResource Loc.P.ScrollViewer.ScrollRight}" MinWidth="110" MinHeight="36"
+                            Margin="0,12,0,0" Click="OnScrollRight" />
+                </WrapPanel>
             </StackPanel>
         </Border>
 
         <!-- Scrollbar visibility -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Scrollbar visibility options" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScrollViewer.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Control when scrollbars appear on each axis." />
+                           Text="{DynamicResource Loc.P.ScrollViewer.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <Border Width="8" Height="8" Background="{DynamicResource GalleryAccent}" CornerRadius="8" Margin="0,0,8,0"
                                     VerticalAlignment="Center"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Auto - Shows scrollbar only when needed" />
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body1}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <Border Width="8" Height="8" Background="#22C55E" CornerRadius="8" Margin="0,0,8,0"
                                     VerticalAlignment="Center"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Visible - Always shows scrollbar" />
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body2}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <Border Width="8" Height="8" Background="#179842" CornerRadius="8" Margin="0,0,8,0"
                                     VerticalAlignment="Center"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Hidden - Scrolling enabled, scrollbar hidden" />
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body3}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Border Width="8" Height="8" Background="#CA5010" CornerRadius="8" Margin="0,0,8,0"
                                     VerticalAlignment="Center"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Disabled - No scrolling allowed" />
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body4}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -83,30 +147,30 @@
         <!-- Key properties -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Key properties" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ScrollViewer.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Important ScrollViewer properties for reading and driving scroll state." />
+                           Text="{DynamicResource Loc.P.ScrollViewer.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="VerticalScrollBarVisibility" Width="220"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Controls vertical scrollbar" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ScrollViewer.Val1}" Width="220"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body5}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="HorizontalScrollBarVisibility" Width="220"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Controls horizontal scrollbar" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ScrollViewer.Val2}" Width="220"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body6}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="VerticalOffset" Width="220"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Current vertical scroll position" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ScrollViewer.Val3}" Width="220"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body7}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="HorizontalOffset" Width="220"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Current horizontal scroll position" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ScrollViewer.Val4}" Width="220"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body8}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="ViewportHeight / ViewportWidth" Width="220"/>
-                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="Size of visible area" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ScrollViewer.Val5}" Width="220"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ScrollViewer.Body9}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -116,16 +180,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup showing common ScrollViewer configurations." />
+                           Text="{DynamicResource Loc.P.ScrollViewer.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -133,16 +199,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building a ScrollViewer and reacting to scroll events in code-behind." />
+                           Text="{DynamicResource Loc.P.ScrollViewer.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

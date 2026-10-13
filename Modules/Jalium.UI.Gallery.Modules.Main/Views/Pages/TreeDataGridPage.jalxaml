@@ -1,42 +1,50 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TreeDataGridPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="TreeDataGrid">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="COLLECTIONS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TreeDataGrid" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Collections}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TreeDataGrid.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A control that displays hierarchical data in a flat, column-based grid with expand/collapse support." />
+                   Text="{DynamicResource Loc.P.TreeDataGrid.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Click arrows to expand/collapse, click rows to select, click column headers to sort." />
+                           Text="{DynamicResource Loc.P.TreeDataGrid.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel>
-                            <Button x:Name="ExpandAllButton"
-                                    Content="Expand All"
+                            <Button Content="Expand All"
+                                    Command="{Binding ExpandAllCommand}"
                                     Margin="0,0,10,10" />
-                            <Button x:Name="CollapseAllButton"
-                                    Content="Collapse All"
+                            <Button Content="Collapse All"
+                                    Command="{Binding CollapseAllCommand}"
                                     Margin="0,0,10,10" />
                         </WrapPanel>
                         <TreeDataGrid x:Name="DemoTreeDataGrid"
                                       Height="280"
-                                      Margin="0,0,0,12" />
+                                      Margin="0,0,0,12"
+                                      ChildrenPropertyPath="Children"
+                                      ItemsSource="{Binding Items}"
+                                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                      behaviors:TreeDataGridBehavior.ConfigureColumns="True"
+                                      behaviors:TreeDataGridBehavior.Request="{Binding TreeRequest}" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource GalleryCaptionText}"
                                        Text="Selected: "
                                        VerticalAlignment="Center" />
                             <TextBlock x:Name="SelectedItemText"
                                        Style="{StaticResource GalleryValueLabel}"
-                                       Text="(none)" />
+                                       Text="{Binding SelectedItemText}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -46,34 +54,34 @@
         <!-- Features -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Features" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Features}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="TreeDataGrid combines tree hierarchy with column-based data display." />
+                           Text="{DynamicResource Loc.P.TreeDataGrid.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Hierarchical expand/collapse with indentation"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body1}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Reuses DataGrid column types (Text, CheckBox, Template, etc.)"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body2}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Row virtualization for large datasets"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body3}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Column sorting (recursive across all levels)"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body4}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Column resizing and drag reorder"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body5}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Single and Extended selection modes"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body6}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* Keyboard navigation (arrows, Left/Right expand/collapse)"
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body7}"
                                    Margin="0,0,0,8" />
                         <TextBlock Style="{StaticResource GalleryBodyText}"
-                                   Text="* ChildrenPropertyPath or ChildrenSelector for data binding" />
+                                   Text="{DynamicResource Loc.P.TreeDataGrid.Body8}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -82,16 +90,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the TreeDataGrid demo above." />
+                           Text="{DynamicResource Loc.P.TreeDataGrid.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -99,16 +109,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Configuring columns, binding data and wiring events in code-behind." />
+                           Text="{DynamicResource Loc.P.TreeDataGrid.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

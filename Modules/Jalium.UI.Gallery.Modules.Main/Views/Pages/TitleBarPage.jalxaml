@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TitleBarPage">
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+      x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.TitleBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="SYSTEM" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="TitleBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.System}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.TitleBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A customizable window title bar with standard minimize, maximize, and close caption buttons you can wire to real window actions." />
+                   Text="{DynamicResource Loc.P.TitleBar.Sub1}" />
 
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Toggle which caption buttons appear, flip the maximized state, then click the title bar controls to update the status line." />
+                           Text="{DynamicResource Loc.P.TitleBar.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <StackPanel Orientation="Vertical">
                         <TitleBar x:Name="DemoTitleBar"
                                   Title="Jalium.UI Demo Window"
+                                  ShowMinimizeButton="{Binding ShowMinimizeButton}"
+                                  ShowMaximizeButton="{Binding ShowMaximizeButton}"
+                                  ShowCloseButton="{Binding ShowCloseButton}"
+                                  IsMaximized="{Binding IsMaximized}"
+                                  behaviors:TitleBarCommandBehavior.MinimizeCommand="{Binding MinimizeCommand}"
+                                  behaviors:TitleBarCommandBehavior.MaximizeRestoreCommand="{Binding MaximizeRestoreCommand}"
+                                  behaviors:TitleBarCommandBehavior.CloseCommand="{Binding CloseCommand}"
                                   Height="36" />
                         <Border Background="{DynamicResource GalleryCardBackground}" Padding="16">
                             <TextBlock Style="{StaticResource GalleryBodyText}"
-                                       Text="This area represents window content under a custom title bar." />
+                                       Text="{DynamicResource Loc.P.TitleBar.Body1}" />
                         </Border>
                     </StackPanel>
                 </Border>
                 <WrapPanel Margin="0,16,0,0">
-                    <CheckBox x:Name="MinimizeCheckBox" Content="Show Minimize" IsChecked="True" Margin="0,0,10,10" />
-                    <CheckBox x:Name="MaximizeCheckBox" Content="Show Maximize" IsChecked="True" Margin="0,0,10,10" />
-                    <CheckBox x:Name="CloseCheckBox" Content="Show Close" IsChecked="True" Margin="0,0,10,10" />
-                    <CheckBox x:Name="IsMaximizedCheckBox" Content="Is Maximized" Margin="0,0,10,10" />
+                    <CheckBox x:Name="MinimizeCheckBox" Content="Show Minimize" IsChecked="{Binding ShowMinimizeButton, Mode=TwoWay}" Margin="0,0,10,10" />
+                    <CheckBox x:Name="MaximizeCheckBox" Content="Show Maximize" IsChecked="{Binding ShowMaximizeButton, Mode=TwoWay}" Margin="0,0,10,10" />
+                    <CheckBox x:Name="CloseCheckBox" Content="Show Close" IsChecked="{Binding ShowCloseButton, Mode=TwoWay}" Margin="0,0,10,10" />
+                    <CheckBox x:Name="IsMaximizedCheckBox" Content="Is Maximized" IsChecked="{Binding IsMaximized, Mode=TwoWay}" Margin="0,0,10,10" />
                 </WrapPanel>
                 <TextBlock x:Name="StatusText"
                            Style="{StaticResource GalleryValueLabel}"
-                           Text="Status: Ready"
+                           Text="{Binding TitleBarStatus}"
                            Margin="0,6,0,0" />
             </StackPanel>
         </Border>
@@ -44,33 +54,35 @@
         <!-- Notes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Notes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.TitleBar.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="How this demo maps onto a real application window." />
+                           Text="{DynamicResource Loc.P.TitleBar.CC2}" />
                 <TextBlock Style="{StaticResource GalleryBodyText}"
-                           Text="In a real window, these buttons are usually wired to minimize, maximize, and close actions."
+                           Text="{DynamicResource Loc.P.TitleBar.Body2}"
                            Margin="0,0,0,6" />
                 <TextBlock Style="{StaticResource GalleryBodyText}"
-                           Text="Use Window.TitleBarStyle = Custom to let the Window host its built-in TitleBar integration."
+                           Text="{DynamicResource Loc.P.TitleBar.Body3}"
                            Margin="0,0,0,6" />
                 <TextBlock Style="{StaticResource GalleryBodyText}"
-                           Text="This gallery page keeps all actions local and only updates demo state." />
+                           Text="{DynamicResource Loc.P.TitleBar.Body4}" />
             </StackPanel>
         </Border>
 
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for a TitleBar and its caption buttons." />
+                           Text="{DynamicResource Loc.P.TitleBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -78,16 +90,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Creating a TitleBar and wiring its caption events in code-behind." />
+                           Text="{DynamicResource Loc.P.TitleBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

@@ -1,24 +1,34 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.MapViewPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="MapView">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="MAPS &amp; GEO" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="MapView" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.MapsAndGeo}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.MapView.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A map control that displays slippy-map tiles with support for markers, polylines, panning, and zooming." />
+                   Text="{DynamicResource Loc.P.MapView.Sub1}" />
 
         <!-- Basic Map -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic Map" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.MapView.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A MapView centered on Beijing with default zoom controls and scale bar." />
+                           Text="{DynamicResource Loc.P.MapView.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="BasicMapContainer" Orientation="Vertical" />
+                    <MapView Height="300"
+                             Center="{Binding BeijingCenter}"
+                             ZoomLevel="12"
+                             TileSource="{Binding TileSource}"
+                             ShowZoomControls="True"
+                             ShowScaleBar="True"
+                             ShowAttribution="True"
+                             IsPanEnabled="True"
+                             IsZoomEnabled="True" />
                 </Border>
             </StackPanel>
         </Border>
@@ -26,11 +36,18 @@
         <!-- Markers & Overlays -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Markers &amp; Overlays" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.MapView.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="A MapView with labeled markers at key locations and a polyline connecting them." />
+                           Text="{DynamicResource Loc.P.MapView.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="MarkersMapContainer" Orientation="Vertical" />
+                    <MapView Height="350"
+                             Center="{Binding ChinaCenter}"
+                             ZoomLevel="4"
+                             TileSource="{Binding TileSource}"
+                             ShowZoomControls="True"
+                             ShowScaleBar="True"
+                             Markers="{Binding Markers}"
+                             Polylines="{Binding Polylines}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -38,11 +55,33 @@
         <!-- Zoom Controls -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Zoom Controls" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.MapView.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Interactive zoom and pan demo. Use the buttons to zoom in/out or click the map to pan." />
+                           Text="{DynamicResource Loc.P.MapView.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="ZoomMapContainer" Orientation="Vertical" />
+                    <StackPanel Orientation="Vertical">
+                        <MapView Height="300"
+                                 Center="{Binding ZoomCenter, Mode=TwoWay}"
+                                 ZoomLevel="{Binding ZoomLevel, Mode=TwoWay}"
+                                 TileSource="{Binding TileSource}"
+                                 ShowZoomControls="True"
+                                 ShowScaleBar="True"
+                                 IsPanEnabled="True"
+                                 IsZoomEnabled="True" />
+                        <TextBlock Text="{Binding ZoomLevelText}"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Margin="0,8,0,8" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Zoom In"
+                                    Command="{Binding ZoomInCommand}"
+                                    Margin="0,0,8,0" />
+                            <Button Content="Zoom Out"
+                                    Command="{Binding ZoomOutCommand}"
+                                    Margin="0,0,8,0" />
+                            <Button Content="Reset View"
+                                    Command="{Binding ResetViewCommand}" />
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
@@ -50,16 +89,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the maps shown above." />
+                           Text="{DynamicResource Loc.P.MapView.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -67,16 +108,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Building maps with markers and polylines in code-behind." />
+                           Text="{DynamicResource Loc.P.MapView.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

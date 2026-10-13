@@ -1,22 +1,24 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ViewboxPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="Viewbox">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="LAYOUT" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="Viewbox" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Layout}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.Viewbox.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A decorator that scales its single child to fit the available space, with control over stretch mode and direction." />
+                   Text="{DynamicResource Loc.P.Viewbox.Sub1}" />
 
         <!-- Uniform Stretch -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Uniform Stretch" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Viewbox.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Content is scaled uniformly to fit while preserving aspect ratio." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="100" Margin="0,0,10,10">
@@ -42,9 +44,9 @@
         <!-- Stretch Modes -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stretch Modes" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Viewbox.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Different stretch modes control how content fills the viewbox." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <StackPanel Orientation="Vertical" Margin="0,0,10,10">
@@ -87,9 +89,9 @@
         <!-- Stretch Direction -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Stretch Direction" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.Viewbox.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Control whether content scales up, down, or both." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <StackPanel Orientation="Vertical" Margin="0,0,10,10">
@@ -124,22 +126,27 @@
         <!-- Interactive Demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Resize the container with the sliders to see the viewbox rescale its child." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                             <TextBlock Text="Width:" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <Slider x:Name="WidthSlider" Minimum="50" Maximum="400" Value="200" Width="200"/>
-                            <TextBlock x:Name="WidthText" Text="200" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                            <Slider x:Name="WidthSlider" Minimum="50" Maximum="400" Value="{Binding PreviewWidth, Mode=TwoWay}" Width="200"/>
+                            <TextBlock x:Name="WidthText" Text="{Binding PreviewWidthText}" VerticalAlignment="Center" Margin="8,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                             <TextBlock Text="Height:" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <Slider x:Name="HeightSlider" Minimum="50" Maximum="300" Value="150" Width="200"/>
-                            <TextBlock x:Name="HeightText" Text="150" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                            <Slider x:Name="HeightSlider" Minimum="50" Maximum="300" Value="{Binding PreviewHeight, Mode=TwoWay}" Width="200"/>
+                            <TextBlock x:Name="HeightText" Text="{Binding PreviewHeightText}" VerticalAlignment="Center" Margin="8,0,0,0"/>
                         </StackPanel>
-                        <Border x:Name="DemoContainer" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="200" Height="150" HorizontalAlignment="Left">
+                        <Border x:Name="DemoContainer"
+                                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                BorderThickness="1"
+                                Width="{Binding PreviewWidth}"
+                                Height="{Binding PreviewHeight}"
+                                HorizontalAlignment="Left">
                             <Viewbox Stretch="Uniform">
                                 <StackPanel Orientation="Vertical" Width="200">
                                     <TextBlock Text="Viewbox Demo" FontSize="18" HorizontalAlignment="Center"/>
@@ -155,16 +162,16 @@
         <!-- Common Use Cases -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Common Use Cases" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CommonUseCases}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Where a viewbox earns its keep in real layouts." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="• Scaling icons to different sizes" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Creating responsive layouts" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Fitting vector graphics" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Thumbnail previews" Margin="0,0,0,8"/>
-                        <TextBlock Text="• Zoom functionality"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Viewbox.Use1}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Viewbox.Use2}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Viewbox.Use3}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Viewbox.Use4}" Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Viewbox.Use5}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -173,16 +180,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the viewbox examples above." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -190,16 +199,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Wiring the interactive sliders and scaling icons in code-behind." />
+                           Text="{DynamicResource Loc.P.Viewbox.CC7}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

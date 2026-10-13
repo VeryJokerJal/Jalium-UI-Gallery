@@ -1,39 +1,42 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToolTipPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ToolTip">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="OVERLAYS" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ToolTip" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Overlays}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ToolTip.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A lightweight popup that reveals contextual help when the pointer hovers over a control, supporting both plain strings and rich, structured content." />
+                   Text="{DynamicResource Loc.P.ToolTip.Sub1}" />
 
         <!-- Basic ToolTip -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic ToolTip" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolTip.CT1}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Hover over the buttons to see tooltips." />
+                           Text="{DynamicResource Loc.P.ToolTip.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Button x:Name="SaveButton"
                                 Content="Save"
                                 Width="80"
                                 Height="32"
-                                Margin="0,0,10,10" />
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip1}" />
                         <Button Content="Open"
                                 Width="80"
                                 Height="32"
                                 Margin="0,0,10,10"
-                                ToolTip="Open an existing document" />
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip2}" />
                         <Button Content="Delete"
                                 Width="80"
                                 Height="32"
                                 Margin="0,0,10,10"
-                                ToolTip="Delete the selected item" />
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip3}" />
                     </WrapPanel>
                 </Border>
             </StackPanel>
@@ -42,31 +45,31 @@
         <!-- ToolTips on Various Controls -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ToolTips on Various Controls" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolTip.CT2}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="ToolTips can be added to any control." />
+                           Text="{DynamicResource Loc.P.ToolTip.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <TextBox Width="200"
                                      Height="32"
-                                     ToolTip="Enter your username (3-20 characters)"
+                                     ToolTip="{DynamicResource Loc.P.ToolTip.Tip4}"
                                      Margin="0,0,12,0" />
-                            <TextBlock Text="Username field"
+                            <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip5}"
                                        VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                             <Slider Width="200"
                                     Minimum="0"
                                     Maximum="100"
-                                    ToolTip="Adjust the volume level"
+                                    ToolTip="{DynamicResource Loc.P.ToolTip.Tip6}"
                                     Margin="0,0,12,0" />
-                            <TextBlock Text="Volume slider"
+                            <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip7}"
                                        VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Enable notifications"
-                                      ToolTip="Turn on/off notification alerts"
+                            <CheckBox Content="{DynamicResource Loc.P.ToolTip.Tip8}"
+                                      ToolTip="{DynamicResource Loc.P.ToolTip.Tip9}"
                                       Margin="0,0,12,0" />
                         </StackPanel>
                     </StackPanel>
@@ -77,19 +80,19 @@
         <!-- Rich Content ToolTip -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Rich Content ToolTip" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolTip.CT3}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="ToolTips can contain rich content with multiple elements." />
+                           Text="{DynamicResource Loc.P.ToolTip.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <Button Content="Hover for rich tooltip" Width="180" Height="32">
+                    <Button Content="{DynamicResource Loc.P.ToolTip.Tip10}" Width="180" Height="32">
                         <Button.ToolTip>
                             <ToolTip>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="Rich ToolTip" FontWeight="Bold" Margin="0,0,0,4" />
-                                    <TextBlock Text="This tooltip contains multiple lines of text" TextWrapping="Wrap" />
-                                    <TextBlock Text="with formatting and structure." TextWrapping="Wrap" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip11}" FontWeight="Bold" Margin="0,0,0,4" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip12}" TextWrapping="Wrap" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip13}" TextWrapping="Wrap" />
                                     <Separator Margin="0,8" />
-                                    <TextBlock Text="Shortcut: Ctrl+R" FontSize="11" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip14}" FontSize="11" />
                                 </StackPanel>
                             </ToolTip>
                         </Button.ToolTip>
@@ -101,31 +104,31 @@
         <!-- ToolTip Placement -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ToolTip Placement" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolTip.CT4}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="ToolTips can be positioned at different locations." />
+                           Text="{DynamicResource Loc.P.ToolTip.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <WrapPanel>
                         <Button Content="Top"
                                 Width="60"
                                 Height="32"
                                 Margin="0,0,10,10"
-                                ToolTip="Tooltip on top" />
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip15}" />
                         <Button Content="Right"
                                 Width="60"
                                 Height="32"
                                 Margin="0,0,10,10"
-                                ToolTip="Tooltip on right" />
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip16}" />
                         <Button Content="Bottom"
                                 Width="60"
                                 Height="32"
                                 Margin="0,0,10,10"
-                                ToolTip="Tooltip on bottom" />
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip17}" />
                         <Button Content="Left"
                                 Width="60"
                                 Height="32"
                                 Margin="0,0,10,10"
-                                ToolTip="Tooltip on left" />
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip18}" />
                     </WrapPanel>
                 </Border>
             </StackPanel>
@@ -134,16 +137,18 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.Xaml}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Declarative markup for the tooltips above." />
+                           Text="{DynamicResource Loc.P.ToolTip.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -151,16 +156,18 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C#" />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharp}" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}"
-                           Text="Setting tooltips and building rich content in code-behind." />
+                           Text="{DynamicResource Loc.P.ToolTip.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13" />
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>

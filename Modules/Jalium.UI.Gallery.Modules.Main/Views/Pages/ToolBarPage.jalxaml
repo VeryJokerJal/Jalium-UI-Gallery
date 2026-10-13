@@ -1,21 +1,23 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ToolBarPage"
+      hosting:ViewModelLocator.AutoWireViewModel="True"
       Title="ToolBar">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
 
         <!-- Page header -->
-        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="NAVIGATION" />
-        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="ToolBar" />
+        <TextBlock Style="{StaticResource GalleryEyebrow}" Text="{DynamicResource Loc.Shared.Navigation}" />
+        <TextBlock Style="{StaticResource GalleryPageTitle}" Text="{DynamicResource Loc.P.ToolBar.Title1}" />
         <TextBlock Style="{StaticResource GalleryPageSubtitle}"
-                   Text="A container that groups related commands and controls into a single band, using separators to cluster them into logical groups." />
+                   Text="{DynamicResource Loc.P.ToolBar.Sub1}" />
 
         <!-- Basic ToolBar -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Basic ToolBar" />
-                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="A toolbar with buttons." />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolBar.CT1}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.ToolBar.CC1}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <ToolBar>
                         <Button Content="New" Width="60" Height="28"/>
@@ -33,8 +35,8 @@
         <!-- ToolBar with Mixed Controls -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ToolBar with Mixed Controls" />
-                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Toolbars can contain various types of controls." />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolBar.CT2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.ToolBar.CC2}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <ToolBar>
                         <Button Content="File" Width="50" Height="28"/>
@@ -60,8 +62,8 @@
         <!-- ToolBar Tray -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="ToolBar Tray" />
-                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Multiple toolbars can be organized in a tray." />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.P.ToolBar.CT3}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.ToolBar.CC3}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ToolBar Margin="0,0,0,4">
@@ -85,20 +87,20 @@
         <!-- Interactive demo -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="Interactive Demo" />
-                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Click toolbar buttons to see the action." />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.InteractiveDemo2}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.ToolBar.CC4}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel Orientation="Vertical">
                         <ToolBar Margin="0,0,0,16">
-                            <Button x:Name="NewButton" Content="New" Width="50" Height="28"/>
-                            <Button x:Name="OpenButton" Content="Open" Width="50" Height="28"/>
-                            <Button x:Name="SaveButton" Content="Save" Width="50" Height="28"/>
+                            <Button x:Name="NewButton" Content="New" Command="{Binding ExecuteCommand}" CommandParameter="New" Width="50" Height="28"/>
+                            <Button x:Name="OpenButton" Content="Open" Command="{Binding ExecuteCommand}" CommandParameter="Open" Width="50" Height="28"/>
+                            <Button x:Name="SaveButton" Content="Save" Command="{Binding ExecuteCommand}" CommandParameter="Save" Width="50" Height="28"/>
                             <Separator/>
-                            <Button x:Name="UndoButton" Content="Undo" Width="50" Height="28"/>
-                            <Button x:Name="RedoButton" Content="Redo" Width="50" Height="28"/>
+                            <Button x:Name="UndoButton" Content="Undo" Command="{Binding ExecuteCommand}" CommandParameter="Undo" Width="50" Height="28"/>
+                            <Button x:Name="RedoButton" Content="Redo" Command="{Binding ExecuteCommand}" CommandParameter="Redo" Width="50" Height="28"/>
                         </ToolBar>
                         <TextBlock x:Name="ActionText"
-                                   Text="No action performed"
+                                   Text="{Binding LastAction}"
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
@@ -108,15 +110,17 @@
         <!-- XAML code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="XAML Code Example" />
-                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Declarative markup for the toolbars above." />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.XamlCodeExample}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.ToolBar.CC5}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="XamlCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
                 </Border>
             </StackPanel>
         </Border>
@@ -124,15 +128,17 @@
         <!-- C# code example -->
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="C# Code Example" />
-                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="Creating a toolbar and wiring button clicks in code-behind." />
+                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="{DynamicResource Loc.Shared.CSharpCodeExample}" />
+                <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.ToolBar.CC6}" />
                 <Border Style="{StaticResource GalleryDemoSurfaceFlush}">
                     <EditControl x:Name="CSharpCodeEditor"
                                  Height="200"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
                                  ShowLineNumbers="True"
-                                 FontSize="13"/>
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
                 </Border>
             </StackPanel>
         </Border>
