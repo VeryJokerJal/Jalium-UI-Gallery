@@ -168,6 +168,7 @@ public sealed class CssPagesFixture
         page.UpdateLayout();
         var text = Assert.IsType<TextBlock>(page.FindName("CssFontFaceText"));
         var input = Assert.IsType<TextBox>(page.FindName("CssFontFaceInput"));
+        Assert.Equal("@font-face", Assert.IsType<TextBlock>(page.FindName("CssFontFaceHeading")).Text);
         Assert.Empty(Jalium.UI.Styling.Css.GetFontLoadErrors(page));
         Assert.Equal(20, text.FontSize);
         Assert.Equal(82, text.DesiredSize.Width, 3);

@@ -51,6 +51,8 @@ public static class CssStylingDemoBehavior
             ?? throw new FileNotFoundException("Gallery logo resource");
         using var bytes = new MemoryStream();
         stream.CopyTo(bytes);
-        return BitmapImage.FromBytes(bytes.ToArray());
+        var image = BitmapImage.FromBytes(bytes.ToArray());
+        image.Freeze();
+        return image;
     }
 }

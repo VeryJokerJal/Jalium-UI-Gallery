@@ -365,7 +365,7 @@
 
         <Border Style="{StaticResource GalleryCard}">
             <StackPanel>
-                <TextBlock Style="{StaticResource GalleryCardTitle}" Text="@font-face" />
+                <TextBlock x:Name="CssFontFaceHeading" Style="{StaticResource GalleryCardTitle}" Text="@@font-face" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.FontFaceCaption}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
                     <StackPanel x:Name="CssFontFaceDemoHost" Css.StyleSheetSource="/Jalium.UI.Gallery.Modules.Main;component/Assets/CssFonts/font.css" Width="420">
