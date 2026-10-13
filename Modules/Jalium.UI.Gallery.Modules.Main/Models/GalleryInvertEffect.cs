@@ -1,6 +1,6 @@
 using Jalium.UI.Media.Effects;
 
-namespace Jalium.UI.Gallery.Modules.Main.Views.Pages;
+namespace Jalium.UI.Gallery.Modules.Main.Models;
 
 /// <summary>A live cross-platform HLSL example with one constant register.</summary>
 public sealed class GalleryInvertEffect : ShaderEffect

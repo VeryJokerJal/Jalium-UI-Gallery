@@ -872,55 +872,60 @@ public sealed partial class ShaderEffectsViewModel
 {
     public override string XamlExample => """
         <StackPanel xmlns="http://schemas.jalium.com/jalxaml"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:effects="clr-namespace:Jalium.UI.Media.Effects;assembly=Jalium.UI.Media"
-                    xmlns:local="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages;assembly=Jalium.UI.Gallery.Modules.Main">
-            <Slider x:Name="BlurRadiusSlider" Width="200" Minimum="0" Maximum="50"
-                    Value="10" SmallChange="1" LargeChange="5" />
-            <CheckBox x:Name="BoxBlurCheckBox" Content="Box 模糊核" />
-            <Border x:Name="BlurPreview" Background="#191A2D" Width="200" Height="100">
-                <Border.Effect><effects:BlurEffect /></Border.Effect>
-                <TextBlock Text="模糊预览" Foreground="White" HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors;assembly=Jalium.UI.Gallery.Modules.Main">
+            <!-- ShaderEffectBehavior updates BlurEffect and DropShadowEffect from bound values. -->
+            <Slider Width="200" Minimum="0" Maximum="50"
+                    Value="{Binding BlurRadius, Mode=TwoWay}" />
+            <CheckBox Content="Box 模糊核" IsChecked="{Binding UseBoxBlur, Mode=TwoWay}" />
+            <Border Background="#191A2D" Width="200" Height="100"
+                    behaviors:ShaderEffectBehavior.BlurRadius="{Binding BlurRadius}"
+                    behaviors:ShaderEffectBehavior.UseBoxBlur="{Binding UseBoxBlur}">
+                <TextBlock Text="模糊预览" Foreground="White" />
             </Border>
-            <Slider x:Name="ShadowDepthSlider" Width="200" Minimum="0" Maximum="30"
-                    Value="5" SmallChange="1" LargeChange="5" />
-            <Border x:Name="ShadowPreview" Background="#08948A" Width="150" Height="80">
-                <Border.Effect>
-                    <effects:DropShadowEffect BlurRadius="10" Direction="315" Opacity="0.8" />
-                </Border.Effect>
-                <TextBlock Text="投影预览" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Slider Width="200" Minimum="0" Maximum="30"
+                    Value="{Binding ShadowDepth, Mode=TwoWay}" />
+            <Border Background="#08948A" Width="150" Height="80"
+                    behaviors:ShaderEffectBehavior.ShadowDepth="{Binding ShadowDepth}">
+                <TextBlock Text="投影预览" />
             </Border>
-            <Slider x:Name="InvertAmountSlider" Width="200" Minimum="0" Maximum="1"
-                    Value="0.75" SmallChange="0.05" LargeChange="0.25" />
-            <Border x:Name="HlslPreview" Background="#191A2D" Width="200" Height="100">
-                <Border.Effect><local:GalleryInvertEffect /></Border.Effect>
-                <TextBlock Text="HLSL 实时预览" Foreground="White" HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+            <Slider Width="200" Minimum="0" Maximum="1"
+                    Value="{Binding InvertAmount, Mode=TwoWay}" />
+            <Border Background="#191A2D" Width="200" Height="100"
+                    behaviors:ShaderEffectBehavior.InvertAmount="{Binding InvertAmount}">
+                <TextBlock Text="HLSL 实时预览" Foreground="White" />
             </Border>
         </StackPanel>
         """;
 
     public override string CSharpExample => """"
-        // After InitializeComponent:
-        // ShaderEffect is outside the visual tree. Connect the named slider
-        // explicitly so its constants update even without an inherited scope.
-        if (BlurPreview.Effect is BlurEffect blur)
+        // The view adapter applies these properties to BlurEffect and DropShadowEffect.
+        public sealed class ShaderEffectsViewModel : ViewModelBase
         {
-            blur.Radius = BlurRadiusSlider.Value;
-            BlurRadiusSlider.ValueChanged += (_, _) => blur.Radius = BlurRadiusSlider.Value;
-            BoxBlurCheckBox.Checked += (_, _) => blur.KernelType = KernelType.Box;
-            BoxBlurCheckBox.Unchecked += (_, _) => blur.KernelType = KernelType.Gaussian;
-        }
-        if (ShadowPreview.Effect is DropShadowEffect shadow)
-        {
-            shadow.ShadowDepth = ShadowDepthSlider.Value;
-            ShadowDepthSlider.ValueChanged += (_, _) => shadow.ShadowDepth = ShadowDepthSlider.Value;
-        }
-        if (HlslPreview.Effect is GalleryInvertEffect shader)
-        {
-            shader.Amount = InvertAmountSlider.Value;
-            InvertAmountSlider.ValueChanged += (_, _) => shader.Amount = InvertAmountSlider.Value;
+            private double _blurRadius = 10;
+            private double _shadowDepth = 5;
+            private double _invertAmount = 0.75;
+            private bool _useBoxBlur;
+
+            public double BlurRadius
+            {
+                get => _blurRadius;
+                set => SetProperty(ref _blurRadius, value);
+            }
+            public double ShadowDepth
+            {
+                get => _shadowDepth;
+                set => SetProperty(ref _shadowDepth, value);
+            }
+            public double InvertAmount
+            {
+                get => _invertAmount;
+                set => SetProperty(ref _invertAmount, value);
+            }
+            public bool UseBoxBlur
+            {
+                get => _useBoxBlur;
+                set => SetProperty(ref _useBoxBlur, value);
+            }
         }
 
         public sealed class GalleryInvertEffect : ShaderEffect

@@ -1,6 +1,7 @@
 <Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
       xmlns:documents="clr-namespace:Jalium.UI.Documents;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.CssStylingPage"
       hosting:ViewModelLocator.AutoWireViewModel="True"
@@ -86,9 +87,9 @@
                             Css.Style="border-radius:50%; background-color:#7c3aed" />
                     <Button x:Name="CssTemplateRadiusButton" Content="Template corners" Width="160" Height="80" Margin="16,0,0,12"
                             Css.Style="border-radius:50%; overflow:hidden" />
-                    <Border x:Name="CssImageBrushEllipse" Width="180" Height="90" Margin="16,0,16,12"
+                    <Border x:Name="CssImageBrushEllipse" behaviors:CssStylingDemoBehavior.ImageExample="Ellipse" Width="180" Height="90" Margin="16,0,16,12"
                             Css.Style="border-radius:50%; overflow:hidden; border:3px solid #93c5fd" />
-                    <Border x:Name="CssImageBrushCorners" Width="180" Height="90" Margin="0,0,0,12"
+                    <Border x:Name="CssImageBrushCorners" behaviors:CssStylingDemoBehavior.ImageExample="Corners" Width="180" Height="90" Margin="0,0,0,12"
                             Css.Style="border-radius:42px 0 30px 12px / 28px 0 18px 36px; overflow:hidden; border:3px solid #f0abfc" />
                     <Border x:Name="CssEllipticalShadowTile" Width="180" Height="90" Margin="16,0,16,20"
                             Css.Style="border-radius:60px 18px / 14px 34px; background-color:#1d4ed8; box-shadow:0 8px 18px rgba(56,189,248,.65)">
@@ -154,7 +155,7 @@
                     <StackPanel>
                         <Slider x:Name="CssImportWidthSlider" Minimum="240" Maximum="520" Value="420" Width="420"
                                 HorizontalAlignment="Left" Margin="0,0,0,12" />
-                        <StackPanel x:Name="CssImportDemoHost" Css.Style="container:import-demo / inline-size"
+                        <StackPanel x:Name="CssImportDemoHost" Css.StyleSheetSource="/Jalium.UI.Gallery.Modules.Main;component/Assets/CssImports/main.css" Css.Style="container:import-demo / inline-size"
                                     Width="{Binding Value, ElementName=CssImportWidthSlider}" HorizontalAlignment="Left">
                             <StackPanel Css.Class="import-grid">
                                 <Border x:Name="CssImportFirstTile" Css.Class="import-tile">
@@ -349,7 +350,7 @@
                             <TextBlock Text="12ch × 2lh" Margin="8" />
                         </Border>
                         <Slider x:Name="CssViewportDynamicSlider" Minimum="100" Maximum="200" Value="150" Margin="0,20,0,12" />
-                        <StackPanel x:Name="CssViewportDemoHost" Orientation="Horizontal">
+                        <StackPanel x:Name="CssViewportDemoHost" behaviors:CssStylingDemoBehavior.ViewportHeight="{Binding Value, ElementName=CssViewportDynamicSlider}" Orientation="Horizontal">
                             <Border x:Name="CssSmallViewportBox" Width="120" Margin="0,0,8,0"
                                     Css.Style="height:20svh; background-color:#2563eb"><TextBlock Text="20svh" Foreground="White" FontSize="12" /></Border>
                             <Border x:Name="CssDynamicViewportBox" Width="120" Margin="0,0,8,0"
@@ -367,7 +368,7 @@
                 <TextBlock Style="{StaticResource GalleryCardTitle}" Text="@font-face" />
                 <TextBlock Style="{StaticResource GalleryCardCaption}" Text="{DynamicResource Loc.P.CssStyling.FontFaceCaption}" />
                 <Border Style="{StaticResource GalleryDemoSurface}">
-                    <StackPanel x:Name="CssFontFaceDemoHost" Width="420">
+                    <StackPanel x:Name="CssFontFaceDemoHost" Css.StyleSheetSource="/Jalium.UI.Gallery.Modules.Main;component/Assets/CssFonts/font.css" Width="420">
                         <TextBox x:Name="CssFontFaceInput" Text="XXXX" Margin="0,0,0,12" />
                         <TextBlock x:Name="CssFontFaceText" Css.Class="downloaded-font" FontSize="20"
                                    Text="{Binding Text, ElementName=CssFontFaceInput}" Foreground="#0f766e" />

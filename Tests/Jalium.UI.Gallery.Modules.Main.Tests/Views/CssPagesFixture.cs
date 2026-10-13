@@ -155,10 +155,17 @@ public sealed class CssPagesFixture
     [Fact]
     public void StylingPage_DownloadedFontPreservesTextBindingAndNativeSize()
     {
-        using var context = Jalium.UI.Interop.RenderContext.GetOrCreateCurrent(Jalium.UI.Interop.RenderBackend.Software, forceReplace: true);
+        // Apple's software backend has approximate font metrics; verify the
+        // Gallery's native CoreText path through its production Metal backend.
+        var backend = OperatingSystem.IsMacOS()
+            ? Jalium.UI.Interop.RenderBackend.Metal
+            : Jalium.UI.Interop.RenderBackend.Software;
+        using var context = Jalium.UI.Interop.RenderContext.GetOrCreateCurrent(backend, forceReplace: true);
         var page = new CssStylingPage { DataContext = new CssStylingViewModel() };
-        page.FontStylesReady.GetAwaiter().GetResult(); Layout(page);
-        Jalium.UI.Styling.Css.WaitForFontsAsync(page).GetAwaiter().GetResult(); page.UpdateLayout();
+        Layout(page);
+        Jalium.UI.Styling.Css.WaitForFontsAsync(page).GetAwaiter().GetResult();
+        Jalium.UI.Threading.Dispatcher.CurrentDispatcher.ProcessQueue();
+        page.UpdateLayout();
         var text = Assert.IsType<TextBlock>(page.FindName("CssFontFaceText"));
         var input = Assert.IsType<TextBox>(page.FindName("CssFontFaceInput"));
         Assert.Empty(Jalium.UI.Styling.Css.GetFontLoadErrors(page));
@@ -191,10 +198,10 @@ public sealed class CssPagesFixture
     }
 
     [Fact]
-    public async Task StylingPage_ConditionalImportsLoadEmbeddedAssetsAndKeepNativeBindings()
+    public void StylingPage_ConditionalImportsLoadEmbeddedAssetsAndKeepNativeBindings()
     {
         var page=new CssStylingPage {DataContext=new CssStylingViewModel()};
-        await page.ImportStylesReady; Layout(page);
+        Layout(page);
         var slider=Assert.IsType<Slider>(page.FindName("CssImportWidthSlider"));
         var host=Assert.IsType<StackPanel>(page.FindName("CssImportDemoHost"));
         var first=FindBorder(page,"CssImportFirstTile"); var second=FindBorder(page,"CssImportSecondTile");

@@ -51,6 +51,20 @@ public sealed partial class ShaderEffectsViewModel
 {
     private double _blurRadius = 10;
     private double _shadowDepth = 5;
+    private bool _useBoxBlur;
+    private double _invertAmount = 0.75;
+
+    public bool UseBoxBlur
+    {
+        get => _useBoxBlur;
+        set => SetProperty(ref _useBoxBlur, value);
+    }
+
+    public double InvertAmount
+    {
+        get => _invertAmount;
+        set => SetProperty(ref _invertAmount, value);
+    }
 
     public double BlurRadius
     {

@@ -1,4 +1,8 @@
+using System.Reflection;
 using Jalium.UI;
+using Jalium.UI.Controls.Themes;
+using Jalium.UI.Gallery.Modules.Main.Localization;
+using Jalium.UI.Gallery.Modules.Main.Themes;
 using Jalium.UI.Controls;
 using Jalium.UI.Gallery.Modules.Main.Behaviors;
 using Jalium.UI.Gallery.Modules.Main.Models;
@@ -11,8 +15,32 @@ using Xunit;
 
 namespace Jalium.UI.Gallery.Modules.Main.Tests.Views;
 
-public sealed class ThemeColorsPageFixture
+public sealed class ThemeColorsPageFixture : IDisposable
 {
+    private readonly GalleryThemeMode _originalTheme = GalleryTheme.CurrentMode;
+    private readonly GalleryLanguage _originalLanguage = LocalizationManager.CurrentLanguage;
+
+    public ThemeColorsPageFixture()
+    {
+        ResetApplicationState();
+        // Containers need the same default templates as the running Gallery;
+        // unstyled ListBoxItems have no ContentPresenter and measure as one DIP.
+        _ = new App();
+    }
+
+    public void Dispose()
+    {
+        LocalizationManager.SetLanguage(_originalLanguage);
+        GalleryTheme.CurrentMode = _originalTheme;
+        ResetApplicationState();
+    }
+
+    private static void ResetApplicationState()
+    {
+        typeof(Application).GetField("_current", BindingFlags.NonPublic | BindingFlags.Static)?.SetValue(null, null);
+        typeof(ThemeManager).GetMethod("Reset", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, null);
+    }
+
     [Fact]
     public void ViewportHeightBehavior_RetriesAfterLateVisualAttachment()
     {

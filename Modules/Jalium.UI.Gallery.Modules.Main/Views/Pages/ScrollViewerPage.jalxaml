@@ -1,8 +1,10 @@
-﻿<Page xmlns="http://schemas.jalium.ui/2024"
+<Page xmlns="http://schemas.jalium.ui/2024"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
       xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
       x:Class="Jalium.UI.Gallery.Modules.Main.Views.Pages.ScrollViewerPage"
       hosting:ViewModelLocator.AutoWireViewModel="True"
+      behaviors:ScrollViewerPreviewBehavior.IsEnabled="True"
       Title="ScrollViewer">
 
     <StackPanel Style="{StaticResource GalleryPageStack}">
@@ -51,9 +53,9 @@
                                Text="{DynamicResource Loc.P.ScrollViewer.BounceHint}" />
                     <WrapPanel>
                         <Button x:Name="PullBounceButton" Content="{DynamicResource Loc.P.ScrollViewer.PullEdge}" MinWidth="110" MinHeight="36"
-                                Margin="0,8,12,0" Click="OnPullTopEdge" />
+                                Margin="0,8,12,0" />
                         <Button x:Name="ReleaseBounceButton" Content="{DynamicResource Loc.P.ScrollViewer.ReleaseEdge}"
-                                MinWidth="110" MinHeight="36" Margin="0,8,0,0" IsEnabled="False" Click="OnReleaseTopEdge" />
+                                MinWidth="110" MinHeight="36" Margin="0,8,0,0" IsEnabled="False" />
                     </WrapPanel>
                 </StackPanel>
             </StackPanel>
@@ -104,9 +106,9 @@
                 </Border>
                 <WrapPanel>
                     <Button Content="{DynamicResource Loc.P.ScrollViewer.ScrollLeft}" MinWidth="110" MinHeight="36"
-                            Margin="0,12,12,0" Click="OnScrollLeft" />
+                            Margin="0,12,12,0" x:Name="ScrollLeftButton" />
                     <Button Content="{DynamicResource Loc.P.ScrollViewer.ScrollRight}" MinWidth="110" MinHeight="36"
-                            Margin="0,12,0,0" Click="OnScrollRight" />
+                            Margin="0,12,0,0" x:Name="ScrollRightButton" />
                 </WrapPanel>
             </StackPanel>
         </Border>
