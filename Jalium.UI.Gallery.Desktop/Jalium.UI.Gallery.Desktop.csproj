@@ -123,6 +123,13 @@
     <ProjectReference Include="..\..\Jalium.UI\src\managed\Jalium.UI.Build\Jalium.UI.Build.csproj" ReferenceOutputAssembly="false" BuildReference="false" />
   </ItemGroup>
 
+  <!-- Gallery discovers pages/ViewModels by convention and resolves attached
+       behavior owners from compiled JALXAML names. NativeAOT must retain the
+       module's reflection metadata and static dependency-property initializers. -->
+  <ItemGroup Condition="'$(PublishAot)' == 'true'">
+    <TrimmerRootAssembly Include="Jalium.UI.Gallery.Modules.Main" />
+  </ItemGroup>
+
   <!-- Jalium.UI.Desktop carries the packaged source generator as a transitive
        dependency for NuGet consumers. This source-tree app already references
        the local generator project above, so keep only that analyzer instance. -->
