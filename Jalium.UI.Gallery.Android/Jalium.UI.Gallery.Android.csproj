@@ -7,7 +7,7 @@
     <TargetFramework>net10.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
     <ApplicationId>jalium.ui.gallery.android</ApplicationId>
-    <ApplicationVersion>261100</ApplicationVersion>
+    <ApplicationVersion>261101</ApplicationVersion>
     <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
     <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
     <RootNamespace>Jalium.UI.Gallery.Android</RootNamespace>
