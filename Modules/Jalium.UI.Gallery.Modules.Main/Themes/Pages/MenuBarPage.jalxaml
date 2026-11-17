@@ -1,0 +1,169 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for MenuBarPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.MenuBarPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <MenuBar>
+                        <MenuBarItem Title="File">
+                            <MenuFlyoutItem Text="New" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.New}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > New" />
+                            <MenuFlyoutItem Text="Open" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Open}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Open" />
+                            <MenuFlyoutItem Text="Save" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Save}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Save" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="Exit" KeyboardAcceleratorTextOverride="Alt+F4" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Exit" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="Edit">
+                            <MenuFlyoutItem Text="Undo" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Undo}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Undo" />
+                            <MenuFlyoutItem Text="Redo" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Redo}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Redo" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="Cut" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Cut}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Cut" />
+                            <MenuFlyoutItem Text="Copy" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Copy}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Copy" />
+                            <MenuFlyoutItem Text="Paste" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Paste}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Paste" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="View">
+                            <MenuFlyoutItem Text="Zoom In" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.ZoomIn}" Command="{Binding ExecuteMenuCommand}" CommandParameter="View > Zoom In" />
+                            <MenuFlyoutItem Text="Zoom Out" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.ZoomOut}" Command="{Binding ExecuteMenuCommand}" CommandParameter="View > Zoom Out" />
+                            <MenuFlyoutSeparator />
+                            <ToggleMenuFlyoutItem Text="Status Bar" IsChecked="{Binding IsStatusBarVisible, Mode=TwoWay}" />
+                            <ToggleMenuFlyoutItem Text="Word Wrap" IsChecked="{Binding IsWordWrapEnabled, Mode=TwoWay}" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="Help">
+                            <MenuFlyoutItem Text="Documentation" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > Documentation" />
+                            <MenuFlyoutItem Text="Release Notes" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > Release Notes" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="About" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > About" />
+                        </MenuBarItem>
+                    </MenuBar>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:MenuBarPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="MenuBar" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:MenuBarPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.MenuBar.Title1}" Description="{DynamicResource Loc.P.MenuBar.Sub1}" />
+
+        <!-- Basic MenuBar -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MenuBar.CT1}" Description="{DynamicResource Loc.P.MenuBar.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface x:Name="MenuBarContainer"
+
+                        MinHeight="28" Padding="0">
+                    <MenuBar>
+                        <MenuBarItem Title="File">
+                            <MenuFlyoutItem Text="New" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.New}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > New" />
+                            <MenuFlyoutItem Text="Open" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Open}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Open" />
+                            <MenuFlyoutItem Text="Save" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Save}" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Save" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="Exit" KeyboardAcceleratorTextOverride="Alt+F4" Command="{Binding ExecuteMenuCommand}" CommandParameter="File > Exit" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="Edit">
+                            <MenuFlyoutItem Text="Undo" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Undo}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Undo" />
+                            <MenuFlyoutItem Text="Redo" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Redo}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Redo" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="Cut" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Cut}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Cut" />
+                            <MenuFlyoutItem Text="Copy" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Copy}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Copy" />
+                            <MenuFlyoutItem Text="Paste" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.Paste}" Command="{Binding ExecuteMenuCommand}" CommandParameter="Edit > Paste" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="View">
+                            <MenuFlyoutItem Text="Zoom In" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.ZoomIn}" Command="{Binding ExecuteMenuCommand}" CommandParameter="View > Zoom In" />
+                            <MenuFlyoutItem Text="Zoom Out" KeyboardAcceleratorTextOverride="{DynamicResource Loc.Shortcut.ZoomOut}" Command="{Binding ExecuteMenuCommand}" CommandParameter="View > Zoom Out" />
+                            <MenuFlyoutSeparator />
+                            <ToggleMenuFlyoutItem Text="Status Bar" IsChecked="{Binding IsStatusBarVisible, Mode=TwoWay}" />
+                            <ToggleMenuFlyoutItem Text="Word Wrap" IsChecked="{Binding IsWordWrapEnabled, Mode=TwoWay}" />
+                        </MenuBarItem>
+                        <MenuBarItem Title="Help">
+                            <MenuFlyoutItem Text="Documentation" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > Documentation" />
+                            <MenuFlyoutItem Text="Release Notes" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > Release Notes" />
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem Text="About" Command="{Binding ExecuteMenuCommand}" CommandParameter="Help > About" />
+                        </MenuBarItem>
+                    </MenuBar>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Menu action log -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MenuBar.CT2}" Description="{DynamicResource Loc.P.MenuBar.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TextBlock x:Name="MenuStatusText"
+                               Style="{StaticResource GalleryBodyText}"
+                               Text="{Binding MenuStatus}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.MenuBar.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.MenuBar.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

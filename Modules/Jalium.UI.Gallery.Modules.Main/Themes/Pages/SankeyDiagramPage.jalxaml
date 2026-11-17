@@ -1,0 +1,137 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SankeyDiagramPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SankeyDiagramPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <SankeyDiagram Height="300"
+                                   ShowLabels="True"
+                                   ShowValues="False"
+                                   Nodes="{Binding BasicNodes}"
+                                   Links="{Binding BasicLinks}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SankeyDiagramPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="SankeyDiagram" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SankeyDiagramPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.SankeyDiagram.Title1}" Description="{DynamicResource Loc.P.SankeyDiagram.Sub1}" />
+
+        <!-- Basic Sankey -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SankeyDiagram.CT1}" Description="{DynamicResource Loc.P.SankeyDiagram.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <SankeyDiagram Height="300"
+                                   ShowLabels="True"
+                                   ShowValues="False"
+                                   Nodes="{Binding BasicNodes}"
+                                   Links="{Binding BasicLinks}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Multi-Layer Flow -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SankeyDiagram.CT2}" Description="{DynamicResource Loc.P.SankeyDiagram.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <SankeyDiagram Height="320"
+                                   ShowLabels="True"
+                                   ShowValues="True"
+                                   Nodes="{Binding TrafficNodes}"
+                                   Links="{Binding TrafficLinks}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Customized -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SankeyDiagram.CT3}" Description="{DynamicResource Loc.P.SankeyDiagram.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <SankeyDiagram Height="280"
+                                   ShowLabels="True"
+                                   ShowValues="True"
+                                   NodeWidth="24"
+                                   NodeSpacing="14"
+                                   LinkOpacity="0.5"
+                                   LabelPosition="Right"
+                                   Nodes="{Binding BudgetNodes}"
+                                   Links="{Binding BudgetLinks}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.SankeyDiagram.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.SankeyDiagram.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

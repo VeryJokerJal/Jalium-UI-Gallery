@@ -1,0 +1,117 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:presentation="clr-namespace:Jalium.UI.Gallery.Modules.Main.Presentation">
+    <BooleanToVisibilityConverter x:Key="HomePreviewBooleanVisibility" />
+    <Style TargetType="presentation:HomeComponentPreview">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="presentation:HomeComponentPreview">
+                <ContentPresenter x:Name="PART_PreviewPresenter" Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="PreviewStates"><VisualState x:Name="Empty" /><VisualState x:Name="Ready" /></VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ContentPresenter>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="Gallery.PreviewKind.buttons">
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Primary" Style="{StaticResource GalleryPrimaryButton}" Height="36" Padding="12,0" FontSize="11" Margin="4" />
+            <Button Content="Secondary" Style="{StaticResource GallerySecondaryButton}" Height="36" Padding="12,0" FontSize="11" Margin="4" />
+            <Button Content="Ghost" Style="{StaticResource GalleryGhostButton}" Height="36" Padding="10,0" FontSize="11" Margin="4" />
+            <Button Content="Disabled" Height="36" Padding="12,0" Margin="4" IsEnabled="False"
+                    Visibility="{Binding IsDetailed, Converter={StaticResource HomePreviewBooleanVisibility}}" />
+        </WrapPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.inputs">
+        <StackPanel VerticalAlignment="Center">
+            <TextBox Height="34" Text="Placeholder" Foreground="{DynamicResource GalleryTextMuted}" Margin="0,0,0,7" />
+            <TextBox Height="34" Text="Focused input" Margin="0,0,0,7" />
+            <TextBox Height="34" Text="Disabled input" IsEnabled="False"
+                     Visibility="{Binding IsDetailed, Converter={StaticResource HomePreviewBooleanVisibility}}" />
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.cards">
+        <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1" CornerRadius="6" Padding="12" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="42" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border Width="34" Height="34" Background="{DynamicResource GalleryAccentSoft}" CornerRadius="6">
+                    <PathIcon Data="M2,2 H9 V9 H2 Z M13,2 H20 V9 H13 Z M2,13 H9 V20 H2 Z M13,13 H20 V20 H13 Z"
+                              Width="16" Height="16" Foreground="{DynamicResource GalleryAccentOnSurface}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="Card title" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,4" />
+                    <TextBlock Text="Supporting content for this component." FontSize="10" Foreground="{DynamicResource GalleryTextTertiary}" TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.checkboxes">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox Content="Checked" IsChecked="True" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,6" />
+            <CheckBox Content="Unchecked" Foreground="{DynamicResource GalleryTextSecondary}" Margin="0,0,0,6" />
+            <CheckBox Content="Disabled" IsChecked="True" IsEnabled="False" Foreground="{DynamicResource GalleryTextDisabled}"
+                      Visibility="{Binding IsDetailed, Converter={StaticResource HomePreviewBooleanVisibility}}" />
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.switches">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ToggleSwitch Header="Notifications" IsOn="True" Foreground="{DynamicResource GalleryTextSecondary}" OnBackground="{DynamicResource GalleryAccent}" Margin="0,0,0,8" />
+            <ToggleSwitch Header="Auto update" IsOn="False" Foreground="{DynamicResource GalleryTextSecondary}" OnBackground="{DynamicResource GalleryAccent}" Margin="0,0,0,8" />
+            <ToggleSwitch Header="Unavailable" IsEnabled="False" Foreground="{DynamicResource GalleryTextDisabled}"
+                          Visibility="{Binding IsDetailed, Converter={StaticResource HomePreviewBooleanVisibility}}" />
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.badges">
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Background="{DynamicResource GalleryCardInnerBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="5" Padding="7,4" Margin="3">
+                <TextBlock Text="Default" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextTertiary}" />
+            </Border>
+            <Border Background="{DynamicResource GallerySuccessSoft}" BorderBrush="{DynamicResource GallerySuccess}" BorderThickness="1" CornerRadius="5" Padding="7,4" Margin="3">
+                <TextBlock Text="Success" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource GallerySuccessOnSurface}" />
+            </Border>
+            <Border Background="{DynamicResource GalleryInfoSoft}" BorderBrush="{DynamicResource GalleryInfo}" BorderThickness="1" CornerRadius="5" Padding="7,4" Margin="3">
+                <TextBlock Text="Info" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource GalleryInfoOnSurface}" />
+            </Border>
+            <Border Background="{DynamicResource GalleryWarningSoft}" BorderBrush="{DynamicResource GalleryWarning}" BorderThickness="1" CornerRadius="5" Padding="7,4" Margin="3">
+                <TextBlock Text="Warning" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource GalleryWarningOnSurface}" />
+            </Border>
+            <Border Background="{DynamicResource GalleryErrorSoft}" BorderBrush="{DynamicResource GalleryError}" BorderThickness="1" CornerRadius="5" Padding="7,4" Margin="3">
+                <TextBlock Text="Error" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource GalleryErrorOnSurface}" />
+            </Border>
+        </WrapPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.select">
+        <ComboBox MaxWidth="220" Height="38" PlaceholderText="Select an option" Foreground="{DynamicResource GalleryTextSecondary}" VerticalAlignment="Center">
+            <x:String>Option one</x:String><x:String>Option two</x:String><x:String>Option three</x:String>
+        </ComboBox>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.progress">
+        <StackPanel VerticalAlignment="Center">
+            <Grid Margin="0,0,0,7">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <TextBlock Text="Uploading" FontSize="10" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextSecondary}" />
+                <TextBlock Grid.Column="1" Text="60%" FontSize="10" Foreground="{DynamicResource GalleryTextTertiary}" />
+            </Grid>
+            <ProgressBar Value="60" Height="8" ProgressBrush="{DynamicResource GalleryAccent}" />
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="Gallery.PreviewKind.alerts">
+        <Border Background="{DynamicResource GalleryInfoSoft}" BorderBrush="{DynamicResource GalleryInfo}" BorderThickness="1" CornerRadius="6" Padding="10" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="28" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <PathIcon Data="M12,2 A10,10,0,1,0,12,22 A10,10,0,1,0,12,2 Z M12,4 A8,8,0,1,1,12,20 A8,8,0,1,1,12,4 Z M11,10 H13 V17 H11 Z M11,6 H13 V8 H11 Z"
+                          Width="20" Height="20" Foreground="{DynamicResource GalleryInfoOnSurface}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Update available" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,2" />
+                    <TextBlock Text="A new version is ready to install." FontSize="9" Foreground="{DynamicResource GalleryTextTertiary}" TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

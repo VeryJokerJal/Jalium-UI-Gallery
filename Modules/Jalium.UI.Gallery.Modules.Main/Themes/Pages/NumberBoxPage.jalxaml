@@ -1,0 +1,141 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for NumberBoxPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.NumberBoxPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Grid MaxWidth="300" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="BasicValueLabel" Text="{DynamicResource Loc.NumberBox.Basic}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="BasicNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Basic}" Value="{Binding BasicValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxWidth="300" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{DynamicResource Loc.NumberBox.Inline}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="InlineNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Inline}" Value="{Binding InlineValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpinButtonPlacementMode="Inline" MaxWidth="300" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{DynamicResource Loc.NumberBox.Range}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="RangedNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Range}" Value="{Binding RangedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" MaxWidth="300" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{DynamicResource Loc.NumberBox.Step}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="SteppedNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Step}" Value="{Binding SteppedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SmallChange="5" LargeChange="20" MaxWidth="300" HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    </Grid>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:NumberBoxPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:NumberBoxPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.NumberBox.Title1}" Description="{DynamicResource Loc.P.NumberBox.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.NumberBox.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Grid MaxWidth="300" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="BasicValueLabel" Text="{DynamicResource Loc.NumberBox.Basic}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="BasicNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Basic}" Value="{Binding BasicValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxWidth="300" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{DynamicResource Loc.NumberBox.Inline}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="InlineNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Inline}" Value="{Binding InlineValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpinButtonPlacementMode="Inline" MaxWidth="300" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{DynamicResource Loc.NumberBox.Range}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="RangedNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Range}" Value="{Binding RangedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" MaxWidth="300" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{DynamicResource Loc.NumberBox.Step}" Margin="0,0,0,4" />
+                        <NumberBox x:Name="SteppedNumberBox" automation:AutomationProperties.Name="{DynamicResource Loc.NumberBox.Step}" Value="{Binding SteppedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SmallChange="5" LargeChange="20" MaxWidth="300" HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Features}" Description="{DynamicResource Loc.P.NumberBox.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.NumberBox.Body1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.NumberBox.Body2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.NumberBox.Body3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.NumberBox.Body4}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.NumberBox.Body5}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.NumberBox.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.NumberBox.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

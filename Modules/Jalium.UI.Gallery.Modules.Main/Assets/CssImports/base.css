@@ -1,0 +1,7 @@
+.import-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 40px;
+    gap: 8px;
+}
+.import-tile { background-color: #475569; border-radius: 6px; }

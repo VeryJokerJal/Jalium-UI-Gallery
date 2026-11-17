@@ -1,0 +1,165 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ScatterPlotPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ScatterPlotPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <ScatterPlot Width="600"
+                                 Height="400"
+                                 Title="Random Data Points">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Dataset A"
+                                           Brush="#417EE0"
+                                           PointShape="Circle"
+                                           DataPoints="{Binding DatasetA}" />
+                            <ScatterSeries Title="Dataset B"
+                                           Brush="#4CAF50"
+                                           PointShape="Triangle"
+                                           DataPoints="{Binding DatasetB}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ScatterPlotPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ScatterPlot" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ScatterPlotPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.ScatterPlot.Title1}" Description="{DynamicResource Loc.P.ScatterPlot.Sub1}" />
+
+        <!-- Basic Scatter Plot -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ScatterPlot.CT1}" Description="{DynamicResource Loc.P.ScatterPlot.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ScatterPlot Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="400"
+                                 Title="Random Data Points">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Dataset A"
+                                           Brush="#417EE0"
+                                           PointShape="Circle"
+                                           DataPoints="{Binding DatasetA}" />
+                            <ScatterSeries Title="Dataset B"
+                                           Brush="#4CAF50"
+                                           PointShape="Triangle"
+                                           DataPoints="{Binding DatasetB}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Bubble Chart -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ScatterPlot.CT2}" Description="{DynamicResource Loc.P.ScatterPlot.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ScatterPlot Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="400"
+                                 Title="Bubble Sizing"
+                                 MinPointSize="6"
+                                 MaxPointSize="30">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Bubble Data"
+                                           Brush="#9C5FC4"
+                                           PointShape="Circle"
+                                           DataPoints="{Binding BubbleData}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Trend Line -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ScatterPlot.CT3}" Description="{DynamicResource Loc.P.ScatterPlot.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ScatterPlot Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="400"
+                                 Title="Linear Trend Line"
+                                 ShowTrendLine="True"
+                                 TrendLineType="Linear">
+                        <ScatterPlot.Series>
+                            <ScatterSeries Title="Correlated Data"
+                                           Brush="#FF9E22"
+                                           PointShape="Diamond"
+                                           DataPoints="{Binding CorrelatedData}" />
+                        </ScatterPlot.Series>
+                    </ScatterPlot>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ScatterPlot.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ScatterPlot.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

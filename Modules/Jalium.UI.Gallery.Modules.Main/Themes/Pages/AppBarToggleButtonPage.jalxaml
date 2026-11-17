@@ -1,0 +1,236 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for AppBarToggleButtonPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.AppBarToggleButtonPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <AppBarToggleButton x:Name="BoldToggle"
+                                                Label="Bold"
+                                                IsChecked="{Binding IsBold, Mode=TwoWay}"
+                                                Width="72"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Bold" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                            <AppBarToggleButton x:Name="ItalicToggle"
+                                                Label="Italic"
+                                                IsChecked="{Binding IsItalic, Mode=TwoWay}"
+                                                Width="72"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Italic" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                            <AppBarToggleButton x:Name="UnderlineToggle"
+                                                Label="Underline"
+                                                IsChecked="{Binding IsUnderline, Mode=TwoWay}"
+                                                Width="84"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Underline" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                        </WrapPanel>
+
+                        <TextBlock x:Name="FormattingPreviewText"
+                                   Text="{Binding FormattingPreview}"
+                                   FontWeight="{Binding PreviewFontWeight}"
+                                   FontStyle="{Binding PreviewFontStyle}"
+                                   FontSize="16"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:AppBarToggleButtonPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="AppBarToggleButton" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:AppBarToggleButtonPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.AppBarToggleButton.Title1}" Description="{DynamicResource Loc.P.AppBarToggleButton.Sub1}" />
+
+        <!-- Text formatting -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AppBarToggleButton.CT1}" Description="{DynamicResource Loc.P.AppBarToggleButton.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <AppBarToggleButton x:Name="BoldToggle"
+                                                Label="Bold"
+                                                IsChecked="{Binding IsBold, Mode=TwoWay}"
+                                                Width="72"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Bold" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                            <AppBarToggleButton x:Name="ItalicToggle"
+                                                Label="Italic"
+                                                IsChecked="{Binding IsItalic, Mode=TwoWay}"
+                                                Width="72"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Italic" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                            <AppBarToggleButton x:Name="UnderlineToggle"
+                                                Label="Underline"
+                                                IsChecked="{Binding IsUnderline, Mode=TwoWay}"
+                                                Width="84"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Underline" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                        </WrapPanel>
+
+                        <TextBlock x:Name="FormattingPreviewText"
+                                   Text="{Binding FormattingPreview}"
+                                   FontWeight="{Binding PreviewFontWeight}"
+                                   FontStyle="{Binding PreviewFontStyle}"
+                                   FontSize="16"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Checked state -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AppBarToggleButton.CT2}" Description="{DynamicResource Loc.P.AppBarToggleButton.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <AppBarToggleButton x:Name="WifiToggle"
+                                                Label="Wi-Fi"
+                                                IsChecked="{Binding IsWifiEnabled, Mode=TwoWay}"
+                                                Width="72"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Wifi" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                            <AppBarToggleButton x:Name="BluetoothToggle"
+                                                Label="Bluetooth"
+                                                IsChecked="{Binding IsBluetoothEnabled, Mode=TwoWay}"
+                                                Width="84"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Bluetooth" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                            <AppBarToggleButton x:Name="AirplaneModeToggle"
+                                                Label="Airplane"
+                                                IsChecked="{Binding IsAirplaneModeEnabled, Mode=TwoWay}"
+                                                Width="80"
+                                                Height="48"
+                                                Margin="0,0,10,10">
+                                <AppBarToggleButton.Icon>
+                                    <SymbolIcon Symbol="Airplane" />
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
+                        </WrapPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <Border Style="{StaticResource GalleryBadge}" Margin="0,0,8,0">
+                                <TextBlock x:Name="CheckedStateText"
+                                           Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding WifiStatusText}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryBadge}" Margin="0,0,8,0">
+                                <TextBlock Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding BluetoothStatusText}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryBadge}">
+                                <TextBlock Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding AirplaneModeStatusText}" />
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.AppBarToggleButton.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.AppBarToggleButton.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

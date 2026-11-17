@@ -1,0 +1,443 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for FlexPanelPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.FlexPanelPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Css.StyleSheet="
+                            .lbl { color: #94a3b8; font-size: 12px; margin: 0 0 4px 0 }
+                            .box { border-radius: 6px; padding: 10px 14px }
+                            .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }
+                            .stage { background-color: #0f172a; border-radius: 8px; padding: 10px; margin: 0 0 14px 0 }">
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage1}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#0ea5e9"><TextBlock Text="1" /></Border>
+                                <Border Css.Class="box" Background="#6366f1"><TextBlock Text="2" /></Border>
+                                <Border Css.Class="box" Background="#a855f7"><TextBlock Text="3" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="RowReverse" />
+                        <Border Css.Class="stage">
+                            <FlexPanel Direction="RowReverse" ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#0ea5e9"><TextBlock Text="1" /></Border>
+                                <Border Css.Class="box" Background="#6366f1"><TextBlock Text="2" /></Border>
+                                <Border Css.Class="box" Background="#a855f7"><TextBlock Text="3" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="Column" />
+                        <Border Css.Class="stage">
+                            <FlexPanel Direction="Column" RowSpacing="8" HorizontalAlignment="Left">
+                                <Border Css.Class="box" Background="#0ea5e9"><TextBlock Text="1" /></Border>
+                                <Border Css.Class="box" Background="#6366f1"><TextBlock Text="2" /></Border>
+                                <Border Css.Class="box" Background="#a855f7"><TextBlock Text="3" /></Border>
+                            </FlexPanel>
+                        </Border>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:FlexPanelPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="FlexPanel" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:FlexPanelPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.FlexPanel.Title1}" Description="{DynamicResource Loc.P.FlexPanel.Sub1}" />
+
+        <!-- Direction -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT1}" Description="{DynamicResource Loc.P.FlexPanel.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Css.StyleSheet="
+                            .lbl { color: #94a3b8; font-size: 12px; margin: 0 0 4px 0 }
+                            .box { border-radius: 6px; padding: 10px 14px }
+                            .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }
+                            .stage { background-color: #0f172a; border-radius: 8px; padding: 10px; margin: 0 0 14px 0 }">
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage1}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#0ea5e9"><TextBlock Text="1" /></Border>
+                                <Border Css.Class="box" Background="#6366f1"><TextBlock Text="2" /></Border>
+                                <Border Css.Class="box" Background="#a855f7"><TextBlock Text="3" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="RowReverse" />
+                        <Border Css.Class="stage">
+                            <FlexPanel Direction="RowReverse" ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#0ea5e9"><TextBlock Text="1" /></Border>
+                                <Border Css.Class="box" Background="#6366f1"><TextBlock Text="2" /></Border>
+                                <Border Css.Class="box" Background="#a855f7"><TextBlock Text="3" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="Column" />
+                        <Border Css.Class="stage">
+                            <FlexPanel Direction="Column" RowSpacing="8" HorizontalAlignment="Left">
+                                <Border Css.Class="box" Background="#0ea5e9"><TextBlock Text="1" /></Border>
+                                <Border Css.Class="box" Background="#6366f1"><TextBlock Text="2" /></Border>
+                                <Border Css.Class="box" Background="#a855f7"><TextBlock Text="3" /></Border>
+                            </FlexPanel>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- JustifyContent -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT2}" Description="{DynamicResource Loc.P.FlexPanel.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Css.StyleSheet="
+                            .lbl { color: #94a3b8; font-size: 12px; margin: 0 0 4px 0 }
+                            .box { border-radius: 6px; padding: 8px 16px; background-color: #4f46e5 }
+                            .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }
+                            .stage { background-color: #0f172a; border-radius: 8px; padding: 8px; margin: 0 0 12px 0 }">
+                        <TextBlock Css.Class="lbl" Text="FlexStart" />
+                        <Border Css.Class="stage">
+                            <FlexPanel JustifyContent="FlexStart" ColumnSpacing="6">
+                                <Border Css.Class="box"><TextBlock Text="A" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="C" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="Center" />
+                        <Border Css.Class="stage">
+                            <FlexPanel JustifyContent="Center" ColumnSpacing="6">
+                                <Border Css.Class="box"><TextBlock Text="A" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="C" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="FlexEnd" />
+                        <Border Css.Class="stage">
+                            <FlexPanel JustifyContent="FlexEnd" ColumnSpacing="6">
+                                <Border Css.Class="box"><TextBlock Text="A" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="C" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage2}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel JustifyContent="SpaceBetween">
+                                <Border Css.Class="box"><TextBlock Text="A" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="C" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage3}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel JustifyContent="SpaceAround">
+                                <Border Css.Class="box"><TextBlock Text="A" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="C" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage4}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel JustifyContent="SpaceEvenly">
+                                <Border Css.Class="box"><TextBlock Text="A" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="C" /></Border>
+                            </FlexPanel>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- AlignItems -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT3}" Description="{DynamicResource Loc.P.FlexPanel.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Css.StyleSheet="
+                            .lbl { color: #94a3b8; font-size: 12px; margin: 0 0 4px 0 }
+                            .box { border-radius: 6px; padding: 8px 14px; background-color: #0d9488 }
+                            .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }
+                            .stage { background-color: #0f172a; border-radius: 8px; padding: 8px; height: 110px; margin: 0 0 12px 0 }">
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage5}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel AlignItems="Stretch" ColumnSpacing="8">
+                                <Border Css.Class="box"><TextBlock Text="A" VerticalAlignment="Center" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="B" VerticalAlignment="Center" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage6}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel AlignItems="Center" ColumnSpacing="8">
+                                <Border Css.Class="box"><TextBlock Text="Center" /></Border>
+                                <Border Css.Class="box" FlexPanel.AlignSelf="FlexStart" Background="#c026d3"><TextBlock Text="AlignSelf=FlexStart" /></Border>
+                                <Border Css.Class="box" FlexPanel.AlignSelf="FlexEnd" Background="#db2777"><TextBlock Text="AlignSelf=FlexEnd" /></Border>
+                                <Border Css.Class="box" FlexPanel.AlignSelf="Stretch" Background="#e11d48"><TextBlock Text="AlignSelf=Stretch" VerticalAlignment="Center" /></Border>
+                            </FlexPanel>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Grow / Shrink / Basis -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT4}" Description="{DynamicResource Loc.P.FlexPanel.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Css.StyleSheet="
+                            .lbl { color: #94a3b8; font-size: 12px; margin: 0 0 4px 0 }
+                            .box { border-radius: 6px; padding: 10px }
+                            .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }
+                            .stage { background-color: #0f172a; border-radius: 8px; padding: 8px; margin: 0 0 12px 0 }">
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage7}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel x:Name="GrowRow" ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#475569" FlexPanel.Basis="90"><TextBlock Text="Basis 90" /></Border>
+                                <Border x:Name="GrowItem" Css.Class="box" Background="#0ea5e9" FlexPanel.Basis="90" FlexPanel.Grow="1"><TextBlock Text="{DynamicResource Loc.P.FlexPanel.Tile1}" /></Border>
+                                <Border Css.Class="box" Background="#475569" FlexPanel.Basis="90"><TextBlock Text="Basis 90" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage8}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#6366f1" FlexPanel.Basis="80" FlexPanel.Grow="1"><TextBlock Text="Grow 1" /></Border>
+                                <Border Css.Class="box" Background="#a855f7" FlexPanel.Basis="80" FlexPanel.Grow="3"><TextBlock Text="Grow 3" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage9}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#f59e0b" FlexPanel.Basis="500"><TextBlock Text="Basis 500, Shrink 1" /></Border>
+                                <Border Css.Class="box" Background="#ea580c" FlexPanel.Basis="250"><TextBlock Text="Basis 250, Shrink 1" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage10}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel ColumnSpacing="8">
+                                <Border Css.Class="box" Background="#16a34a" MinWidth="220" FlexPanel.Basis="500">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="MinWidth 220" VerticalAlignment="Center" />
+                                        <Border Background="#28FFFFFF" CornerRadius="4" Padding="6,1" Margin="8,0,0,0" VerticalAlignment="Center">
+                                            <TextBlock Text="frozen" FontSize="10.5" VerticalAlignment="Center" />
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                                <Border Css.Class="box" Background="#65a30d" FlexPanel.Basis="500"><TextBlock Text="absorbs the rest" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.FlexPanel.Cap1}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Wrap -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT5}" Description="{DynamicResource Loc.P.FlexPanel.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Css.StyleSheet="
+                            .lbl { color: #94a3b8; font-size: 12px; margin: 0 0 4px 0 }
+                            .box { border-radius: 6px; padding: 10px 18px; background-color: #7c3aed }
+                            .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }
+                            .stage { background-color: #0f172a; border-radius: 8px; padding: 8px; margin: 0 0 12px 0 }">
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage11}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel Wrap="Wrap" ColumnSpacing="10" RowSpacing="10" Width="420" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" HorizontalAlignment="Left">
+                                <Border Css.Class="box"><TextBlock Text="One" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="Two" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="Three" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="Four" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="Five" /></Border>
+                                <Border Css.Class="box"><TextBlock Text="Six" /></Border>
+                            </FlexPanel>
+                        </Border>
+
+                        <TextBlock Css.Class="lbl" Text="{DynamicResource Loc.P.FlexPanel.Stage12}" />
+                        <Border Css.Class="stage">
+                            <FlexPanel Wrap="WrapReverse" ColumnSpacing="10" RowSpacing="10" Width="420" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" HorizontalAlignment="Left">
+                                <Border Css.Class="box" Background="#0891b2"><TextBlock Text="One" /></Border>
+                                <Border Css.Class="box" Background="#0891b2"><TextBlock Text="Two" /></Border>
+                                <Border Css.Class="box" Background="#0891b2"><TextBlock Text="Three" /></Border>
+                                <Border Css.Class="box" Background="#0891b2"><TextBlock Text="Four" /></Border>
+                                <Border Css.Class="box" Background="#0891b2"><TextBlock Text="Five" /></Border>
+                            </FlexPanel>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Order -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT6}" Description="{DynamicResource Loc.P.FlexPanel.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Border Background="#0f172a" CornerRadius="8" Padding="8">
+                        <FlexPanel ColumnSpacing="8"
+                                   Css.StyleSheet="
+                                       .box { border-radius: 6px; padding: 10px 16px }
+                                       .box TextBlock { color: #ffffff; font-size: 12px; font-weight: 600 }">
+                            <Border Css.Class="box" Background="#dc2626" FlexPanel.Order="3">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="declared 1st" VerticalAlignment="Center" />
+                                    <Border Background="#28FFFFFF" CornerRadius="4" Padding="6,2" Margin="8,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Order 3" FontSize="11" VerticalAlignment="Center" />
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                            <Border Css.Class="box" Background="#ea580c" FlexPanel.Order="1">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="declared 2nd" VerticalAlignment="Center" />
+                                    <Border Background="#28FFFFFF" CornerRadius="4" Padding="6,2" Margin="8,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Order 1" FontSize="11" VerticalAlignment="Center" />
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                            <Border Css.Class="box" Background="#d97706" FlexPanel.Order="2">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="declared 3rd" VerticalAlignment="Center" />
+                                    <Border Background="#28FFFFFF" CornerRadius="4" Padding="6,2" Margin="8,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Order 2" FontSize="11" VerticalAlignment="Center" />
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                        </FlexPanel>
+                    </Border>
+                </gallery:GalleryDemoSurface>
+                <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,10,0,0"
+                           Text="{DynamicResource Loc.P.FlexPanel.Cap2}" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- CSS-driven -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT7}" Description="{DynamicResource Loc.P.FlexPanel.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <FlexPanel x:Name="CssDrivenFlex" Css.StyleSheet="
+                            FlexPanel { flex-direction: row; justify-content: space-between;
+                                        align-items: center; gap: 10px }
+                            .sidebar { flex: 0 0 120px; background-color: #1e40af }
+                            .main    { flex: 1;          background-color: #1d4ed8 }
+                            .aside   { flex: 0 1 90px;   background-color: #3b82f6 }
+                            Border   { border-radius: 8px; padding: 16px 12px }
+                            TextBlock { color: #eff6ff; font-size: 12px; font-weight: 600 }">
+                        <Border Css.Class="sidebar"><TextBlock Text="flex: 0 0 120px" /></Border>
+                        <Border x:Name="CssFlexMain" Css.Class="main"><TextBlock Text="{DynamicResource Loc.P.FlexPanel.Stage13}" /></Border>
+                        <Border Css.Class="aside"><TextBlock Text="flex: 0 1 90px" /></Border>
+                    </FlexPanel>
+                </gallery:GalleryDemoSurface>
+                <TextBlock Style="{StaticResource GalleryCaptionText}" Margin="0,10,0,0"
+                           Text="{DynamicResource Loc.P.FlexPanel.Cap3}" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Practical layout -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.FlexPanel.CT8}" Description="{DynamicResource Loc.P.FlexPanel.CC8}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Border Background="#0f172a" CornerRadius="10" Padding="12">
+                        <FlexPanel AlignItems="Center" ColumnSpacing="10">
+                            <Border Width="34" Height="34" CornerRadius="8" Background="#22d3ee">
+                                <TextBlock Text="J" Foreground="#083344" FontWeight="Bold" FontSize="16"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <StackPanel FlexPanel.Grow="1" FlexPanel.Basis="0" VerticalAlignment="Center">
+                                <TextBlock Text="Project Atlas" Foreground="#f8fafc" FontSize="14" FontWeight="SemiBold" />
+                                <TextBlock Text="{DynamicResource Loc.P.FlexPanel.Stage14}" Foreground="#64748b" FontSize="11" />
+                            </StackPanel>
+                            <Border Background="#1e293b" CornerRadius="6" Padding="10,6">
+                                <TextBlock Text="Share" Foreground="#cbd5e1" FontSize="12" />
+                            </Border>
+                            <Border Background="#2563eb" CornerRadius="6" Padding="10,6">
+                                <TextBlock Text="Publish" Foreground="White" FontSize="12" FontWeight="SemiBold" />
+                            </Border>
+                        </FlexPanel>
+                    </Border>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.FlexPanel.CC9}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="260"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.FlexPanel.CC10}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="240"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

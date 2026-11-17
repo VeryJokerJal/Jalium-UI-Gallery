@@ -1,0 +1,161 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for PropertyGridPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.PropertyGridPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <PropertyGrid x:Name="BasicPropertyGrid"
+                                  Height="350"
+                                  SelectedObject="{Binding BasicSample}"
+                                  SortMode="Categorized"
+                                  ShowSearchBox="True"
+                                  ShowDescription="True"/>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:PropertyGridPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="PropertyGrid" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:PropertyGridPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact"><VisualState.Setters>
+                            <Setter TargetName="PART_CategorizedPanel" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="PART_CategorizedPanel" Property="Margin" Value="0" />
+                            <Setter TargetName="PART_AlphabeticalPanel" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="PART_AlphabeticalPanel" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="PART_AlphabeticalPanel" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="PART_AlphabeticalPanel" Property="Margin" Value="0,12,0,0" />
+                        </VisualState.Setters></VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataViewers}" Title="{DynamicResource Loc.P.PropertyGrid.Title1}" Description="{DynamicResource Loc.P.PropertyGrid.Sub1}" />
+
+        <!-- Basic property grid -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.PropertyGrid.CT1}" Description="{DynamicResource Loc.P.PropertyGrid.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <PropertyGrid x:Name="BasicPropertyGrid"
+                                  Height="350"
+                                  SelectedObject="{Binding BasicSample}"
+                                  SortMode="Categorized"
+                                  ShowSearchBox="True"
+                                  ShowDescription="True"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Categorized vs Alphabetical -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.PropertyGrid.CT2}" Description="{DynamicResource Loc.P.PropertyGrid.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <StackPanel x:Name="PART_CategorizedPanel" Margin="0,0,6,0">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.PropertyGrid.Cap1}" Margin="0,0,0,6"/>
+                            <PropertyGrid x:Name="CategorizedGrid"
+                                          Height="300"
+                                          SelectedObject="{Binding BasicSample}"
+                                          SortMode="Categorized"
+                                          ShowSearchBox="False"
+                                          ShowDescription="False"/>
+                        </StackPanel>
+                        <StackPanel x:Name="PART_AlphabeticalPanel" Grid.Column="1" Margin="6,0,0,0">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.PropertyGrid.Cap2}" Margin="0,0,0,6"/>
+                            <PropertyGrid x:Name="AlphabeticalGrid"
+                                          Height="300"
+                                          SelectedObject="{Binding BasicSample}"
+                                          SortMode="Alphabetical"
+                                          ShowSearchBox="False"
+                                          ShowDescription="False"/>
+                        </StackPanel>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Custom object -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.PropertyGrid.CT3}" Description="{DynamicResource Loc.P.PropertyGrid.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <PropertyGrid x:Name="CustomObjectGrid"
+                                  Height="400"
+                                  SelectedObject="{Binding WindowSample}"
+                                  SortMode="Categorized"
+                                  ShowSearchBox="True"
+                                  ShowDescription="True"
+                                  ShowToolBar="True"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.PropertyGrid.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.PropertyGrid.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

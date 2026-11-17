@@ -1,0 +1,177 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ColorPickerPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ColorPickerPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <ColorPicker x:Name="BasicColorPicker" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ColorPickerPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ColorPicker" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ColorPickerPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.P.ColorPicker.Eyebrow1}" Title="{DynamicResource Loc.P.ColorPicker.Title1}" Description="{DynamicResource Loc.P.ColorPicker.Sub1}" />
+
+        <!-- Basic ColorPicker -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ColorPicker.CT1}" Description="{DynamicResource Loc.P.ColorPicker.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ColorPicker x:Name="BasicColorPicker" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Compact ColorPicker -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ColorPicker.CT2}" Description="{DynamicResource Loc.P.ColorPicker.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ColorPicker IsCompact="True" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ColorPicker options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ColorPicker.CT3}" Description="{DynamicResource Loc.P.ColorPicker.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.ColorPicker.Cap1}" Margin="0,0,0,8" />
+                        <ColorPicker IsAlphaEnabled="True" Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.ColorPicker.Cap2}" Margin="0,0,0,8" />
+                        <ColorPicker IsAlphaEnabled="False" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.ColorPicker.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <ColorPicker x:Name="DemoColorPicker"
+                                     Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Color="{Binding SelectedColor, Mode=TwoWay}"
+                                     Margin="0,0,10,10" />
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.ColorPicker.Cap3}" Margin="0,0,0,8" />
+                            <Border x:Name="ColorPreview"
+                                    Width="100"
+                                    Height="100"
+                                    Background="{Binding SelectedColorBrush}"
+                                    CornerRadius="14"
+                                    Margin="0,0,0,12" />
+                            <TextBlock x:Name="ColorHexText"
+                                       Text="{Binding SelectedColorText}"
+                                       FontFamily="{ThemeResource MonoFontFamily}"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common use cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases2}" Description="{DynamicResource Loc.P.ColorPicker.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ColorPicker.Val1}" Width="120" />
+                            <Border Background="#FF0000" Width="32" Height="32" CornerRadius="8" Margin="0,0,8,0" />
+                            <Button Content="Choose..." Width="80" Height="28" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ColorPicker.Val2}" Width="120" />
+                            <Border Background="#00FF00" Width="32" Height="32" CornerRadius="8" Margin="0,0,8,0" />
+                            <Button Content="Choose..." Width="80" Height="28" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ColorPicker.Val3}" Width="120" />
+                            <Border Background="#0000FF" Width="32" Height="32" CornerRadius="8" Margin="0,0,8,0" />
+                            <Button Content="Choose..." Width="80" Height="28" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ColorPicker.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ColorPicker.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

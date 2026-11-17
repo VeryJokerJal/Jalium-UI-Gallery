@@ -1,0 +1,237 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ToastNotificationPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ToastNotificationPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                        <WrapPanel>
+                            <Button Content="Info" Command="{Binding ShowToastCommand}" CommandParameter="Information" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Success" Command="{Binding ShowToastCommand}" CommandParameter="Success" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Warning" Command="{Binding ShowToastCommand}" CommandParameter="Warning" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Error" Command="{Binding ShowToastCommand}" CommandParameter="Error" Width="70" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ToastNotificationPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ToastNotification" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ToastNotificationPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <!--
+        ToastNotification page. The visible content column adopts the shared
+        gallery scaffold (GalleryPageStack + GalleryCard sections). It is wrapped
+        in a Grid only so the ToastNotificationHost can overlay the page as a
+        sibling that renders on top of the content — the framework's content host
+        provides scrolling, so no page-level ScrollViewer is needed.
+    -->
+
+    <Grid>
+
+        <StackPanel Style="{StaticResource GalleryPageStack}">
+
+            <!-- Page header -->
+            <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Overlays}" Title="{DynamicResource Loc.P.ToastNotification.Title1}" Description="{DynamicResource Loc.P.ToastNotification.Sub1}" />
+
+            <!-- Basic notifications -->
+            <gallery:GallerySection Header="{DynamicResource Loc.P.ToastNotification.CT1}" Description="{DynamicResource Loc.P.ToastNotification.CC1}">
+                <StackPanel>
+
+                    <gallery:GalleryDemoSurface>
+                        <WrapPanel>
+                            <Button Content="Info" Command="{Binding ShowToastCommand}" CommandParameter="Information" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Success" Command="{Binding ShowToastCommand}" CommandParameter="Success" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Warning" Command="{Binding ShowToastCommand}" CommandParameter="Warning" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Error" Command="{Binding ShowToastCommand}" CommandParameter="Error" Width="70" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </gallery:GallerySection>
+
+            <!-- Preview -->
+            <gallery:GallerySection Header="{DynamicResource Loc.P.ToastNotification.CT2}" Description="{DynamicResource Loc.P.ToastNotification.CC2}">
+                <StackPanel>
+
+                    <gallery:GalleryDemoSurface>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Info Toast Preview -->
+                            <ToastNotificationItem Severity="Information"
+                                                   Title="Information"
+                                                   Message="This is an informational message."
+                                                   IsAutoDismissEnabled="False"
+                                                   IsClosable="False"
+                                                   Margin="0,0,0,8"/>
+
+                            <!-- Success Toast Preview -->
+                            <ToastNotificationItem Severity="Success"
+                                                   Title="Success"
+                                                   Message="Operation completed successfully."
+                                                   IsAutoDismissEnabled="False"
+                                                   IsClosable="False"
+                                                   Margin="0,0,0,8"/>
+
+                            <!-- Warning Toast Preview -->
+                            <ToastNotificationItem Severity="Warning"
+                                                   Title="Warning"
+                                                   Message="Please review before proceeding."
+                                                   IsAutoDismissEnabled="False"
+                                                   IsClosable="False"
+                                                   Margin="0,0,0,8"/>
+
+                            <!-- Error Toast Preview -->
+                            <ToastNotificationItem Severity="Error"
+                                                   Title="Error"
+                                                   Message="An error occurred during the operation."
+                                                   IsAutoDismissEnabled="False"
+                                                   IsClosable="False"/>
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </gallery:GallerySection>
+
+            <!-- With actions -->
+            <gallery:GallerySection Header="{DynamicResource Loc.P.ToastNotification.CT3}" Description="{DynamicResource Loc.P.ToastNotification.CC3}">
+                <StackPanel>
+
+                    <gallery:GalleryDemoSurface>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Toast with Actions Preview -->
+                            <Border Background="{DynamicResource GalleryCardBackground}" BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8" Padding="12">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <Border Width="36"
+                                                Height="36"
+                                                Background="{DynamicResource GalleryInfoSoft}"
+                                                CornerRadius="10"
+                                                Margin="0,0,12,0">
+                                            <SymbolIcon Symbol="Download"
+                                                        Width="18"
+                                                        Height="18"
+                                                        Foreground="{DynamicResource GalleryInfoOnSurface}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center" />
+                                        </Border>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{DynamicResource Loc.P.ToastNotification.Ui1}" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{DynamicResource Loc.P.ToastNotification.Ui2}" FontSize="12"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button Content="Open" Width="60" Height="24" FontSize="11" Margin="0,0,8,0"/>
+                                        <Button Content="Dismiss" Width="70" Height="24" FontSize="11"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <Button Content="{DynamicResource Loc.P.ToastNotification.Ui3}" Command="{Binding ShowActionToastCommand}" Width="180" Height="28" Margin="0,16,0,0"/>
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </gallery:GallerySection>
+
+            <!-- Configuration -->
+            <gallery:GallerySection Header="{DynamicResource Loc.P.ToastNotification.CT4}" Description="{DynamicResource Loc.P.ToastNotification.CC4}">
+                <StackPanel>
+
+                    <gallery:GalleryDemoSurface>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Position:" Width="100" VerticalAlignment="Center"/>
+                                <ComboBox Width="150"
+                                          Height="28"
+                                          ItemsSource="{Binding Positions}"
+                                          SelectedItem="{Binding Position, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <TextBlock Text="Duration:" Width="100" VerticalAlignment="Center"/>
+                                <Slider Minimum="1" Maximum="15" Value="{Binding DurationSeconds, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding DurationSeconds, StringFormat='{}{0:F0}s'}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <CheckBox Content="{DynamicResource Loc.P.ToastNotification.Ui4}" IsChecked="{Binding ShowCloseButton, Mode=TwoWay}" Margin="0,0,0,8"/>
+                            <CheckBox Content="{DynamicResource Loc.P.ToastNotification.Ui5}" IsChecked="{Binding AutoDismiss, Mode=TwoWay}" Margin="0,0,0,8"/>
+                            <WrapPanel Margin="0,8,0,0">
+                                <Button Content="{DynamicResource Loc.P.ToastNotification.Ui6}" Command="{Binding ShowCustomToastCommand}" Width="150" Height="28" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.ToastNotification.Ui7}" Command="{Binding DismissAllCommand}" Width="100" Height="28" Margin="0,0,10,10"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </gallery:GallerySection>
+
+            <!-- XAML code example -->
+            <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ToastNotification.CC5}">
+                <StackPanel>
+
+                    <gallery:GalleryDemoSurface Padding="0">
+                        <EditControl x:Name="XamlCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"
+                                     Language="jalxaml"
+                                     Text="{Binding XamlExample}" />
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </gallery:GallerySection>
+
+            <!-- C# code example -->
+            <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ToastNotification.CC6}">
+                <StackPanel>
+
+                    <gallery:GalleryDemoSurface Padding="0">
+                        <EditControl x:Name="CSharpCodeEditor"
+                                     Height="200"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"
+                                     Language="csharp"
+                                     Text="{Binding CSharpExample}" />
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </gallery:GallerySection>
+
+        </StackPanel>
+
+        <!-- Toast notification overlay host (renders on top of content) -->
+        <ToastNotificationHost x:Name="ToastHost"
+                               Position="{Binding Position}"
+                               MaxVisibleToasts="5"
+                               ToastWidth="380"
+                               Spacing="8"
+                               behaviors:ToastHostBehavior.Request="{Binding Request}"/>
+    </Grid>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

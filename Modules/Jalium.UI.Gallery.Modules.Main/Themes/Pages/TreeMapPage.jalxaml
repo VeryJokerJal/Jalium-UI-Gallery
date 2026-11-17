@@ -1,0 +1,146 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TreeMapPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TreeMapPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <TreeMap Width="600"
+                             Height="400"
+                             Algorithm="Squarified"
+                             ShowLabels="True"
+                             Title="Market Sectors"
+                             Items="{Binding MarketItems}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TreeMapPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="TreeMap" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TreeMapPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.TreeMap.Title1}" Description="{DynamicResource Loc.P.TreeMap.Sub1}" />
+
+        <!-- Basic TreeMap -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TreeMap.CT1}" Description="{DynamicResource Loc.P.TreeMap.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TreeMap Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                             Height="400"
+                             Algorithm="Squarified"
+                             ShowLabels="True"
+                             Title="Market Sectors"
+                             Items="{Binding MarketItems}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Nested TreeMap -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TreeMap.CT2}" Description="{DynamicResource Loc.P.TreeMap.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TreeMap Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                             Height="400"
+                             Algorithm="Squarified"
+                             ShowLabels="True"
+                             Title="Disk Usage"
+                             Items="{Binding NestedItems}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Squarified Algorithm -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TreeMap.CT3}" Description="{DynamicResource Loc.P.TreeMap.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <TreeMap Width="290" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="300"
+                                 Algorithm="Squarified"
+                                 ShowLabels="True"
+                                 Title="Squarified"
+                                 Items="{Binding SquarifiedItems}" />
+                        <TreeMap Width="290" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="300"
+                                 Algorithm="SliceAndDice"
+                                 ShowLabels="True"
+                                 Title="Slice &amp; Dice"
+                                 Items="{Binding SliceAndDiceItems}"
+                                 Margin="16,0,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.TreeMap.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.TreeMap.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

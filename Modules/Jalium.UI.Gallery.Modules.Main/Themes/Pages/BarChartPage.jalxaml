@@ -1,0 +1,173 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for BarChartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.BarChartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <BarChart Height="350"
+                              Title="Sales by Region"
+                              IsLegendVisible="True"
+                              BarMode="Grouped"
+                              ShowValueLabels="True"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="2024"
+                                       Brush="#3B82F6"
+                                       DataPoints="{Binding Grouped2024}" />
+                            <BarSeries Title="2025"
+                                       Brush="#10B981"
+                                       DataPoints="{Binding Grouped2025}" />
+                        </BarChart.Series>
+                    </BarChart>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:BarChartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="BarChart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:BarChartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.BarChart.Title1}" Description="{DynamicResource Loc.P.BarChart.Sub1}" />
+
+        <!-- Grouped Bars -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.BarChart.CT1}" Description="{DynamicResource Loc.P.BarChart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <BarChart Height="350"
+                              Title="Sales by Region"
+                              IsLegendVisible="True"
+                              BarMode="Grouped"
+                              ShowValueLabels="True"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="2024"
+                                       Brush="#3B82F6"
+                                       DataPoints="{Binding Grouped2024}" />
+                            <BarSeries Title="2025"
+                                       Brush="#10B981"
+                                       DataPoints="{Binding Grouped2025}" />
+                        </BarChart.Series>
+                    </BarChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stacked Bars -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.BarChart.CT2}" Description="{DynamicResource Loc.P.BarChart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <BarChart Height="350"
+                              Title="Revenue Breakdown"
+                              IsLegendVisible="True"
+                              BarMode="Stacked"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="Products"
+                                       Brush="#6366F1"
+                                       DataPoints="{Binding Products}" />
+                            <BarSeries Title="Services"
+                                       Brush="#F59E0B"
+                                       DataPoints="{Binding Services}" />
+                            <BarSeries Title="Licensing"
+                                       Brush="#EC4899"
+                                       DataPoints="{Binding Licensing}" />
+                        </BarChart.Series>
+                    </BarChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Horizontal Bars -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.BarChart.CT3}" Description="{DynamicResource Loc.P.BarChart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <BarChart Height="350"
+                              Title="Programming Language Popularity"
+                              IsLegendVisible="True"
+                              Orientation="Horizontal"
+                              BarMode="Grouped"
+                              ShowValueLabels="True"
+                              IsGridLinesVisible="True">
+                        <BarChart.Series>
+                            <BarSeries Title="Developers (%)"
+                                       Brush="#0EA5E9"
+                                       DataPoints="{Binding LanguagePopularity}" />
+                        </BarChart.Series>
+                    </BarChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.BarChart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.BarChart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

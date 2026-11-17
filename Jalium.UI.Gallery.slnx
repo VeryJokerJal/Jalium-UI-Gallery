@@ -7,6 +7,7 @@
     <Project Path="Services/Jalium.UI.Gallery.Services/Jalium.UI.Gallery.Services.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="Tests/Jalium.UI.Gallery.Headless.Tests/Jalium.UI.Gallery.Headless.Tests.csproj" />
     <Project Path="Tests/Jalium.UI.Gallery.Modules.Main.Tests/Jalium.UI.Gallery.Modules.Main.Tests.csproj" />
   </Folder>
   <Folder Name="/Jalium.UI/">
@@ -16,15 +17,19 @@
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Gpu/Jalium.UI.Gpu.csproj" />
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Input/Jalium.UI.Input.csproj" />
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Interop/Jalium.UI.Interop.csproj" />
+    <Project Path="../Jalium.UI/src/managed/Jalium.UI.Managed/Jalium.UI.Managed.csproj" />
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Media/Jalium.UI.Media.csproj" />
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml.SourceGenerator/Jalium.UI.Xaml.SourceGenerator.csproj" />
     <Project Path="../Jalium.UI/src/managed/Jalium.UI.Xaml/Jalium.UI.Xaml.csproj" />
     <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Android/Jalium.UI.Android.csproj" />
     <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Desktop/Jalium.UI.Desktop.csproj" />
     <Project Path="../Jalium.UI/src/packaging/Jalium.UI.Linux/Jalium.UI.Linux.csproj" />
+    <Project Path="../Jalium.UI/src/packaging/Jalium.UI.MacOS/Jalium.UI.MacOS.csproj" />
   </Folder>
   <Project Path="Jalium.UI.Gallery.Android/Jalium.UI.Gallery.Android.csproj" />
   <Project Path="Jalium.UI.Gallery.Core/Jalium.UI.Gallery.Core.csproj" />
   <Project Path="Jalium.UI.Gallery.Desktop/Jalium.UI.Gallery.Desktop.csproj" />
+  <Project Path="Jalium.UI.Gallery.Headless/Jalium.UI.Gallery.Headless.csproj" />
   <Project Path="Jalium.UI.Gallery.Linux/Jalium.UI.Gallery.Linux.csproj" />
+  <Project Path="Jalium.UI.Gallery.MacOS/Jalium.UI.Gallery.MacOS.csproj" />
 </Solution>

@@ -1,0 +1,201 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TextEffectPresenterPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TextEffectPresenterPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <TextEffectPresenter Text="{Binding MutationText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="RiseSettle" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TextEffectPresenterPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="TextEffectPresenter" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TextEffectPresenterPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.TextAndTypography}" Title="{DynamicResource Loc.P.TextEffectPresenter.Title1}" Description="{DynamicResource Loc.P.TextEffectPresenter.Sub1}" />
+
+        <!-- Card 1: Mutation API — Append / Insert / Remove / Clear -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TextEffectPresenter.CT1}" Description="{DynamicResource Loc.P.TextEffectPresenter.CC1}">
+            <StackPanel>
+
+
+                <!-- Buttons are placed BEFORE MutationDemoHost on purpose: the demo host
+                     grows with its content (AppendLine etc. add lines), and a vertical stack
+                     would push anything below it downward each time content grows — which
+                     breaks rapid re-clicking, since a second click lands where the button used
+                     to be. Hosting the buttons above pins their on-screen position no matter
+                     how tall the presenter gets. -->
+                <WrapPanel Margin="0,0,0,6">
+                    <Button Content="Append 'lyric '"
+                            Command="{Binding AppendCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="AppendLine"
+                            Command="{Binding AppendLineCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="Insert @3"
+                            Command="{Binding InsertCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="Remove 2 @3"
+                            Command="{Binding RemoveCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="Clear"
+                            Command="{Binding ClearCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="Reset text"
+                            Command="{Binding ResetCommand}"
+                            Margin="0,0,10,10" />
+                </WrapPanel>
+
+                <gallery:GalleryDemoSurface x:Name="MutationDemoHost"
+
+                        MinHeight="100">
+                    <TextEffectPresenter Text="{Binding MutationText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="RiseSettle" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Card 2: Built-in effects -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TextEffectPresenter.CT2}" Description="{DynamicResource Loc.P.TextEffectPresenter.CC2}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface x:Name="EffectSwitchDemoHost"
+
+                        MinHeight="80">
+                    <TextEffectPresenter Text="{Binding EffectText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="{Binding AnimationEffect}" />
+                </gallery:GalleryDemoSurface>
+
+                <WrapPanel Margin="0,16,0,0">
+                    <Button Content="RiseSettle (default)"
+                            Command="{Binding UseRiseSettleCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="FadeIn"
+                            Command="{Binding UseFadeInCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="Typewriter"
+                            Command="{Binding UseTypewriterCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="WaveBounce"
+                            Command="{Binding UseWaveBounceCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="PulsingBlur (GPU shader)"
+                            Command="{Binding UsePulsingBlurCommand}"
+                            Margin="0,0,10,10" />
+                </WrapPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Card 3: Compose with UIElement.Effect (GPU pass) -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TextEffectPresenter.CT3}" Description="{DynamicResource Loc.P.TextEffectPresenter.CC3}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface x:Name="EffectComposeDemoHost"
+
+                        MinHeight="80">
+                    <TextEffectPresenter Text="{Binding ComposeText}"
+                                         FontSize="28"
+                                         FontWeight="SemiBold"
+                                         Foreground="{DynamicResource GalleryTextPrimary}"
+                                         behaviors:TextEffectPresenterBehavior.AnimationEffect="WaveBounce"
+                                         behaviors:TextEffectPresenterBehavior.GpuEffect="{Binding GpuEffect}" />
+                </gallery:GalleryDemoSurface>
+
+                <WrapPanel Margin="0,16,0,0">
+                    <Button Content="No GPU effect"
+                            Command="{Binding UseNoGpuEffectCommand}"
+                            Margin="0,0,10,10" />
+                    <Button Content="BlurEffect 4px"
+                            Command="{Binding UseBlur4Command}"
+                            Margin="0,0,10,10" />
+                    <Button Content="BlurEffect 10px"
+                            Command="{Binding UseBlur10Command}"
+                            Margin="0,0,10,10" />
+                </WrapPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.TextEffectPresenter.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="220"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.TextEffectPresenter.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="320"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

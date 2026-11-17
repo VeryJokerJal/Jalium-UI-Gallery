@@ -1,0 +1,213 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ContentDialogPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ContentDialogPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui1}"
+                                    Command="{Binding ShowBasicDialogCommand}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui2}"
+                                    Command="{Binding ShowFullSizeDialogCommand}"
+                                    Width="100"
+                                    Height="32"
+                                    Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding PopupResult}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ContentDialogPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ContentDialog" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ContentDialogPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Dialogs}" Title="{DynamicResource Loc.P.ContentDialog.Title1}" Description="{DynamicResource Loc.P.ContentDialog.Sub1}" />
+
+        <!-- Popup dialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ContentDialog.CT1}" Description="{DynamicResource Loc.P.ContentDialog.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui1}"
+                                    Command="{Binding ShowBasicDialogCommand}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui2}"
+                                    Command="{Binding ShowFullSizeDialogCommand}"
+                                    Width="100"
+                                    Height="32"
+                                    Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding PopupResult}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- In-place dialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ContentDialog.CT2}" Description="{DynamicResource Loc.P.ContentDialog.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <Button Content="{DynamicResource Loc.P.ContentDialog.Ui3}"
+                                    Command="{Binding ShowInlineDialogCommand}"
+                                    Width="130"
+                                    Height="32"/>
+                        </StackPanel>
+
+                        <Grid x:Name="InlineDialogHost"
+                              MaxWidth="720"
+                              HorizontalAlignment="Stretch"
+                              Height="480">
+                            <Border Background="{DynamicResource GalleryCardBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Padding="20">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo1}"
+                                               FontSize="18"
+                                               Margin="0,0,0,8"/>
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo2}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,12"/>
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo3}"
+                                               Margin="0,0,0,4"/>
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo4}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <gallery:GalleryInlineDialog x:Name="InlineContentDialog"
+                                           Title="{DynamicResource Loc.Dialog.InlineTitle}"
+                                           PrimaryButtonText="{DynamicResource Loc.Dialog.Apply}"
+                                           SecondaryButtonText="{DynamicResource Loc.Dialog.PreviewOnly}"
+                                           CloseButtonText="{DynamicResource Loc.Dialog.Cancel}"
+                                           DefaultButton="Primary"
+                                           Request="{Binding InlineRequest}"
+                                           Result="{Binding InlineDialogResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{DynamicResource Loc.P.ContentDialog.Demo5}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,12"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.ContentDialog.Ui4}"
+                                              IsChecked="True"
+                                              Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.ContentDialog.Ui5}"
+                                              IsChecked="True"
+                                              Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.ContentDialog.Ui6}"
+                                              IsChecked="False"/>
+                                </StackPanel>
+                            </gallery:GalleryInlineDialog>
+                        </Grid>
+
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding InlineResult}"
+                                   Margin="0,12,0,0"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Deferred validation -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ContentDialog.CT3}" Description="{DynamicResource Loc.P.ContentDialog.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Button Content="{DynamicResource Loc.P.ContentDialog.Ui7}"
+                                Command="{Binding ShowDeferredDialogCommand}"
+                                Width="120"
+                                Height="32"
+                                Margin="0,0,0,12"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding DeferredStatus}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.ContentDialog.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.ContentDialog.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

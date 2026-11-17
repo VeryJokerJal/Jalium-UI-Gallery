@@ -1,0 +1,144 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for CandlestickChartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.CandlestickChartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <CandlestickChart Width="700"
+                                      Height="400"
+                                      ItemsSource="{Binding BasicData}"
+                                      Title="ACME Corp (ACME)" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:CandlestickChartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="CandlestickChart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:CandlestickChartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.CandlestickChart.Title1}" Description="{DynamicResource Loc.P.CandlestickChart.Sub1}" />
+
+        <!-- Basic Candlestick -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CandlestickChart.CT1}" Description="{DynamicResource Loc.P.CandlestickChart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <CandlestickChart Width="700" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      Height="400"
+                                      ItemsSource="{Binding BasicData}"
+                                      Title="ACME Corp (ACME)" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- With Volume -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CandlestickChart.CT2}" Description="{DynamicResource Loc.P.CandlestickChart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <CandlestickChart Width="700" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      Height="450"
+                                      ItemsSource="{Binding VolumeData}"
+                                      ShowVolume="True"
+                                      VolumeHeight="0.2"
+                                      Title="Widget Inc (WGT)" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Moving Averages -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CandlestickChart.CT3}" Description="{DynamicResource Loc.P.CandlestickChart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <CandlestickChart Width="700" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      Height="450"
+                                      ItemsSource="{Binding MovingAverageData}"
+                                      ShowVolume="True"
+                                      VolumeHeight="0.15"
+                                      Title="TechGlobal Ltd (TGL)">
+                        <CandlestickChart.MovingAverages>
+                            <MovingAverageConfig Period="10"
+                                                 Type="SMA"
+                                                 Brush="#FF9E22"
+                                                 Thickness="1.5" />
+                            <MovingAverageConfig Period="20"
+                                                 Type="EMA"
+                                                 Brush="#417EE0"
+                                                 Thickness="1.5" />
+                        </CandlestickChart.MovingAverages>
+                    </CandlestickChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.CandlestickChart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.CandlestickChart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

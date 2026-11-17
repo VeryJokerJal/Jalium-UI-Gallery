@@ -1,0 +1,223 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SliderPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SliderPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <Slider x:Name="DemoSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="{Binding Value, Mode=TwoWay}"
+                                Height="24"
+                                Margin="0,0,0,16" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
+                            <TextBlock x:Name="SliderValue"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding ValueText}" />
+                        </StackPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SliderPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Slider" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SliderPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.Slider.Title1}" Description="{DynamicResource Loc.P.Slider.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.Slider.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Slider x:Name="DemoSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="{Binding Value, Mode=TwoWay}"
+                                Height="24"
+                                Margin="0,0,0,16" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
+                            <TextBlock x:Name="SliderValue"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding ValueText}" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Slider with ticks -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Slider.CT1}" Description="{DynamicResource Loc.P.Slider.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Slider Minimum="0"
+                            Maximum="100"
+                            Value="50"
+                            TickFrequency="10"
+                            Height="24" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Snap to ticks -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.SnapToTicks}" Description="{DynamicResource Loc.P.Slider.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Slider Minimum="0"
+                            Maximum="100"
+                            Value="50"
+                            TickFrequency="25"
+                            IsSnapToTickEnabled="True"
+                            Height="24" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Segmented track -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.SegmentedTrack}" Description="{DynamicResource Loc.P.Slider.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Slider.Cap1}"
+                                   Margin="0,0,0,4" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="60"
+                                TickFrequency="20"
+                                IsSnapToTickEnabled="True"
+                                TrackMode="Segmented"
+                                Height="24"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Slider.Cap2}"
+                                   Margin="0,0,0,4" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="45"
+                                TickFrequency="20"
+                                TrackMode="Segmented"
+                                Height="24"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Slider.Cap3}"
+                                   Margin="0,0,0,4" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="45"
+                                Ticks="10, 30, 60"
+                                SegmentGap="6"
+                                TrackMode="Segmented"
+                                Height="24" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Custom range -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Slider.CT2}" Description="{DynamicResource Loc.P.Slider.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{DynamicResource Loc.P.Slider.Val1}"
+                                   Margin="0,0,0,6" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="75"
+                                Height="24"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{DynamicResource Loc.P.Slider.Val2}"
+                                   Margin="0,0,0,6" />
+                        <Slider Minimum="-10"
+                                Maximum="40"
+                                Value="22"
+                                Height="24" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Slider.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Slider.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

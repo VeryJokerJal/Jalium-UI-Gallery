@@ -1,0 +1,302 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for DockLayoutPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.DockLayoutPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <DockLayout>
+                        <DockSplitPanel Orientation="Horizontal">
+                            <!-- Left Sidebar -->
+                            <DockTabPanel DockSplitPanel.Size="220" DockSplitPanel.MinSize="150">
+                                <DockItem Header="Explorer">
+                                    <StackPanel Margin="12">
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui1}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="  MyApp" FontSize="12"/>
+                                        <TextBlock Text="    src/" FontSize="12"/>
+                                        <TextBlock Text="      Program.cs" FontSize="12"/>
+                                        <TextBlock Text="      MainWindow.cs" FontSize="12"/>
+                                        <TextBlock Text="      App.config" FontSize="12"/>
+                                        <TextBlock Text="    assets/" FontSize="12"/>
+                                        <TextBlock Text="      logo.png" FontSize="12"/>
+                                    </StackPanel>
+                                </DockItem>
+                                <DockItem Header="Search">
+                                    <StackPanel Margin="12">
+                                        <TextBox Margin="0,0,0,8"/>
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui2}" FontSize="12"/>
+                                    </StackPanel>
+                                </DockItem>
+                            </DockTabPanel>
+
+                            <!-- Center + Bottom -->
+                            <DockSplitPanel Orientation="Vertical">
+                                <!-- Editor Area -->
+                                <DockTabPanel>
+                                    <DockItem Header="MainWindow.cs">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="12">
+                                                <TextBlock Text="using Jalium.UI;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="using Jalium.UI.Controls;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="" FontSize="12"/>
+                                                <TextBlock Text="namespace MyApp;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="" FontSize="12"/>
+                                                <TextBlock Text="public class MainWindow : Window" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="{" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="    public MainWindow()" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="    {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="        Title = &quot;My Application&quot;;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="    }" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                    <DockItem Header="App.cs">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="12">
+                                                <TextBlock Text="// Application entry point" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                </DockTabPanel>
+
+                                <!-- Bottom Panel -->
+                                <DockTabPanel DockSplitPanel.Size="130" DockSplitPanel.MinSize="80">
+                                    <DockItem Header="Output">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="8">
+                                                <TextBlock Text="Build started..." FontSize="11" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="1>------ Build started: Project: MyApp ------" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="1>MyApp -> bin\Debug\MyApp.exe" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="========== Build: 1 succeeded ==========" FontSize="11" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                    <DockItem Header="Terminal">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="8">
+                                                <TextBlock Text="PS D:\Projects\MyApp> _" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                    <DockItem Header="{DynamicResource Loc.P.DockLayout.Ui3}">
+                                        <StackPanel Margin="8">
+                                            <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui4}" FontSize="11"/>
+                                        </StackPanel>
+                                    </DockItem>
+                                </DockTabPanel>
+                            </DockSplitPanel>
+                        </DockSplitPanel>
+                    </DockLayout>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:DockLayoutPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="DockLayout" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:DockLayoutPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.DockLayout.Title1}" Description="{DynamicResource Loc.P.DockLayout.Sub1}" />
+
+        <!-- Example 1: IDE Layout -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DockLayout.CT1}" Description="{DynamicResource Loc.P.DockLayout.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  Height="400" Padding="0">
+                    <DockLayout>
+                        <DockSplitPanel Orientation="Horizontal">
+                            <!-- Left Sidebar -->
+                            <DockTabPanel DockSplitPanel.Size="220" DockSplitPanel.MinSize="150">
+                                <DockItem Header="Explorer">
+                                    <StackPanel Margin="12">
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui1}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="  MyApp" FontSize="12"/>
+                                        <TextBlock Text="    src/" FontSize="12"/>
+                                        <TextBlock Text="      Program.cs" FontSize="12"/>
+                                        <TextBlock Text="      MainWindow.cs" FontSize="12"/>
+                                        <TextBlock Text="      App.config" FontSize="12"/>
+                                        <TextBlock Text="    assets/" FontSize="12"/>
+                                        <TextBlock Text="      logo.png" FontSize="12"/>
+                                    </StackPanel>
+                                </DockItem>
+                                <DockItem Header="Search">
+                                    <StackPanel Margin="12">
+                                        <TextBox Margin="0,0,0,8"/>
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui2}" FontSize="12"/>
+                                    </StackPanel>
+                                </DockItem>
+                            </DockTabPanel>
+
+                            <!-- Center + Bottom -->
+                            <DockSplitPanel Orientation="Vertical">
+                                <!-- Editor Area -->
+                                <DockTabPanel>
+                                    <DockItem Header="MainWindow.cs">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="12">
+                                                <TextBlock Text="using Jalium.UI;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="using Jalium.UI.Controls;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="" FontSize="12"/>
+                                                <TextBlock Text="namespace MyApp;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="" FontSize="12"/>
+                                                <TextBlock Text="public class MainWindow : Window" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="{" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="    public MainWindow()" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="    {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="        Title = &quot;My Application&quot;;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="    }" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                    <DockItem Header="App.cs">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="12">
+                                                <TextBlock Text="// Application entry point" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                </DockTabPanel>
+
+                                <!-- Bottom Panel -->
+                                <DockTabPanel DockSplitPanel.Size="130" DockSplitPanel.MinSize="80">
+                                    <DockItem Header="Output">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="8">
+                                                <TextBlock Text="Build started..." FontSize="11" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="1>------ Build started: Project: MyApp ------" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="1>MyApp -> bin\Debug\MyApp.exe" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                                <TextBlock Text="========== Build: 1 succeeded ==========" FontSize="11" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                    <DockItem Header="Terminal">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="8">
+                                                <TextBlock Text="PS D:\Projects\MyApp> _" FontSize="11" Foreground="{DynamicResource GalleryTextSecondary}" FontFamily="{ThemeResource MonoFontFamily}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockItem>
+                                    <DockItem Header="{DynamicResource Loc.P.DockLayout.Ui3}">
+                                        <StackPanel Margin="8">
+                                            <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui4}" FontSize="11"/>
+                                        </StackPanel>
+                                    </DockItem>
+                                </DockTabPanel>
+                            </DockSplitPanel>
+                        </DockSplitPanel>
+                    </DockLayout>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Example 2: Three Column Layout -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DockLayout.CT2}" Description="{DynamicResource Loc.P.DockLayout.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  Height="250" Padding="0">
+                    <DockLayout>
+                        <DockSplitPanel Orientation="Horizontal">
+                            <DockTabPanel DockSplitPanel.Size="*">
+                                <DockItem Header="Files">
+                                    <StackPanel Margin="12">
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui5}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="Documents/" FontSize="12"/>
+                                        <TextBlock Text="Downloads/" FontSize="12"/>
+                                        <TextBlock Text="Pictures/" FontSize="12"/>
+                                    </StackPanel>
+                                </DockItem>
+                            </DockTabPanel>
+                            <DockTabPanel DockSplitPanel.Size="2*">
+                                <DockItem Header="Preview">
+                                    <StackPanel Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="{DynamicResource Loc.P.DockLayout.Ui6}" FontSize="14"/>
+                                        <TextBlock Text="(2x width)" FontSize="12" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </DockItem>
+                            </DockTabPanel>
+                            <DockTabPanel DockSplitPanel.Size="*">
+                                <DockItem Header="Properties" CanClose="False">
+                                    <StackPanel Margin="12">
+                                        <TextBlock Text="Properties" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="Name: document.txt" FontSize="12"/>
+                                        <TextBlock Text="Size: 4.2 KB" FontSize="12"/>
+                                        <TextBlock Text="Modified: 2026-02-16" FontSize="12"/>
+                                    </StackPanel>
+                                </DockItem>
+                            </DockTabPanel>
+                        </DockSplitPanel>
+                    </DockLayout>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.DockLayout.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.DockLayout.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

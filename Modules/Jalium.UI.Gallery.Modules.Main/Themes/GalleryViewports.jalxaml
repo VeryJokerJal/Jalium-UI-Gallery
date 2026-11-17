@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <Style TargetType="gallery:GalleryViewportPage">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryViewportPage">
+                <Border x:Name="PART_Root" Height="{TemplateBinding ViewportHeight}"
+                        Background="{TemplateBinding Background}" ClipToBounds="True">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="ViewportStates">
+                            <VisualState x:Name="Bound" />
+                            <VisualState x:Name="Unbound" />
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled"><VisualState.Setters>
+                                <Setter TargetName="PART_Root" Property="Opacity" Value="0.56" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

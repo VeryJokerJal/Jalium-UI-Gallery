@@ -1,0 +1,257 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ViewboxPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ViewboxPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="100" Margin="0,0,10,10">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50"/>
+                            </Viewbox>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="150" Height="100" Margin="0,0,10,10">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50"/>
+                            </Viewbox>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="200" Height="100" Margin="0,0,10,10">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50"/>
+                            </Viewbox>
+                        </Border>
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ViewboxPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Viewbox" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ViewboxPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.Viewbox.Title1}" Description="{DynamicResource Loc.P.Viewbox.Sub1}" />
+
+        <!-- Uniform Stretch -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Viewbox.CT1}" Description="{DynamicResource Loc.P.Viewbox.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="100" Margin="0,0,10,10">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50"/>
+                            </Viewbox>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="150" Height="100" Margin="0,0,10,10">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50"/>
+                            </Viewbox>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="200" Height="100" Margin="0,0,10,10">
+                            <Viewbox Stretch="Uniform">
+                                <Button Content="Scale Me" Width="200" Height="50"/>
+                            </Viewbox>
+                        </Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stretch Modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Viewbox.CT2}" Description="{DynamicResource Loc.P.Viewbox.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="None" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80">
+                                <Viewbox Stretch="None">
+                                    <Ellipse Width="60" Height="40" Fill="{DynamicResource GalleryAccent}"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="Fill" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80">
+                                <Viewbox Stretch="Fill">
+                                    <Ellipse Width="60" Height="40" Fill="#00CC6A"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="Uniform" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80">
+                                <Viewbox Stretch="Uniform">
+                                    <Ellipse Width="60" Height="40" Fill="#F7630C"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="UniformToFill" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="80" ClipToBounds="True">
+                                <Viewbox Stretch="UniformToFill">
+                                    <Ellipse Width="60" Height="40" Fill="#E81123"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stretch Direction -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Viewbox.CT3}" Description="{DynamicResource Loc.P.Viewbox.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="UpOnly" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="120" Height="80">
+                                <Viewbox Stretch="Uniform" StretchDirection="UpOnly">
+                                    <TextBlock Text="Small" FontSize="8"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="DownOnly" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="60" Height="40">
+                                <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+                                    <TextBlock Text="Large" FontSize="24"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Text="Both" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center"/>
+                            <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" Width="100" Height="60">
+                                <Viewbox Stretch="Uniform" StretchDirection="Both">
+                                    <TextBlock Text="Both" FontSize="16"/>
+                                </Viewbox>
+                            </Border>
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive Demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo2}" Description="{DynamicResource Loc.P.Viewbox.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Text="Width:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <Slider x:Name="WidthSlider" Minimum="50" Maximum="400" Value="{Binding PreviewWidth, Mode=TwoWay}" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"/>
+                            <TextBlock x:Name="WidthText" Text="{Binding PreviewWidthText}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Text="Height:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <Slider x:Name="HeightSlider" Minimum="50" Maximum="300" Value="{Binding PreviewHeight, Mode=TwoWay}" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"/>
+                            <TextBlock x:Name="HeightText" Text="{Binding PreviewHeightText}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <Border x:Name="DemoContainer"
+                                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                BorderThickness="1"
+                                Width="{Binding PreviewWidth}"
+                                Height="{Binding PreviewHeight}"
+                                HorizontalAlignment="Left">
+                            <Viewbox Stretch="Uniform">
+                                <StackPanel Orientation="Vertical" Width="200">
+                                    <TextBlock Text="Viewbox Demo" FontSize="18" HorizontalAlignment="Center"/>
+                                    <Button Content="Scaled Button" Width="120" Height="30" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common Use Cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases}" Description="{DynamicResource Loc.P.Viewbox.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Viewbox.Use1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Viewbox.Use2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Viewbox.Use3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Viewbox.Use4}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Viewbox.Use5}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Viewbox.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Viewbox.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

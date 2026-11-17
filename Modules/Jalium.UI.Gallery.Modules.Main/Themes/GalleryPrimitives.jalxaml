@@ -1,0 +1,122 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <Style TargetType="gallery:GalleryPageHeader">
+        <Setter Property="Margin" Value="0,0,0,24" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryPageHeader">
+                <StackPanel>
+                    <TextBlock Text="{TemplateBinding Eyebrow}" Style="{StaticResource GalleryEyebrow}" />
+                    <TextBlock Text="{TemplateBinding Title}" Style="{StaticResource GalleryPageTitle}" />
+                    <TextBlock Text="{TemplateBinding Description}" Style="{StaticResource GalleryPageSubtitle}" Margin="0" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style TargetType="gallery:GallerySection">
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Margin" Value="0,0,0,18" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GallerySection">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="DescriptionStates">
+                            <VisualState x:Name="WithDescription">
+                                <VisualState.Setters>
+                                    <Setter TargetName="PART_Description" Property="Visibility" Value="Visible" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="WithoutDescription">
+                                <VisualState.Setters>
+                                    <Setter TargetName="PART_Description" Property="Visibility" Value="Collapsed" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <StackPanel>
+                        <ContentPresenter x:Name="PART_Header" ContentSource="Header" Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          TextElement.FontSize="17" TextElement.FontWeight="SemiBold"
+                                          Margin="0,0,0,4" />
+                        <TextBlock x:Name="PART_Description" Text="{TemplateBinding Description}"
+                                   Style="{StaticResource GalleryCardCaption}" />
+                        <ContentPresenter x:Name="PART_ContentPresenter" Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style TargetType="gallery:GalleryDemoSurface">
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{DynamicResource GalleryCardInnerBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderSubtle}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="18" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryDemoSurface">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <ContentPresenter x:Name="PART_ContentPresenter" Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style TargetType="gallery:GalleryFeatureItem">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextSecondary}" />
+        <Setter Property="Background" Value="{DynamicResource GalleryCardBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderSubtle}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="Margin" Value="0,0,0,6" />
+        <Setter Property="MarkerBrush" Value="{DynamicResource GalleryAccent}" />
+        <Setter Property="MarkerSize" Value="6" />
+        <Setter Property="MarkerMargin" Value="0,0,10,0" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryFeatureItem">
+                <Border x:Name="PART_Surface" Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters><Setter TargetName="PART_Surface" Property="Opacity" Value="1" /></VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters><Setter TargetName="PART_Surface" Property="Opacity" Value="0.55" /></VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <Ellipse Width="{TemplateBinding MarkerSize}" Height="{TemplateBinding MarkerSize}"
+                                 Fill="{TemplateBinding MarkerBrush}" Margin="{TemplateBinding MarkerMargin}"
+                                 VerticalAlignment="Center" IsHitTestVisible="False" />
+                        <TextBlock x:Name="PART_Text" Grid.Column="1" Text="{TemplateBinding Text}" TextWrapping="Wrap"
+                                   Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}"
+                                   FontStyle="{TemplateBinding FontStyle}" VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

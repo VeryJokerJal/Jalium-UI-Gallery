@@ -1,0 +1,232 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ListViewPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ListViewPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <ListView x:Name="BasicListView" Width="300" Height="200">
+                        <ListViewItem Content="Item 1"/>
+                        <ListViewItem Content="Item 2"/>
+                        <ListViewItem Content="Item 3"/>
+                        <ListViewItem Content="Item 4"/>
+                        <ListViewItem Content="Item 5"/>
+                    </ListView>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ListViewPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ListView" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ListViewPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Collections}" Title="{DynamicResource Loc.P.ListView.Title1}" Description="{DynamicResource Loc.P.ListView.Sub1}" />
+
+        <!-- Basic ListView -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ListView.CT1}" Description="{DynamicResource Loc.P.ListView.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ListView x:Name="BasicListView" Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="200">
+                        <ListViewItem Content="Item 1"/>
+                        <ListViewItem Content="Item 2"/>
+                        <ListViewItem Content="Item 3"/>
+                        <ListViewItem Content="Item 4"/>
+                        <ListViewItem Content="Item 5"/>
+                    </ListView>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ListView with columns -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ListView.CT2}" Description="{DynamicResource Loc.P.ListView.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ListView x:Name="GridListView"
+                              Width="500" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                              Height="200"
+                              ItemsSource="{Binding Files}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Type}"/>
+                                <GridViewColumn Header="Size" Width="80" DisplayMemberBinding="{Binding Size}"/>
+                                <GridViewColumn Header="Modified" Width="120" DisplayMemberBinding="{Binding Modified}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Selection modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ListView.CT3}" Description="{DynamicResource Loc.P.ListView.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.ListView.Cap1}" Margin="0,0,0,8" />
+                            <ListView Width="150" Height="120" SelectionMode="Single">
+                                <ListViewItem Content="Apple"/>
+                                <ListViewItem Content="Banana"/>
+                                <ListViewItem Content="Cherry"/>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.ListView.Cap2}" Margin="0,0,0,8" />
+                            <ListView Width="150" Height="120" SelectionMode="Multiple">
+                                <ListViewItem Content="Red"/>
+                                <ListViewItem Content="Green"/>
+                                <ListViewItem Content="Blue"/>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.ListView.Cap3}" Margin="0,0,0,8" />
+                            <ListView Width="150" Height="120" SelectionMode="Extended">
+                                <ListViewItem Content="One"/>
+                                <ListViewItem Content="Two"/>
+                                <ListViewItem Content="Three"/>
+                            </ListView>
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.ListView.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Margin="0,0,0,6">
+                            <TextBox x:Name="NewItemTextBox"
+                                     Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="28"
+                                     ToolTip="{DynamicResource Loc.P.ListView.Ui1}"
+                                     Margin="0,0,10,10"
+                                     Text="{Binding NewItemText, Mode=TwoWay}"/>
+                            <Button x:Name="AddItemButton"
+                                    Content="Add"
+                                    Width="60"
+                                    Height="28"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding AddItemCommand}"/>
+                            <Button x:Name="RemoveItemButton"
+                                    Content="Remove"
+                                    Width="70"
+                                    Height="28"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding RemoveItemCommand}"/>
+                        </WrapPanel>
+                        <ListView x:Name="InteractiveListView"
+                                  Width="350" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                  Height="150"
+                                  ItemsSource="{Binding Items}"
+                                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+                        <TextBlock x:Name="SelectionText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding SelectionText}"
+                                   Margin="0,10,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common use cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases2}" Description="{DynamicResource Loc.P.ListView.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.ListView.Chip1}" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.ListView.Chip2}" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.ListView.Chip3}" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.ListView.Chip4}" />
+                        </Border>
+                        <Border Style="{StaticResource GalleryChip}" Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.ListView.Chip5}" />
+                        </Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ListView.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ListView.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

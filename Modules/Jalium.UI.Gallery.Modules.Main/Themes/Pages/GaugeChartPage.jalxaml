@@ -1,0 +1,175 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GaugeChartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GaugeChartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <GaugeChart Width="300"
+                                Height="300"
+                                Value="72"
+                                Minimum="0"
+                                Maximum="100"
+                                ShowValueText="True"
+                                ValueFormat="F0"
+                                Title="Speed" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GaugeChartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="GaugeChart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GaugeChartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.GaugeChart.Title1}" Description="{DynamicResource Loc.P.GaugeChart.Sub1}" />
+
+        <!-- Basic Gauge -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GaugeChart.CT1}" Description="{DynamicResource Loc.P.GaugeChart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <GaugeChart Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                Height="300"
+                                Value="72"
+                                Minimum="0"
+                                Maximum="100"
+                                ShowValueText="True"
+                                ValueFormat="F0"
+                                Title="Speed" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Colored Ranges -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GaugeChart.CT2}" Description="{DynamicResource Loc.P.GaugeChart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <GaugeChart Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                Height="300"
+                                Value="65"
+                                Minimum="0"
+                                Maximum="100"
+                                ShowValueText="True"
+                                ValueFormat="F0"
+                                Title="Temperature">
+                        <GaugeChart.Ranges>
+                            <GaugeRange Minimum="0" Maximum="40" Brush="#4CAF50" InnerRadiusRatio="0.8" />
+                            <GaugeRange Minimum="40" Maximum="70" Brush="#FFC107" InnerRadiusRatio="0.8" />
+                            <GaugeRange Minimum="70" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.8" />
+                        </GaugeChart.Ranges>
+                    </GaugeChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Multiple Gauges -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GaugeChart.CT3}" Description="{DynamicResource Loc.P.GaugeChart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0">
+                            <GaugeChart Width="180" Height="180" Value="45" Minimum="0" Maximum="100" ShowValueText="True" ValueFormat="F0" ValueFontSize="16" TrackThickness="14" MajorTickInterval="25" MinorTickInterval="5">
+                                <GaugeChart.Ranges>
+                                    <GaugeRange Minimum="0" Maximum="60" Brush="#4CAF50" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="60" Maximum="85" Brush="#FFC107" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="85" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.82" />
+                                </GaugeChart.Ranges>
+                            </GaugeChart>
+                            <TextBlock Text="CPU" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0">
+                            <GaugeChart Width="180" Height="180" Value="78" Minimum="0" Maximum="100" ShowValueText="True" ValueFormat="F0" ValueFontSize="16" TrackThickness="14" MajorTickInterval="25" MinorTickInterval="5">
+                                <GaugeChart.Ranges>
+                                    <GaugeRange Minimum="0" Maximum="60" Brush="#4CAF50" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="60" Maximum="85" Brush="#FFC107" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="85" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.82" />
+                                </GaugeChart.Ranges>
+                            </GaugeChart>
+                            <TextBlock Text="Memory" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <GaugeChart Width="180" Height="180" Value="92" Minimum="0" Maximum="100" ShowValueText="True" ValueFormat="F0" ValueFontSize="16" TrackThickness="14" MajorTickInterval="25" MinorTickInterval="5">
+                                <GaugeChart.Ranges>
+                                    <GaugeRange Minimum="0" Maximum="60" Brush="#4CAF50" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="60" Maximum="85" Brush="#FFC107" InnerRadiusRatio="0.82" />
+                                    <GaugeRange Minimum="85" Maximum="100" Brush="#E03E3E" InnerRadiusRatio="0.82" />
+                                </GaugeChart.Ranges>
+                            </GaugeChart>
+                            <TextBlock Text="Disk" Foreground="{DynamicResource GalleryTextSecondary}" FontSize="13" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.GaugeChart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.GaugeChart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

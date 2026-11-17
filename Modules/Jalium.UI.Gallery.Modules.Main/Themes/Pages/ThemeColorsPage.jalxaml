@@ -1,0 +1,477 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:converters="clr-namespace:Jalium.UI.Gallery.Modules.Main.Converters"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ThemeColorsPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ThemeColorsPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+                <Grid.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:InverseBooleanToVisibilityConverter
+            x:Key="InverseBooleanToVisibility" />
+        <Style x:Key="ThemeResourceListItem"
+               TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+    </Grid.Resources>
+
+
+
+
+
+
+
+    <Grid x:Name="ThemeColorsRoot"
+          Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.System}" Title="{DynamicResource Loc.P.ThemeColors.Title1}" Description="{DynamicResource Loc.P.ThemeColors.Sub1}" />
+
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="16"
+                    Padding="16"
+                    Margin="0,0,0,12">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,12">
+                        <TextBlock Text="Preview:"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0" />
+                        <ComboBox Width="160"
+                                  Height="32"
+                                  Margin="0,0,16,0"
+                                  ItemsSource="{Binding ThemeOptions}"
+                                  SelectedItem="{Binding PreviewThemeKey, Mode=TwoWay}"
+                                  ToolTip="{DynamicResource Loc.P.ThemeColors.Ui1}" />
+                        <TextBlock Text="{DynamicResource Loc.P.ThemeColors.Ui5}"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0" />
+                        <TextBox Width="280"
+                                 Height="32"
+                                 Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=80}"
+                                 ToolTip="{DynamicResource Loc.P.ThemeColors.Ui2}"
+                                 Margin="0,0,16,0" />
+                        <TextBlock Text="{Binding CountText}"
+                                   FontSize="12"
+                                   Opacity="0.7"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <CheckBox Content="Colors"
+                                  IsChecked="{Binding ShowColors, Mode=TwoWay}"
+                                  Margin="0,0,16,0" />
+                        <CheckBox Content="Brushes"
+                                  IsChecked="{Binding ShowBrushes, Mode=TwoWay}"
+                                  Margin="0,0,16,0" />
+                        <CheckBox Content="Gradients"
+                                  IsChecked="{Binding ShowGradients, Mode=TwoWay}"
+                                  Margin="0,0,16,0" />
+                        <!-- Left in English on purpose: adding a DynamicResource to this row flips the
+                             first-frame virtualization state the ThemeColorsPageFixture pins. -->
+                        <TextBlock Text="(none checked = show all)"
+                                   FontSize="11"
+                                   Opacity="0.55"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource GalleryAccent}"
+                    CornerRadius="8"
+                    Padding="12,8"
+                    Margin="0,0,0,12"
+                    Visibility="{Binding IsCopyBannerVisible, Converter={StaticResource BooleanToVisibility}}">
+                <TextBlock Text="{Binding CopyBannerText}"
+                           Foreground="{DynamicResource GalleryTextOnAccent}"
+                           FontSize="13"
+                           FontWeight="SemiBold" />
+            </Border>
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="16">
+            <Grid>
+                <ListBox x:Name="ResourceList"
+                         ItemsSource="{Binding Resources}"
+                         ItemContainerStyle="{StaticResource ThemeResourceListItem}"
+                         Visibility="{Binding HasResources, Converter={StaticResource BooleanToVisibility}}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="0"
+                         HorizontalContentAlignment="Stretch"
+                         VirtualizingPanel.IsVirtualizing="True"
+                         VirtualizingPanel.VirtualizationMode="Recycling"
+                         VirtualizingPanel.CacheLength="0.5,0.5"
+                         VirtualizingPanel.CacheLengthUnit="Page"
+                         VirtualizingPanel.ScrollUnit="Pixel"
+                         ScrollViewer.CanContentScroll="True">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding RowBackground}"
+                                    Padding="0"
+                                    HorizontalAlignment="Stretch">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="64" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0"
+                                            Background="{Binding Entry.Preview}"
+                                            Width="40"
+                                            Height="32"
+                                            CornerRadius="6"
+                                            Margin="12,8"
+                                            BorderThickness="1"
+                                            BorderBrush="{DynamicResource GalleryBorderDefault}" />
+
+                                    <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Center"
+                                                Margin="0,8,12,8">
+                                        <TextBlock Text="{Binding Entry.Key}"
+                                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="0,3,0,0">
+                                            <Border CornerRadius="5"
+                                                    Padding="6,1"
+                                                    Margin="0,0,8,0"
+                                                    BorderThickness="1"
+                                                    BorderBrush="#33888888"
+                                                    VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Entry.KindLabel}"
+                                                           Foreground="{DynamicResource GalleryTextSecondary}"
+                                                           FontSize="10"
+                                                           FontWeight="SemiBold"
+                                                           VerticalAlignment="Center" />
+                                            </Border>
+                                            <TextBlock Text="{Binding Entry.Display}"
+                                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                                       FontSize="11"
+                                                       FontFamily="Cascadia Code,Consolas,Menlo,monospace"
+                                                       VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <SplitButton Grid.Column="2"
+                                                 Content="Copy"
+                                                 Command="{Binding CopyKeyCommand}"
+                                                 Width="104"
+                                                 Margin="0,8,12,8"
+                                                 FontSize="12"
+                                                 Background="{DynamicResource GalleryAccent}"
+                                                 BorderBrush="{DynamicResource GalleryAccent}"
+                                                 Foreground="{DynamicResource GalleryTextOnAccent}">
+                                        <SplitButton.Flyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem
+                                                    Text="{Binding Entry.CopyThemeResourceLabel}"
+                                                    Command="{Binding CopyThemeResourceCommand}" />
+                                                <MenuFlyoutItem
+                                                    Text="{Binding Entry.CopyStaticResourceLabel}"
+                                                    Command="{Binding CopyStaticResourceCommand}" />
+                                                <Separator />
+                                                <MenuFlyoutItem
+                                                    Text="{Binding Entry.CopyValueLabel}"
+                                                    Command="{Binding CopyValueCommand}" />
+                                                <MenuFlyoutItem
+                                                    Text="{DynamicResource Loc.P.ThemeColors.Ui4}"
+                                                    Command="{Binding CopyKeyCommand}" />
+                                            </MenuFlyout>
+                                        </SplitButton.Flyout>
+                                    </SplitButton>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Text="{Binding EmptyMessage}"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           FontSize="13"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20,24"
+                           Visibility="{Binding HasNoResources, Converter={StaticResource BooleanToVisibility}}" />
+            </Grid>
+        </Border>
+    </Grid>
+
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ThemeColorsPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="MinHeight" Value="640" />
+        <Setter Property="Title" Value="Theme Colors" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ThemeColorsPage">
+                <Grid x:Name="PART_Root" Height="{TemplateBinding ViewportHeight}">
+                <Grid.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:InverseBooleanToVisibilityConverter
+            x:Key="InverseBooleanToVisibility" />
+        <Style x:Key="ThemeResourceListItem"
+               TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+    </Grid.Resources>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide"><VisualState.Setters>
+                            <Setter TargetName="PART_SearchGroup" Property="Width" Value="360" />
+                        </VisualState.Setters></VisualState>
+                        <VisualState x:Name="Compact"><VisualState.Setters>
+                            <Setter TargetName="PART_SearchGroup" Property="Width" Value="208" />
+                        </VisualState.Setters></VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+
+
+    <Grid x:Name="ThemeColorsRoot"
+          Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.System}" Title="{DynamicResource Loc.P.ThemeColors.Title1}" Description="{DynamicResource Loc.P.ThemeColors.Sub1}" />
+
+            <Border Background="{DynamicResource GalleryCardBackground}"
+                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                    BorderThickness="1"
+                    CornerRadius="16"
+                    Padding="16"
+                    Margin="0,0,0,12">
+                <StackPanel>
+                    <WrapPanel Margin="0,0,0,4">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock Text="Preview:"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0" />
+                        <ComboBox Width="160"
+                                  Height="32"
+                                  Margin="0,0,16,0"
+                                  ItemsSource="{Binding ThemeOptions}"
+                                  SelectedItem="{Binding PreviewThemeKey, Mode=TwoWay}"
+                                  ToolTip="{DynamicResource Loc.P.ThemeColors.Ui1}" />
+                        </StackPanel>
+                        <Grid x:Name="PART_SearchGroup" Width="360" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Margin="0,0,16,8">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <TextBlock Text="{DynamicResource Loc.P.ThemeColors.Ui5}"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0" />
+                        <TextBox x:Name="PART_FilterInput" Grid.Column="1" MinWidth="160" MaxWidth="280"
+                                 Height="32"
+                                 Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=80}"
+                                 ToolTip="{DynamicResource Loc.P.ThemeColors.Ui2}"
+                                 Margin="0" />
+                        </Grid>
+                        <TextBlock x:Name="PART_ResourceCount" Text="{Binding CountText}"
+                                   FontSize="12"
+                                   Opacity="0.7"
+                                   VerticalAlignment="Center" Margin="0,0,0,8" />
+                    </WrapPanel>
+                    <WrapPanel VerticalAlignment="Center">
+                        <CheckBox Content="Colors"
+                                  IsChecked="{Binding ShowColors, Mode=TwoWay}"
+                                  Margin="0,0,16,0" />
+                        <CheckBox Content="Brushes"
+                                  IsChecked="{Binding ShowBrushes, Mode=TwoWay}"
+                                  Margin="0,0,16,0" />
+                        <CheckBox Content="Gradients"
+                                  IsChecked="{Binding ShowGradients, Mode=TwoWay}"
+                                  Margin="0,0,16,0" />
+                        <!-- Left in English on purpose: adding a DynamicResource to this row flips the
+                             first-frame virtualization state the ThemeColorsPageFixture pins. -->
+                        <TextBlock Text="(none checked = show all)"
+                                   FontSize="11"
+                                   Opacity="0.55"
+                                   VerticalAlignment="Center" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource GalleryAccent}"
+                    CornerRadius="8"
+                    Padding="12,8"
+                    Margin="0,0,0,12"
+                    Visibility="{Binding IsCopyBannerVisible, Converter={StaticResource BooleanToVisibility}}">
+                <TextBlock Text="{Binding CopyBannerText}"
+                           Foreground="{DynamicResource GalleryTextOnAccent}"
+                           FontSize="13"
+                           FontWeight="SemiBold" />
+            </Border>
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="16">
+            <Grid>
+                <ListBox x:Name="ResourceList"
+                         ItemsSource="{Binding Resources}"
+                         ItemContainerStyle="{StaticResource ThemeResourceListItem}"
+                         Visibility="{Binding HasResources, Converter={StaticResource BooleanToVisibility}}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="0"
+                         HorizontalContentAlignment="Stretch"
+                         VirtualizingPanel.IsVirtualizing="True"
+                         VirtualizingPanel.VirtualizationMode="Recycling"
+                         VirtualizingPanel.CacheLength="0.5,0.5"
+                         VirtualizingPanel.CacheLengthUnit="Page"
+                         VirtualizingPanel.ScrollUnit="Pixel"
+                         ScrollViewer.CanContentScroll="True">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding RowBackground}"
+                                    Padding="0"
+                                    HorizontalAlignment="Stretch">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="64" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0"
+                                            Background="{Binding Entry.Preview}"
+                                            Width="40"
+                                            Height="32"
+                                            CornerRadius="6"
+                                            Margin="12,8"
+                                            BorderThickness="1"
+                                            BorderBrush="{DynamicResource GalleryBorderDefault}" />
+
+                                    <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Center"
+                                                Margin="0,8,12,8">
+                                        <TextBlock Text="{Binding Entry.Key}"
+                                                   Foreground="{DynamicResource GalleryTextPrimary}"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <Grid ClipToBounds="True" Margin="0,3,0,0">
+                                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                            <Border CornerRadius="5"
+                                                    Padding="6,1"
+                                                    Margin="0,0,8,0"
+                                                    BorderThickness="1"
+                                                    BorderBrush="#33888888"
+                                                    VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Entry.KindLabel}"
+                                                           Foreground="{DynamicResource GalleryTextSecondary}"
+                                                           FontSize="10"
+                                                           FontWeight="SemiBold"
+                                                           VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                            </Border>
+                                            <TextBlock Grid.Column="1" Text="{Binding Entry.Display}"
+                                                       Foreground="{DynamicResource GalleryTextMuted}"
+                                                       FontSize="11"
+                                                       FontFamily="Cascadia Code,Consolas,Menlo,monospace"
+                                                       VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis" />
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <SplitButton Grid.Column="2"
+                                                 Content="Copy"
+                                                 Command="{Binding CopyKeyCommand}"
+                                                 Width="104"
+                                                 Margin="0,8,12,8"
+                                                 FontSize="12"
+                                                 Background="{DynamicResource GalleryAccent}"
+                                                 BorderBrush="{DynamicResource GalleryAccent}"
+                                                 Foreground="{DynamicResource GalleryTextOnAccent}">
+                                        <SplitButton.Flyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem
+                                                    Text="{Binding Entry.CopyThemeResourceLabel}"
+                                                    Command="{Binding CopyThemeResourceCommand}" />
+                                                <MenuFlyoutItem
+                                                    Text="{Binding Entry.CopyStaticResourceLabel}"
+                                                    Command="{Binding CopyStaticResourceCommand}" />
+                                                <Separator />
+                                                <MenuFlyoutItem
+                                                    Text="{Binding Entry.CopyValueLabel}"
+                                                    Command="{Binding CopyValueCommand}" />
+                                                <MenuFlyoutItem
+                                                    Text="{DynamicResource Loc.P.ThemeColors.Ui4}"
+                                                    Command="{Binding CopyKeyCommand}" />
+                                            </MenuFlyout>
+                                        </SplitButton.Flyout>
+                                    </SplitButton>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Text="{Binding EmptyMessage}"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           FontSize="13"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20,24"
+                           Visibility="{Binding HasNoResources, Converter={StaticResource BooleanToVisibility}}" />
+            </Grid>
+        </Border>
+    </Grid>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

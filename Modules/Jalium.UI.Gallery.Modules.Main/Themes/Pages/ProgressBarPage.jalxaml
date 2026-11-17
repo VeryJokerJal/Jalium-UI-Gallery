@@ -1,0 +1,183 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ProgressBarPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ProgressBarPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <ProgressBar x:Name="DemoProgressBar"
+                                     Value="{Binding Progress}"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
+                            <TextBlock x:Name="ProgressValue"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding ProgressText}" />
+                        </StackPanel>
+                        <Slider x:Name="ProgressSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="{Binding Progress, Mode=TwoWay}"
+                                Height="24"
+                                Margin="0,16,0,0" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ProgressBarPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ProgressBar" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ProgressBarPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.ProgressBar.Title1}" Description="{DynamicResource Loc.P.ProgressBar.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.ProgressBar.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <ProgressBar x:Name="DemoProgressBar"
+                                     Value="{Binding Progress}"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Value: " />
+                            <TextBlock x:Name="ProgressValue"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding ProgressText}" />
+                        </StackPanel>
+                        <Slider x:Name="ProgressSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="{Binding Progress, Mode=TwoWay}"
+                                Height="24"
+                                Margin="0,16,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Progress variants -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ProgressBar.CT1}" Description="{DynamicResource Loc.P.ProgressBar.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="25%" Margin="0,0,0,4" />
+                        <ProgressBar Value="25"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="50%" Margin="0,0,0,4" />
+                        <ProgressBar Value="50"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="75%" Margin="0,0,0,4" />
+                        <ProgressBar Value="75"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8"
+                                     Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="100%" Margin="0,0,0,4" />
+                        <ProgressBar Value="100"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Height="8" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Indeterminate mode -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ProgressBar.CT2}" Description="{DynamicResource Loc.P.ProgressBar.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ProgressBar IsIndeterminate="True"
+                                 Height="8" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ProgressBar.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ProgressBar.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

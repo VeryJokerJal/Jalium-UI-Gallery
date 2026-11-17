@@ -1,0 +1,139 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for HyperlinkButtonPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.HyperlinkButtonPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <HyperlinkButton Content="{DynamicResource Loc.P.HyperlinkButton.Ui1}" NavigateUri="https://www.microsoft.com" Margin="0,0,0,8"/>
+                            <HyperlinkButton Content="{DynamicResource Loc.P.HyperlinkButton.Ui2}" NavigateUri="https://www.github.com" Margin="0,0,0,8"/>
+                            <HyperlinkButton Content="{DynamicResource Loc.P.HyperlinkButton.Ui3}" IsUnderlined="False" Margin="0,0,0,8"/>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.HyperlinkButton.Cap1}" Margin="0,16,0,8" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="For more information, " VerticalAlignment="Center" />
+                            <HyperlinkButton Content="click here" VerticalAlignment="Center"/>
+                            <TextBlock Text=" or visit our " VerticalAlignment="Center" />
+                            <HyperlinkButton Content="documentation" VerticalAlignment="Center"/>
+                            <TextBlock Text="." VerticalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:HyperlinkButtonPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:HyperlinkButtonPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.HyperlinkButton.Title1}" Description="{DynamicResource Loc.P.HyperlinkButton.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.HyperlinkButton.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <HyperlinkButton Content="{DynamicResource Loc.P.HyperlinkButton.Ui1}" NavigateUri="https://www.microsoft.com" Margin="0,0,0,8"/>
+                            <HyperlinkButton Content="{DynamicResource Loc.P.HyperlinkButton.Ui2}" NavigateUri="https://www.github.com" Margin="0,0,0,8"/>
+                            <HyperlinkButton Content="{DynamicResource Loc.P.HyperlinkButton.Ui3}" IsUnderlined="False" Margin="0,0,0,8"/>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.HyperlinkButton.Cap1}" Margin="0,16,0,8" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="For more information, " VerticalAlignment="Center" />
+                            <HyperlinkButton Content="click here" VerticalAlignment="Center"/>
+                            <TextBlock Text=" or visit our " VerticalAlignment="Center" />
+                            <HyperlinkButton Content="documentation" VerticalAlignment="Center"/>
+                            <TextBlock Text="." VerticalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Features}" Description="{DynamicResource Loc.P.HyperlinkButton.CC2}">
+            <StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.HyperlinkButton.Body1}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.HyperlinkButton.Body2}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.HyperlinkButton.Body3}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.HyperlinkButton.Body4}" />
+                </StackPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.HyperlinkButton.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.HyperlinkButton.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

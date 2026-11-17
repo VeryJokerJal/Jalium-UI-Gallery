@@ -430,6 +430,11 @@ FodyWeavers.xsd
 # Jalium IDE workspace metadata
 .jalium/
 
+# Operating system, IDE and local code index state
+.DS_Store
+.idea/
+.codegraph/
+
 # Local build/scratch scripts
 .tmp-build/
 

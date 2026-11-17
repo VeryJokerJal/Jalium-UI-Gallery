@@ -1,0 +1,834 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Jalium.UI.Gallery.Modules.Main.Converters"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:presentation="clr-namespace:Jalium.UI.Gallery.Modules.Main.Presentation"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GalleryDemoWorkbench. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GalleryDemoWorkbench">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+                <Grid.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:StringEqualsConverter x:Key="StringEquals" />
+
+        <Style x:Key="WorkbenchSegmentButton"
+               TargetType="RadioButton">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="Margin" Value="0,0,2,0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource GalleryTextSecondary}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Name="SegmentRoot"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="SegmentRoot"
+                                    Property="Background"
+                                    Value="{DynamicResource GalleryBackgroundHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="SegmentRoot"
+                                    Property="Background"
+                                    Value="{DynamicResource GalleryBackgroundPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="SegmentRoot"
+                                    Property="Background"
+                                    Value="{DynamicResource GalleryCardBackground}" />
+                            <Setter TargetName="SegmentRoot"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource GalleryAccent}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground"
+                            Value="{DynamicResource GalleryAccentOnSurface}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Grid.Resources>
+
+
+
+
+
+
+
+    <Grid x:Name="WorkbenchRoot"
+          Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition x:Name="InspectorColumn" Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Margin="0,0,0,18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding CategoryLabel}"
+                           FontSize="11.5"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryAccentOnSurface}"
+                           Margin="0,0,0,5" />
+                <TextBlock Text="{Binding Title}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,5" />
+                <TextBlock Text="{Binding Description}"
+                           FontSize="13.5"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <Border Grid.Column="1"
+                    Background="{DynamicResource GalleryAccentSoft}"
+                    BorderBrush="{DynamicResource GalleryBorderStrong}"
+                    BorderThickness="1"
+                    CornerRadius="999"
+                    Padding="11,5"
+                    VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="6" Height="6" CornerRadius="3"
+                            Background="{DynamicResource GalleryAccent}"
+                            VerticalAlignment="Center"
+                            Margin="0,0,7,0" />
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui1}"
+                               FontSize="10.5"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryAccentOnSurface}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0">
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="3">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui2}"
+                                     GroupName="WorkbenchTabs"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ShowingPreview, Mode=OneWay}"
+                                     Command="{Binding ShowPreviewCommand}" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui3}"
+                                     GroupName="WorkbenchTabs"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     Margin="0"
+                                     IsChecked="{Binding ShowingCode, Mode=OneWay}"
+                                     Command="{Binding ShowCodeCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="3">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui4}"
+                                     GroupName="WorkbenchViewports"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ViewportMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Desktop}"
+                                     Command="{Binding SetViewportCommand}"
+                                     CommandParameter="Desktop" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui5}"
+                                     GroupName="WorkbenchViewports"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ViewportMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Tablet}"
+                                     Command="{Binding SetViewportCommand}"
+                                     CommandParameter="Tablet" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui6}"
+                                     GroupName="WorkbenchViewports"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     Margin="0"
+                                     IsChecked="{Binding ViewportMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Mobile}"
+                                     Command="{Binding SetViewportCommand}"
+                                     CommandParameter="Mobile" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border x:Name="PreviewFrame"
+                    Visibility="{Binding ShowingPreview, Converter={StaticResource BooleanToVisibility}}"
+                    Background="{Binding SurfaceBrush}"
+                    BorderBrush="{Binding PreviewBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{Binding PreviewCornerRadius}"
+                    Padding="{Binding PreviewPaddingThickness}"
+                    MaxWidth="{Binding PreviewMaxWidth}"
+                    HorizontalAlignment="Stretch"
+                    ClipToBounds="True">
+                <ContentPresenter x:Name="DemoContentPresenter"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  Opacity="{Binding PreviewOpacity}"
+                                  IsEnabled="{Binding IsPreviewEnabled}" />
+            </Border>
+
+            <StackPanel Visibility="{Binding ShowingCode, Converter={StaticResource BooleanToVisibility}}">
+                <StackPanel Margin="0,0,0,18">
+                    <TextBlock Text="JALXAML"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,3" />
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui7}"
+                               FontSize="11.5"
+                               Foreground="{DynamicResource GalleryTextTertiary}"
+                               Margin="0,0,0,8" />
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            BorderBrush="{DynamicResource GalleryBorderDefault}"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            ClipToBounds="True">
+                        <EditControl Height="220"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"
+                                     Language="jalxaml"
+                                     Text="{Binding ExampleMarkup}" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,18">
+                    <TextBlock Text="C#"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,3" />
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui8}"
+                               FontSize="11.5"
+                               Foreground="{DynamicResource GalleryTextTertiary}"
+                               Margin="0,0,0,8" />
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            BorderBrush="{DynamicResource GalleryBorderDefault}"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            ClipToBounds="True">
+                        <EditControl Height="220"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"
+                                     Language="csharp"
+                                     Text="{Binding ExampleCSharp}" />
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <Border x:Name="InspectorPanel"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="16"
+                Padding="20"
+                Margin="0,16,0,0">
+            <StackPanel>
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui9}"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               VerticalAlignment="Center" />
+                    <Border Grid.Column="1"
+                            Background="{DynamicResource GallerySuccessSoft}"
+                            BorderBrush="{DynamicResource GallerySuccess}"
+                            BorderThickness="1"
+                            CornerRadius="999"
+                            Padding="9,3"
+                            VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Width="6" Height="6" CornerRadius="3"
+                                    Background="{DynamicResource GallerySuccess}"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,6,0" />
+                            <TextBlock Text="{DynamicResource Loc.Workbench.Ui10}"
+                                       FontSize="10"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource GallerySuccessOnSurface}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <TextBlock Text="{DynamicResource Loc.Workbench.Ui11}"
+                           FontSize="10.5"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,12" />
+
+                <presentation:GalleryInspectorNumericStepper
+                    Label="{DynamicResource Loc.Workbench.Ui16}"
+                    Minimum="0"
+                    Maximum="40"
+                    Step="2"
+                    Suffix="px"
+                    Value="{Binding PreviewPadding, Mode=TwoWay}" />
+                <presentation:GalleryInspectorNumericStepper
+                    Label="{DynamicResource Loc.Workbench.Ui17}"
+                    Minimum="0"
+                    Maximum="24"
+                    Step="2"
+                    Suffix="px"
+                    Value="{Binding CornerRadius, Mode=TwoWay}" />
+                <presentation:GalleryInspectorNumericStepper
+                    Label="{DynamicResource Loc.Workbench.Ui18}"
+                    Minimum="40"
+                    Maximum="100"
+                    Step="5"
+                    Suffix="%"
+                    Value="{Binding PreviewOpacityPercent, Mode=TwoWay}" />
+
+                <ToggleSwitch Header="{DynamicResource Loc.Workbench.Ui21}"
+                              IsOn="{Binding IsPreviewEnabled, Mode=TwoWay}"
+                              Foreground="{DynamicResource GalleryTextSecondary}"
+                              OnBackground="{DynamicResource GalleryAccent}"
+                              Margin="0,2,0,16" />
+
+                <Border Height="1"
+                        Background="{DynamicResource GalleryBorderSubtle}"
+                        Margin="0,0,0,16" />
+
+                <TextBlock Text="{DynamicResource Loc.Workbench.Ui12}"
+                           FontSize="10.5"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,12" />
+
+                <Border HorizontalAlignment="Left"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="3"
+                        Margin="0,0,0,14">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui14}"
+                                     Width="82"
+                                     GroupName="WorkbenchThemes"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ThemeMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Light}"
+                                     Command="{Binding UseLightThemeCommand}" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui15}"
+                                     Width="82"
+                                     GroupName="WorkbenchThemes"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     Margin="0"
+                                     IsChecked="{Binding ThemeMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Dark}"
+                                     Command="{Binding UseDarkThemeCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <presentation:GalleryInspectorColorEditor
+                    Label="{DynamicResource Loc.Workbench.Ui19}"
+                    PaletteKind="Accent"
+                    Color="{Binding Accent, Mode=TwoWay}" />
+                <presentation:GalleryInspectorColorEditor
+                    Label="{DynamicResource Loc.Workbench.Ui20}"
+                    PaletteKind="Surface"
+                    Color="{Binding Surface, Mode=TwoWay}" />
+
+                <Button Content="{DynamicResource Loc.Workbench.Ui13}"
+                        Style="{StaticResource GallerySecondaryButton}"
+                        Height="36"
+                        HorizontalAlignment="Stretch"
+                        ToolTip="Restore the default preview settings"
+                        Command="{Binding ResetCommand}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GalleryDemoWorkbench">
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="CompactWidth" Value="1060" />
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="{Binding Title}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GalleryDemoWorkbench">
+                <Grid x:Name="PART_Root">
+                <Grid.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:StringEqualsConverter x:Key="StringEquals" />
+
+        <Style x:Key="WorkbenchSegmentButton"
+               TargetType="RadioButton">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="Margin" Value="0,0,2,0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource GalleryTextSecondary}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Name="SegmentRoot"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="SegmentRoot"
+                                    Property="Background"
+                                    Value="{DynamicResource GalleryBackgroundHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="SegmentRoot"
+                                    Property="Background"
+                                    Value="{DynamicResource GalleryBackgroundPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="SegmentRoot"
+                                    Property="Background"
+                                    Value="{DynamicResource GalleryCardBackground}" />
+                            <Setter TargetName="SegmentRoot"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource GalleryAccent}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground"
+                            Value="{DynamicResource GalleryAccentOnSurface}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Grid.Resources>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide"><VisualState.Setters>
+                            <Setter TargetName="InspectorPanel" Property="Width" Value="{TemplateBinding InspectorWidth}" />
+                            <Setter TargetName="InspectorPanel" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="InspectorPanel" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="InspectorPanel" Property="Grid.ColumnSpan" Value="1" />
+                            <Setter TargetName="InspectorPanel" Property="Margin" Value="16,0,0,0" />
+                        </VisualState.Setters></VisualState>
+                        <VisualState x:Name="Compact"><VisualState.Setters>
+                            <Setter TargetName="InspectorPanel" Property="Width" Value="Auto" />
+                            <Setter TargetName="InspectorPanel" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="InspectorPanel" Property="Grid.Row" Value="2" />
+                            <Setter TargetName="InspectorPanel" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="InspectorPanel" Property="Margin" Value="0,16,0,0" />
+                        </VisualState.Setters></VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+
+
+    <Grid x:Name="WorkbenchRoot"
+          Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition x:Name="InspectorColumn" Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Margin="0,0,0,18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding CategoryLabel}"
+                           FontSize="11.5"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryAccentOnSurface}"
+                           Margin="0,0,0,5" />
+                <TextBlock Text="{Binding Title}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           Margin="0,0,0,5" />
+                <TextBlock Text="{Binding Description}"
+                           FontSize="13.5"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <Border Grid.Column="1"
+                    Background="{DynamicResource GalleryAccentSoft}"
+                    BorderBrush="{DynamicResource GalleryBorderStrong}"
+                    BorderThickness="1"
+                    CornerRadius="999"
+                    Padding="11,5"
+                    VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="6" Height="6" CornerRadius="3"
+                            Background="{DynamicResource GalleryAccent}"
+                            VerticalAlignment="Center"
+                            Margin="0,0,7,0" />
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui1}"
+                               FontSize="10.5"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryAccentOnSurface}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0">
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="3">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui2}"
+                                     GroupName="WorkbenchTabs"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ShowingPreview, Mode=OneWay}"
+                                     Command="{Binding ShowPreviewCommand}" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui3}"
+                                     GroupName="WorkbenchTabs"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     Margin="0"
+                                     IsChecked="{Binding ShowingCode, Mode=OneWay}"
+                                     Command="{Binding ShowCodeCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="3">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui4}"
+                                     GroupName="WorkbenchViewports"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ViewportMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Desktop}"
+                                     Command="{Binding SetViewportCommand}"
+                                     CommandParameter="Desktop" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui5}"
+                                     GroupName="WorkbenchViewports"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ViewportMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Tablet}"
+                                     Command="{Binding SetViewportCommand}"
+                                     CommandParameter="Tablet" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui6}"
+                                     GroupName="WorkbenchViewports"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     Margin="0"
+                                     IsChecked="{Binding ViewportMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Mobile}"
+                                     Command="{Binding SetViewportCommand}"
+                                     CommandParameter="Mobile" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border x:Name="PreviewFrame"
+                    Visibility="{Binding ShowingPreview, Converter={StaticResource BooleanToVisibility}}"
+                    Background="{Binding SurfaceBrush}"
+                    BorderBrush="{Binding PreviewBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{Binding PreviewCornerRadius}"
+                    Padding="{Binding PreviewPaddingThickness}"
+                    MaxWidth="{Binding PreviewMaxWidth}"
+                    HorizontalAlignment="Stretch"
+                    ClipToBounds="True">
+                <ContentPresenter x:Name="PART_DemoContentPresenter"
+                                  Content="{TemplateBinding DemoContent}"
+                                  ContentTemplate="{TemplateBinding DemoContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding DemoContentTemplateSelector}"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  Opacity="{Binding PreviewOpacity}"
+                                  IsEnabled="{Binding IsPreviewEnabled}" />
+            </Border>
+
+            <StackPanel Visibility="{Binding ShowingCode, Converter={StaticResource BooleanToVisibility}}">
+                <StackPanel Margin="0,0,0,18">
+                    <TextBlock Text="JALXAML"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,3" />
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui7}"
+                               FontSize="11.5"
+                               Foreground="{DynamicResource GalleryTextTertiary}"
+                               Margin="0,0,0,8" />
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            BorderBrush="{DynamicResource GalleryBorderDefault}"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            ClipToBounds="True">
+                        <EditControl Height="220"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"
+                                     Language="jalxaml"
+                                     Text="{Binding ExampleMarkup}" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,18">
+                    <TextBlock Text="C#"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               Margin="0,0,0,3" />
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui8}"
+                               FontSize="11.5"
+                               Foreground="{DynamicResource GalleryTextTertiary}"
+                               Margin="0,0,0,8" />
+                    <Border Background="{DynamicResource GalleryCardInnerBackground}"
+                            BorderBrush="{DynamicResource GalleryBorderDefault}"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            ClipToBounds="True">
+                        <EditControl Height="220"
+                                     HorizontalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     ShowLineNumbers="True"
+                                     FontSize="13"
+                                     Language="csharp"
+                                     Text="{Binding ExampleCSharp}" />
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <Border x:Name="InspectorPanel"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="16"
+                Padding="20"
+                Margin="0,16,0,0">
+            <StackPanel>
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{DynamicResource Loc.Workbench.Ui9}"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource GalleryTextPrimary}"
+                               VerticalAlignment="Center" />
+                    <Border Grid.Column="1"
+                            Background="{DynamicResource GallerySuccessSoft}"
+                            BorderBrush="{DynamicResource GallerySuccess}"
+                            BorderThickness="1"
+                            CornerRadius="999"
+                            Padding="9,3"
+                            VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Width="6" Height="6" CornerRadius="3"
+                                    Background="{DynamicResource GallerySuccess}"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,6,0" />
+                            <TextBlock Text="{DynamicResource Loc.Workbench.Ui10}"
+                                       FontSize="10"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource GallerySuccessOnSurface}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <TextBlock Text="{DynamicResource Loc.Workbench.Ui11}"
+                           FontSize="10.5"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,12" />
+
+                <presentation:GalleryInspectorNumericStepper
+                    Label="{DynamicResource Loc.Workbench.Ui16}"
+                    Minimum="0"
+                    Maximum="40"
+                    Step="2"
+                    Suffix="px"
+                    Value="{Binding PreviewPadding, Mode=TwoWay}" />
+                <presentation:GalleryInspectorNumericStepper
+                    Label="{DynamicResource Loc.Workbench.Ui17}"
+                    Minimum="0"
+                    Maximum="24"
+                    Step="2"
+                    Suffix="px"
+                    Value="{Binding CornerRadius, Mode=TwoWay}" />
+                <presentation:GalleryInspectorNumericStepper
+                    Label="{DynamicResource Loc.Workbench.Ui18}"
+                    Minimum="40"
+                    Maximum="100"
+                    Step="5"
+                    Suffix="%"
+                    Value="{Binding PreviewOpacityPercent, Mode=TwoWay}" />
+
+                <ToggleSwitch Header="{DynamicResource Loc.Workbench.Ui21}"
+                              IsOn="{Binding IsPreviewEnabled, Mode=TwoWay}"
+                              Foreground="{DynamicResource GalleryTextSecondary}"
+                              OnBackground="{DynamicResource GalleryAccent}"
+                              Margin="0,2,0,16" />
+
+                <Border Height="1"
+                        Background="{DynamicResource GalleryBorderSubtle}"
+                        Margin="0,0,0,16" />
+
+                <TextBlock Text="{DynamicResource Loc.Workbench.Ui12}"
+                           FontSize="10.5"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextMuted}"
+                           Margin="0,0,0,12" />
+
+                <Border HorizontalAlignment="Left"
+                        Background="{DynamicResource GalleryCardInnerBackground}"
+                        BorderBrush="{DynamicResource GalleryBorderDefault}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="3"
+                        Margin="0,0,0,14">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui14}"
+                                     Width="82"
+                                     GroupName="WorkbenchThemes"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     IsChecked="{Binding ThemeMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Light}"
+                                     Command="{Binding UseLightThemeCommand}" />
+                        <RadioButton Content="{DynamicResource Loc.Workbench.Ui15}"
+                                     Width="82"
+                                     GroupName="WorkbenchThemes"
+                                     Style="{StaticResource WorkbenchSegmentButton}"
+                                     Margin="0"
+                                     IsChecked="{Binding ThemeMode, Mode=OneWay, Converter={StaticResource StringEquals}, ConverterParameter=Dark}"
+                                     Command="{Binding UseDarkThemeCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <presentation:GalleryInspectorColorEditor
+                    Label="{DynamicResource Loc.Workbench.Ui19}"
+                    PaletteKind="Accent"
+                    Color="{Binding Accent, Mode=TwoWay}" />
+                <presentation:GalleryInspectorColorEditor
+                    Label="{DynamicResource Loc.Workbench.Ui20}"
+                    PaletteKind="Surface"
+                    Color="{Binding Surface, Mode=TwoWay}" />
+
+                <Button Content="{DynamicResource Loc.Workbench.Ui13}"
+                        Style="{StaticResource GallerySecondaryButton}"
+                        Height="36"
+                        HorizontalAlignment="Stretch"
+                        ToolTip="Restore the default preview settings"
+                        Command="{Binding ResetCommand}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

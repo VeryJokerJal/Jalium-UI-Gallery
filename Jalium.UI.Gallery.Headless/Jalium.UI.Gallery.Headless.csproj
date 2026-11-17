@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Jalium.UI.Gallery.Headless</RootNamespace>
+    <AssemblyName>Jalium.UI.Gallery.Headless</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Jalium.UI.Gallery.Modules.Main\Jalium.UI.Gallery.Modules.Main.csproj" />
+    <ProjectReference Include="..\Services\Jalium.UI.Gallery.Services\Jalium.UI.Gallery.Services.csproj" />
+  </ItemGroup>
+
+  <!-- The portable Interop source project selects Windows/Linux payloads.
+       The window-free macOS entry also needs CoreText and Software libraries;
+       carry them transitively into its tests and published CLI. -->
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+    <JaliumMacNativeRoot Condition="'$(JaliumMacNativeRoot)' == ''">$(MSBuildThisFileDirectory)../../Jalium.UI/src/native/bin/native/$(NETCoreSdkRuntimeIdentifier)/$(Configuration)</JaliumMacNativeRoot>
+  </PropertyGroup>
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+    <Content Include="$(JaliumMacNativeRoot)/*.dylib" Link="%(Filename)%(Extension)"
+             CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Target Name="ValidateMacOSHeadlessNativePayload" BeforeTargets="PrepareForBuild"
+          Condition="$([MSBuild]::IsOSPlatform('OSX')) and '$(DesignTimeBuild)' != 'true'">
+    <Exec Command="python3 &quot;$(MSBuildThisFileDirectory)../../Jalium.UI/eng/apple/check-native-exports.py&quot; &quot;$(JaliumMacNativeRoot)&quot; --configuration $(Configuration)" />
+  </Target>
+
+</Project>

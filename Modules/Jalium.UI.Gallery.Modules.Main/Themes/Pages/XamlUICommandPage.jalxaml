@@ -1,0 +1,216 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for XamlUICommandPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.XamlUICommandPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <CommandBar Width="500"
+                                    OverflowButtonVisibility="Collapsed">
+                            <CommandBar.PrimaryCommands>
+                                <AppBarButton Label="{Binding AddToFavoritesCommand.Label}"
+                                              ToolTip="{Binding AddToFavoritesCommand.Description}"
+                                              Command="{Binding AddToFavoritesCommand}"
+                                              automation:AutomationProperties.Name="Add to Favorites">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding AddToFavoritesCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                                <AppBarButton Label="{Binding ShareViaLinkCommand.Label}"
+                                              ToolTip="{Binding ShareViaLinkCommand.Description}"
+                                              Command="{Binding ShareViaLinkCommand}"
+                                              automation:AutomationProperties.Name="Share via Link">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding ShareViaLinkCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                                <AppBarButton Label="{Binding ExportAsPdfCommand.Label}"
+                                              ToolTip="{Binding ExportAsPdfCommand.Description}"
+                                              Command="{Binding ExportAsPdfCommand}"
+                                              automation:AutomationProperties.Name="Export as PDF">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding ExportAsPdfCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                            </CommandBar.PrimaryCommands>
+                        </CommandBar>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                            <CheckBox Content="Allow PDF export"
+                                      IsChecked="{Binding CanExportAsPdf}"
+                                      VerticalAlignment="Center" />
+                            <Border Style="{StaticResource GalleryVerticalDivider}" Margin="16,0" />
+                            <Border Style="{StaticResource GalleryKbdBadge}" Margin="0,0,6,0">
+                                <TextBlock Style="{StaticResource GalleryKbdText}"
+                                           Text="{DynamicResource Loc.Shortcut.XamlUICommandFavorite}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryKbdBadge}" Margin="0,0,6,0">
+                                <TextBlock Style="{StaticResource GalleryKbdText}"
+                                           Text="{DynamicResource Loc.Shortcut.XamlUICommandShare}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryKbdBadge}">
+                                <TextBlock Style="{StaticResource GalleryKbdText}"
+                                           Text="{DynamicResource Loc.Shortcut.XamlUICommandExport}" />
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:XamlUICommandPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="behaviors:XamlUICommandInputBehavior.Commands" Value="{Binding Commands}" />
+        <Setter Property="Title" Value="XamlUICommand" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:XamlUICommandPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.XamlUICommand.Title1}" Description="{DynamicResource Loc.P.XamlUICommand.Sub1}" />
+
+        <!-- Custom XamlUICommand -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.XamlUICommand.CT1}" Description="{DynamicResource Loc.P.XamlUICommand.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface x:Name="XamlCommandContainer"
+
+                        MinHeight="200">
+                    <StackPanel>
+                        <CommandBar Width="500" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    OverflowButtonVisibility="Collapsed">
+                            <CommandBar.PrimaryCommands>
+                                <AppBarButton Label="{Binding AddToFavoritesCommand.Label}"
+                                              ToolTip="{Binding AddToFavoritesCommand.Description}"
+                                              Command="{Binding AddToFavoritesCommand}"
+                                              automation:AutomationProperties.Name="Add to Favorites">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding AddToFavoritesCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                                <AppBarButton Label="{Binding ShareViaLinkCommand.Label}"
+                                              ToolTip="{Binding ShareViaLinkCommand.Description}"
+                                              Command="{Binding ShareViaLinkCommand}"
+                                              automation:AutomationProperties.Name="Share via Link">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding ShareViaLinkCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                                <AppBarButton Label="{Binding ExportAsPdfCommand.Label}"
+                                              ToolTip="{Binding ExportAsPdfCommand.Description}"
+                                              Command="{Binding ExportAsPdfCommand}"
+                                              automation:AutomationProperties.Name="Export as PDF">
+                                    <AppBarButton.Icon>
+                                        <FontIcon Glyph="{Binding ExportAsPdfCommand.IconSource}" />
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
+                            </CommandBar.PrimaryCommands>
+                        </CommandBar>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                            <CheckBox Content="Allow PDF export"
+                                      IsChecked="{Binding CanExportAsPdf}"
+                                      VerticalAlignment="Center" />
+                            <Border Style="{StaticResource GalleryVerticalDivider}" Margin="16,0" />
+                            <Border Style="{StaticResource GalleryKbdBadge}" Margin="0,0,6,0">
+                                <TextBlock Style="{StaticResource GalleryKbdText}"
+                                           Text="{DynamicResource Loc.Shortcut.XamlUICommandFavorite}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryKbdBadge}" Margin="0,0,6,0">
+                                <TextBlock Style="{StaticResource GalleryKbdText}"
+                                           Text="{DynamicResource Loc.Shortcut.XamlUICommandShare}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryKbdBadge}">
+                                <TextBlock Style="{StaticResource GalleryKbdText}"
+                                           Text="{DynamicResource Loc.Shortcut.XamlUICommandExport}" />
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Command output -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.XamlUICommand.CT2}" Description="{DynamicResource Loc.P.XamlUICommand.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem x:Name="CommandOutputText" Text="{Binding CommandOutputText}" FontWeight="Medium" Foreground="{DynamicResource GalleryTextPrimary}" Margin="0,0,0,8" />
+                        <TextBlock x:Name="CommandHistoryText"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   FontFamily="{ThemeResource MonoFontFamily}"
+                                   Text="{Binding CommandHistoryText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.XamlUICommand.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.XamlUICommand.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

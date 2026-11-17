@@ -1,0 +1,185 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ToolBarPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ToolBarPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <ToolBar>
+                        <Button Content="New" Width="60" Height="28"/>
+                        <Button Content="Open" Width="60" Height="28"/>
+                        <Button Content="Save" Width="60" Height="28"/>
+                        <Separator/>
+                        <Button Content="Cut" Width="50" Height="28"/>
+                        <Button Content="Copy" Width="50" Height="28"/>
+                        <Button Content="Paste" Width="50" Height="28"/>
+                    </ToolBar>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ToolBarPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ToolBar" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ToolBarPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Navigation}" Title="{DynamicResource Loc.P.ToolBar.Title1}" Description="{DynamicResource Loc.P.ToolBar.Sub1}" />
+
+        <!-- Basic ToolBar -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolBar.CT1}" Description="{DynamicResource Loc.P.ToolBar.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ToolBar>
+                        <Button Content="New" Width="60" Height="28"/>
+                        <Button Content="Open" Width="60" Height="28"/>
+                        <Button Content="Save" Width="60" Height="28"/>
+                        <Separator/>
+                        <Button Content="Cut" Width="50" Height="28"/>
+                        <Button Content="Copy" Width="50" Height="28"/>
+                        <Button Content="Paste" Width="50" Height="28"/>
+                    </ToolBar>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ToolBar with Mixed Controls -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolBar.CT2}" Description="{DynamicResource Loc.P.ToolBar.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <ToolBar>
+                        <Button Content="File" Width="50" Height="28"/>
+                        <Separator/>
+                        <TextBlock Text="Zoom:" VerticalAlignment="Center" Margin="4,0"/>
+                        <ComboBox Width="80" Height="28">
+                            <ComboBoxItem Content="50%"/>
+                            <ComboBoxItem Content="75%"/>
+                            <ComboBoxItem Content="100%" IsSelected="True"/>
+                            <ComboBoxItem Content="150%"/>
+                            <ComboBoxItem Content="200%"/>
+                        </ComboBox>
+                        <Separator/>
+                        <CheckBox Content="Bold" Margin="4,0"/>
+                        <CheckBox Content="Italic" Margin="4,0"/>
+                        <Separator/>
+                        <TextBox Width="150" Height="28" ToolTip="Search..."/>
+                    </ToolBar>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ToolBar Tray -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolBar.CT3}" Description="{DynamicResource Loc.P.ToolBar.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <ToolBar Margin="0,0,0,4">
+                            <Button Content="New" Width="50" Height="26"/>
+                            <Button Content="Open" Width="50" Height="26"/>
+                            <Button Content="Save" Width="50" Height="26"/>
+                            <Button Content="Print" Width="50" Height="26"/>
+                        </ToolBar>
+                        <ToolBar>
+                            <Button Content="Undo" Width="50" Height="26"/>
+                            <Button Content="Redo" Width="50" Height="26"/>
+                            <Separator/>
+                            <Button Content="Find" Width="50" Height="26"/>
+                            <Button Content="Replace" Width="60" Height="26"/>
+                        </ToolBar>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo2}" Description="{DynamicResource Loc.P.ToolBar.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <ToolBar Margin="0,0,0,16">
+                            <Button x:Name="NewButton" Content="New" Command="{Binding ExecuteCommand}" CommandParameter="New" Width="50" Height="28"/>
+                            <Button x:Name="OpenButton" Content="Open" Command="{Binding ExecuteCommand}" CommandParameter="Open" Width="50" Height="28"/>
+                            <Button x:Name="SaveButton" Content="Save" Command="{Binding ExecuteCommand}" CommandParameter="Save" Width="50" Height="28"/>
+                            <Separator/>
+                            <Button x:Name="UndoButton" Content="Undo" Command="{Binding ExecuteCommand}" CommandParameter="Undo" Width="50" Height="28"/>
+                            <Button x:Name="RedoButton" Content="Redo" Command="{Binding ExecuteCommand}" CommandParameter="Redo" Width="50" Height="28"/>
+                        </ToolBar>
+                        <TextBlock x:Name="ActionText"
+                                   Text="{Binding LastAction}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.ToolBar.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.ToolBar.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

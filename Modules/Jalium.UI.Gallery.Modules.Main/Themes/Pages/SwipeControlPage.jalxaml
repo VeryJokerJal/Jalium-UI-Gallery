@@ -1,0 +1,185 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SwipeControlPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SwipeControlPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeControl Visibility="{Binding Visibility}">
+                                    <SwipeControl.LeftItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="Archive"
+                                                       Background="#0078D4"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding ArchiveCommand}" />
+                                        </SwipeItems>
+                                    </SwipeControl.LeftItems>
+                                    <SwipeControl.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="Flag"
+                                                       Background="#C18A00"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding FlagCommand}" />
+                                            <SwipeItem Text="Delete"
+                                                       Background="#C42B1C"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding DeleteCommand}" />
+                                        </SwipeItems>
+                                    </SwipeControl.RightItems>
+                                    <Border Background="{Binding Background}"
+                                            BorderBrush="#3D3D3D"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="16,12"
+                                            MinHeight="52">
+                                        <TextBlock Text="{Binding Text}"
+                                                   FontSize="14"
+                                                   Foreground="{Binding Foreground}"
+                                                   VerticalAlignment="Center" />
+                                    </Border>
+                                </SwipeControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SwipeControlPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="SwipeControl" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SwipeControlPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.SwipeControl.Title1}" Description="{DynamicResource Loc.P.SwipeControl.Sub1}" />
+
+        <!-- Swipe to reveal -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SwipeControl.CT1}" Description="{DynamicResource Loc.P.SwipeControl.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface x:Name="SwipeContainer"
+
+                        MinHeight="200" Padding="0">
+                    <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeControl Visibility="{Binding Visibility}">
+                                    <SwipeControl.LeftItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="Archive"
+                                                       Background="#0078D4"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding ArchiveCommand}" />
+                                        </SwipeItems>
+                                    </SwipeControl.LeftItems>
+                                    <SwipeControl.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="Flag"
+                                                       Background="#C18A00"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding FlagCommand}" />
+                                            <SwipeItem Text="Delete"
+                                                       Background="#C42B1C"
+                                                       Foreground="#FFFFFF"
+                                                       Command="{Binding DeleteCommand}" />
+                                        </SwipeItems>
+                                    </SwipeControl.RightItems>
+                                    <Border Background="{Binding Background}"
+                                            BorderBrush="#3D3D3D"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="16,12"
+                                            MinHeight="52">
+                                        <TextBlock Text="{Binding Text}"
+                                                   FontSize="14"
+                                                   Foreground="{Binding Foreground}"
+                                                   VerticalAlignment="Center" />
+                                    </Border>
+                                </SwipeControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Swipe action log -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SwipeControl.CT2}" Description="{DynamicResource Loc.P.SwipeControl.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TextBlock x:Name="SwipeStatusText"
+                               Style="{StaticResource GalleryBodyText}"
+                               Text="{Binding StatusText}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.SwipeControl.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.SwipeControl.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

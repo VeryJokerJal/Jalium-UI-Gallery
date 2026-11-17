@@ -1,0 +1,270 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for WebViewPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.WebViewPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <!-- Address / navigation toolbar -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8">
+                            <WrapPanel>
+                                <Button Command="{Binding BackCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Back"
+                                        automation:AutomationProperties.Name="Back"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Back" />
+                                </Button>
+                                <Button Command="{Binding ForwardCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Forward"
+                                        automation:AutomationProperties.Name="Forward"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Forward" />
+                                </Button>
+                                <Button Command="{Binding RefreshCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Refresh"
+                                        automation:AutomationProperties.Name="Refresh"
+                                        Margin="0,0,12,8">
+                                    <SymbolIcon Symbol="Refresh" />
+                                </Button>
+                                <TextBox Height="32"
+                                         Width="300"
+                                         FontSize="13"
+                                         Text="{Binding Address, Mode=TwoWay}"
+                                         behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding NavigateCommand}"
+                                         Margin="0,0,10,8" />
+                                <Button Content="Go"
+                                        Command="{Binding NavigateCommand}"
+                                        Width="48"
+                                        Height="32"
+                                        Margin="0,0,10,10" />
+                            </WrapPanel>
+                        </Border>
+
+                        <!-- WebView viewport -->
+                        <Border Height="500"
+                                ClipToBounds="True">
+                            <WebView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="{x:Null}" />
+                        </Border>
+
+                        <!-- Status strip -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="10,8">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{Binding Status}" />
+                        </Border>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:WebViewPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="WebView" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:WebViewPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Media}" Title="{DynamicResource Loc.P.WebView.Title1}" Description="{DynamicResource Loc.P.WebView.Sub1}" />
+
+        <!-- Browser demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WebView.CT1}" Description="{DynamicResource Loc.P.WebView.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  ClipToBounds="True" Padding="0">
+                    <StackPanel Orientation="Vertical">
+                        <!-- Address / navigation toolbar -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8">
+                            <WrapPanel>
+                                <Button Command="{Binding BackCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Back"
+                                        automation:AutomationProperties.Name="Back"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Back" />
+                                </Button>
+                                <Button Command="{Binding ForwardCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Forward"
+                                        automation:AutomationProperties.Name="Forward"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Forward" />
+                                </Button>
+                                <Button Command="{Binding RefreshCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Refresh"
+                                        automation:AutomationProperties.Name="Refresh"
+                                        Margin="0,0,12,8">
+                                    <SymbolIcon Symbol="Refresh" />
+                                </Button>
+                                <TextBox Height="32"
+                                         Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                         FontSize="13"
+                                         Text="{Binding Address, Mode=TwoWay}"
+                                         behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding NavigateCommand}"
+                                         Margin="0,0,10,8" />
+                                <Button Content="Go"
+                                        Command="{Binding NavigateCommand}"
+                                        Width="48"
+                                        Height="32"
+                                        Margin="0,0,10,10" />
+                            </WrapPanel>
+                        </Border>
+
+                        <!-- WebView viewport -->
+                        <Border Height="500"
+                                ClipToBounds="True">
+                            <WebView Source="{Binding InitialSource}"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     behaviors:WebViewBehavior.IsEnabled="True"
+                                     behaviors:WebViewBehavior.Request="{Binding RequestValue}" />
+                        </Border>
+
+                        <!-- Status strip -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="10,8">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{Binding Status}" />
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Page info -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WebView.CT2}" Description="{DynamicResource Loc.P.WebView.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding DocumentTitle}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding Status}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- JavaScript execution -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WebView.CT3}" Description="{DynamicResource Loc.P.WebView.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBox Height="32"
+                                 FontSize="13"
+                                 Text="{Binding Script, Mode=TwoWay}"
+                                 Margin="0,0,0,8" />
+                        <Button Content="Execute"
+                                Command="{Binding ExecuteScriptCommand}"
+                                Height="32"
+                                Width="100"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Left" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding ScriptResult}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Properties -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WebView.CT4}" Description="{DynamicResource Loc.P.WebView.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.WebView.Body1}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.WebView.Body2}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.WebView.Body3}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.WebView.Body4}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.WebView.Body5}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.WebView.Body6}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.WebView.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.WebView.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

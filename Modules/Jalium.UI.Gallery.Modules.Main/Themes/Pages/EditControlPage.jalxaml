@@ -1,0 +1,204 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for EditControlPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.EditControlPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <EditControl x:Name="MainEditor"
+                                 Height="400"
+                                 HorizontalAlignment="Stretch"
+                                 FontSize="14"
+                                 Text="{Binding EditorText, Mode=TwoWay}"
+                                 Language="{Binding EditorLanguage}"
+                                 ShowLineNumbers="{Binding ShowLineNumbers}"
+                                 HighlightCurrentLine="{Binding HighlightCurrentLine}"
+                                 IsReadOnly="{Binding IsReadOnly}"
+                                 TabSize="4"
+                                 ConvertTabsToSpaces="True"
+                                 behaviors:EditControlBehavior.IsEnabled="True"
+                                 behaviors:EditControlBehavior.Request="{Binding EditorRequest}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:EditControlPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="EditControl" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:EditControlPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.TextAndTypography}" Title="{DynamicResource Loc.P.EditControl.Title1}" Description="{DynamicResource Loc.P.EditControl.Sub1}" />
+
+        <!-- Basic editor -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.EditControl.CT1}" Description="{DynamicResource Loc.P.EditControl.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="MainEditor"
+                                 Height="400"
+                                 HorizontalAlignment="Stretch"
+                                 FontSize="14"
+                                 Text="{Binding EditorText, Mode=TwoWay}"
+                                 Language="{Binding EditorLanguage}"
+                                 ShowLineNumbers="{Binding ShowLineNumbers}"
+                                 HighlightCurrentLine="{Binding HighlightCurrentLine}"
+                                 IsReadOnly="{Binding IsReadOnly}"
+                                 TabSize="4"
+                                 ConvertTabsToSpaces="True"
+                                 behaviors:EditControlBehavior.IsEnabled="True"
+                                 behaviors:EditControlBehavior.Request="{Binding EditorRequest}" />
+                </gallery:GalleryDemoSurface>
+
+                <!-- Live status readout -->
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <Border Style="{StaticResource GalleryCodeBadge}">
+                        <TextBlock x:Name="StatusText"
+                                   Style="{StaticResource GalleryCodeBadgeText}"
+                                   Text="{Binding DocumentStatus}" />
+                    </Border>
+                    <Border Style="{StaticResource GalleryVerticalDivider}" />
+                    <Border Style="{StaticResource GalleryBadge}">
+                        <TextBlock x:Name="CursorPositionText"
+                                   Style="{StaticResource GalleryBadgeText}"
+                                   FontFamily="{ThemeResource MonoFontFamily}"
+                                   Text="{Binding CaretStatus}" />
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Options}" Description="{DynamicResource Loc.P.EditControl.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <CheckBox Content="Show Line Numbers"
+                                      IsChecked="{Binding ShowLineNumbers, Mode=TwoWay}"
+                                      Margin="0,0,10,10" />
+                            <CheckBox Content="Highlight Current Line"
+                                      IsChecked="{Binding HighlightCurrentLine, Mode=TwoWay}"
+                                      Margin="0,0,10,10" />
+                            <CheckBox Content="Read Only"
+                                      IsChecked="{Binding IsReadOnly, Mode=TwoWay}"
+                                      Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button Content="Undo" Command="{Binding UndoCommand}" Margin="0,0,10,10" />
+                            <Button Content="Redo" Command="{Binding RedoCommand}" Margin="0,0,10,10" />
+                            <Button Content="Select All" Command="{Binding SelectAllCommand}" Margin="0,0,10,10" />
+                            <Button Content="Clear" Command="{Binding ClearCommand}" Margin="0,0,10,10" />
+                            <Button Content="Load C# Sample" Command="{Binding LoadCSharpSampleCommand}" Margin="0,0,10,10" />
+                            <Button Content="Load JALXAML Sample" Command="{Binding LoadJalxamlSampleCommand}" Margin="0,0,10,10" />
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Keyboard shortcuts -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.KeyboardShortcuts}" Description="{DynamicResource Loc.P.EditControl.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body4}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body5}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body6}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body7}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body8}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body9}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body10}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Architecture -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.EditControl.CT2}" Description="{DynamicResource Loc.P.EditControl.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body11}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body12}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body13}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.EditControl.Body14}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.EditControl.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.EditControl.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

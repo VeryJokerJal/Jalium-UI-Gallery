@@ -1,0 +1,226 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TreeSelectorPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TreeSelectorPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+                <Grid.Resources>
+        <!-- The current virtualizing panel reports zero height during the
+             first popup measure while it realizes an expanded hierarchy.
+             These compact demo trees are intentionally non-virtualized so
+             the Popup receives their complete desired height immediately. -->
+        <ItemsPanelTemplate x:Key="TreeSelectorItemsPanel">
+            <StackPanel />
+        </ItemsPanelTemplate>
+    </Grid.Resources>
+
+                    <StackPanel>
+                        <Border Style="{StaticResource GalleryBadge}"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,10">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Style="{StaticResource GalleryFeatureDot}" Margin="0,0,7,0" />
+                                <TextBlock Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding SingleSelectionStatus}" />
+                            </StackPanel>
+                        </Border>
+                        <gallery:GalleryTreeSelector x:Name="SingleSelector"
+                                      SelectionMode="Single"
+                                      PlaceholderText="请选择节点"
+                                      Width="320"
+                                      HorizontalAlignment="Left"
+                                      ItemsPanel="{StaticResource TreeSelectorItemsPanel}"
+                                      AutoExpandSelected="True"
+                                      ItemsSource="{Binding Regions}"
+                                      StateKey="single" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TreeSelectorPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="TreeSelector" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TreeSelectorPage">
+                <Grid x:Name="PART_Root">
+                <Grid.Resources>
+        <!-- The current virtualizing panel reports zero height during the
+             first popup measure while it realizes an expanded hierarchy.
+             These compact demo trees are intentionally non-virtualized so
+             the Popup receives their complete desired height immediately. -->
+        <ItemsPanelTemplate x:Key="TreeSelectorItemsPanel">
+            <StackPanel />
+        </ItemsPanelTemplate>
+    </Grid.Resources>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+
+
+    <!-- Hierarchical data templates project nodes through the native selector containers. -->
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Collections}" Title="{DynamicResource Loc.P.TreeSelector.Title1}" Description="{DynamicResource Loc.P.TreeSelector.Sub1}" />
+
+        <gallery:GallerySection Header="单选模式" Description="{DynamicResource Loc.P.TreeSelector.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Border Style="{StaticResource GalleryBadge}"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,10">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Style="{StaticResource GalleryFeatureDot}" Margin="0,0,7,0" />
+                                <TextBlock Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding SingleSelectionStatus}" />
+                            </StackPanel>
+                        </Border>
+                        <gallery:GalleryTreeSelector x:Name="SingleSelector"
+                                      SelectionMode="Single"
+                                      PlaceholderText="请选择节点"
+                                      Width="320" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      HorizontalAlignment="Left"
+                                      ItemsPanel="{StaticResource TreeSelectorItemsPanel}"
+                                      AutoExpandSelected="True"
+                                      ItemsSource="{Binding Regions}"
+                                      StateKey="single" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="多选模式" Description="{DynamicResource Loc.P.TreeSelector.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Border Style="{StaticResource GalleryBadge}" Margin="0,0,8,0">
+                                <TextBlock Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding MultipleSelectedCountText}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryChip}">
+                                <TextBlock Style="{StaticResource GalleryChipText}"
+                                           Text="{Binding MultipleCheckedCountText}" />
+                            </Border>
+                        </StackPanel>
+                        <gallery:GalleryTreeSelector x:Name="MultipleSelector"
+                                      SelectionMode="Multiple"
+                                      ShowCheckBoxes="True"
+                                      PlaceholderText="请选择城市 (可多选)"
+                                      Width="360" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      HorizontalAlignment="Left"
+                                      ItemsPanel="{StaticResource TreeSelectorItemsPanel}"
+                                      ItemsSource="{Binding Regions}"
+                                      StateKey="multiple" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="可搜索" Description="{DynamicResource Loc.P.TreeSelector.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="在触发器中输入文字过滤树，例如“浦”或“杭”。" Margin="0,0,0,8" />
+                        <gallery:GalleryTreeSelector x:Name="SearchSelector"
+                                      SelectionMode="Single"
+                                      IsSearchEnabled="True"
+                                      PlaceholderText="搜索..."
+                                      Width="360" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      HorizontalAlignment="Left"
+                                      ItemsPanel="{StaticResource TreeSelectorItemsPanel}"
+                                      ItemsSource="{Binding Regions}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="父子级联" Description="{DynamicResource Loc.P.TreeSelector.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="勾选“华东地区”会一次性勾选所有子节点；再单独取消一个，父节点变成半选状态。" Margin="0,0,0,8" />
+                        <Border Style="{StaticResource GalleryChip}"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,10">
+                            <TextBlock Style="{StaticResource GalleryChipText}"
+                                       Text="{Binding CascadeSelectionStatus}" />
+                        </Border>
+                        <gallery:GalleryTreeSelector x:Name="CascadeSelector"
+                                      SelectionMode="Multiple"
+                                      ShowCheckBoxes="True"
+                                      CheckCascadeMode="Cascade"
+                                      PlaceholderText="请选择(支持级联)"
+                                      Width="380" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                      HorizontalAlignment="Left"
+                                      ItemsPanel="{StaticResource TreeSelectorItemsPanel}"
+                                      ItemsSource="{Binding Regions}"
+                                      StateKey="cascade" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.TreeSelector.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="220"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.TreeSelector.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="220"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

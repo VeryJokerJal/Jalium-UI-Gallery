@@ -1,0 +1,236 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for InkCanvasPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.InkCanvasPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <InkCanvas x:Name="MainInkCanvas"
+                               Width="600"
+                               Height="300"
+                               EditingMode="{Binding EditingMode}"
+                               behaviors:InkCanvasBehavior.IsEnabled="True"
+                               behaviors:InkCanvasBehavior.DrawingSettings="{Binding DrawingSettings}"
+                               behaviors:InkCanvasBehavior.Request="{Binding CanvasRequest}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:InkCanvasPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="InkCanvas" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:InkCanvasPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Media}" Title="{DynamicResource Loc.P.InkCanvas.Title1}" Description="{DynamicResource Loc.P.InkCanvas.Sub1}" />
+
+        <!-- Basic drawing -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT1}" Description="{DynamicResource Loc.P.InkCanvas.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <InkCanvas x:Name="MainInkCanvas"
+                               Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                               Height="300"
+                               EditingMode="{Binding EditingMode}"
+                               behaviors:InkCanvasBehavior.IsEnabled="True"
+                               behaviors:InkCanvasBehavior.DrawingSettings="{Binding DrawingSettings}"
+                               behaviors:InkCanvasBehavior.Request="{Binding CanvasRequest}" />
+                </gallery:GalleryDemoSurface>
+                <WrapPanel Margin="0,16,0,0">
+                    <Button Content="Draw" Command="{Binding DrawCommand}" Margin="0,0,10,10" />
+                    <Button Content="Erase" Command="{Binding EraseCommand}" Margin="0,0,10,10" />
+                    <Button Content="Clear All" Command="{Binding ClearCommand}" Margin="0,0,10,10" />
+                </WrapPanel>
+                <TextBlock x:Name="StatusText"
+                           Style="{StaticResource GalleryValueLabel}"
+                           Text="{Binding ModeStatus}" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stroke color -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT2}" Description="{DynamicResource Loc.P.InkCanvas.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Button Command="{Binding UseBlackCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <Border Background="#000000" CornerRadius="3" />
+                        </Button>
+                        <Button Command="{Binding UseRedCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <Border Background="#E81123" CornerRadius="3" />
+                        </Button>
+                        <Button Command="{Binding UseBlueCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <Border Background="#0078D4" CornerRadius="3" />
+                        </Button>
+                        <Button Command="{Binding UseGreenCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <Border Background="#00CC6A" CornerRadius="3" />
+                        </Button>
+                        <Button Command="{Binding UseOrangeCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <Border Background="#F7630C" CornerRadius="3" />
+                        </Button>
+                        <Button Command="{Binding UsePurpleCommand}" Width="40" Height="40" MinWidth="40" MinHeight="40" Margin="0,0,10,10" Padding="3" Background="Transparent" BorderBrush="{DynamicResource GalleryBorderStrong}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <Border Background="#886CE4" CornerRadius="3" />
+                        </Button>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stroke width -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT3}" Description="{DynamicResource Loc.P.InkCanvas.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <Slider x:Name="WidthSlider"
+                                Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                Minimum="1"
+                                Maximum="20"
+                                Value="{Binding StrokeWidth, Mode=TwoWay}"
+                                Margin="0,0,16,0" />
+                        <TextBlock x:Name="WidthText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding WidthStatus}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Highlighter mode -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT4}" Description="{DynamicResource Loc.P.InkCanvas.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <CheckBox Content="Enable Highlighter"
+                              IsChecked="{Binding IsHighlighter, Mode=TwoWay}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Brush type -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT5}" Description="{DynamicResource Loc.P.InkCanvas.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="圆笔" Command="{Binding UseRoundBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="毛笔" Command="{Binding UseCalligraphyBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="书写笔" Command="{Binding UsePenBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="喷枪" Command="{Binding UseAirbrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="油画笔" Command="{Binding UseOilBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="蜡笔" Command="{Binding UseCrayonBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="记号笔" Command="{Binding UseMarkerBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="铅笔" Command="{Binding UsePencilBrushCommand}" Width="80" Margin="0,0,10,10" />
+                            <Button Content="水彩笔" Command="{Binding UseWatercolorBrushCommand}" Width="80" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="BrushTypeStatusText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding BrushTypeStatus}"
+                                   Margin="0,6,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Taper mode -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT6}" Description="{DynamicResource Loc.P.InkCanvas.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="Normal" Command="{Binding UseNormalTaperCommand}" Margin="0,0,10,10" />
+                            <Button Content="Tapered Start" Command="{Binding UseTaperedStartCommand}" Margin="0,0,10,10" />
+                            <Button Content="Tapered End" Command="{Binding UseTaperedEndCommand}" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="AnimationStatusText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding TaperStatus}"
+                                   Margin="0,6,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stroke information -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.InkCanvas.CT7}" Description="{DynamicResource Loc.P.InkCanvas.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TextBlock x:Name="StrokeCountText"
+                               Style="{StaticResource GalleryValueLabel}"
+                               Text="{Binding StrokeCountStatus}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.InkCanvas.CC8}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.InkCanvas.CC9}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

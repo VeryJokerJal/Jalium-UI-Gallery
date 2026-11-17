@@ -1,0 +1,190 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <BooleanToVisibilityConverter x:Key="ContextMenuSelectionVisibility" />
+    <!-- Default template for ContextMenuPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ContextMenuPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <TextBlock Text="{DynamicResource Loc.P.ContextMenu.Hint1}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    <ContextMenuService.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Cut" InputGestureText="{DynamicResource Loc.Shortcut.Cut}" />
+                            <MenuItem Header="Copy" InputGestureText="{DynamicResource Loc.Shortcut.Copy}" />
+                            <MenuItem Header="Paste" InputGestureText="{DynamicResource Loc.Shortcut.Paste}" />
+                            <Separator />
+                            <MenuItem Header="{DynamicResource Loc.P.ContextMenu.Menu1}" InputGestureText="{DynamicResource Loc.Shortcut.SelectAll}" />
+                        </ContextMenu>
+                    </ContextMenuService.ContextMenu>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ContextMenuPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ContextMenu" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ContextMenuPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Navigation}" Title="{DynamicResource Loc.P.ContextMenu.Title1}" Description="{DynamicResource Loc.P.ContextMenu.Sub1}" />
+
+        <!-- Basic ContextMenu -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ContextMenu.CT1}" Description="{DynamicResource Loc.P.ContextMenu.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface
+                        MinHeight="120"
+                        x:Name="ContextMenuArea">
+                    <TextBlock Text="{DynamicResource Loc.P.ContextMenu.Hint1}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    <ContextMenuService.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Cut" InputGestureText="{DynamicResource Loc.Shortcut.Cut}" />
+                            <MenuItem Header="Copy" InputGestureText="{DynamicResource Loc.Shortcut.Copy}" />
+                            <MenuItem Header="Paste" InputGestureText="{DynamicResource Loc.Shortcut.Paste}" />
+                            <Separator />
+                            <MenuItem Header="{DynamicResource Loc.P.ContextMenu.Menu1}" InputGestureText="{DynamicResource Loc.Shortcut.SelectAll}" />
+                        </ContextMenu>
+                    </ContextMenuService.ContextMenu>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ContextMenu with submenus -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ContextMenu.CT2}" Description="{DynamicResource Loc.P.ContextMenu.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface
+                        MinHeight="120">
+                    <TextBlock Text="{DynamicResource Loc.P.ContextMenu.Hint2}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    <ContextMenuService.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="New">
+                                <MenuItem Header="File" />
+                                <MenuItem Header="Folder" />
+                                <MenuItem Header="Project" />
+                            </MenuItem>
+                            <MenuItem Header="Open" />
+                            <Separator />
+                            <MenuItem Header="{DynamicResource Loc.P.ContextMenu.Menu2}">
+                                <MenuItem Header="Name" />
+                                <MenuItem Header="Date" />
+                                <MenuItem Header="Size" />
+                                <MenuItem Header="Type" />
+                            </MenuItem>
+                            <MenuItem Header="View">
+                                <MenuItem Header="{DynamicResource Loc.P.ContextMenu.Menu3}" />
+                                <MenuItem Header="{DynamicResource Loc.P.ContextMenu.Menu4}" />
+                                <MenuItem Header="List" />
+                                <MenuItem Header="Details" />
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Header="Properties" />
+                        </ContextMenu>
+                    </ContextMenuService.ContextMenu>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo2}" Description="{DynamicResource Loc.P.ContextMenu.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface
+                        MinHeight="120"
+                        x:Name="InteractiveArea">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{DynamicResource Loc.P.ContextMenu.Hint1}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock x:Name="EmptyActionText" Text="{DynamicResource Loc.P.ContextMenu.Menu5}"
+                                   Visibility="{Binding IsSelectionEmpty, Converter={StaticResource ContextMenuSelectionVisibility}}"
+                                   HorizontalAlignment="Center" Margin="0,8,0,0" />
+                        <TextBlock x:Name="SelectedActionText" Text="{Binding SelectedAction}"
+                                   Visibility="{Binding HasSelection, Converter={StaticResource ContextMenuSelectionVisibility}}"
+                                   HorizontalAlignment="Center" Margin="0,8,0,0" />
+                    </StackPanel>
+                    <ContextMenuService.ContextMenu>
+                        <ContextMenu x:Name="InteractiveContextMenu">
+                            <MenuItem Header="Action 1" x:Name="Action1" Command="{Binding SelectActionCommand}" CommandParameter="Action 1" />
+                            <MenuItem Header="Action 2" x:Name="Action2" Command="{Binding SelectActionCommand}" CommandParameter="Action 2" />
+                            <MenuItem Header="Action 3" x:Name="Action3" Command="{Binding SelectActionCommand}" CommandParameter="Action 3" />
+                        </ContextMenu>
+                    </ContextMenuService.ContextMenu>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ContextMenu.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ContextMenu.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,288 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:ribbon="clr-namespace:Jalium.UI.Controls.Ribbon;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for RibbonPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.RibbonPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <ribbon:Ribbon x:Name="DemoRibbon"
+                                       Title="Ribbon Demo"
+                                       IsMinimized="{Binding IsRibbonMinimized, Mode=TwoWay}"
+                                       SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                            <ribbon:Ribbon.QuickAccessToolBar>
+                                <ribbon:RibbonQuickAccessToolBar>
+                                    <Button Content="Save" MinWidth="76" Height="22" FontSize="11"/>
+                                    <Button Content="Undo" MinWidth="76" Height="22" FontSize="11"/>
+                                    <Button Content="Redo" MinWidth="76" Height="22" FontSize="11"/>
+                                </ribbon:RibbonQuickAccessToolBar>
+                            </ribbon:Ribbon.QuickAccessToolBar>
+                            <ribbon:RibbonTab Header="Home">
+                                <ribbon:RibbonGroup Header="Clipboard">
+                                    <Button x:Name="PasteButton" Content="Paste" Command="{Binding ExecuteCommand}" CommandParameter="Paste" MinWidth="76" Height="28"/>
+                                    <Button x:Name="CutButton" Content="Cut" Command="{Binding ExecuteCommand}" CommandParameter="Cut" MinWidth="76" Height="24" FontSize="11"/>
+                                    <Button x:Name="CopyButton" Content="Copy" Command="{Binding ExecuteCommand}" CommandParameter="Copy" MinWidth="76" Height="24" FontSize="11"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Font">
+                                    <Button x:Name="BoldButton" Command="{Binding ExecuteCommand}" CommandParameter="Bold" MinWidth="76" Height="32" ToolTip="Bold" automation:AutomationProperties.Name="Bold">
+                                        <SymbolIcon Symbol="Bold" Width="15" Height="15" />
+                                    </Button>
+                                    <Button x:Name="ItalicButton" Command="{Binding ExecuteCommand}" CommandParameter="Italic" MinWidth="76" Height="32" ToolTip="Italic" automation:AutomationProperties.Name="Italic">
+                                        <SymbolIcon Symbol="Italic" Width="15" Height="15" />
+                                    </Button>
+                                    <Button x:Name="UnderlineButton" Command="{Binding ExecuteCommand}" CommandParameter="Underline" MinWidth="76" Height="32" ToolTip="Underline" automation:AutomationProperties.Name="Underline">
+                                        <SymbolIcon Symbol="Underline" Width="15" Height="15" />
+                                    </Button>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Paragraph">
+                                    <Button Content="Left" MinWidth="76" Height="24" FontSize="11"/>
+                                    <Button Content="Center" MinWidth="76" Height="24" FontSize="11"/>
+                                    <Button Content="Right" MinWidth="76" Height="24" FontSize="11"/>
+                                </ribbon:RibbonGroup>
+                            </ribbon:RibbonTab>
+                            <ribbon:RibbonTab Header="Insert">
+                                <ribbon:RibbonGroup Header="Tables">
+                                    <Button x:Name="InsertTableButton" Content="Table" Command="{Binding ExecuteCommand}" CommandParameter="Insert Table" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Illustrations">
+                                    <Button Content="Picture" MinWidth="76" Height="28"/>
+                                    <Button Content="Shapes" MinWidth="76" Height="28"/>
+                                    <Button Content="Chart" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Links">
+                                    <Button Content="Hyperlink" MinWidth="76" Height="28"/>
+                                    <Button Content="Bookmark" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                            </ribbon:RibbonTab>
+                            <ribbon:RibbonTab Header="View">
+                                <ribbon:RibbonGroup Header="Document Views">
+                                    <Button Content="Read Mode" MinWidth="96" Height="28"/>
+                                    <Button Content="Print Layout" MinWidth="90" Height="28"/>
+                                    <Button Content="Web Layout" MinWidth="96" Height="28"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Zoom">
+                                    <Button Content="Zoom In" MinWidth="88" Height="28"/>
+                                    <Button Content="Zoom Out" MinWidth="88" Height="28"/>
+                                    <Button Content="100%" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                            </ribbon:RibbonTab>
+                        </ribbon:Ribbon>
+
+                        <!-- Simulated document canvas -->
+                        <Border Background="{DynamicResource GalleryShellBackground}" Padding="16" Height="100">
+                            <TextBlock x:Name="StatusText"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding RibbonStatus}" />
+                        </Border>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:RibbonPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Ribbon" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:RibbonPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.Ribbon.Title1}" Description="{DynamicResource Loc.P.Ribbon.Sub1}" />
+
+        <!-- Live ribbon demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Ribbon.CT1}" Description="{DynamicResource Loc.P.Ribbon.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  ClipToBounds="True" Padding="0">
+                    <StackPanel Orientation="Vertical">
+                        <ribbon:Ribbon x:Name="DemoRibbon"
+                                       Title="Ribbon Demo"
+                                       IsMinimized="{Binding IsRibbonMinimized, Mode=TwoWay}"
+                                       SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                            <ribbon:Ribbon.QuickAccessToolBar>
+                                <ribbon:RibbonQuickAccessToolBar>
+                                    <Button Content="Save" MinWidth="76" Height="22" FontSize="11"/>
+                                    <Button Content="Undo" MinWidth="76" Height="22" FontSize="11"/>
+                                    <Button Content="Redo" MinWidth="76" Height="22" FontSize="11"/>
+                                </ribbon:RibbonQuickAccessToolBar>
+                            </ribbon:Ribbon.QuickAccessToolBar>
+                            <ribbon:RibbonTab Header="Home">
+                                <ribbon:RibbonGroup Header="Clipboard">
+                                    <Button x:Name="PasteButton" Content="Paste" Command="{Binding ExecuteCommand}" CommandParameter="Paste" MinWidth="76" Height="28"/>
+                                    <Button x:Name="CutButton" Content="Cut" Command="{Binding ExecuteCommand}" CommandParameter="Cut" MinWidth="76" Height="24" FontSize="11"/>
+                                    <Button x:Name="CopyButton" Content="Copy" Command="{Binding ExecuteCommand}" CommandParameter="Copy" MinWidth="76" Height="24" FontSize="11"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Font">
+                                    <Button x:Name="BoldButton" Command="{Binding ExecuteCommand}" CommandParameter="Bold" MinWidth="76" Height="32" ToolTip="Bold" automation:AutomationProperties.Name="Bold">
+                                        <SymbolIcon Symbol="Bold" Width="15" Height="15" />
+                                    </Button>
+                                    <Button x:Name="ItalicButton" Command="{Binding ExecuteCommand}" CommandParameter="Italic" MinWidth="76" Height="32" ToolTip="Italic" automation:AutomationProperties.Name="Italic">
+                                        <SymbolIcon Symbol="Italic" Width="15" Height="15" />
+                                    </Button>
+                                    <Button x:Name="UnderlineButton" Command="{Binding ExecuteCommand}" CommandParameter="Underline" MinWidth="76" Height="32" ToolTip="Underline" automation:AutomationProperties.Name="Underline">
+                                        <SymbolIcon Symbol="Underline" Width="15" Height="15" />
+                                    </Button>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Paragraph">
+                                    <Button Content="Left" MinWidth="76" Height="24" FontSize="11"/>
+                                    <Button Content="Center" MinWidth="76" Height="24" FontSize="11"/>
+                                    <Button Content="Right" MinWidth="76" Height="24" FontSize="11"/>
+                                </ribbon:RibbonGroup>
+                            </ribbon:RibbonTab>
+                            <ribbon:RibbonTab Header="Insert">
+                                <ribbon:RibbonGroup Header="Tables">
+                                    <Button x:Name="InsertTableButton" Content="Table" Command="{Binding ExecuteCommand}" CommandParameter="Insert Table" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Illustrations">
+                                    <Button Content="Picture" MinWidth="76" Height="28"/>
+                                    <Button Content="Shapes" MinWidth="76" Height="28"/>
+                                    <Button Content="Chart" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Links">
+                                    <Button Content="Hyperlink" MinWidth="76" Height="28"/>
+                                    <Button Content="Bookmark" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                            </ribbon:RibbonTab>
+                            <ribbon:RibbonTab Header="View">
+                                <ribbon:RibbonGroup Header="Document Views">
+                                    <Button Content="Read Mode" MinWidth="96" Height="28"/>
+                                    <Button Content="Print Layout" MinWidth="90" Height="28"/>
+                                    <Button Content="Web Layout" MinWidth="96" Height="28"/>
+                                </ribbon:RibbonGroup>
+                                <ribbon:RibbonGroup Header="Zoom">
+                                    <Button Content="Zoom In" MinWidth="88" Height="28"/>
+                                    <Button Content="Zoom Out" MinWidth="88" Height="28"/>
+                                    <Button Content="100%" MinWidth="76" Height="28"/>
+                                </ribbon:RibbonGroup>
+                            </ribbon:RibbonTab>
+                        </ribbon:Ribbon>
+
+                        <!-- Simulated document canvas -->
+                        <Border Background="{DynamicResource GalleryShellBackground}" Padding="16" Height="100">
+                            <TextBlock x:Name="StatusText"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding RibbonStatus}" />
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Ribbon options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Ribbon.CT2}" Description="{DynamicResource Loc.P.Ribbon.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="MinimizeCheckBox"
+                                  Content="Minimize ribbon (collapse tabs)"
+                                  IsChecked="{Binding IsRibbonMinimized, Mode=TwoWay}"
+                                  Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Selected Tab:" Width="100" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="TabSelectComboBox"
+                                      SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}"
+                                      Width="120"
+                                      Height="28">
+                                <ComboBoxItem Content="Home" IsSelected="True"/>
+                                <ComboBoxItem Content="Insert"/>
+                                <ComboBoxItem Content="View"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Ribbon components -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Ribbon.CT3}" Description="{DynamicResource Loc.P.Ribbon.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body1}"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Margin="16,0,0,6"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body2}"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Margin="32,0,0,6"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body3}"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body4}"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body5}"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Margin="0,0,0,6"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body6}"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Ribbon.Body7}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.Ribbon.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="350"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.Ribbon.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="250"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

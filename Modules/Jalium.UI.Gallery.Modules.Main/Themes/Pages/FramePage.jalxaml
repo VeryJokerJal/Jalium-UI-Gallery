@@ -1,0 +1,221 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for FramePage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.FramePage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="NavigatePage1Button" Content="Page 1" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageOneCommand}" />
+                            <Button x:Name="NavigatePage2Button" Content="Page 2" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageTwoCommand}" />
+                            <Button x:Name="NavigatePage3Button" Content="Page 3" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageThreeCommand}" />
+                        </WrapPanel>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8">
+                            <Frame x:Name="DemoFrame" Width="400" Height="200">
+                                <Border Background="{Binding CurrentPageBackground}">
+                                    <TextBlock Text="{Binding CurrentPageTitle}"
+                                               FontSize="24"
+                                               Foreground="#FFFFFF"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                </Border>
+                            </Frame>
+                        </Border>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:FramePage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Frame" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:FramePage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Navigation}" Title="{DynamicResource Loc.P.Frame.Title1}" Description="{DynamicResource Loc.P.Frame.Sub1}" />
+
+        <!-- Basic Frame -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Frame.CT1}" Description="{DynamicResource Loc.P.Frame.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="NavigatePage1Button" Content="Page 1" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageOneCommand}" />
+                            <Button x:Name="NavigatePage2Button" Content="Page 2" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageTwoCommand}" />
+                            <Button x:Name="NavigatePage3Button" Content="Page 3" Width="80" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding NavigatePageThreeCommand}" />
+                        </WrapPanel>
+                        <Border BorderBrush="{DynamicResource GalleryBorderDefault}" BorderThickness="1" CornerRadius="8">
+                            <Frame x:Name="DemoFrame" Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="200">
+                                <Border Background="{Binding CurrentPageBackground}">
+                                    <TextBlock Text="{Binding CurrentPageTitle}"
+                                               FontSize="24"
+                                               Foreground="#FFFFFF"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                </Border>
+                            </Frame>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Navigation Controls -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Frame.CT2}" Description="{DynamicResource Loc.P.Frame.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="BackButton"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    MinWidth="96"
+                                    automation:AutomationProperties.Name="{DynamicResource Loc.P.Frame.Ui1}"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding BackCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <SymbolIcon Symbol="Back" Width="15" Height="15" Margin="0,0,7,0" />
+                                    <TextBlock Text="{DynamicResource Loc.P.Frame.Ui1}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ForwardButton"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    MinWidth="96"
+                                    automation:AutomationProperties.Name="{DynamicResource Loc.P.Frame.Ui2}"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding ForwardCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="{DynamicResource Loc.P.Frame.Ui2}" VerticalAlignment="Center" />
+                                    <SymbolIcon Symbol="Forward" Width="15" Height="15" Margin="7,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="RefreshButton"
+                                    Style="{StaticResource GallerySecondaryButton}"
+                                    MinWidth="104"
+                                    automation:AutomationProperties.Name="Refresh"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding RefreshCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <SymbolIcon Symbol="Refresh" Width="15" Height="15" Margin="0,0,7,0" />
+                                    <TextBlock Text="Refresh" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </WrapPanel>
+                        <TextBlock x:Name="NavigationHistoryText"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding NavigationHistoryText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Frame Properties -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Frame.CT3}" Description="{DynamicResource Loc.P.Frame.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <CheckBox Content="{DynamicResource Loc.P.Frame.Ui3}" Margin="0,0,0,8" />
+                        <CheckBox Content="{DynamicResource Loc.P.Frame.Ui4}" Margin="0,0,0,8" IsChecked="True" />
+                        <CheckBox Content="{DynamicResource Loc.P.Frame.Ui5}" Margin="0,0,0,8" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{DynamicResource Loc.P.Frame.Ui6}" Width="100" VerticalAlignment="Center" />
+                            <NumberBox Width="100" Height="28" Value="10" Minimum="0" Maximum="100" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common Use Cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases}" Description="{DynamicResource Loc.P.Frame.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Frame.Use1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Frame.Use2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Frame.Use3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Frame.Use4}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Frame.Use5}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Frame.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Frame.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

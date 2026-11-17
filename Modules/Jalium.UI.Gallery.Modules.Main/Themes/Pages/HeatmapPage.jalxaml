@@ -1,0 +1,149 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for HeatmapPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.HeatmapPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Heatmap Width="600"
+                             Height="400"
+                             Data="{Binding BasicData}"
+                             XLabels="{Binding BasicXLabels}"
+                             YLabels="{Binding BasicYLabels}"
+                             ColorScale="BlueToRed"
+                             Title="10x10 Matrix" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:HeatmapPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Heatmap" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:HeatmapPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.Heatmap.Title1}" Description="{DynamicResource Loc.P.Heatmap.Sub1}" />
+
+        <!-- Basic Heatmap -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.BasicHeatmap}" Description="{DynamicResource Loc.P.Heatmap.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Heatmap Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                             Height="400"
+                             Data="{Binding BasicData}"
+                             XLabels="{Binding BasicXLabels}"
+                             YLabels="{Binding BasicYLabels}"
+                             ColorScale="BlueToRed"
+                             Title="10x10 Matrix" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Color Scales -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Heatmap.CT1}" Description="{DynamicResource Loc.P.Heatmap.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <Heatmap Width="290" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="300"
+                                 Data="{Binding ScaleData}"
+                                 ColorScale="Viridis"
+                                 Title="Viridis" />
+                        <Heatmap Width="290" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="300"
+                                 Data="{Binding ScaleData}"
+                                 ColorScale="Grayscale"
+                                 Title="Grayscale"
+                                 Margin="16,0,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Cell Values -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Heatmap.CT2}" Description="{DynamicResource Loc.P.Heatmap.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Heatmap Width="600" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                             Height="400"
+                             Data="{Binding CellValueData}"
+                             XLabels="{Binding WeekdayLabels}"
+                             YLabels="{Binding WeekLabels}"
+                             ShowCellValues="True"
+                             CellValueFormat="F1"
+                             ColorScale="BlueToRed"
+                             Title="Weekly Activity" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.Heatmap.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.Heatmap.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

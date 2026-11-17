@@ -1,0 +1,155 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GeographicHeatmapPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GeographicHeatmapPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <GeographicHeatmap Height="300"
+                                       Points="{Binding Points}"
+                                       Radius="25"
+                                       Intensity="1"
+                                       HeatmapOpacity="0.7"
+                                       ShowLegend="True"
+                                       LegendPosition="BottomRight" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GeographicHeatmapPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="GeographicHeatmap" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GeographicHeatmapPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MapsAndGeo}" Title="{DynamicResource Loc.P.GeographicHeatmap.Title1}" Description="{DynamicResource Loc.P.GeographicHeatmap.Sub1}" />
+
+        <!-- Basic heatmap -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.BasicHeatmap}" Description="{DynamicResource Loc.P.GeographicHeatmap.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <GeographicHeatmap Height="300"
+                                       Points="{Binding Points}"
+                                       Radius="25"
+                                       Intensity="1"
+                                       HeatmapOpacity="0.7"
+                                       ShowLegend="True"
+                                       LegendPosition="BottomRight" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Radius & intensity -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GeographicHeatmap.CT1}" Description="{DynamicResource Loc.P.GeographicHeatmap.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Radius: 10, Intensity: 1.0" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="10" Intensity="1" HeatmapOpacity="0.7" ShowLegend="False" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Radius: 40, Intensity: 0.5" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="40" Intensity="0.5" HeatmapOpacity="0.7" ShowLegend="False" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Radius: 25, Intensity: 2.0" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="2" HeatmapOpacity="0.7" ShowLegend="False" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Color gradients -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GeographicHeatmap.CT2}" Description="{DynamicResource Loc.P.GeographicHeatmap.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Default (Spectrum)" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="1" HeatmapOpacity="0.7" ShowLegend="True" LegendPosition="BottomRight" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,12,0">
+                            <TextBlock Text="Warm (Yellow-Red)" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="1" HeatmapOpacity="0.7" Gradient="{Binding WarmGradient}" ShowLegend="True" LegendPosition="BottomRight" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Cool (Cyan-Purple)" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="11" Margin="0,0,0,4" />
+                            <GeographicHeatmap Width="250" Height="200" Points="{Binding Points}" Radius="25" Intensity="1" HeatmapOpacity="0.7" Gradient="{Binding CoolGradient}" ShowLegend="True" LegendPosition="BottomRight" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.GeographicHeatmap.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.GeographicHeatmap.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

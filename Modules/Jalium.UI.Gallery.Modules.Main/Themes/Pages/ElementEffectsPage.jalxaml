@@ -1,0 +1,271 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:effects="clr-namespace:Jalium.UI.Media.Effects;assembly=Jalium.UI.Media"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ElementEffectsPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ElementEffectsPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,6">
+                            <Button Content="Grayscale" Command="{Binding UseGrayscaleCommand}" Margin="0,0,10,10" />
+                            <Button Content="Sepia" Command="{Binding UseSepiaCommand}" Margin="0,0,10,10" />
+                            <Button Content="Invert" Command="{Binding UseInvertCommand}" Margin="0,0,10,10" />
+                            <Button Content="Hue Rotate" Command="{Binding UseHueRotateCommand}" Margin="0,0,10,10" />
+                            <Button Content="Reset" Command="{Binding ResetColorMatrixCommand}" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Saturation: " />
+                            <Slider Width="200" Minimum="0" Maximum="3" Value="{Binding Saturation, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding Saturation, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <Border Background="{DynamicResource GalleryEffectStage}" CornerRadius="8" Padding="12">
+                            <WrapPanel HorizontalAlignment="Center">
+                                <Border Background="#FF4444" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#FF8800" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#FFDD00" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#44CC44" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#4488FF" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#44CC71" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                            </WrapPanel>
+                        </Border>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ElementEffectsPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Element Effects" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ElementEffectsPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Effects}" Title="{DynamicResource Loc.P.ElementEffects.Title1}" Description="{DynamicResource Loc.P.ElementEffects.Sub1}" />
+
+        <!-- OuterGlowEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ElementEffects.CT1}" Description="{DynamicResource Loc.P.ElementEffects.CC1}">
+            <StackPanel>
+
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Glow Size: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="40" Value="{Binding GlowSize, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding GlowSize, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Intensity: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="5" Value="{Binding GlowIntensity, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding GlowIntensity, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <Border Background="{DynamicResource GalleryEffectStage}" Height="120" CornerRadius="8" HorizontalAlignment="Stretch">
+                            <Border x:Name="OuterGlowDemo" Background="{DynamicResource GalleryAccent}" Width="160" Height="60" CornerRadius="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border.Effect>
+                                    <effects:OuterGlowEffect GlowSize="{Binding GlowSize}"
+                                                             GlowColor="#FF0078D4"
+                                                             Intensity="{Binding GlowIntensity}"
+                                                             Opacity="0.9" />
+                                </Border.Effect>
+                                <TextBlock Text="Outer Glow" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                            </Border>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- InnerShadowEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ElementEffects.CT2}" Description="{DynamicResource Loc.P.ElementEffects.CC2}">
+            <StackPanel>
+
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Blur Radius: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="30" Value="{Binding InnerShadowBlur, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding InnerShadowBlur, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Shadow Depth: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="20" Value="{Binding InnerShadowDepth, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding InnerShadowDepth, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <Border x:Name="InnerShadowDemo" Background="{DynamicResource GalleryEffectRelief}" Width="220" Height="100" CornerRadius="16" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <effects:InnerShadowEffect BlurRadius="{Binding InnerShadowBlur}"
+                                                           ShadowDepth="{Binding InnerShadowDepth}"
+                                                           Color="#B4000000"
+                                                           Direction="315" />
+                            </Border.Effect>
+                            <TextBlock Text="Inner Shadow" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- EmbossEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ElementEffects.CT3}" Description="{DynamicResource Loc.P.ElementEffects.CC3}">
+            <StackPanel>
+
+                <Border Style="{StaticResource GalleryDemoSurface}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Amount: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="5" Value="{Binding EmbossAmount, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding EmbossAmount, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Light Angle: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="360" Value="{Binding EmbossAngle, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding EmbossAngle, StringFormat='{}{0:F0}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <Border x:Name="EmbossDemo" Background="{DynamicResource GalleryEffectRelief}" Width="200" Height="80" CornerRadius="10" HorizontalAlignment="Left">
+                            <Border.Effect>
+                                <effects:EmbossEffect Amount="{Binding EmbossAmount}"
+                                                      LightAngle="{Binding EmbossAngle}"
+                                                      Relief="0.44"
+                                                      Width="1" />
+                            </Border.Effect>
+                            <TextBlock Text="Emboss Demo" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ColorMatrixEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ElementEffects.CT4}" Description="{DynamicResource Loc.P.ElementEffects.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,6">
+                            <Button Content="Grayscale" Command="{Binding UseGrayscaleCommand}" Margin="0,0,10,10" />
+                            <Button Content="Sepia" Command="{Binding UseSepiaCommand}" Margin="0,0,10,10" />
+                            <Button Content="Invert" Command="{Binding UseInvertCommand}" Margin="0,0,10,10" />
+                            <Button Content="Hue Rotate" Command="{Binding UseHueRotateCommand}" Margin="0,0,10,10" />
+                            <Button Content="Reset" Command="{Binding ResetColorMatrixCommand}" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="Saturation: " />
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="3" Value="{Binding Saturation, Mode=TwoWay}" Margin="12,0,0,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding Saturation, StringFormat='{}{0:F1}'}" Margin="12,0,0,0" />
+                        </StackPanel>
+                        <Border Background="{DynamicResource GalleryEffectStage}" CornerRadius="8" Padding="12">
+                            <WrapPanel HorizontalAlignment="Center">
+                                <Border Background="#FF4444" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#FF8800" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#FFDD00" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#44CC44" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#4488FF" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                                <Border Background="#44CC71" Width="50" Height="50" CornerRadius="8" Margin="2" behaviors:ColorMatrixEffectBehavior.Preset="{Binding ColorMatrixPreset}" behaviors:ColorMatrixEffectBehavior.Saturation="{Binding Saturation}" />
+                            </WrapPanel>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- EffectGroup -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ElementEffects.CT5}" Description="{DynamicResource Loc.P.ElementEffects.CC5}">
+            <StackPanel>
+
+                <Border Style="{StaticResource GalleryDemoSurface}" Margin="0,0,0,12">
+                    <Border Background="{DynamicResource GalleryEffectStage}" Height="120" CornerRadius="8" HorizontalAlignment="Stretch">
+                        <Border x:Name="EffectGroupDemo" Background="#CC5500" Width="180" Height="70" CornerRadius="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border.Effect>
+                                <effects:EffectGroup>
+                                    <effects:OuterGlowEffect GlowColor="#FFFF8C00"
+                                                             GlowSize="12"
+                                                             Intensity="1" />
+                                    <effects:DropShadowEffect ShadowDepth="6"
+                                                              BlurRadius="8" />
+                                </effects:EffectGroup>
+                            </Border.Effect>
+                            <TextBlock Text="Glow + Shadow" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                        </Border>
+                    </Border>
+                </Border>
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="// Composing multiple effects" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="var group = new EffectGroup();" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="group.Children.Add(new OuterGlowEffect" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    { GlowColor = Colors.Orange, GlowSize = 12 });" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="group.Children.Add(new DropShadowEffect" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    { ShadowDepth = 6, BlurRadius = 8 });" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="element.Effect = group;" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ElementEffects.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ElementEffects.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:presentation="clr-namespace:Jalium.UI.Gallery.Modules.Main.Presentation">
+    <Style TargetType="presentation:GalleryNavigationHost">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="ItemsPanel"><ItemsPanelTemplate><Grid /></ItemsPanelTemplate></Setter>
+        <Setter Property="Template"><ControlTemplate TargetType="presentation:GalleryNavigationHost">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="ContentStates"><VisualState x:Name="Empty" /><VisualState x:Name="Ready" /></VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ItemsPresenter />
+            </Border>
+        </ControlTemplate></Setter>
+    </Style>
+    <Style TargetType="presentation:GalleryPageContainer">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template"><ControlTemplate TargetType="presentation:GalleryPageContainer">
+            <ContentPresenter>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="ActivationStates">
+                        <VisualState x:Name="Active" />
+                        <VisualState x:Name="Inactive"><VisualState.Setters>
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </VisualState.Setters></VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ContentPresenter>
+        </ControlTemplate></Setter>
+    </Style>
+</ResourceDictionary>

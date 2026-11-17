@@ -1,0 +1,224 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for PopupPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.PopupPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="ShowPopupButton"
+                                Content="Show Popup"
+                                Command="{Binding ToggleBasicPopupCommand}"
+                                Height="32" />
+                        <Popup x:Name="BasicPopup"
+                               IsOpen="{Binding IsBasicPopupOpen, Mode=TwoWay}"
+                               PlacementTarget="{Binding ElementName=ShowPopupButton}"
+                               Placement="Bottom">
+                            <Border Background="{DynamicResource GalleryCardBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="16">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{DynamicResource Loc.P.Popup.Demo1}"
+                                               Margin="0,0,0,8" />
+                                    <Button x:Name="ClosePopupButton"
+                                            Content="Close"
+                                            Command="{Binding CloseBasicPopupCommand}"
+                                            Width="80"
+                                            Height="28" />
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:PopupPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Popup" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:PopupPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Overlays}" Title="{DynamicResource Loc.P.Popup.Title1}" Description="{DynamicResource Loc.P.Popup.Sub1}" />
+
+        <!-- Basic popup -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Popup.CT1}" Description="{DynamicResource Loc.P.Popup.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="ShowPopupButton"
+                                Content="Show Popup"
+                                Command="{Binding ToggleBasicPopupCommand}"
+                                Height="32" />
+                        <Popup x:Name="BasicPopup"
+                               IsOpen="{Binding IsBasicPopupOpen, Mode=TwoWay}"
+                               PlacementTarget="{Binding ElementName=ShowPopupButton}"
+                               Placement="Bottom">
+                            <Border Background="{DynamicResource GalleryCardBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="16">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{DynamicResource Loc.P.Popup.Demo1}"
+                                               Margin="0,0,0,8" />
+                                    <Button x:Name="ClosePopupButton"
+                                            Content="Close"
+                                            Command="{Binding CloseBasicPopupCommand}"
+                                            Width="80"
+                                            Height="28" />
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Popup with form -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Popup.CT2}" Description="{DynamicResource Loc.P.Popup.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="ShowFormPopupButton"
+                                Content="Quick Add"
+                                Command="{Binding ToggleFormPopupCommand}"
+                                Width="100"
+                                Height="32" />
+                        <Popup x:Name="FormPopup"
+                               IsOpen="{Binding IsFormPopupOpen, Mode=TwoWay}"
+                               PlacementTarget="{Binding ElementName=ShowFormPopupButton}"
+                               Placement="Bottom"
+                               StaysOpen="True">
+                            <Border Background="{DynamicResource GalleryCardBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="20"
+                                    Width="250">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Quick Add Item"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               Margin="0,0,0,16" />
+                                    <TextBlock Text="Name"
+                                               FontSize="12"
+                                               Margin="0,0,0,4" />
+                                    <TextBox ToolTip="Enter name"
+                                             Text="{Binding ItemName, Mode=TwoWay}"
+                                             Height="32"
+                                             Margin="0,0,0,12" />
+                                    <TextBlock Text="Description"
+                                               FontSize="12"
+                                               Margin="0,0,0,4" />
+                                    <TextBox ToolTip="Enter description"
+                                             Text="{Binding Description, Mode=TwoWay}"
+                                             Height="32"
+                                             Margin="0,0,0,16" />
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button x:Name="CancelFormButton"
+                                                Content="Cancel"
+                                                Command="{Binding CancelFormCommand}"
+                                                Width="70"
+                                                Height="28"
+                                                Margin="0,0,8,0" />
+                                        <Button x:Name="SaveFormButton"
+                                                Content="Save"
+                                                Command="{Binding SaveFormCommand}"
+                                                Width="70"
+                                                Height="28" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Popup placement -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Popup.CT3}" Description="{DynamicResource Loc.P.Popup.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Button x:Name="TopPopupButton" Content="Top" Height="32" Margin="0,0,10,10" />
+                        <Button x:Name="RightPopupButton" Content="Right" Height="32" Margin="0,0,10,10" />
+                        <Button x:Name="BottomPopupButton" Content="Bottom" Height="32" Margin="0,0,10,10" />
+                        <Button x:Name="LeftPopupButton" Content="Left" Height="32" Margin="0,0,10,10" />
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Popup.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Popup.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

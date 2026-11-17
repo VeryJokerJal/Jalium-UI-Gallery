@@ -1,0 +1,571 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for RazorDemoPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.RazorDemoPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <TextBlock x:Name="PathBindingText"
+                               Text="@UserName" FontSize="14"/>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:RazorDemoPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Razor Syntax" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:RazorDemoPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataAndBinding}" Title="{DynamicResource Loc.P.RazorDemo.Title1}" Description="{DynamicResource Loc.P.RazorDemo.Sub1}" />
+
+        <!-- ======== 1. @identifier - Path Binding ======== -->
+        <gallery:GallerySection Header="1. @@identifier - Path Binding" Description="Binds to a property on the DataContext or code-behind using @@PropertyName syntax.">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <TextBlock x:Name="PathBindingText"
+                               Text="@UserName" FontSize="14"/>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <TextBlock Text='&lt;TextBlock Text="@@UserName" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                               Foreground="{DynamicResource GalleryCodeText}" />
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 2. @(expression) - C# Expression ======== -->
+        <gallery:GallerySection Header="2. @@(expression) - C# Expression" Description="{DynamicResource Loc.P.RazorDemo.CC1}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <TextBlock x:Name="ExpressionText"
+                               Text='@(ItemCount > 0 ? ItemCount + " items" : "Empty")'
+                               Foreground="{DynamicResource GalleryTextPrimary}" FontSize="14"/>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <TextBlock Text="&lt;TextBlock Text='@@(ItemCount > 0 ? ItemCount + &quot;items&quot; : &quot;Empty&quot;)' /&gt;"
+                               Foreground="#CE9178" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"/>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 3. Mixed Text - Path + Literal ======== -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.RazorDemo.CT1}" Description="Combine literal text with @@path or @@(expression) in attribute values.">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <TextBlock x:Name="MixedText"
+                               Text="Hello, @UserName! You have @ItemCount notifications." FontSize="14"/>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <TextBlock Text='&lt;TextBlock Text="Hello, @@UserName! You have @@ItemCount notifications." /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                               Foreground="{DynamicResource GalleryCodeText}" />
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 4. for Loop ======== -->
+        <gallery:GallerySection Header="4. @@{ for } - For Loop" Description="{DynamicResource Loc.P.RazorDemo.CC2}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <WrapPanel>
+                        @{
+                            for (var i = 1; i < 6; i++) {
+                                <Border Background="#FFD60A"
+                                        CornerRadius="8"
+                                        Padding="8,4"
+                                        Margin="0,0,8,8"
+                                        Width="@(30 + i * 10)">
+                                    <TextBlock Text="@(i.ToString())"
+                                               FontSize="12"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                            }
+                        }
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ for (var i = 1; i &lt;= 5; i++) {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border Width="@@(30 + i * 10)"&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@(i.ToString())" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="&lt;/Border&gt;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="} }" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 5. foreach - Collection Iteration ======== -->
+        <gallery:GallerySection Header="5. @@{ foreach } - Collection Iteration" Description="{DynamicResource Loc.P.RazorDemo.CC3}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        @{
+                            var colors = new[] { "#E74C3C", "#F39C12", "#2ECC71", "#3498DB", "#59B678" };
+                            foreach (var color in colors) {
+                                <Border Background="@color"
+                                        CornerRadius="8"
+                                        Padding="12,6"
+                                        Margin="0,0,0,4">
+                                    <TextBlock Text="@color"
+                                               FontSize="12"
+                                               FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"/>
+                                </Border>
+                            }
+                        }
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='@@{ var colors = new[] { "#E74C3C", "#F39C12", ... };' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="foreach (var color in colors) {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@color" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="84,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="&lt;/Border&gt;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="} }" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 6. switch - Conditional Branching ======== -->
+        <gallery:GallerySection Header="6. @@{ switch } - Conditional Branching" Description="{DynamicResource Loc.P.RazorDemo.CC4}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        @{
+                            var status = "success";
+                            switch (status) {
+                                case "success":
+                                    <Border Background="#22C55E" CornerRadius="8" Padding="12,6">
+                                        <TextBlock Text="Operation completed successfully" FontSize="12"/>
+                                    </Border>
+                                    break;
+                                case "warning":
+                                    <Border Background="#FCE100" CornerRadius="8" Padding="12,6">
+                                        <TextBlock Text="Warning: proceed with caution" FontSize="12"/>
+                                    </Border>
+                                    break;
+                                case "error":
+                                    <Border Background="#C42B1C" CornerRadius="8" Padding="12,6">
+                                        <TextBlock Text="Error occurred" FontSize="12"/>
+                                    </Border>
+                                    break;
+                            }
+                        }
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='@@{ var status = "success";' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="switch (status) {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='case "success":' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border&gt;...&lt;/Border&gt; break;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="84,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='case "error":' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border&gt;...&lt;/Border&gt; break;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="84,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="} }" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 7. @{ } Code Block - Variables + Local Functions ======== -->
+        <gallery:GallerySection Header="7. @@{ } Code Block - Variables + Local Functions" Description="{DynamicResource Loc.P.RazorDemo.CC5}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        @{
+                            var now = DateTime.Now;
+                            string Greeting() => now.Hour < 12 ? "Good Morning" : now.Hour < 18 ? "Good Afternoon" : "Good Evening";
+                            var info = new[] {
+                                ("Time", now.ToString("HH:mm:ss")),
+                                ("Date", now.ToString("yyyy-MM-dd")),
+                                ("Greeting", Greeting())
+                            };
+                            foreach (var kv in info) {
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock Text="@(kv.Item1 + ":")"
+                                               FontSize="12"
+                                               Width="80"/>
+                                    <TextBlock Text="@kv.Item2"
+                                               FontSize="12"/>
+                                </StackPanel>
+                            }
+                        }
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="var now = DateTime.Now;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='string Greeting() => now.Hour &lt; 12 ? "Morning" : "Evening";' Foreground="#9CDCFE" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"/>
+                        <TextBlock Text="foreach (var kv in info) {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@(kv.Item1)" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 8. @@ Escaping ======== -->
+        <gallery:GallerySection Header="8. @@@@ Escaping" Description="Use @@@@ for a literal @@ symbol in attribute values.">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="Email: user@@example.com" FontSize="14"/>
+                        <TextBlock Text="Twitter: @@jaliumui" FontSize="14" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='&lt;TextBlock Text="Email: user@@@@example.com" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="Twitter: @@@@jaliumui" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 9. try/catch - Error Handling ======== -->
+        <gallery:GallerySection Header="9. @@{ try/catch } - Error Handling" Description="{DynamicResource Loc.P.RazorDemo.CC6}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        @{
+                            try {
+                                var result = (int)Math.Sqrt(144);
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="sqrt(144) = " FontSize="12"/>
+                                    <TextBlock Text="@(result.ToString())" FontSize="12" FontWeight="Bold"/>
+                                </StackPanel>
+                            } catch (Exception ex) {
+                                <TextBlock Text='@("Error: " + ex.Message)' FontSize="12"/>
+                            }
+                        }
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ try {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="var result = (int)Math.Sqrt(144);" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@(result.ToString())" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="} catch (Exception ex) {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@(ex.Message)" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 10. Combined Loops + Expressions ======== -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.RazorDemo.CT2}" Description="{DynamicResource Loc.P.RazorDemo.CC7}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <WrapPanel>
+                        @for (var i = 1; i < 9; i++) {
+                                var bg = i % 2 == 0 ? "#FFD60A" : "#383838";
+                                <Border Background="@bg"
+                                        CornerRadius="8"
+                                        Padding="4"
+                                        Margin="0,0,4,4"
+                                        Width="48"
+                                        Height="36">
+                                    <TextBlock Text="@((i * i).ToString())"
+                                               FontSize="13"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                            }
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ for (var i = 1; i &lt;= 8; i++) {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='var bg = i % 2 == 0 ? "#FFD60A" : "#383838";' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border Width="48" Height="36"&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@((i * i).ToString())" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="84,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="&lt;/Border&gt;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="} }" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 11. do/while Loop ======== -->
+        <gallery:GallerySection Header="11. @@{ do/while } - Do-While Loop" Description="{DynamicResource Loc.P.RazorDemo.CC8}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <WrapPanel>
+                        @{
+                            var n = 1;
+                            do {
+                                <Border Background="#59B678"
+                                        CornerRadius="16"
+                                        Width="@(n * 24)"
+                                        Height="24"
+                                        Margin="0,0,4,4">
+                                    <TextBlock Text="@(n.ToString())"
+                                               FontSize="11"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                                n++;
+                            } while (n < 6);
+                        }
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@{ var n = 1;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="do {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border Width="@@(n * 24)"&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@(n.ToString())" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="84,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="&lt;/Border&gt; n++;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="} while (n &lt;= 5);" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 12. @if (Runtime) - Conditional Visibility ======== -->
+        <gallery:GallerySection Header="12. @@if - Conditional Visibility (Runtime)" Description="Runtime @@if binds to DataContext properties and reactively shows/hides elements. Toggle the button to see it in action.">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel x:Name="IfDemoPanel">
+                        <Button x:Name="ToggleButton"
+                                Content="Toggle Visibility"
+                                Width="160"
+                                Height="32"
+                                Margin="0,0,0,12"
+                                Command="{Binding ToggleFeatureCommand}"/>
+                        @if(IsFeatureEnabled){
+                        <Border x:Name="ConditionalBorder"
+                                Background="#22C55E"
+                                CornerRadius="8"
+                                Padding="12,6">
+                            <TextBlock Text="Feature is ENABLED (this element is conditionally visible)" FontSize="12"/>
+                        </Border>
+                        }
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="@@if(IsFeatureEnabled){" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;Border&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="Feature is ENABLED" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="56,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="&lt;/Border&gt;" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="28,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 13. $.Property - Self-Reference ======== -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.RazorDemo.CT3}" Description="{DynamicResource Loc.P.RazorDemo.CC9}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="My font size: @$.FontSize" FontSize="14" Margin="0,0,0,8"/>
+                        <TextBlock Text='@($.FontSize > 12 ? "Large text" : "Small text")'
+                                   Foreground="#4EC9B0" FontSize="16" Margin="0,0,0,8"/>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="12,6">
+                            <TextBlock Text="Tag = @$.Tag"
+                                       Tag="self-tag-value" FontSize="12"/>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='&lt;TextBlock Text="My font size: @@$.FontSize" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text="&lt;TextBlock Text=&quot;@@($.FontSize > 12 ? &amp;quot;Large&amp;quot; : &amp;quot;Small&amp;quot;)&quot; /&gt;" Foreground="#CE9178" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                        <TextBlock Text='&lt;TextBlock Text="Tag = @@$.Tag" Tag="self-tag-value" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,4,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ======== 14. #.Property - Data Model Reference ======== -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.RazorDemo.CT4}" Description="{DynamicResource Loc.P.RazorDemo.CC10}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="Direct model access: @#.UserName" FontSize="14" Margin="0,0,0,8"/>
+                        <TextBlock Text='Expression: @(#.ItemCount > 10 ? "Many" : "Few") items'
+                                   Foreground="#4EC9B0" FontSize="14"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <Border Background="{DynamicResource GalleryCodeSurface}" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text='&lt;!-- In ItemTemplate, #. targets the item DataContext --&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@#.UserName" /&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,4,0,0"
+                                   Foreground="{DynamicResource GalleryCodeText}" />
+                        <TextBlock Text='&lt;TextBlock Text="@@(#.ItemCount > 10 ? &amp;quot;Many&amp;quot; : &amp;quot;Few&amp;quot;)" /&gt;' Foreground="#CE9178" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.RazorDemo.CC11}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.RazorDemo.CC12}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

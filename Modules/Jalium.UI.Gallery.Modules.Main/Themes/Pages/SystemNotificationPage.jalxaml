@@ -1,0 +1,188 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SystemNotificationPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SystemNotificationPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Title:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding BasicTitle, Mode=TwoWay}" Width="300" Height="28"/>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Body:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding BasicBody, Mode=TwoWay}" Width="300" Height="28"/>
+                        </WrapPanel>
+                        <Button Content="{DynamicResource Loc.P.SystemNotification.Ui1}" Command="{Binding SendBasicCommand}" IsEnabled="{Binding IsSupported}" Width="150" Height="28"/>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SystemNotificationPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="SystemNotification" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SystemNotificationPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Overlays}" Title="{DynamicResource Loc.P.SystemNotification.Title1}" Description="{DynamicResource Loc.P.SystemNotification.Sub1}" />
+
+        <!-- Basic notification -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SystemNotification.CT1}" Description="{DynamicResource Loc.P.SystemNotification.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Title:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding BasicTitle, Mode=TwoWay}" Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28"/>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Body:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding BasicBody, Mode=TwoWay}" Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28"/>
+                        </WrapPanel>
+                        <Button Content="{DynamicResource Loc.P.SystemNotification.Ui1}" Command="{Binding SendBasicCommand}" IsEnabled="{Binding IsSupported}" Width="150" Height="28"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Priority levels -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SystemNotification.CT2}" Description="{DynamicResource Loc.P.SystemNotification.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Button Content="Low" Command="{Binding SendPriorityCommand}" CommandParameter="Low" IsEnabled="{Binding IsSupported}" Width="70" Height="28" Margin="0,0,10,10"/>
+                        <Button Content="Normal" Command="{Binding SendPriorityCommand}" CommandParameter="Normal" IsEnabled="{Binding IsSupported}" Width="80" Height="28" Margin="0,0,10,10"/>
+                        <Button Content="High" Command="{Binding SendPriorityCommand}" CommandParameter="High" IsEnabled="{Binding IsSupported}" Width="70" Height="28" Margin="0,0,10,10"/>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Notification with actions -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SystemNotification.CT3}" Description="{DynamicResource Loc.P.SystemNotification.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="{DynamicResource Loc.P.SystemNotification.Ui2}" Command="{Binding SendWithActionsCommand}" IsEnabled="{Binding IsSupported}" Width="150" Height="28" Margin="0,0,0,12"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding ActionResult}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Advanced options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SystemNotification.CT4}" Description="{DynamicResource Loc.P.SystemNotification.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Tag:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Tag, Mode=TwoWay}" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28"/>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Group:" Width="80" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Group, Mode=TwoWay}" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28"/>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Expiration:" Width="80" VerticalAlignment="Center"/>
+                            <Slider Minimum="0" Maximum="30" Value="{Binding ExpirationSeconds, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding ExpirationSeconds, StringFormat='{}{0:F0}s'}" VerticalAlignment="Center"/>
+                        </WrapPanel>
+                        <CheckBox Content="{DynamicResource Loc.P.SystemNotification.Ui3}" IsChecked="{Binding IsSilent, Mode=TwoWay}" Margin="0,0,0,12"/>
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.SystemNotification.Ui4}" Command="{Binding SendAdvancedCommand}" IsEnabled="{Binding IsSupported}" Width="120" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="{DynamicResource Loc.P.SystemNotification.Ui5}" Command="{Binding RemoveTagCommand}" IsEnabled="{Binding IsSupported}" Width="120" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="{DynamicResource Loc.P.SystemNotification.Ui6}" Command="{Binding ClearAllCommand}" IsEnabled="{Binding IsSupported}" Width="100" Height="28" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Platform support -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SystemNotification.CT5}" Description="{DynamicResource Loc.P.SystemNotification.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SupportMessage}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.SystemNotification.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="150"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.SystemNotification.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="350"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

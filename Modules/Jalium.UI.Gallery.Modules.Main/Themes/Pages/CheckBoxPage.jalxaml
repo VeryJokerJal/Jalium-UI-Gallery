@@ -1,0 +1,155 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for CheckBoxPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.CheckBoxPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="DemoCheckBox"
+                                  IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                  Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo1}" FontSize="14"/>
+                        </CheckBox>
+                        <TextBlock x:Name="CheckBoxStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding CheckBoxStatus}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:CheckBoxPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="CheckBox" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:CheckBoxPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.CheckBox.Title1}" Description="{DynamicResource Loc.P.CheckBox.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.CheckBox.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="DemoCheckBox"
+                                  IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                  Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo1}" FontSize="14"/>
+                        </CheckBox>
+                        <TextBlock x:Name="CheckBoxStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding CheckBoxStatus}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Basic checkboxes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CheckBox.CT1}" Description="{DynamicResource Loc.P.CheckBox.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Margin="0,0,0,8">
+                            <TextBlock Text="Option 1" FontSize="14"/>
+                        </CheckBox>
+                        <CheckBox IsChecked="True" Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo2}" FontSize="14"/>
+                        </CheckBox>
+                        <CheckBox IsEnabled="False">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo3}" FontSize="14"/>
+                        </CheckBox>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Three-state checkbox -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CheckBox.CT2}" Description="{DynamicResource Loc.P.CheckBox.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="ThreeStateCheckBox"
+                                  IsThreeState="True"
+                                  IsChecked="{Binding ThreeStateValue, Mode=TwoWay}"
+                                  Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.CheckBox.Demo4}" FontSize="14"/>
+                        </CheckBox>
+                        <TextBlock x:Name="ThreeStateStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding ThreeStateStatus}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.CheckBox.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.CheckBox.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

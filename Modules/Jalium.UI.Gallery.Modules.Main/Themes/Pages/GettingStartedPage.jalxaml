@@ -1,0 +1,203 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GettingStartedPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GettingStartedPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <EditControl Height="72"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="False"
+                                 Language="shell"
+                                 Text="{Binding InstallCommand}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GettingStartedPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Getting Started" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GettingStartedPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.P.GettingStarted.Eyebrow1}" Title="{DynamicResource Loc.P.GettingStarted.Title1}" Description="{DynamicResource Loc.P.GettingStarted.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GettingStarted.CT1}" Description="{DynamicResource Loc.P.GettingStarted.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="72"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="False"
+                                 Language="shell"
+                                 Text="{Binding InstallCommand}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GettingStarted.CT2}" Description="{DynamicResource Loc.P.GettingStarted.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="330"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding WindowExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GettingStarted.CT3}" Description="{DynamicResource Loc.P.GettingStarted.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="270"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GettingStarted.CT4}" Description="{DynamicResource Loc.P.GettingStarted.CC4}">
+            <StackPanel>
+
+                <WrapPanel>
+                    <gallery:GalleryDemoSurface Width="220"
+                            MinHeight="112"
+
+                            Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"
+                                       Text="StackPanel" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{DynamicResource Loc.P.GettingStarted.Panel1}"
+                                       Margin="0,7,0,0" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                    <gallery:GalleryDemoSurface Width="220"
+                            MinHeight="112"
+
+                            Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"
+                                       Text="Grid" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{DynamicResource Loc.P.GettingStarted.Panel2}"
+                                       Margin="0,7,0,0" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                    <gallery:GalleryDemoSurface Width="220"
+                            MinHeight="112"
+
+                            Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"
+                                       Text="Canvas" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{DynamicResource Loc.P.GettingStarted.Panel3}"
+                                       Margin="0,7,0,0" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                    <gallery:GalleryDemoSurface Width="220"
+                            MinHeight="112"
+
+                            Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"
+                                       Text="DockPanel" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{DynamicResource Loc.P.GettingStarted.Panel4}"
+                                       Margin="0,7,0,0" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                    <gallery:GalleryDemoSurface Width="220"
+                            MinHeight="112"
+
+                            Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"
+                                       Text="FlexPanel" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{DynamicResource Loc.P.GettingStarted.Panel5}"
+                                       Margin="0,7,0,0" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                </WrapPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GettingStarted.CT5}" Description="{DynamicResource Loc.P.GettingStarted.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="120"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding BindingExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GettingStarted.CT6}" Description="{DynamicResource Loc.P.GettingStarted.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Css.StyleSheet="
+                            .demo { background-color: #1e293b; border-radius: 8px;
+                                    padding: 12px 16px; margin: 0 0 8px 0;
+                                    transition: background-color 0.15s ease-out }
+                            .demo:hover { background-color: #2563eb }
+                            .demo TextBlock { color: #e2e8f0; font-size: 13px }">
+                        <Border Css.Class="demo">
+                            <TextBlock Text="{DynamicResource Loc.P.GettingStarted.Panel6}" />
+                        </Border>
+                        <Border Css.Style="background-color: #0f766e; border-radius: 8px; padding: 12px 16px">
+                            <TextBlock Text="{DynamicResource Loc.P.GettingStarted.Panel7}"
+                                       Foreground="#ccfbf1" FontSize="13" />
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+                <gallery:GalleryDemoSurface  Margin="0,12,0,0" Padding="0">
+                    <EditControl Height="150"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding CssExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>
