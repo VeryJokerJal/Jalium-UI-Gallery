@@ -1,0 +1,62 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls"
+                    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Controls">
+    <Style TargetType="gallery:GalleryDialogForm">
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryDialogForm">
+                <StackPanel>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled"><VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.5" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="BusyStates">
+                            <VisualState x:Name="Ready"><VisualState.Setters>
+                                <Setter TargetName="PART_Progress" Property="Visibility" Value="Collapsed" />
+                            </VisualState.Setters></VisualState>
+                            <VisualState x:Name="Busy"><VisualState.Setters>
+                                <Setter TargetName="PART_TextBox" Property="IsEnabled" Value="False" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="ValidationStates">
+                            <VisualState x:Name="Valid"><VisualState.Setters>
+                                <Setter TargetName="PART_Error" Property="Visibility" Value="Collapsed" />
+                            </VisualState.Setters></VisualState>
+                            <VisualState x:Name="Invalid" />
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <TextBlock Text="{TemplateBinding Description}" TextWrapping="Wrap" Margin="0,0,0,16" />
+                    <Grid Margin="0,0,0,6">
+                        <TextBlock Text="{TemplateBinding Label}" FontWeight="Medium" />
+                        <ProgressBar x:Name="PART_Progress" Width="28" Height="3" HorizontalAlignment="Right"
+                                     VerticalAlignment="Center" IsIndeterminate="{TemplateBinding IsBusy}" />
+                    </Grid>
+                    <TextBox x:Name="PART_TextBox" HorizontalAlignment="Stretch"
+                             Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             PlaceholderText="{TemplateBinding PlaceholderText}"
+                             automation:AutomationProperties.Name="{TemplateBinding Label}" />
+                    <TextBlock x:Name="PART_Error" Text="{TemplateBinding ErrorMessage}" TextWrapping="Wrap"
+                               FontSize="12" Foreground="{DynamicResource GalleryErrorOnSurface}" Margin="0,6,0,0"
+                               automation:AutomationProperties.LiveSetting="Polite" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style TargetType="gallery:GalleryDialogPreview">
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryDialogPreview">
+                <StackPanel>
+                    <TextBlock Text="{TemplateBinding Description}" TextWrapping="Wrap" Margin="0,0,0,16" />
+                    <gallery:GalleryDemoSurface>
+                        <TextBlock Text="{TemplateBinding PreviewText}" TextWrapping="Wrap" />
+                    </gallery:GalleryDemoSurface>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

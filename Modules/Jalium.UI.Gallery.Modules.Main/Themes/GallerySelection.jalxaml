@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <HierarchicalDataTemplate x:Key="Gallery.TreeNodes" ItemsSource="{Binding Children}">
+        <TextBlock Text="{Binding Label}" />
+    </HierarchicalDataTemplate>
+    <Style x:Key="Gallery.TreeSelectorItem" TargetType="TreeSelectorItem">
+        <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+    </Style>
+    <HierarchicalDataTemplate x:Key="Gallery.TreeSelectorNodes"
+                              ItemsSource="{Binding Children}"
+                              ItemContainerStyle="{StaticResource Gallery.TreeSelectorItem}">
+        <TextBlock Text="{Binding Label}" />
+    </HierarchicalDataTemplate>
+</ResourceDictionary>

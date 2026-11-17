@@ -1,0 +1,235 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for StandardUICommandPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.StandardUICommandPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="92" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Icon" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="1" Text="Label" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="2" Text="Shortcut" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="3" Text="Description" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                        </Grid>
+                        <Border Height="1" Background="{DynamicResource GalleryBorderDefault}" Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding Commands}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="90" />
+                                            <ColumnDefinition Width="92" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Command="{Binding Command}"
+                                                CommandParameter="{Binding Label}"
+                                                Style="{StaticResource GalleryIconButton}"
+                                                ToolTip="{Binding Label}"
+                                                automation:AutomationProperties.Name="{Binding Label}"
+                                                HorizontalAlignment="Left">
+                                            <FontIcon Glyph="{Binding IconGlyph}"
+                                                      Width="18"
+                                                      Height="18" />
+                                        </Button>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Label}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource GalleryTextPrimary}" />
+                                        <Border Grid.Column="2"
+                                                Background="{DynamicResource GalleryCardAltBackground}"
+                                                CornerRadius="3"
+                                                Padding="6,2"
+                                                Margin="0,0,12,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding KeyboardShortcut}"
+                                                       FontSize="11"
+                                                       FontFamily="{ThemeResource MonoFontFamily}"
+                                                       Foreground="{DynamicResource GalleryTextSecondary}" />
+                                        </Border>
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding Description}"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource GalleryTextTertiary}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:StandardUICommandPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="StandardUICommand" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:StandardUICommandPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.StandardUICommand.Title1}" Description="{DynamicResource Loc.P.StandardUICommand.Sub1}" />
+
+        <!-- Standard commands -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.StandardUICommand.CT1}" Description="{DynamicResource Loc.P.StandardUICommand.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface x:Name="CommandContainer"
+
+                        MinHeight="200">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel MinWidth="600">
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="92" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Icon" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="1" Text="Label" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="2" Text="Shortcut" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                            <TextBlock Grid.Column="3" Text="Description" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource GalleryTextMuted}" />
+                        </Grid>
+                        <Border Height="1" Background="{DynamicResource GalleryBorderDefault}" Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding Commands}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="90" />
+                                            <ColumnDefinition Width="92" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Command="{Binding Command}"
+                                                CommandParameter="{Binding Label}"
+                                                Style="{StaticResource GalleryIconButton}"
+                                                ToolTip="{Binding Label}"
+                                                automation:AutomationProperties.Name="{Binding Label}"
+                                                HorizontalAlignment="Left">
+                                            <FontIcon Glyph="{Binding IconGlyph}"
+                                                      Width="18"
+                                                      Height="18" />
+                                        </Button>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Label}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource GalleryTextPrimary}" />
+                                        <Border Grid.Column="2"
+                                                Background="{DynamicResource GalleryCardAltBackground}"
+                                                CornerRadius="3"
+                                                Padding="6,2"
+                                                Margin="0,0,12,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding KeyboardShortcut}"
+                                                       FontSize="11"
+                                                       FontFamily="{ThemeResource MonoFontFamily}"
+                                                       Foreground="{DynamicResource GalleryTextSecondary}" />
+                                        </Border>
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding Description}"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource GalleryTextTertiary}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    </ScrollViewer>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Command execution -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.StandardUICommand.CT2}" Description="{DynamicResource Loc.P.StandardUICommand.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TextBlock x:Name="CommandStatusText"
+                               Style="{StaticResource GalleryBodyText}"
+                               Text="{Binding CommandStatus}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.StandardUICommand.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.StandardUICommand.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

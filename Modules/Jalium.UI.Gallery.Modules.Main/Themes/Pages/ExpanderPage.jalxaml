@@ -1,0 +1,220 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ExpanderPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ExpanderPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="{DynamicResource Loc.P.Expander.Demo1}" Margin="0,0,0,8">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo2}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                        <Expander Header="{DynamicResource Loc.P.Expander.Demo3}" IsExpanded="True">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo4}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ExpanderPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Expander" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ExpanderPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.Expander.Title1}" Description="{DynamicResource Loc.P.Expander.Sub1}" />
+
+        <!-- Basic expander -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Expander.CT1}" Description="{DynamicResource Loc.P.Expander.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="{DynamicResource Loc.P.Expander.Demo1}" Margin="0,0,0,8">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo2}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                        <Expander Header="{DynamicResource Loc.P.Expander.Demo3}" IsExpanded="True">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo4}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Complex content -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Expander.CT2}" Description="{DynamicResource Loc.P.Expander.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="Settings" Margin="0,0,0,8">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Content="{DynamicResource Loc.P.Expander.Ui1}" Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.Expander.Ui2}" Margin="0,0,0,8"/>
+                                    <CheckBox Content="{DynamicResource Loc.P.Expander.Ui3}" Margin="0,0,0,8"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Theme:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <ComboBox Width="120" Height="28">
+                                            <ComboBoxItem Content="Light"/>
+                                            <ComboBoxItem Content="Dark" IsSelected="True"/>
+                                            <ComboBoxItem Content="System"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Expander>
+                        <Expander Header="{DynamicResource Loc.P.Expander.Ui4}">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                        <TextBlock Text="Name:" Width="80"/>
+                                        <TextBox Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28" Text="John Doe"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                        <TextBlock Text="Email:" Width="80"/>
+                                        <TextBox Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28" Text="john@example.com"/>
+                                    </StackPanel>
+                                    <Button Content="{DynamicResource Loc.P.Expander.Ui5}" Width="120" Height="32" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Nested expanders -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Expander.CT3}" Description="{DynamicResource Loc.P.Expander.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Expander Header="Category A">
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8" CornerRadius="8">
+                            <StackPanel Orientation="Vertical">
+                                <Expander Header="Subcategory A1" Margin="0,0,0,4">
+                                    <Border Background="{DynamicResource GalleryCardInnerBackground}" Padding="12" CornerRadius="8">
+                                        <TextBlock Text="Content for Subcategory A1"/>
+                                    </Border>
+                                </Expander>
+                                <Expander Header="Subcategory A2" Margin="0,0,0,4">
+                                    <Border Background="{DynamicResource GalleryCardInnerBackground}" Padding="12" CornerRadius="8">
+                                        <TextBlock Text="Content for Subcategory A2"/>
+                                    </Border>
+                                </Expander>
+                                <Expander Header="Subcategory A3">
+                                    <Border Background="{DynamicResource GalleryCardInnerBackground}" Padding="12" CornerRadius="8">
+                                        <TextBlock Text="Content for Subcategory A3"/>
+                                    </Border>
+                                </Expander>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.Expander.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Margin="0,0,0,6">
+                            <Button x:Name="ExpandButton" Content="Expand" Command="{Binding ExpandCommand}" Width="80" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="CollapseButton" Content="Collapse" Command="{Binding CollapseCommand}" Width="80" Height="28" Margin="0,0,10,10"/>
+                            <Button x:Name="ToggleButton" Content="Toggle" Command="{Binding ToggleCommand}" Width="80" Height="28" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                        <Expander x:Name="ControlledExpander"
+                                  Header="{DynamicResource Loc.P.Expander.Demo5}"
+                                  IsExpanded="{Binding IsControlledExpanderOpen, Mode=TwoWay}">
+                            <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="16" CornerRadius="8">
+                                <TextBlock Text="{DynamicResource Loc.P.Expander.Demo6}"
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Expander>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Expander.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Expander.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

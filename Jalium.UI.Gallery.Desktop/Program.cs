@@ -10,7 +10,7 @@ namespace Jalium.UI.Gallery.Desktop;
 
 /// <summary>
 /// Desktop entry point. Boots Jalium.UI via <see cref="AppBuilder"/>, wires the
-/// Impeller rendering backend, and delegates theme + MainWindow wiring to the
+/// automatic rendering backend, and delegates theme + MainWindow wiring to the
 /// shared <c>UseShared</c> extension on the built <see cref="JaliumApp"/> so
 /// the per-platform entry stays thin. The full Microsoft.Extensions.Hosting
 /// surface (<c>builder.Services</c>, <c>builder.Configuration</c>,
@@ -22,31 +22,25 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
-        // Prefer Impeller for smooth GPU-accelerated frames. Swap to RenderBackend.D3D
-        // or .OpenGL if you need to pin the backend for debugging.
-        var renderContext = RenderContext.GetOrCreateCurrent(RenderBackend.D3D12);
-        renderContext.DefaultRenderingEngine = RenderingEngine.Impeller;
+        var renderContext = RenderContext.GetOrCreateCurrent(RenderBackend.Auto);
+        renderContext.DefaultRenderingEngine = RenderingEngine.Vello;
+        // Match the catalog's bounded image hot set at the native-texture
+        // layer too. Current-frame images are protected by the renderer.
+        renderContext.BitmapCacheCapacity = 32;
+        renderContext.BitmapCacheByteBudget = 16L * 1024 * 1024;
 
-        // DisableDefaults skips the Microsoft.Extensions.Hosting default config /
-        // logging chain (appsettings.json, env-var, command-line, user-secrets,
-        // Console/Debug/EventSource/EventLog logger providers, ConsoleLifetime).
-        // Gallery is a GUI demo and uses none of them — opting out drops ~27
-        // managed DLL loads from the startup cost without losing functionality.
         var builder = AppBuilder.CreateBuilder(new AppBuilderSettings
         {
             Args = args,
             DisableDefaults = true,
         });
 
-        // AddAppServices registers every concrete service implementation exposed by
-        // the Services project. Additional Add{Transient,Scoped,Singleton} or
         // AddHostedService calls belong right here.
         builder.Services.AddAppServices();
+        builder.Services.AddMainModule();
 
         using var app = builder.Build();
 
-        // Post-Build: UseShared binds the App Application subclass and activates
-        // DevTools. See AppBuilderExtensions in the Main module to customize.
         app.UseShared();
         app.UseIdleResourceReclamation();
         app.UseRenderingMode(RenderingMode.Performance);

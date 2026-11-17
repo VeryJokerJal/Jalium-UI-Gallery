@@ -1,0 +1,209 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for CanvasPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.CanvasPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Canvas Height="160">
+                        <TextBlock Canvas.Left="0"
+                                   Canvas.Top="0"
+                                   Text="{DynamicResource Loc.P.Canvas.Note1}"
+                                   FontSize="12" />
+                        <Border Canvas.Left="0"
+                                Canvas.Top="40"
+                                Background="{DynamicResource GalleryAccent}"
+                                Width="60"
+                                Height="60">
+                            <TextBlock Foreground="{ThemeResource TextOnAccent}"
+                                       Text="(0,40)"
+                                       FontSize="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                        <Border Canvas.Left="100"
+                                Canvas.Top="60"
+                                Background="#22C55E"
+                                Width="60"
+                                Height="60">
+                            <TextBlock Foreground="Black"
+                                       Text="(100,60)"
+                                       FontSize="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                        <Border Canvas.Left="200"
+                                Canvas.Top="80"
+                                Background="#179842"
+                                Width="60"
+                                Height="60">
+                            <TextBlock Foreground="Black"
+                                       Text="(200,80)"
+                                       FontSize="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                    </Canvas>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:CanvasPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Canvas" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:CanvasPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.Canvas.Title1}" Description="{DynamicResource Loc.P.Canvas.Sub1}" />
+
+        <!-- Canvas overview -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Canvas.CT1}" Description="{DynamicResource Loc.P.Canvas.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  Height="200">
+                    <Canvas Height="160">
+                        <TextBlock Canvas.Left="0"
+                                   Canvas.Top="0"
+                                   Text="{DynamicResource Loc.P.Canvas.Note1}"
+                                   FontSize="12" />
+                        <Border Canvas.Left="0"
+                                Canvas.Top="40"
+                                Background="{DynamicResource GalleryAccent}"
+                                Width="60"
+                                Height="60">
+                            <TextBlock Foreground="{ThemeResource TextOnAccent}"
+                                       Text="(0,40)"
+                                       FontSize="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                        <Border Canvas.Left="100"
+                                Canvas.Top="60"
+                                Background="#22C55E"
+                                Width="60"
+                                Height="60">
+                            <TextBlock Foreground="Black"
+                                       Text="(100,60)"
+                                       FontSize="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                        <Border Canvas.Left="200"
+                                Canvas.Top="80"
+                                Background="#179842"
+                                Width="60"
+                                Height="60">
+                            <TextBlock Foreground="Black"
+                                       Text="(200,80)"
+                                       FontSize="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                    </Canvas>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Canvas features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Canvas.CT2}" Description="{DynamicResource Loc.P.Canvas.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Width="8" Height="8" Background="{DynamicResource GalleryAccent}" CornerRadius="8" Margin="0,0,8,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Canvas.Legend1}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Width="8" Height="8" Background="#22C55E" CornerRadius="8" Margin="0,0,8,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Canvas.Legend2}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Width="8" Height="8" Background="#179842" CornerRadius="8" Margin="0,0,8,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Canvas.Legend3}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Width="8" Height="8" Background="#CA5010" CornerRadius="8" Margin="0,0,8,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Canvas.Legend4}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="8" Height="8" Background="#008272" CornerRadius="8" Margin="0,0,8,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Canvas.Legend5}" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Canvas.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Canvas.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

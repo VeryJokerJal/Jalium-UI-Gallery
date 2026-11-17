@@ -7,10 +7,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <JaliumMacNativeRoot Condition="'$(JaliumMacNativeRoot)' == ''">$(MSBuildThisFileDirectory)../../../Jalium.UI/src/native/bin/native/osx-arm64/$(Configuration)</JaliumMacNativeRoot>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.13" />
     <PackageReference Include="xunit.v3" Version="3.*" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.*">
       <PrivateAssets>all</PrivateAssets>
@@ -22,5 +24,15 @@
     <ProjectReference Include="..\..\Modules\Jalium.UI.Gallery.Modules.Main\Jalium.UI.Gallery.Modules.Main.csproj" />
     <ProjectReference Include="..\..\Services\Jalium.UI.Gallery.Services.Interfaces\Jalium.UI.Gallery.Services.Interfaces.csproj" />
   </ItemGroup>
+
+  <!-- Headless control tests still call the platform/text ABI. Keep the
+       current configuration's native cohort with the isolated test output. -->
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+    <Content Include="$(JaliumMacNativeRoot)/*.dylib" Link="%(Filename)%(Extension)" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+  <Target Name="ValidateMacOSGalleryTestNativePayload" BeforeTargets="PrepareForBuild"
+          Condition="$([MSBuild]::IsOSPlatform('OSX')) and '$(DesignTimeBuild)' != 'true'">
+    <Exec Command="python3 &quot;$(MSBuildThisFileDirectory)../../../Jalium.UI/eng/apple/check-native-exports.py&quot; &quot;$(JaliumMacNativeRoot)&quot; --configuration $(Configuration)" />
+  </Target>
 
 </Project>

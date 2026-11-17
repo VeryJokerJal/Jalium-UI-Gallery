@@ -1,0 +1,223 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for AppBarButtonPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.AppBarButtonPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <AppBarButton x:Name="AddButton"
+                                      Label="Add"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Add"
+                                      Width="72"
+                                      Height="60"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Add" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="EditButton"
+                                      Label="Edit"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Edit"
+                                      Width="72"
+                                      Height="60"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Edit" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="DeleteButton"
+                                      Label="Delete"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Delete"
+                                      Width="72"
+                                      Height="60"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:AppBarButtonPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="AppBarButton" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:AppBarButtonPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.AppBarButton.Title1}" Description="{DynamicResource Loc.P.AppBarButton.Sub1}" />
+
+        <!-- Basic AppBarButton -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AppBarButton.CT1}" Description="{DynamicResource Loc.P.AppBarButton.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <AppBarButton x:Name="AddButton"
+                                      Label="Add"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Add"
+                                      Width="72"
+                                      Height="60"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Add" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="EditButton"
+                                      Label="Edit"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Edit"
+                                      Width="72"
+                                      Height="60"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Edit" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="DeleteButton"
+                                      Label="Delete"
+                                      Command="{Binding BasicCommand}"
+                                      CommandParameter="Delete"
+                                      Width="72"
+                                      Height="60"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+                <TextBlock x:Name="BasicStatusText"
+                           Style="{StaticResource GalleryValueLabel}"
+                           Text="{Binding BasicStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Compact mode -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AppBarButton.CT2}" Description="{DynamicResource Loc.P.AppBarButton.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <AppBarButton x:Name="CompactAddButton"
+                                      Label="Add"
+                                      Command="{Binding CompactCommand}"
+                                      CommandParameter="Add"
+                                      IsCompact="True"
+                                      ToolTip="Add"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Add" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="CompactEditButton"
+                                      Label="Edit"
+                                      Command="{Binding CompactCommand}"
+                                      CommandParameter="Edit"
+                                      IsCompact="True"
+                                      ToolTip="Edit"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Edit" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="CompactDeleteButton"
+                                      Label="Delete"
+                                      Command="{Binding CompactCommand}"
+                                      CommandParameter="Delete"
+                                      IsCompact="True"
+                                      ToolTip="Delete"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+                <TextBlock x:Name="CompactStatusText"
+                           Style="{StaticResource GalleryValueLabel}"
+                           Text="{Binding CompactStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.AppBarButton.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.AppBarButton.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="http://schemas.jalium.ui/2024"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <Style TargetType="gallery:GalleryDropTarget">
+        <Setter Property="Background" Value="{DynamicResource GalleryCardAltBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GalleryBorderDefault}" />
+        <Setter Property="Foreground" Value="{DynamicResource GalleryTextPrimary}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:GalleryDropTarget">
+                <Border x:Name="PART_Root" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled"><VisualState.Setters>
+                                <Setter TargetName="PART_Root" Property="Opacity" Value="0.56" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="DragStates">
+                            <VisualState x:Name="Idle" />
+                            <VisualState x:Name="Accepting"><VisualState.Setters>
+                                <Setter TargetName="PART_Root" Property="Background" Value="{DynamicResource GalleryAccentSoft}" />
+                                <Setter TargetName="PART_Root" Property="BorderBrush" Value="{DynamicResource GalleryAccent}" />
+                            </VisualState.Setters></VisualState>
+                            <VisualState x:Name="Rejecting"><VisualState.Setters>
+                                <Setter TargetName="PART_Root" Property="BorderBrush" Value="{DynamicResource GalleryError}" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,160 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for JsonTreeViewerPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.JsonTreeViewerPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <JsonTreeViewer x:Name="BasicJsonTree"
+                                    Height="350"
+                                    ExpandDepth="2"
+                                    JsonText="{Binding SampleJson}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:JsonTreeViewerPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="JsonTreeViewer" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:JsonTreeViewerPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact"><VisualState.Setters>
+                            <Setter TargetName="PART_InteractiveEditorPanel" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="PART_InteractiveEditorPanel" Property="Margin" Value="0" />
+                            <Setter TargetName="PART_InteractiveTreePanel" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="PART_InteractiveTreePanel" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="PART_InteractiveTreePanel" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="PART_InteractiveTreePanel" Property="Margin" Value="0,12,0,0" />
+                        </VisualState.Setters></VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataViewers}" Title="{DynamicResource Loc.P.JsonTreeViewer.Title1}" Description="{DynamicResource Loc.P.JsonTreeViewer.Sub1}" />
+
+        <!-- Basic JSON tree -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.JsonTreeViewer.CT1}" Description="{DynamicResource Loc.P.JsonTreeViewer.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <JsonTreeViewer x:Name="BasicJsonTree"
+                                    Height="350"
+                                    ExpandDepth="2"
+                                    JsonText="{Binding SampleJson}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Search & filter -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.JsonTreeViewer.CT2}" Description="{DynamicResource Loc.P.JsonTreeViewer.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBox x:Name="SearchInput"
+                                 ToolTip="{DynamicResource Loc.P.JsonTreeViewer.Ui1}"
+                                 Margin="0,0,0,12"
+                                 Text="{Binding SearchText, Mode=TwoWay}" />
+                        <JsonTreeViewer x:Name="SearchJsonTree"
+                                        Height="300"
+                                        ExpandDepth="3"
+                                        JsonText="{Binding SearchSampleJson}"
+                                        SearchText="{Binding SearchText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.JsonTreeViewer.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <StackPanel x:Name="PART_InteractiveEditorPanel" Grid.Column="0" Margin="0,0,12,0">
+                            <TextBlock Text="{DynamicResource Loc.P.JsonTreeViewer.Ui2}" FontSize="12" Margin="0,0,0,4" />
+                            <TextBox x:Name="JsonInput"
+                                     AcceptsReturn="True"
+                                     VerticalContentAlignment="Top"
+                                     Height="350"
+                                     FontFamily="{ThemeResource MonoFontFamily}"
+                                     FontSize="12"
+                                     Text="{Binding InteractiveJson, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel x:Name="PART_InteractiveTreePanel" Grid.Column="1">
+                            <TextBlock Text="Tree View:" FontSize="12" Margin="0,0,0,4" />
+                            <JsonTreeViewer x:Name="InteractiveJsonTree" IsEditable="True"
+                                            Height="350"
+                                            ExpandDepth="3"
+                                            JsonText="{Binding InteractiveJson}" />
+                        </StackPanel>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.JsonTreeViewer.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.JsonTreeViewer.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

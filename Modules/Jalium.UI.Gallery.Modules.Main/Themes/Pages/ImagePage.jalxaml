@@ -1,0 +1,391 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ImagePage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ImagePage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <Border Height="300"
+                                CornerRadius="8"
+                                Background="{DynamicResource GalleryMediaMat}"
+                                ClipToBounds="True"
+                                Margin="0,0,0,12">
+                            <Image Source="{Binding RasterSource}"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding RasterStatus}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ImagePage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Image" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ImagePage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Media}" Title="{DynamicResource Loc.P.Image.Title1}" Description="{DynamicResource Loc.P.Image.Sub1}" />
+
+        <!-- Remote image -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Image.CT1}" Description="{DynamicResource Loc.P.Image.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Border Height="300"
+                                CornerRadius="8"
+                                Background="{DynamicResource GalleryMediaMat}"
+                                ClipToBounds="True"
+                                Margin="0,0,0,12">
+                            <Image Source="{Binding RasterSource}"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding RasterStatus}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Stretch modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Image.CT2}" Description="{DynamicResource Loc.P.Image.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <!-- 2x2 grid comparing every stretch mode -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Stretch.None -->
+                        <StackPanel Grid.Column="0" Grid.Row="0">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val1}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap1}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="None"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Stretch.Fill -->
+                        <StackPanel Grid.Column="2" Grid.Row="0">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val2}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap2}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Stretch.Uniform -->
+                        <StackPanel Grid.Column="0" Grid.Row="2">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val3}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap3}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Stretch.UniformToFill -->
+                        <StackPanel Grid.Column="2" Grid.Row="2">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val4}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap4}" Margin="0,0,0,8" />
+                            <Border Height="160"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- SVG image -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Image.CT3}" Description="{DynamicResource Loc.P.Image.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Border Height="400"
+                                CornerRadius="8"
+                                Background="{DynamicResource GalleryMediaMat}"
+                                ClipToBounds="True"
+                                Margin="0,0,0,12">
+                            <Image Source="{Binding SvgSource}"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                        </Border>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding SvgStatus}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- SVG stretch modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Image.CT4}" Description="{DynamicResource Loc.P.Image.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Stretch.None -->
+                        <StackPanel Grid.Column="0" Grid.Row="0">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val1}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap1}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="None"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Stretch.Fill -->
+                        <StackPanel Grid.Column="2" Grid.Row="0">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val2}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap2}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Stretch.Uniform -->
+                        <StackPanel Grid.Column="0" Grid.Row="2">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val3}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap3}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Stretch.UniformToFill -->
+                        <StackPanel Grid.Column="2" Grid.Row="2">
+                            <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Image.Val4}" Margin="0,0,0,4" />
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap4}" Margin="0,0,0,8" />
+                            <Border Height="200"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding SvgSource}"
+                                       Stretch="UniformToFill"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Styled images -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Image.CT5}" Description="{DynamicResource Loc.P.Image.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <!-- Rounded corners -->
+                        <StackPanel Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap5}" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                            <Border Width="150"
+                                    Height="150"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="16"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Circle -->
+                        <StackPanel Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap6}" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                            <Border Width="150"
+                                    Height="150"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    CornerRadius="75"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Bordered -->
+                        <StackPanel Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Image.Cap7}" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                            <Border Width="150"
+                                    Height="150"
+                                    Background="{DynamicResource GalleryMediaMat}"
+                                    BorderBrush="#0078D4"
+                                    BorderThickness="3"
+                                    CornerRadius="8"
+                                    ClipToBounds="True">
+                                <Image Source="{Binding RasterSource}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Properties -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Properties}" Description="{DynamicResource Loc.P.Image.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Image.Body1}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Image.Body2}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Image.Body3}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Image.Body4}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Image.Body5}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Image.Body6}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Image.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Image.CC8}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

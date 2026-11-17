@@ -1,0 +1,160 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for NavigationDemoPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.NavigationDemoPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="BackButton" Content="{DynamicResource Loc.P.NavigationDemo.Back}" Command="{Binding GoBackCommand}" MinWidth="80" Margin="0,0,10,10" />
+                            <Button x:Name="ForwardButton" Content="{DynamicResource Loc.P.NavigationDemo.Forward}" Command="{Binding GoForwardCommand}" MinWidth="80" Margin="0,0,10,10" />
+                            <Button x:Name="RefreshButton" Content="{DynamicResource Loc.P.NavigationDemo.Refresh}" Command="{Binding RefreshCommand}" MinWidth="80" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="NavigationStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding NavigationStatus}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:NavigationDemoPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Navigation Framework" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:NavigationDemoPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.System}" Title="{DynamicResource Loc.P.NavigationDemo.Title1}" Description="{DynamicResource Loc.P.NavigationDemo.Sub1}" />
+
+        <!-- NavigationService -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NavigationDemo.CT1}" Description="{DynamicResource Loc.P.NavigationDemo.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="BackButton" Content="{DynamicResource Loc.P.NavigationDemo.Back}" Command="{Binding GoBackCommand}" MinWidth="80" Margin="0,0,10,10" />
+                            <Button x:Name="ForwardButton" Content="{DynamicResource Loc.P.NavigationDemo.Forward}" Command="{Binding GoForwardCommand}" MinWidth="80" Margin="0,0,10,10" />
+                            <Button x:Name="RefreshButton" Content="{DynamicResource Loc.P.NavigationDemo.Refresh}" Command="{Binding RefreshCommand}" MinWidth="80" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="NavigationStatus"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding NavigationStatus}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- JournalEntry -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NavigationDemo.CT2}" Description="{DynamicResource Loc.P.NavigationDemo.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="// Create journal entry with custom state" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="var entry = new JournalEntry(uri, &quot;Page Title&quot;);" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="entry.CustomContentState = new MyContentState();" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="navigationService.AddBackEntry(entry.CustomContentState);" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- NavigationWindow -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NavigationDemo.CT3}" Description="{DynamicResource Loc.P.NavigationDemo.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Button x:Name="OpenNavigationWindowButton"
+                            Content="{DynamicResource Loc.P.NavigationDemo.OpenWindow}"
+                            Command="{Binding OpenNavigationWindowCommand}"
+                            MinWidth="120"
+                            HorizontalAlignment="Left" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- CustomContentState -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NavigationDemo.CT4}" Description="{DynamicResource Loc.P.NavigationDemo.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.NavigationDemo.Val1}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - DictionaryContentState: Key-value pair storage" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - ScrollContentState: Preserve scroll position" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - DataContextContentState: Preserve DataContext" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="  - CompositeContentState: Combine multiple states" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.NavigationDemo.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.NavigationDemo.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

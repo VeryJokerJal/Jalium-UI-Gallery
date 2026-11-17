@@ -1,0 +1,192 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for DockPanelPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.DockPanelPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Border Width="400" Height="250" Background="#202020">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Top" Height="50" Background="#0078D4">
+                                <TextBlock Text="Top" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Bottom" Height="50" Background="#4CAF50">
+                                <TextBlock Text="Bottom" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="80" Background="#FF9800">
+                                <TextBlock Text="Left" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Right" Width="80" Background="#9C27B0">
+                                <TextBlock Text="Right" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Background="#2196F3">
+                                <TextBlock Text="Fill" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:DockPanelPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="DockPanel" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:DockPanelPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <!--
+        Hybrid page: the header and the two code-example cards live in markup;
+        the interactive demo cards are built imperatively into DemoHost by
+        CreateContent() using the GalleryUi factory (the C# mirror of the shared
+        styles), so both halves render the identical card scaffold.
+    -->
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.DockPanel.Title1}" Description="{DynamicResource Loc.P.DockPanel.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DockPanel.CT1}" Description="{DynamicResource Loc.P.DockPanel.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Border Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="250" Background="#202020">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Top" Height="50" Background="#0078D4">
+                                <TextBlock Text="Top" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Bottom" Height="50" Background="#4CAF50">
+                                <TextBlock Text="Bottom" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="80" Background="#FF9800">
+                                <TextBlock Text="Left" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Right" Width="80" Background="#9C27B0">
+                                <TextBlock Text="Right" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border Background="#2196F3">
+                                <TextBlock Text="Fill" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DockPanel.CT2}" Description="{DynamicResource Loc.P.DockPanel.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Border Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="150" Background="#202020">
+                        <DockPanel LastChildFill="False">
+                            <Border DockPanel.Dock="Top" Height="40" Background="#0078D4">
+                                <TextBlock Text="Top" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="100" Background="#FF9800">
+                                <TextBlock Text="Left" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <Border DockPanel.Dock="Right" Width="100" Background="#9C27B0">
+                                <TextBlock Text="Right" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DockPanel.CT3}" Description="{DynamicResource Loc.P.DockPanel.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <!--
+                        Mock app chrome, fully theme-sourced. The three panes must stay
+                        visibly stepped, but the registered surface tokens are crowded
+                        into one luminance band in Dark mode, so the header and sidebar
+                        carry an explicit hairline instead of relying on fill contrast
+                        alone. The outer wrapper needs no Background: Top + Left + the
+                        LastChildFill content cover it completely.
+                    -->
+                    <Border Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="250">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Top" Height="40"
+                                    Background="{DynamicResource GalleryPaneBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="0,0,0,1">
+                                <TextBlock Text="Application Header" Foreground="{DynamicResource GalleryTextPrimary}" VerticalAlignment="Center" Margin="12,0,0,0" />
+                            </Border>
+                            <Border DockPanel.Dock="Left" Width="120"
+                                    Background="{DynamicResource GalleryCardAltBackground}"
+                                    BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                    BorderThickness="0,0,1,0">
+                                <TextBlock Text="Sidebar" Foreground="{DynamicResource GalleryTextSecondary}" Margin="12" />
+                            </Border>
+                            <Border Background="{DynamicResource GalleryCardBackground}">
+                                <TextBlock Text="Main Content Area" Foreground="{DynamicResource GalleryTextTertiary}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.DockPanel.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.DockPanel.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

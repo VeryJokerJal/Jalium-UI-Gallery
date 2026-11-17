@@ -35,8 +35,8 @@ public static class GalleryUi
     public static TextBlock PageTitle(string text) => new()
     {
         Text = text,
-        FontSize = 28,
-        FontWeight = FontWeights.Bold,
+        FontSize = 30,
+        FontWeight = FontWeights.SemiBold,
         Foreground = GalleryTheme.TextPrimaryBrush,
         Margin = new Thickness(0, 0, 0, 6),
     };
@@ -57,7 +57,7 @@ public static class GalleryUi
     public static TextBlock CardTitle(string text) => new()
     {
         Text = text,
-        FontSize = 16,
+        FontSize = 17,
         FontWeight = FontWeights.SemiBold,
         Foreground = GalleryTheme.TextPrimaryBrush,
         Margin = new Thickness(0, 0, 0, 4),
@@ -111,7 +111,7 @@ public static class GalleryUi
         BorderThickness = new Thickness(1),
         CornerRadius = new CornerRadius(16),
         Padding = new Thickness(20),
-        Margin = new Thickness(0, 0, 0, 16),
+        Margin = new Thickness(0, 0, 0, 18),
     };
 
     /// <summary>Inner surface holding a live demo (caller sets <c>Child</c>).</summary>
@@ -122,6 +122,35 @@ public static class GalleryUi
         BorderThickness = new Thickness(1),
         CornerRadius = new CornerRadius(12),
         Padding = new Thickness(18),
+    };
+
+    /// <summary>Structured surface badge wrapping a label.</summary>
+    public static Border Badge(string text) => new()
+    {
+        Background = GalleryTheme.BackgroundCardBrush,
+        BorderBrush = GalleryTheme.BorderDefaultBrush,
+        BorderThickness = new Thickness(1),
+        CornerRadius = new CornerRadius(8),
+        Padding = new Thickness(9, 4, 9, 4),
+        VerticalAlignment = VerticalAlignment.Center,
+        Child = new TextBlock
+        {
+            Text = text,
+            FontSize = 11.5,
+            FontWeight = FontWeights.SemiBold,
+            Foreground = GalleryTheme.TextSecondaryBrush,
+            VerticalAlignment = VerticalAlignment.Center,
+        },
+    };
+
+    /// <summary>1px vertical hairline divider for inline metadata rows.</summary>
+    public static Border VerticalDivider() => new()
+    {
+        Width = 1,
+        Height = 14,
+        Background = GalleryTheme.BorderDefaultBrush,
+        VerticalAlignment = VerticalAlignment.Center,
+        Margin = new Thickness(10, 0, 10, 0),
     };
 
     // ── Composites ──────────────────────────────────────────────────────

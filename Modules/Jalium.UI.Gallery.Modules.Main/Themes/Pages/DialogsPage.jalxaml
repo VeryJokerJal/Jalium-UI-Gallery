@@ -1,0 +1,321 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for DialogsPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.DialogsPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui1}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenFile" Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui2}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenMultiple" Width="110" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui3}" Command="{Binding ShowDialogCommand}" CommandParameter="PickFolder" Width="118" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedFile}"
+                                   Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedPickerFolder}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:DialogsPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="File Dialogs" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:DialogsPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Dialogs}" Title="{DynamicResource Loc.P.Dialogs.Title1}" Description="{DynamicResource Loc.P.Dialogs.Sub1}" />
+
+        <!-- Open File Dialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT1}" Description="{DynamicResource Loc.P.Dialogs.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui1}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenFile" Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui2}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenMultiple" Width="110" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui3}" Command="{Binding ShowDialogCommand}" CommandParameter="PickFolder" Width="118" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedFile}"
+                                   Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedPickerFolder}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Save File Dialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT2}" Description="{DynamicResource Loc.P.Dialogs.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Button Content="{DynamicResource Loc.P.Dialogs.Ui4}" Command="{Binding ShowDialogCommand}" CommandParameter="SaveFile" Width="100" Height="28" Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SavePath}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Folder Browser Dialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT3}" Description="{DynamicResource Loc.P.Dialogs.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Button Content="{DynamicResource Loc.P.Dialogs.Ui5}" Command="{Binding ShowDialogCommand}" CommandParameter="BrowseFolder" Width="120" Height="28" Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedFolder}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Shell Dialogs -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT4}" Description="{DynamicResource Loc.P.Dialogs.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui6}" Command="{Binding ShowDialogCommand}" CommandParameter="PickIcon" Width="100" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui7}" Command="{Binding ShowDialogCommand}" CommandParameter="OpenWith" Width="105" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui8}" Command="{Binding ShowDialogCommand}" CommandParameter="FileProperties" Width="126" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui9}" Command="{Binding ShowDialogCommand}" CommandParameter="PrinterProperties" Width="140" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui10}" Command="{Binding ShowDialogCommand}" CommandParameter="VolumeProperties" Width="140" Height="28" Margin="0,0,10,10" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui11}" Command="{Binding ShowDialogCommand}" CommandParameter="MultiFileProperties" Width="156" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding SelectedIcon}"
+                                   Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding OpenWithTarget}"
+                                   Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding PropertiesTarget}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Font Dialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT5}" Description="{DynamicResource Loc.P.Dialogs.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Button Content="{DynamicResource Loc.P.Dialogs.Ui12}" Command="{Binding ShowDialogCommand}" CommandParameter="ChooseFont" Width="110" Height="28" Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Dialogs.Body1}" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding SelectedFont}"
+                                   Margin="0,8,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Message Dialogs -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT6}" Description="{DynamicResource Loc.P.Dialogs.CC6}">
+            <StackPanel>
+
+                <TextBlock Style="{StaticResource GalleryBodyText}"
+                           Text="{DynamicResource Loc.P.Dialogs.Body2}"
+                           Margin="0,0,0,16" />
+
+                <WrapPanel Margin="0,0,0,6">
+                    <gallery:GalleryDemoSurface  Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip1}" />
+                            </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="{DynamicResource Loc.P.Dialogs.Body3}"
+                                       Margin="0,0,0,12" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui13}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Information"
+                                    Width="108"
+                                    Height="32" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+
+                    <gallery:GalleryDemoSurface  Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip2}" />
+                            </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="{DynamicResource Loc.P.Dialogs.Body4}"
+                                       Margin="0,0,0,12" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui14}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Warning"
+                                    Width="108"
+                                    Height="32" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+
+                    <gallery:GalleryDemoSurface  Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip3}" />
+                            </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="{DynamicResource Loc.P.Dialogs.Body5}"
+                                       Margin="0,0,0,12" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui15}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Error"
+                                    Width="108"
+                                    Height="32" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+
+                    <gallery:GalleryDemoSurface  Width="200" Margin="0,0,10,10">
+                        <StackPanel>
+                            <Border Style="{StaticResource GalleryChip}" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                <TextBlock Style="{StaticResource GalleryChipText}" Text="{DynamicResource Loc.P.Dialogs.Chip4}" />
+                            </Border>
+                            <TextBlock Style="{StaticResource GalleryBodyText}"
+                                       Text="{DynamicResource Loc.P.Dialogs.Body6}"
+                                       Margin="0,0,0,12" />
+                            <Button Content="{DynamicResource Loc.P.Dialogs.Ui16}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="Confirm"
+                                    Width="116"
+                                    Height="32" />
+                        </StackPanel>
+                    </gallery:GalleryDemoSurface>
+                </WrapPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Border x:Name="DialogResultAccent"
+                                Background="#4C93FF"
+                                CornerRadius="999"
+                                Height="4"
+                                Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Dialogs.Cap1}"
+                                   Margin="0,0,0,4" />
+                        <TextBlock Style="{StaticResource GalleryCardTitle}"
+                                   Text="{Binding MessageCaption}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding MessageDescription}"
+                                   Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{Binding MessageText}"
+                                   Margin="0,0,0,10" />
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Style="{StaticResource GalleryCodeBadge}" Margin="0,0,8,0">
+                                <TextBlock Style="{StaticResource GalleryCodeBadgeText}"
+                                           Text="{Binding MessageDetails}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryChip}">
+                                <TextBlock Style="{StaticResource GalleryChipText}"
+                                           Text="{Binding MessageResult}" />
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Dialog Options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Dialogs.CT7}" Description="{DynamicResource Loc.P.Dialogs.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Dialogs.Cap2}" Margin="0,0,0,4" />
+                        <TextBox Text="Text files (*.txt)|*.txt|All files (*.*)|*.*"
+                                 Height="28"
+                                 Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}" Text="{DynamicResource Loc.P.Dialogs.Cap3}" Margin="0,0,0,4" />
+                        <TextBox Text="C:\Users\Documents"
+                                 Height="28"
+                                 Margin="0,0,0,12" />
+                        <CheckBox Content="{DynamicResource Loc.P.Dialogs.Ui17}" Margin="0,0,0,8" />
+                        <CheckBox Content="{DynamicResource Loc.P.Dialogs.Ui18}" Margin="0,0,0,8" IsChecked="True" />
+                        <CheckBox Content="{DynamicResource Loc.P.Dialogs.Ui19}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Dialogs.CC8}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Dialogs.CC9}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

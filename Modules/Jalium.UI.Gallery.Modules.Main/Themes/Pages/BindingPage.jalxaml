@@ -1,0 +1,219 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for BindingPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.BindingPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Binding.Cap1}"
+                                   Margin="0,0,0,8" />
+                        <Slider x:Name="ValueSlider"
+                                Width="300"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="50"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Binding.Cap2}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock x:Name="ValueDisplay"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding Value, ElementName=ValueSlider, StringFormat='Value: {0:F0}'}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:BindingPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Data Binding" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:BindingPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataAndBinding}" Title="{DynamicResource Loc.P.Binding.Title1}" Description="{DynamicResource Loc.P.Binding.Sub1}" />
+
+        <!-- ElementName binding -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Binding.CT1}" Description="{DynamicResource Loc.P.Binding.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Binding.Cap1}"
+                                   Margin="0,0,0,8" />
+                        <Slider x:Name="ValueSlider"
+                                Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="50"
+                                Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Binding.Cap2}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock x:Name="ValueDisplay"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding Value, ElementName=ValueSlider, StringFormat='Value: {0:F0}'}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Two-way binding -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Binding.CT2}" Description="{DynamicResource Loc.P.Binding.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Binding.Cap3}"
+                                   Margin="0,0,0,8" />
+                        <TextBox x:Name="SourceTextBox"
+                                 Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="32"
+                                 Text="Type here..."
+                                 Margin="0,0,0,16" />
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Binding.Cap4}"
+                                   Margin="0,0,0,8" />
+                        <TextBox x:Name="TargetTextBox"
+                                 Width="300" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                 Height="32"
+                                 Text="{Binding Text, ElementName=SourceTextBox, Mode=TwoWay}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- JALXAML syntax -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Binding.CT3}" Description="{DynamicResource Loc.P.Binding.CC3}">
+            <StackPanel>
+
+
+                <gallery:GalleryDemoSurface  Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="&lt;!-- One-way binding to another element --&gt;"
+                                   FontSize="13"
+                                   FontFamily="{ThemeResource MonoFontFamily}"
+                                   Margin="0,0,0,4" />
+                        <TextBlock Text="&lt;Slider x:Name=&quot;mySlider&quot; Value=&quot;50&quot;/&gt;"
+                                   FontSize="13"
+                                   FontFamily="{ThemeResource MonoFontFamily}"
+                                   Margin="0,0,0,4" />
+                        <TextBlock Text="&lt;TextBlock Text=&quot;{Binding Value, ElementName=mySlider}&quot;/&gt;"
+                                   FontSize="13"
+                                   FontFamily="{ThemeResource MonoFontFamily}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="&lt;!-- Two-way binding between controls --&gt;"
+                                   FontSize="13"
+                                   FontFamily="{ThemeResource MonoFontFamily}"
+                                   Margin="0,0,0,4" />
+                        <TextBlock Text="&lt;TextBox x:Name=&quot;source&quot;/&gt;"
+                                   FontSize="13"
+                                   FontFamily="{ThemeResource MonoFontFamily}"
+                                   Margin="0,0,0,4" />
+                        <TextBlock Text="&lt;TextBox Text=&quot;{Binding Text, ElementName=source, Mode=TwoWay}&quot;/&gt;"
+                                   FontSize="13"
+                                   FontFamily="{ThemeResource MonoFontFamily}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Binding modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Binding.CT4}" Description="{DynamicResource Loc.P.Binding.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Binding.Body1}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Binding.Body2}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Binding.Body3}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Binding.Body4}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Binding.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Binding.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

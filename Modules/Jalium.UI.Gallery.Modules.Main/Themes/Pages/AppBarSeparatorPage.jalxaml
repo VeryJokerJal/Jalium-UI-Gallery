@@ -1,0 +1,376 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for AppBarSeparatorPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.AppBarSeparatorPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <!-- File operations group -->
+                        <AppBarButton x:Name="NewButton"
+                                      Label="New"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="New"
+                                      ToolTip="New"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Document" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="OpenButton"
+                                      Label="Open"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Open"
+                                      ToolTip="Open"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="OpenFile" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="SaveButton"
+                                      Label="Save"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Save"
+                                      ToolTip="Save"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Save" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+
+                        <!-- Separator between file and edit groups -->
+                        <AppBarSeparator Height="40" Margin="0,0,10,10" />
+
+                        <!-- Edit operations group -->
+                        <AppBarButton x:Name="CutButton"
+                                      Label="Cut"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Cut"
+                                      ToolTip="Cut"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Cut" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="CopyButton"
+                                      Label="Copy"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Copy"
+                                      ToolTip="Copy"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Copy" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="PasteButton"
+                                      Label="Paste"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Paste"
+                                      ToolTip="Paste"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Paste" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+
+                        <!-- Separator between edit and undo groups -->
+                        <AppBarSeparator Height="40" Margin="0,0,10,10" />
+
+                        <!-- Undo/Redo group -->
+                        <AppBarButton x:Name="UndoButton"
+                                      Label="Undo"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Undo"
+                                      ToolTip="Undo"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Undo" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="RedoButton"
+                                      Label="Redo"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Redo"
+                                      ToolTip="Redo"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Redo" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:AppBarSeparatorPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="AppBarSeparator" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:AppBarSeparatorPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.AppBarSeparator.Title1}" Description="{DynamicResource Loc.P.AppBarSeparator.Sub1}" />
+
+        <!-- Separator in a toolbar -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AppBarSeparator.CT1}" Description="{DynamicResource Loc.P.AppBarSeparator.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <!-- File operations group -->
+                        <AppBarButton x:Name="NewButton"
+                                      Label="New"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="New"
+                                      ToolTip="New"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Document" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="OpenButton"
+                                      Label="Open"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Open"
+                                      ToolTip="Open"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="OpenFile" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="SaveButton"
+                                      Label="Save"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Save"
+                                      ToolTip="Save"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Save" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+
+                        <!-- Separator between file and edit groups -->
+                        <AppBarSeparator Height="40" Margin="0,0,10,10" />
+
+                        <!-- Edit operations group -->
+                        <AppBarButton x:Name="CutButton"
+                                      Label="Cut"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Cut"
+                                      ToolTip="Cut"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Cut" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="CopyButton"
+                                      Label="Copy"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Copy"
+                                      ToolTip="Copy"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Copy" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="PasteButton"
+                                      Label="Paste"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Paste"
+                                      ToolTip="Paste"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Paste" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+
+                        <!-- Separator between edit and undo groups -->
+                        <AppBarSeparator Height="40" Margin="0,0,10,10" />
+
+                        <!-- Undo/Redo group -->
+                        <AppBarButton x:Name="UndoButton"
+                                      Label="Undo"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Undo"
+                                      ToolTip="Undo"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Undo" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="RedoButton"
+                                      Label="Redo"
+                                      Command="{Binding ExecuteToolbarActionCommand}"
+                                      CommandParameter="Redo"
+                                      ToolTip="Redo"
+                                      IsCompact="True"
+                                      Width="40"
+                                      Height="40"
+                                      Margin="0,0,10,10">
+                            <AppBarButton.Icon>
+                                <SymbolIcon Symbol="Redo" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+                <TextBlock x:Name="ToolbarStatusText"
+                           Style="{StaticResource GalleryCaptionText}"
+                           Text="{Binding ToolbarStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Separator inside a real CommandBar -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AppBarSeparator.CT2}" Description="{DynamicResource Loc.P.AppBarSeparator.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <CommandBar MaxWidth="500" HorizontalAlignment="Stretch">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Label="Cut"
+                                          Command="{Binding ExecuteToolbarActionCommand}"
+                                          CommandParameter="Cut">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Cut" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Copy"
+                                          Command="{Binding ExecuteToolbarActionCommand}"
+                                          CommandParameter="Copy">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Copy" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarSeparator />
+                            <AppBarButton Label="Undo"
+                                          Command="{Binding ExecuteToolbarActionCommand}"
+                                          CommandParameter="Undo">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Undo" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Redo"
+                                          Command="{Binding ExecuteToolbarActionCommand}"
+                                          CommandParameter="Redo">
+                                <AppBarButton.Icon><SymbolIcon Symbol="Redo" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Label="Save"
+                                          Command="{Binding ExecuteToolbarActionCommand}"
+                                          CommandParameter="Save" />
+                            <AppBarSeparator />
+                            <AppBarButton Label="Open"
+                                          Command="{Binding ExecuteToolbarActionCommand}"
+                                          CommandParameter="Open" />
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.AppBarSeparator.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.AppBarSeparator.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

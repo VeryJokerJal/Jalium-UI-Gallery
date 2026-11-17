@@ -1,0 +1,203 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for CommandBarPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.CommandBarPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <CommandBar x:Name="PART_BasicCommandBar" MaxWidth="500"
+                                HorizontalAlignment="Stretch" DefaultLabelPosition="{Binding LabelPosition}"
+                                OverflowButtonVisibility="Collapsed">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Label="Add"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Add">
+                                <AppBarButton.Icon><PathIcon Data="M9 2H11V9H18V11H11V18H9V11H2V9H9Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Edit"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Edit">
+                                <AppBarButton.Icon><PathIcon Data="M13 2L18 7L7 18H2V13Z M14 1L15 0L20 5L19 6Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Delete"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Delete">
+                                <AppBarButton.Icon><PathIcon Data="F0 M6 1H14V4H18V6H2V4H6Z M4 7H16L15 19H5Z M7 9V17H9V9Z M11 9V17H13V9Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Refresh"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Refresh">
+                                <AppBarButton.Icon><PathIcon Data="M17 8A7 7 0 1 0 16 15L14.5 13.5A5 5 0 1 1 15 8H11L16 13L20 8Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                    </CommandBar>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:CommandBarPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="CommandBar" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:CommandBarPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.CommandBar.Title1}" Description="{DynamicResource Loc.P.CommandBar.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CommandBar.CT1}" Description="{DynamicResource Loc.P.CommandBar.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <CommandBar x:Name="PART_BasicCommandBar" MaxWidth="500"
+                                HorizontalAlignment="Stretch" DefaultLabelPosition="{Binding LabelPosition}"
+                                OverflowButtonVisibility="Collapsed">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Label="Add"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Add">
+                                <AppBarButton.Icon><PathIcon Data="M9 2H11V9H18V11H11V18H9V11H2V9H9Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Edit"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Edit">
+                                <AppBarButton.Icon><PathIcon Data="M13 2L18 7L7 18H2V13Z M14 1L15 0L20 5L19 6Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Delete"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Delete">
+                                <AppBarButton.Icon><PathIcon Data="F0 M6 1H14V4H18V6H2V4H6Z M4 7H16L15 19H5Z M7 9V17H9V9Z M11 9V17H13V9Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Refresh"
+                                          Command="{Binding ExecuteBasicCommand}"
+                                          CommandParameter="Refresh">
+                                <AppBarButton.Icon><PathIcon Data="M17 8A7 7 0 1 0 16 15L14.5 13.5A5 5 0 1 1 15 8H11L16 13L20 8Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                    </CommandBar>
+                </gallery:GalleryDemoSurface>
+                <TextBlock Style="{StaticResource GalleryCaptionText}"
+                           x:Name="PART_BasicStatus" Text="{Binding BasicStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CommandBar.CT2}" Description="{DynamicResource Loc.P.CommandBar.CC2}">
+            <StackPanel>
+
+                <WrapPanel Margin="0,0,0,12">
+                    <StackPanel Width="140" Margin="0,0,12,8">
+                        <TextBlock Text="{DynamicResource Loc.P.CommandBar.ClosedMode}" Style="{StaticResource GalleryCaptionText}" Margin="0,0,0,4" />
+                        <ComboBox x:Name="PART_ClosedMode" ItemsSource="{Binding DisplayModes}" SelectedItem="{Binding ClosedDisplayMode, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Width="140" Margin="0,0,12,8">
+                        <TextBlock Text="{DynamicResource Loc.P.CommandBar.LabelLayout}" Style="{StaticResource GalleryCaptionText}" Margin="0,0,0,4" />
+                        <ComboBox x:Name="PART_LabelLayout" ItemsSource="{Binding LabelPositions}" SelectedItem="{Binding LabelPosition, Mode=TwoWay}" />
+                    </StackPanel>
+                    <CheckBox x:Name="PART_KeepOpen" Content="{DynamicResource Loc.P.CommandBar.KeepOpen}" IsChecked="{Binding KeepOverflowOpen, Mode=TwoWay}" Margin="0,18,0,8" />
+                </WrapPanel>
+                <gallery:GalleryDemoSurface>
+                    <CommandBar x:Name="PART_OverflowCommandBar" MaxWidth="500" HorizontalAlignment="Stretch"
+                                IsOpen="{Binding OverflowOpen, Mode=TwoWay}" IsSticky="{Binding KeepOverflowOpen}"
+                                ClosedDisplayMode="{Binding ClosedDisplayMode}" DefaultLabelPosition="{Binding LabelPosition}"
+                                OverflowButtonVisibility="Visible">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Label="Share"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Share">
+                                <AppBarButton.Icon><PathIcon Data="M5 8L15 3L16 5L6 10L16 15L15 17L5 12Z M6 10A3 3 0 1 1 0 10A3 3 0 1 1 6 10Z M20 3A3 3 0 1 1 14 3A3 3 0 1 1 20 3Z M20 17A3 3 0 1 1 14 17A3 3 0 1 1 20 17Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Favorite"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Favorite">
+                                <AppBarButton.Icon><PathIcon Data="M10 1L12.8 6.8L19.2 7.8L14.6 12.3L15.7 18.7L10 15.7L4.3 18.7L5.4 12.3L0.8 7.8L7.2 6.8Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Print"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Print">
+                                <AppBarButton.Icon><PathIcon Data="F0 M5 1H15V6H5Z M2 7H18V15H15V19H5V15H2Z M7 13H13V17H7Z M15 9H17V11H15Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Label="Settings"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Settings">
+                                <AppBarButton.Icon><PathIcon Data="F0 M8 0H12L13 3L16 4L18 3L20 7L18 9V12L20 14L18 18L16 17L13 18L12 21H8L7 18L4 17L2 18L0 14L2 12V9L0 7L2 3L4 4L7 3Z M14 10.5A3.5 3.5 0 1 1 7 10.5A3.5 3.5 0 1 1 14 10.5Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="Help"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="Help">
+                                <AppBarButton.Icon><PathIcon Data="F0 M19 10A9 9 0 1 1 1 10A9 9 0 1 1 19 10Z M17 10A7 7 0 1 1 3 10A7 7 0 1 1 17 10Z M7 7A3 3 0 1 1 11 10L11 12H9V9L10 8A1 1 0 1 0 9 7Z M9 14H11V16H9Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                            <AppBarButton Label="About"
+                                          Command="{Binding ExecuteSecondaryCommand}"
+                                          CommandParameter="About">
+                                <AppBarButton.Icon><PathIcon Data="F0 M19 10A9 9 0 1 1 1 10A9 9 0 1 1 19 10Z M17 10A7 7 0 1 1 3 10A7 7 0 1 1 17 10Z M9 5H11V7H9Z M9 9H11V15H9Z" /></AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                </gallery:GalleryDemoSurface>
+                <TextBlock Style="{StaticResource GalleryCaptionText}"
+                           x:Name="PART_SecondaryStatus" Text="{Binding SecondaryStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.CommandBar.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.CommandBar.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

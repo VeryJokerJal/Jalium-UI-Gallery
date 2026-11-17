@@ -1,0 +1,200 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for MenuPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.MenuPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Menu>
+                        <MenuItem Header="File">
+                            <MenuItem Header="New"/>
+                            <MenuItem Header="Open"/>
+                            <MenuItem Header="Save"/>
+                            <Separator/>
+                            <MenuItem Header="Exit"/>
+                        </MenuItem>
+                        <MenuItem Header="Edit">
+                            <MenuItem Header="Undo"/>
+                            <MenuItem Header="Redo"/>
+                            <Separator/>
+                            <MenuItem Header="Cut"/>
+                            <MenuItem Header="Copy"/>
+                            <MenuItem Header="Paste"/>
+                        </MenuItem>
+                        <MenuItem Header="View">
+                            <MenuItem Header="Zoom In"/>
+                            <MenuItem Header="Zoom Out"/>
+                            <MenuItem Header="Reset Zoom"/>
+                        </MenuItem>
+                        <MenuItem Header="Help">
+                            <MenuItem Header="About"/>
+                        </MenuItem>
+                    </Menu>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:MenuPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Menu" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:MenuPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Navigation}" Title="{DynamicResource Loc.P.Menu.Title1}" Description="{DynamicResource Loc.P.Menu.Sub1}" />
+
+        <!-- Basic menu -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Menu.CT1}" Description="{DynamicResource Loc.P.Menu.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Menu>
+                        <MenuItem Header="File">
+                            <MenuItem Header="New"/>
+                            <MenuItem Header="Open"/>
+                            <MenuItem Header="Save"/>
+                            <Separator/>
+                            <MenuItem Header="Exit"/>
+                        </MenuItem>
+                        <MenuItem Header="Edit">
+                            <MenuItem Header="Undo"/>
+                            <MenuItem Header="Redo"/>
+                            <Separator/>
+                            <MenuItem Header="Cut"/>
+                            <MenuItem Header="Copy"/>
+                            <MenuItem Header="Paste"/>
+                        </MenuItem>
+                        <MenuItem Header="View">
+                            <MenuItem Header="Zoom In"/>
+                            <MenuItem Header="Zoom Out"/>
+                            <MenuItem Header="Reset Zoom"/>
+                        </MenuItem>
+                        <MenuItem Header="Help">
+                            <MenuItem Header="About"/>
+                        </MenuItem>
+                    </Menu>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Menu with keyboard shortcuts -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Menu.CT2}" Description="{DynamicResource Loc.P.Menu.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Menu>
+                        <MenuItem Header="File">
+                            <MenuItem Header="New" InputGestureText="{DynamicResource Loc.Shortcut.New}"/>
+                            <MenuItem Header="Open" InputGestureText="{DynamicResource Loc.Shortcut.Open}"/>
+                            <MenuItem Header="Save" InputGestureText="{DynamicResource Loc.Shortcut.Save}"/>
+                            <MenuItem Header="Save As" InputGestureText="{DynamicResource Loc.Shortcut.SaveAs}"/>
+                        </MenuItem>
+                        <MenuItem Header="Edit">
+                            <MenuItem Header="Undo" InputGestureText="{DynamicResource Loc.Shortcut.Undo}"/>
+                            <MenuItem Header="Redo" InputGestureText="{DynamicResource Loc.Shortcut.Redo}"/>
+                            <Separator/>
+                            <MenuItem Header="Cut" InputGestureText="{DynamicResource Loc.Shortcut.Cut}"/>
+                            <MenuItem Header="Copy" InputGestureText="{DynamicResource Loc.Shortcut.Copy}"/>
+                            <MenuItem Header="Paste" InputGestureText="{DynamicResource Loc.Shortcut.Paste}"/>
+                        </MenuItem>
+                    </Menu>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Nested submenus -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Menu.CT3}" Description="{DynamicResource Loc.P.Menu.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Menu>
+                        <MenuItem Header="Settings">
+                            <MenuItem Header="Appearance">
+                                <MenuItem Header="Theme">
+                                    <MenuItem Header="Light"/>
+                                    <MenuItem Header="Dark"/>
+                                    <MenuItem Header="System"/>
+                                </MenuItem>
+                                <MenuItem Header="Font Size">
+                                    <MenuItem Header="Small"/>
+                                    <MenuItem Header="Medium"/>
+                                    <MenuItem Header="Large"/>
+                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="Language">
+                                <MenuItem Header="English"/>
+                                <MenuItem Header="中文"/>
+                                <MenuItem Header="日本語"/>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Menu.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Menu.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

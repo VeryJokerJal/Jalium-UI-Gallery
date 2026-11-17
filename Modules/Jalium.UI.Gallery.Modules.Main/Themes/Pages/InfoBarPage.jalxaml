@@ -1,0 +1,122 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for InfoBarPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.InfoBarPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <InfoBar Title="Informational" Message="This is an informational message." Severity="Informational" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Success" Message="Operation completed successfully!" Severity="Success" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Warning" Message="Please review your settings before continuing." Severity="Warning" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Error" Message="An error occurred while processing your request." Severity="Error" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Closable InfoBar" Message="Click the close button to dismiss this message." IsClosable="True" IsOpen="True" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:InfoBarPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:InfoBarPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.StatusAndInfo}" Title="{DynamicResource Loc.P.InfoBar.Title1}" Description="{DynamicResource Loc.P.InfoBar.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.InfoBar.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <InfoBar Title="Informational" Message="This is an informational message." Severity="Informational" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Success" Message="Operation completed successfully!" Severity="Success" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Warning" Message="Please review your settings before continuing." Severity="Warning" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Error" Message="An error occurred while processing your request." Severity="Error" IsOpen="True" Margin="0,0,0,8" />
+                        <InfoBar Title="Closable InfoBar" Message="Click the close button to dismiss this message." IsClosable="True" IsOpen="True" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Features}" Description="{DynamicResource Loc.P.InfoBar.CC2}">
+            <StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.InfoBar.Body1}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.InfoBar.Body2}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.InfoBar.Body3}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.InfoBar.Body4}" />
+                    <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.InfoBar.Body5}" />
+                </StackPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.InfoBar.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.InfoBar.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

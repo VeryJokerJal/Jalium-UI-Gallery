@@ -1,0 +1,199 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:converters="clr-namespace:Jalium.UI.Gallery.Modules.Main.Converters"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for NavigationStatePage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.NavigationStatePage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+                <Grid.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility" />
+    </Grid.Resources>
+
+
+
+
+
+
+
+    <Grid>
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MaxWidth="640">
+            <StackPanel HorizontalAlignment="Center">
+                <Grid Width="72"
+                      Height="72"
+                      Margin="0,0,0,20"
+                      HorizontalAlignment="Center">
+                    <Border x:Name="ErrorIconContainer"
+                            Background="{DynamicResource GalleryErrorSoft}"
+                            CornerRadius="12"
+                            Visibility="{Binding IsError, Converter={StaticResource BooleanToVisibility}}">
+                        <Path Width="28"
+                              Height="28"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Stretch="Uniform"
+                              Fill="{DynamicResource GalleryErrorOnSurface}"
+                              Data="M11,2 H13 L12.6,15 H11.4 Z M12,18 A2,2,0,1,1,12,22 A2,2,0,1,1,12,18 Z" />
+                    </Border>
+
+                    <Border x:Name="PlaceholderIconContainer"
+                            Background="{DynamicResource GalleryAccentSoft}"
+                            CornerRadius="12"
+                            Visibility="{Binding IsError, Converter={StaticResource InverseBooleanToVisibility}}">
+                        <Grid Width="32" Height="32">
+                            <Path Width="25"
+                                  Height="25"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Stretch="Uniform"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Data="M12,1 L14.7,9.3 L23,12 L14.7,14.7 L12,23 L9.3,14.7 L1,12 L9.3,9.3 Z" />
+                            <Path Width="7"
+                                  Height="7"
+                                  Margin="23,0,0,23"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Stretch="Uniform"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Data="M4,0 L5,3 L8,4 L5,5 L4,8 L3,5 L0,4 L3,3 Z" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <TextBlock x:Name="StateTitleText"
+                           Text="{Binding StateTitle}"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8" />
+
+                <TextBlock x:Name="StateDetailText"
+                           Text="{Binding StateDetail}"
+                           FontSize="14"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
+                           MaxWidth="560" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:NavigationStatePage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:NavigationStatePage">
+                <Grid x:Name="PART_Root">
+                <Grid.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility" />
+    </Grid.Resources>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+
+
+    <Grid>
+        <Border Background="{DynamicResource GalleryCardBackground}"
+                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MaxWidth="640">
+            <StackPanel HorizontalAlignment="Center">
+                <Grid Width="72"
+                      Height="72"
+                      Margin="0,0,0,20"
+                      HorizontalAlignment="Center">
+                    <Border x:Name="ErrorIconContainer"
+                            Background="{DynamicResource GalleryErrorSoft}"
+                            CornerRadius="12"
+                            Visibility="{Binding IsError, Converter={StaticResource BooleanToVisibility}}">
+                        <Path Width="28"
+                              Height="28"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Stretch="Uniform"
+                              Fill="{DynamicResource GalleryErrorOnSurface}"
+                              Data="M11,2 H13 L12.6,15 H11.4 Z M12,18 A2,2,0,1,1,12,22 A2,2,0,1,1,12,18 Z" />
+                    </Border>
+
+                    <Border x:Name="PlaceholderIconContainer"
+                            Background="{DynamicResource GalleryAccentSoft}"
+                            CornerRadius="12"
+                            Visibility="{Binding IsError, Converter={StaticResource InverseBooleanToVisibility}}">
+                        <Grid Width="32" Height="32">
+                            <Path Width="25"
+                                  Height="25"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Stretch="Uniform"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Data="M12,1 L14.7,9.3 L23,12 L14.7,14.7 L12,23 L9.3,14.7 L1,12 L9.3,9.3 Z" />
+                            <Path Width="7"
+                                  Height="7"
+                                  Margin="23,0,0,23"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Stretch="Uniform"
+                                  Fill="{DynamicResource GalleryAccent}"
+                                  Data="M4,0 L5,3 L8,4 L5,5 L4,8 L3,5 L0,4 L3,3 Z" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <TextBlock x:Name="StateTitleText"
+                           Text="{Binding StateTitle}"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource GalleryTextPrimary}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8" />
+
+                <TextBlock x:Name="StateDetailText"
+                           Text="{Binding StateDetail}"
+                           FontSize="14"
+                           Foreground="{DynamicResource GalleryTextTertiary}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
+                           MaxWidth="560" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

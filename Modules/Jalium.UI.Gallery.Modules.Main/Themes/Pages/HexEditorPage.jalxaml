@@ -1,0 +1,170 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for HexEditorPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.HexEditorPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <HexEditor x:Name="BasicHexEditor"
+                               Height="300"
+                               Data="{Binding SampleData}"
+                               BytesPerRow="16"
+                               ShowOffsetColumn="True"
+                               ShowAsciiColumn="True"/>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:HexEditorPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="HexEditor" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:HexEditorPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataViewers}" Title="{DynamicResource Loc.P.HexEditor.Title1}" Description="{DynamicResource Loc.P.HexEditor.Sub1}" />
+
+        <!-- Basic hex editor -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.HexEditor.CT1}" Description="{DynamicResource Loc.P.HexEditor.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <HexEditor x:Name="BasicHexEditor"
+                               Height="300"
+                               Data="{Binding SampleData}"
+                               BytesPerRow="16"
+                               ShowOffsetColumn="True"
+                               ShowAsciiColumn="True"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Configuration options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.HexEditor.CT2}" Description="{DynamicResource Loc.P.HexEditor.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <CheckBox x:Name="ShowAsciiCheckBox"
+                                      Content="Show ASCII Column"
+                                      IsChecked="{Binding ShowAsciiColumn, Mode=TwoWay}"
+                                      Margin="0,0,10,10"/>
+                            <CheckBox x:Name="ShowOffsetCheckBox"
+                                      Content="Show Offset Column"
+                                      IsChecked="{Binding ShowOffsetColumn, Mode=TwoWay}"
+                                      Margin="0,0,10,10"/>
+                            <CheckBox x:Name="ShowDataInterpretCheckBox"
+                                      Content="Show Data Interpretation"
+                                      IsChecked="{Binding ShowDataInterpretation, Mode=TwoWay}"
+                                      Margin="0,0,10,10"/>
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Bytes Per Row:"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,8,0"/>
+                            <Slider x:Name="BytesPerRowSlider"
+                                    Minimum="8"
+                                    Maximum="32"
+                                    Value="{Binding BytesPerRow, Mode=TwoWay}"
+                                    Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock x:Name="BytesPerRowLabel"
+                                       Text="{Binding BytesPerRow, StringFormat='{}{0:F0}'}"
+                                       Margin="8,0,0,0"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <HexEditor x:Name="ConfigHexEditor"
+                                   Height="250"
+                                   Data="{Binding SampleData}"
+                                   BytesPerRow="{Binding BytesPerRow}"
+                                   ShowOffsetColumn="{Binding ShowOffsetColumn}"
+                                   ShowAsciiColumn="{Binding ShowAsciiColumn}"
+                                   ShowDataInterpretation="{Binding ShowDataInterpretation}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Read-only mode -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.ReadOnlyMode}" Description="{DynamicResource Loc.P.HexEditor.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <HexEditor x:Name="ReadOnlyHexEditor"
+                               Height="200"
+                               Data="{Binding ReadOnlyData}"
+                               IsReadOnly="True"
+                               BytesPerRow="16"
+                               ShowOffsetColumn="True"
+                               ShowAsciiColumn="True"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.HexEditor.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.HexEditor.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

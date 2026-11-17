@@ -1,0 +1,161 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for DiffViewerPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.DiffViewerPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <DiffViewer x:Name="SideBySideDiff"
+                                ViewMode="SideBySide"
+                                Height="300"
+                                ShowLineNumbers="True"
+                                ShowMinimap="True"
+                                OriginalText="{Binding SampleOriginalText}"
+                                ModifiedText="{Binding SampleModifiedText}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:DiffViewerPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="DiffViewer" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:DiffViewerPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataViewers}" Title="{DynamicResource Loc.P.DiffViewer.Title1}" Description="{DynamicResource Loc.P.DiffViewer.Sub1}" />
+
+        <!-- Side-by-Side Diff -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DiffViewer.CT1}" Description="{DynamicResource Loc.P.DiffViewer.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <DiffViewer x:Name="SideBySideDiff"
+                                ViewMode="SideBySide"
+                                Height="300"
+                                ShowLineNumbers="True"
+                                ShowMinimap="True"
+                                OriginalText="{Binding SampleOriginalText}"
+                                ModifiedText="{Binding SampleModifiedText}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Unified View -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DiffViewer.CT2}" Description="{DynamicResource Loc.P.DiffViewer.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <DiffViewer x:Name="UnifiedDiff"
+                                ViewMode="Unified"
+                                Height="300"
+                                ShowLineNumbers="True"
+                                OriginalText="{Binding SampleOriginalText}"
+                                ModifiedText="{Binding SampleModifiedText}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive Demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo2}" Description="{DynamicResource Loc.P.DiffViewer.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <StackPanel Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Margin="0,0,10,10">
+                                <TextBlock Text="Original Text:" FontSize="12" Margin="0,0,0,4"/>
+                                <TextBox x:Name="OriginalTextInput"
+                                         AcceptsReturn="True"
+                                         Height="120"
+                                         FontFamily="{ThemeResource MonoFontFamily}"
+                                         FontSize="12"
+                                         Text="{Binding InteractiveOriginalText, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Margin="0,0,10,10">
+                                <TextBlock Text="Modified Text:" FontSize="12" Margin="0,0,0,4"/>
+                                <TextBox x:Name="ModifiedTextInput"
+                                         AcceptsReturn="True"
+                                         Height="120"
+                                         FontFamily="{ThemeResource MonoFontFamily}"
+                                         FontSize="12"
+                                         Text="{Binding InteractiveModifiedText, Mode=TwoWay}" />
+                            </StackPanel>
+                        </WrapPanel>
+                        <DiffViewer x:Name="InteractiveDiff"
+                                    ViewMode="SideBySide"
+                                    Height="250"
+                                    ShowLineNumbers="True"
+                                    OriginalText="{Binding InteractiveOriginalText}"
+                                    ModifiedText="{Binding InteractiveModifiedText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.DiffViewer.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.DiffViewer.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

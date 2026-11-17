@@ -1,0 +1,205 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for CommandBarFlyoutPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.CommandBarFlyoutPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Button Content="Show Editing Commands"
+                            Height="36"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Command="{Binding OpenBasicFlyoutCommand}">
+                        <behaviors:FlyoutButtonBehavior.Flyout>
+                            <CommandBarFlyout>
+                                <CommandBarFlyout.PrimaryCommands>
+                                    <AppBarButton Label="Cut"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Cut">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Cut" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Copy"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Copy">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Copy" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Paste"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Paste">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Paste" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Select All"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Select All">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="SelectAll" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                </CommandBarFlyout.PrimaryCommands>
+                            </CommandBarFlyout>
+                        </behaviors:FlyoutButtonBehavior.Flyout>
+                    </Button>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:CommandBarFlyoutPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="CommandBarFlyout" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:CommandBarFlyoutPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MenusAndToolbars}" Title="{DynamicResource Loc.P.CommandBarFlyout.Title1}" Description="{DynamicResource Loc.P.CommandBarFlyout.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CommandBarFlyout.CT1}" Description="{DynamicResource Loc.P.CommandBarFlyout.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Button Content="Show Editing Commands"
+                            Height="36"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Command="{Binding OpenBasicFlyoutCommand}">
+                        <behaviors:FlyoutButtonBehavior.Flyout>
+                            <CommandBarFlyout>
+                                <CommandBarFlyout.PrimaryCommands>
+                                    <AppBarButton Label="Cut"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Cut">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Cut" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Copy"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Copy">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Copy" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Paste"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Paste">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Paste" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Select All"
+                                                  Command="{Binding ExecuteBasicCommand}"
+                                                  CommandParameter="Select All">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="SelectAll" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                </CommandBarFlyout.PrimaryCommands>
+                            </CommandBarFlyout>
+                        </behaviors:FlyoutButtonBehavior.Flyout>
+                    </Button>
+                </gallery:GalleryDemoSurface>
+                <TextBlock Style="{StaticResource GalleryCaptionText}"
+                           Text="{Binding BasicStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.CommandBarFlyout.CT2}" Description="{DynamicResource Loc.P.CommandBarFlyout.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Button Content="Show Mixed Commands Flyout"
+                            Height="36"
+                            Width="240"
+                            HorizontalAlignment="Left"
+                            Command="{Binding OpenMixedFlyoutCommand}">
+                        <behaviors:FlyoutButtonBehavior.Flyout>
+                            <CommandBarFlyout>
+                                <CommandBarFlyout.PrimaryCommands>
+                                    <AppBarButton Label="Share"
+                                                  Command="{Binding ExecuteMixedCommand}"
+                                                  CommandParameter="Share">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Share" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Favorite"
+                                                  Command="{Binding ExecuteMixedCommand}"
+                                                  CommandParameter="Favorite">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="FavoriteStar" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                </CommandBarFlyout.PrimaryCommands>
+                                <CommandBarFlyout.SecondaryCommands>
+                                    <AppBarButton Label="Rename"
+                                                  Command="{Binding ExecuteMixedCommand}"
+                                                  CommandParameter="Rename">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Rename" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Delete"
+                                                  Command="{Binding ExecuteMixedCommand}"
+                                                  CommandParameter="Delete">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Delete" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                    <AppBarButton Label="Properties"
+                                                  Command="{Binding ExecuteMixedCommand}"
+                                                  CommandParameter="Properties">
+                                        <AppBarButton.Icon><SymbolIcon Symbol="Settings" /></AppBarButton.Icon>
+                                    </AppBarButton>
+                                </CommandBarFlyout.SecondaryCommands>
+                            </CommandBarFlyout>
+                        </behaviors:FlyoutButtonBehavior.Flyout>
+                    </Button>
+                </gallery:GalleryDemoSurface>
+                <TextBlock Style="{StaticResource GalleryCaptionText}"
+                           Text="{Binding MixedStatus}"
+                           Margin="0,12,0,0" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.CommandBarFlyout.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.CommandBarFlyout.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

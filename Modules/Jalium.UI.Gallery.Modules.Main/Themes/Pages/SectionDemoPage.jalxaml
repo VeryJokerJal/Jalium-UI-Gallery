@@ -1,0 +1,202 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SectionDemoPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SectionDemoPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Simulated nav pane -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Width="200" Padding="12">
+                            <StackPanel>
+                                @RenderSection("NavHeader")
+                                @RenderSection("NavItems")
+                                <Border Margin="0,40,0,0">
+                                    @RenderSection("NavFooter")
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <!-- Simulated content area -->
+                        <StackPanel Margin="20,12,20,12" Width="400">
+                            @RenderSection("PageTitle")
+                            @RenderSection("PageContent")
+                        </StackPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SectionDemoPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="behaviors:RazorSectionCleanupBehavior.SectionName" Value="PaneFooterSection" />
+        <Setter Property="Title" Value="Section Demo" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SectionDemoPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    @section PaneFooterSection {
+        <StackPanel Margin="12,8,12,12">
+            <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="10,6">
+                <TextBlock Text="@@RenderSection" FontSize="11" TextAlignment="Center"/>
+            </Border>
+            <TextBlock Text="From SectionDemoPage" FontSize="10" TextAlignment="Center" Margin="0,4,0,0"/>
+        </StackPanel>
+    }
+    @section NavHeader {
+        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="8" Padding="12,8" Margin="0,0,0,4">
+            <TextBlock Text="Jalium.UI" FontSize="16" FontWeight="Bold"/>
+        </Border>
+    }
+    @section NavItems {
+        <StackPanel Margin="0,4,0,4">
+            <TextBlock Text="  Home" FontSize="13" Margin="0,4,0,4"/>
+            <TextBlock Text="  Components" FontSize="13" Margin="0,4,0,4"/>
+            <TextBlock Text="  Settings" FontSize="13" Margin="0,4,0,4"/>
+        </StackPanel>
+    }
+    @section NavFooter {
+        <Border Background="{DynamicResource GalleryAccentSoft}" CornerRadius="8" Padding="10,6">
+            <TextBlock Text="v1.0 - Section Demo" FontSize="11" TextAlignment="Center"/>
+        </Border>
+    }
+    @section PageTitle {
+        <TextBlock Text="Dashboard" FontSize="24" FontWeight="Bold" Margin="0,0,0,8"/>
+    }
+    @section PageContent {
+        <StackPanel>
+            <TextBlock Text="Welcome to the dashboard. This entire layout is built with @@section and @@RenderSection." FontSize="13" Margin="0,0,0,12"/>
+            <Border Background="{DynamicResource GalleryInfoSoft}" CornerRadius="8" Padding="16" Margin="0,0,0,8">
+                <TextBlock Text="Card 1 - Rendered from @@RenderSection" FontSize="13"/>
+            </Border>
+            <Border Background="{DynamicResource GallerySuccessSoft}" CornerRadius="8" Padding="16">
+                <TextBlock Text="Card 2 - Also from a section" FontSize="13"/>
+            </Border>
+        </StackPanel>
+    }
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataAndBinding}" Title="{DynamicResource Loc.P.SectionDemo.Title1}" Description="Define reusable named blocks of markup with @@section, then render them anywhere in the page with @@RenderSection." />
+
+        <!-- Navigation layout built from sections -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SectionDemo.CT1}" Description="A sidebar + content layout built entirely with @@section and @@RenderSection.">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Simulated nav pane -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Width="200" Padding="12">
+                            <StackPanel>
+                                @RenderSection("NavHeader")
+                                @RenderSection("NavItems")
+                                <Border Margin="0,40,0,0">
+                                    @RenderSection("NavFooter")
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <!-- Simulated content area -->
+                        <StackPanel Margin="20,12,20,12" Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}">
+                            @RenderSection("PageTitle")
+                            @RenderSection("PageContent")
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Reuse the same section in several places -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SectionDemo.CT2}" Description="{DynamicResource Loc.P.SectionDemo.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        @RenderSection("NavHeader")
+                        <TextBlock Text="--- separator ---" FontSize="11" Margin="0,8,0,8" TextAlignment="Center"/>
+                        @RenderSection("NavHeader")
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Syntax reference -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SectionDemo.CT3}" Description="The @@section directive declares a named block of markup; @@RenderSection emits it wherever you place the call.">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="@@section NavHeader {" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                        <TextBlock Text='    &lt;Border&gt;...&lt;/Border&gt;' FontSize="12" FontFamily="{ThemeResource MonoFontFamily}" Margin="8,2,0,0"/>
+                        <TextBlock Text="}" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                        <TextBlock Text="" FontSize="6"/>
+                        <TextBlock Text="@@RenderSection(&quot;NavHeader&quot;)" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                        <TextBlock Text="@@RenderSection(&quot;NavFooter&quot;)" FontSize="12" FontFamily="{ThemeResource MonoFontFamily}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.SectionDemo.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.SectionDemo.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

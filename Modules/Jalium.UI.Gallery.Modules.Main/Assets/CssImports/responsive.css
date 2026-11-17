@@ -1,0 +1,4 @@
+@container import-demo (width >= 360px) {
+    .import-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .import-tile { background-color: #2563eb; }
+}

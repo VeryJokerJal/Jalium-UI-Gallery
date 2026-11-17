@@ -1,0 +1,160 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for LineChartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.LineChartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <LineChart Height="300"
+                               Title="Monthly Sales"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="Revenue"
+                                        Brush="#0078D4"
+                                        DataPoints="{Binding MonthlyRevenue}" />
+                        </LineChart.Series>
+                    </LineChart>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:LineChartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="LineChart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:LineChartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.LineChart.Title1}" Description="{DynamicResource Loc.P.LineChart.Sub1}" />
+
+        <!-- Basic line chart -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.LineChart.CT1}" Description="{DynamicResource Loc.P.LineChart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <LineChart Height="300"
+                               Title="Monthly Sales"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="Revenue"
+                                        Brush="#0078D4"
+                                        DataPoints="{Binding MonthlyRevenue}" />
+                        </LineChart.Series>
+                    </LineChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Multiple series -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.LineChart.CT2}" Description="{DynamicResource Loc.P.LineChart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <LineChart Height="350"
+                               Title="Quarterly Performance"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="Product A" Brush="#0078D4" DataPoints="{Binding ProductA}" />
+                            <LineSeries Title="Product B" Brush="#10B981" DataPoints="{Binding ProductB}" />
+                            <LineSeries Title="Product C" Brush="#EF4444" DataPoints="{Binding ProductC}" />
+                        </LineChart.Series>
+                    </LineChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Smoothed line & area -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.LineChart.CT3}" Description="{DynamicResource Loc.P.LineChart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <LineChart Height="300"
+                               Title="CPU Usage Over Time"
+                               IsLegendVisible="True"
+                               ShowDataPoints="True"
+                               LineSmoothing="True"
+                               ShowArea="True"
+                               AreaOpacity="0.3"
+                               IsGridLinesVisible="True">
+                        <LineChart.Series>
+                            <LineSeries Title="CPU %"
+                                        Brush="#8B5CF6"
+                                        DataPoints="{Binding CpuUsage}" />
+                        </LineChart.Series>
+                    </LineChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.LineChart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.LineChart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

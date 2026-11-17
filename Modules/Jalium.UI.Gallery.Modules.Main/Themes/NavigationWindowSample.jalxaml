@@ -1,0 +1,45 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls"
+    xmlns:navigation="clr-namespace:Jalium.UI.Navigation;assembly=Jalium.UI.Controls">
+    <Style TargetType="gallery:NavigationWindowSamplePage">
+        <Setter Property="Title" Value="{DynamicResource Loc.P.NavigationDemo.SampleTitle}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="gallery:NavigationWindowSamplePage">
+                <Grid x:Name="PART_Root">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled"><VisualState.Setters>
+                                <Setter TargetName="PART_Root" Property="Opacity" Value="0.56" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="FocusStates"><VisualState x:Name="Focused" /><VisualState x:Name="Unfocused" /></VisualStateGroup>
+                        <VisualStateGroup x:Name="LayoutStates">
+                            <VisualState x:Name="Wide" />
+                            <VisualState x:Name="Compact"><VisualState.Setters>
+                                <Setter TargetName="PART_PageNumber" Property="FontSize" Value="40" />
+                            </VisualState.Setters></VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <StackPanel Margin="24">
+                        <TextBlock Text="{TemplateBinding Title}" FontSize="24" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryTextPrimary}" TextWrapping="Wrap" Margin="0,0,0,8" />
+                        <TextBlock Text="{DynamicResource Loc.P.NavigationDemo.SampleDescription}" FontSize="14"
+                                   Foreground="{DynamicResource GalleryTextSecondary}" TextWrapping="Wrap" Margin="0,0,0,16" />
+                        <TextBlock x:Name="PART_PageNumber" Text="{Binding NumberText}" FontSize="48" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource GalleryAccentOnSurface}" Margin="0,0,0,20" />
+                        <WrapPanel>
+                            <Button x:Name="PART_NextPageButton" Content="{DynamicResource Loc.P.NavigationDemo.NextPage}"
+                                    Command="{Binding NextPageCommand}" MinHeight="44" Padding="16,8" Margin="0,0,16,8" />
+                            <CheckBox x:Name="PART_ShowNavigation" Content="{DynamicResource Loc.P.NavigationDemo.ShowNavigation}"
+                                      IsChecked="{Binding ShowsNavigationUI, RelativeSource={RelativeSource AncestorType=navigation:NavigationWindow}, Mode=TwoWay}"
+                                      VerticalAlignment="Center" Margin="0,0,0,8" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

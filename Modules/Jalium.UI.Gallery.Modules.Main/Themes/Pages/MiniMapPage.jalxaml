@@ -1,0 +1,239 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for MiniMapPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.MiniMapPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <ScrollViewer x:Name="BasicMiniMapTarget"
+                                      Height="250"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding BasicCells}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel ItemWidth="158" ItemHeight="68" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Width="150"
+                                                Height="60"
+                                                Background="{Binding Background}"
+                                                BorderBrush="#3D3D3D"
+                                                BorderThickness="1"
+                                                CornerRadius="4"
+                                                Margin="4"
+                                                Padding="8">
+                                            <TextBlock Text="{Binding Label}"
+                                                       Foreground="#CCCCCC"
+                                                       FontSize="11" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <MiniMap Target="{Binding ElementName=BasicMiniMapTarget}"
+                                 Width="200"
+                                 Height="150"
+                                 ContentRenderMode="Outline"
+                                 HorizontalAlignment="Right"
+                                 Margin="0,8,0,0" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:MiniMapPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="MiniMap" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:MiniMapPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.MapsAndGeo}" Title="{DynamicResource Loc.P.MiniMap.Title1}" Description="{DynamicResource Loc.P.MiniMap.Sub1}" />
+
+        <!-- Basic MiniMap -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MiniMap.CT1}" Description="{DynamicResource Loc.P.MiniMap.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <ScrollViewer x:Name="BasicMiniMapTarget"
+                                      Height="250"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding BasicCells}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel ItemWidth="158" ItemHeight="68" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Width="150"
+                                                Height="60"
+                                                Background="{Binding Background}"
+                                                BorderBrush="#3D3D3D"
+                                                BorderThickness="1"
+                                                CornerRadius="4"
+                                                Margin="4"
+                                                Padding="8">
+                                            <TextBlock Text="{Binding Label}"
+                                                       Foreground="#CCCCCC"
+                                                       FontSize="11" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <MiniMap Target="{Binding ElementName=BasicMiniMapTarget}"
+                                 Width="200"
+                                 Height="150"
+                                 ContentRenderMode="Outline"
+                                 HorizontalAlignment="Right"
+                                 Margin="0,8,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Map Integration -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MiniMap.CT2}" Description="{DynamicResource Loc.P.MiniMap.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <MapView x:Name="MiniMapMapTarget"
+                                 Height="300"
+                                 Center="33,113"
+                                 ZoomLevel="4"
+                                 ShowZoomControls="True"
+                                 Markers="{Binding Markers}" />
+                        <MiniMap MapViewTarget="{Binding ElementName=MiniMapMapTarget}"
+                                 Width="180"
+                                 Height="120"
+                                 ContentRenderMode="Simplified"
+                                 HorizontalAlignment="Right"
+                                 Margin="0,8,0,0"
+                                 HighlightMarkers="{Binding HighlightMarkers}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Render Modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MiniMap.CT3}" Description="{DynamicResource Loc.P.MiniMap.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <ScrollViewer x:Name="RenderModesTarget"
+                                      Height="180"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding RenderModeCells}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel ItemWidth="126" ItemHeight="46" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Width="120"
+                                                Height="40"
+                                                Background="{Binding Background}"
+                                                BorderBrush="#505050"
+                                                BorderThickness="1"
+                                                CornerRadius="3"
+                                                Margin="3" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                            <StackPanel Orientation="Vertical" Margin="0,0,16,0">
+                                <TextBlock Text="None" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" />
+                                <MiniMap Target="{Binding ElementName=RenderModesTarget}" Width="150" Height="100" ContentRenderMode="None" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,16,0">
+                                <TextBlock Text="Outline" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" />
+                                <MiniMap Target="{Binding ElementName=RenderModesTarget}" Width="150" Height="100" ContentRenderMode="Outline" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Simplified" Foreground="{DynamicResource GalleryTextTertiary}" FontSize="12" Margin="0,0,0,4" />
+                                <MiniMap Target="{Binding ElementName=RenderModesTarget}" Width="150" Height="100" ContentRenderMode="Simplified" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.MiniMap.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.MiniMap.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

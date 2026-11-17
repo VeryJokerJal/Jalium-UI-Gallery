@@ -1,0 +1,141 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GroupBoxPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GroupBoxPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <GroupBox Header="{DynamicResource Loc.P.GroupBox.Demo1}" Width="250" Margin="0,0,10,10">
+                            <StackPanel Orientation="Vertical" Margin="8">
+                                <TextBlock Text="Name:" Margin="0,0,0,4" />
+                                <TextBox Margin="0,0,0,8" />
+                                <TextBlock Text="Email:" Margin="0,0,0,4" />
+                                <TextBox />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Preferences" Width="250" Margin="0,0,10,10">
+                            <StackPanel Orientation="Vertical" Margin="8">
+                                <CheckBox Content="{DynamicResource Loc.P.GroupBox.Demo2}" Margin="0,0,0,8"/>
+                                <CheckBox Content="{DynamicResource Loc.P.GroupBox.Demo3}" Margin="0,0,0,8"/>
+                                <CheckBox Content="{DynamicResource Loc.P.GroupBox.Demo4}"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GroupBoxPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GroupBoxPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.GroupBox.Title1}" Description="{DynamicResource Loc.P.GroupBox.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.GroupBox.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <GroupBox Header="{DynamicResource Loc.P.GroupBox.Demo1}" Width="250" Margin="0,0,10,10">
+                            <StackPanel Orientation="Vertical" Margin="8">
+                                <TextBlock Text="Name:" Margin="0,0,0,4" />
+                                <TextBox Margin="0,0,0,8" />
+                                <TextBlock Text="Email:" Margin="0,0,0,4" />
+                                <TextBox />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Preferences" Width="250" Margin="0,0,10,10">
+                            <StackPanel Orientation="Vertical" Margin="8">
+                                <CheckBox Content="{DynamicResource Loc.P.GroupBox.Demo2}" Margin="0,0,0,8"/>
+                                <CheckBox Content="{DynamicResource Loc.P.GroupBox.Demo3}" Margin="0,0,0,8"/>
+                                <CheckBox Content="{DynamicResource Loc.P.GroupBox.Demo4}"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Features}" Description="{DynamicResource Loc.P.GroupBox.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.GroupBox.Body1}" />
+                <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.GroupBox.Body2}" />
+                <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.GroupBox.Body3}" />
+                <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.GroupBox.Body4}" />
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.GroupBox.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.GroupBox.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

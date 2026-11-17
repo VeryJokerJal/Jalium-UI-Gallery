@@ -1,0 +1,213 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SplitButtonPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SplitButtonPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <SplitButton x:Name="RunSplitButton"
+                                     Content="Run"
+                                     Width="180"
+                                     Height="36"
+                                     Command="{Binding RunCommand}">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Jalium.UI.Controls"
+                                                    Command="{Binding SelectTargetCommand}"
+                                                    CommandParameter="Jalium.UI.Controls"/>
+                                    <MenuFlyoutItem Text="Jalium.UI.Core"
+                                                    Command="{Binding SelectTargetCommand}"
+                                                    CommandParameter="Jalium.UI.Core"/>
+                                    <MenuFlyoutItem Text="Jalium.UI.Xaml"
+                                                    Command="{Binding SelectTargetCommand}"
+                                                    CommandParameter="Jalium.UI.Xaml"/>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+
+                        <WrapPanel Margin="0,12,0,0">
+                            <Border Style="{StaticResource GalleryBadge}" Margin="0,0,8,0">
+                                <TextBlock x:Name="RunStatusText"
+                                           Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding RunStatusText}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryChip}">
+                                <TextBlock Style="{StaticResource GalleryChipText}"
+                                           Text="{Binding RunCountBadgeText}" />
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SplitButtonPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="SplitButton" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SplitButtonPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.SplitButton.Title1}" Description="{DynamicResource Loc.P.SplitButton.Sub1}" />
+
+        <!-- Basic SplitButton -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SplitButton.CT1}" Description="{DynamicResource Loc.P.SplitButton.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <SplitButton x:Name="RunSplitButton"
+                                     Content="Run"
+                                     Width="180"
+                                     Height="36"
+                                     Command="{Binding RunCommand}">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Jalium.UI.Controls"
+                                                    Command="{Binding SelectTargetCommand}"
+                                                    CommandParameter="Jalium.UI.Controls"/>
+                                    <MenuFlyoutItem Text="Jalium.UI.Core"
+                                                    Command="{Binding SelectTargetCommand}"
+                                                    CommandParameter="Jalium.UI.Core"/>
+                                    <MenuFlyoutItem Text="Jalium.UI.Xaml"
+                                                    Command="{Binding SelectTargetCommand}"
+                                                    CommandParameter="Jalium.UI.Xaml"/>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+
+                        <WrapPanel Margin="0,12,0,0">
+                            <Border Style="{StaticResource GalleryBadge}" Margin="0,0,8,0">
+                                <TextBlock x:Name="RunStatusText"
+                                           Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding RunStatusText}" />
+                            </Border>
+                            <Border Style="{StaticResource GalleryChip}">
+                                <TextBlock Style="{StaticResource GalleryChipText}"
+                                           Text="{Binding RunCountBadgeText}" />
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Command + Flyout -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.SplitButton.CT2}" Description="{DynamicResource Loc.P.SplitButton.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <SplitButton x:Name="BuildSplitButton"
+                                     Content="Build"
+                                     Width="180"
+                                     Height="36"
+                                     Command="{Binding BuildCommand}"
+                                     behaviors:SplitButtonFlyoutBehavior.IsOpen="{Binding IsBuildFlyoutOpen, Mode=TwoWay}"
+                                     Margin="0,0,0,12">
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Build Debug"
+                                                    Command="{Binding SelectBuildCommand}"
+                                                    CommandParameter="Build Debug"/>
+                                    <MenuFlyoutItem Text="Build Release"
+                                                    Command="{Binding SelectBuildCommand}"
+                                                    CommandParameter="Build Release"/>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+
+                        <WrapPanel>
+                            <Button Content="Open Flyout"
+                                    Command="{Binding OpenBuildFlyoutCommand}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"/>
+                            <Button Content="Close Flyout"
+                                    Command="{Binding CloseBuildFlyoutCommand}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"/>
+                        </WrapPanel>
+
+                        <Border Style="{StaticResource GalleryBadge}" HorizontalAlignment="Left">
+                            <WrapPanel>
+                                <Border Style="{StaticResource GalleryFeatureDot}" Margin="0,0,7,0" />
+                                <TextBlock x:Name="BuildStatusText"
+                                           Style="{StaticResource GalleryBadgeText}"
+                                           Text="{Binding BuildStatusText}" />
+                            </WrapPanel>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.SplitButton.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.SplitButton.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

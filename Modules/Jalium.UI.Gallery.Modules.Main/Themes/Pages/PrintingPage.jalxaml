@@ -1,0 +1,170 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for PrintingPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.PrintingPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="ShowPrintDialogButton" Content="Show Print Dialog" Command="{Binding ShowPrintDialogCommand}" Width="150" Margin="0,0,10,10" />
+                            <Button x:Name="PrintVisualButton" Content="Print Visual" Command="{Binding PrintVisualCommand}" Width="120" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="PrintStatus"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding PrintStatus}"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:PrintingPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Printing System" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:PrintingPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.System}" Title="{DynamicResource Loc.P.Printing.Title1}" Description="{DynamicResource Loc.P.Printing.Sub1}" />
+
+        <!-- PrintDialog -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Printing.CT1}" Description="{DynamicResource Loc.P.Printing.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="ShowPrintDialogButton" Content="Show Print Dialog" Command="{Binding ShowPrintDialogCommand}" Width="150" Margin="0,0,10,10" />
+                            <Button x:Name="PrintVisualButton" Content="Print Visual" Command="{Binding PrintVisualCommand}" Width="120" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <TextBlock x:Name="PrintStatus"
+                                   Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding PrintStatus}"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- PrintQueue -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Printing.CT2}" Description="{DynamicResource Loc.P.Printing.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Button x:Name="ListPrintersButton"
+                                Content="List Available Printers"
+                                Command="{Binding ListPrintersCommand}"
+                                Width="180"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,12" />
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="150">
+                            <TextBlock x:Name="PrinterList"
+                                       Text="{Binding PrinterList}"
+                                       FontFamily="{ThemeResource MonoFontFamily}"
+                                       FontSize="12" />
+                        </ScrollViewer>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- PrintCapabilities -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Printing.CT3}" Description="{DynamicResource Loc.P.Printing.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.Printing.Val1}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body1}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body2}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body3}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body4}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.Printing.Body5}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- DocumentPaginator -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Printing.CT4}" Description="{DynamicResource Loc.P.Printing.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="// Print a document" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="var paginator = document.DocumentPaginator;" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="paginator.PageSize = new Size(816, 1056);" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="printDialog.PrintDocument(paginator, &quot;My Doc&quot;);" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Printing.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Printing.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

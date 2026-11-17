@@ -1,0 +1,188 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:effects="clr-namespace:Jalium.UI.Media.Effects;assembly=Jalium.UI.Media"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ShaderEffectsPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ShaderEffectsPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui3}" Margin="0,0,0,8" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="BlurRadiusSlider" Width="200" Minimum="0" Maximum="50" SmallChange="1" LargeChange="5"
+                                        Value="{Binding BlurRadius, Mode=TwoWay}"
+                                        automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui3}" />
+                                <TextBlock Text="{Binding BlurRadius, StringFormat='{}{0:F0}'}"
+                                           Margin="8,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <CheckBox x:Name="BoxBlurCheckBox" IsChecked="{Binding UseBoxBlur, Mode=TwoWay}" Margin="0,0,0,8" HorizontalAlignment="Left"
+                                  Content="{DynamicResource Loc.P.ShaderEffects.Ui7}"
+                                  automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui7}" />
+
+                        <Border x:Name="BlurPreview" behaviors:ShaderEffectBehavior.BlurRadius="{Binding BlurRadius}" behaviors:ShaderEffectBehavior.UseBoxBlur="{Binding UseBoxBlur}" Background="{DynamicResource GalleryEffectStage}" Width="200" Height="100" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Left">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui5}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ShaderEffectsPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Shader Effects" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ShaderEffectsPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Effects}" Title="{DynamicResource Loc.P.ShaderEffects.Title1}" Description="{DynamicResource Loc.P.ShaderEffects.Sub1}" />
+
+        <!-- BlurEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShaderEffects.CT1}" Description="{DynamicResource Loc.P.ShaderEffects.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui3}" Margin="0,0,0,8" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="BlurRadiusSlider" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="50" SmallChange="1" LargeChange="5"
+                                        Value="{Binding BlurRadius, Mode=TwoWay}"
+                                        automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui3}" />
+                                <TextBlock Text="{Binding BlurRadius, StringFormat='{}{0:F0}'}"
+                                           Margin="8,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <CheckBox x:Name="BoxBlurCheckBox" IsChecked="{Binding UseBoxBlur, Mode=TwoWay}" Margin="0,0,0,8" HorizontalAlignment="Left"
+                                  Content="{DynamicResource Loc.P.ShaderEffects.Ui7}"
+                                  automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui7}" />
+
+                        <Border x:Name="BlurPreview" behaviors:ShaderEffectBehavior.BlurRadius="{Binding BlurRadius}" behaviors:ShaderEffectBehavior.UseBoxBlur="{Binding UseBoxBlur}" Background="{DynamicResource GalleryEffectStage}" Width="200" Height="100" CornerRadius="8" Margin="0,8,0,0" HorizontalAlignment="Left">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui5}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- DropShadowEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShaderEffects.CT2}" Description="{DynamicResource Loc.P.ShaderEffects.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui4}" Margin="0,0,0,8" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="ShadowDepthSlider" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Minimum="0" Maximum="30" SmallChange="1" LargeChange="5"
+                                        Value="{Binding ShadowDepth, Mode=TwoWay}"
+                                        automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui4}" />
+                                <TextBlock Text="{Binding ShadowDepth, StringFormat='{}{0:F0}'}"
+                                           Margin="8,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Border x:Name="ShadowPreview" behaviors:ShaderEffectBehavior.ShadowDepth="{Binding ShadowDepth}" Background="{DynamicResource GalleryAccent}" Width="150" Height="80" CornerRadius="14" Margin="20,16,0,0" HorizontalAlignment="Left">
+                            <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui6}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Custom ShaderEffect -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShaderEffects.CT3}" Description="{DynamicResource Loc.P.ShaderEffects.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui1}" Margin="0,0,0,8" />
+                        <Slider x:Name="InvertAmountSlider"
+                                Minimum="0" Maximum="1" Value="{Binding InvertAmount, Mode=TwoWay}" SmallChange="0.05" LargeChange="0.25"
+                                Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" HorizontalAlignment="Left"
+                                automation:AutomationProperties.Name="{DynamicResource Loc.P.ShaderEffects.Ui1}" />
+                        <Border x:Name="HlslPreview" behaviors:ShaderEffectBehavior.InvertAmount="{Binding InvertAmount}" Background="{DynamicResource GalleryEffectStage}" Width="200" Height="100"
+                                CornerRadius="8" Margin="0,16,0,0" HorizontalAlignment="Left">
+                            <Grid>
+                                <Border Background="{DynamicResource GalleryAccent}" Width="60" Height="60"
+                                        CornerRadius="16" HorizontalAlignment="Left" Margin="16,0,0,0" />
+                                <TextBlock Text="{DynamicResource Loc.P.ShaderEffects.Ui2}" Foreground="White"
+                                           Margin="88,0,12,0" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ShaderEffects.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ShaderEffects.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,219 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for SplitterPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.SplitterPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="100"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" MinWidth="100"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="{DynamicResource GalleryCardAltBackground}" Padding="16">
+                            <TextBlock Text="Left Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <GridSplitter Grid.Column="1" Width="6" ResizeBehavior="PreviousAndNext"/>
+
+                        <Border Grid.Column="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
+                            <TextBlock Text="Right Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:SplitterPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Splitter" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:SplitterPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.Splitter.Title1}" Description="{DynamicResource Loc.P.Splitter.Sub1}" />
+
+        <!-- Horizontal splitter -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Splitter.CT1}" Description="{DynamicResource Loc.P.Splitter.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  Height="200" Padding="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="100"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" MinWidth="100"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="{DynamicResource GalleryCardAltBackground}" Padding="16">
+                            <TextBlock Text="Left Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <GridSplitter Grid.Column="1" Width="6" ResizeBehavior="PreviousAndNext"/>
+
+                        <Border Grid.Column="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
+                            <TextBlock Text="Right Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Vertical splitter -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Splitter.CT2}" Description="{DynamicResource Loc.P.Splitter.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  Height="250" Padding="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" MinHeight="50"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" MinHeight="50"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="{DynamicResource GalleryCardAltBackground}" Padding="16">
+                            <TextBlock Text="Top Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <GridSplitter Grid.Row="1" Height="6" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
+
+                        <Border Grid.Row="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
+                            <TextBlock Text="Bottom Panel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Multi-panel layout -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Splitter.CT3}" Description="{DynamicResource Loc.P.Splitter.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  Height="300" Padding="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" MinWidth="100"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Left sidebar -->
+                        <Border Grid.Column="0" Background="{DynamicResource GalleryAccentSoft}" Padding="12">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Sidebar" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                                <gallery:GalleryFeatureItem Text="Overview" FontSize="12" Padding="8,5" Margin="0,0,0,4" MarkerMargin="0,0,8,0" />
+                                <gallery:GalleryFeatureItem Text="Components" FontSize="12" Padding="8,5" Margin="0,0,0,4" MarkerMargin="0,0,8,0" />
+                                <gallery:GalleryFeatureItem Text="Tokens" FontSize="12" Padding="8,5" Margin="0,0,0,4" MarkerMargin="0,0,8,0" />
+                                <gallery:GalleryFeatureItem Text="Settings" FontSize="12" Padding="8,5" Margin="0" MarkerMargin="0,0,8,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <GridSplitter Grid.Column="1" Width="6"/>
+
+                        <!-- Right section with vertical split -->
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" MinHeight="80"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*" MinHeight="60"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Background="{DynamicResource GalleryCardAltBackground}" Padding="16">
+                                <TextBlock Text="Main Content Area" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <GridSplitter Grid.Row="1" Height="6" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
+
+                            <Border Grid.Row="2" Background="{DynamicResource GalleryAccentSoft}" Padding="16">
+                                <TextBlock Text="Output / Console" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common use cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases}" Description="{DynamicResource Loc.P.Splitter.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Splitter.Use1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Splitter.Use2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Splitter.Use3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Splitter.Use4}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.Splitter.Use5}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Splitter.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Splitter.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

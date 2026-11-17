@@ -1,0 +1,275 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for MarkdownPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.MarkdownPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd1}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="Docs"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd2}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="ReleaseNotes"/>
+                            <Button Content="Checklist"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="Checklist"/>
+                        </WrapPanel>
+
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding PreviewStatus}"
+                                   Margin="0,2,0,14"/>
+
+                        <Markdown
+                                  Height="360"
+                                  BaseUri="https://jalium.dev/docs/"
+                                  Text="{Binding InteractiveText}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:MarkdownPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Markdown" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:MarkdownPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.TextAndTypography}" Title="{DynamicResource Loc.P.Markdown.Title1}" Description="{DynamicResource Loc.P.Markdown.Sub1}" />
+
+        <!-- Interactive preview -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Markdown.CT1}" Description="{DynamicResource Loc.P.Markdown.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd1}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="Docs"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd2}"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="ReleaseNotes"/>
+                            <Button Content="Checklist"
+                                    Width="110"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectSampleCommand}"
+                                    CommandParameter="Checklist"/>
+                        </WrapPanel>
+
+                        <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding PreviewStatus}"
+                                   Margin="0,2,0,14"/>
+
+                        <Markdown
+                                  Height="360"
+                                  BaseUri="https://jalium.dev/docs/"
+                                  Text="{Binding InteractiveText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Live editor -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.LiveEditor}" Description="{DynamicResource Loc.P.Markdown.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{DynamicResource Loc.P.Markdown.Cap1}"
+                                       Margin="0,0,0,6"/>
+                            <TextBox x:Name="MarkdownInput"
+                                     AcceptsReturn="True"
+                                     Height="360"
+                                     FontFamily="{ThemeResource MonoFontFamily}"
+                                     FontSize="13"
+                                     Text="{Binding LiveText, Mode=TwoWay}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{DynamicResource Loc.P.Markdown.Cap2}"
+                                       Margin="0,0,0,6"/>
+                            <Markdown Height="360"
+                                      Text="{Binding LiveText}" />
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Custom styling -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Markdown.CT2}" Description="{DynamicResource Loc.P.Markdown.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Markdown Height="280"
+                              LinkForeground="#7DD3FC"
+                              InlineCodeForeground="#E2E8F0"
+                              InlineCodeBackground="#162133"
+                              Text="{Binding StyledText}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Mermaid diagrams -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Markdown.CT3}" Description="{DynamicResource Loc.P.Markdown.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Markdown Height="520"
+                              Text="{Binding MermaidText}"/>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Markdown properties -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Markdown.CT4}" Description="{DynamicResource Loc.P.Markdown.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Markdown.Body1}"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Markdown.Body2}"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Markdown.Body3}"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Style="{StaticResource GalleryBodyText}"
+                                   Text="{DynamicResource Loc.P.Markdown.Body4}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Selection and copy -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Markdown.CT5}" Description="{DynamicResource Loc.P.Markdown.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <Markdown Height="240"
+                                  Text="{Binding CopyDemoText}"
+                                  behaviors:MarkdownBehavior.Request="{Binding CopyRequest}"/>
+
+                        <WrapPanel Margin="0,12,0,0">
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd3}"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding CopyPlainTextCommand}"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd4}"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding CopyMarkdownCommand}"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd5}"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding CopyRichTextCommand}"/>
+                            <Button Content="{DynamicResource Loc.P.Markdown.Cmd6}"
+                                    Height="32"
+                                    Margin="0,0,10,10"
+                                    Command="{Binding SelectAllCommand}"/>
+                        </WrapPanel>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding CopyStatus}"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Markdown.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Markdown.CC8}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,173 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for AutoCompleteBoxPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.AutoCompleteBoxPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Cap1}"
+                                   Margin="0,0,0,8" />
+                        <AutoCompleteBox x:Name="DemoAutoComplete"
+                                         ItemsSource="{Binding Languages}"
+                                         Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                                         FilterMode="Contains"
+                                         MinimumPrefixLength="1"
+                                         MaxWidth="300"
+                                         PlaceholderText="{DynamicResource Loc.P.AutoCompleteBox.Search}"
+                                         Margin="0,0,0,16"
+                                         HorizontalAlignment="Stretch" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{DynamicResource Loc.P.AutoCompleteBox.Selected}"
+                                       VerticalAlignment="Center" />
+                            <TextBlock x:Name="SelectedItemText"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding SelectedLanguageText}" />
+                        </StackPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:AutoCompleteBoxPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="AutoCompleteBox" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:AutoCompleteBoxPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.BasicInput}" Title="{DynamicResource Loc.P.AutoCompleteBox.Title1}" Description="{DynamicResource Loc.P.AutoCompleteBox.Sub1}" />
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo}" Description="{DynamicResource Loc.P.AutoCompleteBox.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.AutoCompleteBox.Cap1}"
+                                   Margin="0,0,0,8" />
+                        <AutoCompleteBox x:Name="DemoAutoComplete"
+                                         ItemsSource="{Binding Languages}"
+                                         Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                                         FilterMode="Contains"
+                                         MinimumPrefixLength="1"
+                                         MaxWidth="300"
+                                         PlaceholderText="{DynamicResource Loc.P.AutoCompleteBox.Search}"
+                                         Margin="0,0,0,16"
+                                         HorizontalAlignment="Stretch" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                       Text="{DynamicResource Loc.P.AutoCompleteBox.Selected}"
+                                       VerticalAlignment="Center" />
+                            <TextBlock x:Name="SelectedItemText"
+                                       Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding SelectedLanguageText}" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Filter modes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.AutoCompleteBox.CT1}" Description="{DynamicResource Loc.P.AutoCompleteBox.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body4}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Features}" Description="{DynamicResource Loc.P.AutoCompleteBox.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body5}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body6}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body7}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body8}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body9}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.AutoCompleteBox.Body10}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.AutoCompleteBox.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.AutoCompleteBox.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

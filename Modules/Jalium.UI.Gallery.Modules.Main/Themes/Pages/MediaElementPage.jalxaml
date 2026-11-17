@@ -1,0 +1,231 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for MediaElementPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.MediaElementPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,4">
+                            <TextBlock Text="{DynamicResource Loc.P.MediaElement.Ui1}" VerticalAlignment="Center" Width="80" Margin="0,0,10,10" />
+                            <TextBox Width="320"
+                                     Height="28"
+                                     Margin="0,0,10,10"
+                                     Text="{Binding VideoPath, Mode=TwoWay}"
+                                     behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding LoadVideoCommand}"
+                                     ToolTip="{DynamicResource Loc.P.MediaElement.Ui2}" />
+                            <Button Content="Browse..." Command="{Binding BrowseVideoCommand}" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Load" Command="{Binding LoadVideoCommand}" Width="60" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <Border Background="{DynamicResource GalleryMediaMat}" Width="480" Height="270" CornerRadius="8" Margin="0,0,0,16">
+                            <MediaElement Width="480" Height="270" Volume="{Binding Volume}" SpeedRatio="{Binding SpeedRatio}" IsMuted="{Binding IsMuted}" Source="{x:Null}" LoadedBehavior="Manual" />
+                        </Border>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button Content="Play" Command="{Binding PlayVideoCommand}" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Pause" Command="{Binding PauseVideoCommand}" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Stop" Command="{Binding StopVideoCommand}" Width="70" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:MediaElementPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="MediaElement" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:MediaElementPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Media}" Title="{DynamicResource Loc.P.MediaElement.Title1}" Description="{DynamicResource Loc.P.MediaElement.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MediaElement.CT1}" Description="{DynamicResource Loc.P.MediaElement.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,4">
+                            <TextBlock Text="{DynamicResource Loc.P.MediaElement.Ui1}" VerticalAlignment="Center" Width="80" Margin="0,0,10,10" />
+                            <TextBox Width="320" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="28"
+                                     Margin="0,0,10,10"
+                                     Text="{Binding VideoPath, Mode=TwoWay}"
+                                     behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding LoadVideoCommand}"
+                                     ToolTip="{DynamicResource Loc.P.MediaElement.Ui2}" />
+                            <Button Content="Browse..." Command="{Binding BrowseVideoCommand}" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Load" Command="{Binding LoadVideoCommand}" Width="60" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <Border Background="{DynamicResource GalleryMediaMat}" Width="480" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="270" CornerRadius="8" Margin="0,0,0,16">
+                            <MediaElement Width="480" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                          Height="270"
+                                          Source="{Binding VideoSource}"
+                                          Volume="{Binding Volume}"
+                                          SpeedRatio="{Binding SpeedRatio}"
+                                          IsMuted="{Binding IsMuted}"
+                                          behaviors:MediaElementBehavior.IsLooping="{Binding IsLooping}"
+                                          behaviors:MediaElementBehavior.Request="{Binding VideoRequest}" />
+                        </Border>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button Content="Play" Command="{Binding PlayVideoCommand}" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Pause" Command="{Binding PauseVideoCommand}" Width="70" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Stop" Command="{Binding StopVideoCommand}" Width="70" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MediaElement.CT2}" Description="{DynamicResource Loc.P.MediaElement.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,4">
+                            <TextBlock Text="{DynamicResource Loc.P.MediaElement.Ui3}" VerticalAlignment="Center" Width="80" Margin="0,0,10,10" />
+                            <TextBox Width="320" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="28"
+                                     Margin="0,0,10,10"
+                                     Text="{Binding AudioPath, Mode=TwoWay}"
+                                     behaviors:SearchBoxCommandBehavior.SubmitCommand="{Binding LoadAudioCommand}"
+                                     ToolTip="{DynamicResource Loc.P.MediaElement.Ui4}" />
+                            <Button Content="Browse..." Command="{Binding BrowseAudioCommand}" Width="80" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Load" Command="{Binding LoadAudioCommand}" Width="60" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" CornerRadius="14" Padding="24" Margin="0,0,0,16">
+                            <StackPanel HorizontalAlignment="Center">
+                                <Ellipse Width="80" Height="80" Fill="{DynamicResource GalleryAccent}" Margin="0,0,0,16" />
+                                <TextBlock Text="{Binding AudioTitle}" FontSize="16" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding AudioArtist}" FontSize="12" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                        <MediaElement Width="0"
+                                      Height="0"
+                                      Source="{Binding AudioSource}"
+                                      Volume="{Binding Volume}"
+                                      SpeedRatio="{Binding SpeedRatio}"
+                                      IsMuted="{Binding IsMuted}"
+                                      behaviors:MediaElementBehavior.IsLooping="{Binding IsLooping}"
+                                      behaviors:MediaElementBehavior.TrackProgress="True"
+                                      behaviors:MediaElementBehavior.Progress="{Binding AudioProgress, Mode=TwoWay}"
+                                      behaviors:MediaElementBehavior.Request="{Binding AudioRequest}" />
+                        <Slider Minimum="0"
+                                Maximum="100"
+                                Value="{Binding AudioProgress, Mode=TwoWay}"
+                                Margin="0,0,0,16" />
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button Content="Play" Command="{Binding PlayAudioCommand}" Width="55" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Pause" Command="{Binding PauseAudioCommand}" Width="60" Height="28" Margin="0,0,10,10" />
+                            <Button Content="Stop" Command="{Binding StopAudioCommand}" Width="55" Height="28" Margin="0,0,10,10" />
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MediaElement.CT3}" Description="{DynamicResource Loc.P.MediaElement.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Volume:" Width="100" VerticalAlignment="Center" />
+                            <Slider Minimum="0"
+                                    Maximum="100"
+                                    Value="{Binding VolumePercent, Mode=TwoWay}"
+                                    Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    Margin="0,0,8,0" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding VolumePercent, StringFormat='{}{0:F0}%'}" />
+                        </WrapPanel>
+                        <WrapPanel Margin="0,0,0,12">
+                            <TextBlock Text="Speed:" Width="100" VerticalAlignment="Center" />
+                            <ComboBox Width="120"
+                                      Height="28"
+                                      ItemsSource="{Binding SpeedOptions}"
+                                      SelectedItem="{Binding SpeedRatio, Mode=TwoWay}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <CheckBox Content="Loop" IsChecked="{Binding IsLooping, Mode=TwoWay}" Margin="0,0,10,10" />
+                            <CheckBox Content="Mute" IsChecked="{Binding IsMuted, Mode=TwoWay}" Margin="0,0,10,10" />
+                            <CheckBox Content="Auto-play" IsChecked="{Binding IsAutoPlayEnabled, Mode=TwoWay}" Margin="0,0,10,10" />
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.MediaElement.CT4}" Description="{DynamicResource Loc.P.MediaElement.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <TextBlock Text="{DynamicResource Loc.P.MediaElement.Body1}"
+                                   Style="{StaticResource GalleryBodyText}"
+                                   Margin="0,0,48,12" />
+                        <TextBlock Text="{DynamicResource Loc.P.MediaElement.Body2}"
+                                   Style="{StaticResource GalleryBodyText}" />
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.MediaElement.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.MediaElement.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

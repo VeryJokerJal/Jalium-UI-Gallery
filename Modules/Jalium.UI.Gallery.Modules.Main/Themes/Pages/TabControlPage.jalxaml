@@ -1,0 +1,131 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TabControlPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TabControlPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <TabControl MaxWidth="400" HorizontalAlignment="Stretch" Height="200">
+                        <TabItem Header="Home"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body1}" Margin="16" /></TabItem>
+                        <TabItem Header="Profile"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body2}" Margin="16" /></TabItem>
+                        <TabItem Header="Settings"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body3}" Margin="16" /></TabItem>
+                    </TabControl>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TabControlPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="TabControl" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TabControlPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Navigation}" Title="{DynamicResource Loc.P.TabControl.Title1}" Description="{DynamicResource Loc.P.TabControl.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TabControl.CT1}" Description="{DynamicResource Loc.P.TabControl.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TabControl MaxWidth="400" HorizontalAlignment="Stretch" Height="200">
+                        <TabItem Header="Home"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body1}" Margin="16" /></TabItem>
+                        <TabItem Header="Profile"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body2}" Margin="16" /></TabItem>
+                        <TabItem Header="Settings"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body3}" Margin="16" /></TabItem>
+                    </TabControl>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TabControl.CT2}" Description="{DynamicResource Loc.P.TabControl.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TabControl MaxWidth="400" HorizontalAlignment="Stretch" Height="200" TabStripPlacement="Bottom">
+                        <TabItem Header="Tab 1"><TextBlock Text="Content for Tab 1" Margin="16" /></TabItem>
+                        <TabItem Header="Tab 2"><TextBlock Text="Content for Tab 2" Margin="16" /></TabItem>
+                    </TabControl>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.BoundSelection}" Description="{DynamicResource Loc.P.TabControl.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{Binding SelectedTabStatus}" Margin="0,0,0,8" />
+                        <TabControl MaxWidth="400" HorizontalAlignment="Stretch" Height="150" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                            <TabItem Header="Home"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body4}" Margin="16" /></TabItem>
+                            <TabItem Header="Documents"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body5}" Margin="16" /></TabItem>
+                            <TabItem Header="Downloads"><TextBlock Text="{DynamicResource Loc.P.TabControl.Body6}" Margin="16" /></TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.TabControl.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.TabControl.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

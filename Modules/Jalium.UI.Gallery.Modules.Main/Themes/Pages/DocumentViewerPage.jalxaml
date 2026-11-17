@@ -1,0 +1,301 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for DocumentViewerPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.DocumentViewerPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <!-- Toolbar -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8">
+                            <WrapPanel>
+                                <Button Command="{Binding PreviewState.FirstPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="First page"
+                                        automation:AutomationProperties.Name="First page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Previous" />
+                                </Button>
+                                <Button Command="{Binding PreviewState.PreviousPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Previous page"
+                                        automation:AutomationProperties.Name="Previous page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="PageLeft" />
+                                </Button>
+                                <TextBlock Text="{Binding PreviewState.PageInfo}" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                                <Button Command="{Binding PreviewState.NextPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Next page"
+                                        automation:AutomationProperties.Name="Next page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="PageRight" />
+                                </Button>
+                                <Button Command="{Binding PreviewState.LastPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Last page"
+                                        automation:AutomationProperties.Name="Last page"
+                                        Margin="0,0,16,8">
+                                    <SymbolIcon Symbol="Next" />
+                                </Button>
+
+                                <Button Command="{Binding PreviewState.ZoomOutCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Zoom out"
+                                        automation:AutomationProperties.Name="Zoom out"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="ZoomOut" />
+                                </Button>
+                                <TextBlock Text="{Binding PreviewState.Zoom, StringFormat='{}{0:F0}%'}" VerticalAlignment="Center" Width="52" TextAlignment="Center" Margin="0,0,8,8"/>
+                                <Button Command="{Binding PreviewState.ZoomInCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Zoom in"
+                                        automation:AutomationProperties.Name="Zoom in"
+                                        Margin="0,0,16,8">
+                                    <SymbolIcon Symbol="ZoomIn" />
+                                </Button>
+
+                                <Button Content="{DynamicResource Loc.P.DocumentViewer.Ui1}" Command="{Binding PreviewState.FitWidthCommand}" MinWidth="96" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.DocumentViewer.Ui2}" Command="{Binding PreviewState.FitPageCommand}" MinWidth="96" Height="24" FontSize="11" Margin="0,0,10,10"/>
+
+                                <Button Command="{Binding PreviewState.PrintCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Print"
+                                        automation:AutomationProperties.Name="Print"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Print" />
+                                </Button>
+                            </WrapPanel>
+                        </Border>
+
+                        <!-- DocumentViewer -->
+                        <DocumentViewer x:Name="DemoViewer" Document="{Binding PreviewState.SampleDocument}"
+                                        Height="400"
+                                        Zoom="{Binding PreviewState.Zoom, Mode=TwoWay}"
+                                        FitMode="FitWidth"
+                                        PageDisplay="{Binding PreviewState.PageDisplay, Mode=TwoWay}"
+                                        ShowPageBorders="{Binding PreviewState.ShowPageBorders}"
+                                        HorizontalPageSpacing="{Binding PreviewState.PageSpacing}"
+                                        VerticalPageSpacing="{Binding PreviewState.PageSpacing}"
+                                        behaviors:DocumentViewerBehavior.IsEnabled="True"
+                                        behaviors:DocumentViewerBehavior.StateSink="{Binding PreviewState}"
+                                        behaviors:DocumentViewerBehavior.Request="{Binding PreviewState.ViewerRequest}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:DocumentViewerPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="DocumentViewer" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:DocumentViewerPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataViewers}" Title="{DynamicResource Loc.P.DocumentViewer.Title1}" Description="{DynamicResource Loc.P.DocumentViewer.Sub1}" />
+
+        <!-- Live demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DocumentViewer.CT1}" Description="{DynamicResource Loc.P.DocumentViewer.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface  ClipToBounds="True" Padding="0">
+                    <StackPanel Orientation="Vertical">
+                        <!-- Toolbar -->
+                        <Border Background="{DynamicResource GalleryCardAltBackground}" Padding="8">
+                            <WrapPanel>
+                                <Button Command="{Binding FirstPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="First page"
+                                        automation:AutomationProperties.Name="First page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Previous" />
+                                </Button>
+                                <Button Command="{Binding PreviousPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Previous page"
+                                        automation:AutomationProperties.Name="Previous page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="PageLeft" />
+                                </Button>
+                                <TextBlock Text="{Binding PageInfo}" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                                <Button Command="{Binding NextPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Next page"
+                                        automation:AutomationProperties.Name="Next page"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="PageRight" />
+                                </Button>
+                                <Button Command="{Binding LastPageCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Last page"
+                                        automation:AutomationProperties.Name="Last page"
+                                        Margin="0,0,16,8">
+                                    <SymbolIcon Symbol="Next" />
+                                </Button>
+
+                                <Button Command="{Binding ZoomOutCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Zoom out"
+                                        automation:AutomationProperties.Name="Zoom out"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="ZoomOut" />
+                                </Button>
+                                <TextBlock Text="{Binding Zoom, StringFormat='{}{0:F0}%'}" VerticalAlignment="Center" Width="52" TextAlignment="Center" Margin="0,0,8,8"/>
+                                <Button Command="{Binding ZoomInCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Zoom in"
+                                        automation:AutomationProperties.Name="Zoom in"
+                                        Margin="0,0,16,8">
+                                    <SymbolIcon Symbol="ZoomIn" />
+                                </Button>
+
+                                <Button Content="{DynamicResource Loc.P.DocumentViewer.Ui1}" Command="{Binding FitWidthCommand}" MinWidth="96" Height="24" FontSize="11" Margin="0,0,10,10"/>
+                                <Button Content="{DynamicResource Loc.P.DocumentViewer.Ui2}" Command="{Binding FitPageCommand}" MinWidth="96" Height="24" FontSize="11" Margin="0,0,10,10"/>
+
+                                <Button Command="{Binding PrintCommand}"
+                                        Style="{StaticResource GalleryIconButton}"
+                                        ToolTip="Print"
+                                        automation:AutomationProperties.Name="Print"
+                                        Margin="0,0,8,8">
+                                    <SymbolIcon Symbol="Print" />
+                                </Button>
+                            </WrapPanel>
+                        </Border>
+
+                        <!-- DocumentViewer -->
+                        <DocumentViewer x:Name="DemoViewer" Document="{Binding SampleDocument}"
+                                        Height="400"
+                                        Zoom="{Binding Zoom, Mode=TwoWay}"
+                                        FitMode="FitWidth"
+                                        PageDisplay="{Binding PageDisplay, Mode=TwoWay}"
+                                        ShowPageBorders="{Binding ShowPageBorders}"
+                                        HorizontalPageSpacing="{Binding PageSpacing}"
+                                        VerticalPageSpacing="{Binding PageSpacing}"
+                                        behaviors:DocumentViewerBehavior.IsEnabled="True"
+                                        behaviors:DocumentViewerBehavior.Request="{Binding ViewerRequest}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Text search -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DocumentViewer.CT2}" Description="{DynamicResource Loc.P.DocumentViewer.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel>
+                            <TextBox automation:AutomationProperties.Name="{DynamicResource Loc.P.DocumentViewer.Ui3}" ToolTip="{DynamicResource Loc.P.DocumentViewer.Ui3}" Text="{Binding SearchText, Mode=TwoWay}" Width="250" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Find" Command="{Binding FindCommand}" MinWidth="76" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Next" Command="{Binding FindNextCommand}" MinWidth="76" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Prev" Command="{Binding FindPreviousCommand}" MinWidth="76" Height="28" Margin="0,0,10,10"/>
+                            <Button Content="Clear" Command="{Binding ClearSearchCommand}" MinWidth="76" Height="28" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <CheckBox Content="{DynamicResource Loc.P.DocumentViewer.Ui4}" IsChecked="{Binding MatchCase, Mode=TwoWay}" Margin="0,0,10,10"/>
+                            <CheckBox Content="{DynamicResource Loc.P.DocumentViewer.Ui5}" IsChecked="{Binding MatchWholeWord, Mode=TwoWay}" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding SearchResult}"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Display options -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.DocumentViewer.CT3}" Description="{DynamicResource Loc.P.DocumentViewer.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="{DynamicResource Loc.P.DocumentViewer.Ui6}" Width="100" VerticalAlignment="Center"/>
+                            <ComboBox automation:AutomationProperties.Name="{DynamicResource Loc.P.DocumentViewer.Ui6}" Width="160"
+                                      Height="28"
+                                      ItemsSource="{Binding PageDisplayOptions}"
+                                      SelectedItem="{Binding PageDisplay, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Zoom:" Width="100" VerticalAlignment="Center"/>
+                            <Slider automation:AutomationProperties.Name="Zoom" Minimum="25" Maximum="400" Value="{Binding Zoom, Mode=TwoWay}" Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding Zoom, StringFormat='{}{0:F0}%'}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <CheckBox Content="{DynamicResource Loc.P.DocumentViewer.Ui7}" IsChecked="{Binding ShowPageBorders, Mode=TwoWay}" Margin="0,0,0,8"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="{DynamicResource Loc.P.DocumentViewer.Ui8}" Width="100" VerticalAlignment="Center"/>
+                            <Slider automation:AutomationProperties.Name="{DynamicResource Loc.P.DocumentViewer.Ui8}" Minimum="0" Maximum="30" Value="{Binding PageSpacing, Mode=TwoWay}" Width="150" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding PageSpacing, StringFormat='{}{0:F0}'}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.DocumentViewer.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="180"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.DocumentViewer.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="350"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

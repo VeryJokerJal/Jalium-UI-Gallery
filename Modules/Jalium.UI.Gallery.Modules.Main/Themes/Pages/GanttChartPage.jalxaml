@@ -1,0 +1,133 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GanttChartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GanttChartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <GanttChart Height="250"
+                                ShowDependencies="False"
+                                ShowProgress="False"
+                                ShowToday="True"
+                                Tasks="{Binding BasicTasks}" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GanttChartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="GanttChart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GanttChartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.GanttChart.Title1}" Description="{DynamicResource Loc.P.GanttChart.Sub1}" />
+
+        <!-- Basic Gantt Chart -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GanttChart.CT1}" Description="{DynamicResource Loc.P.GanttChart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <GanttChart Height="250"
+                                ShowDependencies="False"
+                                ShowProgress="False"
+                                ShowToday="True"
+                                Tasks="{Binding BasicTasks}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Dependencies & Milestones -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GanttChart.CT2}" Description="{DynamicResource Loc.P.GanttChart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <GanttChart Height="280"
+                                ShowDependencies="True"
+                                ShowProgress="False"
+                                ShowToday="True"
+                                Tasks="{Binding DependencyTasks}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Progress Tracking -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.GanttChart.CT3}" Description="{DynamicResource Loc.P.GanttChart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <GanttChart Height="280"
+                                ShowDependencies="True"
+                                ShowProgress="True"
+                                ShowToday="True"
+                                Tasks="{Binding ProgressTasks}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.GanttChart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.GanttChart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

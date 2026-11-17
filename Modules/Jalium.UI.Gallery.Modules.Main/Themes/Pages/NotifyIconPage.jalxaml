@@ -1,0 +1,221 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for NotifyIconPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.NotifyIconPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Tooltip:" Width="80" VerticalAlignment="Center" />
+                            <TextBox x:Name="TooltipBox"
+                                     Text="{Binding TooltipText, Mode=TwoWay}"
+                                     Width="250"
+                                     Height="28" />
+                        </StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="ShowIconButton" Content="Show Icon" Width="100" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding ShowIconCommand}" />
+                            <Button x:Name="HideIconButton" Content="Hide Icon" Width="100" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding HideIconCommand}" />
+                        </WrapPanel>
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:NotifyIconPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="NotifyIcon" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:NotifyIconPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Overlays}" Title="{DynamicResource Loc.P.NotifyIcon.Title1}" Description="{DynamicResource Loc.P.NotifyIcon.Sub1}" />
+
+        <!-- Basic tray icon -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NotifyIcon.CT1}" Description="{DynamicResource Loc.P.NotifyIcon.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Tooltip:" Width="80" VerticalAlignment="Center" />
+                            <TextBox x:Name="TooltipBox"
+                                     Text="{Binding TooltipText, Mode=TwoWay}"
+                                     Width="250" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="28" />
+                        </StackPanel>
+                        <WrapPanel>
+                            <Button x:Name="ShowIconButton" Content="Show Icon" Width="100" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding ShowIconCommand}" />
+                            <Button x:Name="HideIconButton" Content="Hide Icon" Width="100" Height="28" Margin="0,0,10,10"
+                                    Command="{Binding HideIconCommand}" />
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Balloon tips -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NotifyIcon.CT2}" Description="{DynamicResource Loc.P.NotifyIcon.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Title:" Width="80" VerticalAlignment="Center" />
+                            <TextBox x:Name="BalloonTitleBox"
+                                     Text="{Binding BalloonTitle, Mode=TwoWay}"
+                                     Width="250" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="28" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Text:" Width="80" VerticalAlignment="Center" />
+                            <TextBox x:Name="BalloonTextBox"
+                                     Text="{Binding BalloonText, Mode=TwoWay}"
+                                     Width="250" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="28" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Icon:" Width="80" VerticalAlignment="Center" />
+                            <ComboBox x:Name="BalloonIconComboBox"
+                                      Width="150"
+                                      Height="28"
+                                      ItemsSource="{Binding BalloonIcons}"
+                                      SelectedItem="{Binding SelectedBalloonIcon, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Timeout:" Width="80" VerticalAlignment="Center" />
+                            <Slider x:Name="BalloonTimeoutSlider"
+                                    Minimum="1"
+                                    Maximum="30"
+                                    Value="{Binding BalloonTimeout, Mode=TwoWay}"
+                                    Width="150"
+                                    Margin="0,0,8,0" />
+                            <TextBlock x:Name="BalloonTimeoutText"
+                                       Text="{Binding BalloonTimeoutText}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button x:Name="ShowBalloonButton"
+                                Content="Show Balloon Tip"
+                                Width="140"
+                                Height="28"
+                                Command="{Binding ShowBalloonCommand}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Events -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NotifyIcon.CT3}" Description="{DynamicResource Loc.P.NotifyIcon.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Text="Event Log:" Margin="0,0,0,8" />
+                        <Border Background="{DynamicResource GalleryCardBackground}"
+                                BorderBrush="{DynamicResource GalleryBorderDefault}"
+                                BorderThickness="1"
+                                CornerRadius="8" Padding="8" Height="120">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TextBlock x:Name="EventLogText"
+                                           Text="{Binding EventLogText}"
+                                           FontSize="12"
+                                           TextWrapping="Wrap" />
+                            </ScrollViewer>
+                        </Border>
+                        <Button x:Name="ClearLogButton"
+                                Content="Clear Log"
+                                Width="100"
+                                Height="24"
+                                Margin="0,8,0,0"
+                                Command="{Binding ClearLogCommand}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Context menu -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.NotifyIcon.CT4}" Description="{DynamicResource Loc.P.NotifyIcon.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <CheckBox x:Name="EnableContextMenuCheckBox"
+                                  Content="{DynamicResource Loc.P.NotifyIcon.Ui1}"
+                                  IsChecked="{Binding IsContextMenuEnabled, Mode=TwoWay}"
+                                  Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.NotifyIcon.Cap1}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.NotifyIcon.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.NotifyIcon.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="300"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}"
+                                 FontSize="13" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

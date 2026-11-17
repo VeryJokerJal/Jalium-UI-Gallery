@@ -1,0 +1,168 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for WrapPanelPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.WrapPanelPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel Orientation="Horizontal" Width="400">
+                        <Border Width="80" Height="40" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="Item 1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="Item 2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="Item 3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="80" Height="40" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="Item 4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#2196F3" Margin="4" CornerRadius="4"><TextBlock Text="Item 5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#F44336" Margin="4" CornerRadius="4"><TextBlock Text="Item 6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="80" Height="40" Background="#009688" Margin="4" CornerRadius="4"><TextBlock Text="Item 7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#FF5722" Margin="4" CornerRadius="4"><TextBlock Text="Item 8" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="Item 9" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:WrapPanelPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="WrapPanel" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:WrapPanelPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <!--
+        Hybrid page: the header and the two code-example cards live in markup;
+        the interactive demo cards are built imperatively into DemoHost by
+        CreateContent() using the GalleryUi factory (the C# mirror of the shared
+        styles), so both halves render the identical card scaffold.
+    -->
+    <StackPanel x:Name="ContentPanel" Style="{StaticResource GalleryPageStack}">
+
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.WrapPanel.Title1}" Description="{DynamicResource Loc.P.WrapPanel.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WrapPanel.CT1}" Description="{DynamicResource Loc.P.WrapPanel.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel Orientation="Horizontal" Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}">
+                        <Border Width="80" Height="40" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="Item 1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="Item 2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="Item 3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="80" Height="40" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="Item 4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#2196F3" Margin="4" CornerRadius="4"><TextBlock Text="Item 5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#F44336" Margin="4" CornerRadius="4"><TextBlock Text="Item 6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="80" Height="40" Background="#009688" Margin="4" CornerRadius="4"><TextBlock Text="Item 7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="100" Height="40" Background="#FF5722" Margin="4" CornerRadius="4"><TextBlock Text="Item 8" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="120" Height="40" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="Item 9" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WrapPanel.CT2}" Description="{DynamicResource Loc.P.WrapPanel.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel Orientation="Vertical" Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Height="150">
+                        <Border Width="60" Height="30" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="V1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="40" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="V2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="50" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="V3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="30" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="V4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="40" Background="#2196F3" Margin="4" CornerRadius="4"><TextBlock Text="V5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="50" Background="#F44336" Margin="4" CornerRadius="4"><TextBlock Text="V6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WrapPanel.CT3}" Description="{DynamicResource Loc.P.WrapPanel.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel Orientation="Horizontal" ItemWidth="80" ItemHeight="80" Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}">
+                        <Border Width="60" Height="60" Background="#0078D4" Margin="4" CornerRadius="4"><TextBlock Text="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="60" Background="#4CAF50" Margin="4" CornerRadius="4"><TextBlock Text="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="60" Background="#FF9800" Margin="4" CornerRadius="4"><TextBlock Text="3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                        <Border Width="60" Height="60" Background="#9C27B0" Margin="4" CornerRadius="4"><TextBlock Text="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.WrapPanel.CT4}" Description="{DynamicResource Loc.P.WrapPanel.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel Orientation="Horizontal" Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}">
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="C#" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="WPF" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="XAML" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="UI Framework" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text=".NET" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="Windows" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="Controls" Foreground="White" /></Border>
+                        <Border Background="{DynamicResource GalleryAccent}" CornerRadius="12" Padding="12,6" Margin="4"><TextBlock Text="Layout" Foreground="White" /></Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.WrapPanel.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.WrapPanel.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

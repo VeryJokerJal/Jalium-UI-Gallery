@@ -1,0 +1,217 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ToolTipPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ToolTipPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <Button x:Name="SaveButton"
+                                Content="Save"
+                                Width="80"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip1}" />
+                        <Button Content="Open"
+                                Width="80"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip2}" />
+                        <Button Content="Delete"
+                                Width="80"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip3}" />
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ToolTipPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="ToolTip" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ToolTipPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Overlays}" Title="{DynamicResource Loc.P.ToolTip.Title1}" Description="{DynamicResource Loc.P.ToolTip.Sub1}" />
+
+        <!-- Basic ToolTip -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolTip.CT1}" Description="{DynamicResource Loc.P.ToolTip.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Button x:Name="SaveButton"
+                                Content="Save"
+                                Width="80"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip1}" />
+                        <Button Content="Open"
+                                Width="80"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip2}" />
+                        <Button Content="Delete"
+                                Width="80"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip3}" />
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ToolTips on Various Controls -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolTip.CT2}" Description="{DynamicResource Loc.P.ToolTip.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBox Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                     Height="32"
+                                     ToolTip="{DynamicResource Loc.P.ToolTip.Tip4}"
+                                     Margin="0,0,12,0" />
+                            <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip5}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    ToolTip="{DynamicResource Loc.P.ToolTip.Tip6}"
+                                    Margin="0,0,12,0" />
+                            <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip7}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="{DynamicResource Loc.P.ToolTip.Tip8}"
+                                      ToolTip="{DynamicResource Loc.P.ToolTip.Tip9}"
+                                      Margin="0,0,12,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Rich Content ToolTip -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolTip.CT3}" Description="{DynamicResource Loc.P.ToolTip.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Button Content="{DynamicResource Loc.P.ToolTip.Tip10}" Width="180" Height="32">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip11}" FontWeight="Bold" Margin="0,0,0,4" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip12}" TextWrapping="Wrap" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip13}" TextWrapping="Wrap" />
+                                    <Separator Margin="0,8" />
+                                    <TextBlock Text="{DynamicResource Loc.P.ToolTip.Tip14}" FontSize="11" />
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- ToolTip Placement -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ToolTip.CT4}" Description="{DynamicResource Loc.P.ToolTip.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Button Content="Top"
+                                Width="60"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip15}" />
+                        <Button Content="Right"
+                                Width="60"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip16}" />
+                        <Button Content="Bottom"
+                                Width="60"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip17}" />
+                        <Button Content="Left"
+                                Width="60"
+                                Height="32"
+                                Margin="0,0,10,10"
+                                ToolTip="{DynamicResource Loc.P.ToolTip.Tip18}" />
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ToolTip.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ToolTip.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

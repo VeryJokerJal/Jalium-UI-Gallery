@@ -1,0 +1,162 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:automation="clr-namespace:Jalium.UI.Automation;assembly=Jalium.UI.Core"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for RichTextBoxPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.RichTextBoxPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <RichTextBox MaxWidth="500" Height="150" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:RichTextBoxPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="RichTextBox" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:RichTextBoxPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.TextAndTypography}" Title="{DynamicResource Loc.P.RichTextBox.Title1}" Description="{DynamicResource Loc.P.RichTextBox.Sub1}" />
+
+        <!-- Basic RichTextBox -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.RichTextBox.CT1}" Description="{DynamicResource Loc.P.RichTextBox.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <RichTextBox MaxWidth="500" Height="150" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- RichTextBox with formatting toolbar -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.RichTextBox.CT2}" Description="{DynamicResource Loc.P.RichTextBox.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <ToolBar Margin="0,0,0,8">
+                            <Button Width="36"
+                                    Height="36"
+                                    ToolTip="Bold"
+                                    Command="{x:Static EditingCommands.ToggleBold}"
+                                    CommandTarget="{Binding ElementName=FormattedRichTextBox}"
+                                    automation:AutomationProperties.Name="Bold">
+                                <SymbolIcon Symbol="Bold" Width="16" Height="16" />
+                            </Button>
+                            <Button Width="36"
+                                    Height="36"
+                                    ToolTip="Italic"
+                                    Command="{x:Static EditingCommands.ToggleItalic}"
+                                    CommandTarget="{Binding ElementName=FormattedRichTextBox}"
+                                    automation:AutomationProperties.Name="Italic">
+                                <SymbolIcon Symbol="Italic" Width="16" Height="16" />
+                            </Button>
+                            <Button Width="36"
+                                    Height="36"
+                                    ToolTip="Underline"
+                                    Command="{x:Static EditingCommands.ToggleUnderline}"
+                                    CommandTarget="{Binding ElementName=FormattedRichTextBox}"
+                                    automation:AutomationProperties.Name="Underline">
+                                <SymbolIcon Symbol="Underline" Width="16" Height="16" />
+                            </Button>
+                        </ToolBar>
+                        <RichTextBox x:Name="FormattedRichTextBox" MaxWidth="500" Height="200"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Read-only mode -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.ReadOnlyMode}" Description="{DynamicResource Loc.P.RichTextBox.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <RichTextBox MaxWidth="500" Height="150" IsReadOnly="True" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common use cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases}" Description="{DynamicResource Loc.P.RichTextBox.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.RichTextBox.Body1}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.RichTextBox.Body2}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.RichTextBox.Body3}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.RichTextBox.Body4}" />
+                        <gallery:GalleryFeatureItem Text="{DynamicResource Loc.P.RichTextBox.Body5}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.RichTextBox.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.RichTextBox.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

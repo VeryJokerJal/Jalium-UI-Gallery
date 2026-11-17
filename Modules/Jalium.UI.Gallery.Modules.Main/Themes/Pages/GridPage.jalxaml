@@ -1,0 +1,279 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for GridPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.GridPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <!-- Real 3x3 Grid demo -->
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource GalleryAccent}" Margin="0,0,4,4">
+                            <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="0,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" Background="#22C55E" Margin="0,0,4,4">
+                            <TextBlock Foreground="Black" Text="0,1"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="2" Background="#179842" Margin="0,0,0,4">
+                            <TextBlock Foreground="Black" Text="0,2"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Grid.Row="1" Grid.Column="0" Background="#CA5010" Margin="0,0,4,4">
+                            <TextBlock Foreground="White" Text="1,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" Background="#008272" Margin="0,0,4,4">
+                            <TextBlock Foreground="White" Text="1,1"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="2" Background="#39C267" Margin="0,0,0,4">
+                            <TextBlock Foreground="Black" Text="1,2"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Grid.Row="2" Grid.Column="0" Background="#567C73" Margin="0,0,4,0">
+                            <TextBlock Foreground="White" Text="2,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1" Background="#7E735F" Margin="0,0,4,0">
+                            <TextBlock Foreground="White" Text="2,1"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="2" Background="#4C4A48">
+                            <TextBlock Foreground="White" Text="2,2"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:GridPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Grid" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:GridPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.Grid.Title1}" Description="{DynamicResource Loc.P.Grid.Sub1}" />
+
+        <!-- Basic grid layout -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Grid.CT1}" Description="{DynamicResource Loc.P.Grid.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <!-- Real 3x3 Grid demo -->
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource GalleryAccent}" Margin="0,0,4,4">
+                            <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="0,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" Background="#22C55E" Margin="0,0,4,4">
+                            <TextBlock Foreground="Black" Text="0,1"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="2" Background="#179842" Margin="0,0,0,4">
+                            <TextBlock Foreground="Black" Text="0,2"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Grid.Row="1" Grid.Column="0" Background="#CA5010" Margin="0,0,4,4">
+                            <TextBlock Foreground="White" Text="1,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" Background="#008272" Margin="0,0,4,4">
+                            <TextBlock Foreground="White" Text="1,1"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="2" Background="#39C267" Margin="0,0,0,4">
+                            <TextBlock Foreground="Black" Text="1,2"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Grid.Row="2" Grid.Column="0" Background="#567C73" Margin="0,0,4,0">
+                            <TextBlock Foreground="White" Text="2,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1" Background="#7E735F" Margin="0,0,4,0">
+                            <TextBlock Foreground="White" Text="2,1"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="2" Background="#4C4A48">
+                            <TextBlock Foreground="White" Text="2,2"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Grid features -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Grid.CT2}" Description="{DynamicResource Loc.P.Grid.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <!-- Real Grid demo showing spans and mixed sizing -->
+                        <Grid Height="190">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                    Background="{DynamicResource GalleryAccent}"
+                                    CornerRadius="8"
+                                    Padding="12,8"
+                                    Margin="0,0,0,8">
+                                <TextBlock Foreground="{ThemeResource TextOnAccent}" Text="Header (ColumnSpan=3)"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+                                    Background="#22C55E"
+                                    CornerRadius="8"
+                                    Padding="12"
+                                    Margin="0,0,8,0">
+                                <TextBlock Foreground="Black" Text="Sidebar&#10;(RowSpan=2)"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                    Background="#179842"
+                                    CornerRadius="8"
+                                    Padding="12"
+                                    Margin="0,0,0,8">
+                                <TextBlock Foreground="Black" Text="Content Area&#10;(ColumnSpan=2)"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Row="2" Grid.Column="1"
+                                    Background="#CA5010"
+                                    CornerRadius="8"
+                                    Padding="12"
+                                    Margin="0,0,8,0">
+                                <TextBlock Foreground="White" Text="Fixed + Star sizing"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Row="2" Grid.Column="2"
+                                    Background="#008272"
+                                    CornerRadius="8"
+                                    Padding="12">
+                                <TextBlock Foreground="White" Text="Grid.Row / Grid.Column"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center"/>
+                            </Border>
+                        </Grid>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{DynamicResource Loc.P.Grid.Cap1}"
+                                   Margin="0,12,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Grid.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Grid.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

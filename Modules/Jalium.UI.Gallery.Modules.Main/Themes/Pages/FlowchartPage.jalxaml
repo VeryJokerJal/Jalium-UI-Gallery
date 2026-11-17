@@ -1,0 +1,161 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for FlowchartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.FlowchartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Border Background="{DynamicResource GalleryDiagramPaper}"
+                            CornerRadius="8"
+                            Padding="8">
+                        <MermaidDiagram Source="{Binding DecisionSource}"
+                                        Height="460"
+                                        HorizontalAlignment="Stretch" />
+                    </Border>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:FlowchartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Flowchart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:FlowchartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.Flowchart.Title1}" Description="{DynamicResource Loc.P.Flowchart.Sub1}" />
+
+        <!-- Decision flow -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Flowchart.CT1}" Description="{DynamicResource Loc.P.Flowchart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Border Background="{DynamicResource GalleryDiagramPaper}"
+                            CornerRadius="8"
+                            Padding="8">
+                        <MermaidDiagram Source="{Binding DecisionSource}"
+                                        Height="460"
+                                        HorizontalAlignment="Stretch" />
+                    </Border>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Node shapes & edge styles -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Flowchart.CT2}" Description="{DynamicResource Loc.P.Flowchart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <Border Background="{DynamicResource GalleryDiagramPaper}"
+                            CornerRadius="8"
+                            Padding="8">
+                        <MermaidDiagram Source="{Binding ShapesSource}"
+                                        Height="240"
+                                        HorizontalAlignment="Stretch" />
+                    </Border>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Live editor -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.LiveEditor}" Description="{DynamicResource Loc.P.Flowchart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <StackPanel Orientation="Vertical" Width="380" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Margin="0,0,10,10">
+                            <TextBlock Text="Flowchart Source:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4" />
+                            <TextBox x:Name="MermaidInput"
+                                     AcceptsReturn="True"
+                                     Height="320"
+                                     FontFamily="{ThemeResource MonoFontFamily}"
+                                     FontSize="13"
+                                     Text="{Binding LiveSource, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="380" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" Margin="0,0,10,10">
+                            <TextBlock Text="Rendered Diagram:"
+                                       FontSize="12"
+                                       Margin="0,0,0,4" />
+                            <Border x:Name="LiveDiagramHost"
+                                    Background="{DynamicResource GalleryDiagramPaper}"
+                                    CornerRadius="8"
+                                    Padding="8"
+                                    Height="320">
+                                <MermaidDiagram Source="{Binding LiveSource}"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch" />
+                            </Border>
+                        </StackPanel>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Flowchart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Flowchart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

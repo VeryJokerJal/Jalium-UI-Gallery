@@ -1,0 +1,272 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for BorderPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.BorderPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <Border Width="100" Height="80"
+                                Background="{DynamicResource GalleryAccent}"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="Background"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="12"/>
+                        </Border>
+                        <Border Width="100" Height="80"
+                                BorderBrush="{DynamicResource GalleryAccent}"
+                                BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="Border Only"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="12"/>
+                        </Border>
+                        <Border Width="100" Height="80"
+                                Background="#1E3A5F"
+                                BorderBrush="{DynamicResource GalleryAccent}"
+                                BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="Both"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="12"/>
+                        </Border>
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:BorderPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Border" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:BorderPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.Layout}" Title="{DynamicResource Loc.P.Border.Title1}" Description="{DynamicResource Loc.P.Border.Sub1}" />
+
+        <!-- Basic border -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Border.CT1}" Description="{DynamicResource Loc.P.Border.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Border Width="100" Height="80"
+                                Background="{DynamicResource GalleryAccent}"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="Background"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="12"/>
+                        </Border>
+                        <Border Width="100" Height="80"
+                                BorderBrush="{DynamicResource GalleryAccent}"
+                                BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="Border Only"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="12"/>
+                        </Border>
+                        <Border Width="100" Height="80"
+                                Background="#1E3A5F"
+                                BorderBrush="{DynamicResource GalleryAccent}"
+                                BorderThickness="2"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="Both"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="12"/>
+                        </Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Corner radius -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Border.CT2}" Description="{DynamicResource Loc.P.Border.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Border Width="80" Height="80"
+                                Background="#22C55E"
+                                CornerRadius="0"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="80" Height="80"
+                                Background="#22C55E"
+                                CornerRadius="14"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="8"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="80" Height="80"
+                                Background="#22C55E"
+                                CornerRadius="16"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="16"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="80" Height="80"
+                                Background="#22C55E"
+                                CornerRadius="40"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="40"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Border thickness -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Border.CT3}" Description="{DynamicResource Loc.P.Border.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Border Width="80" Height="80"
+                                BorderBrush="#179842"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="1px"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="80" Height="80"
+                                BorderBrush="#179842"
+                                BorderThickness="2"
+                                CornerRadius="8"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="2px"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="80" Height="80"
+                                BorderBrush="#179842"
+                                BorderThickness="4"
+                                CornerRadius="8"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="4px"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="80" Height="80"
+                                BorderBrush="#179842"
+                                BorderThickness="8"
+                                CornerRadius="8"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="8px"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Padding -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Border.CT4}" Description="{DynamicResource Loc.P.Border.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <Border Background="#CA5010"
+                                BorderBrush="#FFFFFF"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="4"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="4px" FontSize="12"/>
+                        </Border>
+                        <Border Background="#CA5010"
+                                BorderBrush="#FFFFFF"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="8"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="8px" FontSize="12"/>
+                        </Border>
+                        <Border Background="#CA5010"
+                                BorderBrush="#FFFFFF"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="16"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="16px" FontSize="12"/>
+                        </Border>
+                        <Border Background="#CA5010"
+                                BorderBrush="#FFFFFF"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="24"
+                                Margin="0,0,10,10">
+                            <TextBlock Text="24px" FontSize="12"/>
+                        </Border>
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.Border.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.Border.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

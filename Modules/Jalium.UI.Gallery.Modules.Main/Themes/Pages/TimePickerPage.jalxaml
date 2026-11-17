@@ -1,0 +1,188 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TimePickerPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TimePickerPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <WrapPanel>
+                        <TimePicker Width="150" Margin="0,0,10,10" />
+                        <TimePicker Width="150" IsEnabled="False" Margin="0,0,10,10" />
+                    </WrapPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TimePickerPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="TimePicker" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TimePickerPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DateAndTime}" Title="{DynamicResource Loc.P.TimePicker.Title1}" Description="{DynamicResource Loc.P.TimePicker.Sub1}" />
+
+        <!-- Basic TimePicker -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TimePicker.CT1}" Description="{DynamicResource Loc.P.TimePicker.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <WrapPanel>
+                        <TimePicker Width="150" Margin="0,0,10,10" />
+                        <TimePicker Width="150" IsEnabled="False" Margin="0,0,10,10" />
+                    </WrapPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Time formats -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TimePicker.CT2}" Description="{DynamicResource Loc.P.TimePicker.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl1}" Width="140" VerticalAlignment="Center"/>
+                            <TimePicker Width="150" ClockIdentifier="12HourClock"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl2}" Width="140" VerticalAlignment="Center"/>
+                            <TimePicker Width="150" ClockIdentifier="24HourClock"/>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Minute increment -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TimePicker.CT3}" Description="{DynamicResource Loc.P.TimePicker.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl3}" Width="140" VerticalAlignment="Center"/>
+                            <TimePicker Width="150" MinuteIncrement="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl4}" Width="140" VerticalAlignment="Center"/>
+                            <TimePicker Width="150" MinuteIncrement="5"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl5}" Width="140" VerticalAlignment="Center"/>
+                            <TimePicker Width="150" MinuteIncrement="15"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl6}" Width="140" VerticalAlignment="Center"/>
+                            <TimePicker Width="150" MinuteIncrement="30"/>
+                        </StackPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Interactive demo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.InteractiveDemo2}" Description="{DynamicResource Loc.P.TimePicker.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl7}" Width="120" VerticalAlignment="Center"/>
+                            <TimePicker x:Name="DemoTimePicker"
+                                        Width="150"
+                                        SelectedTime="{Binding SelectedTime, Mode=TwoWay}"/>
+                        </StackPanel>
+                        <TextBlock x:Name="SelectedTimeText"
+                                   Style="{StaticResource GalleryValueLabel}"
+                                   Text="{Binding SelectedTimeText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Common use cases -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CommonUseCases}" Description="{DynamicResource Loc.P.TimePicker.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl8}" FontSize="12" Margin="0,0,0,4"/>
+                        <TimePicker Width="150" Margin="0,0,0,16"/>
+
+                        <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl9}" FontSize="12" Margin="0,0,0,4"/>
+                        <TimePicker Width="150" MinuteIncrement="15" Margin="0,0,0,16"/>
+
+                        <TextBlock Text="{DynamicResource Loc.P.TimePicker.Lbl10}" FontSize="12" Margin="0,0,0,4"/>
+                        <TimePicker Width="150" MinuteIncrement="5"/>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.TimePicker.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.TimePicker.CC7}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

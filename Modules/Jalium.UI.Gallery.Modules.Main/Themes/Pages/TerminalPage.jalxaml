@@ -1,0 +1,166 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Jalium.UI.Gallery.Modules.Main.Behaviors"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TerminalPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TerminalPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <Terminal Height="400" HorizontalAlignment="Stretch" FontSize="{Binding TerminalFontSize}" AutoSize="True" CursorStyle="{Binding CursorStyle}" MaxScrollbackLines="10000" AutoStartShell="False" IsReadOnly="True" />
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TerminalPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Terminal" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TerminalPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.System}" Title="{DynamicResource Loc.P.Terminal.Title1}" Description="{DynamicResource Loc.P.Terminal.Sub1}" />
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Terminal.CT1}" Description="{DynamicResource Loc.P.Terminal.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <Terminal Height="400"
+                              HorizontalAlignment="Stretch"
+                              FontSize="{Binding TerminalFontSize}"
+                              AutoSize="True"
+                              AutoStartShell="True"
+                              CursorStyle="{Binding CursorStyle}"
+                              MaxScrollbackLines="10000"
+                              behaviors:TerminalBehavior.ObserveProcess="True"
+                              behaviors:TerminalBehavior.Request="{Binding MainRequest}" />
+                </gallery:GalleryDemoSurface>
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <TextBlock Text="{Binding TerminalTitle}"
+                               FontSize="12"
+                               Margin="0,0,16,0"/>
+                    <TextBlock Text="{Binding ProcessStatus}"
+                               FontSize="12"/>
+                </StackPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Options}" Description="{DynamicResource Loc.P.Terminal.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Cursor Style:"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,12,0"/>
+                            <ComboBox Width="140"
+                                      ItemsSource="{Binding CursorStyles}"
+                                      SelectedItem="{Binding CursorStyle, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <TextBlock Text="Font Size:"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,12,0"/>
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    Minimum="8"
+                                    Maximum="24"
+                                    Value="{Binding TerminalFontSize, Mode=TwoWay}"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding TerminalFontSize, StringFormat='{}{0:F0}'}"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"
+                                       Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <WrapPanel>
+                            <Button Content="Clear Terminal" Command="{Binding ClearCommand}" Margin="0,0,10,10"/>
+                            <Button Content="Copy Selection" Command="{Binding CopyCommand}" Margin="0,0,10,10"/>
+                            <Button Content="Paste" Command="{Binding PasteCommand}" Margin="0,0,10,10"/>
+                            <Button Content="Restart Shell" Command="{Binding RestartCommand}" Margin="0,0,10,10"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.P.Terminal.CT2}" Description="{DynamicResource Loc.P.Terminal.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <Terminal Height="200"
+                              HorizontalAlignment="Stretch"
+                              FontSize="14"
+                              AutoSize="True"
+                              AutoStartShell="False"
+                              IsReadOnly="True"
+                              CursorStyle="Bar"
+                              behaviors:TerminalBehavior.Request="{Binding DemoRequest}" />
+                </gallery:GalleryDemoSurface>
+                <WrapPanel Margin="0,12,0,0">
+                    <Button Content="Show ANSI Colors" Command="{Binding ShowAnsiColorsCommand}" Margin="0,0,10,10"/>
+                    <Button Content="Show Text Styles" Command="{Binding ShowTextStylesCommand}" Margin="0,0,10,10"/>
+                    <Button Content="Clear" Command="{Binding ClearDemoCommand}" Margin="0,0,10,10"/>
+                </WrapPanel>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.XamlCodeExample}" Description="{DynamicResource Loc.P.Terminal.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharpCodeExample}" Description="{DynamicResource Loc.P.Terminal.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

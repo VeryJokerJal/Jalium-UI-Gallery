@@ -1,0 +1,143 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for TextBlockPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.TextBlockPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{DynamicResource Loc.P.TextBlock.Demo1}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="{DynamicResource Loc.P.TextBlock.Demo2}" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:TextBlockPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="TextBlock" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:TextBlockPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.TextAndTypography}" Title="{DynamicResource Loc.P.TextBlock.Title1}" Description="{DynamicResource Loc.P.TextBlock.Sub1}" />
+
+        <!-- Basic TextBlock -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TextBlock.CT1}" Description="{DynamicResource Loc.P.TextBlock.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{DynamicResource Loc.P.TextBlock.Demo1}"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="{DynamicResource Loc.P.TextBlock.Demo2}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Font Sizes -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TextBlock.CT2}" Description="{DynamicResource Loc.P.TextBlock.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Caption (12px)"
+                                   FontSize="12"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="Body (14px)"
+                                   FontSize="14"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="Subtitle (18px)"
+                                   FontSize="18"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="Title (24px)"
+                                   FontSize="24"
+                                   Margin="0,0,0,8" />
+                        <TextBlock Text="Display (32px)"
+                                   FontSize="32" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Text Wrapping -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.TextBlock.CT3}" Description="{DynamicResource Loc.P.TextBlock.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <TextBlock Text="This is a longer piece of text that demonstrates how TextBlock handles text wrapping. When the text exceeds the available width, it automatically wraps to the next line, ensuring all content remains visible and readable."
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               Width="400" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.TextBlock.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.TextBlock.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

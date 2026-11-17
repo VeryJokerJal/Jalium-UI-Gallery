@@ -1,0 +1,198 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.com/jalxaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for ShellIntegrationPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.ShellIntegrationPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.Shared.Properties}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body1}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body2}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body3}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body4}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body5}" />
+                        <Border Style="{StaticResource GalleryDivider}" />
+                        <TextBlock Text="// Apply custom window chrome" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="var chrome = new WindowChrome" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="{" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    CaptionHeight = 30," FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    CornerRadius = new CornerRadius(8)," FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    GlassFrameThickness = new Thickness(-1)" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="};" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="WindowChrome.SetWindowChrome(window, chrome);" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                    </StackPanel>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:ShellIntegrationPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="Shell Integration" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:ShellIntegrationPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.System}" Title="{DynamicResource Loc.P.ShellIntegration.Title1}" Description="{DynamicResource Loc.P.ShellIntegration.Sub1}" />
+
+        <!-- WindowChrome -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShellIntegration.CT1}" Description="{DynamicResource Loc.P.ShellIntegration.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.Shared.Properties}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body1}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body2}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body3}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body4}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body5}" />
+                        <Border Style="{StaticResource GalleryDivider}" />
+                        <TextBlock Text="// Apply custom window chrome" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="var chrome = new WindowChrome" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="{" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    CaptionHeight = 30," FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    CornerRadius = new CornerRadius(8)," FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="    GlassFrameThickness = new Thickness(-1)" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="};" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                        <TextBlock Text="WindowChrome.SetWindowChrome(window, chrome);" FontFamily="{ThemeResource MonoFontFamily}" FontSize="12" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- JumpList -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShellIntegration.CT2}" Description="{DynamicResource Loc.P.ShellIntegration.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <Button Content="Apply Sample JumpList"
+                                Command="{Binding ApplyJumpListCommand}"
+                                Width="180"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,12" />
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ShellIntegration.Val1}" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body6}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body7}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{DynamicResource Loc.P.ShellIntegration.Body8}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- TaskbarItemInfo -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShellIntegration.CT3}" Description="{DynamicResource Loc.P.ShellIntegration.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ShellIntegration.Val2}" Margin="0,0,0,10" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Slider Width="200" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    Value="{Binding TaskbarProgress, Mode=TwoWay}"
+                                    VerticalAlignment="Center" />
+                            <TextBlock Style="{StaticResource GalleryValueLabel}"
+                                       Text="{Binding TaskbarProgressText}"
+                                       Margin="12,0,0,0" />
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource GalleryValueLabel}" Text="{DynamicResource Loc.P.ShellIntegration.Val3}" Margin="0,18,0,10" />
+                        <WrapPanel>
+                            <Button Content="None" Command="{Binding SetProgressNoneCommand}" Width="70" Margin="0,0,10,10" />
+                            <Button Content="Normal" Command="{Binding SetProgressNormalCommand}" Width="70" Margin="0,0,10,10" />
+                            <Button Content="Paused" Command="{Binding SetProgressPausedCommand}" Width="70" Margin="0,0,10,10" />
+                            <Button Content="Error" Command="{Binding SetProgressErrorCommand}" Width="70" Margin="0,0,10,10" />
+                        </WrapPanel>
+
+                        <TextBlock Style="{StaticResource GalleryCaptionText}"
+                                   Text="{Binding TaskbarStatus}"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- SystemParameters2 -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.ShellIntegration.CT4}" Description="{DynamicResource Loc.P.ShellIntegration.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding GlassEnabledText}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding GlassColorText}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding CaptionHeightText}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource GalleryBodyText}" Text="{Binding ResizeBorderText}" />
+                    </StackPanel>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.ShellIntegration.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.ShellIntegration.CC6}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>

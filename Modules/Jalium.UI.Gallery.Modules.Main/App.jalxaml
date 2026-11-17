@@ -1,14 +1,13 @@
 <Application x:Class="Jalium.UI.Gallery.Modules.Main.App"
              xmlns="http://schemas.jalium.ui/2024"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Views/MainWindow.jalxaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--
         Application-level resources for the Gallery main module.
 
         • Themes/AppTheme.jalxaml is merged so every {DynamicResource AccentPrimary},
-          {DynamicResource AppBackground}, etc. in the page templates resolves to
-          the Forest Emerald palette that Gallery-scoped chrome uses.
+          {DynamicResource AppBackground}, etc. in legacy samples resolves to a
+          Light/Dark-aware compatibility palette.
 
         • Framework accent brushes (AccentBrush, SelectionBackground, …) are NOT
           overridden here — the Jalium.UI theme (Jalium.UI.Controls/Themes/Colors.jalxaml)
@@ -26,9 +25,6 @@
                 <ResourceDictionary Source="Themes/AppTheme.jalxaml" />
                 <ResourceDictionary Source="Themes/GalleryStyles.jalxaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <!-- Gallery-only extra key not shipped by the framework. -->
-            <SolidColorBrush x:Key="SelectionBackgroundWeak" Color="#331E793F" />
         </ResourceDictionary>
     </Application.Resources>
 

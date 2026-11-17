@@ -1,0 +1,153 @@
+<ResourceDictionary
+    xmlns="http://schemas.jalium.ui/2024"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hosting="clr-namespace:Jalium.UI.Hosting;assembly=Jalium.UI.Controls"
+    xmlns:pages="clr-namespace:Jalium.UI.Gallery.Modules.Main.Views.Pages"
+    xmlns:gallery="clr-namespace:Jalium.UI.Gallery.Modules.Main.Controls">
+    <!-- Default template for PieChartPage. Data and commands are supplied by its ViewModel. -->
+    <!-- Independent preview instance: shares data, never re-parents a page's template parts. -->
+    <DataTemplate x:Key="Gallery.Preview.PieChartPage">
+        <Viewbox Stretch="Uniform" StretchDirection="Both" ClipToBounds="True">
+            <Grid Width="640" ClipToBounds="True">
+
+
+                    <PieChart Height="350"
+                              Title="Market Share"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              LabelPosition="Outside">
+                        <PieChart.Series>
+                            <PieSeries Title="Market Share"
+                                       DataPoints="{Binding MarketShare}" />
+                        </PieChart.Series>
+                    </PieChart>
+
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+    <Style TargetType="pages:PieChartPage">
+        <Setter Property="hosting:ViewModelLocator.AutoWireViewModel" Value="True" />
+        <Setter Property="Title" Value="PieChart" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="pages:PieChartPage">
+                <Grid x:Name="PART_Root">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Unfocused" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Wide" />
+                        <VisualState x:Name="Compact" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+
+    <StackPanel Style="{StaticResource GalleryPageStack}">
+
+        <!-- Page header -->
+        <gallery:GalleryPageHeader Eyebrow="{DynamicResource Loc.Shared.DataVisualization}" Title="{DynamicResource Loc.P.PieChart.Title1}" Description="{DynamicResource Loc.P.PieChart.Sub1}" />
+
+        <!-- Basic Pie Chart -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.PieChart.CT1}" Description="{DynamicResource Loc.P.PieChart.CC1}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <PieChart Height="350"
+                              Title="Market Share"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              LabelPosition="Outside">
+                        <PieChart.Series>
+                            <PieSeries Title="Market Share"
+                                       DataPoints="{Binding MarketShare}" />
+                        </PieChart.Series>
+                    </PieChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Donut Chart -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.PieChart.CT2}" Description="{DynamicResource Loc.P.PieChart.CC2}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <PieChart Height="350"
+                              Title="Storage Usage"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              InnerRadiusRatio="0.5">
+                        <PieChart.Series>
+                            <PieSeries Title="Storage"
+                                       DataPoints="{Binding StorageUsage}" />
+                        </PieChart.Series>
+                    </PieChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- Exploded Slices -->
+        <gallery:GallerySection Header="{DynamicResource Loc.P.PieChart.CT3}" Description="{DynamicResource Loc.P.PieChart.CC3}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface>
+                    <PieChart Height="350"
+                              Title="Browser Usage"
+                              IsLegendVisible="True"
+                              ShowLabels="True"
+                              ExplodeOffset="12">
+                        <PieChart.Series>
+                            <PieSeries Title="Browsers"
+                                       DataPoints="{Binding BrowserUsage}" />
+                        </PieChart.Series>
+                    </PieChart>
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- XAML code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.Xaml}" Description="{DynamicResource Loc.P.PieChart.CC4}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="XamlCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="jalxaml"
+                                 Text="{Binding XamlExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+        <!-- C# code example -->
+        <gallery:GallerySection Header="{DynamicResource Loc.Shared.CSharp}" Description="{DynamicResource Loc.P.PieChart.CC5}">
+            <StackPanel>
+
+                <gallery:GalleryDemoSurface Padding="0">
+                    <EditControl x:Name="CSharpCodeEditor"
+                                 Height="200"
+                                 HorizontalAlignment="Stretch"
+                                 IsReadOnly="True"
+                                 ShowLineNumbers="True"
+                                 FontSize="13"
+                                 Language="csharp"
+                                 Text="{Binding CSharpExample}" />
+                </gallery:GalleryDemoSurface>
+            </StackPanel>
+        </gallery:GallerySection>
+
+    </StackPanel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</ResourceDictionary>
